@@ -21,7 +21,7 @@ const schema = [
 const others = useCases.filter(x => x.slug !== u.slug).sort((a, b) => Number(b.category === u.category) - Number(a.category === u.category));
 const related = [...others.map(x => ({ t: x.title, h: `${BASE}/use-cases/${x.slug}/`, c: x.category })), ...planned.filter(p => p.category === u.category).slice(0, 2).map(p => ({ t: p.title, h: '', c: p.category }))].slice(0, 4);
 const desc = u.summary.length > 158 ? u.summary.slice(0, u.summary.lastIndexOf(' ', 155)) + '…' : u.summary;
-const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts', 'Prompts'], ['setup', 'Agent setup'], ['tools', 'Best tools'], ['faq', 'FAQ']];
+const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts', 'Prompts'], ['setup', 'Agent setup'], ['tools', 'Best tools'], ['faq', 'FAQ']].filter(([id]) => (id !== 'results' || u.tests.some(t => t.status !== 'not-yet-tested')) && (id !== 'tools' || u.toolPicks.some(p => toolBySlug(p.slug))));
 ---
 <Base title={u.title} description={desc} schema={schema} ogType="article" crumbs={[['Playbooks', '/use-cases/'], [u.category, `/ai-for/${catSlug(u.category)}/`], [u.title, `/use-cases/${u.slug}/`]]}>
   <div class="wrap">
@@ -56,10 +56,11 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
         <h3 style="font-size:16px;margin-top:28px">Where it usually breaks</h3>
         <ul class="fails">{u.setup.failureModes.map(f => <li>{f}</li>)}</ul>
 
+        {u.toolPicks.some(p => toolBySlug(p.slug)) && <>
         <h2 id="tools">Best tools for this job</h2>
         <p class="disclose">Some links may become affiliate links. They never change our picks. <a href={BASE + '/disclosure/'} style="color:var(--accent)">Disclosure</a></p>
         <div class="picks">
-          {u.toolPicks.map((p, i) => { const t = toolBySlug(p.slug)!; return (
+          {u.toolPicks.filter(p => toolBySlug(p.slug)).map((p, i) => { const t = toolBySlug(p.slug)!; return (
             <div class="pick">
               <div style="display:flex;align-items:center;gap:10px"><span class="tlogo" data-h={t.name.length} style="width:32px;height:32px;font-size:13px;border-radius:9px">{t.name[0]}</span><div><div class="rank">PICK #{i + 1}</div><h3><a href={`${BASE}/tools/${t.slug}/`}>{t.name}</a></h3></div></div>
               <p><strong style="color:var(--text)">Why:</strong> {p.why}</p>
@@ -67,6 +68,7 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
               <a class="btn" href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'} target="_blank">Visit {t.name} <Icon name="external" size={14} /></a>
             </div>); })}
         </div>
+        </>}
 
         <h2 id="faq">FAQ</h2>
         <div class="faq">{u.faq.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
