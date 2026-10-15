@@ -1,4 +1,5 @@
 ---
+import { BASE } from "../data/site";
 import Base from '../layouts/Base.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { useCases } from '../data/useCases';
@@ -9,6 +10,6 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SI
   <h1>{SITE.tagline}</h1>
   <p class="answer">Each use case comes with copy-ready prompts tested on ChatGPT, Claude, Grok, and Muse, a step-by-step agent setup, and the best tools for the job. We re-test whenever the models change. This library covers small-business back office, sales, support, and marketing.</p>
   <h2>Use cases</h2>
-  <ul>{useCases.map(u => <li><a href={`/use-cases/${u.slug}/`}>{u.title}</a> <small>({u.category})</small></li>)}</ul>
+  <ul>{useCases.map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a> <small>({u.category})</small></li>)}</ul>
   <NewsletterSignup />
 </Base>

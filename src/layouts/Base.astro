@@ -1,8 +1,9 @@
 ---
+import { BASE } from "../data/site";
 import { SITE } from '../data/site';
 interface Props { title: string; description: string; schema?: object[] }
 const { title, description, schema = [] } = Astro.props;
-const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const canonical = SITE.origin + Astro.url.pathname;
 const org = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url };
 ---
 <!doctype html>
@@ -12,7 +13,7 @@ const org = { '@context': 'https://schema.org', '@type': 'Organization', name: S
   <title>{title === SITE.name ? title : `${title} | ${SITE.name}`}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="sitemap" href={BASE+"/sitemap-index.xml"} />
   <meta property="og:title" content={title} /><meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} /><meta property="og:type" content="website" />
   {[org, ...schema].map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
@@ -27,8 +28,8 @@ const org = { '@context': 'https://schema.org', '@type': 'Organization', name: S
   </style>
 </head>
 <body>
-  <header><a href="/"><strong>Retested</strong></a><a href="/use-cases/">Use cases</a><a href="/tools/">Tools</a><a href="/releases/">Releases</a><a href="/get-featured/">Get featured</a><a href="/newsletter/">Newsletter</a></header>
+  <header><a href={BASE+"/"}><strong>Retested</strong></a><a href={BASE+"/use-cases/"}>Use cases</a><a href={BASE+"/tools/"}>Tools</a><a href={BASE+"/releases/"}>Releases</a><a href={BASE+"/get-featured/"}>Get featured</a><a href={BASE+"/newsletter/"}>Newsletter</a></header>
   <main><slot /></main>
-  <footer><span>© 2026 Retested</span><a href="/methodology/">How we test</a><a href="/disclosure/">Affiliate &amp; sponsor disclosure</a></footer>
+  <footer><span>© 2026 Retested</span><a href={BASE+"/methodology/"}>How we test</a><a href={BASE+"/disclosure/"}>Affiliate &amp; sponsor disclosure</a></footer>
 </body>
 </html>

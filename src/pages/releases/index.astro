@@ -1,10 +1,11 @@
 ---
+import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
 import { releases } from '../../data/releases';
 ---
 <Base title="New AI tool and model releases" description="New AI tools and model updates, tagged with the small-business use cases they change.">
   <h1>Releases</h1>
   <p>Each release is tagged with the use cases it affects. When a model changes, we queue a re-test.</p>
-  <link rel="alternate" type="application/rss+xml" href="/releases/rss.xml" />
-  {releases.map(r => <article class="card"><h2><a href={`/releases/${r.slug}/`}>{r.title}</a></h2><time datetime={r.date}>{r.date}</time>{r.sponsored && <span class="sponsored"> · Sponsored</span>}<p>{r.summary}</p></article>)}
+  <link rel="alternate" type="application/rss+xml" href={BASE+"/releases/rss.xml"} />
+  {releases.map(r => <article class="card"><h2><a href={BASE+`/releases/${r.slug}/`}>{r.title}</a></h2><time datetime={r.date}>{r.date}</time>{r.sponsored && <span class="sponsored"> · Sponsored</span>}<p>{r.summary}</p></article>)}
 </Base>

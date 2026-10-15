@@ -1,9 +1,10 @@
 ---
+import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
 import { useCases } from '../../data/useCases';
 const cats = [...new Set(useCases.map(u => u.category))];
 ---
 <Base title="AI agent use cases for small business" description="Tested prompts and agent setups for small-business back office, sales, support, and marketing.">
   <h1>Use cases</h1>
-  {cats.map(c => <section><h2>{c}</h2><ul>{useCases.filter(u => u.category === c).map(u => <li><a href={`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul></section>)}
+  {cats.map(c => <section><h2>{c}</h2><ul>{useCases.filter(u => u.category === c).map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul></section>)}
 </Base>

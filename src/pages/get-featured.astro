@@ -1,4 +1,5 @@
 ---
+import { BASE } from "../data/site";
 import Base from '../layouts/Base.astro';
 // Launch prices are set by us and still to be tested; edit here. Payment links are placeholders until Stripe/Lemon Squeezy is set up.
 const plans = [
@@ -11,6 +12,17 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'R
 <Base title="Get featured" description="Get your AI tool in front of small businesses looking for it, by use case. Paid placement is always labeled and never changes test results." schema={schema}>
   <h1>Get your AI tool featured</h1>
   <p class="answer">Small-business buyers find tools on Retested by searching for the job they need done. Featured placement puts your tool next to that job. Paid placements are always labeled, and <strong>payment never changes test scores or rankings</strong>.</p>
-  {plans.map(p => <div class="card"><h2>{p.name}: {p.price}</h2><ul>{p.items.map(i => <li>{i}</li>)}</ul><a href="#" data-payment-placeholder="true">Apply (checkout coming soon)</a></div>)}
-  <p>Questions: <a href="mailto:sponsors@retested.ai">sponsors@retested.ai</a> (placeholder address)</p>
+  {plans.map(p => <div class="card"><h2>{p.name}: {p.price}</h2><ul>{p.items.map(i => <li>{i}</li>)}</ul><a href={BASE+"/get-featured/#contact"}>Apply</a></div>)}
+  <section class="card" id="contact">
+    <h2>Contact us about featuring</h2>
+    <!-- PLACEHOLDER: not connected. Wire to a free form backend (e.g. Supabase table) before going live. -->
+    <form action="#" method="post" onsubmit="alert('Sponsor form not connected yet');return false;">
+      <p><input name="name" required placeholder="Your name" aria-label="Name" /></p>
+      <p><input type="email" name="email" required placeholder="you@company.com" aria-label="Email" /></p>
+      <p><input name="tool" required placeholder="Tool name and URL" aria-label="Tool" /></p>
+      <p><select name="plan" aria-label="Plan"><option>Directory listing</option><option>Featured in a use case</option><option>Release spotlight</option></select></p>
+      <p><textarea name="message" placeholder="Anything else?" aria-label="Message"></textarea></p>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 </Base>

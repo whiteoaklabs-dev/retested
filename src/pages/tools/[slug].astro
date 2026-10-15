@@ -1,4 +1,5 @@
 ---
+import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
 import { tools, type Tool } from '../../data/tools';
 import { useCases } from '../../data/useCases';
@@ -12,7 +13,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplicatio
   {t.featured && <p class="sponsored">Featured listing (paid). Paid placement never changes test results.</p>}
   <p><strong>Category:</strong> {t.category}</p>
   <h2>Best for</h2>
-  <ul>{wins.map(u => <li><a href={`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul>
+  <ul>{wins.map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul>
   <p>Pricing and test notes will be added after testing (with a date).</p>
   <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank">Visit {t.name} →</a>
 </Base>

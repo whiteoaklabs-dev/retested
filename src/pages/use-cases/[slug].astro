@@ -1,4 +1,5 @@
 ---
+import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
 import RetestBadge from '../../components/RetestBadge.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
@@ -19,7 +20,7 @@ const schema = [
 const anyTested = u.tests.some(t => t.status !== 'not-yet-tested');
 ---
 <Base title={u.title} description={u.summary.slice(0, 155)} schema={schema}>
-  <p><a href="/use-cases/">Use cases</a> › {u.category}</p>
+  <p><a href={BASE+"/use-cases/"}>Use cases</a> › {u.category}</p>
   <h1>{u.title}</h1>
   <p class="answer"><strong>Short answer:</strong> {u.summary}</p>
   <p><strong>Best model for this:</strong> {anyTested ? 'see results below' : 'Not yet tested. Cross-model results will appear here with model version and test date.'} · Updated {u.updated}</p>
@@ -42,10 +43,10 @@ const anyTested = u.tests.some(t => t.status !== 'not-yet-tested');
   <ul>{u.setup.failureModes.map(f => <li>{f}</li>)}</ul>
 
   <h2>Best tools for this job</h2>
-  <p class="sponsored">Some links may be affiliate links. They never change our picks. <a href="/disclosure/">Disclosure</a></p>
+  <p class="sponsored">Some links may be affiliate links. They never change our picks. <a href={BASE+"/disclosure/"}>Disclosure</a></p>
   {u.toolPicks.map(p => { const t = toolBySlug(p.slug)!; return (
     <div class="card">
-      <h3><a href={`/tools/${t.slug}/`}>{t.name}</a></h3>
+      <h3><a href={BASE+`/tools/${t.slug}/`}>{t.name}</a></h3>
       <p><strong>Why:</strong> {p.why} <strong>Skip if:</strong> {p.whenNot}</p>
       <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank" data-affiliate-placeholder={t.affiliateUrl ? undefined : 'true'}>Try {t.name} →</a>
     </div>); })}
