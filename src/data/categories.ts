@@ -7,5 +7,6 @@ const HUBS: Record<string, Hub> = {
   'Support': { audience: 'customer support', intro: 'Answer customers from your own help docs, draft replies in your voice, and apply refund rules with a human approval step.', jobs: 'answering FAQs from help docs, drafting replies, and handling refunds' },
   'Finance & admin': { audience: 'finance and admin', intro: 'Invoices, overdue reminders, and receipt categorization, where the agent drafts and a person approves anything involving money.', jobs: 'drafting invoices, chasing overdue payments, and categorizing receipts' },
   'Marketing & SEO': { audience: 'marketing and SEO', intro: 'Content briefs, AI-search optimization, social posts, local listings, and newsletters.', jobs: 'writing briefs, repurposing posts, replying to reviews, and newsletters' },
+  'Coding & vibe coding': { audience: 'coding and vibe coding', intro: 'Prompts and agent setups for building, debugging, and shipping software with AI coding assistants, with a human reviewing every change.', jobs: 'scaffolding features, debugging, writing tests, and reviewing code' },
 };
 export const hubFor = (c: string): Hub => HUBS[c] ?? { audience: c.toLowerCase(), intro: `Tested AI playbooks for ${c.toLowerCase()} work.`, jobs: `${c.toLowerCase()} tasks` };
