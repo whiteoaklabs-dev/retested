@@ -1,0 +1,83 @@
+{
+  "slug": "draft-the-write-off-memo-from-a-log-of-collection-attempts",
+  "title": "Draft the write-off memo from a log of collection attempts",
+  "category": "Finance & admin",
+  "summary": "An AI agent drafts a write-off memo from a log of collection attempts: emails, calls, and returned mail. The agent structures the memo with the total amount, a timeline of contact attempts (dates, methods, outcomes), and notes on reasons for failure. A person reviews the complete memo, confirms accuracy, and makes the final write-off decision. This playbook focuses on assembling a clear record, not on automating the write-off itself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an assistant preparing a write-off memo for an unpaid invoice. Use the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. Do not send or assign anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List each contact attempt with its date, method (email, call, returned mail), and outcome (answered, voicemail, no response).\n- If the collection log has gaps in dates or methods, state those gaps clearly.\n- Extract any reasons given by the customer for non-payment and include them in the notes section.\n- If the invoice is disputed, summarize the dispute briefly.\n- Do not include opinions or recommendations about whether to write off the invoice.\n\nOutput format:\nReturn these sections and no other prose:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are drafting a write-off memo from a collection log. Review the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. Prepare a memo for review. Do not contact the customer yourself.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the collection log is incomplete, note the missing dates and methods.\n- Preserve the original wording from the collection log regarding customer responses.\n- If an invoice is disputed, summarize the core disagreement, citing specific messages.\n- Do not offer advice about whether a write-off is appropriate.\n- Do not suggest alternative solutions.\n\nOutput format:\nReturn only these headings:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are preparing a write-off memo. From the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME], build a structured memo. Stop at the draft.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- State each attempt with its date, how you contacted the customer, and the result. \n- If you lack dates, methods, or results, note the gaps.\n- Copy reasons for non-payment exactly as the customer stated them.\n- If the customer disputed the invoice, briefly copy the dispute.\n- Do not add your advice about whether to write off the debt.\n\nOutput format:\nReturn these sections only:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a memo to document the attempts to collect on an unpaid invoice. Work from the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. The memo is a record, not a message to the customer. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the log is missing information, write a gap in the collection history.\n- Use the customer's own words when describing reasons for non-payment.\n- Summarize the invoice dispute, if any, with a short record of the core point.\n- Do not draft a reply or a message; this is documentation only.\n- Do not suggest alternatives or next steps.\n\nOutput format:\nReturn these headings and nothing after them:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional spreadsheet or note-taking app to save a draft memo.",
+    "steps": [
+      "Gather the unpaid invoice and the complete log of all collection attempts: emails, call notes, and records of returned mail. Verify you have the invoice amount and the customer name.",
+      "If the collection log is a spreadsheet, export it as text. If it is notes, copy and paste everything into one file.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model’s prompt. Replace [INVOICE AMOUNT], [COLLECTION LOG], and [CUSTOMER NAME].",
+      "Review the generated memo for accuracy. Ensure all dates, methods, and outcomes are correctly reflected from the original log.",
+      "Check that any customer-provided reasons for non-payment are included verbatim in the 'NOTES' section.",
+      "If any information is missing or unclear, manually fill in the gaps or mark them as UNKNOWN.",
+      "Save the complete memo in a secure location as a draft for final review and decision-making.",
+      "Optional agent mode: use a tool like Zapier to auto-paste the log into the model; this requires a clean log format."
+    ],
+    "approvalStep": "You review the complete memo and confirm its accuracy before making a final decision about whether to write off the invoice. A chat reply is not approval.",
+    "failureModes": [
+      "Incomplete Log: The collection log is missing dates, methods, or outcomes. Watch for gaps and manually fill them or mark them UNKNOWN.",
+      "Inaccurate Summary: The model misinterprets customer responses or adds information not present in the log. Watch for invented details.",
+      "Missing Reasons: The memo fails to include the customer’s stated reasons for non-payment. Watch for notes about disputes or explanations.",
+      "Overly Opinionated: The model offers advice about whether to write off the invoice. Ignore these suggestions.",
+      "Data Leak: Sensitive customer information is included in the memo. Watch for passwords, card numbers, or personal details."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the collection log is messy and incomplete?",
+      "a": "That is common. Note the gaps in the 'MISSING' section of the memo. If a date, method, or outcome is unknown, state that. The goal is to record what you have, and what you lack."
+    },
+    {
+      "q": "Should I include any recommendations in the memo?",
+      "a": "No. The memo is a record of the collection attempts, not a recommendation about whether to write off the debt. A person should make that decision after reviewing the complete record."
+    },
+    {
+      "q": "What if the customer disputes the invoice?",
+      "a": "Summarize the core reason for the dispute in the 'NOTES' section of the memo. Use the customer’s own words if possible. Include any supporting documentation or messages related to the dispute."
+    },
+    {
+      "q": "Which model works best for this task?",
+      "a": "Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have access to. Compare the outputs to see which one best captures the details from your collection log."
+    },
+    {
+      "q": "Can I automate this process entirely?",
+      "a": "You can use tools like Zapier to automate the initial draft creation, but human review is critical to ensure accuracy and completeness before making any write-off decisions. Never send a draft note directly to a client or accounting team without it being reviewed."
+    }
+  ],
+  "draft": true,
+  "persona": "Main-street shop owner",
+  "job": "A log of collection attempts, plus the total amount owed, become a draft memo ready for a final decision about whether to write off the debt.",
+  "who": "Main-street shop owners, office managers, or accounting staff responsible for managing unpaid invoices and preparing documentation for potential write-offs. People comfortable pasting text into a chat model.",
+  "toolCategories": [
+    "AI chat models",
+    "Note-taking apps",
+    "Spreadsheets"
+  ]
+}\n

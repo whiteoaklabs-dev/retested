@@ -1,0 +1,84 @@
+{
+  "slug": "review-page-by-page-listing-for-off-by-one-errors",
+  "title": "Review page-by-page listing for off-by-one errors",
+  "category": "Coding & vibe coding",
+  "summary": "A tier-one agent copies a listing page URL and the pagination function that generates it. A chat model identifies cases where the page skips an item, repeats an item, or returns an empty page while results remain. The agent checks each flagged case against the live listing, records the result, and shares the report. That person approves the report before it is sent to engineering.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a quality-assurance engineer reviewing directory listing pagination. Read the [PAGINATION FUNCTION] that generates pages for the [LISTING URL]. Identify any cases where an item is skipped, repeated, or a page returns empty while results remain. Do not generate pages; find problems in the code.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Focus only on off-by-one errors: skipped items, repeated items, or empty pages while more items exist\n- If the function uses external data, assume the data is valid and focus on the function's logic\n- Return each error with a description of the conditions needed to trigger it, and the expected output compared to the actual output\n- Do not explain pagination; only report errors\n\nOutput format:\nReturn these sections and no other prose:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful engineer auditing a directory listing's pagination. Examine the [PAGINATION FUNCTION] for the [LISTING URL]. Prepare a report of any errors where an item is skipped, repeated, or a page is empty while more results exist. Do not execute the code; analyze its logic.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- A skipped item is one that should be present but is not\n- A repeated item appears more than once on the same page or across adjacent pages\n- If the function relies on a database, assume the database query returns a complete result set\n- List each error with the conditions to reproduce it, and the expected result versus the actual result\n- Ignore display errors, focus on data errors\n\nOutput format:\nReturn only these headings:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken engineer checking directory listing pagination. From the [PAGINATION FUNCTION] and the [LISTING URL], build a report of errors. Look for skipped items, repeated items, or empty pages when items remain. Stop at the report.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Assume the data is real and complete; focus on the code\n- One error per line, with the condition to make it happen, the expected value, and the actual value\n- If no error appears, do not make one up. Report only what the code produces\n- If the function uses offset-based pagination, check boundary conditions\n\nOutput format:\nReturn these sections only:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a pagination audit report for a directory listing. Work from the [PAGINATION FUNCTION] and the [LISTING URL]. The report is for a human to review before it is sent to engineering. Do not run the code.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Describe each error with the conditions needed to trigger it, and the difference between the expected and actual result\n- Focus on off-by-one errors: skipped items, repeated items, or empty pages when more results exist\n- If the function interacts with a data source, assume the source is valid and complete\n- Do not include formatting or commentary; only the report data\n\nOutput format:\nReturn these headings and nothing after them:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional data analysis tools to verify results.",
+    "steps": [
+      "Copy the URL of the listing page you want to check. This is the source of truth for the pagination.",
+      "Copy the pagination function that generates the page numbers and the list of items for each page.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste the model's prompt. Replace [PAGINATION FUNCTION] and [LISTING URL].",
+      "Review the 'REPORT' section. Each entry should have a clear 'Condition', 'Expected' value, and 'Actual' value.",
+      "Visit the listing page and manually check the flagged conditions. Confirm whether the error exists.",
+      "Update the 'Actual' value with your findings (CONFIRMED, FALSE POSITIVE, UNKNOWN).",
+      "Optional: use a tool like Google Sheets or a data analyzer to verify the reported conditions and values.",
+      "Share the complete report with the updated 'Actual' values to engineering for review and correction."
+    ],
+    "approvalStep": "You review the complete report, including the confirmed errors and the 'Actual' values, before sending it to engineering. A chat reply is not approval.",
+    "failureModes": [
+      "False positive: the AI flags an error that does not exist on the live listing. Watch for subtle differences in data or logic.",
+      "Missed error: the AI fails to identify a real off-by-one error. Manually verify the first and last items on each page.",
+      "Unclear condition: the AI describes the error in a way that is hard to understand. Ask for clarification or simplify the description.",
+      "Incomplete data: the pagination function requires external data that is not provided. Mark the report as UNKNOWN and request the missing data.",
+      "Incorrect values: the 'Expected' or 'Actual' values are wrong. Double-check the data and the pagination logic.",
+      "Report goes to the customer: the automation posts the error report publicly instead of sending it to engineering. Watch for a send, assign, or notify action, and keep the report private."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for finding these errors?",
+      "a": "Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have access to. Review the generated report carefully and verify its findings against the live listing. Each model handles the task differently, so focus on the clarity and accuracy of the report."
+    },
+    {
+      "q": "What if the pagination function is very complex?",
+      "a": "Paste the entire function into the prompt. The AI will analyze the code to identify potential errors. If the function is extremely long, consider breaking it down into smaller sections and analyzing each section separately."
+    },
+    {
+      "q": "How can I verify the AI's findings?",
+      "a": "Manually visit the listing page and navigate through the pages. Check the first and last items on each page to confirm whether any items are skipped or repeated. Pay close attention to the boundary conditions, such as the first and last pages."
+    },
+    {
+      "q": "What should I do if the AI reports an error that I cannot reproduce?",
+      "a": "Mark the error as 'UNKNOWN' and provide as much detail as possible about your attempts to reproduce it. Engineering can then investigate further and determine whether it is a real issue."
+    },
+    {
+      "q": "Can this process be automated?",
+      "a": "Yes, you can use workflow automation tools like Zapier or Make to automate parts of this process. For example, you can automatically extract the pagination function and listing URL, send them to the AI model, and save the report to a spreadsheet. However, human review and verification are still essential to ensure the accuracy of the results."
+    }
+  ],
+  "draft": true,
+  "persona": "Directory site builder",
+  "job": "A listing page URL and its pagination function go in. A report of skipped, repeated, or empty pages comes out.",
+  "who": "Directory site builders and quality-assurance agents who must check listing pagination for off-by-one errors, and who need a structured report instead of a manual line-by-line search.",
+  "toolCategories": [
+    "Code review",
+    "Testing and QA",
+    "Directory services"
+  ]
+}\n

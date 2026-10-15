@@ -1,0 +1,84 @@
+{
+  "slug": "map-old-invoicing-steps-to-a-migration-guide-for-the-new-tool",
+  "title": "Map old invoicing steps to a migration guide for the new tool",
+  "category": "Support",
+  "summary": "This agent turns old invoicing steps into a migration guide for a new tool. It takes a list of how someone used to invoice (tools, actions) and how the new tool works. It maps each old step to its new equivalent, creating a clear guide for a bookkeeper switching tools. The human reviews the mapping for accuracy before it’s used. The output is a list of ‘Old Step - New Step’ pairs, with the human making final calls on complex cases.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an expert in accounting software migration. A bookkeeper is switching from an old invoicing process to a new one. They will provide two lists: 1) a detailed breakdown of their current invoicing steps. 2) a description of how the new invoicing tool works. Your task is to create a migration guide mapping each step from the old process to its equivalent in the new tool. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Focus on practical steps: creating invoices, sending them, recording payments, handling refunds, etc.\n- If a step in the old system has no direct equivalent in the new one, explain how to achieve the same result using available features.\n- Prioritize clarity and conciseness. The guide should be easy for a non-technical user to follow.\n- Ignore any information unrelated to invoicing or accounting.\n\nOutput format:\nReturn a numbered list of ‘Old Step - New Step’ pairs. Use the format: ‘[OLD STEP] - [NEW STEP]’ and keep responses under 800 characters.\n\nHere’s the old process: [PASTE OLD INVOICING STEPS HERE]\n\nHere’s how the new tool works: [PASTE NEW TOOL DESCRIPTION HERE]",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are an experienced accounting consultant helping a bookkeeper migrate to a new invoicing system. The user will provide a description of their current invoicing workflow and details of the new invoicing software. Your job is to generate a practical migration guide. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Be specific and actionable. Describe exactly how to perform each task in the new system.\n- If a feature is missing in the new system, provide a workaround using available functionality.\n- Assume the user has basic accounting knowledge but is unfamiliar with the new software.\n- Focus only on steps related to invoicing, payments, and basic accounting functions.\n\nOutput format:\nProvide a numbered list of mappings in the format: ‘Old Step: [OLD STEP]’ ‘New Step: [NEW STEP]’. Keep it under 800 characters.\n\nOld process: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool description: [PASTE NEW TOOL DESCRIPTION HERE]",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You're a no-nonsense guide for bookkeepers switching invoicing tools. You'll get a list of what they did before, and how the new tool works. Give them a straight-up mapping.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it simple. No fluff. Just the steps.\n- If the new tool doesn't have something, say how to hack it.\n- Skip the 'why' and focus on 'how'.\n- No explanations, just mappings.\n\nOutput format:\nList each pair as ‘OLD: [OLD STEP]’ ‘NEW: [NEW STEP]’. Limit each pair to 800 characters.\n\nOld steps: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool: [PASTE NEW TOOL DESCRIPTION HERE]",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a detailed migration guide creator, translating invoicing processes. A bookkeeper will provide their current invoicing steps and a description of the new tool they’re adopting. Your task is to build a step-by-step guide mapping the old to the new.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Focus on precision. Each mapping should be crystal clear.\n- If a function isn’t available, explain how to achieve the same outcome using the new tool’s features.\n- Assume the user knows accounting basics but needs help with the software.\n- Only include steps directly related to invoicing and payment processing.\n\nOutput format:\nPresent the mappings as a numbered list: ‘[NUMBER]. Old: [OLD STEP] | New: [NEW STEP]’. Stay under 800 characters.\n\nOld process: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool details: [PASTE NEW TOOL DESCRIPTION HERE]",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "ChatGPT, Claude, Grok, or Muse in paste mode. Optional: Zapier or Make to save the guide to a document.",
+    "steps": [
+      "Export or copy your old invoicing process as a list of steps. Include everything from creating invoices to recording payments. Be detailed.",
+      "Copy the documentation or help files for the new invoicing tool, focusing on features used for invoicing and payments.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste the chosen prompt. Replace the placeholders with your lists.",
+      "Review the generated guide, checking each mapping for accuracy and completeness. Note any areas that need clarification.",
+      "If a mapping is unclear, refine the descriptions of your old and new processes and rerun the prompt.",
+      "If the new tool lacks a feature, adjust the guide to explain the workaround.",
+      "Save the completed migration guide as a document for future reference.",
+      "Optional: Use Zapier or Make to automatically save the generated guide to a Google Doc or other storage location."
+    ],
+    "approvalStep": "You review the generated migration guide, confirming that each step is accurately mapped and the instructions are clear before it’s used by the bookkeeper.",
+    "failureModes": [
+      "Incomplete old process: the list misses key steps. Watch for gaps in the workflow and add them.",
+      "Vague new tool description: the details aren’t specific enough. Watch for generic explanations and ask for specifics.",
+      "Incorrect mappings: steps are paired incorrectly. Watch for mismatches in functionality and correct them.",
+      "Missing workarounds: the guide doesn’t address missing features. Watch for gaps and add workarounds.",
+      "Unclear instructions: the steps are too complex. Watch for jargon and simplify the language.",
+      "Automated saving fails: Zapier or Make fails to save the document. Watch the automation logs for errors."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the new tool doesn’t have a direct equivalent to an old step?",
+      "a": "The guide should explain how to achieve the same result using the new tool’s features. If a workaround is needed, clearly outline the steps involved. The focus is on getting the job done, even if it requires a different approach."
+    },
+    {
+      "q": "How detailed should the descriptions of the old and new processes be?",
+      "a": "Be as specific as possible. Include every step involved, even seemingly minor ones. The more detail you provide, the more accurate the generated migration guide will be. It helps to list the exact menus and buttons used."
+    },
+    {
+      "q": "What if the AI suggests something that doesn’t make sense?",
+      "a": "Always review the generated guide carefully. If a mapping seems incorrect or unclear, refine the descriptions of your old and new processes and rerun the prompt. You have the final say."
+    },
+    {
+      "q": "Which AI model should I use for this?",
+      "a": "Use the prompt for the assistant you already have. Evaluate the output critically, ensuring the mapping is accurate and practical for your specific situation."
+    },
+    {
+      "q": "How long should this whole process take?",
+      "a": "It depends on how complex your invoicing process is. A simple process might take 30-60 minutes. A more complex one could take several hours, including time for review and refinement. Factor in time to test the new process."
+    }
+  ],
+  "draft": true,
+  "persona": "Bookkeeper switching tools",
+  "job": "Paste a list of how you invoiced before, and how the new tool works -> a migration guide mapping each old step to the new one.",
+  "who": "Bookkeepers or accounting staff switching from one invoicing tool to another, who need a clear, step-by-step guide to migrate their workflow and avoid disruptions. Someone who can list the steps they took in the old system.",
+  "toolCategories": [
+    "Accounting",
+    "Workflow automation",
+    "AI chat models"
+  ]
+}\n
