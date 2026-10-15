@@ -1,3 +1,3 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-export default defineConfig({ site: 'https://whiteoaklabs-dev.github.io', base: '/retested', trailingSlash: 'always', integrations: [sitemap()] });
+export default defineConfig({ site: 'https://retested.vercel.app', trailingSlash: 'always', integrations: [sitemap()] });
