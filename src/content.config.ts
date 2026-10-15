@@ -12,6 +12,7 @@ const playbooks = defineCollection({
     toolPicks: z.array(z.object({ slug: z.string(), why: z.string(), whenNot: z.string() })),
     faq: z.array(z.object({ q: z.string(), a: z.string() })).min(2),
     draft: z.boolean().optional(), persona: z.string().optional(), job: z.string().optional(), who: z.string().optional(), toolCategories: z.array(z.string()).optional(),
+    example: z.object({ scenario: z.string(), input: z.string(), output: z.string(), notes: z.string().optional() }).optional(), related: z.array(z.string()).optional(),
   }),
 });
 export const collections = { playbooks };

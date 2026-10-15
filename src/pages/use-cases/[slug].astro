@@ -18,10 +18,11 @@ const schema = [
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: u.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
   { '@context': 'https://schema.org', '@type': 'Article', headline: u.title, description: u.summary, datePublished: u.published, dateModified: u.updated, url, mainEntityOfPage: url, image: `${SITE.url}/og/use-cases--${u.slug}.png`, articleSection: u.category, author: { '@type': 'Organization', name: SITE.name, url: SITE.url + '/' }, publisher: { '@id': SITE.url + '/#org' } },
 ];
-const others = useCases.filter(x => x.slug !== u.slug).sort((a, b) => Number(b.category === u.category) - Number(a.category === u.category));
+const pinned = (u.related ?? []).map(s => useCases.find(x => x.slug === s)).filter(Boolean) as UseCase[];
+const others = [...pinned, ...useCases.filter(x => x.slug !== u.slug && !pinned.includes(x)).sort((a, b) => Number(b.category === u.category) - Number(a.category === u.category))];
 const related = [...others.map(x => ({ t: x.title, h: `${BASE}/use-cases/${x.slug}/`, c: x.category })), ...planned.filter(p => p.category === u.category).slice(0, 2).map(p => ({ t: p.title, h: '', c: p.category }))].slice(0, 4);
 const desc = u.summary.length > 158 ? u.summary.slice(0, u.summary.lastIndexOf(' ', 155)) + '…' : u.summary;
-const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts', 'Prompts'], ['setup', 'Agent setup'], ['tools', 'Best tools'], ['faq', 'FAQ']].filter(([id]) => (id !== 'results' || u.tests.some(t => t.status !== 'not-yet-tested')) && (id !== 'tools' || u.toolPicks.some(p => toolBySlug(p.slug))));
+const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts', 'Prompts'], ...(u.example ? [['example', 'Worked example']] : []), ['setup', 'Agent setup'], ['tools', 'Best tools'], ['faq', 'FAQ']].filter(([id]) => (id !== 'results' || u.tests.some(t => t.status !== 'not-yet-tested')) && (id !== 'tools' || u.toolPicks.some(p => toolBySlug(p.slug))));
 ---
 <Base title={u.title} description={desc} schema={schema} ogType="article" crumbs={[['Playbooks', '/use-cases/'], [u.category, `/ai-for/${catSlug(u.category)}/`], [u.title, `/use-cases/${u.slug}/`]]}>
   <div class="wrap">
@@ -48,6 +49,17 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
 
         <h2 id="prompts">Prompts by model</h2>
         <PromptTabs u={u} idp="uc" />
+
+        {u.example && <>
+        <h2 id="example">Worked example</h2>
+        <p>{u.example.scenario}</p>
+        <h3 style="font-size:16px;margin-top:20px">What you paste in</h3>
+        <pre class="example"><code>{u.example.input}</code></pre>
+        <h3 style="font-size:16px;margin-top:20px">What a good result looks like</h3>
+        <pre class="example"><code>{u.example.output}</code></pre>
+        {u.example.notes && <p class="muted">{u.example.notes}</p>}
+        <p class="disclose">Illustrative example with made-up names and numbers, written to show the expected shape of the output.</p>
+        </>}
 
         <h2 id="setup">Agent setup</h2>
         <p class="muted" style="margin-top:-6px">Works with: <strong style="color:var(--text)">{u.setup.agent}</strong></p>
@@ -91,4 +103,7 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
   <script is:inline>
     const links=[...document.querySelectorAll('[data-toc]')];const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.dataset.toc===e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});links.forEach(l=>{const t=document.getElementById(l.dataset.toc);t&&io.observe(t)});
   </script>
+<style>
+  pre.example { white-space: pre-wrap; background: var(--surface, rgba(127,127,127,.08)); border: 1px solid var(--border, rgba(127,127,127,.2)); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; overflow-x: auto; }
+</style>
 </Base>

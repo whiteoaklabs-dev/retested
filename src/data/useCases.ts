@@ -9,6 +9,7 @@ export type UseCase = {
   // and a model-neutral genericPrompt. Models without one fall back to the generic prompt plus an adaptation note.
   moreTests?: ModelTest[]; genericPrompt?: string;
   draft?: boolean; persona?: string; job?: string; who?: string; toolCategories?: string[];
+  example?: { scenario: string; input: string; output: string; notes?: string }; related?: string[];
 };
 // Content lives in src/content/playbooks/<slug>.json (one file per playbook, schema: src/content.config.ts).
 // Pipeline drafts carry draft: true (shown as DRAFT on cards). Legacy summary markers are stripped.
