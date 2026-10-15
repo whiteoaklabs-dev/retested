@@ -1,10 +1,10 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 const plans = [
-  { name: 'Directory listing', price: '$99', per: 'one-time', desc: 'Get your tool into the directory, reviewed by an editor.', items: ['Editor-reviewed tool page', 'Linked from the playbooks it genuinely fits', 'Dofollow link after review'], cta: 'Apply for listing' },
-  { name: 'Featured in a category', price: '$199', per: '/ month', hot: true, desc: 'Be seen by people actively trying to get a specific job done.', items: ['"Featured" slot on tool and playbook pages in one category', 'Always labeled as paid', 'Monthly click report', 'Cancel anytime'], cta: 'Apply for featured' },
-  { name: 'Release spotlight', price: '$149', per: 'per launch', desc: 'Put your launch in front of builders who follow what changed.', items: ['Sponsored item in the releases feed', 'Tagged to relevant playbooks', 'Included in the weekly email release section'], cta: 'Book a spotlight' },
+  { name: 'Directory listing', price: '$99', per: 'one-time', desc: 'Get your tool into the directory, reviewed by an editor.', items: ['Editor-reviewed tool page', 'Linked from the playbooks it genuinely fits', 'Dofollow link after review'], cta: 'Buy listing · $99', pay: 'https://buy.stripe.com/6oU4gy6fJ4V714mdQofQI00' },
+  { name: 'Featured in a category', price: '$199', per: '/ month', hot: true, desc: 'Be seen by people actively trying to get a specific job done.', items: ['"Featured" slot on tool and playbook pages in one category', 'Always labeled as paid', 'Monthly click report', 'Cancel anytime'], cta: 'Subscribe · $199/mo', pay: 'https://buy.stripe.com/28EdR8fQjevH3cu27GfQI02' },
+  { name: 'Release spotlight', price: '$149', per: 'per launch', desc: 'Put your launch in front of builders who follow what changed.', items: ['Sponsored item in the releases feed', 'Tagged to relevant playbooks', 'Included in the weekly email release section'], cta: 'Book spotlight · $149', pay: 'https://buy.stripe.com/8x2aEW9rVbjvcN48w4fQI01' },
 ];
 const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' }, offers: plans.map(p => ({ '@type': 'Offer', name: p.name, price: p.price.replace('$', ''), priceCurrency: 'USD' })) }];
 ---
@@ -18,10 +18,11 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'R
         <h3>{p.name}</h3><p class="muted" style="margin:0;font-size:14px">{p.desc}</p>
         <div class="price">{p.price} <small>{p.per}</small></div>
         <ul>{p.items.map(i => <li><Icon name="check" />{i}</li>)}</ul>
-        <a class={`btn ${p.hot ? 'btn-primary' : ''}`} href="#contact" data-plan={p.name}>{p.cta}</a>
+        <a class={`btn ${p.hot ? 'btn-primary' : ''}`} href={p.pay} rel="noopener">{p.cta}</a>
+        <a class="muted" href="#contact" data-plan={p.name} style="display:block;text-align:center;font-size:13px;margin-top:10px">Questions first? Apply instead</a>
       </div>)}
     </div>
-    <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Launch pricing. Checkout isn't live yet; apply below and we'll reply.</p>
+    <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Launch pricing. Secure checkout by Stripe. We review every tool before it goes live; questions? Use the form below.</p>
     <section id="contact" style="max-width:760px;margin:64px auto 0;padding:32px;border:1px solid var(--line2);border-radius:20px;background:var(--panel)">
       <h2 style="font-size:24px;font-weight:640">Apply to be featured</h2>
       <p class="muted">Tell us about your tool. We only feature tools that fit at least one playbook.</p>
