@@ -38,6 +38,8 @@ const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/
   <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={fullTitle} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
   <script is:inline>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   {[org, ...crumbLd, ...schema].map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  <script is:inline>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+  <script is:inline defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <a href="#main" style="position:absolute;left:-9999px" onfocus="this.style.left='8px'">Skip to content</a>
