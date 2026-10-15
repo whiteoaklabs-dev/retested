@@ -3,5 +3,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /get-featured/thanks/
+Disallow: /packs/thanks-*
 
 Sitemap: https://retested.vercel.app/sitemap-index.xml

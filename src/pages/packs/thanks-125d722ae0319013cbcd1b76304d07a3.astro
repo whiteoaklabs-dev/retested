@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+const pdf = '/packs/125d722ae0319013cbcd1b76304d07a3/home-services-prompt-pack.pdf';
+---
+<Base title="Your prompt pack is ready" description="Download your AI Prompt Pack for Home Service Businesses." noindex={true}>
+  <div class="wrap" style="max-width:640px;margin:48px auto;text-align:center">
+    <div class="eyebrow">Purchase complete</div>
+    <h1 style="margin:8px 0 12px">Thanks — your pack is ready</h1>
+    <p class="muted">AI Prompt Pack for Home Service Businesses: 40 copy-paste prompts for quotes, invoices, late payments, reviews, scheduling, and social posts.</p>
+    <a class="btn btn-primary" style="margin-top:22px;display:inline-flex" href={pdf} download>
+      <Icon name="copy" />Download the PDF
+    </a>
+    <p class="muted" style="margin-top:18px;font-size:13px">Save this page or the PDF. Bookmark the download link if you need it again.</p>
+    <p style="margin-top:28px"><a href="/prompt-packs/" style="color:var(--accent)">← Back to prompt packs</a></p>
+  </div>
+</Base>
