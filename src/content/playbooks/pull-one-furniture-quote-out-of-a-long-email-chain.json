@@ -1,0 +1,85 @@
+{
+  "slug": "pull-one-furniture-quote-out-of-a-long-email-chain",
+  "title": "Pull one furniture quote out of a long email chain",
+  "category": "Sales",
+  "summary": "A custom furniture maker pastes the full client thread, oldest message first, covering width, depth, height, wood species, finish, and any budget they named, plus the shop's price lines, deposit rule, and the lead time the bench can hold. The agent returns one quote in fixed sections: piece, size with units, materials, a total taken only from the shop lines or a total the shop already wrote, lead time, the deposit to start, included and excluded work, conflicts between messages, a client email of at most 120 words, and an UNKNOWN list. The maker checks every dimension against the latest message and every dollar against the shop sources, then sends the reply. Nothing is priced, requested as a deposit, or mailed until they approve it.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the estimator for a custom furniture shop. Draft one quote from a long client thread. The maker edits it before anyone pays.\n\nInputs:\nClient and piece: [CLIENT AND PIECE]\nThread, oldest first: [EMAIL CHAIN]\nPrice lines, or blank: [SHOP PRICE NOTES]\nDeposit rule, or blank: [DEPOSIT RULE]\nLead time, or blank: [LEAD TIME NOTE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Take width, depth, height, units, species, finish, and any budget only from [EMAIL CHAIN]. If two messages disagree, keep the later figure and list the earlier one under CONFLICTS.\n- If [SHOP PRICE NOTES] lists amounts, total only their sum and replace any earlier shop figure. If the notes are blank, use a total the shop, not the client, wrote last. If neither exists, mark PRICE UNKNOWN. Do not price from size, species, or an unstated rate.\n- If the total exceeds a budget in the thread, still show it and write OVER BUDGET. Do not discount unless the notes say to.\n- Deposit and lead time come from [DEPOSIT RULE] and [LEAD TIME NOTE] when filled. If blank, use only what the shop already wrote. A hoped-for date or a guessed share is not a source. Otherwise mark that field UNKNOWN.\n- Client email: first person, at most 120 words. Name the piece, size, wood, total, lead time, and deposit. Offer no second size, species, or payment plan.\n\nOutput format:\nPIECE:\nSIZE:\nMATERIALS:\nPRICE:\nLEAD TIME:\nDEPOSIT TO START:\nINCLUDED:\nEXCLUDED:\nCONFLICTS:\nCLIENT EMAIL:\nUNKNOWN:",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful shop assistant for a custom furniture maker. Build one quote from a long thread about size, wood, and budget. The maker approves every figure first.\n\nUse only these inputs:\n[CLIENT AND PIECE]\n[EMAIL CHAIN]\n[SHOP PRICE NOTES]\n[DEPOSIT RULE]\n[LEAD TIME NOTE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- For width, depth, height, units, species, and finish, name the message they came from. When an earlier message conflicts, keep the later one and record both under CONFLICTS.\n- PRICE is the sum of amounts in [SHOP PRICE NOTES] when filled, replacing any earlier shop figure. If the notes are blank, use a total the shop wrote, not a number the client offered. If neither exists, mark PRICE UNKNOWN.\n- Do not invent a rate from the size or the species. A budget in the thread is a flag, not a new total. Write OVER BUDGET when the sum is higher. Do not cut the total unless the notes say to.\n- Fill deposit from [DEPOSIT RULE] and lead time from [LEAD TIME NOTE]. If either is blank, copy only what the shop already wrote. Do not adopt the week they hoped for or invent a share.\n- The client email is at most 120 words, first person, and states piece, size, wood, total, lead time, and deposit. Add no alternate species, size, or payment plan.\n\nOutput format:\nPIECE:\nSIZE: with units, and which message it came from\nMATERIALS:\nPRICE: line list, then one total\nLEAD TIME:\nDEPOSIT TO START:\nINCLUDED:\nEXCLUDED:\nCONFLICTS:\nCLIENT EMAIL:\nUNKNOWN:",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken estimator in a custom furniture shop. A client thread bounced between sizes, woods, and a budget. Turn it into one quote the maker checks before it goes out.\n\nFill in:\nWho and what: [CLIENT AND PIECE]\nThread, oldest first: [EMAIL CHAIN]\nLines you will charge, or blank: [SHOP PRICE NOTES]\nDeposit rule, or blank: [DEPOSIT RULE]\nWhen the bench is free, or blank: [LEAD TIME NOTE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Pull width, depth, height, units, species, finish, and budget only from [EMAIL CHAIN]. The later message wins. Put the discarded figure under CONFLICTS.\n- If [SHOP PRICE NOTES] has amounts, add those lines and ignore any older shop total. If the notes are blank, use a total the shop wrote last, never a figure the client floated. No amounts means PRICE is UNKNOWN.\n- Do not price from size or species. If their budget is lower, keep your total and write OVER BUDGET. Discount only when the notes say so.\n- Deposit comes from [DEPOSIT RULE], lead time from [LEAD TIME NOTE]. If a field is blank, use only what the shop already wrote. A wished-for week or a share you picked does not count. Else mark it UNKNOWN.\n- Client email: first person, 120 words or fewer. Name piece, size, wood, total, lead time, and deposit. No extra option they did not agree to buy.\n\nOutput format:\nPIECE\nSIZE\nMATERIALS\nPRICE\nLEAD TIME\nDEPOSIT TO START\nINCLUDED\nEXCLUDED\nCONFLICTS\nCLIENT EMAIL\nUNKNOWN",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a custom furniture maker. Shape one long thread about dimensions, wood, and budget into one quote they edit, then send.\n\nPaste:\n[CLIENT AND PIECE] who it is for and what the piece is\n[EMAIL CHAIN] every message, oldest first\n[SHOP PRICE NOTES] lines they will charge, or blank\n[DEPOSIT RULE] your sentence, or blank\n[LEAD TIME NOTE] lead time the bench can hold, or blank\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read [EMAIL CHAIN] for width, depth, height, units, species, finish, and budget. If messages clash, use the later one and list the earlier figure under CONFLICTS.\n- Build PRICE by adding [SHOP PRICE NOTES] when amounts are there. That sum replaces an earlier shop total. If the notes are blank, use a total the shop wrote, not one the client suggested. If neither has amounts, write UNKNOWN.\n- Do not invent a rate. If a named budget is lower, keep the total and mark OVER BUDGET. Do not cut it unless the notes say to.\n- Take the deposit from [DEPOSIT RULE] and lead time from [LEAD TIME NOTE]. When a field is empty, use only what the shop already wrote. Do not guess a share or promise the date they hoped for.\n- Client email: 120 words, in the maker's voice. State piece, size, wood, total, lead time, and deposit. Do not offer a second size or species.\n\nOutput format with these headings:\nPIECE:\nSIZE:\nMATERIALS:\nPRICE:\nLEAD TIME:\nDEPOSIT TO START:\nINCLUDED:\nEXCLUDED:\nCONFLICTS:\nCLIENT EMAIL:\nUNKNOWN:",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optional later: Gmail and Google Sheets, with Zapier, Make, or n8n creating an unsent draft only.",
+    "steps": [
+      "In Gmail, open the thread about the table, bench, or built-in. Copy every message, oldest first, including each width, depth, height, unit, wood species, finish, and any budget they named. Keep that block for the thread field.",
+      "On a note, list the price lines you will charge for this piece: materials, labor, hardware, finish, and delivery, each with a dollar amount you accept. Add your deposit rule in one sentence and the lead time your bench calendar can hold. Leave a line blank if you have not decided it.",
+      "Open ChatGPT, Claude, Grok, or Muse. Paste that model's prompt and replace [EMAIL CHAIN], [SHOP PRICE NOTES], [DEPOSIT RULE], [LEAD TIME NOTE], and [CLIENT AND PIECE]. Paste the thread in full, not a summary, and send it once.",
+      "Read SIZE, MATERIALS, PRICE, LEAD TIME, and DEPOSIT TO START before the client email. Match each dimension to the newest message that states it, and check the total is the sum of your price lines or a total you already wrote.",
+      "If UNKNOWN names a missing height, species, finish, price line, deposit rule, or lead time, stop. Find that fact in the thread or write it yourself, paste only the missing fact, and ask for a revised sheet. Do not supply a typical shop number.",
+      "Edit the client email until it sounds like your shop and stays at or under 120 words. It should name the piece, size, wood, total, lead time, and deposit. Delete any species, stain, hardware, or delivery your notes and the thread do not contain.",
+      "In Gmail, paste the email as a reply on the same thread. Confirm the To line lists only people already on it, and leave the reply unsent. Add a Google Sheets row: client, piece, size, wood, total, lead time, deposit, and sent set to no.",
+      "Optional agent mode: connect that sheet to Gmail with Zapier, Make, or n8n so a labeled thread plus your price row creates an unsent draft only. Leave auto-send off, and skip any row where sent is already yes."
+    ],
+    "approvalStep": "Before the reply is sent or a deposit is requested, review the unsent Gmail draft next to the latest size message and your price notes. Approve only when size, wood, total, lead time, and deposit match those sources, then send it yourself.",
+    "failureModes": [
+      "An early message names one width and a later message names another. The sheet keeps the first. Read the newest message that states each dimension, and reject the sheet if CONFLICTS is empty while the thread disagrees.",
+      "The total adds a finish or delivery line you never wrote, or drops a hardware line you did. Add your price lines by hand and reject any figure you cannot point to in the notes or in a shop message.",
+      "Two species appear, such as white oak early and walnut later. The sheet must follow the later species and list the earlier one under CONFLICTS. If it keeps the first wood, stop and rerun.",
+      "The deposit becomes a sum your rule never stated, often a round share of the total. If the rule was blank, that field must stay UNKNOWN until you write the rule in one sentence.",
+      "Lead time is copied from the week the client hoped for instead of your bench calendar. Compare the lead-time line to the note you pasted, or to a week you already wrote, not to their wish.",
+      "The client email offers a second size, a cheaper species, or a payment plan that neither the thread nor your notes contain. Cut every option you did not agree to sell before you approve."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which chat model should I use for this furniture quote?",
+      "a": "It is queued. Use whichever chat you already write client mail in. Keep a result only when each dimension matches the latest message in the thread, the total equals the price lines you typed or a total you already wrote, and the deposit follows the rule you wrote. Discard a sheet that fills a blank with a guessed species or a guessed sum."
+    },
+    {
+      "q": "What if they never named a budget?",
+      "a": "Paste the thread anyway. The total still comes only from your price lines or from a total you already wrote in the thread. The sheet should mark the budget UNKNOWN and must not invent a ceiling or cut the total to look easier to accept. You decide whether to send that total after you read it."
+    },
+    {
+      "q": "What if the size is in a photo or a sketch, not in the words?",
+      "a": "The chat reads the pasted text. Type the width, depth, and height yourself, with units, into the thread block before you run the prompt. A photo the model never saw must not become a guessed dimension. If you cannot read the sketch, leave that measurement UNKNOWN and ask the client."
+    },
+    {
+      "q": "Will this email the client or collect the deposit?",
+      "a": "No. Paste mode ends as text you copy into an unsent Gmail reply on the same thread. A later Zapier, Make, or n8n flow may create a draft only if you leave auto-send off. You still approve the total and the deposit line, then you send the reply and request the deposit yourself."
+    },
+    {
+      "q": "What if my notes are hours and a rate, not a finished total?",
+      "a": "Write each line as you would on paper: materials, labor, hardware, finish, and delivery, with the dollar amount you accept. The model may add only those lines. If a line has no amount, that line and the total must come back UNKNOWN rather than a guessed shop rate. You fill the blank and run it again."
+    }
+  ],
+  "draft": true,
+  "persona": "Custom furniture maker",
+  "job": "From a thread on dimensions, wood, and budget, plus the shop's price lines, write one quote with size, materials, price, lead time, and the deposit to start.",
+  "who": "Custom furniture makers who price dining tables, benches, and built-ins from long client threads about size, wood, and budget, and need one quote before they buy lumber or book the bench.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}
