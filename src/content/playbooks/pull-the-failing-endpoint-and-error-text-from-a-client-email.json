@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model is best for this email triage?",
-      "a": "It is not yet tested, so no model is ranked. Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever chat you already have open. Keep the same email and the same route card, and keep the draft that copies the error as written and leaves the route UNKNOWN when the card does not match."
+      "a": "Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever chat you already have open. Keep the same email and the same route card, and keep the draft that copies the error as written and leaves the route UNKNOWN when the card does not match."
     },
     {
       "q": "What if the email never states an error?",

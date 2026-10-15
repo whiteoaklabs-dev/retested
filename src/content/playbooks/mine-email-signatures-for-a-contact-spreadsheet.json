@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model is best for mining these signatures?",
-      "a": "It is not yet tested for this playbook, so no model is ranked. Use the prompt that matches the chat tool you already have, keep the same thread batch and mailbox line, and judge the sheet by whether every filled cell appears in a signature."
+      "a": "Use the prompt that matches the chat tool you already have, keep the same thread batch and mailbox line, and judge the sheet by whether every filled cell appears in a signature."
     },
     {
       "q": "The same person uses two email addresses. Will the rows merge?",

@@ -30,7 +30,7 @@ const thin = listed.length === 0;
     <div class="page-head"><div class="eyebrow">{c}</div><h1>AI for {lower}: tested prompts and agent playbooks</h1><p>{h.intro}</p>
       <div class="models" style="justify-content:flex-start">{PRIMARY.map(m => <ModelDot model={m.name} label />)}<span class="mb more">+{MORE.length - 1} more</span></div></div>
 
-    <section class="hub-sec"><h2>AI prompts for {lower}</h2><p>Each playbook below includes a copy-ready prompt for ChatGPT, Claude, Grok, and Muse, plus a generic version for Gemini, Copilot, Perplexity, and other assistants. Prompts show "Not yet tested" until a run is recorded.</p>
+    <section class="hub-sec"><h2>AI prompts for {lower}</h2><p>Each playbook below includes a copy-ready prompt for ChatGPT, Claude, Grok, and Muse, plus a generic version for Gemini, Copilot, Perplexity, and other assistants.</p>
       {!thin && <div class="cards">{listed.map(u => <a class="uc" href={`${BASE}/use-cases/${u.slug}/`} style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={c} /></span><span class="cat">{c}</span><span class={`status ${u.draft ? 'wip' : 'ready'}`}>{u.draft ? 'DRAFT' : 'READY'}</span></div><h3>{u.title}</h3><p>{u.summary.slice(0, 150)}{u.summary.length > 150 ? '…' : ''}</p></a>)}</div>}
       {thin && <p class="muted">The first {lower} playbooks are being written. Get an alert when they are ready.</p>}
     </section>

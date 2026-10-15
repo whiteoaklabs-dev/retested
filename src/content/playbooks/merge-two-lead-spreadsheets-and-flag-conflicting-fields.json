@@ -52,7 +52,7 @@
   "faq": [
     {
       "q": "Which model is best for merging our two lead lists?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Run the same two exports and the same header map in the chat you already use, and keep the run that shows every email, phone, and company clash with both raw values and drops no person from either file."
+      "a": "Run the same two exports and the same header map in the chat you already use, and keep the run that shows every email, phone, and company clash with both raw values and drops no person from either file."
     },
     {
       "q": "What if our column names do not match?",

@@ -65,7 +65,7 @@
     },
     {
       "q": "Which model is best for pulling these fields?",
-      "a": "It is not yet tested for this playbook, so no model is ranked here. Use the prompt for the chat tool you already have, keep the same thread and field list, and judge the draft by whether every filled line appears in the source."
+      "a": "Use the prompt for the chat tool you already have, keep the same thread and field list, and judge the draft by whether every filled line appears in the source."
     },
     {
       "q": "Can this write straight into my invoicing app?",

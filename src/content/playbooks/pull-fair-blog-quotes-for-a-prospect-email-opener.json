@@ -68,7 +68,7 @@
     },
     {
       "q": "Which model is best for pulling these quotes?",
-      "a": "It is not yet tested for this playbook, so no model is ranked. Use the assistant you already have, with the matching prompt, and judge it by whether every quote is a continuous span you can find in the post and whether the opener keeps that meaning."
+      "a": "Use the assistant you already have, with the matching prompt, and judge it by whether every quote is a continuous span you can find in the post and whether the opener keeps that meaning."
     }
   ],
   "draft": true,

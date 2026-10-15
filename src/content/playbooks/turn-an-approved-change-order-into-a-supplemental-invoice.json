@@ -51,7 +51,7 @@
   "faq": [
     {
       "q": "Which model should I use for this supplemental invoice?",
-      "a": "It is not yet tested, so no model is ranked for this playbook. Use the prompt for the chat tool you already have, keep the same four inputs, and judge the draft by whether it cites the contract number and bills only the added work named in the approval email."
+      "a": "Use the prompt for the chat tool you already have, keep the same four inputs, and judge the draft by whether it cites the contract number and bills only the added work named in the approval email."
     },
     {
       "q": "What if the approval email has no price?",

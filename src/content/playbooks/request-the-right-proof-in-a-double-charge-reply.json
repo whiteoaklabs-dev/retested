@@ -63,7 +63,7 @@
     },
     {
       "q": "Which model is best for this reply?",
-      "a": "It is not yet tested for this playbook, so no model is ranked here. Use the prompt version for the tool you already have, keep the same invoice rules and placeholders, and judge the draft by whether it names the correct descriptor and asks for one clear item."
+      "a": "Use the prompt version for the tool you already have, keep the same invoice rules and placeholders, and judge the draft by whether it names the correct descriptor and asks for one clear item."
     },
     {
       "q": "Can I automate this so replies send themselves?",

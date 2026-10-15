@@ -60,7 +60,7 @@
     },
     {
       "q": "Which model is best for this credit memo?",
-      "a": "It is not yet tested, so no model is ranked. Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies invoice prices exactly and states the reason from the return email."
+      "a": "Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies invoice prices exactly and states the reason from the return email."
     },
     {
       "q": "Can this post the credit in my books by itself?",

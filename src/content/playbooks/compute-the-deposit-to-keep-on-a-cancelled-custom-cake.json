@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model should I use for a cancelled cake?",
-      "a": "It is not yet tested. Use the chat you already have open, paste the same order and the same cancellation date, and check the clause and the subtraction yourself before any money moves."
+      "a": "Use the chat you already have open, paste the same order and the same cancellation date, and check the clause and the subtraction yourself before any money moves."
     },
     {
       "q": "What if the order never mentions a cancellation?",

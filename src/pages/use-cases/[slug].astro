@@ -31,19 +31,20 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
         <span><span class="cat-ic"><Icon name={u.category} /></span>{u.category}</span>
         <span><Icon name="calendar" />Updated {u.updated}</span>
         <span class="dots">{u.tests.map(t => <ModelDot model={t.model} />)}</span><span class="muted" style="font-size:12px">+{MORE.length - 1} more AIs</span>
-        <span class="badge">Not yet tested</span>
       </div>
     </header>
     <div class="doc">
       <article>
         <div class="answer" id="answer"><div class="eyebrow">Short answer</div>{u.summary}</div>
 
+        {u.tests.some(t => t.status !== 'not-yet-tested') && <>
         <h2 id="results">Test results</h2>
         <table class="matrix">
           <thead><tr><th>Model</th><th>Version</th><th>Tested</th><th>Result</th></tr></thead>
-          <tbody>{u.tests.map(t => <tr><td><span style="display:inline-flex;gap:8px;align-items:center;font-weight:550"><ModelDot model={t.model} />{t.model}</span></td><td class="muted">{t.modelVersion ?? '—'}</td><td class="muted">{t.testedOn ?? '—'}</td><td>{t.status === 'not-yet-tested' ? <span class="badge">Not yet tested</span> : <span class="badge fresh">{t.status}</span>}</td></tr>)}</tbody>
+          <tbody>{u.tests.filter(t => t.status !== 'not-yet-tested').map(t => <tr><td><span style="display:inline-flex;gap:8px;align-items:center;font-weight:550"><ModelDot model={t.model} />{t.model}</span></td><td class="muted">{t.modelVersion ?? '—'}</td><td class="muted">{t.testedOn ?? '—'}</td><td><span class="badge fresh">{t.status}</span></td></tr>)}</tbody>
         </table>
         <p class="disclose">We don't publish a "best model" until real runs are recorded. <a href={BASE + '/methodology/'} style="color:var(--accent)">How we test →</a></p>
+        </>}
 
         <h2 id="prompts">Prompts by model</h2>
         <PromptTabs u={u} idp="uc" />

@@ -63,7 +63,7 @@
     },
     {
       "q": "Which chat model should I use for a long capex wait?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Paste the same wait reason, ready condition, and allowed updates into the chat you already use, and keep the version that stays inside those facts and sounds like a note you would sign."
+      "a": "Paste the same wait reason, ready condition, and allowed updates into the chat you already use, and keep the version that stays inside those facts and sounds like a note you would sign."
     },
     {
       "q": "What if I have no fresh update this month?",

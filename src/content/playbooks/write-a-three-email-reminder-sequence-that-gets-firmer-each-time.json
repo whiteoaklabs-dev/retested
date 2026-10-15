@@ -60,7 +60,7 @@
     },
     {
       "q": "Which model should I use for these three emails?",
-      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have, then keep a draft only when the amounts match the invoice and the tone gets firmer without threats you did not authorize."
+      "a": "Use the prompt for the chat tool you already have, then keep a draft only when the amounts match the invoice and the tone gets firmer without threats you did not authorize."
     },
     {
       "q": "What if they pay or reply after the friendly note?",

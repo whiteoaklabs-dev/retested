@@ -28,9 +28,7 @@ const rows = [...primary, ...more];
   {rows.map((t, i) => (
     <div class="panel" role="tabpanel" id={`${idp}-panel-${i}`} aria-labelledby={`${idp}-tab-${i}`} hidden={i !== 0}>
       <div class="testrow">
-        {t.status === 'not-yet-tested'
-          ? <span class="badge">Not yet tested on {t.model === 'Any AI (generic)' ? 'any model' : t.model}</span>
-          : <span class="badge fresh">Tested {t.testedOn} · {t.modelVersion} · {t.status}</span>}
+        {t.status !== 'not-yet-tested' && <span class="badge fresh">Tested {t.testedOn} · {t.modelVersion} · {t.status}</span>}
         <span>Model version and date appear here after a recorded test run.</span>
       </div>
       {t.adapt && <p class="adapt"><Icon name="route" size={14} /><span>{t.model === 'Any AI (generic)' ? '' : <strong>Generic prompt. </strong>}{t.adapt}</span></p>}

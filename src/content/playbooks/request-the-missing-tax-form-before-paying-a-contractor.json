@@ -60,7 +60,7 @@
     },
     {
       "q": "Which model should I use for this hold email?",
-      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have. Keep a draft only when the form, vendor legal name, and invoice number match your notes and the hold is explicit."
+      "a": "Use the prompt for the chat tool you already have. Keep a draft only when the form, vendor legal name, and invoice number match your notes and the hold is explicit."
     },
     {
       "q": "What if the vendor legal name is missing?",

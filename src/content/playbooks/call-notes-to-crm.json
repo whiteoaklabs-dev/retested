@@ -67,7 +67,7 @@
     },
     {
       "q": "Can this handle other languages?",
-      "a": "Not yet tested. Try it on one call and compare to your own summary before relying on it."
+      "a": "Try it on one call and compare to your own summary before relying on it."
     }
   ],
   "draft": false

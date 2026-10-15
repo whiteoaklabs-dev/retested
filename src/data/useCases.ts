@@ -11,13 +11,13 @@ export type UseCase = {
   draft?: boolean; persona?: string; job?: string; who?: string; toolCategories?: string[];
 };
 // Content lives in src/content/playbooks/<slug>.json (one file per playbook, schema: src/content.config.ts).
-// Pipeline drafts carry draft: true and get a visible "Draft, prompts not yet tested" marker.
-export const DRAFT_LABEL = 'Draft, prompts not yet tested';
+// Pipeline drafts carry draft: true (shown as DRAFT on cards). Legacy summary markers are stripped.
+export const DRAFT_LABEL = 'Draft';
 const files = import.meta.glob<UseCase>('../content/playbooks/*.json', { eager: true, import: 'default' });
 const HAND_ORDER = ['triage-small-business-inbox', 'follow-up-new-leads-in-5-minutes', 'ai-support-agent-from-help-docs'];
 const rank = (s: string) => { const i = HAND_ORDER.indexOf(s); return i < 0 ? 999 : i; };
 export const useCases: UseCase[] = Object.values(files)
-  .map(u => u.draft ? { ...u, summary: u.summary.startsWith(`[${DRAFT_LABEL}]`) ? u.summary : `[${DRAFT_LABEL}] ${u.summary}` } : u)
+  .map(u => ({ ...u, summary: u.summary.replace(/^\[Draft[^\]]*\]\s*/, '') }))
   .sort((a, b) => rank(a.slug) - rank(b.slug) || b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug));
 const live = new Set(useCases.map(u => u.slug));
 export const useCaseBySlug = (s: string) => useCases.find(u => u.slug === s);

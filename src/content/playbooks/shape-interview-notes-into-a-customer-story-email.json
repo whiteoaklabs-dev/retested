@@ -59,7 +59,7 @@
     },
     {
       "q": "Which model is best for this story email task?",
-      "a": "It is not yet tested for this exact workflow, so there is no best model to recommend here. Use the same source pack and prompt structure in the assistant you already use, then judge the draft on quote accuracy, outcome fidelity, and how little you had to correct against the notes."
+      "a": "Use the same source pack and prompt structure in the assistant you already use, then judge the draft on quote accuracy, outcome fidelity, and how little you had to correct against the notes."
     },
     {
       "q": "What if my notes have no good pull quote line?",

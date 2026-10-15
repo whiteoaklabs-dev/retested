@@ -51,7 +51,7 @@
   "faq": [
     {
       "q": "Which model is best at reading an error popup?",
-      "a": "It is not yet tested, so there is no ranking to follow. Use whichever of ChatGPT, Claude, Grok, or Muse already accepts your photo. Run a second one when the draft marks the screen UNKNOWN or names a queue that is not on your map. Keep the draft that sticks to visible dialog text and your ownership rows."
+      "a": "Use whichever of ChatGPT, Claude, Grok, or Muse already accepts your photo. Run a second one when the draft marks the screen UNKNOWN or names a queue that is not on your map. Keep the draft that sticks to visible dialog text and your ownership rows."
     },
     {
       "q": "What if the screenshot cuts off the dialog?",

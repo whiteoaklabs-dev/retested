@@ -65,7 +65,7 @@
     },
     {
       "q": "Which model is best for these product rewrites?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already write with, paste the same listings and the same spec sheet, and keep the draft whose lead details you can point to a cell and whose wording needs the least fixing in your own voice."
+      "a": "Use the chat you already write with, paste the same listings and the same spec sheet, and keep the draft whose lead details you can point to a cell and whose wording needs the least fixing in your own voice."
     },
     {
       "q": "What if two candles share a scent note?",

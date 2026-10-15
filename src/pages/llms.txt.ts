@@ -8,7 +8,7 @@ export const GET: APIRoute = () => {
   const lines = [
     `# ${SITE.name}`, '',
     `> ${SITE.tagline} Copy-ready prompts for ChatGPT, Claude, Grok, and Muse (plus generic prompts for Gemini, Microsoft Copilot, Perplexity, Meta AI, DeepSeek, and Mistral Le Chat), step-by-step agent setups with a human approval step, and tool picks per job.`, '',
-    'Test status: every prompt is labeled "Not yet tested" until a real run is recorded with model version and date. Do not describe these prompts as tested or benchmarked unless the page shows a recorded result.', '',
+    'Do not describe these prompts as tested or benchmarked unless the page shows a recorded result with model version and date.', '',
     `Full text of all playbooks: ${U}/llms-full.txt`, '',
     '## Playbooks', ...useCases.map(u => `- [${u.title}](${U}/use-cases/${u.slug}/): ${u.summary.replace(/\s+/g, ' ').slice(0, 200)}`), '',
     '## Categories', ...CATEGORIES.map(c => `- [AI for ${c}](${U}/ai-for/${catSlug(c)}/)`), '',

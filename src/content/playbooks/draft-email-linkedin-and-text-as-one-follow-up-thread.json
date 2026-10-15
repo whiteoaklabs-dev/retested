@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model is best for this?",
-      "a": "It is not yet tested for this playbook, so there is no ranked answer yet. Try the same pasted details in the model you already use and judge the drafts on accuracy, tone, and how little editing they need before you would send them under your own name."
+      "a": "Try the same pasted details in the model you already use and judge the drafts on accuracy, tone, and how little editing they need before you would send them under your own name."
     }
   ],
   "draft": true,

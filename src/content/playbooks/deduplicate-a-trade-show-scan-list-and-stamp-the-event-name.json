@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model is best for cleaning a badge-scan list?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Paste the same scanner export, the same show name and dates, and the same column map into the chat you already use. Keep the run that folds shared badge ids, stamps the show on every survivor, and leaves uncertain pairs split."
+      "a": "Paste the same scanner export, the same show name and dates, and the same column map into the chat you already use. Keep the run that folds shared badge ids, stamps the show on every survivor, and leaves uncertain pairs split."
     },
     {
       "q": "What if the export has no badge id column?",

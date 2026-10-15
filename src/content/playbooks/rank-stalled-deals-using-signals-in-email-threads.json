@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model is best for ranking stalled deals?",
-      "a": "It is not yet tested for this playbook, so no model is ranked here. Start with the assistant you already have access to, use the matching prompt above, and judge it on whether the quotes are exact and the order matches what you find when you open the threads."
+      "a": "Start with the assistant you already have access to, use the matching prompt above, and judge it on whether the quotes are exact and the order matches what you find when you open the threads."
     }
   ],
   "draft": true,

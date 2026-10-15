@@ -52,7 +52,7 @@
   "faq": [
     {
       "q": "Which model is best for flagging domains that disagree?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already have, paste the same export, column map, and personal-host list, and keep the run that quotes the company name and the email domain, leaves decision blank, and puts missing cells in Cannot judge."
+      "a": "Use the chat you already have, paste the same export, column map, and personal-host list, and keep the run that quotes the company name and the email domain, leaves decision blank, and puts missing cells in Cannot judge."
     },
     {
       "q": "What if a good lead uses a personal inbox on purpose?",

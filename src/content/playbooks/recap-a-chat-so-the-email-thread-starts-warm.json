@@ -64,7 +64,7 @@
     },
     {
       "q": "Which model is best for this recap?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the prompt for the chat you already have, and keep the draft that repeats only decisions present in the transcript, marks gaps UNKNOWN, and does not make the visitor start over."
+      "a": "Use the prompt for the chat you already have, and keep the draft that repeats only decisions present in the transcript, marks gaps UNKNOWN, and does not make the visitor start over."
     },
     {
       "q": "What if a decision lived only in an internal whisper?",

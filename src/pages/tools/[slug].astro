@@ -9,14 +9,14 @@ const { t } = Astro.props as { t: Tool };
 const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug));
 const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: t.name, applicationCategory: 'BusinessApplication', applicationSubCategory: t.category, operatingSystem: 'Web', url: t.url, sameAs: [t.url] }];
 ---
-<Base title={`${t.name}: what it's best at`} description={t.description ? `${t.name}: ${t.description} Free listing on Retested, not yet tested.` : `Where ${t.name} (${t.category}) fits in small-business AI workflows: the jobs it suits, when to skip it, and the playbooks that use it.`} schema={schema} crumbs={[['Tools', '/tools/'], [t.name, `/tools/${t.slug}/`]]}>
+<Base title={`${t.name}: what it's best at`} description={t.description ? `${t.name}: ${t.description} Free listing on Retested.` : `Where ${t.name} (${t.category}) fits in small-business AI workflows: the jobs it suits, when to skip it, and the playbooks that use it.`} schema={schema} crumbs={[['Tools', '/tools/'], [t.name, `/tools/${t.slug}/`]]}>
   <div class="wrap">
     <div class="page-head">
       <div style="display:flex;gap:16px;align-items:center"><span class="tlogo" data-h={t.name.length} style="width:56px;height:56px;font-size:22px;border-radius:15px">{t.name[0]}</span><div><h1 style="margin:0">{t.name}</h1><div class="muted">{t.category}</div></div></div>
       {t.featured && <p class="disclose" style="margin-top:14px">Featured listing (paid). Payment never changes test results.</p>}
     </div>
     {t.description && <p style="font-size:18px">{t.description}</p>}
-    {t.listing === 'free' && <p class="disclose">Free listing. Retested has not tested this tool yet; the description comes from the maker's public launch{t.source && <> (<a href={t.source} rel="nofollow noopener" target="_blank">source</a>)</>}.</p>}
+    {t.listing === 'free' && <p class="disclose">Free listing. The description comes from the maker's public launch{t.source && <> (<a href={t.source} rel="nofollow noopener" target="_blank">source</a>)</>}.</p>}
     {wins.length > 0 && <h2 style="font-size:22px;margin-bottom:14px">Where it fits</h2>}
     <div class="cards">{wins.map(u => { const p = u.toolPicks.find(x => x.slug === t.slug)!; return <a class="uc" href={`${BASE}/use-cases/${u.slug}/`} style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={u.category} /></span><span class="cat">{u.category}</span></div><h3>{u.title}</h3><p>{p.why} Skip if: {p.whenNot}</p></a>; })}</div>
     <p class="muted" style="margin-top:24px">Pricing and hands-on test notes will be added with a date after testing.</p>

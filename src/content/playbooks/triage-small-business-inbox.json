@@ -67,7 +67,7 @@
     },
     {
       "q": "Which model is best for inbox triage?",
-      "a": "Not yet tested. Results for ChatGPT, Claude, Grok, and Muse will appear here with the date and model version."
+      "a": "Results for ChatGPT, Claude, Grok, and Muse will appear here with the date and model version."
     }
   ],
   "draft": false

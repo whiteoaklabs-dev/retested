@@ -64,7 +64,7 @@
     },
     {
       "q": "Which model is best for these emails?",
-      "a": "It is not yet tested for this playbook, so there is no ranked answer. Use the model you already write with, paste the same outline and offer sheet, and keep the draft that stays closest to your facts and needs the least rewriting in your own voice."
+      "a": "Use the model you already write with, paste the same outline and offer sheet, and keep the draft that stays closest to your facts and needs the least rewriting in your own voice."
     },
     {
       "q": "What if I do not want to mention the paid offer yet?",

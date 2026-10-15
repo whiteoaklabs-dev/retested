@@ -60,7 +60,7 @@
     },
     {
       "q": "Which model is best for this newsletter?",
-      "a": "It is not yet tested for this playbook, so there is no ranked answer. Use the chat model you already write with, paste the same changelog and voice note, and keep the draft that stays closest to those facts and needs the least rewriting in your own voice."
+      "a": "Use the chat model you already write with, paste the same changelog and voice note, and keep the draft that stays closest to those facts and needs the least rewriting in your own voice."
     },
     {
       "q": "What if this version is mostly small fixes?",

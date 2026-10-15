@@ -54,7 +54,7 @@
   "faq": [
     {
       "q": "Which model is best for this escalation macro?",
-      "a": "It is not yet tested, so there is no ranking to follow. Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies the failure message exactly and asks one question you can trace to a message in the conversation."
+      "a": "Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies the failure message exactly and asks one question you can trace to a message in the conversation."
     },
     {
       "q": "What if the conversation has no error text?",

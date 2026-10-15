@@ -64,7 +64,7 @@
     },
     {
       "q": "Which model should I use for these shop emails?",
-      "a": "It is not yet tested for this playbook, so none of the four is ranked. Use the prompt for the chat tool you already open at the counter, keep the same routing sheet and placeholders, and judge the note by whether the desk is real and the original text is intact."
+      "a": "Use the prompt for the chat tool you already open at the counter, keep the same routing sheet and placeholders, and judge the note by whether the desk is real and the original text is intact."
     },
     {
       "q": "Who decides whether the email is urgent?",

@@ -63,7 +63,7 @@
     },
     {
       "q": "Which model writes the best follow-up emails?",
-      "a": "That is not yet tested for this playbook, so there is no ranking to rely on. Try the same quote summary in the prompt for your usual chat tool, compare the three drafts against your original quote for accuracy and tone, and keep the version you would be comfortable sending under your own name."
+      "a": "Try the same quote summary in the prompt for your usual chat tool, compare the three drafts against your original quote for accuracy and tone, and keep the version you would be comfortable sending under your own name."
     },
     {
       "q": "How do I keep the emails from sounding pushy?",

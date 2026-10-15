@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model should I use for this pause email?",
-      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have, then keep the draft only when every bill is past the cutoff, the clause quote matches the contract, and the stated balance matches your ledger."
+      "a": "Use the prompt for the chat tool you already have, then keep the draft only when every bill is past the cutoff, the clause quote matches the contract, and the stated balance matches your ledger."
     },
     {
       "q": "Who should be on To and Cc?",

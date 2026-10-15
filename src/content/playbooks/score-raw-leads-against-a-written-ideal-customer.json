@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model is best for scoring a lead export?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already work in, paste the same notes and the same export, and keep the run that marks blank cells UNKNOWN and names the missed criterion from your notes."
+      "a": "Use the chat you already work in, paste the same notes and the same export, and keep the run that marks blank cells UNKNOWN and names the missed criterion from your notes."
     },
     {
       "q": "My ideal-customer notes are only rough bullets. Can I still run this?",

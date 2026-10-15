@@ -40,7 +40,7 @@ const { searchId = 'lib-q' } = Astro.props;
           <h3>{it.title}</h3>
           <p>{it.blurb}</p>
           <div class="foot"><span class="dots">{['ChatGPT','Claude','Grok','Muse'].map(m => <ModelDot model={m} />)}</span>
-            <span class="lbl">{it.ready ? 'Not yet tested' : 'Being written'}</span></div>
+            <span class="lbl">{it.ready ? 'Ready to copy' : 'Being written'}</span></div>
         </>;
         const attrs = { 'data-card': '', 'data-cat': it.category, 'data-status': it.ready ? 'ready' : 'wip', 'data-text': (it.title + ' ' + it.blurb + ' ' + it.category).toLowerCase(), style: `animation-delay:${Math.min(i, 12) * 25}ms` };
         return it.ready

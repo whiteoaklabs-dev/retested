@@ -65,7 +65,7 @@
     },
     {
       "q": "Which model is best for this brief?",
-      "a": "It is not yet tested for this playbook, so no model is ranked here. Use the prompt for the chat tool you already have, keep the same transcript, purchase row, and return rules, and judge the page by whether the ask, the dollar amount, and the manager decision are explicit."
+      "a": "Use the prompt for the chat tool you already have, keep the same transcript, purchase row, and return rules, and judge the page by whether the ask, the dollar amount, and the manager decision are explicit."
     },
     {
       "q": "The dollar amount in the voicemail does not match the order. What now?",

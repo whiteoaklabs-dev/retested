@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model is best for mapping an invoice export?",
-      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Run the same export and the same column sample in the chat you already use, and keep the run whose filled sheet uses only their headers and marks every missing cell UNKNOWN."
+      "a": "Run the same export and the same column sample in the chat you already use, and keep the run whose filled sheet uses only their headers and marks every missing cell UNKNOWN."
     },
     {
       "q": "What if their headers do not match our billing export?",

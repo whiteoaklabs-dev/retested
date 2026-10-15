@@ -65,7 +65,7 @@
     },
     {
       "q": "Which model is best for writing this follow-up?",
-      "a": "It is not yet tested. Use whichever chat model you already write client mail in. Keep a result only when the cover title matches, the body has one question, every fact is in the message you pasted, and the decision date is the day you chose."
+      "a": "Use whichever chat model you already write client mail in. Keep a result only when the cover title matches, the body has one question, every fact is in the message you pasted, and the decision date is the day you chose."
     },
     {
       "q": "Should the note restate the fee or reattach the PDF?",

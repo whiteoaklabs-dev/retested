@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model is best for these subject lines?",
-      "a": "It is not yet tested for this playbook, so there is no ranked answer. Paste the same five drafts and the same audience note into the model you already write with, and keep the set that stays inside each email's facts and needs the least rewriting in your voice."
+      "a": "Paste the same five drafts and the same audience note into the model you already write with, and keep the set that stays inside each email's facts and needs the least rewriting in your voice."
     },
     {
       "q": "Can I use this for a launch and for an evergreen run?",

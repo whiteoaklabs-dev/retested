@@ -63,7 +63,7 @@
   "faq": [
     {
       "q": "Can it handle other currencies?",
-      "a": "Not yet tested end-to-end. Set the currency in your invoicing tool after you paste the draft."
+      "a": "Set the currency in your invoicing tool after you paste the draft."
     },
     {
       "q": "What if the notes are a mess?",

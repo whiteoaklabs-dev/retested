@@ -53,7 +53,7 @@
   "faq": [
     {
       "q": "Which model is best at reading a crash email?",
-      "a": "It is not yet tested, so there is no ranking to follow. Use whichever of ChatGPT, Claude, Grok, or Muse you already have open. If a filled line is not a string you can find in the message, run a second one and keep the draft that leaves the gap as UNKNOWN."
+      "a": "Use whichever of ChatGPT, Claude, Grok, or Muse you already have open. If a filled line is not a string you can find in the message, run a second one and keep the draft that leaves the gap as UNKNOWN."
     },
     {
       "q": "What if the email never names the phone or the build?",

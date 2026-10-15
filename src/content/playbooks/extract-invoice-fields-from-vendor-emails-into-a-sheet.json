@@ -64,7 +64,7 @@
     },
     {
       "q": "Which model is best for these vendor emails?",
-      "a": "It is not yet tested for this playbook, so no model is ranked. Use the prompt for the chat tool you already have open, keep the same forwarded thread and the same amount rule, and accept a row only when vendor, invoice number, amount, and due date each appear in the source text."
+      "a": "Use the prompt for the chat tool you already have open, keep the same forwarded thread and the same amount rule, and accept a row only when vendor, invoice number, amount, and due date each appear in the source text."
     },
     {
       "q": "Will this sheet pay the vendor for me?",

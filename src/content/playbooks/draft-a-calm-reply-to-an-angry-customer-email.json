@@ -61,7 +61,7 @@
     },
     {
       "q": "Which model writes the calmest reply?",
-      "a": "It is not yet tested. Use the prompt for the chat tool you already open. Judge the draft yourself: it should name the issue, state only the next step you approved, and add no order facts you did not paste. If it invents a detail, regenerate with that field marked UNKNOWN."
+      "a": "Use the prompt for the chat tool you already open. Judge the draft yourself: it should name the issue, state only the next step you approved, and add no order facts you did not paste. If it invents a detail, regenerate with that field marked UNKNOWN."
     },
     {
       "q": "Can this send the email for me?",

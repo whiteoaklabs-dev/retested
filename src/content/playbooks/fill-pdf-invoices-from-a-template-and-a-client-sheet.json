@@ -52,7 +52,7 @@
   "faq": [
     {
       "q": "Which model is best for building this bill app?",
-      "a": "It is not yet tested, so there is no ranking among ChatGPT, Claude, Grok, and Muse. Use the chat you already have, keep the run whose sample PDF matches your sheet, and discard a file that fills a blank with a guessed address or tax id."
+      "a": "Use the chat you already have, keep the run whose sample PDF matches your sheet, and discard a file that fills a blank with a guessed address or tax id."
     },
     {
       "q": "Will this page email the finished PDF to the client?",

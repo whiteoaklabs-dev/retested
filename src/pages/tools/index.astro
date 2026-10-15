@@ -24,7 +24,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemLis
             {t.featured && <span class="status" style="color:var(--warn)">FEATURED</span>}</div>
           {wins.length > 0 && <div><div class="eyebrow" style="margin-bottom:8px">Best for</div><div class="tags">{wins.map(w => <span class="tag">{w.title.replace(/ with an AI agent| automatically/g, '')}</span>)}</div></div>}
           {t.description && <p class="muted" style="font-size:14px;margin:0">{t.description}</p>}
-          <div class="muted" style="font-size:12.5px;margin-top:auto;display:flex;align-items:center;gap:6px">{t.listing === 'free' ? 'Free listing · not yet tested' : 'Pricing and test notes coming after testing'} <Icon name="arrow" size={13} /></div>
+          <div class="muted" style="font-size:12.5px;margin-top:auto;display:flex;align-items:center;gap:6px">{t.listing === 'free' ? 'Free listing' : 'Pricing notes coming soon'} <Icon name="arrow" size={13} /></div>
         </a>); })}
     </div>
     <div class="cta" style="margin-top:56px">
