@@ -1,12 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { CATEGORIES } from '../../data/useCases';
+import { catSlug } from '../../data/categories';
 import Library from '../../components/Library.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
 ---
-<Base title="AI agent playbooks for small business" description="Browse tested AI playbooks for small-business back office, sales, support, finance, and marketing, with prompts for ChatGPT, Claude, Grok, and Muse.">
+<Base title="AI agent playbooks for small business" description="Browse tested AI playbooks for small-business back office, sales, support, finance, and marketing, with prompts for ChatGPT, Claude, Grok, Muse, Gemini and more." crumbs={[['Playbooks', '/use-cases/']]}>
   <div class="wrap">
     <div class="page-head"><div class="eyebrow">Playbooks</div><h1>Every job, one tested playbook</h1><p>Filter by category or status. Ready playbooks include prompts for all four models, a setup guide, and tool picks.</p></div>
     <Library />
+    <div class="hub-links" style="margin-top:22px">{CATEGORIES.map(c => <a class="chip" href={`/ai-for/${catSlug(c)}/`}>AI for {c}</a>)}</div>
     <div style="margin-top:64px"><NewsletterSignup /></div>
   </div>
 </Base>

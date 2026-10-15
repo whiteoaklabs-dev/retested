@@ -1,4 +1,7 @@
+# Retested: all crawlers welcome, including AI search crawlers (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Bingbot).
 User-agent: *
 Allow: /
-Sitemap: https://retested.vercel.app/sitemap-index.xml
+Disallow: /api/
 Disallow: /get-featured/thanks/
+
+Sitemap: https://retested.vercel.app/sitemap-index.xml

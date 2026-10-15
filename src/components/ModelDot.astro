@@ -1,5 +1,6 @@
 ---
+import { MODELS, modelKey } from '../data/models';
 const { model, label = false } = Astro.props as { model: string; label?: boolean };
-const k = model.toLowerCase(); const ab: Record<string,string> = { chatgpt: 'GP', claude: 'CL', grok: 'GK', muse: 'MU' };
+const k = modelKey(model); const ab = MODELS.find(m => m.key === k)?.ab ?? model.slice(0, 2).toUpperCase();
 ---
-{label ? <span class="mb"><i class={`md m-${k}`}>{ab[k]}</i>{model}</span> : <i class={`md m-${k}`} title={model}>{ab[k]}</i>}
+{label ? <span class="mb"><i class={`md m-${k}`}>{ab}</i>{model}</span> : <i class={`md m-${k}`} title={model}>{ab}</i>}

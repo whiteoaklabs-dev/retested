@@ -4,28 +4,40 @@ import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
 import { SITE, BASE } from '../data/site';
-interface Props { title: string; description: string; schema?: object[] }
-const { title, description, schema = [] } = Astro.props;
+import { CATEGORIES } from '../data/useCases';
+import { catSlug } from '../data/categories';
+interface Props { title: string; description: string; schema?: object[]; noindex?: boolean; crumbs?: [string, string][]; ogType?: string }
+const { title, description, schema = [], noindex = false, crumbs = [], ogType = 'website' } = Astro.props;
 const canonical = SITE.origin + Astro.url.pathname;
-const org = { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url };
+const fullTitle = title === SITE.name ? `${SITE.name} | Tested AI playbooks for real work` : `${title} | ${SITE.name}`;
+// Per-page OG image, rendered after build by scripts/og.mjs from this page's <title>.
+const ogSlug = Astro.url.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '--') || 'home';
+const ogImage = `${SITE.origin}/og/${ogSlug}.png`;
+const gsc = import.meta.env.PUBLIC_GSC_VERIFICATION || SITE.googleSiteVerification;
+const org = { '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', logo: SITE.url + '/favicon.svg', description: SITE.tagline };
+const crumbLd = crumbs.length ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], ...crumbs].map(([name, href], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE.origin + href })) }] : [];
 const path = Astro.url.pathname;
-const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/releases/'], ['How we test', '/methodology/'], ['Get featured', '/get-featured/']];
+const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/releases/'], ['Prompt packs', '/prompt-packs/'], ['How we test', '/methodology/'], ['Submit a tool', '/submit/'], ['Get featured', '/get-featured/']];
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{title === SITE.name ? `${SITE.name} | Tested AI playbooks for real work` : `${title} | ${SITE.name}`}</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
+  {gsc && <meta name="google-site-verification" content={gsc} />}
+  <link rel="alternate" type="application/rss+xml" title="Retested releases" href={SITE.origin + '/releases/rss.xml'} />
   <link rel="sitemap" href={BASE + '/sitemap-index.xml'} />
   <link rel="icon" href={BASE + '/favicon.svg'} type="image/svg+xml" />
   <meta name="theme-color" content="#08090b" />
-  <meta property="og:title" content={title} /><meta property="og:description" content={description} />
-  <meta property="og:url" content={canonical} /><meta property="og:type" content="website" /><meta property="og:site_name" content="Retested" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content={fullTitle} /><meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} /><meta property="og:type" content={ogType} /><meta property="og:site_name" content="Retested" /><meta property="og:locale" content="en_US" />
+  <meta property="og:image" content={ogImage} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={title} />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={fullTitle} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogImage} />
   <script is:inline>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-  {[org, ...schema].map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  {[org, ...crumbLd, ...schema].map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 </head>
 <body>
   <a href="#main" style="position:absolute;left:-9999px" onfocus="this.style.left='8px'">Skip to content</a>
@@ -42,16 +54,19 @@ const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/
       </div>
     </div>
   </nav>
-  <main id="main"><slot /></main>
+  <main id="main">
+    {crumbs.length > 0 && <div class="wrap"><nav class="crumbs site-crumbs" aria-label="Breadcrumb"><a href={BASE + '/'}>Home</a>{crumbs.map(([n, h], i) => <><span>/</span>{i === crumbs.length - 1 ? <span aria-current="page">{n}</span> : <a href={BASE + h}>{n}</a>}</>)}</nav></div>}
+    <slot />
+  </main>
   <footer class="site">
     <div class="wrap cols">
       <div>
         <a class="brand" href={BASE + '/'} style="color:var(--text)"><span class="logo"><Icon name="refresh" /></span>Retested</a>
         <p style="max-width:300px;margin-top:12px">Tested AI playbooks for real work. Prompts are dated by model and re-tested when the models change.</p>
       </div>
-      <div><h4>Library</h4><a href={BASE + '/use-cases/'}>Playbooks</a><a href={BASE + '/tools/'}>Tools</a><a href={BASE + '/releases/'}>Releases</a></div>
+      <div><h4>Library</h4><a href={BASE + '/use-cases/'}>Playbooks</a>{CATEGORIES.map(c => <a href={`${BASE}/ai-for/${catSlug(c)}/`}>AI for {c}</a>)}<a href={BASE + '/tools/'}>Tools</a><a href={BASE + '/releases/'}>Releases</a></div>
       <div><h4>Trust</h4><a href={BASE + '/methodology/'}>How we test</a><a href={BASE + '/disclosure/'}>Disclosure</a></div>
-      <div><h4>Makers</h4><a href={BASE + '/get-featured/'}>Get featured</a><a href={BASE + '/newsletter/'}>Newsletter</a></div>
+      <div><h4>Makers</h4><a href={BASE + '/submit/'}>Submit a tool (free)</a><a href={BASE + '/get-featured/'}>Get featured</a><a href={BASE + '/prompt-packs/'}>Prompt packs</a><a href={BASE + '/newsletter/'}>Newsletter</a></div>
     </div>
     <div class="wrap" style="margin-top:32px">© 2026 Retested. Paid placements are always labeled and never change test results.</div>
   </footer>
@@ -59,6 +74,7 @@ const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/
     document.getElementById('theme').onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}};
     document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const el=document.getElementById(btn.dataset.copy);try{await navigator.clipboard.writeText(el.innerText)}catch(e){}const o=btn.innerHTML;btn.classList.add('done');btn.textContent='Copied';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o},1600)}));
     document.querySelectorAll('[role=tablist]').forEach(tl=>{const tabs=[...tl.querySelectorAll('[role=tab]')];tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>{x.setAttribute('aria-selected',x===t);document.getElementById(x.getAttribute('aria-controls')).hidden=x!==t})}))});
+    document.querySelectorAll('[data-ptabs]').forEach(pt=>{const b=pt.querySelector('[data-more-btn]'),m=pt.querySelector('[data-more-menu]'),lb=pt.querySelector('[data-more-label]');if(!b)return;const set=o=>{m.hidden=!o;b.setAttribute('aria-expanded',o)};b.onclick=e=>{e.stopPropagation();set(m.hidden)};document.addEventListener('click',e=>{if(!b.parentElement.contains(e.target))set(false)});document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});pt.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>{const inMenu=m.contains(t);b.dataset.active=inMenu;lb.textContent=inMenu?t.dataset.name:'More AIs';if(inMenu)set(false)}))});
   </script>
 <script is:inline>
 document.querySelectorAll('form.js-api-form').forEach(f=>{

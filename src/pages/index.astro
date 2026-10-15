@@ -5,13 +5,15 @@ import ModelDot from '../components/ModelDot.astro';
 import Library from '../components/Library.astro';
 import PromptTabs from '../components/PromptTabs.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
-import { useCases, planned } from '../data/useCases';
+import { useCases, planned, CATEGORIES } from '../data/useCases';
+import { catSlug } from '../data/categories';
 import { SITE, BASE } from '../data/site';
+import { PRIMARY, MORE } from '../data/models';
 const total = useCases.length + planned.length;
-const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/use-cases/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }];
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE.url + '/#website', name: SITE.name, url: SITE.url + '/', description: SITE.tagline, publisher: { '@id': SITE.url + '/#org' }, potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/use-cases/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }];
 const demo = useCases[0];
 ---
-<Base title="Retested" description="Stop guessing what to do with AI. Copy a tested playbook: prompts for ChatGPT, Claude, Grok, and Muse, agent setup steps, and the right tools for each job." schema={schema}>
+<Base title="Retested" description="Copy-ready AI playbooks for small-business work: prompts for ChatGPT, Claude, Grok, Gemini and more, agent setup steps with human approval, and the right tools." schema={schema}>
   <header class="hero">
     <div class="grid-bg"></div>
     <div class="wrap" style="position:relative">
@@ -24,14 +26,15 @@ const demo = useCases[0];
         <span class="kbd">⌘K</span>
       </div>
       <div class="models" aria-label="Models we test on">
-        {['ChatGPT', 'Claude', 'Grok', 'Muse'].map(m => <ModelDot model={m} label />)}
+        {PRIMARY.map(m => <ModelDot model={m.name} label />)}
+        <span class="mb more" title={MORE.filter(m => m.key !== 'generic').map(m => m.name).join(', ')}>+{MORE.length - 1} more</span>
       </div>
     </div>
   </header>
 
   <section class="block" style="border-top:0;padding-top:24px">
     <div class="wrap value">
-      <div class="vcard"><div class="ic"><Icon name="flask" /></div><h3>One job, four models</h3><p>Each playbook has a prompt tuned for ChatGPT, Claude, Grok, and Muse. The results show the model version and test date. Until a prompt has been run, it says "Not yet tested".</p></div>
+      <div class="vcard"><div class="ic"><Icon name="flask" /></div><h3>One job, four models</h3><p>Each playbook has a prompt tuned for ChatGPT, Claude, Grok, and Muse, plus a generic version for Gemini, Copilot, Perplexity, and others. The results show the model version and test date. Until a prompt has been run, it says "Not yet tested".</p></div>
       <div class="vcard"><div class="ic"><Icon name="route" /></div><h3>A setup guide you can follow</h3><p>Each guide lists the connectors, the order of steps, where a human approves, and the ways it usually breaks. It covers the how, not just a screenshot of what someone did.</p></div>
       <div class="vcard"><div class="ic"><Icon name="refresh" /></div><h3>Re-tested when models change</h3><p>When a model updates, the affected prompts get re-run. The badges show what is fresh and what is stale.</p></div>
     </div>
@@ -41,7 +44,7 @@ const demo = useCases[0];
     <div class="wrap">
       <div class="sec-head"><div><div class="eyebrow">The library</div><h2>Small-business playbooks</h2><p>Back office, sales, support, finance, and marketing. Start where your week hurts most.</p></div>
         <a class="btn" href={BASE + '/use-cases/'}>All playbooks <Icon name="arrow" /></a></div>
-      <Library searchId="hero-q" />
+      <Library searchId="hero-q" sponsorPlacement="home" />
     </div>
   </section>
 

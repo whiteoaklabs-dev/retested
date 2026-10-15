@@ -1,10 +1,13 @@
 // status 'not-yet-tested' until the Prompt Tester agent records a real run. NEVER fill testedOn/score by hand.
-export type ModelTest = { model: 'ChatGPT' | 'Claude' | 'Grok' | 'Muse'; prompt: string; status: 'not-yet-tested' | 'pass' | 'partial' | 'fail'; modelVersion?: string; testedOn?: string; notes?: string };
+export type ModelTest = { model: string; prompt: string; status: 'not-yet-tested' | 'pass' | 'partial' | 'fail'; modelVersion?: string; testedOn?: string; notes?: string };
 export type UseCase = {
   slug: string; title: string; category: string; summary: string; published: string; updated: string;
   tests: ModelTest[]; setup: { agent: string; steps: string[]; approvalStep: string; failureModes: string[] };
   toolPicks: { slug: string; why: string; whenNot: string }[]; faq: { q: string; a: string }[];
   // Content-pipeline fields (optional for hand-written playbooks)
+  // Optional: tailored prompts for the 'More AIs' models (Gemini, Microsoft Copilot, Perplexity, Meta AI, DeepSeek, Mistral Le Chat)
+  // and a model-neutral genericPrompt. Models without one fall back to the generic prompt plus an adaptation note.
+  moreTests?: ModelTest[]; genericPrompt?: string;
   draft?: boolean; persona?: string; job?: string; who?: string; toolCategories?: string[];
 };
 // Content lives in src/content/playbooks/<slug>.json (one file per playbook, schema: src/content.config.ts).

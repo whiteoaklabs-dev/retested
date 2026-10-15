@@ -1,21 +1,39 @@
 ---
 import Icon from './Icon.astro';
 import ModelDot from './ModelDot.astro';
-import type { UseCase } from '../data/useCases';
+import type { UseCase, ModelTest } from '../data/useCases';
+import { MORE } from '../data/models';
 const { u, idp = 'p' } = Astro.props as { u: UseCase; idp?: string };
+const generic = u.genericPrompt ?? u.tests[0]?.prompt ?? '';
+type Row = ModelTest & { tailored: boolean; adapt?: string };
+const primary: Row[] = u.tests.map(t => ({ ...t, tailored: true }));
+const more: Row[] = MORE.map(m => {
+  const t = m.key === 'generic' ? undefined : u.moreTests?.find(x => x.model === m.name);
+  return t ? { ...t, tailored: true } : { model: m.name, prompt: generic, status: 'not-yet-tested', tailored: m.key === 'generic', adapt: m.adapt };
+});
+const rows = [...primary, ...more];
 ---
-<div class="preview">
+<div class="preview" data-ptabs>
   <div class="tabs" role="tablist" aria-label="Model">
-    {u.tests.map((t, i) => <button class="tab" role="tab" id={`${idp}-tab-${i}`} aria-controls={`${idp}-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}><ModelDot model={t.model} />{t.model}</button>)}
+    {primary.map((t, i) => <button class="tab" role="tab" id={`${idp}-tab-${i}`} aria-controls={`${idp}-panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'}><ModelDot model={t.model} />{t.model}</button>)}
+    <div class="more-ai">
+      <button class="tab more-btn" type="button" aria-haspopup="true" aria-expanded="false" data-more-btn>
+        <span class="more-stack"><ModelDot model="Gemini" /><ModelDot model="Perplexity" /></span><span data-more-label>More AIs</span><span class="more-n">+{MORE.length - 1}</span><span class="chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="more-menu" data-more-menu hidden>
+        {more.map((t, j) => { const i = primary.length + j; return <button class="more-item" role="tab" id={`${idp}-tab-${i}`} aria-controls={`${idp}-panel-${i}`} aria-selected="false" data-name={t.model}><ModelDot model={t.model} /><span>{t.model}</span><small>{t.tailored && t.model !== 'Any AI (generic)' ? 'Tailored' : 'Generic'}</small></button>; })}
+      </div>
+    </div>
   </div>
-  {u.tests.map((t, i) => (
+  {rows.map((t, i) => (
     <div class="panel" role="tabpanel" id={`${idp}-panel-${i}`} aria-labelledby={`${idp}-tab-${i}`} hidden={i !== 0}>
       <div class="testrow">
         {t.status === 'not-yet-tested'
-          ? <span class="badge">Not yet tested on {t.model}</span>
+          ? <span class="badge">Not yet tested on {t.model === 'Any AI (generic)' ? 'any model' : t.model}</span>
           : <span class="badge fresh">Tested {t.testedOn} · {t.modelVersion} · {t.status}</span>}
         <span>Model version and date appear here after a recorded test run.</span>
       </div>
+      {t.adapt && <p class="adapt"><Icon name="route" size={14} /><span>{t.model === 'Any AI (generic)' ? '' : <strong>Generic prompt. </strong>}{t.adapt}</span></p>}
       <div style="position:relative">
         <pre class="prompt" id={`${idp}-prompt-${i}`}>{t.prompt}</pre>
         <div class="copy"><button class="btn copybtn" data-copy={`${idp}-prompt-${i}`}><Icon name="copy" size={14} />Copy</button></div>

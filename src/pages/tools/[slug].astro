@@ -7,12 +7,11 @@ import { BASE } from '../../data/site';
 export function getStaticPaths() { return tools.map(t => ({ params: { slug: t.slug }, props: { t } })); }
 const { t } = Astro.props as { t: Tool };
 const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug));
-const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: t.name, applicationCategory: 'BusinessApplication', url: t.url }];
+const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: t.name, applicationCategory: 'BusinessApplication', applicationSubCategory: t.category, operatingSystem: 'Web', url: t.url, sameAs: [t.url] }];
 ---
-<Base title={`${t.name}: what it's best at`} description={`Where ${t.name} fits in small-business AI workflows, based on Retested playbooks.`} schema={schema}>
+<Base title={`${t.name}: what it's best at`} description={`Where ${t.name} (${t.category}) fits in small-business AI workflows: the jobs it suits, when to skip it, and the playbooks that use it.`} schema={schema} crumbs={[['Tools', '/tools/'], [t.name, `/tools/${t.slug}/`]]}>
   <div class="wrap">
     <div class="page-head">
-      <nav class="crumbs"><a href={BASE + '/tools/'}>Tools</a><span>/</span><span>{t.name}</span></nav>
       <div style="display:flex;gap:16px;align-items:center"><span class="tlogo" data-h={t.name.length} style="width:56px;height:56px;font-size:22px;border-radius:15px">{t.name[0]}</span><div><h1 style="margin:0">{t.name}</h1><div class="muted">{t.category}</div></div></div>
       {t.featured && <p class="disclose" style="margin-top:14px">Featured listing (paid). Payment never changes test results.</p>}
     </div>

@@ -238,3 +238,26 @@ footer.site a{display:block;padding:3px 0}footer.site a:hover{color:var(--text)}
 
 .form-status.is-ok{color:var(--green,#3fb950)}
 .form-status.is-error{color:var(--red,#f85149)}
+/* More AIs switcher */
+.m-gemini{background:linear-gradient(135deg,#4285f4,#9b72cb 60%,#d96570)}.m-copilot{background:linear-gradient(135deg,#0078d4,#29b36b)}.m-perplexity{background:#1f8a8a}.m-meta-ai{background:linear-gradient(135deg,#0081fb,#00c6ff)}.m-deepseek{background:#4d6bfe}.m-mistral{background:linear-gradient(135deg,#ff8205,#fa500f)}.m-generic{background:#6b717c}
+.tabs{overflow:visible;flex-wrap:wrap}
+.more-ai{position:relative;margin-left:auto}
+.more-btn{border:1px dashed var(--line2)}
+.more-btn[data-active=true]{background:var(--panel2);color:var(--text);border-style:solid}
+.more-stack{display:inline-flex}.more-stack .md+.md{margin-left:-6px;box-shadow:0 0 0 2px var(--panel)}
+.more-n{font-family:var(--mono);font-size:10.5px;color:var(--faint);background:var(--accent-soft);border-radius:999px;padding:1px 6px}
+.chev{font-size:10px;color:var(--faint)}
+.more-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:240px;padding:6px;border:1px solid var(--line2);border-radius:12px;background:var(--panel);box-shadow:0 18px 50px -12px rgba(0,0,0,.45);display:grid;gap:2px}
+.more-menu[hidden]{display:none}
+.more-item{all:unset;cursor:pointer;display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:8px;font-size:13px;color:var(--text)}
+.more-item .md{width:16px;height:16px;font-size:7.5px}
+.more-item small{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em}
+.more-item:hover,.more-item:focus-visible,.more-item[aria-selected=true]{background:var(--panel2)}
+.adapt{display:flex;gap:8px;align-items:flex-start;margin:0 0 10px;padding:9px 12px;border-radius:10px;background:var(--accent-soft);color:var(--muted);font-size:13px;line-height:1.5}
+.adapt svg{flex:none;margin-top:2px;color:var(--accent)}.adapt strong{color:var(--text)}
+.mb.more{color:var(--faint);border-style:dashed}
+@media(max-width:640px){.more-ai{margin-left:0}.more-menu{left:0;right:auto;min-width:min(260px,80vw)}}
+.preview[data-ptabs]{overflow:visible}
+.site-crumbs{padding-top:28px;margin-bottom:0;flex-wrap:wrap}.site-crumbs [aria-current]{color:var(--muted)}
+.hub-sec{margin-top:48px}.hub-sec h2{font-size:22px;margin:0 0 6px}.hub-sec>p{color:var(--muted);margin:0 0 18px;max-width:720px}
+.hub-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}

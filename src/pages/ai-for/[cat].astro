@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import ModelDot from '../../components/ModelDot.astro';
+import SponsorSlot from '../../components/SponsorSlot.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import { useCases, planned, CATEGORIES } from '../../data/useCases';
+import { tools, toolBySlug } from '../../data/tools';
+import { catSlug, hubFor } from '../../data/categories';
+import { PRIMARY, MORE } from '../../data/models';
+import { SITE, BASE } from '../../data/site';
+export function getStaticPaths() { return CATEGORIES.map(c => ({ params: { cat: catSlug(c) }, props: { c } })); }
+const { c } = Astro.props as { c: string };
+const h = hubFor(c);
+const inCat = useCases.filter(u => u.category === c);
+const listed = [...inCat.filter(u => !u.draft), ...inCat.filter(u => u.draft)];
+const wip = planned.filter(p => p.category === c);
+const allPicks = inCat.flatMap(u => u.toolPicks);
+const picks = [...new Set(allPicks.map(p => p.slug))].map(s => toolBySlug(s)).filter(Boolean) as typeof tools;
+const url = `${SITE.url}/ai-for/${catSlug(c)}/`;
+const lower = c.toLowerCase();
+const title = `AI for ${c}: prompts, agent setups & tools`;
+const desc = `Copy-ready AI prompts for ${h.audience}, step-by-step AI agent setups with a human approval step, and the tools that fit. For ChatGPT, Claude, Grok, Gemini and more.`;
+const schema = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url, description: desc, isPartOf: { '@id': SITE.url + '/#website' },
+  mainEntity: { '@type': 'ItemList', itemListElement: listed.map((u, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.url}/use-cases/${u.slug}/`, name: u.title })) } }];
+const thin = listed.length === 0;
+---
+<Base title={title} description={desc} schema={schema} noindex={thin} crumbs={[['Playbooks', '/use-cases/'], [`AI for ${c}`, `/ai-for/${catSlug(c)}/`]]}>
+  <div class="wrap">
+    <div class="page-head"><div class="eyebrow">{c}</div><h1>AI for {lower}: tested prompts and agent playbooks</h1><p>{h.intro}</p>
+      <div class="models" style="justify-content:flex-start">{PRIMARY.map(m => <ModelDot model={m.name} label />)}<span class="mb more">+{MORE.length - 1} more</span></div></div>
+
+    <section class="hub-sec"><h2>AI prompts for {lower}</h2><p>Each playbook below includes a copy-ready prompt for ChatGPT, Claude, Grok, and Muse, plus a generic version for Gemini, Copilot, Perplexity, and other assistants. Prompts show "Not yet tested" until a run is recorded.</p>
+      {!thin && <div class="cards">{listed.map(u => <a class="uc" href={`${BASE}/use-cases/${u.slug}/`} style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={c} /></span><span class="cat">{c}</span><span class={`status ${u.draft ? 'wip' : 'ready'}`}>{u.draft ? 'DRAFT' : 'READY'}</span></div><h3>{u.title}</h3><p>{u.summary.slice(0, 150)}{u.summary.length > 150 ? '…' : ''}</p></a>)}</div>}
+      {thin && <p class="muted">The first {lower} playbooks are being written. Get an alert when they are ready.</p>}
+    </section>
+
+    {!thin && <section class="hub-sec"><h2>How to use an AI agent for {lower}</h2><p>The pattern is the same for {h.jobs}: connect the data source, let the agent draft, and keep a human approval step before anything is sent, paid, or changed.</p>
+      <ol class="steps">{listed[0].setup.steps.slice(0, 4).map(s => <li>{s}</li>)}</ol>
+      <p><a href={`${BASE}/use-cases/${listed[0].slug}/#setup`} style="color:var(--accent)">Full setup guide: {listed[0].title} →</a></p>
+    </section>}
+
+    <div class="hub-sec"><SponsorSlot placement={`category:${c}`} label={c} /></div>
+
+    {picks.length > 0 && <section class="hub-sec"><h2>Best AI tools for {lower}</h2><p>Tools that appear as picks in these playbooks, with the job each one fits. Picks are not paid.</p>
+      <div class="cards">{picks.map(t => <a class="uc" href={`${BASE}/tools/${t.slug}/`} style="min-height:auto"><div class="top"><span class="cat">{t.category}</span></div><h3>{t.name}</h3><p>{allPicks.find(p => p.slug === t.slug)!.why}</p></a>)}</div>
+    </section>}
+
+    {wip.length > 0 && <section class="hub-sec"><h2>Coming next in {lower}</h2><ul class="fails">{wip.map(p => <li style="color:var(--muted)">{p.title}</li>)}</ul></section>}
+
+    <section class="hub-sec"><h2>Other categories</h2><div class="hub-links">{CATEGORIES.filter(x => x !== c).map(x => <a class="chip" href={`${BASE}/ai-for/${catSlug(x)}/`}>AI for {x}</a>)}</div></section>
+    <div style="margin-top:64px"><NewsletterSignup /></div>
+  </div>
+</Base>
