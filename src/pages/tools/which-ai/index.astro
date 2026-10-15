@@ -1,0 +1,39 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { SITE, BASE } from '../../../data/site';
+const title = 'Which AI should I use? A 30-second quiz';
+const description = 'Free quiz: answer four questions about your task and get a starting recommendation for ChatGPT, Claude, Grok, Gemini, or Perplexity, plus a matching AI playbook.';
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Which AI should I use?', url: `${SITE.url}/tools/which-ai/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, description }];
+---
+<Base title={title} description={description} schema={schema} crumbs={[['Tools', '/tools/'], ['Which AI?', '/tools/which-ai/']]}>
+<div class="wrap" style="max-width:760px">
+  <div class="page-head"><div class="eyebrow">Free tool</div><h1>Which AI should I use?</h1><p>Answer four quick questions. You get a model to start with, a backup, and a step-by-step playbook for the job.</p></div>
+  <form id="q" class="block" style="display:grid;gap:22px">
+    <fieldset><legend><strong>1. What's the job?</strong></legend><div class="chips" data-k="task">
+      <button type="button" class="chip" data-v="writing">Writing emails or copy</button><button type="button" class="chip" data-v="support">Customer support replies</button><button type="button" class="chip" data-v="sales">Sales follow-up and outreach</button><button type="button" class="chip" data-v="finance">Invoices and admin</button><button type="button" class="chip" data-v="research">Research and current events</button><button type="button" class="chip" data-v="coding">Code or spreadsheets</button><button type="button" class="chip" data-v="inbox">Sorting an inbox</button></div></fieldset>
+    <fieldset><legend><strong>2. Does it need today's information from the web?</strong></legend><div class="chips" data-k="web"><button type="button" class="chip" data-v="yes">Yes</button><button type="button" class="chip" data-v="no">No</button></div></fieldset>
+    <fieldset><legend><strong>3. How long is the material you'll paste in?</strong></legend><div class="chips" data-k="len"><button type="button" class="chip" data-v="short">A few paragraphs</button><button type="button" class="chip" data-v="long">Long docs or many files</button></div></fieldset>
+    <fieldset><legend><strong>4. Which apps do you live in?</strong></legend><div class="chips" data-k="eco"><button type="button" class="chip" data-v="google">Google Workspace</button><button type="button" class="chip" data-v="microsoft">Microsoft 365</button><button type="button" class="chip" data-v="x">X</button><button type="button" class="chip" data-v="none">No preference</button></div></fieldset>
+    <button type="submit" class="btn btn-primary" style="height:44px;justify-self:start">Show my pick</button>
+  </form>
+  <div id="r" class="block" hidden style="margin-top:24px" aria-live="polite"></div>
+  <div class="prose" style="margin-top:40px">
+    <h2>How the pick works</h2>
+    <p>This is a starting point, not a test result. The quiz weighs each model's general strengths: long-document handling, live web access, the apps it plugs into, and tone for writing. Retested's own side-by-side test runs are labeled on each playbook; until a prompt has a recorded run, it says <em>Not yet tested</em>. See <a href={BASE + '/methodology/'}>how we test</a>.</p>
+  </div>
+</div>
+<script is:inline define:vars={{ BASE }}>
+(()=>{const a={};document.querySelectorAll('[data-k]').forEach(g=>g.querySelectorAll('.chip').forEach(b=>{b.setAttribute('aria-pressed','false');b.onclick=()=>{g.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));a[g.dataset.k]=b.dataset.v}}));
+const M={chatgpt:['ChatGPT','Good all-rounder for drafting, data work, and quick iterations.'],claude:['Claude','Strong with long documents and natural-sounding writing.'],grok:['Grok','Built-in real-time access to X and the web.'],gemini:['Gemini','Works inside Gmail, Docs, and Sheets.'],copilot:['Microsoft Copilot','Works inside Outlook, Word, and Excel.'],perplexity:['Perplexity','Answers with cited web sources.']};
+const P={writing:['cold-outreach-not-ai-sounding','Write personalized cold outreach that doesn\'t sound like AI'],support:['draft-support-replies-brand-voice','Draft support replies in your brand voice'],sales:['follow-up-new-leads-in-5-minutes','Follow up on new leads within 5 minutes'],finance:['chase-overdue-invoices','Chase overdue invoices politely with an agent'],research:['call-notes-to-crm','Turn sales call notes into CRM updates'],coding:['invoices-from-job-notes','Create invoices from emails or job notes'],inbox:['triage-small-business-inbox','Triage a small-business inbox with an AI agent']};
+document.getElementById('q').onsubmit=e=>{e.preventDefault();if(!a.task){alert('Pick a job first.');return}
+const s={chatgpt:2,claude:2,grok:1,gemini:1,copilot:1,perplexity:0};
+({writing:{claude:2},support:{claude:2,chatgpt:1},sales:{chatgpt:2,claude:1},finance:{chatgpt:2},research:{perplexity:3,grok:2},coding:{chatgpt:2,claude:2},inbox:{gemini:2,copilot:2}})[a.task]&&Object.entries(({writing:{claude:2},support:{claude:2,chatgpt:1},sales:{chatgpt:2,claude:1},finance:{chatgpt:2},research:{perplexity:3,grok:2},coding:{chatgpt:2,claude:2},inbox:{gemini:2,copilot:2}})[a.task]).forEach(([k,v])=>s[k]+=v);
+if(a.web==='yes'){s.perplexity+=2;s.grok+=2;s.chatgpt+=1}if(a.len==='long'){s.claude+=2;s.gemini+=1}
+if(a.eco==='google')s.gemini+=3;if(a.eco==='microsoft')s.copilot+=3;if(a.eco==='x')s.grok+=3;
+const r=Object.entries(s).sort((x,y)=>y[1]-x[1]);const[t,b]=[M[r[0][0]],M[r[1][0]]];const p=P[a.task];
+const el=document.getElementById('r');el.hidden=false;
+el.innerHTML=`<div class="eyebrow">Your starting pick</div><h2 style="margin:6px 0">${t[0]}</h2><p>${t[1]}</p><p class="muted">Backup: <strong>${b[0]}</strong>. ${b[1]}</p><p><a class="btn btn-primary" href="${BASE}/use-cases/${p[0]}/">Playbook: ${p[1]} →</a></p><p class="muted" style="font-size:13px">A starting point based on general strengths, not a Retested test result. <a href="#" id="sh">Copy link to share</a></p>`;
+document.getElementById('sh').onclick=ev=>{ev.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(location.href);ev.target.textContent='Link copied'};el.scrollIntoView({behavior:'smooth'})}})();
+</script>
+</Base>

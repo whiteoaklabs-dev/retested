@@ -9,7 +9,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemLis
 ---
 <Base title="AI tool directory, ranked by use case" description="AI tools for small business, organized by the job they're best at, with honest notes on when to skip each one." schema={schema}>
   <div class="wrap">
-    <div class="page-head"><div class="eyebrow">Tool directory</div><h1>Tools, picked for the job</h1><p>Every tool is linked to the playbooks where it fits, so you see why it's here, not just that it exists.</p></div>
+    <div class="page-head"><div class="eyebrow">Tool directory</div><h1>Tools, picked for the job</h1><p>Every tool is linked to the playbooks where it fits, so you see why it's here, not just that it exists.</p><p><a href={BASE + "/tools/which-ai/"}>Not sure which AI model to use? Take the 30-second quiz →</a></p></div>
     <div class="toolbar" data-tools>
       <div class="mini-search"><Icon name="search" /><input id="tq" type="search" placeholder="Search tools…" aria-label="Search tools" /></div>
       <div class="chips" role="group" aria-label="Category">
@@ -19,11 +19,12 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemLis
     </div>
     <div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
       {tools.map((t, i) => { const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug)); return (
-        <a class="tcard" href={`${BASE}/tools/${t.slug}/`} data-tool data-c={t.category} data-text={(t.name + ' ' + t.category + ' ' + wins.map(w => w.title).join(' ')).toLowerCase()} style={`animation-delay:${i * 30}ms`}>
+        <a class="tcard" href={`${BASE}/tools/${t.slug}/`} data-tool data-c={t.category} data-text={(t.name + ' ' + t.category + ' ' + (t.description ?? '') + ' ' + wins.map(w => w.title).join(' ')).toLowerCase()} style={`animation-delay:${i * 30}ms`}>
           <div style="display:flex;gap:12px;align-items:center"><span class="tlogo" data-h={t.name.length}>{t.name[0]}</span><div><h3 style="font-size:17px;font-weight:620">{t.name}</h3><div class="muted" style="font-size:13px">{t.category}</div></div>
             {t.featured && <span class="status" style="color:var(--warn)">FEATURED</span>}</div>
-          <div><div class="eyebrow" style="margin-bottom:8px">Best for</div><div class="tags">{wins.map(w => <span class="tag">{w.title.replace(/ with an AI agent| automatically/g, '')}</span>)}</div></div>
-          <div class="muted" style="font-size:12.5px;margin-top:auto;display:flex;align-items:center;gap:6px">Pricing and test notes coming after testing <Icon name="arrow" size={13} /></div>
+          {wins.length > 0 && <div><div class="eyebrow" style="margin-bottom:8px">Best for</div><div class="tags">{wins.map(w => <span class="tag">{w.title.replace(/ with an AI agent| automatically/g, '')}</span>)}</div></div>}
+          {t.description && <p class="muted" style="font-size:14px;margin:0">{t.description}</p>}
+          <div class="muted" style="font-size:12.5px;margin-top:auto;display:flex;align-items:center;gap:6px">{t.listing === 'free' ? 'Free listing · not yet tested' : 'Pricing and test notes coming after testing'} <Icon name="arrow" size={13} /></div>
         </a>); })}
     </div>
     <div class="cta" style="margin-top:56px">
