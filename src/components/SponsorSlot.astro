@@ -13,11 +13,11 @@ const s = sponsorFor(placement);
       <strong>{s.name}</strong><span>{s.blurb}</span><span class="sp-cta">Visit {s.name} →</span>
     </a>
   ) : (
-    <a class="sp-body sp-empty" href={`${BASE}/get-featured/`}>
+    <div class="sp-body sp-empty">
       <strong>Your tool here</strong>
-      <span>Sponsor this spot{label ? ` in ${label}` : ''}. Reach people looking for this exact job. Always labeled, never affects test results.</span>
-      <span class="sp-cta">Sponsor this spot →</span>
-    </a>
+      <span>Sponsor this spot{label ? ` in ${label}` : ''}: $199/mo, live within 24 hours. Always labeled, never affects test results. <a href={`${BASE}/get-featured/`}>See all placements</a></span>
+      <a class="sp-cta btn btn-primary" href="https://buy.stripe.com/28EdR8fQjevH3cu27GfQI02" rel="noopener">Buy now · $199/mo</a>
+    </div>
   )}
 </aside>
 <style>
@@ -27,5 +27,6 @@ const s = sponsorFor(placement);
 .sp-body strong{font-size:16px}
 .sp-body span{color:var(--muted);font-size:14px;flex:1 1 320px}
 .sp-body .sp-cta{flex:0 0 auto;color:var(--accent);font-weight:600}
-.sp-body:hover{background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:16px}
+.sp-empty .sp-cta{color:#fff}
+a.sp-body:hover{background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:16px}
 </style>

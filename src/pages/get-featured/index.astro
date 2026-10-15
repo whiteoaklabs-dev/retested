@@ -2,41 +2,59 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 const plans = [
-  { name: 'Directory listing', price: '$99', per: 'one-time', desc: 'Get your tool into the directory, reviewed by an editor.', items: ['Editor-reviewed tool page', 'Linked from the playbooks it genuinely fits', 'Dofollow link after review'], cta: 'Buy listing · $99', pay: 'https://buy.stripe.com/6oU4gy6fJ4V714mdQofQI00' },
-  { name: 'Featured in a category', price: '$199', per: '/ month', hot: true, desc: 'Be seen by people actively trying to get a specific job done.', items: ['"Featured" slot on tool and playbook pages in one category', 'Always labeled as paid', 'Monthly click report', 'Cancel anytime'], cta: 'Subscribe · $199/mo', pay: 'https://buy.stripe.com/28EdR8fQjevH3cu27GfQI02' },
-  { name: 'Release spotlight', price: '$149', per: 'per launch', desc: 'Put your launch in front of builders who follow what changed.', items: ['Sponsored item in the releases feed', 'Tagged to relevant playbooks', 'Included in the weekly email release section'], cta: 'Book spotlight · $149', pay: 'https://buy.stripe.com/8x2aEW9rVbjvcN48w4fQI01' },
+  { name: 'Directory listing', price: '$99', per: 'one-time', desc: 'Get your tool into the directory, live within 24 hours of payment.', items: ['Your own tool page', 'Linked from the playbooks it fits', 'Live within 24 hours'], pay: 'https://buy.stripe.com/6oU4gy6fJ4V714mdQofQI00' },
+  { name: 'Featured in a category', price: '$199', per: '/ month', hot: true, desc: 'Be seen by people actively trying to get a specific job done.', items: ['"Featured" slot on tool and playbook pages in one category', 'Always labeled as paid', 'Monthly click report', 'Cancel anytime'], pay: 'https://buy.stripe.com/28EdR8fQjevH3cu27GfQI02' },
+  { name: 'Release spotlight', price: '$149', per: 'per launch', desc: 'Put your launch in front of builders who follow what changed.', items: ['Sponsored item in the releases feed', 'Tagged to relevant playbooks', 'Included in the weekly email release section'], pay: 'https://buy.stripe.com/8x2aEW9rVbjvcN48w4fQI01' },
 ];
-const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' }, offers: plans.map(p => ({ '@type': 'Offer', name: p.name, price: p.price.replace('$', ''), priceCurrency: 'USD' })) }];
+const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' }, offers: plans.map(p => ({ '@type': 'Offer', name: p.name, price: p.price.replace('$', ''), priceCurrency: 'USD', url: p.pay })) }];
 ---
-<Base title="Get featured" description="Put your AI tool in front of people looking for the exact job it does. Paid placement is always labeled and never changes test results." schema={schema}>
+<Base title="Get featured" description="Buy a labeled placement for your AI tool in front of people looking for the exact job it does. Pay by Stripe, live within 24 hours." schema={schema}>
   <div class="wrap">
-    <div class="page-head" style="text-align:center;margin:0 auto;max-width:760px"><div class="eyebrow">For AI tool makers</div><h1>Get found for the job your tool does best</h1><p style="margin-inline:auto">People come to Retested to finish a specific task, not to browse a list. Featured placement puts your tool right next to that task.</p></div>
-    <div class="callout" style="max-width:760px;margin:0 auto 36px;border-color:var(--line2);background:var(--panel)"><Icon name="shield" /><div><strong>Our rule:</strong> payment never changes test scores, rankings, or "Skip if" notes. Every paid slot is labeled, and we don't sell links.</div></div>
+    <div class="page-head" style="text-align:center;margin:0 auto;max-width:760px"><div class="eyebrow">For AI tool makers</div><h1>Get found for the job your tool does best</h1><p style="margin-inline:auto">Pick a placement, pay with Stripe, and your placement goes live within 24 hours. No application, no waiting.</p></div>
+    <div class="callout" style="max-width:760px;margin:0 auto 36px;border-color:var(--line2);background:var(--panel)"><Icon name="shield" /><div><strong>Our rule:</strong> payment never changes test scores, rankings, or "Skip if" notes. Every paid slot is labeled "Sponsored", and we don't sell links.</div></div>
     <div class="pricing">
       {plans.map(p => <div class={`plan ${p.hot ? 'hot' : ''}`}>
         {p.hot && <span class="tagline">Most visibility</span>}
         <h3>{p.name}</h3><p class="muted" style="margin:0;font-size:14px">{p.desc}</p>
         <div class="price">{p.price} <small>{p.per}</small></div>
         <ul>{p.items.map(i => <li><Icon name="check" />{i}</li>)}</ul>
-        <a class={`btn ${p.hot ? 'btn-primary' : ''}`} href={p.pay} rel="noopener">{p.cta}</a>
-        <div class="muted" style="text-align:center;font-size:13px;margin-top:10px"><a href="#contact" data-plan={p.name}>Questions first? Apply</a> · <a href="/submit/">Submit free</a></div>
+        <a class="btn btn-primary" href={p.pay} rel="noopener" style="height:48px;font-size:16px">Buy now · {p.price}{p.per === '/ month' ? '/mo' : ''} <Icon name="arrow" /></a>
       </div>)}
     </div>
-    <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Launch pricing. Secure checkout by Stripe. We review every tool before it goes live; questions? Use the form below.</p>
-    <section id="contact" style="max-width:760px;margin:64px auto 0;padding:32px;border:1px solid var(--line2);border-radius:20px;background:var(--panel)">
-      <h2 style="font-size:24px;font-weight:640">Apply to be featured</h2>
-      <p class="muted">Tell us about your tool. We only feature tools that fit at least one playbook.</p>
-      <form class="form js-api-form" data-endpoint="/api/sponsor" data-success="Thanks, your application is in. We'll reply by email." novalidate>
+    <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Secure checkout by Stripe. Checkout asks for your tool's URL, so there's nothing else to fill in.</p>
+
+    <section id="media-kit" style="max-width:960px;margin:72px auto 0">
+      <div style="text-align:center"><div class="eyebrow">Media kit</div><h2 style="font-size:28px;font-weight:640">Who you reach and where you appear</h2></div>
+      <h3 style="margin-top:28px">Audience</h3>
+      <p class="muted">Small-business owners, operators, and builders who come to Retested to finish a specific task (answering support email, writing listings, summarizing calls) and want a tool that has been tested for that job. They arrive from playbooks, tool pages, and the releases feed, already in the middle of deciding what to use.</p>
+      <h3 style="margin-top:28px">Placements</h3>
+      <div class="pricing">
+        <div class="plan"><h3>Directory listing · $99</h3><p class="muted" style="font-size:14px">A tool page in the directory, linked from matching playbooks.</p>
+          <div class="sp-preview"><strong>YourTool</strong><span class="muted">One-line summary of the job it does</span><span class="tag">Directory</span></div></div>
+        <div class="plan"><h3>Category featured spot · $199/mo</h3><p class="muted" style="font-size:14px">A labeled slot on /ai-for/ category hubs and playbook pages in one category.</p>
+          <div class="sp-preview"><span class="tag" style="color:var(--warn)">Sponsored</span><strong>YourTool</strong><span class="muted">Your blurb for people doing this job</span><span style="color:var(--accent);font-weight:600">Visit YourTool →</span></div></div>
+        <div class="plan"><h3>Release spotlight · $149</h3><p class="muted" style="font-size:14px">A labeled item in the releases feed and the weekly email.</p>
+          <div class="sp-preview"><span class="tag" style="color:var(--warn)">Sponsored</span><strong>YourTool 2.0 is out</strong><span class="muted">What changed, tagged to relevant playbooks</span></div></div>
+      </div>
+      <h3 style="margin-top:28px">How it works</h3>
+      <ol class="steps" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;padding:0;list-style:none">
+        <li class="plan"><strong>1. Pick a placement</strong><p class="muted" style="font-size:14px;margin:6px 0 0">Choose a listing, a category spot, or a release spotlight above.</p></li>
+        <li class="plan"><strong>2. Pay with Stripe</strong><p class="muted" style="font-size:14px;margin:6px 0 0">Click Buy now and enter your tool's URL at checkout.</p></li>
+        <li class="plan"><strong>3. Go live in 24 hours</strong><p class="muted" style="font-size:14px;margin:6px 0 0">Your placement goes live within 24 hours, labeled "Sponsored".</p></li>
+      </ol>
+    </section>
+
+    <section id="contact" style="max-width:640px;margin:56px auto 0;padding:20px 24px;border:1px solid var(--line2);border-radius:16px;background:var(--panel)">
+      <details><summary style="cursor:pointer;font-weight:600">Questions? Contact us</summary>
+      <form class="form js-api-form" data-endpoint="/api/sponsor" data-success="Thanks, we got your message and will reply by email." novalidate style="margin-top:16px">
         <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         <label class="field">Your name<input name="name" required autocomplete="name" /></label>
-        <label class="field">Work email<input type="email" name="email" required autocomplete="email" /></label>
-        <label class="field">Tool name<input name="tool" required /></label>
-        <label class="field">Website<input type="url" name="url" required placeholder="https://" /></label>
-        <label class="field full">Plan<select name="plan" id="plan">{plans.map(p => <option>{p.name}</option>)}</select></label>
-        <label class="field full">Which job does it do best?<textarea name="message" placeholder="e.g. answers support emails from help docs"></textarea></label>
-        <div class="full"><button class="btn btn-primary" type="submit" style="height:44px">Send application <Icon name="arrow" /></button><div class="note form-status" role="status" aria-live="polite" style="margin-top:10px"></div></div>
-      </form>
+        <label class="field">Email<input type="email" name="email" required autocomplete="email" /></label>
+        <input type="hidden" name="tool" value="(question)" /><input type="hidden" name="url" value="https://retested.vercel.app" /><input type="hidden" name="plan" value="Question" />
+        <label class="field full">Your question<textarea name="message" required></textarea></label>
+        <div class="full"><button class="btn" type="submit">Send question</button><div class="note form-status" role="status" aria-live="polite" style="margin-top:10px"></div></div>
+      </form></details>
     </section>
   </div>
-  <script is:inline>document.querySelectorAll('[data-plan]').forEach(a=>a.addEventListener('click',()=>{document.getElementById('plan').value=a.dataset.plan}))</script>
+  <style>.sp-preview{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding:14px;border:1px dashed var(--line2);border-radius:12px;background:var(--bg)}.sp-preview .tag{align-self:flex-start;font-size:11px;text-transform:uppercase}</style>
 </Base>

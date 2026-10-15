@@ -17,7 +17,7 @@ const gsc = import.meta.env.PUBLIC_GSC_VERIFICATION || SITE.googleSiteVerificati
 const org = { '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE.url + '/#org', name: SITE.name, url: SITE.url + '/', logo: SITE.url + '/favicon.svg', description: SITE.tagline };
 const crumbLd = crumbs.length ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [['Home', '/'], ...crumbs].map(([name, href], i) => ({ '@type': 'ListItem', position: i + 1, name, item: SITE.origin + href })) }] : [];
 const path = Astro.url.pathname;
-const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/releases/'], ['Prompt packs', '/prompt-packs/'], ['How we test', '/methodology/'], ['Submit a tool', '/submit/'], ['Get featured', '/get-featured/']];
+const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/releases/'], ['Prompt packs', '/prompt-packs/'], ['How we test', '/methodology/'], ['Submit a tool', '/submit/'], ['Sponsor', '/get-featured/']];
 ---
 <!doctype html>
 <html lang="en">
@@ -66,7 +66,7 @@ const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/
       </div>
       <div><h4>Library</h4><a href={BASE + '/use-cases/'}>Playbooks</a>{CATEGORIES.map(c => <a href={`${BASE}/ai-for/${catSlug(c)}/`}>AI for {c}</a>)}<a href={BASE + '/tools/'}>Tools</a><a href={BASE + '/releases/'}>Releases</a></div>
       <div><h4>Trust</h4><a href={BASE + '/methodology/'}>How we test</a><a href={BASE + '/disclosure/'}>Disclosure</a></div>
-      <div><h4>Makers</h4><a href={BASE + '/submit/'}>Submit a tool (free)</a><a href={BASE + '/get-featured/'}>Get featured</a><a href={BASE + '/prompt-packs/'}>Prompt packs</a><a href={BASE + '/newsletter/'}>Newsletter</a></div>
+      <div><h4>Makers</h4><a href={BASE + '/submit/'}>Submit a tool (free)</a><a href={BASE + '/get-featured/'}>Sponsor: buy a placement</a><a href={BASE + '/prompt-packs/'}>Prompt packs</a><a href={BASE + '/newsletter/'}>Newsletter</a></div>
     </div>
     <div class="wrap" style="margin-top:32px">© 2026 Retested. Paid placements are always labeled and never change test results.</div>
   </footer>
