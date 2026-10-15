@@ -1,0 +1,84 @@
+{
+  "slug": "keep-leading-zeros-on-imported-zip-codes",
+  "title": "Keep leading zeros on imported zip codes",
+  "category": "Coding & vibe coding",
+  "summary": "Keep leading zeros on zip codes that went short when a campaign address sheet was imported and stored as a number. You paste the walk-list rows, the zip and state headers, and a state rule you choose. The agent returns the same rows with a text zip, a row status, and an importer that stores the column as text so the next save does not strip the zero. Name, street, and city stay as written. A five-digit code is copied, not padded. A short numeric code is padded only for a state you named. Blanks, scientific notation, and any other state stay UNKNOWN. You compare each text zip with the source digits and approve the list and the importer before anyone uploads it, replaces the walk-list sheet, or deletes the source.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a campaign data clerk. Repair zip codes that lost a leading zero, and write an importer that stores them as text. Use only [ADDRESS SHEET], [STATE RULE], and [PLUS FOUR].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not change name, street, city, or state. Add zip_text, zip_status, and zip_note only.\n- Trim spaces. Drop a trailing .0 only if the rest is digits. Copy five digits, or five-hyphen-four, as ALREADY_TEXT. Do not pad a five-digit value.\n- Length 1 to 4, digits only: left-pad to five and mark PADDED only for CT, MA, ME, NH, NJ, RI, VT, PR, VI, or the full name of one of those, or a state [STATE RULE] allows, including whole-file. A city is not a state. Else UNKNOWN.\n- If [PLUS FOUR] is YES, pad length 6 to 8 to nine in an allowed state, hyphen after the fifth character, status ZIP_PLUS_4. Nine digits get the hyphen only. If NO, longer than five digits is UNKNOWN.\n- Blank, letters, or an E in the zip are UNKNOWN. Do not look up a street or city. Store text, not a display mask. Do not upload or delete.\n\nOutput format:\nREPAIRED ROWS: source columns, zip_text, zip_status (PADDED, ALREADY_TEXT, ZIP_PLUS_4, or UNKNOWN), zip_note under 12 words\nIMPORTER: under 120 words, then a formula or script. Sheets: convert-text-to-numbers off. Excel: From Text/CSV, zip type Text. Script: read text, write a new CSV.\nQUESTIONS: one line per UNKNOWN row with source zip, state, and the decision",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful fixer for a campaign volunteer. From [ADDRESS SHEET], [STATE RULE], and [PLUS FOUR] only, restore leading zeros and draft an importer that keeps each zip as text.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Leave name, street, city, and state untouched. Add zip_text, zip_status, and zip_note.\n- Trim spaces. Drop a trailing .0 only if the rest is digits. Copy five digits, or five-hyphen-four, as ALREADY_TEXT. Do not lengthen it.\n- Left-pad length 1 to 4 to five, status PADDED, only for CT, MA, ME, NH, NJ, RI, VT, PR, VI, or the full name of one of those, or a state [STATE RULE] names, including whole-file. Do not infer state from a city. Else UNKNOWN.\n- [PLUS FOUR] YES: length 6 to 8 in an allowed state becomes nine, hyphen after the fifth character, status ZIP_PLUS_4. Nine digits gain the hyphen and no zero. If NO, do not build a longer code.\n- Letters, blanks, and scientific notation are UNKNOWN. Do not recall a code from a street. Empty state is UNKNOWN unless the rule is whole-file. Do not upload or overwrite.\n\nOutput format:\nREPAIRED ROWS: source columns, zip_text, zip_status (PADDED, ALREADY_TEXT, ZIP_PLUS_4, or UNKNOWN), zip_note under 12 words\nIMPORTER: under 120 words, then the formula or script. Sheets: turn convert-text-to-numbers off. Excel: From Text/CSV, zip type Text. A script reads text and writes a new CSV.\nQUESTIONS: one line per UNKNOWN row with source zip, state, and the decision",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken clerk fixing a campaign walk list. From [ADDRESS SHEET], [STATE RULE], and [PLUS FOUR], put a lost leading zero back only where allowed, and write an importer that stores text.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not edit name, street, city, or state. Add zip_text, zip_status, and zip_note.\n- Trim spaces. Remove a trailing .0 only when the rest is digits. Five digits, or five-hyphen-four, stays ALREADY_TEXT. Do not pad it.\n- Digits shorter than five: pad left to five and mark PADDED for CT, MA, ME, NH, NJ, RI, VT, PR, VI, or the full name of one of those, or any state [STATE RULE] adds, including one state for the whole file. A city does not count. Else UNKNOWN.\n- [PLUS FOUR] YES: length 6, 7, or 8 in an allowed state pads to nine, hyphen after character five, status ZIP_PLUS_4. Nine digits only gain the hyphen. NO: longer than five digits is UNKNOWN.\n- An E, a letter, or a blank zip is UNKNOWN. Do not fill a code from the city. Store text, not a number mask. Do not upload, replace, or delete.\n\nOutput format:\nREPAIRED ROWS: original columns, zip_text, zip_status (PADDED, ALREADY_TEXT, ZIP_PLUS_4, or UNKNOWN), zip_note under 12 words\nIMPORTER: under 120 words, then one formula or a short script. Sheets: convert-text-to-numbers off. Excel: From Text/CSV, type Text before load. Code reads text and writes a new file.\nQUESTIONS: each UNKNOWN on its own line with source zip, state, and the decision",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a repair a campaign volunteer will check before upload. Read [ADDRESS SHEET], [STATE RULE], and [PLUS FOUR]. Restore leading zeros and draft an importer that stores the codes as text.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy name, street, city, and state exactly. Add zip_text, zip_status, and zip_note.\n- Trim spaces. Remove a final .0 only when the rest is digits. Copy five-digit and five-hyphen-four values as ALREADY_TEXT. Do not pad those.\n- Length 1 to 4: left-pad to five and set PADDED only for CT, MA, ME, NH, NJ, RI, VT, PR, VI, or the full name of one of those, or a state [STATE RULE] adds, including whole-file. Else UNKNOWN. A city is not a state.\n- [PLUS FOUR] YES: pad length 6 to 8 to nine in an allowed state, hyphen after the fifth character, status ZIP_PLUS_4. Nine digits get the hyphen only. NO: do not build a hyphenated code.\n- Blanks, letters, and scientific notation are UNKNOWN. Do not supply a code from memory. Hand back a draft only. Do not upload, overwrite, or delete.\n\nOutput format:\nREPAIRED ROWS: original columns, zip_text, zip_status (PADDED, ALREADY_TEXT, ZIP_PLUS_4, or UNKNOWN), zip_note under 12 words\nIMPORTER: under 120 words, then a formula or script to try on one row. Sheets: convert-text-to-numbers off. Excel: From Text/CSV, zip type Text. Script: read text, write a new CSV.\nQUESTIONS: one line per UNKNOWN row with source zip, state, and the choice still open",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional Google Sheets or Excel, plus Zapier, Make, or n8n, to stage a review tab only.",
+    "steps": [
+      "Save a copy of the walk-list spreadsheet and close the original so nothing later can replace it. On the copy, note the zip header, the state header, and whether the file is one state or a mix. Write the state rule you will allow padding for.",
+      "Open that copy's CSV in a plain text editor instead of double-clicking it into a sheet. Find a row that should begin with zero, such as a Boston or Newark line, and see whether the zero is still in the file or the digits are already short. Paste from this text.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace the address-sheet placeholder with the header and rows, the state-rule placeholder with the states you wrote down, and the plus-four placeholder with YES only if the source column had the extra four digits.",
+      "Check repaired rows against the text you pasted. A padded code is five characters, zeros added only on the left, with the old digits still at the end. Name, street, and city must match the source line. Leave every UNKNOWN row unresolved.",
+      "Read the importer. It must keep the zip column as plain text: Google Sheets with number conversion off, Excel From Text/CSV with the column type set to Text before load, or a script that never turns the field into a number. Reject a custom number format as the only fix.",
+      "On a blank tab, run that importer for one known short row and save the tab as CSV. Open the CSV in the text editor and confirm the zero is actually in the file. If the zero is missing, stop. Do not upload the list.",
+      "Optional agent mode: use Zapier, Make, or n8n to append repaired rows to a new Google Sheets tab named review, with the zip column as plain text and status set to needs review. Do not add a step that replaces the live walk list, uploads to the mail house, or deletes the source."
+    ],
+    "approvalStep": "You match each text zip to the digits in the source file, hold every UNKNOWN row, and approve the repaired list and the text importer before anyone uploads it, replaces the walk-list sheet, or deletes the source. A chat reply or a review tab is not approval.",
+    "failureModes": [
+      "Display copy: the grid shows five digits because of a number mask, but the file has the short value. Watch a paste taken from the sheet instead of from the CSV opened in a text editor.",
+      "Zero added to a full code: a value that was already five digits becomes six. Watch zip_text that is longer than a five-digit source.",
+      "Wrong state padded: a short code outside your state rule gets a zero. Watch status PADDED when the state cell is New York, California, or blank.",
+      "Mask instead of text: the sheet shows a leading zero while the cell is still a number. Save a CSV and watch whether the zero survives in a text editor.",
+      "Plus-four invented: a hyphen appears when you set plus-four to NO, or a five-digit code is split. Watch any hyphen you did not ask for.",
+      "Flow uploads itself: Zapier, Make, or n8n replaces the live walk list or sends the file to the mail house when the tab fills. Watch for a replace, upload, or delete action."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this repair?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Judge the reply on the rows. A padded zip_text is five characters, the old digits still sit at the end, name and street are unchanged, and a short code outside your state rule is UNKNOWN. The importer must store text, not a number mask. If a check fails, point at that row and run the same prompt again in the assistant you have."
+    },
+    {
+      "q": "Why does a zip number format not keep the zero?",
+      "a": "A number format only changes what the cell displays. The stored value is still a number, so the next CSV save or import drops the leading zero again. The repair has to write a text value, and the importer has to read and store that column as text. Check by saving a small CSV and opening it in a text editor, not by looking at the grid."
+    },
+    {
+      "q": "Should every short code on a national list get a zero?",
+      "a": "Pad only when the state is one you named. The usual set is Connecticut, Massachusetts, Maine, New Hampshire, New Jersey, Rhode Island, Vermont, Puerto Rico, and the US Virgin Islands, plus any extra code you write into the state rule, such as AE for military mail. A short code in another state stays UNKNOWN for you to decide. Do not let a city name pick the state."
+    },
+    {
+      "q": "Can the chat look up the right code from the street?",
+      "a": "Do not allow a lookup. The lost zero is a storage problem, and the safe repair is to pad a short numeric value in a state you named. A blank cell, a code with letters, or a row with no state stays UNKNOWN. If you want a directory lookup, do that yourself on those held rows after you approve the list."
+    },
+    {
+      "q": "Can automation upload the repaired list for me?",
+      "a": "It can copy rows onto a new review tab in Google Sheets and stop. You still compare each text zip with the source digits and approve before anyone uploads to the mail house, replaces the walk-list sheet, or deletes the original file. If the flow has a send, replace, or delete step, take that step out before you turn the flow on."
+    }
+  ],
+  "draft": true,
+  "persona": "Campaign volunteer",
+  "job": "A spreadsheet of addresses whose zip codes lost their first zero goes in. An importer that stores text zips and a repaired address list come out for approval before upload.",
+  "who": "Campaign volunteers cleaning a supporter or turf sheet before a mail drop. They can paste rows into a chat and follow a short import setup, and they need postal codes that begin with zero stored as text instead of numbers.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "Text editors"
+  ]
+}

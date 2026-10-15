@@ -1,0 +1,85 @@
+{
+  "slug": "rewrite-a-pushy-promo-so-it-sounds-like-help",
+  "title": "Rewrite a pushy promo so it sounds like help",
+  "category": "Marketing & SEO",
+  "summary": "You paste the unsent hard-sell promo (subject, preview text, and body), an offer card from the register note or campaign settings (item or collection, discount as it rings up, code, start, end, who qualifies, exclusions, shipping, and whether it stacks), the shopper problem you have heard, and a voice note with shop name, greeting, banned slogans, and sign-off. The assistant rewrites that pushy promo so it sounds like help: a subject of at most 8 words, a preview of at most 14 words, a two-sentence opening on the problem, a brief item note, and an offer block that keeps the same discount, plus a list of cut lines and gaps. You check the block against the card and approve a test to yourself before the list is mailed.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an email editor for a boutique shop owner. Rewrite the pushy promo in [PUSHY DRAFT] so it sounds like help. Draw only on that draft, [OFFER CARD], [SHOPPER PROBLEM], and [VOICE NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Lead with the shopper problem before any price talk. If [SHOPPER PROBLEM] is blank, set the opening to UNKNOWN and do not invent a fit, a gift, or an event.\n- Copy discount, code, start, end, who qualifies, exclusions, shipping, and the stack rule from [OFFER CARD]. Do not widen, shorten, or add a second deal.\n- Remove countdown lines, fake scarcity, and all-caps slogans from [PUSHY DRAFT]. List each removed line under REMOVED.\n- Use the shop name, greeting, and sign-off in [VOICE NOTE], and omit every slogan that note bans.\n- Keep a single next step. If neither paste names one, write NEXT STEP: UNKNOWN.\n- Do not add a review, a waitlist, or a low-stock claim unless the pastes already say so.\n\nOutput format:\nSUBJECT: 8 words or fewer\nPREVIEW: 14 words or fewer\nPROBLEM OPENING: 2 sentences, 45 words or fewer\nITEM NOTE: 50 words or fewer\nOFFER BLOCK: Discount, Code, Window, Who qualifies, Exclusions, Shipping, Stacks. Each copied or UNKNOWN\nNEXT STEP: one sentence\nSIGN-OFF: copied from [VOICE NOTE]\nREMOVED: one dropped line per row\nUNKNOWN: one gap per row\nMATCH: Same or Changed, naming any field that drifted",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a boutique shop owner. Turn the hard-sell in [PUSHY DRAFT] into a calmer note that sounds like help. Stay inside [OFFER CARD], [SHOPPER PROBLEM], and [VOICE NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Restate [SHOPPER PROBLEM] in the first sentences, in the shop greeting. If that field is empty, write UNKNOWN rather than a guessed story.\n- Trace every offer line to a field on [OFFER CARD]. If you cannot point to the field, mark that line UNKNOWN.\n- Keep the discount identical to the card: code, window, exclusions, shipping, and whether it stacks. Do not round it or pair it with another markdown.\n- Move urgency, scarcity, and shouted lines out of the subject, preview, and body, and list each one under REMOVED.\n- Honor banned words in [VOICE NOTE]. Do not bring a banned slogan back as a softer paraphrase.\n- One next step, copied from the draft or the voice note. No second ask, and no review or stock claim the pastes lack.\n\nOutput format:\nSUBJECT (8 words or fewer)\nPREVIEW (14 words or fewer, a different fact from the subject)\nPROBLEM OPENING (2 sentences, 45 words or fewer)\nITEM NOTE (50 words or fewer)\nOFFER BLOCK: Discount, Code, Window, Who qualifies, Exclusions, Shipping, Stacks, each with the card field it came from\nNEXT STEP: one sentence\nSIGN-OFF: from [VOICE NOTE]\nREMOVED: one line each\nUNKNOWN: one gap each\nMATCH: Same or Changed",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken editor for a boutique shop owner. Rewrite [PUSHY DRAFT] so the promo sounds like help, using only [OFFER CARD], [SHOPPER PROBLEM], and [VOICE NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Start with the problem a shopper actually has. If [SHOPPER PROBLEM] is missing, leave the opening UNKNOWN. Do not borrow a story from the hard-sell.\n- State the same discount the card already uses. Copy the code, dates, exclusions, shipping, and stack rule. Do not sweeten any of them.\n- Drop last-chance talk, fake sellouts, and all-caps lines from the subject, the preview, and the body. Show each drop under REMOVED.\n- Sound like [VOICE NOTE]: their greeting, their shop name, their sign-off, and none of their banned slogans.\n- Ask for one action only. If no action is written in the draft or the voice note, mark NEXT STEP UNKNOWN.\n- Skip praise, star talk, and lines about people waiting unless the paste already says that.\n\nOutput format:\nSUBJECT: 8 words or fewer\nPREVIEW: 14 words or fewer\nPROBLEM OPENING: 2 sentences, 45 words or fewer\nITEM NOTE: 50 words or fewer, tied to the problem you were given\nOFFER BLOCK: Discount, Code, Window, Who qualifies, Exclusions, Shipping, Stacks\nNEXT STEP: one sentence\nSIGN-OFF: copied from [VOICE NOTE]\nREMOVED: each cut line\nUNKNOWN: each gap\nMATCH: Same or Changed, with any drifted field named",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a newsletter helper for a boutique shop owner. Prepare a calmer rewrite of [PUSHY DRAFT] for the owner to review before anyone is mailed. Use [OFFER CARD], [SHOPPER PROBLEM], and [VOICE NOTE]. Do not send the note.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put the shopper problem in the opening, using the greeting from [VOICE NOTE]. A blank problem stays UNKNOWN. Do not fill it with a fitting-room tale or a holiday you were not given.\n- Treat [OFFER CARD] as closed. The discount, code, window, who qualifies, exclusions, shipping, and stacking are copied, not improved.\n- If [PUSHY DRAFT] and [OFFER CARD] disagree on the discount, the code, or the dates, keep the card and list both wordings under UNKNOWN.\n- Park countdown language and shouted lines in REMOVED. They do not belong in the subject or the preview.\n- One next step only. If the voice note names none, write UNKNOWN instead of a visit, a reply, or a code reminder you made up.\n- Do not rename the shop or the item. Spell both exactly as pasted.\n\nOutput format:\nSections in this order: SUBJECT (8 words or fewer), PREVIEW (14 words or fewer), PROBLEM OPENING (2 sentences, 45 words or fewer), ITEM NOTE (50 words or fewer), OFFER BLOCK (Discount, Code, Window, Who qualifies, Exclusions, Shipping, Stacks), NEXT STEP (one sentence), SIGN-OFF, REMOVED, UNKNOWN, MATCH (Same or Changed, naming any drifted field).",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode. Optional later: Google Sheets plus Zapier, Make, or n8n can open an unsent newsletter draft only.",
+    "steps": [
+      "Copy the unsent hard-sell out of your newsletter tool into a doc, keeping the subject, the preview text, and the full body. Leave that campaign unscheduled so the pushy version cannot mail while you rewrite it.",
+      "Build the offer card from the register note or the campaign settings: item or collection, discount exactly as it rings up, code, start, end, who qualifies, exclusions, shipping, and whether it stacks. Do not fill a blank from memory.",
+      "Write the shopper problem in one or two sentences from a counter comment or a reply, such as a fit, a gift date, or an item that was out. If you have not heard one, type UNKNOWN instead of guessing.",
+      "Add a voice note with the shop name, the greeting you use, slogans you refuse, and your sign-off. Paste one prompt into a chat and replace [PUSHY DRAFT], [OFFER CARD], [SHOPPER PROBLEM], and [VOICE NOTE].",
+      "Read the offer block beside the card. Discount, code, dates, exclusions, shipping, and stacking must match. If the match line says Changed, or a field is blank, correct it from the card before you continue.",
+      "Read the opening aloud in your greeting. It should name the problem you wrote, then the item. Cut any story, review, or low-stock line you did not paste, and keep a single next step.",
+      "Paste the kept subject, preview, and body into a new unsent draft in the newsletter tool, or into Gmail if that is how you mail the list. Send the test only to yourself and read it on your phone.",
+      "Optional agent mode: store the offer-card fields in Google Sheets. Use Zapier, Make, or n8n to create an unsent draft in your email tool from the wording you kept. Leave send and schedule off until you approve."
+    ],
+    "approvalStep": "You compare the offer block to the offer card, strike any problem or stock claim you did not paste, and approve the test to yourself before the newsletter is sent or scheduled.",
+    "failureModes": [
+      "Wider deal: the calmer note stretches the discount, drops an exclusion, or moves the end date. Put the card's wording back before the test goes out.",
+      "Invented problem: the opening describes a fit, a gift, or an event you never wrote. Replace it with the problem you heard, or leave that opening blank.",
+      "Slogan leftover: a countdown or an all-caps line from the hard-sell is still in the subject or the preview. Delete it and keep the calmer line.",
+      "Two asks: the note wants a reply, a shop visit, and a code reminder. Keep only the next step named in your voice note.",
+      "Old blast still live: the original campaign remains scheduled. Pause it, and mail only the test you have approved.",
+      "Stack clash: the card says the code does not combine, but the new note says it does. Copy the stack rule from the card."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste in before the rewrite?",
+      "a": "Paste four things: the unsent hard-sell with subject, preview, and body; the offer card from the register note or campaign settings; the shopper problem in the words you heard; and a voice note with shop name, greeting, banned slogans, and sign-off. The discount in the new note must stay identical to the card."
+    },
+    {
+      "q": "What if I do not have a shopper problem yet?",
+      "a": "Leave that part blank. The opening should come back as a gap instead of a made-up story about fit, gifts, or a deadline. Check a recent reply or ask at the counter, write the problem in the shopper's words, and run the same prompt again."
+    },
+    {
+      "q": "Which assistant should I use for this rewrite?",
+      "a": "Use the prompt written for the assistant you already have. Judge the result by three checks: the opening states the problem you pasted, the offer block matches the card field for field, and the note still sounds like your greeting. Keep the draft that needs the least fixing. Do not pick an assistant from a ranking."
+    },
+    {
+      "q": "What if the hard-sell and the card disagree on the date?",
+      "a": "Keep the card. The rewrite should show both wordings in the gap list and put the card's date in the offer block. You confirm which date is still true at the register before you approve the test. Do not mail a window you have not checked."
+    },
+    {
+      "q": "Will this change the discount at the register?",
+      "a": "No. The assistant only drafts the note. The register note and the campaign settings stay the source for the discount, the code, and the exclusions. If the email and the register disagree after your edit, fix the email so it matches the offer you intend to honor."
+    }
+  ],
+  "draft": true,
+  "persona": "Boutique shop owner",
+  "job": "Paste a hard-sell discount email and the real offer details and get a calmer version that leads with a shopper's problem and keeps the same discount.",
+  "who": "A boutique shop owner who writes the newsletter personally, has the discount already set at the register, and wants the promo to sound like help for a problem shoppers bring up in person.",
+  "toolCategories": [
+    "AI chat models",
+    "Email marketing",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

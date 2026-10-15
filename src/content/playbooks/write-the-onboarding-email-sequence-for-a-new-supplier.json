@@ -1,0 +1,85 @@
+{
+  "slug": "write-the-onboarding-email-sequence-for-a-new-supplier",
+  "title": "Write the onboarding email sequence for a new supplier",
+  "category": "Back office",
+  "summary": "Paste the new caterer's details and required documents for a new supplier. Details are legal name, contact, email, what they supply, and commissary city. Mark each document have or missing: W-9, insurance certificate naming your company, health permit or commissary letter, food-manager certificate, and allergen sheet. Add the ordering rules you use and the first delivery window you can accept. The agent writes three emails in one onboarding sequence: paperwork still owed, how guest counts and menu locks are sent, and the first arrival with address, date, window, greeter, and hot or cold handoff. You fix any fact absent from your note, then send each message yourself. The chat does not mail the supplier or clear them to deliver.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the purchasing lead at a catering company, drafting an onboarding sequence the owner will edit before anyone is emailed. From [CATERER RECORD], [DOCUMENT CHECKLIST], [ORDERING RULES], and [FIRST WINDOW], write three emails to this new supplier: paperwork still owed, how orders work, and the first delivery window.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Email 1 asks only for items marked missing on [DOCUMENT CHECKLIST]. Name the send-back method in [RETURN PATH]. Do not ask anyone to type a Social Security number or employer identification number in the reply.\n- Email 2 states how orders work using only [ORDERING RULES]: how the guest count and menu are sent, the lock cutoff, how dietary counts are confirmed, and which invoice fields you require.\n- Email 3 states the first delivery using only [FIRST WINDOW]: site address, date, arrive-between times, who meets them, and the hot or cold handoff. Do not offer a different slot or invent a holding temperature.\n- Keep each body under 150 words. Sign with [OWNER NAME]. Do not say the account is cleared to deliver, and do not add a price or a standing order.\n- If [CATERER RECORD] contains two company names, mark the greeting UNKNOWN and ask which supplier this sequence is for.\n\nOutput format:\nFor Email 1 Paperwork, Email 2 Ordering, and Email 3 First delivery, use headings Subject, Body, and Facts used. End with Unknowns listing every blank the owner must fill before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a catering company owner. You do not send mail and you do not approve a new supplier. Using [CATERER RECORD], [DOCUMENT CHECKLIST], [ORDERING RULES], [FIRST WINDOW], [RETURN PATH], and [OWNER NAME], write three emails: paperwork still owed, ordering rules, and the first delivery window.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the legal name, contact, and what they supply from [CATERER RECORD] only. If two caterers are pasted, do not choose. Mark the greeting UNKNOWN.\n- In the paperwork email, request only documents marked missing on [DOCUMENT CHECKLIST], in those words. Point returns only to [RETURN PATH]. Never ask for a tax number in the message.\n- In the ordering email, restate the guest-count path, menu-lock cutoff, dietary confirmation, and invoice fields exactly as written in [ORDERING RULES]. Do not add a minimum, a fee, or a portal.\n- In the delivery email, use only the address, date, arrive-between times, greeter, and handoff in [FIRST WINDOW]. If the date is blank, write UNKNOWN and do not propose a day.\n- Each body stays under 150 words, plain and polite. Do not treat missing insurance or a missing W-9 as optional, and do not clear them to deliver.\n\nOutput format:\nReturn three sections titled Email 1 Paperwork, Email 2 Ordering, and Email 3 First delivery. Inside each: Subject, Body, Facts used. After them, add Unknowns and a short list called Owner still decides.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-language aide for a catering company owner who needs an onboarding sequence, not a welcome speech. Turn [CATERER RECORD], [DOCUMENT CHECKLIST], [ORDERING RULES], and [FIRST WINDOW] into three emails to the new supplier: paperwork, ordering rules, and the first delivery window. Sign as [OWNER NAME]. Returns go to [RETURN PATH].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Email 1 is only the missing paperwork. Ask for what [DOCUMENT CHECKLIST] marks missing, and nothing else. Do not request a Social Security number or employer identification number by reply.\n- Email 2 is only how orders work: guest count, menu lock, dietary counts, and invoice fields from [ORDERING RULES]. If a cutoff was not written, write UNKNOWN. Do not guess a clock time.\n- Email 3 is only the first drop: address, date, arrive-between times, greeter, and hot or cold handoff from [FIRST WINDOW]. Do not invent a door, a dock, or a food temperature.\n- Keep each body under 140 words. No joke, no hype, and no line that says they are already cleared to deliver.\n- One supplier only. If the paste mixes two companies, stop and ask which record this sequence is for.\n\nOutput format:\nGive Email 1, Email 2, and Email 3. For each give Subject, Body, and Facts used. End with Unknowns the owner should fill before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing an onboarding sequence a catering company owner will approve before it is sent. Build three emails from [CATERER RECORD], [DOCUMENT CHECKLIST], [ORDERING RULES], [FIRST WINDOW], [RETURN PATH], and [OWNER NAME]. The emails cover paperwork still owed, ordering rules, and the first delivery window for this new supplier.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Write in the owner's voice, to one supplier. If [CATERER RECORD] mixes two legal names, mark the greeting UNKNOWN instead of picking one.\n- Paperwork email: list only missing items from [DOCUMENT CHECKLIST], say the legal name that must appear, and send them to [RETURN PATH]. Do not collect a tax number in the reply.\n- Ordering email: explain how you will send the guest count and menu, the lock cutoff, how dietary counts are confirmed, and what the invoice must cite, using only [ORDERING RULES].\n- Delivery email: give the site, date, arrive-between times, who meets them, and the handoff from [FIRST WINDOW]. If no date is set, say the window is UNKNOWN and do not offer one.\n- Stay under 150 words per body. Do not promise payment timing, a price, or clearance to deliver.\n\nOutput format:\nUse headings Email 1 Paperwork, Email 2 Ordering, and Email 3 First delivery. Under each: Subject, Body, Facts used. Close with Unknowns, then a line labeled Approve before sending that lists what the owner must check.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Gmail, Google Sheets, and Zapier, Make, or n8n may stage drafts later. You still send.",
+    "steps": [
+      "From the new caterer's intro email or quote, copy legal name, contact name, contact email, what they will supply, and commissary city into a note. Leave any blank empty instead of filling it from memory.",
+      "On that note, mark each required document have or missing: W-9, certificate of insurance naming your company, health permit or commissary letter, food-manager certificate, and the allergen sheet for items you will order.",
+      "Write the ordering rules you already use: how you send the guest count and menu, the lock cutoff, how dietary counts are confirmed, and which invoice fields you require. Add the return path for paperwork.",
+      "Add the first delivery window you can actually accept: site address, date, arrive-between times, who meets them, load-in door, and hot or cold handoff. If a line is unset, leave it blank.",
+      "Open a fresh chat, paste the prompt for the assistant you already use, and replace each bracketed field with your note. Where a date, cutoff, or document status is blank, type UNKNOWN.",
+      "Read the paperwork email against your have or missing marks, the ordering email against your rules, and the delivery email against the window. Strike any price, clock time, door, or temperature you did not write.",
+      "Decide whether the delivery email waits until the W-9 and insurance are filed. Copy one approved message at a time into your own mailbox and send it yourself. Do not clear the account from the chat.",
+      "Optional later: store the caterer note in Google Sheets and use Zapier, Make, or n8n with Gmail to turn a new row into drafts from your approved wording. Leave auto-send off so a person still releases each note."
+    ],
+    "approvalStep": "You compare all three drafts with the caterer note and approve the wording before anything is sent. You send each message from your own mailbox. The chat does not email the supplier, file insurance, or clear them to deliver.",
+    "failureModes": [
+      "The paperwork email asks for a form you already filed, or skips one you marked missing. Match every request to your have or missing marks before you send.",
+      "A cutoff, guest minimum, fee, or price appears that is not in your ordering rules. Delete it, and leave UNKNOWN where your note was blank.",
+      "The delivery email offers a door, dock, address, or clock time you did not write, or swaps in another event. Compare it to the window line by line.",
+      "The note asks the caterer to reply with a Social Security number or employer identification number. Cut that line and keep your usual secure return path.",
+      "The delivery email reads as if they may arrive while insurance or the W-9 is still missing. Hold it until you decide the account is allowed to deliver.",
+      "Two caterers get mixed because two intros were pasted together. Stop and rerun with one record so the greeting names a single company."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which documents should the paperwork email name?",
+      "a": "Only the ones you marked missing. A typical catering packet is a W-9 in the legal name you will pay, a certificate of insurance naming your company, a health permit or commissary letter, a food-manager certificate, and an allergen sheet for the items you will order. If you did not mark it missing, it should not be requested."
+    },
+    {
+      "q": "Can I send the delivery email before insurance is on file?",
+      "a": "You decide that. The draft should not treat a missing certificate or a missing W-9 as optional, and it should not say the account is cleared. Many owners send the paperwork and ordering notes first, and hold the arrival note until those two items are filed. Send the delivery email only when you are willing to receive them."
+    },
+    {
+      "q": "Which assistant should I use for this sequence?",
+      "a": "Use the prompt for the assistant you already have. Keep a draft when the missing documents match your checklist, the cutoff matches the ordering rules you typed, and the arrival window matches the time you can actually receive. If a form, price, or clock time shows up that you did not paste, take it out before you send."
+    },
+    {
+      "q": "What if the first delivery date is still open?",
+      "a": "Type UNKNOWN for the date and the arrive-between times. The third email should say the window is not set and should not propose a day, a door, or a temperature. You can send the paperwork and ordering emails now, and write the delivery email again after the event date and the receiver are real."
+    },
+    {
+      "q": "Should a price or a first order sit in these emails?",
+      "a": "Only if you paste that price or that order into the ordering rules. Otherwise the three emails stay on paperwork, how you will send guest counts and menu locks, and the first arrival. A purchase order can go out later, after you have accepted the account, from your normal ordering path."
+    }
+  ],
+  "draft": true,
+  "persona": "Catering company owner",
+  "job": "The new caterer's details and required documents go in, and three emails come out covering paperwork, ordering rules, and the first delivery window.",
+  "who": "Catering company owners who are adding a new supplier, often a specialty or subcontracted caterer, and need the paperwork request, the ordering rules, and the first delivery window written before that account arrives.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

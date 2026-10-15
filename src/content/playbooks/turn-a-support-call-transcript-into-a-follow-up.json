@@ -1,0 +1,83 @@
+{
+  "slug": "turn-a-support-call-transcript-into-a-follow-up",
+  "title": "Turn a support call transcript into a follow-up",
+  "category": "Support",
+  "summary": "Paste a support call transcript and get a ready-to-review follow-up email that lists what was decided, who owns each next step, and when the customer should expect it. You paste the raw transcript text or speaker-labelled notes, the assistant extracts only what was actually said, and returns a short email draft plus a separate checklist of missing details. You stay in control by checking names, dates, and commitments against the transcript before anything is sent — the assistant drafts, you approve and send from your own inbox.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up drafting assistant for a customer success manager. Turn the call transcript below into a follow-up email draft a manager can review.\n\nInputs:\n[PASTE CALL TRANSCRIPT HERE]\nCustomer name and company: [CUSTOMER NAME AND COMPANY]\nYour name and role: [YOUR NAME AND ROLE]\n\nRules:\n- Use only facts stated in the transcript. Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List every decision exactly as agreed, with no added commitments, dates, or product claims.\n- For each action item, name the owner (person or team as stated) and the due date or expected date as stated.\n- Keep the email under 250 words, in a warm, plain tone, with no hype or sales language.\n- Do not promise refunds, features, or timelines that were not explicitly agreed on the call.\n\nOutput format:\nSubject: one short line naming the topic\nBody: opening thank-you line, then Decisions confirmed as a bulleted list, then Next steps as Owner — Action — Expected by date, then a closing line. Name a next contact point only if the transcript states one; otherwise write UNKNOWN.\nAfter the email, add a Missing or unclear section listing anything marked UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant helping a customer success manager write a post-call follow-up. Work only from the transcript provided below and produce an email the manager can review and send.\n\nInputs:\n[PASTE CALL TRANSCRIPT HERE]\nCustomer contact and company: [CUSTOMER NAME AND COMPANY]\nSender details: [YOUR NAME, ROLE, AND TEAM]\nAgreed next meeting or check-in, if any: [NEXT CHECK-IN DATE OR UNKNOWN]\n\nRules:\n- Extract decisions and action items word-for-word from the transcript. Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Attach an owner and an expected date to every action; if the call did not name one, write Owner: UNKNOWN or Date: UNKNOWN.\n- Separate what was decided from what was merely discussed or suggested, and leave suggestions out of the Decisions list.\n- Write in plain, polite language under 250 words and do not add offers, discounts, or product claims.\n- Flag any conflicting statements in the transcript instead of picking one silently.\n\nOutput format:\nSubject line, greeting, short thank-you sentence, Decisions confirmed (bullets), Next steps (Owner — Action — Expected by), closing. Follow with a Review notes section listing UNKNOWN items and conflicts to check.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct, accurate assistant for a customer success manager. Convert the support call transcript below into a concise follow-up email that confirms decisions, owners, and expected dates.\n\nInputs:\n[PASTE CALL TRANSCRIPT HERE]\nWho the email is to: [CUSTOMER NAME AND COMPANY]\nWho it is from: [YOUR NAME AND ROLE]\n\nRules:\n- Stick strictly to the transcript. Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Every action must show an owner and a date exactly as spoken; missing values stay UNKNOWN, never guessed.\n- Include only decisions the customer actually agreed to, not ideas raised and dropped.\n- Keep the tone helpful and brief, under 250 words, with no marketing language or extra promises.\n- Quote or closely paraphrase the transcript wording for any commitment involving money, access, or deadlines.\n\nOutput format:\nSubject: Follow-up, then the topic named in the transcript\nThen: thanks line, Decisions confirmed (bulleted), Next steps in the form Owner — Action — Expected by date, and a closing line inviting correction. End with a separate Missing info list for all UNKNOWN items the manager must fill in before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are an organised drafting assistant for a customer success manager. From the call transcript below, build a follow-up email draft that records decisions, assigns each action to its stated owner, and gives the date the customer should expect it.\n\nInputs:\n[PASTE CALL TRANSCRIPT HERE]\nCustomer name and company: [CUSTOMER NAME AND COMPANY]\nYour name, role, and preferred sign-off: [YOUR NAME, ROLE, AND SIGN-OFF]\n\nRules:\n- Use nothing beyond the transcript. Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Give every next step an owner and an expected date in the exact words used on the call, or mark them UNKNOWN.\n- Keep decisions, open questions, and parked topics in separate places; only confirmed decisions go in the email body.\n- Write under 250 words in a calm, clear tone and add no new commitments, timelines, or feature promises.\n- Preserve customer names, product names, and dates exactly as spelled in the transcript.\n\nOutput format:\nSubject line, greeting and thank-you, Decisions confirmed (bullets), Next steps listed as Owner — Action — Expected by date, closing with how to reply with corrections. After the draft, add a Checklist for sender that lists each UNKNOWN, each parked topic, and anything to verify. Keep open questions and parked topics out of the email body.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse first. Optional later: Zapier, Make, or n8n pass the transcript through this prompt and save an unsent Gmail draft.",
+    "steps": [
+      "Get the transcript from your call tool (Zoom, Google Meet, Teams, or your recorder) and copy the full text with speaker names if available, not just the short auto-summary.",
+      "Open the assistant you already use, paste the matching prompt from this playbook, and replace every placeholder. Put in the transcript, the customer name and company, your name and role, and any team, sign-off, or next check-in that prompt asks for. Type UNKNOWN if no check-in was agreed.",
+      "Run the prompt and read the draft side by side with the transcript, checking that each decision, owner name, and expected date appears in the call wording and fixing every UNKNOWN.",
+      "Copy the corrected email into Gmail or your helpdesk such as Zendesk, Intercom, or HubSpot, add the right customer contacts, and set a subject line that names the topic and call date.",
+      "Send the email yourself, then save the final version and the transcript link in the customer record so the next person on the account can see what was promised and by when.",
+      "Optional automated mode: when your call tool can export a transcript, use Zapier, Make, or n8n to run this same prompt on that text and append each next step to a Google Sheet row as a draft task list.",
+      "In automated mode, have that workflow create a Gmail or helpdesk draft only. Open the draft, check every decision, owner, and date against the transcript, and send it by hand."
+    ],
+    "approvalStep": "You review the full email draft side by side with the transcript and approve every decision, owner, and date before copying it into Gmail or your helpdesk and pressing send yourself; nothing is sent automatically.",
+    "failureModes": [
+      "Invented dates or owners: the assistant fills a vague 'next week' with a specific date — check that every date and name appears in the transcript wording.",
+      "Discussed ideas listed as decisions: a suggestion raised and dropped on the call shows up as agreed — keep only items the customer clearly confirmed.",
+      "Wrong owner after a handover: the action is assigned to your team when the customer agreed to do it — re-check who said they would do each step.",
+      "Missing or garbled names: auto-transcription misspells people, products, or the company — correct spellings against the customer record before sending.",
+      "Over-promising tone: the draft adds refunds, features, or fixes never agreed on the call — delete any commitment you cannot point to in the transcript."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if my transcript is messy or has no speaker names?",
+      "a": "Paste it anyway and add a short note at the top with who attended and who the customer speaker is. Then read the draft extra carefully, because the assistant may attach an action to the wrong person. Correct the owner names against your own call notes before you send anything."
+    },
+    {
+      "q": "Which assistant should I use for this follow-up?",
+      "a": "Use the prompt written for the assistant you already have open; each version does the same job. Judge the result the same way every time: can you find each decision, owner, and date in the transcript, is nothing marked UNKNOWN left unresolved, and would you be comfortable if the customer forwarded the email internally?"
+    },
+    {
+      "q": "Can this send the follow-up automatically after each call?",
+      "a": "Keep the send manual. Automations with tools like Zapier, Make, or n8n can collect the transcript and create a draft for you, but a person should always read the draft against the transcript and press send, since the email commits you and your team to dates and work."
+    },
+    {
+      "q": "What do I do when no owner or date was agreed on the call?",
+      "a": "Leave it as UNKNOWN in your draft, decide it yourself or check with the owner, then write the agreed name and date into the email before sending. Do not let the assistant guess, and if you still cannot confirm it, say in the email that you will confirm the date in a short follow-up message."
+    },
+    {
+      "q": "How do I handle sensitive details mentioned on the call?",
+      "a": "Remove passwords, payment details, personal data, and internal comments from the transcript before pasting, and do not repeat them in the email. If the call covered something sensitive, summarise it in general terms, such as noting that access was reset, rather than quoting credentials or private information."
+    }
+  ],
+  "draft": true,
+  "persona": "Customer success manager",
+  "job": "Turn a call transcript into a follow-up email that confirms decisions, names the owner of each action, and gives the date the customer should expect each item.",
+  "who": "A customer success manager who runs onboarding, check-in, and troubleshooting calls and needs to send a clear follow-up the same day without re-listening to the whole call or rewriting notes from scratch.",
+  "toolCategories": [
+    "Call transcription",
+    "Email and helpdesk",
+    "Automation",
+    "Task tracking"
+  ]
+}
