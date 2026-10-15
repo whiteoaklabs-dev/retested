@@ -1,0 +1,5 @@
+---
+const { model, label = false } = Astro.props as { model: string; label?: boolean };
+const k = model.toLowerCase(); const ab: Record<string,string> = { chatgpt: 'GP', claude: 'CL', grok: 'GK', muse: 'MU' };
+---
+{label ? <span class="mb"><i class={`md m-${k}`}>{ab[k]}</i>{model}</span> : <i class={`md m-${k}`} title={model}>{ab[k]}</i>}

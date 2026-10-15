@@ -1,10 +1,12 @@
 ---
-import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
-import { useCases } from '../../data/useCases';
-const cats = [...new Set(useCases.map(u => u.category))];
+import Library from '../../components/Library.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 ---
-<Base title="AI agent use cases for small business" description="Tested prompts and agent setups for small-business back office, sales, support, and marketing.">
-  <h1>Use cases</h1>
-  {cats.map(c => <section><h2>{c}</h2><ul>{useCases.filter(u => u.category === c).map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul></section>)}
+<Base title="AI agent playbooks for small business" description="Browse tested AI playbooks for small-business back office, sales, support, finance, and marketing, with prompts for ChatGPT, Claude, Grok, and Muse.">
+  <div class="wrap">
+    <div class="page-head"><div class="eyebrow">Playbooks</div><h1>Every job, one tested playbook</h1><p>Filter by category or status. Ready playbooks include prompts for all four models, a setup guide, and tool picks.</p></div>
+    <Library />
+    <div style="margin-top:64px"><NewsletterSignup /></div>
+  </div>
 </Base>

@@ -1,19 +1,24 @@
 ---
-import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { tools, type Tool } from '../../data/tools';
 import { useCases } from '../../data/useCases';
+import { BASE } from '../../data/site';
 export function getStaticPaths() { return tools.map(t => ({ params: { slug: t.slug }, props: { t } })); }
 const { t } = Astro.props as { t: Tool };
 const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug));
 const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: t.name, applicationCategory: 'BusinessApplication', url: t.url }];
 ---
-<Base title={`${t.name}: best use cases, tested`} description={`What ${t.name} is best at for small businesses, based on our use-case testing.`} schema={schema}>
-  <h1>{t.name}</h1>
-  {t.featured && <p class="sponsored">Featured listing (paid). Paid placement never changes test results.</p>}
-  <p><strong>Category:</strong> {t.category}</p>
-  <h2>Best for</h2>
-  <ul>{wins.map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul>
-  <p>Pricing and test notes will be added after testing (with a date).</p>
-  <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank">Visit {t.name} →</a>
+<Base title={`${t.name}: what it's best at`} description={`Where ${t.name} fits in small-business AI workflows, based on Retested playbooks.`} schema={schema}>
+  <div class="wrap">
+    <div class="page-head">
+      <nav class="crumbs"><a href={BASE + '/tools/'}>Tools</a><span>/</span><span>{t.name}</span></nav>
+      <div style="display:flex;gap:16px;align-items:center"><span class="tlogo" data-h={t.name.length} style="width:56px;height:56px;font-size:22px;border-radius:15px">{t.name[0]}</span><div><h1 style="margin:0">{t.name}</h1><div class="muted">{t.category}</div></div></div>
+      {t.featured && <p class="disclose" style="margin-top:14px">Featured listing (paid). Payment never changes test results.</p>}
+    </div>
+    <h2 style="font-size:22px;margin-bottom:14px">Where it fits</h2>
+    <div class="cards">{wins.map(u => { const p = u.toolPicks.find(x => x.slug === t.slug)!; return <a class="uc" href={`${BASE}/use-cases/${u.slug}/`} style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={u.category} /></span><span class="cat">{u.category}</span></div><h3>{u.title}</h3><p>{p.why} Skip if: {p.whenNot}</p></a>; })}</div>
+    <p class="muted" style="margin-top:24px">Pricing and hands-on test notes will be added with a date after testing.</p>
+    <a class="btn btn-primary" href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'} target="_blank">Visit {t.name} <Icon name="external" size={14} /></a>
+  </div>
 </Base>

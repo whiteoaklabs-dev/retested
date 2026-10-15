@@ -1,15 +1,37 @@
 ---
-import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
 import { tools } from '../../data/tools';
 import { useCases } from '../../data/useCases';
-const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://whiteoaklabs-dev.github.io/retested/tools/${t.slug}/`, name: t.name })) }];
+import { SITE, BASE } from '../../data/site';
+const cats = [...new Set(tools.map(t => t.category))];
+const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.url}/tools/${t.slug}/`, name: t.name })) }];
 ---
-<Base title="AI tool directory ranked by use case" description="AI tools for small business, ranked by the job you need done rather than listed alphabetically." schema={schema}>
-  <h1>AI tools, ranked by use case</h1>
-  {useCases.map(u => (
-    <section><h2><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a></h2>
-      <ol>{u.toolPicks.map(p => { const t = tools.find(x => x.slug === p.slug)!; return <li><a href={BASE+`/tools/${t.slug}/`}>{t.name}</a> — {p.why} {t.featured && <span class="sponsored">Featured</span>}</li>; })}</ol>
-    </section>))}
-  <p><a href={BASE+"/get-featured/"}>Make an AI tool? Get featured →</a></p>
+<Base title="AI tool directory, ranked by use case" description="AI tools for small business, organized by the job they're best at, with honest notes on when to skip each one." schema={schema}>
+  <div class="wrap">
+    <div class="page-head"><div class="eyebrow">Tool directory</div><h1>Tools, picked for the job</h1><p>Every tool is linked to the playbooks where it fits, so you see why it's here, not just that it exists.</p></div>
+    <div class="toolbar" data-tools>
+      <div class="mini-search"><Icon name="search" /><input id="tq" type="search" placeholder="Search tools…" aria-label="Search tools" /></div>
+      <div class="chips" role="group" aria-label="Category">
+        <button class="chip" data-tc="all" aria-pressed="true">All</button>
+        {cats.map(c => <button class="chip" data-tc={c} aria-pressed="false">{c}</button>)}
+      </div>
+    </div>
+    <div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      {tools.map((t, i) => { const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug)); return (
+        <a class="tcard" href={`${BASE}/tools/${t.slug}/`} data-tool data-c={t.category} data-text={(t.name + ' ' + t.category + ' ' + wins.map(w => w.title).join(' ')).toLowerCase()} style={`animation-delay:${i * 30}ms`}>
+          <div style="display:flex;gap:12px;align-items:center"><span class="tlogo" data-h={t.name.length}>{t.name[0]}</span><div><h3 style="font-size:17px;font-weight:620">{t.name}</h3><div class="muted" style="font-size:13px">{t.category}</div></div>
+            {t.featured && <span class="status" style="color:var(--warn)">FEATURED</span>}</div>
+          <div><div class="eyebrow" style="margin-bottom:8px">Best for</div><div class="tags">{wins.map(w => <span class="tag">{w.title.replace(/ with an AI agent| automatically/g, '')}</span>)}</div></div>
+          <div class="muted" style="font-size:12.5px;margin-top:auto;display:flex;align-items:center;gap:6px">Pricing and test notes coming after testing <Icon name="arrow" size={13} /></div>
+        </a>); })}
+    </div>
+    <div class="cta" style="margin-top:56px">
+      <div><div class="eyebrow">For makers</div><h2 style="margin-top:8px">Built an AI tool?</h2><p>Get listed under the jobs it actually does well. Placement is always labeled and never changes test results.</p></div>
+      <div><a class="btn btn-primary" href={BASE + '/get-featured/'} style="height:44px">See featured plans <Icon name="arrow" /></a></div>
+    </div>
+  </div>
+  <script is:inline>
+    (()=>{let c='all';const q=document.getElementById('tq');const cards=[...document.querySelectorAll('[data-tool]')];const run=()=>{const t=q.value.trim().toLowerCase();cards.forEach(k=>k.classList.toggle('hidden',!((c==='all'||k.dataset.c===c)&&(!t||k.dataset.text.includes(t)))))};q.oninput=run;document.querySelectorAll('[data-tc]').forEach(b=>b.onclick=()=>{c=b.dataset.tc;document.querySelectorAll('[data-tc]').forEach(x=>x.setAttribute('aria-pressed',x===b));run()})})();
+  </script>
 </Base>

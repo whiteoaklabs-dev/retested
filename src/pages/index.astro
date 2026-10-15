@@ -1,15 +1,65 @@
 ---
-import { BASE } from "../data/site";
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ModelDot from '../components/ModelDot.astro';
+import Library from '../components/Library.astro';
+import PromptTabs from '../components/PromptTabs.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
-import { useCases } from '../data/useCases';
-import { SITE } from '../data/site';
-const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url }];
+import { useCases, planned } from '../data/useCases';
+import { SITE, BASE } from '../data/site';
+const total = useCases.length + planned.length;
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/use-cases/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }];
+const demo = useCases[0];
 ---
-<Base title="Retested" description={SITE.tagline + ' Prompts tested and dated on ChatGPT, Claude, Grok, and Muse, with agent setup guides and the best tools for each job.'} schema={schema}>
-  <h1>{SITE.tagline}</h1>
-  <p class="answer">Each use case comes with copy-ready prompts tested on ChatGPT, Claude, Grok, and Muse, a step-by-step agent setup, and the best tools for the job. We re-test whenever the models change. This library covers small-business back office, sales, support, and marketing.</p>
-  <h2>Use cases</h2>
-  <ul>{useCases.map(u => <li><a href={BASE+`/use-cases/${u.slug}/`}>{u.title}</a> <small>({u.category})</small></li>)}</ul>
-  <NewsletterSignup />
+<Base title="Retested" description="Stop guessing what to do with AI. Copy a tested playbook: prompts for ChatGPT, Claude, Grok, and Muse, agent setup steps, and the right tools for each job." schema={schema}>
+  <header class="hero">
+    <div class="grid-bg"></div>
+    <div class="wrap" style="position:relative">
+      <span class="pill"><span class="live"></span>{useCases.length} playbooks ready · {planned.length} in progress</span>
+      <h1>Stop guessing what to do with AI. <span class="grad">Copy a tested playbook.</span></h1>
+      <p class="lead">Pick a job you need done. Get the exact prompt for each model, a step-by-step agent setup with a human approval step, and the tools that fit. No hype and no endless "best AI tools" lists.</p>
+      <div class="search">
+        <Icon name="search" />
+        <input id="hero-q" type="search" placeholder="What do you need done? Try “invoices”, “leads”, “support”…" aria-label="Search playbooks" autocomplete="off" />
+        <span class="kbd">⌘K</span>
+      </div>
+      <div class="models" aria-label="Models we test on">
+        {['ChatGPT', 'Claude', 'Grok', 'Muse'].map(m => <ModelDot model={m} label />)}
+      </div>
+    </div>
+  </header>
+
+  <section class="block" style="border-top:0;padding-top:24px">
+    <div class="wrap value">
+      <div class="vcard"><div class="ic"><Icon name="flask" /></div><h3>One job, four models</h3><p>Each playbook has a prompt tuned for ChatGPT, Claude, Grok, and Muse. The results show the model version and test date. Until a prompt has been run, it says "Not yet tested".</p></div>
+      <div class="vcard"><div class="ic"><Icon name="route" /></div><h3>A setup guide you can follow</h3><p>Each guide lists the connectors, the order of steps, where a human approves, and the ways it usually breaks. It covers the how, not just a screenshot of what someone did.</p></div>
+      <div class="vcard"><div class="ic"><Icon name="refresh" /></div><h3>Re-tested when models change</h3><p>When a model updates, the affected prompts get re-run. The badges show what is fresh and what is stale.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="library">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">The library</div><h2>Small-business playbooks</h2><p>Back office, sales, support, finance, and marketing. Start where your week hurts most.</p></div>
+        <a class="btn" href={BASE + '/use-cases/'}>All playbooks <Icon name="arrow" /></a></div>
+      <Library searchId="hero-q" />
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1.25fr;gap:40px;align-items:center" id="demo">
+      <div>
+        <div class="eyebrow">Inside a playbook</div>
+        <h2 style="font-size:clamp(26px,3vw,36px);font-weight:650;margin:10px 0 14px">A copy-ready prompt for every model</h2>
+        <p class="muted">Switch between models and copy the prompt. Each one carries its own test badge, so you can see whether it was checked, and when.</p>
+        <ul class="fails" style="margin-top:18px">
+          <li style="color:var(--muted)">Prompt tuned per model</li><li style="color:var(--muted)">Setup steps with a human approval step</li><li style="color:var(--muted)">Known failure modes, stated plainly</li>
+        </ul>
+        <a class="btn btn-primary" style="margin-top:22px" href={`${BASE}/use-cases/${demo.slug}/`}>Open this playbook <Icon name="arrow" /></a>
+      </div>
+      <PromptTabs u={demo} idp="demo" />
+    </div>
+    <style>#demo .fails li:before{content:'✓';color:var(--ok)}@media(max-width:900px){#demo{grid-template-columns:1fr!important}}</style>
+  </section>
+
+  <section class="block"><div class="wrap"><NewsletterSignup /></div></section>
 </Base>

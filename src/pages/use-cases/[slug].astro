@@ -1,11 +1,12 @@
 ---
-import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
-import RetestBadge from '../../components/RetestBadge.astro';
+import Icon from '../../components/Icon.astro';
+import ModelDot from '../../components/ModelDot.astro';
+import PromptTabs from '../../components/PromptTabs.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
-import { useCases, type UseCase } from '../../data/useCases';
+import { useCases, planned, type UseCase } from '../../data/useCases';
 import { toolBySlug } from '../../data/tools';
-import { SITE } from '../../data/site';
+import { SITE, BASE } from '../../data/site';
 export function getStaticPaths() { return useCases.map(u => ({ params: { slug: u.slug }, props: { u } })); }
 const { u } = Astro.props as { u: UseCase };
 const url = `${SITE.url}/use-cases/${u.slug}/`;
@@ -14,44 +15,74 @@ const schema = [
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: u.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
   { '@context': 'https://schema.org', '@type': 'Article', headline: u.title, datePublished: u.published, dateModified: u.updated, url, publisher: { '@type': 'Organization', name: SITE.name } },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Use cases', item: `${SITE.url}/use-cases/` },
+    { '@type': 'ListItem', position: 1, name: 'Playbooks', item: `${SITE.url}/use-cases/` },
     { '@type': 'ListItem', position: 2, name: u.title, item: url } ] },
 ];
-const anyTested = u.tests.some(t => t.status !== 'not-yet-tested');
+const related = [...useCases.filter(x => x.slug !== u.slug).map(x => ({ t: x.title, h: `${BASE}/use-cases/${x.slug}/`, c: x.category })), ...planned.filter(p => p.category === u.category).slice(0, 2).map(p => ({ t: p.title, h: '', c: p.category }))].slice(0, 4);
+const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts', 'Prompts'], ['setup', 'Agent setup'], ['tools', 'Best tools'], ['faq', 'FAQ']];
 ---
 <Base title={u.title} description={u.summary.slice(0, 155)} schema={schema}>
-  <p><a href={BASE+"/use-cases/"}>Use cases</a> › {u.category}</p>
-  <h1>{u.title}</h1>
-  <p class="answer"><strong>Short answer:</strong> {u.summary}</p>
-  <p><strong>Best model for this:</strong> {anyTested ? 'see results below' : 'Not yet tested. Cross-model results will appear here with model version and test date.'} · Updated {u.updated}</p>
+  <div class="wrap">
+    <header class="uc-hero">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href={BASE + '/use-cases/'}>Playbooks</a><span>/</span><span>{u.category}</span></nav>
+      <h1>{u.title}</h1>
+      <div class="meta">
+        <span><span class="cat-ic"><Icon name={u.category} /></span>{u.category}</span>
+        <span><Icon name="calendar" />Updated {u.updated}</span>
+        <span class="dots">{u.tests.map(t => <ModelDot model={t.model} />)}</span>
+        <span class="badge">Not yet tested</span>
+      </div>
+    </header>
+    <div class="doc">
+      <article>
+        <div class="answer" id="answer"><div class="eyebrow">Short answer</div>{u.summary}</div>
 
-  <h2>Prompts by model</h2>
-  {u.tests.map(t => (
-    <div class="card">
-      <h3>{t.model} <RetestBadge test={t} /></h3>
-      <pre>{t.prompt}</pre>
-      <button type="button" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
-      {t.notes && <p>{t.notes}</p>}
+        <h2 id="results">Test results</h2>
+        <table class="matrix">
+          <thead><tr><th>Model</th><th>Version</th><th>Tested</th><th>Result</th></tr></thead>
+          <tbody>{u.tests.map(t => <tr><td><span style="display:inline-flex;gap:8px;align-items:center;font-weight:550"><ModelDot model={t.model} />{t.model}</span></td><td class="muted">{t.modelVersion ?? '—'}</td><td class="muted">{t.testedOn ?? '—'}</td><td>{t.status === 'not-yet-tested' ? <span class="badge">Not yet tested</span> : <span class="badge fresh">{t.status}</span>}</td></tr>)}</tbody>
+        </table>
+        <p class="disclose">We don't publish a "best model" until real runs are recorded. <a href={BASE + '/methodology/'} style="color:var(--accent)">How we test →</a></p>
+
+        <h2 id="prompts">Prompts by model</h2>
+        <PromptTabs u={u} idp="uc" />
+
+        <h2 id="setup">Agent setup</h2>
+        <p class="muted" style="margin-top:-6px">Works with: <strong style="color:var(--text)">{u.setup.agent}</strong></p>
+        <ol class="steps" style="margin-top:20px">{u.setup.steps.map(s => <li>{s}</li>)}</ol>
+        <div class="callout"><Icon name="shield" /><div><strong>Human approval step.</strong> {u.setup.approvalStep}</div></div>
+        <h3 style="font-size:16px;margin-top:28px">Where it usually breaks</h3>
+        <ul class="fails">{u.setup.failureModes.map(f => <li>{f}</li>)}</ul>
+
+        <h2 id="tools">Best tools for this job</h2>
+        <p class="disclose">Some links may become affiliate links. They never change our picks. <a href={BASE + '/disclosure/'} style="color:var(--accent)">Disclosure</a></p>
+        <div class="picks">
+          {u.toolPicks.map((p, i) => { const t = toolBySlug(p.slug)!; return (
+            <div class="pick">
+              <div style="display:flex;align-items:center;gap:10px"><span class="tlogo" data-h={t.name.length} style="width:32px;height:32px;font-size:13px;border-radius:9px">{t.name[0]}</span><div><div class="rank">PICK #{i + 1}</div><h3><a href={`${BASE}/tools/${t.slug}/`}>{t.name}</a></h3></div></div>
+              <p><strong style="color:var(--text)">Why:</strong> {p.why}</p>
+              <p><strong style="color:var(--text)">Skip if:</strong> {p.whenNot}</p>
+              <a class="btn" href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow noopener' : 'nofollow noopener'} target="_blank">Visit {t.name} <Icon name="external" size={14} /></a>
+            </div>); })}
+        </div>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="faq">{u.faq.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+
+        <h2>Related playbooks</h2>
+        <div class="cards">{related.map(r => r.h
+          ? <a class="uc" href={r.h} style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={r.c} /></span><span class="cat">{r.c}</span><span class="status ready">READY</span></div><h3>{r.t}</h3></a>
+          : <div class="uc wip" style="min-height:auto"><div class="top"><span class="cat-ic"><Icon name={r.c} /></span><span class="cat">{r.c}</span><span class="status wip">IN PROGRESS</span></div><h3>{r.t}</h3></div>)}</div>
+      </article>
+      <aside class="toc" aria-label="On this page">
+        <div class="eyebrow" style="margin-bottom:8px">On this page</div>
+        {toc.map(([id, l]) => <a href={`#${id}`} data-toc={id}>{l}</a>)}
+        <a class="btn btn-primary" style="margin-top:18px;justify-content:center" href="#prompts"><Icon name="copy" />Copy a prompt</a>
+      </aside>
     </div>
-  ))}
-
-  <h2>Agent setup guide</h2>
-  <p><strong>Works with:</strong> {u.setup.agent}</p>
-  <ol>{u.setup.steps.map(s => <li>{s}</li>)}</ol>
-  <p><strong>Human approval step:</strong> {u.setup.approvalStep}</p>
-  <h3>Known failure modes</h3>
-  <ul>{u.setup.failureModes.map(f => <li>{f}</li>)}</ul>
-
-  <h2>Best tools for this job</h2>
-  <p class="sponsored">Some links may be affiliate links. They never change our picks. <a href={BASE+"/disclosure/"}>Disclosure</a></p>
-  {u.toolPicks.map(p => { const t = toolBySlug(p.slug)!; return (
-    <div class="card">
-      <h3><a href={BASE+`/tools/${t.slug}/`}>{t.name}</a></h3>
-      <p><strong>Why:</strong> {p.why} <strong>Skip if:</strong> {p.whenNot}</p>
-      <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank" data-affiliate-placeholder={t.affiliateUrl ? undefined : 'true'}>Try {t.name} →</a>
-    </div>); })}
-
-  <h2>FAQ</h2>
-  {u.faq.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
-  <NewsletterSignup />
+    <NewsletterSignup />
+  </div>
+  <script is:inline>
+    const links=[...document.querySelectorAll('[data-toc]')];const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.dataset.toc===e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});links.forEach(l=>{const t=document.getElementById(l.dataset.toc);t&&io.observe(t)});
+  </script>
 </Base>

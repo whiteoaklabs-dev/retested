@@ -1,11 +1,19 @@
 ---
-import { BASE } from "../../data/site";
 import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { releases } from '../../data/releases';
+import { BASE } from '../../data/site';
 ---
-<Base title="New AI tool and model releases" description="New AI tools and model updates, tagged with the small-business use cases they change.">
-  <h1>Releases</h1>
-  <p>Each release is tagged with the use cases it affects. When a model changes, we queue a re-test.</p>
-  <link rel="alternate" type="application/rss+xml" href={BASE+"/releases/rss.xml"} />
-  {releases.map(r => <article class="card"><h2><a href={BASE+`/releases/${r.slug}/`}>{r.title}</a></h2><time datetime={r.date}>{r.date}</time>{r.sponsored && <span class="sponsored"> · Sponsored</span>}<p>{r.summary}</p></article>)}
+<Base title="AI releases, tagged by use case" description="New AI tools and model updates, tagged with the small-business jobs they change and whether a re-test was queued.">
+  <div class="wrap">
+    <div class="page-head"><div class="eyebrow">Releases</div><h1>What changed, and what it breaks</h1><p>New tools and model updates, each linked to the playbooks it affects. When a model changes, those prompts go back into testing.</p>
+      <a class="btn" style="margin-top:18px" href={BASE + '/releases/rss.xml'}><Icon name="bolt" />RSS feed</a></div>
+    <div class="timeline">
+      {releases.map(r => <div class="tl"><time datetime={r.date}>{r.date}</time><div class="box"><h3><a href={`${BASE}/releases/${r.slug}/`}>{r.title}</a></h3><p class="muted" style="margin:0">{r.summary}</p>
+        <div class="tags" style="margin-top:12px"><span class="tag">{r.retestQueued ? 'Re-test queued' : 'No re-test needed'}</span>{r.sponsored && <span class="tag" style="color:var(--warn)">Sponsored</span>}</div></div></div>)}
+      <div class="tl"><time>Next</time><div class="box" style="border-style:dashed;background:transparent"><h3>The daily feed starts at launch</h3><p class="muted" style="margin:0">Every item will be sourced and tagged to the playbooks it changes. We won't post padding.</p></div></div>
+    </div>
+    <div style="margin-top:48px"><NewsletterSignup /></div>
+  </div>
 </Base>

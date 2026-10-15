@@ -1,28 +1,41 @@
 ---
-import { BASE } from "../data/site";
 import Base from '../layouts/Base.astro';
-// Launch prices are set by us and still to be tested; edit here. Payment links are placeholders until Stripe/Lemon Squeezy is set up.
+import Icon from '../components/Icon.astro';
 const plans = [
-  { name: 'Directory listing', price: '$99 one-time', items: ['Tool page reviewed by an editor', 'Placed under the use cases it actually fits', 'Dofollow link after review'] },
-  { name: 'Featured in a use case', price: '$199 / month per use-case category', items: ['"Featured" slot on tool and use-case pages in one category', 'Clearly labeled as paid', 'Monthly click report'] },
-  { name: 'Release spotlight', price: '$149 per launch', items: ['Sponsored item in the releases feed', 'Tagged to relevant use cases', 'Included in the weekly newsletter release section'] },
+  { name: 'Directory listing', price: '$99', per: 'one-time', desc: 'Get your tool into the directory, reviewed by an editor.', items: ['Editor-reviewed tool page', 'Linked from the playbooks it genuinely fits', 'Dofollow link after review'], cta: 'Apply for listing' },
+  { name: 'Featured in a category', price: '$199', per: '/ month', hot: true, desc: 'Be seen by people actively trying to get a specific job done.', items: ['"Featured" slot on tool and playbook pages in one category', 'Always labeled as paid', 'Monthly click report', 'Cancel anytime'], cta: 'Apply for featured' },
+  { name: 'Release spotlight', price: '$149', per: 'per launch', desc: 'Put your launch in front of builders who follow what changed.', items: ['Sponsored item in the releases feed', 'Tagged to relevant playbooks', 'Included in the weekly email release section'], cta: 'Book a spotlight' },
 ];
-const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' } }];
+const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' }, offers: plans.map(p => ({ '@type': 'Offer', name: p.name, price: p.price.replace('$', ''), priceCurrency: 'USD' })) }];
 ---
-<Base title="Get featured" description="Get your AI tool in front of small businesses looking for it, by use case. Paid placement is always labeled and never changes test results." schema={schema}>
-  <h1>Get your AI tool featured</h1>
-  <p class="answer">Small-business buyers find tools on Retested by searching for the job they need done. Featured placement puts your tool next to that job. Paid placements are always labeled, and <strong>payment never changes test scores or rankings</strong>.</p>
-  {plans.map(p => <div class="card"><h2>{p.name}: {p.price}</h2><ul>{p.items.map(i => <li>{i}</li>)}</ul><a href={BASE+"/get-featured/#contact"}>Apply</a></div>)}
-  <section class="card" id="contact">
-    <h2>Contact us about featuring</h2>
-    <!-- PLACEHOLDER: not connected. Wire to a free form backend (e.g. Supabase table) before going live. -->
-    <form action="#" method="post" onsubmit="alert('Sponsor form not connected yet');return false;">
-      <p><input name="name" required placeholder="Your name" aria-label="Name" /></p>
-      <p><input type="email" name="email" required placeholder="you@company.com" aria-label="Email" /></p>
-      <p><input name="tool" required placeholder="Tool name and URL" aria-label="Tool" /></p>
-      <p><select name="plan" aria-label="Plan"><option>Directory listing</option><option>Featured in a use case</option><option>Release spotlight</option></select></p>
-      <p><textarea name="message" placeholder="Anything else?" aria-label="Message"></textarea></p>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+<Base title="Get featured" description="Put your AI tool in front of people looking for the exact job it does. Paid placement is always labeled and never changes test results." schema={schema}>
+  <div class="wrap">
+    <div class="page-head" style="text-align:center;margin:0 auto;max-width:760px"><div class="eyebrow">For AI tool makers</div><h1>Get found for the job your tool does best</h1><p style="margin-inline:auto">People come to Retested to finish a specific task, not to browse a list. Featured placement puts your tool right next to that task.</p></div>
+    <div class="callout" style="max-width:760px;margin:0 auto 36px;border-color:var(--line2);background:var(--panel)"><Icon name="shield" /><div><strong>Our rule:</strong> payment never changes test scores, rankings, or "Skip if" notes. Every paid slot is labeled, and we don't sell links.</div></div>
+    <div class="pricing">
+      {plans.map(p => <div class={`plan ${p.hot ? 'hot' : ''}`}>
+        {p.hot && <span class="tagline">Most visibility</span>}
+        <h3>{p.name}</h3><p class="muted" style="margin:0;font-size:14px">{p.desc}</p>
+        <div class="price">{p.price} <small>{p.per}</small></div>
+        <ul>{p.items.map(i => <li><Icon name="check" />{i}</li>)}</ul>
+        <a class={`btn ${p.hot ? 'btn-primary' : ''}`} href="#contact" data-plan={p.name}>{p.cta}</a>
+      </div>)}
+    </div>
+    <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Launch pricing. Checkout isn't live yet; apply below and we'll reply.</p>
+    <section id="contact" style="max-width:760px;margin:64px auto 0;padding:32px;border:1px solid var(--line2);border-radius:20px;background:var(--panel)">
+      <h2 style="font-size:24px;font-weight:640">Apply to be featured</h2>
+      <p class="muted">Tell us about your tool. We only feature tools that fit at least one playbook.</p>
+      <!-- PLACEHOLDER: not connected to any backend yet -->
+      <form class="form" onsubmit="event.preventDefault();this.querySelector('[type=submit]').textContent='Form not connected yet. Coming soon';">
+        <label class="field">Your name<input name="name" required autocomplete="name" /></label>
+        <label class="field">Work email<input type="email" name="email" required autocomplete="email" /></label>
+        <label class="field">Tool name<input name="tool" required /></label>
+        <label class="field">Website<input type="url" name="url" required placeholder="https://" /></label>
+        <label class="field full">Plan<select name="plan" id="plan">{plans.map(p => <option>{p.name}</option>)}</select></label>
+        <label class="field full">Which job does it do best?<textarea name="message" placeholder="e.g. answers support emails from help docs"></textarea></label>
+        <div class="full"><button class="btn btn-primary" type="submit" style="height:44px">Send application <Icon name="arrow" /></button></div>
+      </form>
+    </section>
+  </div>
+  <script is:inline>document.querySelectorAll('[data-plan]').forEach(a=>a.addEventListener('click',()=>{document.getElementById('plan').value=a.dataset.plan}))</script>
 </Base>

@@ -3,7 +3,9 @@ import Base from '../layouts/Base.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 ---
 <Base title="Newsletter: weekly re-test results" description="A weekly email on which AI prompts still work after model updates, new tools by use case, and one tested workflow.">
-  <h1>The Retested newsletter</h1>
+<div class="wrap prose">
+  <div class="page-head"><div class="eyebrow">Retested</div><h1>The Retested newsletter</h1></div>
   <p>Each week: which prompts broke or got better after model updates, new tools by use case, and one tested workflow. Sponsorship slots are clearly labeled.</p>
   <NewsletterSignup />
+</div>
 </Base>

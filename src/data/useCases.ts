@@ -119,3 +119,26 @@ export const useCases: UseCase[] = [
   },
 ];
 export const useCaseBySlug = (s: string) => useCases.find(u => u.slug === s);
+
+// Playbooks in progress: listed honestly as "In progress"; no prompts or tests shown until written.
+export type Planned = { slug: string; title: string; category: string; blurb: string };
+export const planned: Planned[] = [
+  { slug: 'draft-support-replies-brand-voice', title: 'Draft replies to customer support emails in your brand voice', category: 'Support', blurb: 'Teach the model your tone once, then get on-brand drafts for every ticket.' },
+  { slug: 'qualify-inbound-leads-crm', title: 'Qualify inbound leads and route them to your CRM', category: 'Sales', blurb: 'Score each lead against your criteria and send it to the right pipeline stage.' },
+  { slug: 'cold-outreach-not-ai-sounding', title: "Write personalized cold outreach that doesn't sound like AI", category: 'Sales', blurb: 'Specific first lines from real research, with no filler and no fake flattery.' },
+  { slug: 'call-notes-to-crm', title: 'Turn sales call notes into CRM updates and next steps', category: 'Sales', blurb: 'Paste messy notes and get clean fields, a summary, and a dated follow-up.' },
+  { slug: 'invoices-from-job-notes', title: 'Create and send invoices from emails or job notes', category: 'Finance & admin', blurb: 'Extract line items and amounts into a draft invoice you approve.' },
+  { slug: 'chase-overdue-invoices', title: 'Chase overdue invoices politely with an agent', category: 'Finance & admin', blurb: 'A three-step reminder sequence that stays friendly and stops when paid.' },
+  { slug: 'categorize-receipts', title: 'Categorize receipts and expenses for bookkeeping', category: 'Finance & admin', blurb: 'Sort receipts into your chart of accounts and flag anything unclear.' },
+  { slug: 'weekly-metrics-report', title: 'Summarize weekly business metrics into a one-page report', category: 'Back office', blurb: 'Turn exports from your tools into a short report you will actually read.' },
+  { slug: 'appointments-and-reschedules', title: 'Schedule appointments and handle reschedules with an agent', category: 'Back office', blurb: 'Let an agent negotiate times within the rules you set.' },
+  { slug: 'sops-from-notes', title: 'Write SOPs from a screen recording or rough notes', category: 'Back office', blurb: 'Turn what is in your head into a checklist someone else can follow.' },
+  { slug: 'refunds-with-approval-rules', title: 'Handle refund and return requests with approval rules', category: 'Support', blurb: 'The agent gathers details and applies policy; a human approves any money.' },
+  { slug: 'seo-briefs-ai-citations', title: 'Write SEO content briefs that get cited in AI answers', category: 'Marketing & SEO', blurb: 'Briefs built around answer-first structure, sources, and real questions.' },
+  { slug: 'optimize-for-ai-overviews', title: 'Optimize a page for AI Overviews and ChatGPT citations', category: 'Marketing & SEO', blurb: 'An audit prompt that checks structure, schema, and quotable answers.' },
+  { slug: 'blog-to-social-week', title: 'Turn one blog post into a week of social posts', category: 'Marketing & SEO', blurb: 'One source and seven native posts, each written for its platform.' },
+  { slug: 'google-business-profile', title: 'Write Google Business Profile posts and review replies', category: 'Marketing & SEO', blurb: 'Local posts and calm, specific replies to good and bad reviews.' },
+  { slug: 'competitor-research-30-min', title: 'Run competitor research for a small business in 30 minutes', category: 'Marketing & SEO', blurb: 'Compare pricing, positioning, and gaps with sources you can check.' },
+  { slug: 'newsletter-from-updates', title: 'Write email newsletter campaigns from your latest updates', category: 'Marketing & SEO', blurb: 'Turn a week of changes into one short email worth opening.' },
+];
+export const CATEGORIES = ['Back office', 'Sales', 'Support', 'Finance & admin', 'Marketing & SEO'] as const;

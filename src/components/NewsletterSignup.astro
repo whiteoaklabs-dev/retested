@@ -1,11 +1,19 @@
 ---
+import Icon from './Icon.astro';
 ---
-<section class="card" id="newsletter">
-  <h3>Get re-test alerts</h3>
-  <p>Get a weekly email with what changed when models updated and which prompts still work.</p>
-  <!-- PLACEHOLDER: replace action with beehiiv/Kit embed once the account exists -->
-  <form action="#" method="post" onsubmit="alert('Newsletter not connected yet');return false;">
-    <input type="email" name="email" required placeholder="you@business.com" aria-label="Email" />
-    <button type="submit">Subscribe</button>
-  </form>
-</section>
+<div class="cta" id="newsletter">
+  <div>
+    <div class="eyebrow">Weekly · free</div>
+    <h2 style="margin-top:8px">Know when your prompts break.</h2>
+    <p>One short email a week covering which prompts still work after model updates, new playbooks, and tools worth your time.</p>
+  </div>
+  <div>
+    <!-- PLACEHOLDER: not connected to an email provider yet -->
+    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Coming soon — thanks!';">
+      <label class="sr" for="nl-email" style="position:absolute;left:-9999px">Email</label>
+      <input id="nl-email" type="email" required placeholder="you@work.com" />
+      <button class="btn btn-primary" type="submit"><Icon name="mail" />Get re-test alerts</button>
+    </form>
+    <div class="note">Signup isn't connected yet. Nothing is stored.</div>
+  </div>
+</div>

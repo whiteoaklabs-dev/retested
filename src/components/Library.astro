@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+import ModelDot from './ModelDot.astro';
+import { useCases, planned, CATEGORIES } from '../data/useCases';
+import { BASE } from '../data/site';
+const items = [
+  ...useCases.map(u => ({ slug: u.slug, title: u.title, category: u.category, blurb: u.summary.split('. ')[0] + '.', ready: true })),
+  ...planned.map(p => ({ slug: p.slug, title: p.title, category: p.category, blurb: p.blurb, ready: false })),
+];
+const count = (c: string) => items.filter(i => i.category === c).length;
+const { searchId = 'lib-q' } = Astro.props;
+---
+<div class="lib" data-lib data-search={searchId}>
+  <aside class="side" aria-label="Categories">
+    <div class="eyebrow" style="padding:0 10px 8px">Categories</div>
+    <button data-cat="all" aria-pressed="true"><Icon name="all" />All playbooks<span class="count">{items.length}</span></button>
+    {CATEGORIES.map(c => <button data-cat={c} aria-pressed="false"><Icon name={c} />{c}<span class="count">{count(c)}</span></button>)}
+    <div class="sep"></div>
+    <div class="eyebrow" style="padding:0 10px 8px">Tested on</div>
+    <div style="display:flex;gap:6px;padding:0 10px" class="dots">{['ChatGPT','Claude','Grok','Muse'].map(m => <ModelDot model={m} />)}</div>
+  </aside>
+  <div>
+    <div class="toolbar">
+      <div class="mini-search"><Icon name="search" /><input id="lib-q" type="search" placeholder="Filter playbooks…" aria-label="Filter playbooks" /></div>
+      <div class="chips" role="group" aria-label="Status">
+        <button class="chip" data-status="all" aria-pressed="true">All</button>
+        <button class="chip" data-status="ready" aria-pressed="false">Ready</button>
+        <button class="chip" data-status="wip" aria-pressed="false">In progress</button>
+      </div>
+      <span class="result-count" data-count></span>
+    </div>
+    <div class="cards">
+      {items.map((it, i) => {
+        const inner = <>
+          <div class="top"><span class="cat-ic"><Icon name={it.category} /></span><span class="cat">{it.category}</span>
+            <span class={`status ${it.ready ? 'ready' : 'wip'}`}>{it.ready ? 'READY' : 'IN PROGRESS'}</span></div>
+          <h3>{it.title}</h3>
+          <p>{it.blurb}</p>
+          <div class="foot"><span class="dots">{['ChatGPT','Claude','Grok','Muse'].map(m => <ModelDot model={m} />)}</span>
+            <span class="lbl">{it.ready ? 'Not yet tested' : 'Being written'}</span></div>
+        </>;
+        const attrs = { 'data-card': '', 'data-cat': it.category, 'data-status': it.ready ? 'ready' : 'wip', 'data-text': (it.title + ' ' + it.blurb + ' ' + it.category).toLowerCase(), style: `animation-delay:${Math.min(i, 12) * 25}ms` };
+        return it.ready
+          ? <a class="uc" href={`${BASE}/use-cases/${it.slug}/`} {...attrs}>{inner}</a>
+          : <div class="uc wip" {...attrs}>{inner}</div>;
+      })}
+    </div>
+    <div class="empty" data-empty>No playbooks match yet. <a href="#newsletter" style="color:var(--accent)">Tell us what to test next →</a></div>
+  </div>
+</div>
+<script is:inline>
+document.querySelectorAll('[data-lib]').forEach(lib=>{
+  let cat='all',st='all';const q=lib.querySelector('#lib-q');const ext=document.getElementById(lib.dataset.search);
+  const cards=[...lib.querySelectorAll('[data-card]')];const cnt=lib.querySelector('[data-count]');const empty=lib.querySelector('[data-empty]');
+  const run=()=>{const t=(q.value||'').trim().toLowerCase();let n=0;cards.forEach(c=>{const ok=(cat==='all'||c.dataset.cat===cat)&&(st==='all'||c.dataset.status===st)&&(!t||t.split(/\s+/).every(w=>c.dataset.text.includes(w)));c.classList.toggle('hidden',!ok);if(ok)n++});cnt.textContent=n+' of '+cards.length;empty.style.display=n?'none':'block'};
+  lib.querySelectorAll('[data-cat]:not([data-card])').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;lib.querySelectorAll('.side [data-cat]').forEach(x=>x.setAttribute('aria-pressed',x===b));run()});
+  lib.querySelectorAll('[data-status]:not([data-card])').forEach(b=>b.onclick=()=>{st=b.dataset.status;lib.querySelectorAll('.chips [data-status]').forEach(x=>x.setAttribute('aria-pressed',x===b));run()});
+  q.addEventListener('input',run);
+  if(ext&&ext!==q){ext.addEventListener('input',()=>{q.value=ext.value;run()});ext.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();lib.scrollIntoView({behavior:'smooth'})}})}
+  const p=new URLSearchParams(location.search).get('q');if(p){q.value=p;if(ext)ext.value=p}
+  run();
+});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'||e.key==='/'&&!/input|textarea/i.test(document.activeElement.tagName)){const s=document.getElementById('hero-q')||document.getElementById('lib-q');if(s){e.preventDefault();s.focus()}}});
+</script>
