@@ -8,12 +8,12 @@ import Icon from './Icon.astro';
     <p>One short email a week covering which prompts still work after model updates, new playbooks, and tools worth your time.</p>
   </div>
   <div>
-    <!-- PLACEHOLDER: not connected to an email provider yet -->
-    <form onsubmit="event.preventDefault();this.querySelector('button').textContent='Coming soon — thanks!';">
+    <form class="js-api-form" data-endpoint="/api/subscribe" data-success="You're in. Watch your inbox for the next issue." novalidate>
+      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
       <label class="sr" for="nl-email" style="position:absolute;left:-9999px">Email</label>
-      <input id="nl-email" type="email" required placeholder="you@work.com" />
+      <input id="nl-email" name="email" type="email" required autocomplete="email" placeholder="you@work.com" />
       <button class="btn btn-primary" type="submit"><Icon name="mail" />Get re-test alerts</button>
     </form>
-    <div class="note">Signup isn't connected yet. Nothing is stored.</div>
+    <div class="note form-status" role="status" aria-live="polite">Free. Unsubscribe anytime.</div>
   </div>
 </div>

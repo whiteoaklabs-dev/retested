@@ -60,5 +60,24 @@ const nav = [['Playbooks', '/use-cases/'], ['Tools', '/tools/'], ['Releases', '/
     document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const el=document.getElementById(btn.dataset.copy);try{await navigator.clipboard.writeText(el.innerText)}catch(e){}const o=btn.innerHTML;btn.classList.add('done');btn.textContent='Copied';setTimeout(()=>{btn.classList.remove('done');btn.innerHTML=o},1600)}));
     document.querySelectorAll('[role=tablist]').forEach(tl=>{const tabs=[...tl.querySelectorAll('[role=tab]')];tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>{x.setAttribute('aria-selected',x===t);document.getElementById(x.getAttribute('aria-controls')).hidden=x!==t})}))});
   </script>
+<script is:inline>
+document.querySelectorAll('form.js-api-form').forEach(f=>{
+  const st=f.querySelector('.form-status')||f.parentElement.querySelector('.form-status');
+  const btn=f.querySelector('[type=submit]');
+  f.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(!f.checkValidity()){f.reportValidity();return;}
+    const label=btn.innerHTML;btn.disabled=true;btn.textContent='Sending…';
+    st.classList.remove('is-error','is-ok');
+    try{
+      const r=await fetch(f.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});
+      const d=await r.json().catch(()=>({}));
+      if(r.ok&&d.ok){f.reset();st.textContent=f.dataset.success;st.classList.add('is-ok');}
+      else{st.textContent=d.error||'Something went wrong. Please try again.';st.classList.add('is-error');}
+    }catch{st.textContent='Network error. Please try again.';st.classList.add('is-error');}
+    btn.disabled=false;btn.innerHTML=label;
+  });
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+{
+  "slug": "follow-up-new-leads-in-5-minutes",
+  "title": "Follow up on new leads within 5 minutes automatically",
+  "category": "Sales",
+  "summary": "When a form or inbound email arrives, an agent drafts a short, specific follow-up email, an SMS version, and a day-3 nudge, using the lead's own words. Then it logs the lead in your CRM. Start with approval on, and switch on auto-send only once the drafts are reliably good.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "A new lead just came in. Write a follow-up email I can send within 5 minutes.\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [BOOKING LINK].\nRequirements:\n- Under 120 words, plain text, no buzzwords.\n- First line references exactly what they asked for.\n- One clear question that helps me qualify them (budget, timeline, or size — pick the most relevant).\n- End with the booking link as the single call to action.\nThen give me a 1-line SMS version and a day-3 follow-up if they don't reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "A new lead just came in. Write a follow-up email I can send within 5 minutes.\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [BOOKING LINK].\nRequirements:\n- Under 120 words, plain text, no buzzwords.\n- First line references exactly what they asked for.\n- One clear question that helps me qualify them (budget, timeline, or size — pick the most relevant).\n- End with the booking link as the single call to action.\nThen give me a 1-line SMS version and a day-3 follow-up if they don't reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "A new lead just came in. Write a follow-up email I can send within 5 minutes.\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [BOOKING LINK].\nRequirements:\n- Under 120 words, plain text, no buzzwords.\n- First line references exactly what they asked for.\n- One clear question that helps me qualify them (budget, timeline, or size — pick the most relevant).\n- End with the booking link as the single call to action.\nThen give me a 1-line SMS version and a day-3 follow-up if they don't reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "A new lead just came in. Write a follow-up email I can send within 5 minutes.\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [BOOKING LINK].\nRequirements:\n- Under 120 words, plain text, no buzzwords.\n- First line references exactly what they asked for.\n- One clear question that helps me qualify them (budget, timeline, or size — pick the most relevant).\n- End with the booking link as the single call to action.\nThen give me a 1-line SMS version and a day-3 follow-up if they don't reply.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "n8n, Make, or Zapier plus your CRM (e.g. HubSpot)",
+    "steps": [
+      "Trigger: new form submission (website, Typeform, HubSpot form) or a new email with a specific label.",
+      "Pass the lead fields and your business description into the prompt.",
+      "Create the contact in the CRM and attach the draft as a task or email draft.",
+      "Notify yourself (Slack or SMS) with a one-click approve link.",
+      "Schedule the day-3 follow-up and cancel it if the lead replies."
+    ],
+    "approvalStep": "Every first email waits for your one-click approval until you choose to remove that step.",
+    "failureModes": [
+      "Generic openers when form data is thin",
+      "Asking more than one question",
+      "Sending to test or spam submissions"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "hubspot",
+      "why": "Free CRM tier plus forms and sequences.",
+      "whenNot": "You already have a CRM you like."
+    },
+    {
+      "slug": "zapier",
+      "why": "Fastest to connect forms to a CRM.",
+      "whenNot": "High volume, where per-task pricing adds up."
+    },
+    {
+      "slug": "make",
+      "why": "Cheaper multi-step flows.",
+      "whenNot": "You need one-click templates."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should the agent send automatically?",
+      "a": "Not at first. Review drafts for a week, then auto-send only the lead types that are always approved."
+    },
+    {
+      "q": "Does speed really matter?",
+      "a": "We will publish evidence here once we have a sourced figure. Until then, treat speed as a sensible default rather than a proven number."
+    }
+  ],
+  "draft": false
+}

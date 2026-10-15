@@ -1,0 +1,74 @@
+{
+  "slug": "ai-support-agent-from-help-docs",
+  "title": "Build an AI support agent that answers FAQs from your help docs",
+  "category": "Support",
+  "summary": "Give the agent your FAQ and policies, and it answers customer questions only from that content. It hands off to a human when it is unsure, when a customer is angry, or when money is involved. Test it on your real past tickets before letting it reply live.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the customer support agent for [BUSINESS NAME]. Answer only using the help content below.\nRules:\n- If the answer is not in the help content, say \"I'm not sure — I'll get a teammate to confirm\" and output HANDOFF: [one-line summary].\n- Never promise refunds, discounts, or delivery dates unless the help content states them.\n- Keep answers under 80 words, friendly, and end with a question if a next step is needed.\n- If the customer is angry or mentions legal action, output HANDOFF immediately.\nHelp content:\n[PASTE FAQ / POLICIES]\nCustomer message:\n[PASTE MESSAGE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are the customer support agent for [BUSINESS NAME]. Answer only using the help content below.\nRules:\n- If the answer is not in the help content, say \"I'm not sure — I'll get a teammate to confirm\" and output HANDOFF: [one-line summary].\n- Never promise refunds, discounts, or delivery dates unless the help content states them.\n- Keep answers under 80 words, friendly, and end with a question if a next step is needed.\n- If the customer is angry or mentions legal action, output HANDOFF immediately.\nHelp content:\n[PASTE FAQ / POLICIES]\nCustomer message:\n[PASTE MESSAGE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are the customer support agent for [BUSINESS NAME]. Answer only using the help content below.\nRules:\n- If the answer is not in the help content, say \"I'm not sure — I'll get a teammate to confirm\" and output HANDOFF: [one-line summary].\n- Never promise refunds, discounts, or delivery dates unless the help content states them.\n- Keep answers under 80 words, friendly, and end with a question if a next step is needed.\n- If the customer is angry or mentions legal action, output HANDOFF immediately.\nHelp content:\n[PASTE FAQ / POLICIES]\nCustomer message:\n[PASTE MESSAGE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are the customer support agent for [BUSINESS NAME]. Answer only using the help content below.\nRules:\n- If the answer is not in the help content, say \"I'm not sure — I'll get a teammate to confirm\" and output HANDOFF: [one-line summary].\n- Never promise refunds, discounts, or delivery dates unless the help content states them.\n- Keep answers under 80 words, friendly, and end with a question if a next step is needed.\n- If the customer is angry or mentions legal action, output HANDOFF immediately.\nHelp content:\n[PASTE FAQ / POLICIES]\nCustomer message:\n[PASTE MESSAGE]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Claude Projects / ChatGPT custom GPT (internal) or Intercom Fin / n8n (customer-facing)",
+    "steps": [
+      "Collect your FAQ, refund, shipping, and pricing policies into one document.",
+      "Pull 20 real past customer questions with the answers you gave.",
+      "Run each through the prompt and compare it with your real answer.",
+      "Fix gaps in the help content, not the prompt, and re-run.",
+      "Go live in \"suggest reply\" mode first, then auto-reply for categories that score well."
+    ],
+    "approvalStep": "Anything tagged HANDOFF goes to a human queue, and refunds always require a human.",
+    "failureModes": [
+      "Making up policies when docs are silent",
+      "Missing the emotional tone of complaints",
+      "Outdated docs causing wrong answers"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "intercom",
+      "why": "Native AI agent on top of your help center.",
+      "whenNot": "You are cost-sensitive at low volume."
+    },
+    {
+      "slug": "n8n",
+      "why": "DIY agent across email/chat with your choice of model.",
+      "whenNot": "No technical help available."
+    },
+    {
+      "slug": "lindy",
+      "why": "No-code support assistant.",
+      "whenNot": "You need deep help-desk integration."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I stop it from making things up?",
+      "a": "Restrict it to the pasted content, require a HANDOFF when unsure, and test it on past tickets before launch."
+    },
+    {
+      "q": "Which model handles support best?",
+      "a": "Not yet tested. The cross-model results will be posted with dates."
+    }
+  ],
+  "draft": false
+}

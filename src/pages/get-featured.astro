@@ -25,15 +25,15 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'R
     <section id="contact" style="max-width:760px;margin:64px auto 0;padding:32px;border:1px solid var(--line2);border-radius:20px;background:var(--panel)">
       <h2 style="font-size:24px;font-weight:640">Apply to be featured</h2>
       <p class="muted">Tell us about your tool. We only feature tools that fit at least one playbook.</p>
-      <!-- PLACEHOLDER: not connected to any backend yet -->
-      <form class="form" onsubmit="event.preventDefault();this.querySelector('[type=submit]').textContent='Form not connected yet. Coming soon';">
+      <form class="form js-api-form" data-endpoint="/api/sponsor" data-success="Thanks, your application is in. We'll reply by email." novalidate>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         <label class="field">Your name<input name="name" required autocomplete="name" /></label>
         <label class="field">Work email<input type="email" name="email" required autocomplete="email" /></label>
         <label class="field">Tool name<input name="tool" required /></label>
         <label class="field">Website<input type="url" name="url" required placeholder="https://" /></label>
         <label class="field full">Plan<select name="plan" id="plan">{plans.map(p => <option>{p.name}</option>)}</select></label>
         <label class="field full">Which job does it do best?<textarea name="message" placeholder="e.g. answers support emails from help docs"></textarea></label>
-        <div class="full"><button class="btn btn-primary" type="submit" style="height:44px">Send application <Icon name="arrow" /></button></div>
+        <div class="full"><button class="btn btn-primary" type="submit" style="height:44px">Send application <Icon name="arrow" /></button><div class="note form-status" role="status" aria-live="polite" style="margin-top:10px"></div></div>
       </form>
     </section>
   </div>

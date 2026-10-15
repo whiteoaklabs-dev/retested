@@ -235,3 +235,6 @@ footer.site a{display:block;padding:3px 0}footer.site a:hover{color:var(--text)}
 .tlogo[data-h="4"]{background:linear-gradient(135deg,#6d5efc,#b05cff)}.tlogo[data-h="3"]{background:linear-gradient(135deg,#ff6a3d,#ff9f43)}
 .tlogo[data-h="7"]{background:linear-gradient(135deg,#ff7a59,#ff4f6d)}.tlogo[data-h="6"]{background:linear-gradient(135deg,#ff8a00,#ffb547)}
 .tlogo[data-h="5"]{background:linear-gradient(135deg,#1fbf8f,#3dd6c6)}.tlogo[data-h="14"]{background:linear-gradient(135deg,#2a6df4,#5fa0ff)}
+
+.form-status.is-ok{color:var(--green,#3fb950)}
+.form-status.is-error{color:var(--red,#f85149)}

@@ -1,0 +1,74 @@
+{
+  "slug": "triage-small-business-inbox",
+  "title": "Triage a small-business inbox with an AI agent",
+  "category": "Back office",
+  "summary": "Paste or connect your inbox, and the agent sorts each email into categories, flags what needs a reply today, and drafts short replies for the top three. You approve every send. It works with chat assistants (paste mode) or with an automation tool that reads new mail.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are my inbox triage assistant for a small business.\nFor each email below, return a table with: Sender | Subject | Category (Customer request, Sales lead, Invoice/billing, Vendor, Newsletter/promo, Personal, Spam) | Urgency (Today, This week, No action) | Suggested next step (one line).\nRules:\n- Treat anything mentioning a payment problem, cancellation, or a deadline within 48 hours as \"Today\".\n- Never invent details not in the email.\n- After the table, list the 3 emails I should answer first and draft a 2-sentence reply to each in a friendly, direct tone.\nEmails:\n[PASTE EMAILS HERE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are my inbox triage assistant for a small business.\nFor each email below, return a table with: Sender | Subject | Category (Customer request, Sales lead, Invoice/billing, Vendor, Newsletter/promo, Personal, Spam) | Urgency (Today, This week, No action) | Suggested next step (one line).\nRules:\n- Treat anything mentioning a payment problem, cancellation, or a deadline within 48 hours as \"Today\".\n- Never invent details not in the email.\n- After the table, list the 3 emails I should answer first and draft a 2-sentence reply to each in a friendly, direct tone.\nEmails:\n[PASTE EMAILS HERE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are my inbox triage assistant for a small business.\nFor each email below, return a table with: Sender | Subject | Category (Customer request, Sales lead, Invoice/billing, Vendor, Newsletter/promo, Personal, Spam) | Urgency (Today, This week, No action) | Suggested next step (one line).\nRules:\n- Treat anything mentioning a payment problem, cancellation, or a deadline within 48 hours as \"Today\".\n- Never invent details not in the email.\n- After the table, list the 3 emails I should answer first and draft a 2-sentence reply to each in a friendly, direct tone.\nEmails:\n[PASTE EMAILS HERE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are my inbox triage assistant for a small business.\nFor each email below, return a table with: Sender | Subject | Category (Customer request, Sales lead, Invoice/billing, Vendor, Newsletter/promo, Personal, Spam) | Urgency (Today, This week, No action) | Suggested next step (one line).\nRules:\n- Treat anything mentioning a payment problem, cancellation, or a deadline within 48 hours as \"Today\".\n- Never invent details not in the email.\n- After the table, list the 3 emails I should answer first and draft a 2-sentence reply to each in a friendly, direct tone.\nEmails:\n[PASTE EMAILS HERE]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant (paste mode) or n8n / Make / Zapier (connected mode)",
+    "steps": [
+      "Paste mode: copy 10–30 recent emails (sender, subject, body) into the prompt and run it.",
+      "Connected mode: create a workflow triggered by \"new email\" in Gmail or Outlook.",
+      "Send the email to your chosen model with the prompt above (one email per run).",
+      "Write the category and urgency back as a label or folder.",
+      "Save drafted replies as email drafts. Do not auto-send."
+    ],
+    "approvalStep": "Replies stay as drafts until you review and send them yourself.",
+    "failureModes": [
+      "Misreading newsletters as customer requests",
+      "Over-flagging \"urgent\" marketing emails",
+      "Drafts that promise things you did not offer"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "n8n",
+      "why": "Flexible email + LLM workflows, self-host option.",
+      "whenNot": "You want zero setup."
+    },
+    {
+      "slug": "make",
+      "why": "Visual builder with Gmail/Outlook modules.",
+      "whenNot": "You need code-level control."
+    },
+    {
+      "slug": "lindy",
+      "why": "Prebuilt inbox assistant.",
+      "whenNot": "You want to own the workflow logic."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is it safe to let an AI read my inbox?",
+      "a": "Use paste mode or a workflow with read-only scopes plus draft creation, and keep auto-send off."
+    },
+    {
+      "q": "Which model is best for inbox triage?",
+      "a": "Not yet tested. Results for ChatGPT, Claude, Grok, and Muse will appear here with the date and model version."
+    }
+  ],
+  "draft": false
+}
