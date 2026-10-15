@@ -1,0 +1,85 @@
+{
+  "slug": "pull-incoterms-minimums-and-lead-time-out-of-quote-emails",
+  "title": "Pull Incoterms, minimums, and lead time out of quote emails",
+  "category": "Back office",
+  "summary": "A seafood wholesaler pastes exporter quote emails, oldest message first, with each From line, date, and any proforma lines read off an attachment. The agent pulls one grid row per offer: exporter, message date, species and form, the Incoterm code as written, the named place, minimum order with its unit, lead time with its anchor, port of loading, and port of discharge, plus a source line of at most 25 words and an UNKNOWN list. The buyer matches every cell to that sentence, decides which offer fits the reefer and the customer date they already hold, and writes any reply or purchase order only after that check. Other species stay on the grid, marked other species. The grid never sends mail, places an order, or pays a deposit.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the buying clerk for a seafood wholesaler. From exporter quote emails, build a term grid of Incoterm, minimum order, lead time, and port.\n\nInputs:\nThread, oldest first: [QUOTE THREAD]\nSpecies and form, or blank: [SPECIES AND FORM]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One row per offer. Three sizes in one mail means three rows. A later mail that changes a term replaces that cell and notes it under Conflicts. Never put two plants on one row.\n- Copy the Incoterm, including C&F or CNF. Do not rewrite C&F as CIF, and do not add insurance or freight. If no place is named, named_place is UNKNOWN.\n- The minimum is only the quantity floor, with its unit. Grade, glaze, and pack go in species_form. Keep a sample floor separate from a container floor. Do not convert units.\n- Lead time is the ready or production sentence and its anchor. Do not add sailing days. A validity date is not lead time.\n- Load port and discharge port stay as written. A plant city is not a port unless the mail says so. If the two clash, fill Conflicts. Do not draft a reply or a purchase order.\n- If [SPECIES AND FORM] is blank, include every offer. If it is filled, still include other species and mark those rows other species.\n\nOutput format:\nReturn a table with columns exporter, message_date, species_form, incoterm, named_place, minimum_order, lead_time, port_of_loading, port_of_discharge, source_line. source_line is at most 25 words. Then Conflicts and UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful buying assistant for a seafood wholesaler. Read exporter quote emails and return a term grid.\n\nUse only:\n[QUOTE THREAD]\n[SPECIES AND FORM]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One row per offer. Split sizes and species. When a newer message revises a term, keep the newer wording and record both under Conflicts. Separate plants by their From lines.\n- Transcribe the delivery code as typed. Leave C&F and CNF unchanged. Do not upgrade them to CIF or invent freight or insurance. No named place means named_place is UNKNOWN.\n- minimum_order is only the quantity floor they stated, with its unit. Size count, glaze, and pack stay in species_form. Do not blend a trial lot with a full container, and do not convert units.\n- Lead time is only a production, ready-stock, or after-deposit sentence. Leave transit time out. If they gave only a validity date, mark lead_time UNKNOWN.\n- port_of_loading is where they ship from. port_of_discharge is the destination they named, spelled as written. A cold store or a factory town is not a port unless the text says so.\n\nOutput format:\nReturn one table with columns exporter, message_date, species_form, incoterm, named_place, minimum_order, lead_time, port_of_loading, port_of_discharge, source_line. Cap source_line at 25 words. Then Conflicts and UNKNOWN. If [SPECIES AND FORM] is filled, mark other species instead of dropping those rows.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken desk hand for a seafood wholesaler. Turn exporter quote emails into a term grid.\n\nPaste:\nThread, oldest first: [QUOTE THREAD]\nWhat you are buying, or blank: [SPECIES AND FORM]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Each offer gets its own row. One mail with three counts is three rows. If a later note changes the floor or the port, the row follows the later note and Conflicts holds the earlier words. Do not mix two packers.\n- Write the Incoterm the way they wrote it. C&F stays C&F. CNF stays CNF. Do not turn either into CIF or invent insurance. No place named means named_place is UNKNOWN.\n- Minimum order means the smallest amount they will ship, in their unit. Do not put grade or glaze in that cell. A sample floor and a container floor stay apart. Do not convert the unit.\n- Lead time means how soon the goods are ready, plus the anchor they wrote. Skip ocean days. An expiry line is not lead time.\n- Keep the origin port and the destination port in the right columns, spelled as written. A city that is only the plant address is not the load port. Do not write the reply.\n- If [SPECIES AND FORM] is filled, mark other species instead of dropping those rows.\n\nOutput format:\nTable columns, in order: exporter, message_date, species_form, incoterm, named_place, minimum_order, lead_time, port_of_loading, port_of_discharge, source_line. source_line is 25 words or fewer. Then Conflicts and UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a term sheet for a seafood wholesaler. Shape the quote emails into a term grid.\n\nSources:\n[QUOTE THREAD] every message, oldest first, plus proforma lines\n[SPECIES AND FORM] the item they are buying, or blank for every offer\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One row per offer. Split different sizes. When messages disagree, the later sentence wins and the earlier one goes under Conflicts. One row, one plant.\n- Keep the term spelled as they wrote it, including C&F and CNF. Do not replace those with CIF or add freight. If the term has no place, named_place is UNKNOWN.\n- minimum_order is the order floor they stated, with their unit. Leave grade and pack in species_form. Do not merge a sample lot with a container lot or convert units.\n- lead_time comes only from ready-date or production wording, with its anchor. Do not invent days on the water. An acceptance deadline is not lead time.\n- Ship-from port goes in port_of_loading and the destination port in port_of_discharge, copied as spelled. Factory towns stay out unless called a port. Do not write a reply or a purchase order.\n- If [SPECIES AND FORM] is filled, still list other species and mark those rows other species.\n\nOutput format:\nReturn a table with headings exporter, message_date, species_form, incoterm, named_place, minimum_order, lead_time, port_of_loading, port_of_discharge, source_line. Keep source_line to 25 words. Then add Conflicts and UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optional later: Gmail and Google Sheets, with Zapier, Make, or n8n appending draft rows only.",
+    "steps": [
+      "In Gmail or Outlook, open the exporter thread and copy every message, oldest first. Keep From, date, and subject. If a broker forwarded several plants, keep each forward header so one plant is not mixed with the next.",
+      "If the Incoterm, minimum, lead time, or port sits only in a proforma or a price-list attachment, paste the lines you can read under that message. Leave a gap where a port name is cut off. Do not fill it from an older deal.",
+      "On a separate note, write the species and form you are buying, such as headless shell-on vannamei or trimmed salmon portions. That note is the species field. Leave it blank if every offer in the thread should appear on the grid.",
+      "Open ChatGPT, Claude, Grok, or Muse. Paste that model's prompt. Replace [QUOTE THREAD] with the full mail and [SPECIES AND FORM] with your note. Send it once. Do not add a usual freight term or a port you remember from last season.",
+      "Read each row against its source sentence. Confirm the Incoterm code, the named place, the minimum and its unit, the lead time and its anchor, and both ports. Reject a row that rewrites C&F as CIF, blends a sample floor with a container floor, or swaps the two ports.",
+      "If UNKNOWN names a missing place, minimum, lead time, or port, search that message only. Paste the missing sentence and ask for a revised grid. If this thread never states the fact, leave the cell blank when you copy the row onto your sheet.",
+      "Copy passing rows into Google Sheets with exporter, date, species and form, Incoterm, named place, minimum, lead time, load port, discharge port, and source line. Set a status column to unchecked. Do not reply to the plant from the sheet.",
+      "Optional agent mode: with Zapier, Make, or n8n, watch a Gmail label for new exporter quotes and append a draft grid to that sheet. Leave any send-mail action off. Skip a thread whose sheet status is already checked."
+    ],
+    "approvalStep": "Before sending a reply, a purchase order, or a deposit, review the sheet beside the source email. Approve a row only when the Incoterm, minimum order, lead time, and port match that message, then write and send the exporter mail yourself.",
+    "failureModes": [
+      "The mail says C&F or CNF and the grid writes CIF, which adds insurance the plant never offered. Keep the code they typed and do not use that row.",
+      "A sample floor and a full-container floor sit in one minimum cell, or a size grade and a glaze note landed there. Split the floors and move the spec into species and form.",
+      "Lead time picks up an offer-validity line, or it adds sailing days the mail never gave. The cell should stay the ready-stock or production sentence only.",
+      "The buyer's cold store is written as the load port on an FOB offer whose named place is the origin port. Match the port to the Incoterm before you trust the row.",
+      "A broker forward stacks two plants and both rows show the same minimum. Split on the forward headers and match each figure to its own From line.",
+      "A later mail says ready stock while the first mail said weeks after deposit. The grid must follow the later sentence and list the earlier one under Conflicts."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for these exporter terms?",
+      "a": "Use the prompt for the chat you already have open. Keep a grid only when each Incoterm, minimum, lead time, and port matches a sentence in that plant's message, C&F stays C&F, and a blank stays UNKNOWN. Drop a grid that fills a missing port or adds days on the water."
+    },
+    {
+      "q": "What if the terms are only on a proforma attachment?",
+      "a": "Paste the lines you can read from that proforma under the message it arrived with. The chat sees the text you paste, not the file icon. If a port name is unreadable, leave the gap empty so the cell comes back UNKNOWN. Do not substitute an older proforma from the same plant."
+    },
+    {
+      "q": "What if one email has three sizes with different floors?",
+      "a": "You should get three rows, one per size, each with its own minimum. A single blended row is wrong even when the Incoterm and the port are shared. Ask for a revised grid that splits the sizes. Keep the shared port on each row only when that message states the port once for the whole list."
+    },
+    {
+      "q": "Will this reply to the plant or place the order?",
+      "a": "No. Paste mode ends as a table you copy into a sheet. An optional Zapier, Make, or n8n flow may append draft rows from a labeled mailbox if send-mail stays off. You still match the row to the email, then you write any reply, purchase order, or deposit request yourself."
+    },
+    {
+      "q": "They wrote FOB and never named a port. What now?",
+      "a": "The Incoterm cell can say FOB and both port cells stay UNKNOWN. Do not insert a port you used for that plant on an earlier booking unless this thread writes it. You decide whether to ask which port they mean, and you send that question yourself after you approve the rest of the row."
+    }
+  ],
+  "draft": true,
+  "persona": "Seafood wholesaler",
+  "job": "A thread of exporter quote emails goes in, and a term grid comes out with Incoterm, minimum order, lead time, and port for each offer.",
+  "who": "Seafood wholesalers who buy frozen shrimp, whitefish, or shellfish from overseas plants and must line up each offer's Incoterm, minimum order, lead time, and port before they answer.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

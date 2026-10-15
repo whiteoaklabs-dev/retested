@@ -1,0 +1,86 @@
+{
+  "slug": "dedupe-and-standardize-a-messy-multi-source-lead-file",
+  "title": "Dedupe and standardize a messy multi-source lead file",
+  "category": "Sales",
+  "summary": "A founder pastes one messy multi-source lead file: a CSV whose header changes mid-sheet because a CRM export, a partner list, a form dump, and a personal sheet were stacked. The assistant standardizes each block into one clean sheet of full name, first name, last name, company, domain, email, phone, title, source, and notes. Domain comes only from an email or a website cell already on that row. A phone becomes one international form only when the country is known. The merge log names each collapsed group, the match reason, the row kept, and the rows folded in. You write Keep, Split, or Fix on every group before a CRM write, a send, or a delete.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a CRM cleanup clerk for a founder who must dedupe and standardize one messy multi-source lead file. Read [LEAD FILE], apply [HEADER NOTES], and use [DEFAULT COUNTRY] only when a row has no country.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If name, email, phone, or company is unmapped, ask which header it is before joining\n- A repeated header mid-file starts a new source block; carry that block's label onto its rows\n- Build domain only from the email text after the at-sign, or from a website cell on the row; drop any path and lowercase host\n- Merge on email, then same phone digits, then full name plus company; never merge on company, domain, or first name alone\n- When two filled cells disagree, put both raw values in Field conflicts and leave the winner blank\n- Rewrite a phone to international form only when the country is known from the row or the default; otherwise keep the printed digits\n- Do not look up a firm, draft outreach, import a CRM, or delete the source file\n\nOutput format:\nReturn a clean sheet with columns full_name, first_name, last_name, company, domain, email, phone, phone_status, title, source, notes (one sentence).\nThen sections headed Merge log, Held apart, and Field conflicts. Merge log columns: group_id, match_reason, kept_source_row, merged_source_rows, fields_copied. match_reason is one sentence. Held apart is one sentence per pair you refused. Field conflicts lists both raw values and a blank Keep cell.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records assistant helping a founder dedupe and standardize one messy multi-source lead file. Clean [LEAD FILE] with [HEADER NOTES], and apply [DEFAULT COUNTRY] only when that row lacks a country.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stop and ask if name, email, phone, or company is missing from the header notes\n- When a header appears again mid-file, start a new source block and stamp its label on every row until the next header\n- Take domain from the mailbox host, or from a website cell on the same row; remove any path and lowercase the host\n- Join on exact email, then the same phone digits, then full name plus company; refuse a join on company, domain, or first name alone\n- If two non-empty cells differ, print both original strings in Field conflicts and leave the choice blank\n- Change a phone to international form only when the country is on the row or in the default; otherwise leave the text\n- Do not search the web, write a sales note, load a CRM, or erase the pasted file\n\nOutput format:\nReturn a table with columns full_name, first_name, last_name, company, domain, email, phone, phone_status, title, source, notes. Limit notes to one sentence.\nThen headings Merge log, Held apart, and Field conflicts. Merge log columns: group_id, match_reason, kept_source_row, merged_source_rows, fields_copied. Keep match_reason to one sentence. Say why each held pair stayed split. Show both raw values and an empty Keep cell.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken list cleaner for a founder deduping and standardizing one messy multi-source lead file. Take [LEAD FILE], follow [HEADER NOTES], and use [DEFAULT COUNTRY] only for rows with no country.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If name, email, phone, or company has no header, ask before you combine anything\n- A second header mid-paste opens a new source block; put that block's name on each row that follows\n- Set domain from the email host or a website cell already present; strip the path and lowercase the host\n- Fold rows that share an email, then phone digits, then full name plus company; do not fold on company, domain, or first name alone\n- Where two filled values clash, keep both raw strings in Field conflicts and do not pick a winner\n- Write an international phone only when the country is on the row or in the default; otherwise store the digits as printed\n- Skip a web lookup, skip outreach, skip a CRM import, and skip any instruction to trash the file\n\nOutput format:\nReturn a table with columns full_name, first_name, last_name, company, domain, email, phone, phone_status, title, source, notes. Keep notes to one sentence.\nThen sections titled Merge log, Held apart, and Field conflicts. Merge log uses group_id, match_reason, kept_source_row, merged_source_rows, fields_copied. match_reason is one sentence. Held apart says why each pair stayed split. Field conflicts lists both raw values and leaves Keep blank.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant for a founder turning one messy multi-source lead file into a single working list. Use [LEAD FILE], [HEADER NOTES], and [DEFAULT COUNTRY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the header notes first, and ask before joining if name, email, phone, or company has no column\n- Treat a repeated header partway down as a new source block, and record that block on the rows under it\n- Fill domain from the email host or a website cell on that row only; drop any path and lowercase the host\n- Match exact email, then matching phone digits, then full name plus company; do not match on company, domain, or first name alone\n- Where two filled cells differ, show both untouched values in Field conflicts and leave Keep empty\n- Apply an international phone only when the country is on the row or in the default; otherwise keep the printed number\n- Do not enrich, do not write outreach, do not load a CRM, and do not replace the original file\n\nOutput format:\nReturn a cleaned table with columns full_name, first_name, last_name, company, domain, email, phone, phone_status, title, source, notes. Notes stay one sentence.\nThen sections headed Merge log, Held apart, and Field conflicts. Merge log columns: group_id, match_reason, kept_source_row, merged_source_rows, fields_copied. match_reason is one sentence. Say why each held pair stayed split. List both raw values beside a blank Keep cell.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to file a new tab when another stacked CSV arrives.",
+    "steps": [
+      "Export the stacked lead file as a CSV and keep every header, including a header that repeats partway down after a CRM export, a partner list, a form dump, or a personal sheet. Paste one prompt, then paste the grid as [LEAD FILE].",
+      "In that chat, paste [HEADER NOTES]. Name the columns for full name, first name, last name, company, email, phone, website, title, and source, including odd labels such as fname, Org, Mobile, Cell, or URL.",
+      "Add [DEFAULT COUNTRY] only if you know one country covers the bare local numbers. If a country column already exists, point to it. If regions are mixed and no country is known, say so and forbid a guessed calling code.",
+      "Read the clean sheet line by line. Check that each source block still has its people, that notes survived, and that domain is UNKNOWN wherever both the email and the website cell were empty.",
+      "Open Merge log. Accept a group whose match reason is a shared email or the same phone digits. Mark Split when the only link is a company, a domain, or a first name, even if the assistant joined them.",
+      "Open Field conflicts. Write the value you trust in the blank Keep cell, or write Ask. A blank source cell is not a rival value. Do not import a person while any conflict on that person is still blank.",
+      "Copy the clean sheet and the three sections into a new spreadsheet tab. Leave the messy file on its own tab so you can discard a bad collapse without losing original cells, notes, or source labels.",
+      "Optional later: point a spreadsheet and a workflow tool such as Zapier, Make, or n8n at a folder of stacked CSVs so each arrival creates a fresh tab and a fresh merge log. Allow that write only, with mail and CRM pushes off.",
+      "After every group says Keep, Split, or Fix, copy only the Keep rows into the CRM and hold any phone_status of UNKNOWN. Delete nothing from the messy file until a sample of names you know looks right."
+    ],
+    "approvalStep": "Review Merge log and Field conflicts and write Keep, Split, or Fix on every group before any CRM row is merged, a sequence is submitted, a message is sent, or the messy file is deleted.",
+    "failureModes": [
+      "Same-name collapse: two different people who share a full name but work at different firms become one row. Watch any match reason that cites neither an email nor a phone, and mark that group Split.",
+      "Office main line: one switchboard number pulls coworkers into a single person. If the names differ, keep the rows apart even when the digits match.",
+      "Invented host: a blank website grows a domain taken from the company name. If neither the email nor the website cell had a host, that domain must read UNKNOWN.",
+      "Header swallowed: a repeated header mid-file is read as a contact, and the block under it loses its source label. Scan full_name for words like First Name or Email.",
+      "Country stamped on everyone: local numbers from mixed regions all pick up the default country. Where the row had no country, put the printed digits back and set phone_status to UNKNOWN.",
+      "Thin row dropped: the kept row loses a title or a note that lived only on another row in the group. Read fields_copied and confirm blanks were filled rather than overwritten."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to clean this file?",
+      "a": "Use the prompt written for the assistant you already have. Judge the run by whether every source row appears on the clean sheet or in the merge log, every domain traces to an email or a website cell you pasted, and any phone without a known country is marked UNKNOWN. If a group merged on company alone, reject that run and paste the file again."
+    },
+    {
+      "q": "Will this overwrite my CRM or email anyone?",
+      "a": "No. Paste mode only returns tables in the chat for you to copy onto a new spreadsheet tab. The messy file stays where it is. A CRM import, a send, and any deletion wait until you have marked every merge group. If you add a workflow tool later, let it create a new tab only, with sending turned off."
+    },
+    {
+      "q": "What if one person has a personal inbox and a work inbox?",
+      "a": "They stay two rows unless a phone, or the full name plus the company, also ties them. Held apart should name that pair. Write Keep only when you know it is one human, and copy the missing phone or title across yourself. A shared first name is not enough for the assistant to join those rows."
+    },
+    {
+      "q": "How does the domain column get filled?",
+      "a": "Only from the contact email, using the host after the at-sign, or from a website cell already on that row, with any path removed and the host lowercased. A company name is not enough. If both cells are empty, the domain is UNKNOWN. Do not pay for an enrichment lookup, and do not accept a host that was not in your file."
+    },
+    {
+      "q": "What should I do when two phones conflict?",
+      "a": "Leave both raw values in Field conflicts and write the one you trust in Keep, or write Ask if you still need to check. A blank cell is not a second number. Parentheses, spaces, and a country code on the same digits are one phone, not a clash. Import neither value until that Keep cell is filled."
+    }
+  ],
+  "draft": true,
+  "persona": "Founder cleaning a CRM",
+  "job": "A messy CSV with mixed columns goes in; one clean sheet of names, domains, and phones, plus a log of merged duplicates, comes out.",
+  "who": "Founders cleaning a CRM who stacked a CRM export, a partner spreadsheet, a form dump, and a personal sheet into one file. You still recognize the people, but the headers clash and the same contact shows up more than once.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "CRM or contact sheets"
+  ]
+}

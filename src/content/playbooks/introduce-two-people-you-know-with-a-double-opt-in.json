@@ -1,0 +1,85 @@
+{
+  "slug": "introduce-two-people-you-know-with-a-double-opt-in",
+  "title": "Introduce two people you know with a double opt-in",
+  "category": "Sales",
+  "summary": "Paste one sentence on each of two people you know, plus one sentence on why they should talk. You get two separate double opt-in emails, not a joint introduction. Each email has its own To line, a subject, a body of at most 110 words, one yes-or-no question, and a May share line showing the single fact the other person would learn. Price, revenue, and whether a company is listed stay out unless those words were in your paste. Gaps are marked UNKNOWN. You edit both drafts, send each yourself on its own thread, and introduce them only after both people say yes.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a writing assistant for a business broker who needs a double opt-in before introducing two people they know. Draft two separate permission emails. Do not draft the introduction.\n\nInputs:\nPerson A, one sentence: [PERSON A NOTE]\nPerson B, one sentence: [PERSON B NOTE]\nWhy they should talk: [WHY THEY SHOULD TALK]\nSign-off: [BROKER SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Write two emails meant for two separate threads. Never place both people on one To, Cc, or Bcc line.\n- Keep each body at or under 110 words. Ask exactly one yes-or-no question: may the broker make this introduction. Do not write as if either person already agreed.\n- Use only the three sentences above. Do not add price, revenue, earnings, staff count, or that a company is listed unless those words appear in the paste.\n- Under each email, add a May share line naming the other person and the reason, so the broker sees what would be revealed. If a name or company is absent, mark it UNKNOWN.\n- Close with [BROKER SIGN-OFF]. Do not offer a meeting time, claim a strong fit, or promise any outcome.\n\nOutput format:\nEMAIL A with headings To, Subject, Body, May share, Yes-or-no ask\nEMAIL B with the same headings\nUNKNOWN as a list of gaps\nHELD as one line stating the introduction is not written until both say yes",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a business broker. Two people the broker knows might benefit from a conversation. Write a double opt-in: one permission email to each person, on its own thread, before any introduction exists.\n\nUse only these inputs:\nFirst person: [PERSON A NOTE]\nSecond person: [PERSON B NOTE]\nReason they should talk: [WHY THEY SHOULD TALK]\nHow the broker signs: [BROKER SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the two emails fully separate. The other person's address must not appear in To, Cc, or Bcc.\n- Hold each body to 110 words or fewer, in a calm first-person voice. End with one yes-or-no question asking permission to introduce them. No second ask.\n- Treat confidentiality as the default. Leave out asking price, revenue, earnings, and any statement that a business is for sale unless that exact point is inside the three sentences.\n- Show a May share line for each email: the name and the reason that recipient would learn. If the reason would expose more than that person has cleared, shorten it and mark the cut UNKNOWN.\n- Sign as [BROKER SIGN-OFF]. Do not imply the other person is waiting, already informed, or eager.\n\nOutput format:\nEmail A: To, Subject, Body, May share, Yes-or-no ask\nEmail B: To, Subject, Body, May share, Yes-or-no ask\nUNKNOWN list\nA final line labeled Held: introduction not drafted",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a business broker. They know two people who should maybe talk. Write two short permission emails, one to each, and stop there. This is a double opt-in. No introduction email yet.\n\nPaste:\nPerson A: [PERSON A NOTE]\nPerson B: [PERSON B NOTE]\nWhy they should talk: [WHY THEY SHOULD TALK]\nSign-off: [BROKER SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Two emails, two threads. Do not combine the recipients. No shared Cc.\n- Each body is 110 words or fewer. One question only, and it must be answerable with yes or no: may I introduce you. Skip warmth that pretends you are closer than the note says.\n- Stick to the three sentences. If the note does not mention price, revenue, earnings, headcount, or a listing, those facts stay out.\n- Put a May share line under each email so the broker can see the other name and the reason before anything is sent. Missing name or company becomes UNKNOWN.\n- Sign [BROKER SIGN-OFF]. Do not book a time, praise the fit, or say the other side already said yes.\n\nOutput format:\nEMAIL A — To, Subject, Body, May share, Yes-or-no ask\nEMAIL B — To, Subject, Body, May share, Yes-or-no ask\nUNKNOWN\nHELD — one sentence that the introduction waits for two yes replies",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a business broker who will approve every word. They want to introduce two people they know, but only after each person agrees. Produce the two permission emails and nothing else.\n\nProvide:\n[PERSON A NOTE] one sentence on the first person, including how the broker knows them\n[PERSON B NOTE] one sentence on the second person\n[WHY THEY SHOULD TALK] one sentence in the broker's words\n[BROKER SIGN-OFF] the name they use on email\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Return two standalone emails. Each To line holds one person. Leave the other person off Cc and Bcc.\n- Cap each body at 110 words. Ask once, in a yes-or-no form, whether the broker may make the introduction. Do not add a call invite.\n- Draw every fact from the three sentences. Do not supply price, revenue, earnings, staff numbers, or a for-sale status that the broker did not write.\n- After each body, add May share: the other person's name and the reason, trimmed to what this recipient is allowed to learn. Flag anything you had to drop as UNKNOWN.\n- Close both emails with [BROKER SIGN-OFF]. Sound like a broker asking a favor, not like a blast.\n\nOutput format:\nSections EMAIL A and EMAIL B, each with To, Subject, Body, May share, and Yes-or-no ask\nThen UNKNOWN as a list\nThen HELD: state that no introduction will be written until both people say yes",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional later: Gmail and Google Sheets, with Zapier, Make, or n8n creating drafts only.",
+    "steps": [
+      "From your deal file or CRM note, write one sentence on each person you know: name, role, company, and how you know them. Add a third sentence on why they should talk. Leave price, revenue, and listing status out unless that person may already hear them.",
+      "Open the assistant you already use, paste that model's prompt, and replace [PERSON A NOTE], [PERSON B NOTE], [WHY THEY SHOULD TALK], and [BROKER SIGN-OFF]. Paste only those sentences. Do not attach a CIM, a buyer list, or financials.",
+      "Read the two drafts side by side. Confirm each has its own To line, its own subject, a body of at most 110 words, one yes-or-no question, and a May share line that names only what that recipient is allowed to learn.",
+      "Work the UNKNOWN list yourself. Add a missing name or company from your notes, or delete the sentence. Strike any asking price, revenue, or for-sale wording you cannot point to in the three sentences.",
+      "In Gmail, open two separate drafts. Put one recipient on each To line, leave Cc and Bcc empty, and paste one body into each. Do not send, and do not start an introduction thread.",
+      "After you approve both, send them yourself, one at a time. Log each on a Google Sheet with columns for person, company, sent day, reply (yes, no, or waiting), and the May share line you actually used.",
+      "When both rows say yes, paste those replies back and ask for one introduction that uses only facts both people already cleared. If either row says no or is still waiting, do not write that introduction.",
+      "Optional later: connect the sheet to Gmail with Zapier, Make, or n8n so a new row creates two drafts only. Leave auto-send off. You still open each draft, check the single To line, and send it yourself."
+    ],
+    "approvalStep": "Review both unsent Gmail drafts before anything goes out. Approve only when each To line is one person, Cc is empty, the yes-or-no ask is present, and no price or listing fact appears unless you pasted it. Send each yourself. The introduction waits until both replies are yes.",
+    "failureModes": [
+      "Both people land on one thread or in Cc, so the opt-in never happens. Open each draft and confirm the other name is absent from To, Cc, and Bcc.",
+      "Asking price, revenue, or a for-sale status leaks in from memory rather than the three sentences. Delete any figure you cannot point to in the paste.",
+      "A mild reason becomes 'ready to close' or 'perfect fit.' Keep the wording as cautious as the sentence you actually wrote.",
+      "Similar names in the buyer list send the ask to the wrong owner. Match the company on the To line to the sentence before you approve.",
+      "One yes arrives and an introduction goes out before the second reply. Both sheet rows must say yes, or you stop.",
+      "The note says you already told the other person, which pressures a yes. Rewrite it as a request, not a notice that the intro is underway."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What three sentences should I paste?",
+      "a": "One sentence on each person you know: name, role, company, and how you know them. A third sentence says why they should talk, in your words, such as a buyer looking at a similar trade and an owner open to a conversation. Leave price, revenue, and listing status out unless that recipient may already hear them."
+    },
+    {
+      "q": "Why two emails instead of one introduction?",
+      "a": "Each person gets their own ask, on their own thread, and a chance to say yes or no before you connect them. One message with both names skips the double opt-in and can name a seller or a buyer who has not agreed to be mentioned. Write the introduction only after both replies are yes."
+    },
+    {
+      "q": "What if only one person says yes?",
+      "a": "Stop. Do not send an introduction, and do not tell the person who agreed that the other declined in a way that shares private detail. A short note that you will not make the connection is enough. Leave the waiting row as waiting until you have a clear yes or no."
+    },
+    {
+      "q": "How do I keep a listing confidential?",
+      "a": "The permission note may name the other person and the reason you pasted. It must not add asking price, revenue, earnings, or a statement that the company is for sale unless those words were in your three sentences. Read the May share line on each draft and cut anything the owner has not cleared."
+    },
+    {
+      "q": "Which assistant should I use for these drafts?",
+      "a": "Use the prompt for the assistant you already have. Judge the pair by whether each draft stays inside your three sentences, asks for a yes before any introduction, and leaves the other person off the thread. If a line adds a price, a meeting, or a fit you did not write, delete it or replace it with what you know."
+    }
+  ],
+  "draft": true,
+  "persona": "Business broker",
+  "job": "Paste a sentence on each person and why they should talk, and get a separate email to each asking permission before you make the introduction.",
+  "who": "Business brokers who already know both sides of a possible fit, such as an owner and a buyer or a buyer and a lender, and who will not connect those people until each one has agreed.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets and CRM",
+    "Workflow automation"
+  ]
+}

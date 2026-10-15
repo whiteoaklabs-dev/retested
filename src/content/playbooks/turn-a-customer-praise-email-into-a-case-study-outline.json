@@ -1,0 +1,84 @@
+{
+  "slug": "turn-a-customer-praise-email-into-a-case-study-outline",
+  "title": "Turn a customer praise email into a case-study outline",
+  "category": "Back office",
+  "summary": "Paste a thank-you email that mentions a result and this playbook turns it into a case-study outline structured as problem, work, and result in the customer's own context. The agent uses only what the email actually states, separates paraphrased facts from exact wording that needs permission, and lists what is still missing or vague. You stay in control by checking every extracted claim against the original email, choosing the angle, and approving any wording before it is sent to the customer or published anywhere.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a case-study editor for a B2B software founder. Turn one praise email into an outline only, not a finished story.\n\nUse these inputs:\nProduct: [YOUR PRODUCT NAME]\nCustomer context: [CUSTOMER NAME, COMPANY, AND ROLE]\nEmail thread: [PASTE CUSTOMER EMAIL HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only facts stated in the email; do not add metrics, dates, features, or outcomes that are not written there.\n- Put exact customer wording only under Quotes for Approval; paraphrase in all other sections.\n- Flag vague praise and write the specific follow-up question that would clarify it.\n- Keep the outline short enough to review in one sitting.\n\nOutput format:\nTitle line: Working headline based only on the stated result\nSection 1 - Problem: the situation before, in paraphrase, with UNKNOWN for gaps\nSection 2 - Work: what your team or product did, in paraphrase\nSection 3 - Result: the outcome as described in the email, in paraphrase\nQuotes for Approval: each exact sentence copied from the email, numbered, with a checkbox note\nMissing Information: bullet list of questions to ask the customer\nNext Step: draft approval request you will send, without sending it",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful case-study editor helping a B2B software founder. Convert a single praise email into a structured outline for human review.\n\nWork from these inputs:\nProduct: [YOUR PRODUCT NAME]\nWho sent it: [CUSTOMER NAME, COMPANY, AND ROLE]\nFull email: [PASTE CUSTOMER EMAIL HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not infer a problem, timeline, or result that the email does not state plainly.\n- Keep exact wording isolated in Quotes for Approval so permission can be checked line by line.\n- Paraphrase claims elsewhere and note where the wording is too vague to publish.\n- End with questions for the customer, not with polished marketing copy.\n\nOutput format:\nWorking headline: one line drawn only from the stated result\nProblem: paraphrased bullets, marking gaps as UNKNOWN\nWork: paraphrased bullets describing what was done\nResult: paraphrased bullets describing the outcome mentioned\nQuotes for Approval: numbered list copying exact sentences from the email\nClarifying Questions: what to ask before drafting\nApproval Draft: short message asking permission for the numbered items, ready for the founder to edit and send",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct case-study editor for a B2B software founder. Turn a praise email into a problem, work, and result outline that a busy founder can check fast.\n\nInputs to use:\nProduct: [YOUR PRODUCT NAME]\nCustomer details: [CUSTOMER NAME, COMPANY, AND ROLE]\nEmail text: [PASTE CUSTOMER EMAIL HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to what the email says; add no outside facts, numbers, or product claims.\n- Copy exact customer sentences only into Quotes for Approval; paraphrase the rest.\n- Call out fluffy or unclear praise and suggest a precise question to resolve it.\n- Do not finish the case study; deliver an outline and a permission step.\n\nOutput format:\nWorking headline: based only on the result in the email\n1. Problem - paraphrased outline with UNKNOWN where the email is silent\n2. Work - paraphrased outline of what your company or product did\n3. Result - paraphrased outline of the outcome described\nQuotes for Approval - numbered exact sentences from the email\nGaps to Fill - questions for a short follow-up with the customer\nApproval Message Draft - text the founder can copy, edit, and send after review",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Act as Muse, a case-study editor inside the founder's workspace. Turn one praise email into a reviewable outline saved as a draft, not published copy.\n\nProvide these inputs:\nProduct: [YOUR PRODUCT NAME]\nCustomer context: [CUSTOMER NAME, COMPANY, AND ROLE]\nEmail to process: [PASTE CUSTOMER EMAIL HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Extract only facts present in the email; do not add timelines, metrics, or features from memory.\n- Isolate exact customer wording under Quotes for Approval; paraphrase every other section.\n- Mark weak or vague claims and list the follow-up question needed to make each one specific.\n- Save the result as an outline file or doc section for review; do not send or post anything.\n\nOutput format:\n# Working headline from the stated result\n## Problem - paraphrased bullets, UNKNOWN for missing facts\n## Work - paraphrased bullets on what was done\n## Result - paraphrased bullets on the outcome described\n## Quotes for Approval - numbered exact sentences copied from the email\n## Missing Information - questions to ask the customer\n## Approval Draft - short permission request for the founder to review",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "An AI chat assistant in paste mode first, with an optional inbox-to-doc automation using Gmail, a document editor, and a tracker.",
+    "steps": [
+      "Start in paste mode: find the original thank-you email in Gmail or your inbox, open the full thread, and copy the body plus sender name, company, and date so context is not lost.",
+      "Paste the email into the prompt for the assistant you already use, fill in your product name and the sender's company and role, and replace anything private that is not needed for the outline.",
+      "Read the outline against the original email line by line, correct any paraphrase that stretches the wording, and leave gaps marked UNKNOWN rather than filling them from memory.",
+      "Edit the Quotes for Approval list down to the shortest useful sentences, remove any wording you would not want to defend publicly, and note the exact use you plan for each one.",
+      "Copy the outline into a Google Doc or your usual document editor, name it with the customer company and date, and add a status field for draft, sent for approval, or approved.",
+      "Send the approval draft from your own email account, listing each numbered quote and the company name and logo use you are requesting, and wait for a clear written reply before drafting further.",
+      "Optional agent mode: use Zapier, Make, or n8n to watch a labelled Gmail folder, create a doc from the outline, and add a row to Google Sheets with customer, date, and approval status for tracking."
+    ],
+    "approvalStep": "Before anything is sent, posted, or published, you compare the outline to the original email, approve the paraphrases yourself, and then send the customer the numbered quote list from your own account; nothing goes public until the customer replies with clear written permission.",
+    "failureModes": [
+      "The outline adds a result or timeline the email never stated, so always check each bullet against the original thread before sharing it.",
+      "Exact wording is copied into the headline or body before permission arrives, which creates a takedown risk if the customer declines.",
+      "A vague compliment is treated as a concrete outcome, leaving a case study that sounds strong but cannot be backed up when prospects ask.",
+      "The wrong thread is pasted and context from an earlier complaint or support issue is mixed into a praise story.",
+      "Approval is assumed from a friendly reply that never clearly confirms quote, name, and company use in writing."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this playbook?",
+      "a": "Use the prompt written for the assistant you already have open and are comfortable pasting email text into. Judge the result the same way each time: every fact should trace back to the original email, exact wording should appear only in the approval list, and gaps should be marked UNKNOWN instead of filled in."
+    },
+    {
+      "q": "What if the email is enthusiastic but gives no concrete result?",
+      "a": "Keep the outline and mark the Result section as UNKNOWN, then use the clarifying questions the prompt produces to ask for one specific change the customer noticed. Do not draft the case study until they name the situation before, what changed, and why it mattered to their team in their own reply."
+    },
+    {
+      "q": "How do I ask for permission without sounding pushy?",
+      "a": "Send a short note from your own account thanking them, list the exact numbered sentences and the name and company use you are requesting, say where it would appear, and make declining easy. Offer to show them the full draft before publication and wait for a clear written yes."
+    },
+    {
+      "q": "Can I use a company logo or name if they approve a quote?",
+      "a": "Treat quote approval, name approval, and logo approval as separate permissions and list each one explicitly in your request. If the reply confirms only the wording, use only the wording with the attribution they agreed to, and ask separately before adding a logo or a linked company name."
+    },
+    {
+      "q": "What should I do when the customer never replies?",
+      "a": "Keep the outline in draft status in your tracker, send one polite follow-up with the same numbered list, and do not publish the quote or company name without a response. You can still use the paraphrased problem and work internally to spot patterns across customers, without naming anyone."
+    }
+  ],
+  "draft": true,
+  "persona": "B2B software founder",
+  "job": "Turn a single thank-you email that mentions results into a clear problem, work, and result outline, with every piece of exact customer wording marked for approval before any use.",
+  "who": "A B2B software founder who receives occasional praise by email but has no marketer to shape it into a case study, and who must get the customer's written permission before using their name or words publicly.",
+  "toolCategories": [
+    "Email client",
+    "AI chat assistant",
+    "Document editor",
+    "Spreadsheet tracker",
+    "Automation platform"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "write-a-handoff-note-covering-every-open-thread",
+  "title": "Write a handoff note covering every open thread",
+  "category": "Back office",
+  "summary": "Give an AI assistant your open inbox and recent sent threads before vacation, and it turns them into one handoff email that lists every open thread, its current status, the next step, and who should take it while you are away. You paste or export the threads, add your return date and who covers each area, and the assistant drafts the note in a fixed table plus a short urgent-items section. You review every line, confirm owners and due dates, and send the handoff yourself, so nothing is forwarded, assigned, or messaged without your approval.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a careful handoff assistant for an employee going on vacation.\nUse only the threads I paste below. Build one handoff email I can review and send myself.\n\nMy details:\n- Away dates and return date: [YOUR AWAY DATES AND RETURN DATE]\n- Cover contacts by topic: [COVER NAME AND ROLE FOR EACH TOPIC]\n- Threads: [PASTE OPEN INBOX AND RECENT SENT THREADS HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Create one row per open thread, do not merge separate threads unless they share the same subject and people\n- If a thread looks closed or waiting on no one, label it Closed or Monitoring instead of inventing a task\n- Flag anything with a date or deadline during my absence at the top and keep the wording plain\n- Do not send, forward, or assign anything, only draft the email for my review\n\nOutput format:\nSubject line, then a two line intro with my return date, then an Urgent during my absence section, then a table with Thread, Status, Next step, Owner while away, and Due or check date, then an UNKNOWN items section listing what I still need to confirm.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a precise inbox handoff writer helping an employee prepare for vacation leave.\nTurn the threads I provide into a single handoff email that a colleague can act on without opening my inbox.\n\nMy details:\n- Away dates and return date: [YOUR AWAY DATES AND RETURN DATE]\n- Cover contacts by topic: [COVER NAME AND ROLE FOR EACH TOPIC]\n- Threads: [PASTE OPEN INBOX AND RECENT SENT THREADS HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- List each open thread once with its current status taken only from the last message in that thread\n- Put the next step as a clear action for the cover person, or write No action, monitoring only\n- Keep each table row short enough to scan quickly and keep names exactly as they appear in the threads\n- Draft only, do not contact anyone or change any thread\n\nOutput format:\nStart with Subject, then Away and return dates, then Urgent during my absence as short bullets, then a table headed Thread, Status, Next step, Owner while away, Due or check date, then Needs my decision before I leave for every UNKNOWN or unclear item.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct handoff assistant for someone leaving on vacation who needs cover for open email.\nRead my pasted threads and draft one handoff email covering every open item.\n\nMy details:\n- Away dates and return date: [YOUR AWAY DATES AND RETURN DATE]\n- Cover contacts by topic: [COVER NAME AND ROLE FOR EACH TOPIC]\n- Threads: [PASTE OPEN INBOX AND RECENT SENT THREADS HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Separate waiting on me, waiting on someone else, and needs a reply during my absence into clear status labels\n- Put deadlines that fall while I am away first and state the date exactly as shown in the thread\n- Do not assume a colleague agreed to cover something unless I listed them above for that topic\n- Produce a draft only for me to check and send\n\nOutput format:\nSubject line, brief intro with return date, Urgent during my absence list, then table with columns Thread, Status, Next step, Owner while away, Due or check date, then UNKNOWN items and missing information as a final checklist.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse acting as a careful handoff note writer for an employee going on vacation.\nUse my pasted inbox and sent threads to draft one complete handoff email.\n\nMy details:\n- Away dates and return date: [YOUR AWAY DATES AND RETURN DATE]\n- Cover contacts by topic: [COVER NAME AND ROLE FOR EACH TOPIC]\n- Threads: [PASTE OPEN INBOX AND RECENT SENT THREADS HERE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Cover every open thread, including quiet threads that still need monitoring, and label each status honestly\n- Write the next step for the cover person in plain language and keep private or sensitive detail out unless the thread requires it\n- If two threads conflict on dates or owners, list the conflict under UNKNOWN instead of choosing one\n- Never send or forward anything, draft the email for my approval only\n\nOutput format:\nSubject, two line intro with away and return dates, Urgent during my absence section, table with Thread, Status, Next step, Owner while away, Due or check date, then UNKNOWN and conflicts section.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in any AI assistant first, then optionally Gmail plus a spreadsheet and Zapier, Make, or n8n for repeat use.",
+    "steps": [
+      "Gather your inputs: open your inbox and sent folder, star or label every thread that is still open, waiting on someone, or likely to get a reply while you are away.",
+      "Copy each thread in full, including the last message, dates, and names, then paste them into a single document and delete signatures, quoted history, or personal messages you do not need to hand off.",
+      "Write your cover list before prompting: for each topic or sender, add the cover person, their role, and your away and return dates, so the assistant does not guess who owns what.",
+      "Paste the matching prompt for your assistant, replace the placeholders with your dates, cover list, and threads, and ask it to draft the handoff email in the fixed table format.",
+      "Check the draft row by row against your inbox, fix every UNKNOWN, confirm each owner agreed to cover that item, and add any thread you forgot before you send it yourself.",
+      "Optional automated mode: use a Gmail label for handoff threads, collect them in Google Sheets with Zapier, Make, or n8n, then run the same prompt on that sheet for each future break."
+    ],
+    "approvalStep": "You review the full draft against your actual inbox, confirm every owner and due date, resolve all UNKNOWN rows, and press send yourself. The assistant never sends, forwards, or assigns anything.",
+    "failureModes": [
+      "A missing thread never appears in the handoff, so always compare the table count against your starred or labelled inbox list before sending.",
+      "The assistant guesses an owner or due date from a vague thread, so watch for names or dates that are not in your cover list or pasted messages.",
+      "Long threads get summed up with the wrong status if the latest reply is buried, so paste the full thread with the most recent message clearly included.",
+      "Sensitive pay, health, or personal detail gets copied into a group handoff, so remove private threads and share those separately with one named person."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What exactly should I paste into the prompt?",
+      "a": "Paste every open inbox thread and recent sent thread that might need action while you are away, including the subject, people, dates, and the last message. Add your return date and a cover list by topic. Remove personal threads and long quoted history that adds no decision or deadline."
+    },
+    {
+      "q": "How do I handle a thread where I do not know who should cover it?",
+      "a": "Leave that cover slot blank in your input and let the draft mark it UNKNOWN. Do not let the assistant assign it for you. Decide the owner yourself, check that they agree, then fill in the row before sending the handoff so no item floats without a named person."
+    },
+    {
+      "q": "Which assistant should I use for this playbook?",
+      "a": "Use the prompt written for the assistant you already have open and use day to day, so you do not need a new account to finish your handoff. Judge the result the same way each time: every open thread appears once, statuses match the last message, owners match your cover list, and anything unclear is marked UNKNOWN."
+    },
+    {
+      "q": "What if my inbox is too large to paste in one go?",
+      "a": "Split the work by label or topic, such as customers, vendors, and internal, and run the prompt on one group at a time. Ask for the same table each time, then combine the tables yourself and remove duplicates. Keep urgent threads in the first group so they get checked with the most care."
+    },
+    {
+      "q": "Should I send one handoff to everyone or separate notes?",
+      "a": "Send one main table to your manager and cover colleagues for shared visibility, but move sensitive threads to a separate short note for the single relevant person. Check the recipient list before sending, because a full inbox summary can expose customer, pricing, or personal detail to people who do not need it."
+    }
+  ],
+  "draft": true,
+  "persona": "Employee leaving on vacation",
+  "job": "Turn scattered open and recently sent email threads into one clear handoff email that names each open item, its status, the next step, and the person who should take it while you are away.",
+  "who": "An employee leaving on vacation who owns customer, vendor, or internal email threads that cannot pause, and who needs colleagues to pick them up cleanly without digging through a messy inbox.",
+  "toolCategories": [
+    "Email inbox",
+    "AI assistant",
+    "Spreadsheet or notes app",
+    "Automation platform"
+  ]
+}

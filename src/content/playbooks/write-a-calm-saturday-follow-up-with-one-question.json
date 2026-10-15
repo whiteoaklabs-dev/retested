@@ -1,0 +1,86 @@
+{
+  "slug": "write-a-calm-saturday-follow-up-with-one-question",
+  "title": "Write a calm Saturday follow-up with one question",
+  "category": "Sales",
+  "summary": "A life coach copies the quiet conversation in full: Gmail, a phone text, or portal messages, each line with sender and date, plus the channel, the sign-off they use, and topics they will not raise, such as a fee, a package name, or a held slot. The assistant writes one calm Saturday follow-up. Email and portal notes stay at or under 75 words, an SMS stays at or under 40 words, with a subject only for email, exactly one question tied to a phrase in the thread, and UNKNOWN wherever a fact is missing. You edit the question, confirm the addressee, and send it yourself. Nothing goes out until you approve the wording.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a writing assistant for a life coach. From a thread that has gone quiet, draft one calm Saturday follow-up. The coach will edit it and send it. Do not send anything.\n\nInputs:\nFull messages, each with sender and date: [QUIET THREAD]\nChannel (email, SMS, or portal): [CHANNEL]\nSign-off: [COACH SIGN-OFF]\nTopics to leave out: [OFF LIMITS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only those inputs. Do not add a fee, a package, a diagnosis, a held slot, or a guessed reason for the quiet.\n- Ask one question about the last topic the other person raised. It must be answerable in a sentence and must not ask them to book, buy, or choose coaching.\n- If their newest line names a pause, a date they will write, or a subject to drop, the question must respect it.\n- Cap email and portal notes at 75 words, and an SMS at 40 words. No circling back, bumping this, just checking in, touching base, or a deadline.\n- Address only the person being coached. If a partner or referrer is also present, mark the addressee UNKNOWN.\n- If they asked to stop, or the messages read as a crisis, write DO NOT DRAFT. Do not invent a theme such as burnout, balance, or purpose.\n\nOutput format:\nCHANNEL\nSUBJECT (email only, six words or fewer; else NONE)\nNOTE\nONE QUESTION\nTOPIC FROM THREAD (sender, date, phrase)\nSILENCE REASON (only if they stated one; else NONE)\nUNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a life coach. Read a conversation that has gone quiet and prepare one calm Saturday note. The coach approves every word before it is sent.\n\nRead only:\n[QUIET THREAD] messages in order, each with sender and date, plus intake answers if they belong to this conversation\n[CHANNEL] email, SMS, or portal\n[COACH SIGN-OFF] the closing they use\n[OFF LIMITS] fee, package, diagnosis, held slot, or anything else they refuse\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Start from their newest message. Use one topic phrase from it. Do not recap the whole history.\n- Ask exactly one question answerable in a sentence. Do not ask them to book, pay, or decide on coaching.\n- When that message names a pause or a day they will write, keep the question inside that boundary.\n- Hold an email or portal note to 75 words and an SMS to 40 words. Leave out chase lines and any reply-by date.\n- If a partner or referrer also appears, do not pick an addressee. Mark it UNKNOWN.\n- If they asked you to stop, or the paste reads as a crisis, write DO NOT DRAFT and name the line. Do not supply a theme they never used.\n\nOutput format:\nReturn these headings in order: CHANNEL, SUBJECT, NOTE, ONE QUESTION, TOPIC FROM THREAD, SILENCE REASON, UNKNOWN.\nSUBJECT is six words or fewer for email, and NONE otherwise. SILENCE REASON is NONE unless they stated one.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a life coach. A thread has gone quiet. Write one calm Saturday follow-up they can check before it leaves their phone or inbox. Skip the polish.\n\nUse:\n[QUIET THREAD] the full paste, sender and date on every line\n[CHANNEL] email, SMS, or portal\n[COACH SIGN-OFF] how they close\n[OFF LIMITS] what they will not bring up\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to the paste. No fee, package, diagnosis, saved calendar slot, or story about why they vanished.\n- One question only, about the last real topic they brought up. Easy to answer. Not a request to book, buy, or pick a coaching plan.\n- If they already said they are pausing, or named when they will write, do not tug them back early.\n- Email or portal: 75 words max. SMS: 40 words max. Ban circling back, bumping this, just checking in, touching base, holding space, gentle nudge, and any deadline.\n- Talk to the person being coached. A partner or referrer on the same paste means the addressee is UNKNOWN.\n- Stop with DO NOT DRAFT if they asked to end contact or the paste reads as a crisis. Do not invent burnout, balance, purpose, or any other theme.\n\nOutput format:\nCHANNEL\nSUBJECT (six words or fewer, email only; otherwise NONE)\nNOTE\nONE QUESTION\nTOPIC FROM THREAD with sender, date, and phrase\nSILENCE REASON or NONE\nUNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a life coach. Shape one calm Saturday follow-up from a quiet thread, then stop. The coach decides whether it sends.\n\nPaste:\n[QUIET THREAD] every message with sender and date, plus intake answers from this same conversation if any\n[CHANNEL] email, SMS, or portal\n[COACH SIGN-OFF] name and closing\n[OFF LIMITS] lines they refuse, such as price or a package\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw the question from a phrase the other person wrote. If none exists, mark the topic UNKNOWN and do not guess a theme.\n- Keep a single question. It must leave room to say nothing more, and it must not ask for a session, a payment, or a yes to coaching.\n- Honor a pause, a future date, or a subject they asked you to drop. Do not reopen it.\n- Stay at or under 75 words for email and portal, and at or under 40 words for SMS. No urgency and no chase phrasing.\n- Name only the person in the coaching seat. If someone else is in the paste, mark the addressee UNKNOWN.\n- If the paste says stop, or it looks like a crisis, output DO NOT DRAFT and copy only the triggering line. Do not soothe or advise.\n\nOutput format:\nHeadings, in order: CHANNEL, SUBJECT, NOTE, ONE QUESTION, TOPIC FROM THREAD, SILENCE REASON, UNKNOWN.\nFor SMS or portal, SUBJECT is NONE. For email, six words or fewer. Record a silence reason only if they wrote one.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional later: a Google Sheet that creates Gmail drafts through Zapier, Make, or n8n, with auto-send off.",
+    "steps": [
+      "In Gmail, your phone, or the coaching portal, copy the quiet thread with each sender and date. If intake answers sit in that same conversation, paste those questions and replies too. If they never wrote back, include your last note and write that no reply exists.",
+      "On a scratch note, set the channel to email, SMS, or portal, copy the sign-off you actually use, and list off-limits lines you will not raise, such as a fee, a package name, a diagnosis, or a held slot.",
+      "Open ChatGPT, Claude, Grok, or Muse, paste the matching prompt, and replace every bracket. Paste the messages in full. Do not swap in a paraphrase you wrote from memory.",
+      "Lay the returned headings beside the thread: channel, subject, note, one question, topic from thread, silence reason, and unknown. The topic line must name a sender and a date you can see.",
+      "Cut a second question, a booking or payment ask, a silence reason they did not write, and anything on your off-limits list. If an email or portal note is over 75 words, or an SMS is over 40 words, shorten it.",
+      "Choose the moment yourself. Saturday is the tone, not a due date. If they already named a later day, wait for it unless you have a reason of your own to write sooner.",
+      "Paste the note into a reply on the same Gmail thread, SMS, or portal message. Check the recipient is only the person you coach, and leave that reply unsent.",
+      "After you send it yourself, add a Google Sheets row with client first name, channel, date sent, the question you asked, and status sent. Do not start another note while that row says sent.",
+      "Optional email path: add a sheet row with status needs draft, then let Zapier, Make, or n8n create a Gmail draft only. Leave auto-send off. Review it the same way, and send texts and portal notes yourself."
+    ],
+    "approvalStep": "Before sending, read the unsent reply beside the quiet thread. Approve it only when the one question, the recipient, and every factual phrase match the paste. Then send it yourself.",
+    "failureModes": [
+      "A second ask hides in the note, often a soft hello plus a request to book. Count the questions and keep one.",
+      "The draft explains the quiet spell, or invents a theme such as burnout or purpose, when the thread never said it. Delete any line you cannot point to.",
+      "They already named a pause or a day they would write, and the question pulls them back early. Keep their boundary or do not send.",
+      "A partner or referrer is on the thread, and private detail is aimed at the wrong person. Confirm the addressee before you approve.",
+      "Saturday turns into a deadline, with a spot that closes this weekend. Strike the pressure. The day is tone only.",
+      "A sheet automation sends the Gmail draft, or tries to text a row that was only a record. Keep auto-send off and send texts yourself."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if this quiet thread is a text, not email?",
+      "a": "Set the channel to SMS, or to portal if that is where the messages live. Expect the subject to be NONE, and keep the note at or under 40 words with the same single question. Send it yourself from the original text conversation. The sheet-to-Gmail path is only for email, so do not point Zapier, Make, or n8n at a text thread."
+    },
+    {
+      "q": "They already said they would write after a trip. Now what?",
+      "a": "Paste that line with the rest of the thread. The question has to stay inside the pause or the day they named. If the draft asks them to start now, or treats the pause as a lost client, reject it. You can also send nothing until the day they named, and record that choice on your sheet."
+    },
+    {
+      "q": "Should the Saturday note mention my package or fee?",
+      "a": "Put fee, package name, and any held slot on the off-limits list unless you deliberately want them raised and they already appear in the thread. This note is one question about their last topic, not a second pitch. If a price shows up and you cannot find it in the paste, delete it before you send."
+    },
+    {
+      "q": "Which assistant should I use for this Saturday note?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the note only when it has one question, a topic you can point to in the thread, no invented reason for the silence, and no booking ask. If those checks fail, run it again and say what to cut."
+    },
+    {
+      "q": "What if I was the last person to write?",
+      "a": "Paste your own last message and write that no reply exists. The note may use a topic you already wrote or they wrote earlier. It must not pretend they answered. If there is no real topic to ask about, leave the topic as UNKNOWN and do not send a filler hello."
+    }
+  ],
+  "draft": true,
+  "persona": "Life coach",
+  "job": "Paste the quiet coaching thread and get a short Saturday note that asks one calm question, for you to edit and send.",
+  "who": "Life coaches whose discovery chat, intake replies, or client messages have gone quiet and who want one calm Saturday note, not a booking nudge or a second pitch.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

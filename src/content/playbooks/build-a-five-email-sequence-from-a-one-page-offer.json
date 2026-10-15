@@ -1,0 +1,85 @@
+{
+  "slug": "build-a-five-email-sequence-from-a-one-page-offer",
+  "title": "Build a five-email sequence from a one-page offer",
+  "category": "Sales",
+  "summary": "Paste a one-page course offer and a note on who will receive the sequence. Take the course name, the person it fits, the problem, inclusions by the names on the page, price and dates only when printed, the one reply you want, any proof sentence already written, and your sign-off. The who-note names the list, what those people already know, and one hesitation you wrote down. You also choose five send-day labels. You get five messages in send order. Each has a subject, a preview, a body of at most 120 words, a reason to reply the others do not share, a source line from your page, and only that next step. Gaps stay marked UNKNOWN. You cut anything you did not supply and approve every draft before a message is scheduled or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an outreach drafter for an online course creator. Using only [ONE-PAGE OFFER], [WHO IT IS FOR], [NEXT STEP], [SIGN-OFF], and [SEND DAY LABELS], write five messages in send order.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Give each message a different reason to reply, in this order: fit for the person in [WHO IT IS FOR], one inclusion named on the page, one hesitation written in the inputs, one proof sentence copied from the page, then the plain ask.\n- If no proof sentence is on the page, mark proof UNKNOWN and make message four ask which named inclusion they want explained. Do not write a student story.\n- End every message with [NEXT STEP] and nothing else. Do not add a second ask, a deadline, or a new place to go.\n- Hold the subject to 9 words, the preview to 14 words, and the body to 120 words. The preview must use a fact the subject left out.\n- Copy [SEND DAY LABELS] in order. A blank label is UNKNOWN. Never turn a label into a close date unless that date is printed on the page.\n- Write as [SIGN-OFF] to one person. Do not open two messages with the same sentence.\nOutput format:\nMessage 1 through Message 5, each with: Send day, Reason to reply, Source line from the page, Subject, Preview, Body, Single next step.\nThen UNKNOWN, one missing fact per line.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for an online course creator. Build five outreach messages from [ONE-PAGE OFFER] and [WHO IT IS FOR] only. Apply [NEXT STEP], [SIGN-OFF], and [SEND DAY LABELS] as written.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Tie each reason to reply to a different line in the inputs, and copy that line into Source. The order is fit, one named inclusion, one written hesitation, one proof sentence, then the plain ask.\n- When the page has no proof sentence, set Source to UNKNOWN and use message four to ask which inclusion they want explained. Do not invent a learner result.\n- Close with [NEXT STEP] once. If you notice a second ask, delete it.\n- Subjects stay at 9 words or fewer, previews at 14 words or fewer, bodies at 120 words or fewer. Preview and subject must not repeat the same fact.\n- Place [SEND DAY LABELS] on the matching message. A missing label means UNKNOWN, not a guessed weekday and not an enrollment deadline.\n- Match the list in [WHO IT IS FOR]. Do not widen it to a different audience, and sign with [SIGN-OFF].\nOutput format:\nFive blocks, Message 1 to Message 5. Sections: Send day, Reason to reply, Source line, Subject, Preview, Body, Single next step.\nEnd with an UNKNOWN list.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for an online course creator. Write five short outreach messages from [ONE-PAGE OFFER] and [WHO IT IS FOR]. Use [NEXT STEP], [SIGN-OFF], and [SEND DAY LABELS] unchanged.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One reason to reply per message, in order: do they fit, one inclusion by name, the hesitation they wrote down, one proof sentence from the page, then the direct ask.\n- No proof on the page means message four asks which inclusion to explain, and the proof field is UNKNOWN. Do not make up a win.\n- One ask at the end, copied from [NEXT STEP]. Cut any extra ask, countdown, or bonus.\n- Subject 9 words or fewer. Preview 14 words or fewer. Body 120 words or fewer. The preview adds a new fact.\n- Put [SEND DAY LABELS] on the messages in order. A blank stays UNKNOWN. A send day is not a close date unless the page says so.\n- Sound like [SIGN-OFF] talking to the person in [WHO IT IS FOR], not like a launch blast. Change the opening each time.\nOutput format:\nMESSAGE 1 to MESSAGE 5. Fields under each: Send day, Reason to reply, Source line, Subject, Preview, Body, Single next step.\nThen a list named UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for an online course creator who will edit every line before anyone is contacted. From [ONE-PAGE OFFER], [WHO IT IS FOR], [NEXT STEP], [SIGN-OFF], and [SEND DAY LABELS], produce five messages in send order.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep the reasons to reply distinct and in this order: fit, a named inclusion, a hesitation that appears in the paste, a proof sentence from the page, then the plain ask.\n- If proof is absent, leave it UNKNOWN and let message four ask which inclusion they want explained, using only names from the page.\n- Use [NEXT STEP] as the only ask in every message. Do not stack a call on top of a reply.\n- Stay within 9 words for the subject, 14 for the preview, and 120 for the body. The preview must not restate the subject.\n- Copy send-day labels from [SEND DAY LABELS]. If one is empty, write UNKNOWN rather than picking a day.\n- Keep the reader inside [WHO IT IS FOR], and close with [SIGN-OFF] as pasted.\nOutput format:\nLabel the blocks Message 1, Message 2, Message 3, Message 4, and Message 5.\nUnder each block, these sections: Send day, Reason to reply, Source line, Subject, Preview, Body, Single next step.\nFinish with UNKNOWN items, one per line.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode first. Optional later: a Google Sheet plus Zapier, Make, or n8n may create unsent Gmail drafts only.",
+    "steps": [
+      "Copy the one-page offer into a doc before you open a chat: course name, who it is for, the problem, each inclusion by the name printed on the page, price and dates only if printed, the single reply you want, any proof sentence already there, and your sign-off.",
+      "From the list you will actually mail, such as a waitlist export or a webinar registrant sheet, write a who-note: where those people came from, what they already know, and one hesitation you have written down. If there is no list yet, describe that person and leave names off.",
+      "Open the assistant you already use, paste the prompt for that assistant, and replace each bracket with text from the offer and the who-note. Type five send-day labels you chose, or leave them blank so a missing day comes back as UNKNOWN.",
+      "Lay the five drafts next to the offer. Each one needs its own reason to reply, a subject, a preview, a body inside the word cap, and only your next step at the end. Delete any price, date, module, coupon, or student result you did not paste.",
+      "Check the reason order: fit, one named inclusion, the hesitation you wrote, one proof sentence or a question about an inclusion if the page has no proof, then the plain ask. Rewrite any draft that repeats an earlier reason.",
+      "In Gmail, or the email tool you already use for the course, save five unsent drafts addressed to yourself. Put the send-day label on each draft. Leave scheduling off, and do not add the list to a live send.",
+      "Open those drafts on your phone. Confirm the sign-off is yours, the next step matches the offer word for word, and you can tell why that note asks for a reply without reading the other four.",
+      "Only after you approve, copy the text into your email tool and set the five days yourself. When someone replies or enrolls, pause every later note for that person before the next send day arrives.",
+      "Optional agent mode: one Google Sheets row per person, with name, list source, send day, reason, and status. Zapier, Make, or n8n creates an unsent Gmail draft when status is Ready. Keep auto-send off."
+    ],
+    "approvalStep": "You read the five messages beside the one-page offer, check that each reason is different and the next step matches your line, and approve them before anything is scheduled or sent. Gmail and any workflow stay on unsent drafts until then.",
+    "failureModes": [
+      "Two notes share a reason, often both retelling the whole page. Keep one reason each, and rewrite the later note from a different line you pasted.",
+      "The last line adds a call and a checkout on top of the reply you asked for. Leave only the single next step from the page.",
+      "A price, start date, coupon, or learner result appears that is not printed on the page. Swap that sentence for UNKNOWN or delete it.",
+      "A send-day label becomes a fake deadline, such as a close date the page never states. Keep the label as the day you send, nothing more.",
+      "Later notes still go out after a person replies or enrolls. Pause the rest of that sequence before the next send day."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste from the one-page offer?",
+      "a": "Copy the course name, who it is for, the problem in your words, each inclusion by the name on the page, the single reply you want, and your sign-off. Add a price, a start date, and a proof sentence only when they are already printed. Then add a who-note: the list source, what those people already know, and one hesitation you wrote down."
+    },
+    {
+      "q": "Do all five messages use the same next step?",
+      "a": "Yes. The page should name one reply you want, such as answering with a current role or using the checkout line already printed. Every message ends with that step and no second ask. The five messages differ in the reason to reply, not in the action. If you have two steps in mind, pick one before you paste and leave the other out."
+    },
+    {
+      "q": "What if the page has no proof line and no price?",
+      "a": "Leave those lines out of the paste. The draft should mark proof UNKNOWN and skip price. Do not let it invent a learner result, a discount, or a close date. Message four can ask which named inclusion they want explained, using only names that already appear on the page."
+    },
+    {
+      "q": "Which assistant should I use for these messages?",
+      "a": "Use the prompt for the assistant you already have. Paste the same one-page offer and the same who-note. Keep the draft where the five reasons stay different, the next step matches your page word for word, and you need the least rewriting before it sounds like you."
+    },
+    {
+      "q": "Will this send the sequence for me?",
+      "a": "Paste mode only returns text. You save unsent drafts and set the days yourself. If you later connect a spreadsheet to Gmail with Zapier, Make, or n8n, keep the flow on draft creation. You still approve each message before it is scheduled or sent, and you pause the rest when someone replies."
+    }
+  ],
+  "draft": true,
+  "persona": "Online course creator",
+  "job": "Paste your one-page offer and who it is for, and get five emails, each with a different reason to reply and a single next step.",
+  "who": "An online course creator who has a finished one-page offer and a real list, such as a waitlist export or a webinar sheet, and needs five notes before anyone is contacted.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}
