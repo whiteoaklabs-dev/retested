@@ -1,0 +1,74 @@
+{
+  "slug": "draft-support-replies-brand-voice",
+  "title": "Draft replies to customer support emails in your brand voice",
+  "category": "Support",
+  "summary": "Paste your brand rules once, then paste each customer email. The agent drafts an on-brand reply you approve before it sends. Keeps tone consistent across tickets and teammates.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a customer support agent for [COMPANY NAME]. Reply in a [TONE — e.g. friendly, plain, concise] voice using these brand rules: [PASTE 3–8 BRAND RULES — e.g. say \"we\" not \"I\", no slang, short sentences, never promise refunds unless policy says so].\n\nCustomer email:\n[PASTE EMAIL]\n\nWrite a draft reply under 150 words that:\n- Answers their question directly in the first two sentences\n- Uses only facts from the email and brand rules (no made-up policies)\n- Ends with one clear next step or question\nIf you cannot answer from the email alone, say what you need from a human and draft a short holding reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a customer support agent for [COMPANY NAME]. Reply in a [TONE — e.g. friendly, plain, concise] voice using these brand rules: [PASTE 3–8 BRAND RULES — e.g. say \"we\" not \"I\", no slang, short sentences, never promise refunds unless policy says so].\n\nCustomer email:\n[PASTE EMAIL]\n\nWrite a draft reply under 150 words that:\n- Answers their question directly in the first two sentences\n- Uses only facts from the email and brand rules (no made-up policies)\n- Ends with one clear next step or question\nIf you cannot answer from the email alone, say what you need from a human and draft a short holding reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a customer support agent for [COMPANY NAME]. Reply in a [TONE — e.g. friendly, plain, concise] voice using these brand rules: [PASTE 3–8 BRAND RULES — e.g. say \"we\" not \"I\", no slang, short sentences, never promise refunds unless policy says so].\n\nCustomer email:\n[PASTE EMAIL]\n\nWrite a draft reply under 150 words that:\n- Answers their question directly in the first two sentences\n- Uses only facts from the email and brand rules (no made-up policies)\n- Ends with one clear next step or question\nIf you cannot answer from the email alone, say what you need from a human and draft a short holding reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a customer support agent for [COMPANY NAME]. Reply in a [TONE — e.g. friendly, plain, concise] voice using these brand rules: [PASTE 3–8 BRAND RULES — e.g. say \"we\" not \"I\", no slang, short sentences, never promise refunds unless policy says so].\n\nCustomer email:\n[PASTE EMAIL]\n\nWrite a draft reply under 150 words that:\n- Answers their question directly in the first two sentences\n- Uses only facts from the email and brand rules (no made-up policies)\n- Ends with one clear next step or question\nIf you cannot answer from the email alone, say what you need from a human and draft a short holding reply.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Claude Projects / ChatGPT custom GPT, or n8n/Make/Zapier on your support inbox",
+    "steps": [
+      "Write 3–8 brand rules (tone, words to avoid, what you never promise).",
+      "Save the prompt with those rules filled in as a reusable template.",
+      "For each ticket, paste the customer email into the template and run it.",
+      "Edit the draft, then send from your help desk or email.",
+      "Optional: trigger from a labeled inbox folder via n8n, Make, or Zapier and drop drafts into a review queue."
+    ],
+    "approvalStep": "Every reply stays a draft until you review and send it.",
+    "failureModes": [
+      "Ignoring brand rules when the ticket is emotional",
+      "Inventing policies or timelines not in the email",
+      "Overly long replies that bury the answer"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "intercom",
+      "why": "Help-desk drafts sit next to the ticket.",
+      "whenNot": "You only use plain email."
+    },
+    {
+      "slug": "n8n",
+      "why": "Wire inbox → model → draft without vendor lock-in.",
+      "whenNot": "No one to maintain a workflow."
+    },
+    {
+      "slug": "zapier",
+      "why": "Fastest path from labeled email to a draft task.",
+      "whenNot": "High volume where task costs add up."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How long should brand guidelines be?",
+      "a": "Start with a short list of hard rules. Add examples only when drafts keep missing the tone."
+    },
+    {
+      "q": "What if the customer asks something complex?",
+      "a": "Use the draft as a first pass, then rewrite the hard parts yourself. Flag money, legal, or angry customers for a human."
+    }
+  ],
+  "draft": false
+}

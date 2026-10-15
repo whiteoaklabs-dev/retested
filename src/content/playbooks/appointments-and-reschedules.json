@@ -1,0 +1,74 @@
+{
+  "slug": "appointments-and-reschedules",
+  "title": "Schedule appointments and handle reschedules with an agent",
+  "category": "Back office",
+  "summary": "Give the agent the customer request, your real open slots, and reschedule rules. It drafts a confirmation or reschedule email you approve before it sends.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a scheduling assistant for [BUSINESS NAME]. Draft a reply to this scheduling request.\n\nCustomer request: [PASTE EMAIL OR MESSAGE]\nCurrent appointment (if any): [DATE, TIME, DURATION, LOCATION/LINK] or \"new booking\"\nMy availability rules: [e.g. Tue–Thu 10:00–16:00 local; 30-min slots; buffer 15 min]\nOpen slots I can offer (only real ones): [LIST 2–5 SLOTS WITH TIMEZONE]\nPolicies: [CANCELLATION / RESCHEDULE RULES]\n\nWrite a reply under 100 words that:\n- Confirms, reschedules, or acknowledges a cancellation clearly\n- Offers 2–3 real alternative slots if needed (only from my list)\n- Restates the final time with timezone\n- Stays polite and on-brand: [TONE NOTES]\n\nIf the request is unclear or outside my rules, draft a short holding reply and list what a human must decide. Do not invent open slots.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a scheduling assistant for [BUSINESS NAME]. Draft a reply to this scheduling request.\n\nCustomer request: [PASTE EMAIL OR MESSAGE]\nCurrent appointment (if any): [DATE, TIME, DURATION, LOCATION/LINK] or \"new booking\"\nMy availability rules: [e.g. Tue–Thu 10:00–16:00 local; 30-min slots; buffer 15 min]\nOpen slots I can offer (only real ones): [LIST 2–5 SLOTS WITH TIMEZONE]\nPolicies: [CANCELLATION / RESCHEDULE RULES]\n\nWrite a reply under 100 words that:\n- Confirms, reschedules, or acknowledges a cancellation clearly\n- Offers 2–3 real alternative slots if needed (only from my list)\n- Restates the final time with timezone\n- Stays polite and on-brand: [TONE NOTES]\n\nIf the request is unclear or outside my rules, draft a short holding reply and list what a human must decide. Do not invent open slots.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a scheduling assistant for [BUSINESS NAME]. Draft a reply to this scheduling request.\n\nCustomer request: [PASTE EMAIL OR MESSAGE]\nCurrent appointment (if any): [DATE, TIME, DURATION, LOCATION/LINK] or \"new booking\"\nMy availability rules: [e.g. Tue–Thu 10:00–16:00 local; 30-min slots; buffer 15 min]\nOpen slots I can offer (only real ones): [LIST 2–5 SLOTS WITH TIMEZONE]\nPolicies: [CANCELLATION / RESCHEDULE RULES]\n\nWrite a reply under 100 words that:\n- Confirms, reschedules, or acknowledges a cancellation clearly\n- Offers 2–3 real alternative slots if needed (only from my list)\n- Restates the final time with timezone\n- Stays polite and on-brand: [TONE NOTES]\n\nIf the request is unclear or outside my rules, draft a short holding reply and list what a human must decide. Do not invent open slots.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a scheduling assistant for [BUSINESS NAME]. Draft a reply to this scheduling request.\n\nCustomer request: [PASTE EMAIL OR MESSAGE]\nCurrent appointment (if any): [DATE, TIME, DURATION, LOCATION/LINK] or \"new booking\"\nMy availability rules: [e.g. Tue–Thu 10:00–16:00 local; 30-min slots; buffer 15 min]\nOpen slots I can offer (only real ones): [LIST 2–5 SLOTS WITH TIMEZONE]\nPolicies: [CANCELLATION / RESCHEDULE RULES]\n\nWrite a reply under 100 words that:\n- Confirms, reschedules, or acknowledges a cancellation clearly\n- Offers 2–3 real alternative slots if needed (only from my list)\n- Restates the final time with timezone\n- Stays polite and on-brand: [TONE NOTES]\n\nIf the request is unclear or outside my rules, draft a short holding reply and list what a human must decide. Do not invent open slots.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "n8n/Make/Zapier plus your calendar tool, or a chat model with pasted availability",
+    "steps": [
+      "Decide availability rules and cancellation policy once.",
+      "When a request arrives, copy real open slots from your calendar.",
+      "Run the prompt and review the draft.",
+      "Send the reply, then update the calendar hold.",
+      "Optional: automate email → draft → Slack approve via Make or Zapier."
+    ],
+    "approvalStep": "All scheduling replies need your approval until you trust the slot list is always accurate.",
+    "failureModes": [
+      "Offering times that are already booked",
+      "Confirming a cancel when they asked to reschedule",
+      "Missing the timezone"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "zapier",
+      "why": "Inbox or form → draft with calendar context.",
+      "whenNot": "You use a booking link and rarely renegotiate."
+    },
+    {
+      "slug": "make",
+      "why": "Multi-step approve-and-send for reschedules.",
+      "whenNot": "Low volume."
+    },
+    {
+      "slug": "lindy",
+      "why": "No-code assistant for email scheduling threads.",
+      "whenNot": "You need deep custom calendar logic."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if they ask something the agent cannot answer?",
+      "a": "It should send a holding reply and flag you. Do not let it guess fees or exceptions."
+    },
+    {
+      "q": "Can it handle complex multi-party scheduling?",
+      "a": "Start with one-to-one reschedules. Multi-party is better as a human thread."
+    }
+  ],
+  "draft": true
+}

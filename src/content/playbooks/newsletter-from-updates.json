@@ -1,0 +1,74 @@
+{
+  "slug": "newsletter-from-updates",
+  "title": "Write email newsletter campaigns from your latest updates",
+  "category": "Marketing & SEO",
+  "summary": "Paste this week's real updates and get a short newsletter draft with subject lines and one CTA. You cut anything that is not useful to the reader before sending.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Draft a short newsletter from these updates.\n\nCompany: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nUpdates to use (paste only real items): [BLOG LINKS, PRODUCT CHANGES, WINS, DATES]\nItems to skip: [OPTIONAL]\nTone: [friendly / plain / expert]\nPrimary CTA: [LINK + WHAT YOU WANT THEM TO DO]\n\nOutput:\n- Subject line + 2 alternate subject lines\n- Preview text ≤90 characters\n- Body under 200 words, scannable, reader-benefit first\n- One primary CTA\n- Optional P.S. under 30 words\n\nRules: Do not invent launches, metrics, or quotes. If an update lacks a reader benefit, either reframe honestly or leave it out.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Draft a short newsletter from these updates.\n\nCompany: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nUpdates to use (paste only real items): [BLOG LINKS, PRODUCT CHANGES, WINS, DATES]\nItems to skip: [OPTIONAL]\nTone: [friendly / plain / expert]\nPrimary CTA: [LINK + WHAT YOU WANT THEM TO DO]\n\nOutput:\n- Subject line + 2 alternate subject lines\n- Preview text ≤90 characters\n- Body under 200 words, scannable, reader-benefit first\n- One primary CTA\n- Optional P.S. under 30 words\n\nRules: Do not invent launches, metrics, or quotes. If an update lacks a reader benefit, either reframe honestly or leave it out.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Draft a short newsletter from these updates.\n\nCompany: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nUpdates to use (paste only real items): [BLOG LINKS, PRODUCT CHANGES, WINS, DATES]\nItems to skip: [OPTIONAL]\nTone: [friendly / plain / expert]\nPrimary CTA: [LINK + WHAT YOU WANT THEM TO DO]\n\nOutput:\n- Subject line + 2 alternate subject lines\n- Preview text ≤90 characters\n- Body under 200 words, scannable, reader-benefit first\n- One primary CTA\n- Optional P.S. under 30 words\n\nRules: Do not invent launches, metrics, or quotes. If an update lacks a reader benefit, either reframe honestly or leave it out.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Draft a short newsletter from these updates.\n\nCompany: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nUpdates to use (paste only real items): [BLOG LINKS, PRODUCT CHANGES, WINS, DATES]\nItems to skip: [OPTIONAL]\nTone: [friendly / plain / expert]\nPrimary CTA: [LINK + WHAT YOU WANT THEM TO DO]\n\nOutput:\n- Subject line + 2 alternate subject lines\n- Preview text ≤90 characters\n- Body under 200 words, scannable, reader-benefit first\n- One primary CTA\n- Optional P.S. under 30 words\n\nRules: Do not invent launches, metrics, or quotes. If an update lacks a reader benefit, either reframe honestly or leave it out.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model; send through your email tool after approval",
+    "steps": [
+      "Collect the week's real updates in one doc.",
+      "Paste them into the prompt with audience and CTA.",
+      "Edit for voice and remove weak items.",
+      "Paste into your ESP and send a test to yourself.",
+      "Optional: Make/Zapier to assemble a Friday updates doc automatically."
+    ],
+    "approvalStep": "Every newsletter needs your review — especially links, dates, and claims.",
+    "failureModes": [
+      "Company-centric brag lists with no reader benefit",
+      "Missing or broken CTA links",
+      "Invented metrics"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "zapier",
+      "why": "Pull new blog posts into a weekly draft doc.",
+      "whenNot": "You already keep a manual updates list."
+    },
+    {
+      "slug": "make",
+      "why": "Richer weekly assemble from multiple sources.",
+      "whenNot": "Low complexity."
+    },
+    {
+      "slug": "n8n",
+      "why": "Self-hosted digest pipeline.",
+      "whenNot": "Hosted ESP automation is enough."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How often should I send?",
+      "a": "Match how often you have real updates. Monthly is fine if weekly would be empty."
+    },
+    {
+      "q": "What if the model skips something important?",
+      "a": "Add it back yourself. The draft is a starting point, not the final email."
+    }
+  ],
+  "draft": true
+}

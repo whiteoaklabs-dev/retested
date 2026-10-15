@@ -1,0 +1,74 @@
+{
+  "slug": "refunds-with-approval-rules",
+  "title": "Handle refund and return requests with approval rules",
+  "category": "Support",
+  "summary": "The agent reads your refund policy, drafts an allow/deny/info reply, and flags anything over your money or risk limits for a human. No refund sends without approval.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a support agent for [BUSINESS NAME]. Handle this refund or return request using only the policy below.\n\nPolicy:\n[PASTE REFUND / RETURN / WINDOW / CONDITION / RESTOCKING RULES]\nApproval rules:\n- Auto-draft allow if: [CONDITIONS]\n- Always escalate to human if: [MONEY OVER X, LEGAL THREATS, ANGER, OUTSIDE WINDOW, MISSING ORDER ID]\n\nCustomer message:\n[PASTE]\nOrder details if known: [ORDER ID, DATE, ITEM, AMOUNT] or \"unknown\"\n\nOutput:\n1) Decision: Approve draft / Deny draft / Need more info / Human review\n2) Reason citing the policy line\n3) Customer reply under 80 words, calm and clear\n4) Internal note: one line for the ticket\n\nNever promise a refund amount or timeline unless the policy states it. If angry or legal language appears, choose Human review.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a support agent for [BUSINESS NAME]. Handle this refund or return request using only the policy below.\n\nPolicy:\n[PASTE REFUND / RETURN / WINDOW / CONDITION / RESTOCKING RULES]\nApproval rules:\n- Auto-draft allow if: [CONDITIONS]\n- Always escalate to human if: [MONEY OVER X, LEGAL THREATS, ANGER, OUTSIDE WINDOW, MISSING ORDER ID]\n\nCustomer message:\n[PASTE]\nOrder details if known: [ORDER ID, DATE, ITEM, AMOUNT] or \"unknown\"\n\nOutput:\n1) Decision: Approve draft / Deny draft / Need more info / Human review\n2) Reason citing the policy line\n3) Customer reply under 80 words, calm and clear\n4) Internal note: one line for the ticket\n\nNever promise a refund amount or timeline unless the policy states it. If angry or legal language appears, choose Human review.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a support agent for [BUSINESS NAME]. Handle this refund or return request using only the policy below.\n\nPolicy:\n[PASTE REFUND / RETURN / WINDOW / CONDITION / RESTOCKING RULES]\nApproval rules:\n- Auto-draft allow if: [CONDITIONS]\n- Always escalate to human if: [MONEY OVER X, LEGAL THREATS, ANGER, OUTSIDE WINDOW, MISSING ORDER ID]\n\nCustomer message:\n[PASTE]\nOrder details if known: [ORDER ID, DATE, ITEM, AMOUNT] or \"unknown\"\n\nOutput:\n1) Decision: Approve draft / Deny draft / Need more info / Human review\n2) Reason citing the policy line\n3) Customer reply under 80 words, calm and clear\n4) Internal note: one line for the ticket\n\nNever promise a refund amount or timeline unless the policy states it. If angry or legal language appears, choose Human review.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a support agent for [BUSINESS NAME]. Handle this refund or return request using only the policy below.\n\nPolicy:\n[PASTE REFUND / RETURN / WINDOW / CONDITION / RESTOCKING RULES]\nApproval rules:\n- Auto-draft allow if: [CONDITIONS]\n- Always escalate to human if: [MONEY OVER X, LEGAL THREATS, ANGER, OUTSIDE WINDOW, MISSING ORDER ID]\n\nCustomer message:\n[PASTE]\nOrder details if known: [ORDER ID, DATE, ITEM, AMOUNT] or \"unknown\"\n\nOutput:\n1) Decision: Approve draft / Deny draft / Need more info / Human review\n2) Reason citing the policy line\n3) Customer reply under 80 words, calm and clear\n4) Internal note: one line for the ticket\n\nNever promise a refund amount or timeline unless the policy states it. If angry or legal language appears, choose Human review.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Intercom, or n8n/Make/Zapier on your support inbox with policy pasted in",
+    "steps": [
+      "Write a clear refund/return policy and money thresholds for human approval.",
+      "Paste policy into a reusable prompt template.",
+      "On each request, include order details when you have them.",
+      "Route Human review and all money moves to a person.",
+      "Log the decision in your help desk before sending."
+    ],
+    "approvalStep": "Any refund that moves money requires a human click. Angry or legal tickets always escalate.",
+    "failureModes": [
+      "Approving outside the return window",
+      "Inventing policy exceptions",
+      "Missing order IDs and guessing"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "intercom",
+      "why": "Ticket + AI draft beside your help center.",
+      "whenNot": "You run support from plain email only."
+    },
+    {
+      "slug": "n8n",
+      "why": "Custom rules across email and CRM.",
+      "whenNot": "No technical owner."
+    },
+    {
+      "slug": "lindy",
+      "why": "No-code support assistant for light volume.",
+      "whenNot": "You need deep help-desk workflows."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if the customer is upset?",
+      "a": "Acknowledge briefly and escalate. Do not argue policy in the first reply."
+    },
+    {
+      "q": "Can it do partial refunds?",
+      "a": "Only if your policy says how. Otherwise mark Human review."
+    }
+  ],
+  "draft": true
+}

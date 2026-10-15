@@ -1,0 +1,74 @@
+{
+  "slug": "cold-outreach-not-ai-sounding",
+  "title": "Write personalized cold outreach that doesn't sound like AI",
+  "category": "Sales",
+  "summary": "Feed in real research about the person, then get a short cold email or LinkedIn note with a specific first line and one clear ask. No filler, no invented compliments.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Rewrite this cold outreach so it sounds like a careful human, not a template.\n\nRecipient: [NAME], [TITLE] at [COMPANY].\nWhat I researched (only real facts I already verified): [1–3 SPECIFIC DETAILS — e.g. a recent post, a hire, a product launch, a quote].\nMy business: [ONE-LINE DESCRIPTION].\nWhy I am reaching out: [ONE CONCRETE REASON TIED TO THEM].\nMy ask: [ONE SMALL ASK — e.g. 15-min call, reply with yes/no, look at a 1-pager].\nChannel: [EMAIL or LINKEDIN].\nOriginal draft (optional): [PASTE DRAFT OR leave blank].\n\nRules:\n- Under 120 words. Plain text. No buzzwords (\"synergy\", \"leverage\", \"game-changing\").\n- First line must use one of my researched details — never invent compliments.\n- No fake familiarity. No \"I loved your recent…\" unless I named the exact post.\n- One ask only. Soft close.\n- If research is thin, say so in the output and write a shorter, honest version instead of inventing details.\n\nOutput: subject line (if email) + body.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Rewrite this cold outreach so it sounds like a careful human, not a template.\n\nRecipient: [NAME], [TITLE] at [COMPANY].\nWhat I researched (only real facts I already verified): [1–3 SPECIFIC DETAILS — e.g. a recent post, a hire, a product launch, a quote].\nMy business: [ONE-LINE DESCRIPTION].\nWhy I am reaching out: [ONE CONCRETE REASON TIED TO THEM].\nMy ask: [ONE SMALL ASK — e.g. 15-min call, reply with yes/no, look at a 1-pager].\nChannel: [EMAIL or LINKEDIN].\nOriginal draft (optional): [PASTE DRAFT OR leave blank].\n\nRules:\n- Under 120 words. Plain text. No buzzwords (\"synergy\", \"leverage\", \"game-changing\").\n- First line must use one of my researched details — never invent compliments.\n- No fake familiarity. No \"I loved your recent…\" unless I named the exact post.\n- One ask only. Soft close.\n- If research is thin, say so in the output and write a shorter, honest version instead of inventing details.\n\nOutput: subject line (if email) + body.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Rewrite this cold outreach so it sounds like a careful human, not a template.\n\nRecipient: [NAME], [TITLE] at [COMPANY].\nWhat I researched (only real facts I already verified): [1–3 SPECIFIC DETAILS — e.g. a recent post, a hire, a product launch, a quote].\nMy business: [ONE-LINE DESCRIPTION].\nWhy I am reaching out: [ONE CONCRETE REASON TIED TO THEM].\nMy ask: [ONE SMALL ASK — e.g. 15-min call, reply with yes/no, look at a 1-pager].\nChannel: [EMAIL or LINKEDIN].\nOriginal draft (optional): [PASTE DRAFT OR leave blank].\n\nRules:\n- Under 120 words. Plain text. No buzzwords (\"synergy\", \"leverage\", \"game-changing\").\n- First line must use one of my researched details — never invent compliments.\n- No fake familiarity. No \"I loved your recent…\" unless I named the exact post.\n- One ask only. Soft close.\n- If research is thin, say so in the output and write a shorter, honest version instead of inventing details.\n\nOutput: subject line (if email) + body.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Rewrite this cold outreach so it sounds like a careful human, not a template.\n\nRecipient: [NAME], [TITLE] at [COMPANY].\nWhat I researched (only real facts I already verified): [1–3 SPECIFIC DETAILS — e.g. a recent post, a hire, a product launch, a quote].\nMy business: [ONE-LINE DESCRIPTION].\nWhy I am reaching out: [ONE CONCRETE REASON TIED TO THEM].\nMy ask: [ONE SMALL ASK — e.g. 15-min call, reply with yes/no, look at a 1-pager].\nChannel: [EMAIL or LINKEDIN].\nOriginal draft (optional): [PASTE DRAFT OR leave blank].\n\nRules:\n- Under 120 words. Plain text. No buzzwords (\"synergy\", \"leverage\", \"game-changing\").\n- First line must use one of my researched details — never invent compliments.\n- No fake familiarity. No \"I loved your recent…\" unless I named the exact post.\n- One ask only. Soft close.\n- If research is thin, say so in the output and write a shorter, honest version instead of inventing details.\n\nOutput: subject line (if email) + body.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model; optional Zapier/Make later for a research → draft queue",
+    "steps": [
+      "Open the prospect's public LinkedIn or site and copy 1–3 real details you can verify.",
+      "Fill the placeholders (never invent if research is thin).",
+      "Run the prompt and read the draft out loud — if it sounds fake, cut it.",
+      "Send manually at first; keep a swipe file of approved openers.",
+      "Optional: queue prospects in a sheet and automate research → draft with Make or Zapier."
+    ],
+    "approvalStep": "Always read the draft before send. Delete any claim you did not verify yourself.",
+    "failureModes": [
+      "Inventing posts, awards, or company news",
+      "Opening with generic flattery",
+      "Pitching the product before the reason for writing"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "hubspot",
+      "why": "Log outreach and follow-ups in one CRM.",
+      "whenNot": "You are doing one-off personal outreach."
+    },
+    {
+      "slug": "make",
+      "why": "Batch research notes into drafts without high task fees.",
+      "whenNot": "You send fewer than a few dozen messages a week."
+    },
+    {
+      "slug": "zapier",
+      "why": "Sheet row → draft in your email for review.",
+      "whenNot": "You prefer pasting into chat by hand."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if they have no public activity?",
+      "a": "Use company news you can link, or their role plus a concrete problem you solve. Shorter is better than fake personalization."
+    },
+    {
+      "q": "How do I avoid spam filters?",
+      "a": "Write like a person, one ask, plain text, and send from a warmed domain. Volume and list quality matter more than the prompt."
+    }
+  ],
+  "draft": false
+}

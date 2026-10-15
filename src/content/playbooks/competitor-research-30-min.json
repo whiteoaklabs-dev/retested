@@ -1,0 +1,74 @@
+{
+  "slug": "competitor-research-30-min",
+  "title": "Run competitor research for a small business in 30 minutes",
+  "category": "Marketing & SEO",
+  "summary": "Paste three competitor URLs and any pricing or about-page text you copied. Get a short strengths/gaps snapshot and three opportunities — with no invented prices or features.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Run a 30-minute competitor snapshot for my small business. Use only the URLs and notes I provide — do not browse inventively or invent pricing.\n\nMy business: [ONE-LINE DESCRIPTION]\nWhat I sell / who I serve: [NOTES]\nCompetitors:\n1) [NAME] — [URL] — notes: [OPTIONAL]\n2) [NAME] — [URL] — notes: [OPTIONAL]\n3) [NAME] — [URL] — notes: [OPTIONAL]\nExtra material I pasted: [PRICING PAGE TEXT / ABOUT TEXT / ADS COPY OR \"none\"]\n\nFor each competitor output:\n- Positioning in one sentence\n- 3 strengths (tied to evidence I provided)\n- 3 weaknesses or gaps (hedge if evidence is thin)\n- Pricing signals: only what appears in my paste; else \"not in materials\"\nThen: 3 opportunities for my business, each with a why\nFinally: open questions I should verify manually this week\n\nNever invent features, customers, or prices.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Run a 30-minute competitor snapshot for my small business. Use only the URLs and notes I provide — do not browse inventively or invent pricing.\n\nMy business: [ONE-LINE DESCRIPTION]\nWhat I sell / who I serve: [NOTES]\nCompetitors:\n1) [NAME] — [URL] — notes: [OPTIONAL]\n2) [NAME] — [URL] — notes: [OPTIONAL]\n3) [NAME] — [URL] — notes: [OPTIONAL]\nExtra material I pasted: [PRICING PAGE TEXT / ABOUT TEXT / ADS COPY OR \"none\"]\n\nFor each competitor output:\n- Positioning in one sentence\n- 3 strengths (tied to evidence I provided)\n- 3 weaknesses or gaps (hedge if evidence is thin)\n- Pricing signals: only what appears in my paste; else \"not in materials\"\nThen: 3 opportunities for my business, each with a why\nFinally: open questions I should verify manually this week\n\nNever invent features, customers, or prices.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Run a 30-minute competitor snapshot for my small business. Use only the URLs and notes I provide — do not browse inventively or invent pricing.\n\nMy business: [ONE-LINE DESCRIPTION]\nWhat I sell / who I serve: [NOTES]\nCompetitors:\n1) [NAME] — [URL] — notes: [OPTIONAL]\n2) [NAME] — [URL] — notes: [OPTIONAL]\n3) [NAME] — [URL] — notes: [OPTIONAL]\nExtra material I pasted: [PRICING PAGE TEXT / ABOUT TEXT / ADS COPY OR \"none\"]\n\nFor each competitor output:\n- Positioning in one sentence\n- 3 strengths (tied to evidence I provided)\n- 3 weaknesses or gaps (hedge if evidence is thin)\n- Pricing signals: only what appears in my paste; else \"not in materials\"\nThen: 3 opportunities for my business, each with a why\nFinally: open questions I should verify manually this week\n\nNever invent features, customers, or prices.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Run a 30-minute competitor snapshot for my small business. Use only the URLs and notes I provide — do not browse inventively or invent pricing.\n\nMy business: [ONE-LINE DESCRIPTION]\nWhat I sell / who I serve: [NOTES]\nCompetitors:\n1) [NAME] — [URL] — notes: [OPTIONAL]\n2) [NAME] — [URL] — notes: [OPTIONAL]\n3) [NAME] — [URL] — notes: [OPTIONAL]\nExtra material I pasted: [PRICING PAGE TEXT / ABOUT TEXT / ADS COPY OR \"none\"]\n\nFor each competitor output:\n- Positioning in one sentence\n- 3 strengths (tied to evidence I provided)\n- 3 weaknesses or gaps (hedge if evidence is thin)\n- Pricing signals: only what appears in my paste; else \"not in materials\"\nThen: 3 opportunities for my business, each with a why\nFinally: open questions I should verify manually this week\n\nNever invent features, customers, or prices.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model with pasted page text (do not trust unverified browsing claims)",
+    "steps": [
+      "Pick 3 competitors and open their site, pricing, and about pages.",
+      "Paste key sections into the prompt with your one-line description.",
+      "Run the prompt and highlight anything that needs a manual check.",
+      "Verify pricing and claims on the live sites before acting.",
+      "Turn one opportunity into a task for this week."
+    ],
+    "approvalStep": "Treat output as a hypothesis list. Confirm every price and feature on the source site.",
+    "failureModes": [
+      "Invented pricing",
+      "Generic SWOT language with no evidence",
+      "Comparing yourself to the wrong market segment"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Quarterly reminder + sheet of competitor URLs.",
+      "whenNot": "One-off research."
+    },
+    {
+      "slug": "zapier",
+      "why": "Same light reminder workflow.",
+      "whenNot": "You track competitors ad hoc."
+    },
+    {
+      "slug": "n8n",
+      "why": "Store snapshots over time in your own DB.",
+      "whenNot": "Overkill for a solo operator."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How many competitors should I include?",
+      "a": "Three is enough for a half hour. Add more only if they are true alternatives."
+    },
+    {
+      "q": "What if the model gets something wrong?",
+      "a": "Believe the live website over the draft. Fix your pasted source text and re-run."
+    }
+  ],
+  "draft": true
+}

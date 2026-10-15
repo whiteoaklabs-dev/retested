@@ -1,0 +1,74 @@
+{
+  "slug": "optimize-for-ai-overviews",
+  "title": "Optimize a page for AI Overviews and ChatGPT citations",
+  "category": "Marketing & SEO",
+  "summary": "Paste a page and its primary question; get a clearer opening answer, takeaways, structure fixes, and a schema sketch. Treat inclusion in AI answers as a goal, not a promise.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Audit and rewrite this page so it is easier for search and AI answer engines to quote — without guaranteeing inclusion.\n\nPrimary question the page should answer: [QUESTION]\nPage URL: [URL]\nCurrent content: [PASTE]\nBrand rules: [OPTIONAL]\n\nDeliver:\n1) Diagnosis: what blocks a clear, quotable answer today (bullets)\n2) Rewritten opening answer: ≤120 words, plain language, no hype\n3) Key takeaways: 3–5 bullets\n4) Suggested H2/H3 fixes\n5) FAQ pairs to add (2–4), only if grounded in the content\n6) Schema suggestion: FAQPage or Article JSON-LD sketch using only facts from the page\n7) Claims to remove or source (list)\n\nDo not invent statistics, awards, or product features. If a claim lacks a source, flag it.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Audit and rewrite this page so it is easier for search and AI answer engines to quote — without guaranteeing inclusion.\n\nPrimary question the page should answer: [QUESTION]\nPage URL: [URL]\nCurrent content: [PASTE]\nBrand rules: [OPTIONAL]\n\nDeliver:\n1) Diagnosis: what blocks a clear, quotable answer today (bullets)\n2) Rewritten opening answer: ≤120 words, plain language, no hype\n3) Key takeaways: 3–5 bullets\n4) Suggested H2/H3 fixes\n5) FAQ pairs to add (2–4), only if grounded in the content\n6) Schema suggestion: FAQPage or Article JSON-LD sketch using only facts from the page\n7) Claims to remove or source (list)\n\nDo not invent statistics, awards, or product features. If a claim lacks a source, flag it.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Audit and rewrite this page so it is easier for search and AI answer engines to quote — without guaranteeing inclusion.\n\nPrimary question the page should answer: [QUESTION]\nPage URL: [URL]\nCurrent content: [PASTE]\nBrand rules: [OPTIONAL]\n\nDeliver:\n1) Diagnosis: what blocks a clear, quotable answer today (bullets)\n2) Rewritten opening answer: ≤120 words, plain language, no hype\n3) Key takeaways: 3–5 bullets\n4) Suggested H2/H3 fixes\n5) FAQ pairs to add (2–4), only if grounded in the content\n6) Schema suggestion: FAQPage or Article JSON-LD sketch using only facts from the page\n7) Claims to remove or source (list)\n\nDo not invent statistics, awards, or product features. If a claim lacks a source, flag it.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Audit and rewrite this page so it is easier for search and AI answer engines to quote — without guaranteeing inclusion.\n\nPrimary question the page should answer: [QUESTION]\nPage URL: [URL]\nCurrent content: [PASTE]\nBrand rules: [OPTIONAL]\n\nDeliver:\n1) Diagnosis: what blocks a clear, quotable answer today (bullets)\n2) Rewritten opening answer: ≤120 words, plain language, no hype\n3) Key takeaways: 3–5 bullets\n4) Suggested H2/H3 fixes\n5) FAQ pairs to add (2–4), only if grounded in the content\n6) Schema suggestion: FAQPage or Article JSON-LD sketch using only facts from the page\n7) Claims to remove or source (list)\n\nDo not invent statistics, awards, or product features. If a claim lacks a source, flag it.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model with the full page pasted; optional crawl step via your own tools",
+    "steps": [
+      "Pick one money page and the question it should answer.",
+      "Paste the content into the prompt and run the audit.",
+      "Apply the opening answer and heading fixes on the real page.",
+      "Validate any JSON-LD in Google’s rich results test.",
+      "Re-check the page in a few weeks; do not expect instant Overview placement."
+    ],
+    "approvalStep": "A human must approve every factual change and remove unsourced claims before publish.",
+    "failureModes": [
+      "Oversimplifying until the answer is wrong",
+      "Broken or invented schema",
+      "Stripping needed nuance from the original"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Queue URLs from a sheet into audit drafts.",
+      "whenNot": "You optimize a page at a time."
+    },
+    {
+      "slug": "zapier",
+      "why": "Notify an editor when an audit draft is ready.",
+      "whenNot": "Solo workflow."
+    },
+    {
+      "slug": "n8n",
+      "why": "Custom fetch-and-audit pipeline.",
+      "whenNot": "No engineering time."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Will this get me into Google AI Overviews?",
+      "a": "We will publish evidence here once we have a sourced figure. Until then, treat clear answers and valid structure as good practice, not a guarantee."
+    },
+    {
+      "q": "Do I need schema?",
+      "a": "Schema can help machines understand the page when it matches visible content. Invalid or mismatched markup does not help."
+    }
+  ],
+  "draft": true
+}

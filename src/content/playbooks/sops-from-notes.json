@@ -1,0 +1,74 @@
+{
+  "slug": "sops-from-notes",
+  "title": "Write SOPs from a screen recording or rough notes",
+  "category": "Back office",
+  "summary": "Paste a transcript or messy notes and get a numbered SOP with purpose, steps, finish checks, and escalation points. You fill gaps before you hand it to a new hire.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Turn this rough process description into a clear SOP someone new could follow.\n\nSource material: [PASTE TRANSCRIPT, SCREEN-RECORDING NOTES, OR BULLETS]\nProcess name: [NAME]\nAudience: [WHO WILL FOLLOW THIS — e.g. new hire, contractor]\nTools they have access to: [LIST]\nKnown exceptions: [LIST OR \"none\"]\n\nOutput:\n# [Process name]\n## Purpose (1–2 sentences)\n## When to use\n## Steps (numbered, action verbs, one action per step)\n## Checks before you finish\n## Escalation / when to ask a human\n\nRules:\n- 5–15 steps unless the source is longer; group with short headings\n- Active voice. No fluff intro.\n- Do not invent tools, logins, or policy. Mark gaps as [NEED INPUT: …].",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Turn this rough process description into a clear SOP someone new could follow.\n\nSource material: [PASTE TRANSCRIPT, SCREEN-RECORDING NOTES, OR BULLETS]\nProcess name: [NAME]\nAudience: [WHO WILL FOLLOW THIS — e.g. new hire, contractor]\nTools they have access to: [LIST]\nKnown exceptions: [LIST OR \"none\"]\n\nOutput:\n# [Process name]\n## Purpose (1–2 sentences)\n## When to use\n## Steps (numbered, action verbs, one action per step)\n## Checks before you finish\n## Escalation / when to ask a human\n\nRules:\n- 5–15 steps unless the source is longer; group with short headings\n- Active voice. No fluff intro.\n- Do not invent tools, logins, or policy. Mark gaps as [NEED INPUT: …].",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Turn this rough process description into a clear SOP someone new could follow.\n\nSource material: [PASTE TRANSCRIPT, SCREEN-RECORDING NOTES, OR BULLETS]\nProcess name: [NAME]\nAudience: [WHO WILL FOLLOW THIS — e.g. new hire, contractor]\nTools they have access to: [LIST]\nKnown exceptions: [LIST OR \"none\"]\n\nOutput:\n# [Process name]\n## Purpose (1–2 sentences)\n## When to use\n## Steps (numbered, action verbs, one action per step)\n## Checks before you finish\n## Escalation / when to ask a human\n\nRules:\n- 5–15 steps unless the source is longer; group with short headings\n- Active voice. No fluff intro.\n- Do not invent tools, logins, or policy. Mark gaps as [NEED INPUT: …].",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Turn this rough process description into a clear SOP someone new could follow.\n\nSource material: [PASTE TRANSCRIPT, SCREEN-RECORDING NOTES, OR BULLETS]\nProcess name: [NAME]\nAudience: [WHO WILL FOLLOW THIS — e.g. new hire, contractor]\nTools they have access to: [LIST]\nKnown exceptions: [LIST OR \"none\"]\n\nOutput:\n# [Process name]\n## Purpose (1–2 sentences)\n## When to use\n## Steps (numbered, action verbs, one action per step)\n## Checks before you finish\n## Escalation / when to ask a human\n\nRules:\n- 5–15 steps unless the source is longer; group with short headings\n- Active voice. No fluff intro.\n- Do not invent tools, logins, or policy. Mark gaps as [NEED INPUT: …].",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model; optional transcription tool before the prompt",
+    "steps": [
+      "Record yourself doing the task once, or dump rough bullets.",
+      "Transcribe if needed, then paste into the prompt with audience and tools.",
+      "Run the prompt and walk through each step yourself.",
+      "Replace every [NEED INPUT] with real detail.",
+      "Store the SOP where the team will actually open it."
+    ],
+    "approvalStep": "A person who did not write it must complete the task from the SOP before you call it done.",
+    "failureModes": [
+      "Steps that assume hidden knowledge",
+      "Skipping error cases that happen weekly",
+      "Inventing button names or menu paths"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "n8n",
+      "why": "Trigger from a new doc in your SOP folder to request a rewrite.",
+      "whenNot": "You write SOPs rarely."
+    },
+    {
+      "slug": "make",
+      "why": "Same automation with less hosting work.",
+      "whenNot": "Manual paste is enough."
+    },
+    {
+      "slug": "zapier",
+      "why": "Send transcripts from a recorder into a draft doc.",
+      "whenNot": "You already paste into chat."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if my notes are really messy?",
+      "a": "Still run it, then fix [NEED INPUT] markers. Cleaner source material always wins."
+    },
+    {
+      "q": "Can it add screenshots?",
+      "a": "This prompt is text-only. Add images yourself after the steps are right."
+    }
+  ],
+  "draft": true
+}

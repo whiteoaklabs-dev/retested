@@ -1,0 +1,74 @@
+{
+  "slug": "invoices-from-job-notes",
+  "title": "Create and send invoices from emails or job notes",
+  "category": "Finance & admin",
+  "summary": "Paste job notes or a client email plus your rates and get a plain-text invoice draft with line items and a total. You check amounts, then paste into your invoicing tool.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Create a plain-text invoice draft from these job notes or emails.\n\nClient: [CLIENT NAME], [EMAIL], [ADDRESS if known]\nJob details: [PASTE EMAIL / NOTES / TIME LOG]\nMy rates: [HOURLY RATE and/or FIXED LINE ITEMS]\nExpenses to include: [LIST or \"none\"]\nInvoice number: [NUMBER]\nInvoice date: [DATE]\nPayment terms: [e.g. Due in 14 days; pay via [METHOD/LINK]]\n\nOutput a plain-text invoice with:\n- Invoice number and date\n- Bill-to block\n- Line items: description, qty/hours, rate, line total\n- Subtotal, expenses, total due\n- Payment instructions\n\nRules: Only include amounts you can support from the notes and my rates. If hours or rates are unclear, list the ambiguous lines under \"Needs review\" instead of guessing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Create a plain-text invoice draft from these job notes or emails.\n\nClient: [CLIENT NAME], [EMAIL], [ADDRESS if known]\nJob details: [PASTE EMAIL / NOTES / TIME LOG]\nMy rates: [HOURLY RATE and/or FIXED LINE ITEMS]\nExpenses to include: [LIST or \"none\"]\nInvoice number: [NUMBER]\nInvoice date: [DATE]\nPayment terms: [e.g. Due in 14 days; pay via [METHOD/LINK]]\n\nOutput a plain-text invoice with:\n- Invoice number and date\n- Bill-to block\n- Line items: description, qty/hours, rate, line total\n- Subtotal, expenses, total due\n- Payment instructions\n\nRules: Only include amounts you can support from the notes and my rates. If hours or rates are unclear, list the ambiguous lines under \"Needs review\" instead of guessing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Create a plain-text invoice draft from these job notes or emails.\n\nClient: [CLIENT NAME], [EMAIL], [ADDRESS if known]\nJob details: [PASTE EMAIL / NOTES / TIME LOG]\nMy rates: [HOURLY RATE and/or FIXED LINE ITEMS]\nExpenses to include: [LIST or \"none\"]\nInvoice number: [NUMBER]\nInvoice date: [DATE]\nPayment terms: [e.g. Due in 14 days; pay via [METHOD/LINK]]\n\nOutput a plain-text invoice with:\n- Invoice number and date\n- Bill-to block\n- Line items: description, qty/hours, rate, line total\n- Subtotal, expenses, total due\n- Payment instructions\n\nRules: Only include amounts you can support from the notes and my rates. If hours or rates are unclear, list the ambiguous lines under \"Needs review\" instead of guessing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Create a plain-text invoice draft from these job notes or emails.\n\nClient: [CLIENT NAME], [EMAIL], [ADDRESS if known]\nJob details: [PASTE EMAIL / NOTES / TIME LOG]\nMy rates: [HOURLY RATE and/or FIXED LINE ITEMS]\nExpenses to include: [LIST or \"none\"]\nInvoice number: [NUMBER]\nInvoice date: [DATE]\nPayment terms: [e.g. Due in 14 days; pay via [METHOD/LINK]]\n\nOutput a plain-text invoice with:\n- Invoice number and date\n- Bill-to block\n- Line items: description, qty/hours, rate, line total\n- Subtotal, expenses, total due\n- Payment instructions\n\nRules: Only include amounts you can support from the notes and my rates. If hours or rates are unclear, list the ambiguous lines under \"Needs review\" instead of guessing.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model for the draft; optional n8n/Make when job notes arrive by email",
+    "steps": [
+      "Collect the job email/notes, your rate card, and the next invoice number.",
+      "Paste everything into the prompt and run it.",
+      "Fix any \"Needs review\" lines yourself.",
+      "Paste the draft into QuickBooks, FreshBooks, Stripe, or a Google Doc template.",
+      "Send only after amounts and client details look right."
+    ],
+    "approvalStep": "Never auto-send. Verify hours, rates, and client address before the invoice goes out.",
+    "failureModes": [
+      "Guessing hours when notes are vague",
+      "Missing expenses buried in the email thread",
+      "Wrong client entity or billing address"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Email with a label → draft → your review folder.",
+      "whenNot": "You invoice a few times a month by hand."
+    },
+    {
+      "slug": "zapier",
+      "why": "Same path with simpler setup.",
+      "whenNot": "Per-task cost is a concern."
+    },
+    {
+      "slug": "n8n",
+      "why": "Self-hosted control over invoice drafts.",
+      "whenNot": "You want zero ops overhead."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can it handle other currencies?",
+      "a": "Not yet tested end-to-end. Set the currency in your invoicing tool after you paste the draft."
+    },
+    {
+      "q": "What if the notes are a mess?",
+      "a": "Summarize line items yourself first, then run the prompt. Ambiguous lines should land in Needs review, not in the total."
+    }
+  ],
+  "draft": false
+}

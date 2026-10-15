@@ -1,0 +1,74 @@
+{
+  "slug": "weekly-metrics-report",
+  "title": "Summarize weekly business metrics into a one-page report",
+  "category": "Back office",
+  "summary": "Paste this week's and last week's numbers and get a short one-page report with changes, a plain summary, and a few next actions. You check the math before sharing.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Create a one-page weekly business report from these numbers.\n\nWeek ending: [DATE]\nThis week metrics (paste as labeled lines): [SALES / REVENUE], [PIPELINE OR NEW LEADS], [MARKETING — e.g. spend, clicks, signups], [EXPENSES OR CASH], [OTHER KPIs YOU TRACK]\nLast week metrics (same labels): [PASTE]\nNotes I already know (optional): [CONTEXT — launches, outages, seasonality]\n\nOutput:\nTitle: Weekly business performance — [DATE]\nFor each metric section: this week, last week, % change (say \"n/a\" if last week missing)\nOverall summary: 2–3 sentences in plain words\nWatch-outs: up to 3 bullets (only if supported by the numbers)\nDo-next: up to 3 concrete actions\n\nRules: Do not invent metrics. Do not claim causes you were not given. Keep the whole report skimmable in under two minutes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Create a one-page weekly business report from these numbers.\n\nWeek ending: [DATE]\nThis week metrics (paste as labeled lines): [SALES / REVENUE], [PIPELINE OR NEW LEADS], [MARKETING — e.g. spend, clicks, signups], [EXPENSES OR CASH], [OTHER KPIs YOU TRACK]\nLast week metrics (same labels): [PASTE]\nNotes I already know (optional): [CONTEXT — launches, outages, seasonality]\n\nOutput:\nTitle: Weekly business performance — [DATE]\nFor each metric section: this week, last week, % change (say \"n/a\" if last week missing)\nOverall summary: 2–3 sentences in plain words\nWatch-outs: up to 3 bullets (only if supported by the numbers)\nDo-next: up to 3 concrete actions\n\nRules: Do not invent metrics. Do not claim causes you were not given. Keep the whole report skimmable in under two minutes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Create a one-page weekly business report from these numbers.\n\nWeek ending: [DATE]\nThis week metrics (paste as labeled lines): [SALES / REVENUE], [PIPELINE OR NEW LEADS], [MARKETING — e.g. spend, clicks, signups], [EXPENSES OR CASH], [OTHER KPIs YOU TRACK]\nLast week metrics (same labels): [PASTE]\nNotes I already know (optional): [CONTEXT — launches, outages, seasonality]\n\nOutput:\nTitle: Weekly business performance — [DATE]\nFor each metric section: this week, last week, % change (say \"n/a\" if last week missing)\nOverall summary: 2–3 sentences in plain words\nWatch-outs: up to 3 bullets (only if supported by the numbers)\nDo-next: up to 3 concrete actions\n\nRules: Do not invent metrics. Do not claim causes you were not given. Keep the whole report skimmable in under two minutes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Create a one-page weekly business report from these numbers.\n\nWeek ending: [DATE]\nThis week metrics (paste as labeled lines): [SALES / REVENUE], [PIPELINE OR NEW LEADS], [MARKETING — e.g. spend, clicks, signups], [EXPENSES OR CASH], [OTHER KPIs YOU TRACK]\nLast week metrics (same labels): [PASTE]\nNotes I already know (optional): [CONTEXT — launches, outages, seasonality]\n\nOutput:\nTitle: Weekly business performance — [DATE]\nFor each metric section: this week, last week, % change (say \"n/a\" if last week missing)\nOverall summary: 2–3 sentences in plain words\nWatch-outs: up to 3 bullets (only if supported by the numbers)\nDo-next: up to 3 concrete actions\n\nRules: Do not invent metrics. Do not claim causes you were not given. Keep the whole report skimmable in under two minutes.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model each week; optional Make/Zapier to assemble exports into one prompt",
+    "steps": [
+      "Export key numbers from CRM, ads, and accounting into one paste block.",
+      "Include last week's numbers in the same shape.",
+      "Run the prompt and skim every percentage.",
+      "Edit the summary, then save as a doc or PDF for your team.",
+      "Optional: schedule a Friday automation that emails you the filled prompt."
+    ],
+    "approvalStep": "Verify totals and % changes before anyone else sees the report.",
+    "failureModes": [
+      "Wrong percent change from mismatched units",
+      "Inventing reasons for a dip",
+      "Burying the one number that actually matters"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Pull multiple exports into one weekly prompt.",
+      "whenNot": "All numbers already live in one sheet."
+    },
+    {
+      "slug": "zapier",
+      "why": "Schedule the weekly assemble-and-notify step.",
+      "whenNot": "You prefer a manual Friday ritual."
+    },
+    {
+      "slug": "hubspot",
+      "why": "Sales and pipeline figures in one export.",
+      "whenNot": "Sales is not part of this report."
+    }
+  ],
+  "faq": [
+    {
+      "q": "How often should I run this?",
+      "a": "Weekly is a solid default. Switch to monthly if the numbers barely move."
+    },
+    {
+      "q": "What if formats differ across tools?",
+      "a": "Normalize labels before pasting, or tell the model what each column means. Do not trust mixed units."
+    }
+  ],
+  "draft": true
+}

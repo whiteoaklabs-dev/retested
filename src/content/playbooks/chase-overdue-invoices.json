@@ -1,0 +1,74 @@
+{
+  "slug": "chase-overdue-invoices",
+  "title": "Chase overdue invoices politely with an agent",
+  "category": "Finance & admin",
+  "summary": "When an invoice goes overdue, the agent drafts a three-stage reminder email that stays polite and names the invoice, amount, and how to pay. You approve each send, and you stop the sequence when they pay.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a calm accounts-receivable assistant. Draft a polite payment reminder.\n\nInvoice: #[INVOICE NUMBER]\nAmount due: [AMOUNT] [CURRENCY]\nOriginal due date: [DUE DATE]\nDays overdue: [N]\nCustomer: [NAME], [COMPANY], [EMAIL]\nWhat we delivered: [ONE-LINE DESCRIPTION]\nReminder stage: [1 = gentle nudge | 2 = firmer second notice | 3 = final notice before escalation]\nPayment link / instructions: [LINK OR METHOD]\nTone notes: [e.g. long-term client, first late payment]\n\nWrite one email under 120 words:\n- Subject line\n- Body that names the invoice, amount, and due date\n- Clear how to pay\n- Stage 1: friendly. Stage 2: firmer, still polite. Stage 3: final notice, still respectful — no threats or shame.\nDo not invent late fees unless I include them above. Do not claim legal action.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a calm accounts-receivable assistant. Draft a polite payment reminder.\n\nInvoice: #[INVOICE NUMBER]\nAmount due: [AMOUNT] [CURRENCY]\nOriginal due date: [DUE DATE]\nDays overdue: [N]\nCustomer: [NAME], [COMPANY], [EMAIL]\nWhat we delivered: [ONE-LINE DESCRIPTION]\nReminder stage: [1 = gentle nudge | 2 = firmer second notice | 3 = final notice before escalation]\nPayment link / instructions: [LINK OR METHOD]\nTone notes: [e.g. long-term client, first late payment]\n\nWrite one email under 120 words:\n- Subject line\n- Body that names the invoice, amount, and due date\n- Clear how to pay\n- Stage 1: friendly. Stage 2: firmer, still polite. Stage 3: final notice, still respectful — no threats or shame.\nDo not invent late fees unless I include them above. Do not claim legal action.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a calm accounts-receivable assistant. Draft a polite payment reminder.\n\nInvoice: #[INVOICE NUMBER]\nAmount due: [AMOUNT] [CURRENCY]\nOriginal due date: [DUE DATE]\nDays overdue: [N]\nCustomer: [NAME], [COMPANY], [EMAIL]\nWhat we delivered: [ONE-LINE DESCRIPTION]\nReminder stage: [1 = gentle nudge | 2 = firmer second notice | 3 = final notice before escalation]\nPayment link / instructions: [LINK OR METHOD]\nTone notes: [e.g. long-term client, first late payment]\n\nWrite one email under 120 words:\n- Subject line\n- Body that names the invoice, amount, and due date\n- Clear how to pay\n- Stage 1: friendly. Stage 2: firmer, still polite. Stage 3: final notice, still respectful — no threats or shame.\nDo not invent late fees unless I include them above. Do not claim legal action.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a calm accounts-receivable assistant. Draft a polite payment reminder.\n\nInvoice: #[INVOICE NUMBER]\nAmount due: [AMOUNT] [CURRENCY]\nOriginal due date: [DUE DATE]\nDays overdue: [N]\nCustomer: [NAME], [COMPANY], [EMAIL]\nWhat we delivered: [ONE-LINE DESCRIPTION]\nReminder stage: [1 = gentle nudge | 2 = firmer second notice | 3 = final notice before escalation]\nPayment link / instructions: [LINK OR METHOD]\nTone notes: [e.g. long-term client, first late payment]\n\nWrite one email under 120 words:\n- Subject line\n- Body that names the invoice, amount, and due date\n- Clear how to pay\n- Stage 1: friendly. Stage 2: firmer, still polite. Stage 3: final notice, still respectful — no threats or shame.\nDo not invent late fees unless I include them above. Do not claim legal action.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "n8n, Make, or Zapier connected to your invoicing tool or a spreadsheet of open invoices",
+    "steps": [
+      "Maintain a list of open invoices with due dates (from QuickBooks, Stripe, or a sheet).",
+      "Trigger when days-overdue hits your thresholds (e.g. 7 / 14 / 30).",
+      "Pass invoice fields and reminder stage into the prompt.",
+      "Send the draft to yourself for one-click approve.",
+      "Cancel remaining reminders when payment is recorded."
+    ],
+    "approvalStep": "Every reminder waits for your approval. Never auto-send stage 3.",
+    "failureModes": [
+      "Reminding someone who already paid",
+      "Missing invoice number or payment link",
+      "Tone that jumps to threats too early"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Cheap scheduled checks of overdue rows.",
+      "whenNot": "You only have a handful of invoices."
+    },
+    {
+      "slug": "zapier",
+      "why": "Simple overdue → draft email path.",
+      "whenNot": "High volume makes task pricing painful."
+    },
+    {
+      "slug": "hubspot",
+      "why": "Track company communication history next to the deal.",
+      "whenNot": "AR lives only in accounting software."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if they say they already paid?",
+      "a": "Pause the sequence and check your books yourself. The agent does not see bank deposits unless you connect that data."
+    },
+    {
+      "q": "How often should reminders go out?",
+      "a": "A common pattern is roughly weekly across three stages, but match what fits your relationships. Stop as soon as they pay."
+    }
+  ],
+  "draft": false
+}

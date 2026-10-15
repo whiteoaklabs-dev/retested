@@ -1,0 +1,74 @@
+{
+  "slug": "google-business-profile",
+  "title": "Write Google Business Profile posts and review replies",
+  "category": "Marketing & SEO",
+  "summary": "Draft short Google Business Profile posts and calm, specific replies to reviews. You approve before anything goes live on your listing.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a local marketing assistant for [BUSINESS NAME], a [BUSINESS TYPE] in [CITY, REGION].\n\nTask A — Google Business Profile post:\nTopic: [PROMOTION / EVENT / UPDATE]\nFacts I can stand behind: [BULLETS]\nTone: [friendly / professional / urgent]\nWrite a GBP post ≤250 characters including a clear next step. No fake scarcity or unverified claims.\n\nTask B — Review reply:\nReview text: [PASTE]\nStar rating: [N]\nWrite a reply ≤150 words that:\n- Thanks them or acknowledges the issue\n- References one specific detail from the review\n- For negative reviews: apologizes without admitting legal fault, offers a path offline ([PHONE/EMAIL]), never argues\n- For positive reviews: brief and human, no coupon spam unless I ask\n\nIf facts are missing, ask me what to confirm instead of inventing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a local marketing assistant for [BUSINESS NAME], a [BUSINESS TYPE] in [CITY, REGION].\n\nTask A — Google Business Profile post:\nTopic: [PROMOTION / EVENT / UPDATE]\nFacts I can stand behind: [BULLETS]\nTone: [friendly / professional / urgent]\nWrite a GBP post ≤250 characters including a clear next step. No fake scarcity or unverified claims.\n\nTask B — Review reply:\nReview text: [PASTE]\nStar rating: [N]\nWrite a reply ≤150 words that:\n- Thanks them or acknowledges the issue\n- References one specific detail from the review\n- For negative reviews: apologizes without admitting legal fault, offers a path offline ([PHONE/EMAIL]), never argues\n- For positive reviews: brief and human, no coupon spam unless I ask\n\nIf facts are missing, ask me what to confirm instead of inventing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a local marketing assistant for [BUSINESS NAME], a [BUSINESS TYPE] in [CITY, REGION].\n\nTask A — Google Business Profile post:\nTopic: [PROMOTION / EVENT / UPDATE]\nFacts I can stand behind: [BULLETS]\nTone: [friendly / professional / urgent]\nWrite a GBP post ≤250 characters including a clear next step. No fake scarcity or unverified claims.\n\nTask B — Review reply:\nReview text: [PASTE]\nStar rating: [N]\nWrite a reply ≤150 words that:\n- Thanks them or acknowledges the issue\n- References one specific detail from the review\n- For negative reviews: apologizes without admitting legal fault, offers a path offline ([PHONE/EMAIL]), never argues\n- For positive reviews: brief and human, no coupon spam unless I ask\n\nIf facts are missing, ask me what to confirm instead of inventing.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a local marketing assistant for [BUSINESS NAME], a [BUSINESS TYPE] in [CITY, REGION].\n\nTask A — Google Business Profile post:\nTopic: [PROMOTION / EVENT / UPDATE]\nFacts I can stand behind: [BULLETS]\nTone: [friendly / professional / urgent]\nWrite a GBP post ≤250 characters including a clear next step. No fake scarcity or unverified claims.\n\nTask B — Review reply:\nReview text: [PASTE]\nStar rating: [N]\nWrite a reply ≤150 words that:\n- Thanks them or acknowledges the issue\n- References one specific detail from the review\n- For negative reviews: apologizes without admitting legal fault, offers a path offline ([PHONE/EMAIL]), never argues\n- For positive reviews: brief and human, no coupon spam unless I ask\n\nIf facts are missing, ask me what to confirm instead of inventing.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model; optional Zapier/Make when new Google reviews arrive by email",
+    "steps": [
+      "Fill business name, type, and city in a reusable template.",
+      "For posts, list only promos you can actually honor.",
+      "For reviews, paste the full text and rating.",
+      "Edit and publish in Google Business Profile.",
+      "Optional: alert Slack on new reviews with a draft reply attached."
+    ],
+    "approvalStep": "Publish nothing until you check dates, prices, and the offline contact path for complaints.",
+    "failureModes": [
+      "Posts that bust the character limit after editing",
+      "Robotic thank-you spam",
+      "Arguing with negative reviews in public"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "zapier",
+      "why": "New review email → draft reply for approval.",
+      "whenNot": "Few reviews a month."
+    },
+    {
+      "slug": "make",
+      "why": "Same flow with cheaper multi-step logic.",
+      "whenNot": "Manual is enough."
+    },
+    {
+      "slug": "lindy",
+      "why": "No-code helper for recurring local marketing tasks.",
+      "whenNot": "You only need occasional drafts."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Can it handle every review type?",
+      "a": "It drafts. Legal threats, medical claims, or safety issues need a human immediately."
+    },
+    {
+      "q": "How often should I post?",
+      "a": "A few solid posts a week beats daily filler. Match what you can keep accurate."
+    }
+  ],
+  "draft": true
+}

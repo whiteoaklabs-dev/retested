@@ -1,0 +1,74 @@
+{
+  "slug": "categorize-receipts",
+  "title": "Categorize receipts and expenses for bookkeeping",
+  "category": "Finance & admin",
+  "summary": "Paste receipt text and your chart of accounts; get a category, confidence, and a needs-review flag. You confirm before anything hits the books.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are helping with bookkeeping. Categorize this expense against my chart of accounts.\n\nExpense: [DESCRIPTION FROM RECEIPT OR EMAIL]\nAmount: [AMOUNT] [CURRENCY]\nDate: [DATE]\nVendor: [VENDOR if known]\nMy categories (use ONLY these names): [PASTE CHART OF ACCOUNTS — e.g. Rent, Utilities, Travel, Software, Marketing, Supplies, Meals, Legal, Contractors, Uncategorized]\n\nOutput:\n- category: exact name from my list\n- confidence: high / medium / low\n- reason: one sentence\n- needs_review: yes/no — yes if the description is vague, splits across categories, or looks personal\n\nIf it does not fit, use Uncategorized and set needs_review to yes. Do not invent a new category name.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are helping with bookkeeping. Categorize this expense against my chart of accounts.\n\nExpense: [DESCRIPTION FROM RECEIPT OR EMAIL]\nAmount: [AMOUNT] [CURRENCY]\nDate: [DATE]\nVendor: [VENDOR if known]\nMy categories (use ONLY these names): [PASTE CHART OF ACCOUNTS — e.g. Rent, Utilities, Travel, Software, Marketing, Supplies, Meals, Legal, Contractors, Uncategorized]\n\nOutput:\n- category: exact name from my list\n- confidence: high / medium / low\n- reason: one sentence\n- needs_review: yes/no — yes if the description is vague, splits across categories, or looks personal\n\nIf it does not fit, use Uncategorized and set needs_review to yes. Do not invent a new category name.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are helping with bookkeeping. Categorize this expense against my chart of accounts.\n\nExpense: [DESCRIPTION FROM RECEIPT OR EMAIL]\nAmount: [AMOUNT] [CURRENCY]\nDate: [DATE]\nVendor: [VENDOR if known]\nMy categories (use ONLY these names): [PASTE CHART OF ACCOUNTS — e.g. Rent, Utilities, Travel, Software, Marketing, Supplies, Meals, Legal, Contractors, Uncategorized]\n\nOutput:\n- category: exact name from my list\n- confidence: high / medium / low\n- reason: one sentence\n- needs_review: yes/no — yes if the description is vague, splits across categories, or looks personal\n\nIf it does not fit, use Uncategorized and set needs_review to yes. Do not invent a new category name.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are helping with bookkeeping. Categorize this expense against my chart of accounts.\n\nExpense: [DESCRIPTION FROM RECEIPT OR EMAIL]\nAmount: [AMOUNT] [CURRENCY]\nDate: [DATE]\nVendor: [VENDOR if known]\nMy categories (use ONLY these names): [PASTE CHART OF ACCOUNTS — e.g. Rent, Utilities, Travel, Software, Marketing, Supplies, Meals, Legal, Contractors, Uncategorized]\n\nOutput:\n- category: exact name from my list\n- confidence: high / medium / low\n- reason: one sentence\n- needs_review: yes/no — yes if the description is vague, splits across categories, or looks personal\n\nIf it does not fit, use Uncategorized and set needs_review to yes. Do not invent a new category name.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model for each receipt; optional Make/Zapier from email receipts into a sheet",
+    "steps": [
+      "Export or type your chart of accounts into the prompt template.",
+      "For each receipt, paste description, amount, date, and vendor.",
+      "Run the prompt and write the category into your sheet or bookkeeping tool.",
+      "Queue anything marked needs_review for you or your bookkeeper.",
+      "Optional: forward receipt emails into an automation that fills the prompt."
+    ],
+    "approvalStep": "Review low-confidence and needs_review rows before month-end close.",
+    "failureModes": [
+      "Inventing category names not on your chart",
+      "Splitting a mixed receipt into the wrong single category",
+      "Treating personal spend as business without a flag"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Email receipt → categorize → spreadsheet row.",
+      "whenNot": "You have only a few expenses a month."
+    },
+    {
+      "slug": "zapier",
+      "why": "Same path with lighter setup.",
+      "whenNot": "Task costs add up."
+    },
+    {
+      "slug": "n8n",
+      "why": "Self-hosted if receipts include sensitive data.",
+      "whenNot": "You want a hosted tool only."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if it cannot categorize an expense?",
+      "a": "Mark Uncategorized and review with your bookkeeper. Do not force a bad fit."
+    },
+    {
+      "q": "Does this replace a bookkeeper?",
+      "a": "No. It speeds sorting. A person still owns accuracy and tax treatment."
+    }
+  ],
+  "draft": true
+}

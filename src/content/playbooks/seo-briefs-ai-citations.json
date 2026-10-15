@@ -1,0 +1,74 @@
+{
+  "slug": "seo-briefs-ai-citations",
+  "title": "Write SEO content briefs that get cited in AI answers",
+  "category": "Marketing & SEO",
+  "summary": "Build an answer-first content brief for a query: outline, questions to cover, evidence you still need, and a short quotable block. No fake stats and no guaranteed citations.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Write an SEO content brief meant to earn citations in search and AI answers — without guaranteeing placement.\n\nTarget query: [SEARCH QUERY]\nMy site / angle: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nTone: [e.g. plain expert]\nApproximate length: [WORD COUNT]\nMust-cover facts I already verified: [BULLETS OR \"none yet\"]\nCompetitor / example URLs to learn from (optional): [1–5 URLs]\n\nProduce a plain-text brief with:\n1) User intent (what they actually want)\n2) Answer-first outline (H2/H3) that leads with a direct answer\n3) Questions to answer (People-also-ask style) — mark any you are unsure about\n4) Evidence checklist: what sources or original data we still need\n5) Quotable 40–60 word definition or answer block\n6) Internal links / assets to include if we have them: [LIST OR blank]\n7) What not to claim (hype, unverified stats)\n\nDo not invent statistics or study results. If evidence is missing, list it under Evidence checklist.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Write an SEO content brief meant to earn citations in search and AI answers — without guaranteeing placement.\n\nTarget query: [SEARCH QUERY]\nMy site / angle: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nTone: [e.g. plain expert]\nApproximate length: [WORD COUNT]\nMust-cover facts I already verified: [BULLETS OR \"none yet\"]\nCompetitor / example URLs to learn from (optional): [1–5 URLs]\n\nProduce a plain-text brief with:\n1) User intent (what they actually want)\n2) Answer-first outline (H2/H3) that leads with a direct answer\n3) Questions to answer (People-also-ask style) — mark any you are unsure about\n4) Evidence checklist: what sources or original data we still need\n5) Quotable 40–60 word definition or answer block\n6) Internal links / assets to include if we have them: [LIST OR blank]\n7) What not to claim (hype, unverified stats)\n\nDo not invent statistics or study results. If evidence is missing, list it under Evidence checklist.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Write an SEO content brief meant to earn citations in search and AI answers — without guaranteeing placement.\n\nTarget query: [SEARCH QUERY]\nMy site / angle: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nTone: [e.g. plain expert]\nApproximate length: [WORD COUNT]\nMust-cover facts I already verified: [BULLETS OR \"none yet\"]\nCompetitor / example URLs to learn from (optional): [1–5 URLs]\n\nProduce a plain-text brief with:\n1) User intent (what they actually want)\n2) Answer-first outline (H2/H3) that leads with a direct answer\n3) Questions to answer (People-also-ask style) — mark any you are unsure about\n4) Evidence checklist: what sources or original data we still need\n5) Quotable 40–60 word definition or answer block\n6) Internal links / assets to include if we have them: [LIST OR blank]\n7) What not to claim (hype, unverified stats)\n\nDo not invent statistics or study results. If evidence is missing, list it under Evidence checklist.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Write an SEO content brief meant to earn citations in search and AI answers — without guaranteeing placement.\n\nTarget query: [SEARCH QUERY]\nMy site / angle: [ONE-LINE DESCRIPTION]\nAudience: [WHO]\nTone: [e.g. plain expert]\nApproximate length: [WORD COUNT]\nMust-cover facts I already verified: [BULLETS OR \"none yet\"]\nCompetitor / example URLs to learn from (optional): [1–5 URLs]\n\nProduce a plain-text brief with:\n1) User intent (what they actually want)\n2) Answer-first outline (H2/H3) that leads with a direct answer\n3) Questions to answer (People-also-ask style) — mark any you are unsure about\n4) Evidence checklist: what sources or original data we still need\n5) Quotable 40–60 word definition or answer block\n6) Internal links / assets to include if we have them: [LIST OR blank]\n7) What not to claim (hype, unverified stats)\n\nDo not invent statistics or study results. If evidence is missing, list it under Evidence checklist.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model; optional Make/Zapier to turn a keyword sheet into brief drafts",
+    "steps": [
+      "Pick one query and note what you can already prove.",
+      "Run the prompt and review the evidence checklist.",
+      "Gather missing sources before writing the article.",
+      "Write to the brief; keep the quotable block near the top.",
+      "Publish and monitor search Console / referrals over time — not overnight."
+    ],
+    "approvalStep": "A human removes any invented numbers before the brief goes to a writer.",
+    "failureModes": [
+      "Generic outlines that ignore intent",
+      "Invented statistics",
+      "Promising AI citations as a guarantee"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Keyword sheet → brief draft in Docs.",
+      "whenNot": "You brief a few posts a month by hand."
+    },
+    {
+      "slug": "zapier",
+      "why": "Same light automation.",
+      "whenNot": "Manual is fine."
+    },
+    {
+      "slug": "n8n",
+      "why": "Custom brief pipeline into your CMS.",
+      "whenNot": "Overkill for solo writers."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Does a good brief guarantee AI citations?",
+      "a": "No. It improves clarity and cite-ability. Ranking and citation systems still decide."
+    },
+    {
+      "q": "How detailed should the brief be?",
+      "a": "Detailed enough that a writer who is new to the topic could draft without guessing facts."
+    }
+  ],
+  "draft": true
+}

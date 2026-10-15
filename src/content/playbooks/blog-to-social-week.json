@@ -1,0 +1,74 @@
+{
+  "slug": "blog-to-social-week",
+  "title": "Turn one blog post into a week of social posts",
+  "category": "Marketing & SEO",
+  "summary": "Paste a blog post and get seven platform-native social drafts, each highlighting a different takeaway. You edit for voice, then schedule.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Turn this blog post into one week of social posts. Each day should highlight a different point.\n\nBlog post: [PASTE FULL POST OR KEY SECTIONS]\nBrand voice: [NOTES]\nCTA / URL to include when natural: [URL]\nPlatforms and constraints:\n- LinkedIn: ~150–250 words, professional, 1 CTA\n- X / Twitter: ≤260 characters, punchy, no hashtag spam\n- Facebook: friendly, 2–4 short paragraphs\n- Instagram caption: ≤150 words, line breaks ok, 3–5 relevant hashtags max\n- Threads: casual, ≤500 characters\n\nProduce 7 items labeled Day 1–7 with platform + full post text.\nRules: Do not invent quotes, stats, or features not in the post. Vary hooks. No duplicate posts with swapped adjectives.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Turn this blog post into one week of social posts. Each day should highlight a different point.\n\nBlog post: [PASTE FULL POST OR KEY SECTIONS]\nBrand voice: [NOTES]\nCTA / URL to include when natural: [URL]\nPlatforms and constraints:\n- LinkedIn: ~150–250 words, professional, 1 CTA\n- X / Twitter: ≤260 characters, punchy, no hashtag spam\n- Facebook: friendly, 2–4 short paragraphs\n- Instagram caption: ≤150 words, line breaks ok, 3–5 relevant hashtags max\n- Threads: casual, ≤500 characters\n\nProduce 7 items labeled Day 1–7 with platform + full post text.\nRules: Do not invent quotes, stats, or features not in the post. Vary hooks. No duplicate posts with swapped adjectives.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Turn this blog post into one week of social posts. Each day should highlight a different point.\n\nBlog post: [PASTE FULL POST OR KEY SECTIONS]\nBrand voice: [NOTES]\nCTA / URL to include when natural: [URL]\nPlatforms and constraints:\n- LinkedIn: ~150–250 words, professional, 1 CTA\n- X / Twitter: ≤260 characters, punchy, no hashtag spam\n- Facebook: friendly, 2–4 short paragraphs\n- Instagram caption: ≤150 words, line breaks ok, 3–5 relevant hashtags max\n- Threads: casual, ≤500 characters\n\nProduce 7 items labeled Day 1–7 with platform + full post text.\nRules: Do not invent quotes, stats, or features not in the post. Vary hooks. No duplicate posts with swapped adjectives.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Turn this blog post into one week of social posts. Each day should highlight a different point.\n\nBlog post: [PASTE FULL POST OR KEY SECTIONS]\nBrand voice: [NOTES]\nCTA / URL to include when natural: [URL]\nPlatforms and constraints:\n- LinkedIn: ~150–250 words, professional, 1 CTA\n- X / Twitter: ≤260 characters, punchy, no hashtag spam\n- Facebook: friendly, 2–4 short paragraphs\n- Instagram caption: ≤150 words, line breaks ok, 3–5 relevant hashtags max\n- Threads: casual, ≤500 characters\n\nProduce 7 items labeled Day 1–7 with platform + full post text.\nRules: Do not invent quotes, stats, or features not in the post. Vary hooks. No duplicate posts with swapped adjectives.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model; schedule with your usual social tool afterward",
+    "steps": [
+      "Paste the finished blog post and brand notes into the prompt.",
+      "Run it and cut anything that invents claims.",
+      "Tune length and hooks per platform.",
+      "Schedule across the week in your social tool.",
+      "Optional: Make/Zapier to drop approved posts into a queue."
+    ],
+    "approvalStep": "Every post is reviewed before scheduling — especially numbers and product claims.",
+    "failureModes": [
+      "Seven near-identical posts",
+      "Hashtag stuffing",
+      "Invented stats not in the article"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "make",
+      "why": "Approved drafts → scheduling sheet or Buffer-like tools you already use.",
+      "whenNot": "You paste into the native apps."
+    },
+    {
+      "slug": "zapier",
+      "why": "Light queue from Docs to your scheduler.",
+      "whenNot": "Low posting volume."
+    },
+    {
+      "slug": "n8n",
+      "why": "Custom multi-platform queue.",
+      "whenNot": "Overkill for one account."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Will it understand industry jargon?",
+      "a": "If the post explains terms, yes. If not, add a one-line glossary in the prompt."
+    },
+    {
+      "q": "How long does review take?",
+      "a": "Often 20–40 minutes once the post is solid. Longer if you fact-check every claim."
+    }
+  ],
+  "draft": true
+}

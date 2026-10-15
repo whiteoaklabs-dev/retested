@@ -1,0 +1,74 @@
+{
+  "slug": "call-notes-to-crm",
+  "title": "Turn sales call notes into CRM updates and next steps",
+  "category": "Sales",
+  "summary": "Paste messy call notes or a transcript and get a short summary, CRM fields, dated next steps for both sides, and a follow-up email draft. You review before saving.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "Turn these sales call notes into a CRM-ready update.\n\nCall notes / transcript: [PASTE NOTES]\nMy role: [MY TITLE]\nProspect: [NAME], [TITLE] at [COMPANY]\nCall date: [DATE]\n\nOutput exactly:\n**Summary:** 3–5 sentences of what was discussed (no fluff).\n**Fields to update:**\n- Stage suggestion: [STAGE]\n- Pain / goal: …\n- Budget signals: … (or \"not discussed\")\n- Timeline: … (or \"not discussed\")\n- Competitors mentioned: …\n- Decision makers: …\n**Next steps for me:** dated checklist\n**Next steps for them:** dated checklist\n**Follow-up email draft:** under 100 words confirming what we agreed\n\nRules: Do not invent numbers, commitments, or people not in the notes. Mark unknowns as \"not discussed\".",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "Turn these sales call notes into a CRM-ready update.\n\nCall notes / transcript: [PASTE NOTES]\nMy role: [MY TITLE]\nProspect: [NAME], [TITLE] at [COMPANY]\nCall date: [DATE]\n\nOutput exactly:\n**Summary:** 3–5 sentences of what was discussed (no fluff).\n**Fields to update:**\n- Stage suggestion: [STAGE]\n- Pain / goal: …\n- Budget signals: … (or \"not discussed\")\n- Timeline: … (or \"not discussed\")\n- Competitors mentioned: …\n- Decision makers: …\n**Next steps for me:** dated checklist\n**Next steps for them:** dated checklist\n**Follow-up email draft:** under 100 words confirming what we agreed\n\nRules: Do not invent numbers, commitments, or people not in the notes. Mark unknowns as \"not discussed\".",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "Turn these sales call notes into a CRM-ready update.\n\nCall notes / transcript: [PASTE NOTES]\nMy role: [MY TITLE]\nProspect: [NAME], [TITLE] at [COMPANY]\nCall date: [DATE]\n\nOutput exactly:\n**Summary:** 3–5 sentences of what was discussed (no fluff).\n**Fields to update:**\n- Stage suggestion: [STAGE]\n- Pain / goal: …\n- Budget signals: … (or \"not discussed\")\n- Timeline: … (or \"not discussed\")\n- Competitors mentioned: …\n- Decision makers: …\n**Next steps for me:** dated checklist\n**Next steps for them:** dated checklist\n**Follow-up email draft:** under 100 words confirming what we agreed\n\nRules: Do not invent numbers, commitments, or people not in the notes. Mark unknowns as \"not discussed\".",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "Turn these sales call notes into a CRM-ready update.\n\nCall notes / transcript: [PASTE NOTES]\nMy role: [MY TITLE]\nProspect: [NAME], [TITLE] at [COMPANY]\nCall date: [DATE]\n\nOutput exactly:\n**Summary:** 3–5 sentences of what was discussed (no fluff).\n**Fields to update:**\n- Stage suggestion: [STAGE]\n- Pain / goal: …\n- Budget signals: … (or \"not discussed\")\n- Timeline: … (or \"not discussed\")\n- Competitors mentioned: …\n- Decision makers: …\n**Next steps for me:** dated checklist\n**Next steps for them:** dated checklist\n**Follow-up email draft:** under 100 words confirming what we agreed\n\nRules: Do not invent numbers, commitments, or people not in the notes. Mark unknowns as \"not discussed\".",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat model after the call; optional Zapier/Make to drop output into HubSpot notes",
+    "steps": [
+      "After the call, paste notes or a transcript into the prompt with names and date filled in.",
+      "Run the prompt and skim for invented facts.",
+      "Paste the summary and fields into your CRM note or activity.",
+      "Create tasks from the \"Next steps for me\" list with due dates.",
+      "Edit and send the follow-up email the same day."
+    ],
+    "approvalStep": "Check every field against your memory of the call before saving to the CRM.",
+    "failureModes": [
+      "Inventing budget or timeline that was never said",
+      "Assigning next steps to the wrong person",
+      "Summaries that miss the actual objection"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "hubspot",
+      "why": "Natural place for notes, stages, and tasks.",
+      "whenNot": "You track deals in a spreadsheet only."
+    },
+    {
+      "slug": "zapier",
+      "why": "Push structured output into CRM fields.",
+      "whenNot": "You are fine copying by hand."
+    },
+    {
+      "slug": "make",
+      "why": "Parse model output into multiple CRM updates cheaply.",
+      "whenNot": "Low volume makes automation unnecessary."
+    }
+  ],
+  "faq": [
+    {
+      "q": "What if my notes are messy?",
+      "a": "The prompt still works, but clearer notes get cleaner fields. Bullet the must-keep facts before you paste."
+    },
+    {
+      "q": "Can this handle other languages?",
+      "a": "Not yet tested. Try it on one call and compare to your own summary before relying on it."
+    }
+  ],
+  "draft": false
+}

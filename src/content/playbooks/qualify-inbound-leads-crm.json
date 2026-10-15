@@ -1,0 +1,74 @@
+{
+  "slug": "qualify-inbound-leads-crm",
+  "title": "Qualify inbound leads and route them to your CRM",
+  "category": "Sales",
+  "summary": "Score each inbound form or email against your criteria, pick a CRM stage, and draft one short qualifying follow-up. You approve before anything sends.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "A new lead just came in. Score them against my criteria and draft one follow-up email.\n\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE], [EMAIL if known].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [IDEAL CUSTOMER — e.g. company size, budget, timeline].\nQualify criteria: [LIST 3–5 MUST-HAVES AND NICE-TO-HAVES].\n\nOutput in this order:\n1) Fit: Good / Maybe / Poor — one sentence why.\n2) Suggested CRM stage: [STAGE NAME OPTIONS YOU USE].\n3) One follow-up email under 100 words that references what they asked for and asks exactly one qualifying question (budget, timeline, or size — pick the most relevant).\n4) Fields to save: name, company, request summary, source, fit, stage.\n\nDo not invent facts about the lead. If the form is thin, say so and ask the one question that would help most.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "A new lead just came in. Score them against my criteria and draft one follow-up email.\n\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE], [EMAIL if known].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [IDEAL CUSTOMER — e.g. company size, budget, timeline].\nQualify criteria: [LIST 3–5 MUST-HAVES AND NICE-TO-HAVES].\n\nOutput in this order:\n1) Fit: Good / Maybe / Poor — one sentence why.\n2) Suggested CRM stage: [STAGE NAME OPTIONS YOU USE].\n3) One follow-up email under 100 words that references what they asked for and asks exactly one qualifying question (budget, timeline, or size — pick the most relevant).\n4) Fields to save: name, company, request summary, source, fit, stage.\n\nDo not invent facts about the lead. If the form is thin, say so and ask the one question that would help most.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "A new lead just came in. Score them against my criteria and draft one follow-up email.\n\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE], [EMAIL if known].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [IDEAL CUSTOMER — e.g. company size, budget, timeline].\nQualify criteria: [LIST 3–5 MUST-HAVES AND NICE-TO-HAVES].\n\nOutput in this order:\n1) Fit: Good / Maybe / Poor — one sentence why.\n2) Suggested CRM stage: [STAGE NAME OPTIONS YOU USE].\n3) One follow-up email under 100 words that references what they asked for and asks exactly one qualifying question (budget, timeline, or size — pick the most relevant).\n4) Fields to save: name, company, request summary, source, fit, stage.\n\nDo not invent facts about the lead. If the form is thin, say so and ask the one question that would help most.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "A new lead just came in. Score them against my criteria and draft one follow-up email.\n\nLead details: [NAME], [COMPANY], [WHAT THEY ASKED FOR / FORM MESSAGE], [SOURCE], [EMAIL if known].\nMy business: [ONE-LINE DESCRIPTION], [MAIN OFFER], [IDEAL CUSTOMER — e.g. company size, budget, timeline].\nQualify criteria: [LIST 3–5 MUST-HAVES AND NICE-TO-HAVES].\n\nOutput in this order:\n1) Fit: Good / Maybe / Poor — one sentence why.\n2) Suggested CRM stage: [STAGE NAME OPTIONS YOU USE].\n3) One follow-up email under 100 words that references what they asked for and asks exactly one qualifying question (budget, timeline, or size — pick the most relevant).\n4) Fields to save: name, company, request summary, source, fit, stage.\n\nDo not invent facts about the lead. If the form is thin, say so and ask the one question that would help most.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "n8n, Make, or Zapier plus your CRM (e.g. HubSpot)",
+    "steps": [
+      "Trigger on a new form submission or labeled inbound email.",
+      "Pass lead fields and your qualify criteria into the prompt.",
+      "Create or update the CRM contact with fit, stage, and request summary.",
+      "Attach the drafted email as a task or email draft.",
+      "Notify yourself in Slack or SMS to approve before send."
+    ],
+    "approvalStep": "The follow-up stays a draft until you approve it. Spam and test leads are discarded by you, not auto-sent.",
+    "failureModes": [
+      "Generic emails when the form message is empty",
+      "Asking more than one qualifying question",
+      "Creating CRM records for spam or test submissions"
+    ]
+  },
+  "toolPicks": [
+    {
+      "slug": "hubspot",
+      "why": "Forms, stages, and free CRM in one place.",
+      "whenNot": "You already have a CRM you like."
+    },
+    {
+      "slug": "zapier",
+      "why": "Quick form → CRM → draft path.",
+      "whenNot": "High volume where per-task pricing hurts."
+    },
+    {
+      "slug": "make",
+      "why": "Cheaper multi-step routing.",
+      "whenNot": "You want one-click templates only."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Should I auto-send the follow-up?",
+      "a": "Not at first. Review drafts for a week, then auto-send only lead types you always approve."
+    },
+    {
+      "q": "What if the request is vague?",
+      "a": "Mark fit as Maybe and ask one clear question. Improve the form later so new leads arrive with more context."
+    }
+  ],
+  "draft": true
+}
