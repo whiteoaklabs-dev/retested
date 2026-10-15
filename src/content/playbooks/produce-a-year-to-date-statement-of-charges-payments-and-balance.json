@@ -1,0 +1,85 @@
+{
+  "slug": "produce-a-year-to-date-statement-of-charges-payments-and-balance",
+  "title": "Produce a year-to-date statement of charges, payments, and balance",
+  "category": "Finance & admin",
+  "summary": "A commercial landlord pastes one tenant's invoices for the year and the register of money received. Invoice fields are number, date, period covered, charge type (base rent, operating expenses, taxes, insurance, parking, late fee, or credit), amount, and due date. Receipt fields are date received, amount, method, reference, and any invoice number already applied. The agent produces a year-to-date statement: a short header, the opening balance, a ledger line for every charge and every receipt with a running balance, totals, and an exceptions list for cash that names no invoice. The landlord checks each line against those exports and decides what to send. The agent does not email the tenant, post a receipt, or treat unmatched cash as settled.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a commercial property clerk preparing a year-to-date statement of charges, payments, and balance for one tenant. Do not email. Use only [INVOICE ROWS], [PAYMENT ROWS], [LEASE HEADER], [OPENING BALANCE], and [APPLICATION RULE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One tenant only. If the rows name a second tenant or suite, stop and list the names. Do not merge suites.\n- List every charge once: base rent, operating expenses, taxes, insurance, parking, late fees, and credits. Do not add a charge that was never invoiced.\n- List every receipt once. Apply cash to an invoice only when [PAYMENT ROWS] already names that invoice number. Otherwise mark the receipt unapplied.\n- Put [OPENING BALANCE] on its own first line. If it says UNKNOWN, do not write zero. Leave a security deposit off unless it is a pasted line.\n- Running balance equals opening balance plus charges minus receipts, in date order. If it does not foot, write OUT OF BALANCE and do not call the balance due final.\n\nOutput format:\nHeader from [LEASE HEADER]: property, tenant legal name, suite, statement date, and period, under 40 words. Ledger table columns: Date, Type, Description, Period covered, Ref, Charge, Payment, Running balance. Then Totals for charges, payments, and balance due. Then Exceptions for unapplied cash, duplicates, and missing refs. Then a cover note of at most 80 words. End with Landlord must confirm: every UNKNOWN, and whether it is ready to send.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records clerk drafting a year-to-date tenant statement for a commercial landlord to review. Do not email or post. Work only from [INVOICE ROWS], [PAYMENT ROWS], [LEASE HEADER], [OPENING BALANCE], and [APPLICATION RULE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace each amount to a row you were given. If you cannot point to the source text, mark that field UNKNOWN.\n- Keep a single tenant. Do not pull in another suite because a parent company paid. On a name conflict, write CONFLICT and stop.\n- Charges stay as invoiced: rent, operating expenses, taxes, insurance, parking, late fees, and credits. Never-billed lease clauses stay off the ledger.\n- Follow [APPLICATION RULE]. When a receipt has no invoice number, show it as unapplied cash. Do not pick a month because the amount looks like rent.\n- Show [OPENING BALANCE] before any current-year line. UNKNOWN is not zero. A deposit held in escrow is not rent unless the rows say so.\n\nOutput format:\nSections in order: Header, Ledger, Totals, Exceptions, Cover note, Landlord must confirm. Header is under 40 words and uses only [LEASE HEADER]. Ledger is a table with columns Date, Type, Description, Period covered, Ref, Charge, Payment, and Running balance. Totals show charges, payments, balance due, and OUT OF BALANCE if they do not foot. Exceptions lists unapplied cash, duplicates, and missing refs. Cover note is at most 80 words. Landlord must confirm lists every UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are turning one commercial tenant's invoices and receipts into a year-to-date statement of charges, payments, and balance. The landlord reviews it before anyone sends it. Use [INVOICE ROWS], [PAYMENT ROWS], [LEASE HEADER], [OPENING BALANCE], and [APPLICATION RULE]. Do not email anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Invoice number, date, period, charge type, amount, receipt date, method, and reference must each come from the pasted rows. No estimated true-up that is not already a line.\n- Stop if more than one tenant or suite appears. Say which names conflict and build nothing.\n- Apply a receipt only under [APPLICATION RULE], and only to an invoice number already on that receipt. A memo that says rent is not an invoice number.\n- Credits and free-rent lines stay charges with the sign given in [INVOICE ROWS]. Do not recast a credit as cash received.\n- If [OPENING BALANCE] is blank or UNKNOWN, print UNKNOWN and hold the balance due. Do not assume the year started at zero.\n\nOutput format:\nReturn a Header under 40 words, then a table titled Ledger with columns Date, Type, Description, Period covered, Ref, Charge, Payment, Running balance. Then Totals: charges, payments, balance due, and BALANCED or OUT OF BALANCE. Then Exceptions for unapplied cash, same-day duplicate amounts, and rows missing a ref. Then a cover note of at most 80 words. Finish with Landlord must confirm: unknowns and a hold or send decision.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a year-to-date statement a commercial landlord will approve before it is mailed or emailed. Read [INVOICE ROWS], [PAYMENT ROWS], [LEASE HEADER], [OPENING BALANCE], and [APPLICATION RULE]. Do not contact the tenant and do not change the ledger.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy tenant legal name, suite, property, statement date, and period from [LEASE HEADER]. If any of those are absent, mark that item UNKNOWN.\n- Every charge on [INVOICE ROWS] appears once. Every receipt on [PAYMENT ROWS] appears once. Drop nothing because it looks small, and add nothing from memory.\n- Unmatched cash goes to Exceptions as unapplied. Do not attach it to the oldest open month.\n- Keep security deposits, improvement allowances, and utility bills off the statement unless those items are lines in the paste. Name each excluded row in one short clause.\n- Foot the running balance from [OPENING BALANCE]. When the last running balance disagrees with charges minus receipts, write OUT OF BALANCE.\n\nOutput format:\nHeader, then Ledger as a table with columns Date, Type, Description, Period covered, Ref, Charge, Payment, Running balance. Then Totals with charges, payments, balance due, and BALANCED or OUT OF BALANCE. Then Exceptions. Then a cover note of at most 80 words that restates the period and the balance due, with no new deadline. End with Landlord must confirm: each UNKNOWN, each excluded row, and whether you may send it.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first. Later, Gmail, Google Sheets, and Zapier, Make, or n8n can stage a draft statement only.",
+    "steps": [
+      "From your invoice export or PDF stack for this one tenant, copy invoice number, invoice date, period covered, charge type (base rent, operating expenses, taxes, insurance, parking, late fee, or credit), amount, and due date. Keep one row per charge.",
+      "From the receipt register or bank deposit log, copy date received, amount, method (check, ACH, or wire), reference number, and the invoice number the cash was applied to. Leave that invoice blank when the memo does not name one.",
+      "Write a short header the assistant must copy, not invent: tenant legal name, suite, property name and address, statement date, period start, period end, and the opening balance you want carried in. If you have no opening figure, write UNKNOWN.",
+      "Decide the application rule in one sentence: match each receipt to the invoice number already on the register, and when that number is blank, leave the cash unapplied. Do not ask the assistant to guess which month a check covers.",
+      "Open the chat assistant you already use, paste its prompt from this playbook, and replace each bracketed placeholder with the invoice rows, the receipt rows, the header, the opening balance, and your application rule.",
+      "Read the ledger against both sources. Confirm every charge appears once, every receipt appears once, the running balance foots to opening balance plus charges minus receipts, and unmatched cash is listed as unapplied rather than forced onto a month.",
+      "Optional later path: with Zapier, Make, or n8n, watch a Gmail label for new invoices and payment notices, append rows to a Google Sheets tab for that tenant, fill the prompt, and save the statement on a Draft tab. Leave send and the books disconnected."
+    ],
+    "approvalStep": "You compare the statement to the invoice export and the receipt register, and you approve the charges, the payments, and the balance due before it is emailed, posted, or treated as a demand. You send it yourself. Nothing goes to the tenant until you approve it.",
+    "failureModes": [
+      "A check memo that only says rent is pinned to the oldest open month. Leave that cash unapplied unless the register already names an invoice number.",
+      "An operating-expense estimate and a later true-up are both listed, so the same cost appears twice. Include only amounts that are their own invoice lines.",
+      "Last year's arrears disappear because the export starts in January. If you did not paste an opening balance, that line should say UNKNOWN, not zero.",
+      "The same deposit is copied from the bank feed and from the check log, so receipts are doubled. Watch for one amount with two references on the same day.",
+      "A security deposit or a tenant-improvement allowance is mixed into rent charges. Keep those off unless they are on an invoice you pasted.",
+      "A free-rent credit is dropped or booked as cash received. Show it as its own credit line and name the invoice it came from."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for this tenant statement?",
+      "a": "Use the prompt written for the assistant you already have open. Keep the draft only when every charge and every receipt traces to a row you pasted, the running balance equals opening balance plus charges minus receipts, and cash without an invoice number sits in the exceptions list. If a suite, a date, or an amount appears that you did not paste, discard that draft and run it again."
+    },
+    {
+      "q": "Should the security deposit be on this statement?",
+      "a": "Only when a deposit charge or a deposit return is an actual line on the invoices or the receipt register you pasted. A deposit held since move-in and still sitting in escrow is not rent and should stay off. If you are unsure whether a line is the deposit, mark it UNKNOWN and leave it out of the balance due until you decide."
+    },
+    {
+      "q": "A receipt has no invoice number. What should the statement do?",
+      "a": "List the cash in the ledger as a receipt and also on the exceptions list as unapplied. Do not let the draft assign it to a month because the amount matches the rent. You choose the invoice, write that number into the register, and run the prompt again before you send the statement."
+    },
+    {
+      "q": "Will this email the tenant or change my ledger?",
+      "a": "No. Paste mode returns a statement you can copy into an email or a letter after you check it. If you later use Gmail, Google Sheets, and Zapier, Make, or n8n, save the text on a Draft tab and leave send and the books disconnected. You are the one who emails the tenant and the one who posts anything."
+    },
+    {
+      "q": "How should a free-rent month or a credit appear?",
+      "a": "If the invoice export shows a credit or a zero-rent month, the statement should show that line with the invoice number and the sign on the export. Do not turn a concession into cash received. If the concession lives only in the lease and was never invoiced, leave it off and note that it was not in the export."
+    }
+  ],
+  "draft": true,
+  "persona": "Commercial landlord",
+  "job": "From one tenant's rent invoices and payment register, produce a year-to-date statement listing every charge, every payment, and the balance due.",
+  "who": "Commercial landlords and on-site managers who must turn one tenant's yearly rent invoices and recorded receipts into a statement of charges, payments, and the balance due before anything is sent.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Accounting",
+    "Workflow automation"
+  ]
+}

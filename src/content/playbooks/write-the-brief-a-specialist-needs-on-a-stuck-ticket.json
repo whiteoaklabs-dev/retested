@@ -1,0 +1,86 @@
+{
+  "slug": "write-the-brief-a-specialist-needs-on-a-stuck-ticket",
+  "title": "Write the brief a specialist needs on a stuck ticket",
+  "category": "Support",
+  "summary": "A freelance support contractor pastes a help-desk export of a case that has sat (id, status, requester, company, opened time, last reply times, every public message with author and time, and private notes), the client's routing roster (name, role, what they accept), and the impact phrases the client allows. The assistant returns one page: those timestamps copied, a short timeline, attempts the thread says already failed, the requester's impact in one sentence or UNKNOWN, one roster name or UNKNOWN, why that person, open questions, and a handoff line marked DO NOT SEND. You match every date, failure, and name to the export and roster before anyone is notified. Nothing is assigned, emailed, or answered to the requester until you approve.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a freelance support contractor writing a one-page brief so a specialist can pick up a case that has sat. Use only [TICKET EXPORT], [ROUTING ROSTER], and [IMPACT RULES] for [CLIENT NAME]. Do not assign the case or email anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the id, status, opened time, last requester message time, and last agent reply time exactly. Do not compute how many days it sat.\n- Timeline is oldest first, at most eight lines. Each line is date, author, and one fact that message states. Skip greetings and duplicate status pings.\n- Already failed means an attempt the thread says did not fix the case, with the result written there. If no result was recorded, mark that result UNKNOWN. Do not add a step nobody took.\n- Customer impact is one sentence under 30 words in the requester's terms. Use [IMPACT RULES] only to refuse an upgrade. If they never said what is blocked, write UNKNOWN.\n- SEND TO is one name and role from [ROUTING ROSTER]. If none fit or two fit, write UNKNOWN.\n- The handoff line starts with DO NOT SEND, stays under 40 words, and promises no fix date, refund, or cause.\n\nOutput format:\nReturn these sections only:\nTICKET:\nTIMELINE:\n- date — author — fact\nALREADY FAILED:\n- attempt — result\nCUSTOMER IMPACT:\nSEND TO:\nWHY THEM: at most two sentences\nSTILL OPEN: at most three questions\nHANDOFF: starts with DO NOT SEND\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful freelance support contractor preparing an internal page for a specialist about a case that has sat in a client's queue. Read only [TICKET EXPORT], [ROUTING ROSTER], and [IMPACT RULES]. The page is not a reply to the requester and not a message you send.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If a private note conflicts with a public message, keep the public wording for what the requester hit and record the conflict under MISSING.\n- List the timeline oldest first, eight lines maximum. A line without a date that appears in the export is not allowed.\n- Record a failed attempt only when someone in the thread tried it and the result is stated or is UNKNOWN. Do not recommend the next try.\n- Write customer impact as what the requester can no longer do, one sentence under 30 words. Do not turn slow, confused, or annoying into an outage unless [IMPACT RULES] and the export both say that.\n- Choose SEND TO only from a name on [ROUTING ROSTER]. When two rows fit, name both under WHY THEM and set SEND TO to UNKNOWN.\n- Begin the handoff with DO NOT SEND. No apology, no root cause, and no date by which it will be fixed.\n\nOutput format:\nReturn only these headings:\nTICKET:\nTIMELINE:\n- date — author — fact\nALREADY FAILED:\n- attempt — result\nCUSTOMER IMPACT:\nSEND TO:\nWHY THEM: two sentences at most\nSTILL OPEN: three questions at most\nHANDOFF:\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken freelance support contractor. From [TICKET EXPORT], [ROUTING ROSTER], and [IMPACT RULES] for [CLIENT NAME], write the one-page brief a specialist needs on a case that has sat. Stop at the draft.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Header times are copied, not calculated. If opened or last reply is blank, that field is UNKNOWN.\n- Timeline: oldest first, at most eight lines, one fact each. Drop signatures, thank-yous, and we-are-looking-into-it pings that add no fact.\n- Already failed is history, not advice. Include the result the thread gives. A reset, refund, or reinstall nobody performed does not belong here.\n- Customer impact stays in the requester's words, under 30 words. If they only said it is still broken, write UNKNOWN rather than guessing the business harm.\n- SEND TO is one roster name plus role, or UNKNOWN. A job title you think the client has is not enough.\n- Handoff is under 40 words, starts with DO NOT SEND, and asks the specialist to take the page. It does not promise an outcome.\n\nOutput format:\nReturn these sections only:\nTICKET:\nTIMELINE:\n- date — author — fact\nALREADY FAILED:\n- attempt — result\nCUSTOMER IMPACT:\nSEND TO:\nWHY THEM: at most two sentences\nSTILL OPEN: at most three questions\nHANDOFF:\nMISSING:",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a one-page specialist brief that a freelance support contractor will review before anyone is notified. Work from [TICKET EXPORT], [ROUTING ROSTER], and [IMPACT RULES]. Do not assign, forward, or reply.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy id, status, and the three times (opened, last requester message, last agent reply). Leave a blank as UNKNOWN. Do not state a day count.\n- Build the timeline from messages only, oldest first, eight lines maximum. If two messages repeat the same fact, keep the earlier one.\n- Failed attempts need both the action and the result visible in the export. An empty private-note field means you do not infer what the contractor tried off-stage.\n- Impact is one sentence under 30 words. [IMPACT RULES] can block a stronger phrase. They cannot supply a harm the requester did not state.\n- Put one roster name in SEND TO. If the roster is silent or two people both qualify, write UNKNOWN and list the candidates in MISSING.\n- The handoff line is for later. Start it with DO NOT SEND, keep it under 40 words, and name the case id only.\n\nOutput format:\nReturn these headings and nothing after them:\nTICKET:\nTIMELINE:\n- date — author — fact\nALREADY FAILED:\n- attempt — result\nCUSTOMER IMPACT:\nSEND TO:\nWHY THEM: at most two sentences\nSTILL OPEN: at most three questions\nHANDOFF:\nMISSING:\nEnd with [CONTRACTOR CHECK]: dates, failed results, and the roster name to compare.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in the chat app you already use. Optional help desk, Google Sheets, and Zapier, Make, or n8n to store a private draft note only.",
+    "steps": [
+      "In the client's help desk, copy the stuck case in full: id, status, requester, company, opened time, last public reply time, every public message with author and time, and private notes. Keep that order. Do not shorten it into a recap first.",
+      "Open the client's routing roster in Google Sheets. Use columns for specialist name, role, what they accept, and what they bounce. Drop any row that has no person name. This sheet is the only list of recipients.",
+      "Under a heading IMPACT RULES, paste phrases the client already allows, such as cannot log in or renewal blocked, and phrases you must not upgrade. If the client never wrote that note, type NONE.",
+      "Open the assistant you use and paste that model's prompt. Replace [TICKET EXPORT], [ROUTING ROSTER], [IMPACT RULES], and [CLIENT NAME]. If private notes are empty, type NONE inside the export.",
+      "Read the page beside the export. Every timeline date must appear in a message. Every failed attempt needs a result the thread states or an honest UNKNOWN. SEND TO is a roster name, or UNKNOWN when two rows fit.",
+      "Cut any handoff sentence that promises a fix date, a refund, or a cause. The line must start with DO NOT SEND. Edit mismatches yourself. Do not paste new facts back into the chat to fill a blank.",
+      "When each kept line points at the export or the roster, paste the page into a private help-desk note. Do not assign the case, email the specialist, or reply to the requester from this draft.",
+      "Optional later: in Zapier, Make, or n8n, start when a case is tagged stale. Pull the thread and the Google Sheets roster into the same prompt and write the page to a private draft note only.",
+      "On that path, open the draft the same day. Match dates, failed attempts, impact wording, and the named recipient yourself before anyone is notified or the case is reassigned."
+    ],
+    "approvalStep": "You review the page against the export and the roster, and you approve the timeline, the failed attempts, the impact sentence, and the recipient, before the case is assigned, the specialist is emailed, or the requester is answered. You send any handoff yourself.",
+    "failureModes": [
+      "A day count appears that you never wrote. The header should show the opened time and the last reply time. Replace any computed age before the note is saved.",
+      "A reset, refund, or reinstall shows up that nobody in the thread performed. Delete any failed line whose result is absent from messages and private notes.",
+      "Slow or confused becomes an outage or a lost renewal. Keep the requester's limit, or UNKNOWN, unless both the export and the impact rules use the stronger phrase.",
+      "SEND TO names a person missing from the roster, or picks billing when the sheet says product owns login failures. If two rows fit, force UNKNOWN and let yourself choose.",
+      "The handoff promises a fix date or a refund. Watch the DO NOT SEND line and cut any outcome before the private note is saved.",
+      "The automation sets an owner or emails the specialist when the stale tag is applied. Keep Zapier, Make, or n8n on a private draft note."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What belongs under already failed?",
+      "a": "Only an action the export shows someone tried, plus the result that message or private note records. A password reset, a refund request, or a reinstall counts when the thread says it did not clear the case. If the result was never written, mark that result UNKNOWN. Leave out advice about what the specialist should try next."
+    },
+    {
+      "q": "Two people on the roster could take this. Who wins?",
+      "a": "Leave SEND TO as UNKNOWN and name both candidates in the open questions. The roster is the only recipient list, and a tie is your decision, not the assistant's. Forward the page only after you pick one name and can point at the row that says they accept this kind of case."
+    },
+    {
+      "q": "The requester never said what is blocked. What is the impact?",
+      "a": "Write UNKNOWN. Do not borrow a harm from a similar case, and do not let the impact rules invent one. Those rules only stop you from upgrading words they did use, such as turning slow into an outage. You can ask them what they cannot do, then add that sentence yourself after they answer."
+    },
+    {
+      "q": "Which assistant should I use for this page?",
+      "a": "Use the prompt written for the assistant you already have. Keep the same export, roster, and impact rules. Judge the page by whether the dates match the thread, failed attempts are only ones the export records, the impact stays in the requester's words, and the recipient is a name on your roster or UNKNOWN."
+    },
+    {
+      "q": "Can the automation email the specialist for me?",
+      "a": "Use automation only to gather the thread and the roster and to save a private draft note. You still compare dates, failures, impact, and the recipient. Assign the case or email the specialist only after that check, and send from your own mailbox or help desk."
+    }
+  ],
+  "draft": true,
+  "persona": "Freelance support contractor",
+  "job": "Paste a stuck help-desk export and the client's routing roster. Get one page with the timeline, what already failed, the customer impact, and who should receive it.",
+  "who": "Freelance support contractors who cover another company's queue and must hand a specialist a page when a case has sat, using the thread and the client's roster rather than memory.",
+  "toolCategories": [
+    "Helpdesk and ticketing",
+    "Spreadsheets",
+    "Email client",
+    "Workflow automation"
+  ]
+}

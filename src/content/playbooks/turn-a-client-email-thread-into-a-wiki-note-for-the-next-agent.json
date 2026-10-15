@@ -1,0 +1,86 @@
+{
+  "slug": "turn-a-client-email-thread-into-a-wiki-note-for-the-next-agent",
+  "title": "Turn a client email thread into a wiki note for the next agent",
+  "category": "Support",
+  "summary": "A freelancer turns the latest Gmail thread with a difficult client into a private wiki note the next agent, their VA, can use. You paste every message with From, To, Date, and Subject, including your own sent replies, plus the project name, the promise rules you already gave the VA, and the current wiki page if one exists. The note separates what the client asked for, what you promised in a sent message, and what is still open. A wish is not a promise. Dates are copied from headers. Missing fees, owners, and deadlines stay UNKNOWN. You check each line against the thread before the page is published or handed to the VA. You send any client reply yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the freelancer's note-taker. Turn the latest difficult-client email thread into a private wiki note for the next agent, the VA. Use only [EMAIL THREAD], [CLIENT NAME], [PROJECT NAME], [PROMISE RULES], and [CURRENT WIKI PAGE]. Do not email anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- What they want lists only asks the client wrote, each with the Date header. When the same ask changes, keep the later message\n- What you promised lists only commitments in messages the freelancer sent. A claim with no matching sent sentence goes under Disputed. If two sent messages conflict, the later one stands and the earlier is Disputed as superseded\n- Still open holds items this thread never delivers, cancels, or accepts. If [CURRENT WIKI PAGE] already closed an item, do not reopen it unless this thread reopens it\n- Copy dates from headers. No relative time and no day count. Fees, deadlines, and file bodies stay UNKNOWN unless the message states them. Attachment names may be listed\n- If [PROMISE RULES] are stricter, follow them. No mood labels and no drafted reply\n\nOutput format:\nOutput sections only. Bullets under 25 words, six per section, note under 220 words.\nHEADER: client, project, subject, first date, last date\nWHAT THEY WANT:\n- date — ask\nWHAT YOU PROMISED:\n- date — commitment\nSTILL OPEN:\n- item — owner (client, freelancer, or UNKNOWN)\nDISPUTED:\n- claim — why it is not the standing promise\nUNKNOWN:\nDo not publish the note.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful internal editor for a freelancer. Build a wiki note the VA can trust after a tense email thread. Read only [EMAIL THREAD], [CLIENT NAME], [PROJECT NAME], [PROMISE RULES], and [CURRENT WIKI PAGE]. This note is not a message to the client.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Separate asks the client wrote from commitments in sent mail. Apply [PROMISE RULES] when they are stricter than a casual yes\n- If the same ask changes, keep the later wording. If two sent commitments conflict, the later one is the promise and the earlier is Disputed as superseded\n- A claim with no matching sent sentence belongs under Disputed, never under What you promised\n- An item leaves Still open only when a later message delivers it, drops it, or shows acceptance. Silence is not acceptance. Do not reopen a closed line on [CURRENT WIKI PAGE] unless this thread reopens it\n- Header dates only. Attachment names may appear; file contents stay UNKNOWN unless pasted. No mood labels and no suggested reply\n\nOutput format:\nSections in this order. Bullets under 25 words, six per section, note under 220 words.\nHEADER: client, project, subject, first date, last date\nWHAT THEY WANT:\n- date — ask\nWHAT YOU PROMISED:\n- date — commitment\nSTILL OPEN:\n- item — owner (client, freelancer, or UNKNOWN)\nDISPUTED:\n- claim — missing sent line, or superseded\nUNKNOWN:\nEnd with HUMAN CHECK before the page is filed. Do not publish.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a freelancer. From the latest email thread, write the wiki note the next agent needs: what they want, what was promised, and what is still open. Sources are [EMAIL THREAD], [CLIENT NAME], [PROJECT NAME], [PROMISE RULES], and [CURRENT WIKI PAGE]. Stop at the draft.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Wants come from the client's messages only. Do not turn a question into an order. If the same ask changes, keep the later one\n- Promises come from mail the freelancer sent. Memory and their retelling do not count. Unmatched claims go to Disputed. If two sent lines conflict, the later one stands and the earlier is superseded under Disputed\n- Open means nobody later in this thread said it shipped, was cancelled, or was accepted. If [CURRENT WIKI PAGE] already closed it, leave it closed unless this thread opens it again\n- Use the Date header as written. Skip relative time and unstated fees. An attachment name can be listed; the file body is UNKNOWN\n- Follow [PROMISE RULES] if they are stricter. No mood words and no reply to send\n\nOutput format:\nReturn these headings. Bullets under 25 words, six per section, note under 220 words.\nHEADER: client, project, subject, first date, last date\nWHAT THEY WANT:\n- date — ask\nWHAT YOU PROMISED:\n- date — commitment\nSTILL OPEN:\n- item — owner (client, freelancer, or UNKNOWN)\nDISPUTED:\n- claim — why it is unmatched or superseded\nUNKNOWN:\nSay the draft is not published.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a private wiki note a freelancer will review before a VA sees it. Turn [EMAIL THREAD] into that note using [CLIENT NAME], [PROJECT NAME], [PROMISE RULES], and [CURRENT WIKI PAGE]. Do not publish, share, or reply.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Under What they want, one bullet per client ask, with the Date header. Drop greetings. If the ask changed, keep the later wording\n- Under What you promised, one bullet per commitment in a sent message. If [PROMISE RULES] exclude a casual aside, leave it out. A claim with no sent sentence goes under Disputed\n- If two sent messages disagree, the later commitment is the promise and the earlier is Disputed as superseded. Silence after an ask is not a promise\n- Under Still open, keep work with no later delivery, cancellation, or acceptance. Skip items on [CURRENT WIKI PAGE] that this thread does not mention, and do not reopen items that page already closed\n- List attachment names only, unless the body includes the file text. No labels such as difficult or angry\n\nOutput format:\nReturn only these headings. Each bullet under 25 words, six max per section, note under 220 words.\nHEADER: client, project, subject, first date, last date\nWHAT THEY WANT:\n- date — ask\nWHAT YOU PROMISED:\n- date — commitment\nSTILL OPEN:\n- item — owner (client, freelancer, or UNKNOWN)\nDISPUTED:\n- claim — gap or superseded line\nUNKNOWN:\nEnd with FREELANCER APPROVES. Do not file the page.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in the chat app you already use. Optional Gmail, a Notion or Google Docs wiki, and Zapier, Make, or n8n saving an unpublished draft only.",
+    "steps": [
+      "In Gmail, open the latest thread with this client. Copy every message so From, To, Date, and Subject stay visible, including the replies you sent. Expand any shortened earlier mail before you copy. Do not paste only the newest complaint.",
+      "At the top of a blank doc, write the client name, the project name, and your promise rule in one or two lines: a promise is only a commitment in a message you sent. A wish, a deadline they named, or a fee they hope for is not one.",
+      "Open the project wiki page the VA already uses, in Notion or a Google Doc. Copy the open items still on that page. If no page exists yet, write NONE so the note cannot invent an older history.",
+      "Open the assistant you already use and paste that model's prompt. Fill the thread, client name, project name, promise rules, and current wiki page. If a header date, fee, or file body is absent, leave it UNKNOWN.",
+      "Read What they want against messages they sent. Read What you promised against mail you sent. Move any ask you never agreed to into Still open or Disputed. If two of your sent notes conflict, keep the later one as the promise.",
+      "Read Still open from oldest message to newest. If a later message says the file was delivered, the change was dropped, or they accepted the work, remove that item. Keep a date only when a header shows it. File contents stay UNKNOWN unless the body includes them.",
+      "Delete any line that calls the client difficult, rude, or unreasonable, and delete any drafted reply. Fix mismatches yourself. Do not paste new facts back into the chat to fill a blank the thread does not contain.",
+      "When each kept promise points at a sent message you can see, paste the note into the wiki as an unpublished page or a private Google Doc. Do not email the client, and do not tell the VA to answer yet.",
+      "Optional later: in Zapier, Make, or n8n, start when you label a Gmail thread for the VA. Pass the full thread into the same prompt and save the result as an unpublished wiki draft. You still compare asks, promises, and open items before anyone else sees the page."
+    ],
+    "approvalStep": "You review the wiki note against the Gmail thread and approve each want, each promise, and each open item before the page is published or handed to the VA. You send any client reply yourself. Nothing is posted or emailed until that check is done.",
+    "failureModes": [
+      "A client wish is filed as something you promised. A rush, a free revision, or a new fee counts only when your sent message agreed. If you cannot point at that message, move the line to Disputed.",
+      "Shortened earlier mail hid a promise or a delivery. If the paste stops where Gmail cut the history, expand the thread and run the note again before you trust an empty list.",
+      "Finished work stays on Still open. A later message that the file arrived, the change was dropped, or they accepted it should remove that item. Check those lines against the headers.",
+      "The page calls the client difficult or invents a mood. Cut those words so the VA does not copy an insult into a reply. The note is facts, owners, and dates.",
+      "A date, fee, or deadline appears that no header or sentence contains. Replace last week, soon, or a guessed amount with the header date or UNKNOWN.",
+      "The automation publishes the wiki page or starts a client reply when the label is applied. Keep Zapier, Make, or n8n on an unpublished draft until you approve."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste from the client thread?",
+      "a": "Copy the whole Gmail conversation, not only the latest complaint. Keep From, To, Date, and Subject on every message, including the replies you sent. Add the project name, the promise rule you already use with your VA, and the current wiki page if one exists. If there is no page, type NONE. Expand shortened earlier mail first, or a promise buried there will vanish."
+    },
+    {
+      "q": "Will this email the client or only brief my VA?",
+      "a": "It only drafts an internal wiki note. You copy that note into an unpublished page after you check it. Your VA should read it before they touch the account. Any reply to the client is a separate message you write and send yourself. If you later connect Zapier, Make, or n8n, let that flow save a draft and leave sending and publishing off."
+    },
+    {
+      "q": "They say I promised a free revision. Where does that go?",
+      "a": "Put it under What you promised only if one of your sent messages agrees. If they assert it and you cannot find that sentence, put the claim under Disputed and leave the revision under Still open with the owner UNKNOWN. Do not smooth the clash into a yes. You decide, then edit the note before the VA sees it."
+    },
+    {
+      "q": "Which assistant should I use for this wiki note?",
+      "a": "Use the prompt written for the assistant you already have, with the same thread, project name, promise rules, and current wiki page. Keep the note where each ask sits in a message they wrote, each promise sits in mail you sent, closed work is not still open, and gaps say UNKNOWN."
+    },
+    {
+      "q": "Can my VA file these notes without me?",
+      "a": "They can paste the thread and produce the draft. They should not publish the page or answer the client from it. You still match wants, promises, and open items to the messages, including any disputed claim. Hand them the page only after that pass, and tell them disputed lines are waiting on you."
+    }
+  ],
+  "draft": true,
+  "persona": "Freelancer with a VA",
+  "job": "Paste the latest thread with a difficult client and get a wiki note that separates what they want, what you promised, and what is still open.",
+  "who": "Freelancers who share a virtual assistant and need a private wiki page after a tense client email thread, so the VA sees the asks, the sent promises, and the open items without rereading the argument.",
+  "toolCategories": [
+    "Email",
+    "Notes and wikis",
+    "Workflow automation",
+    "AI chat models"
+  ]
+}

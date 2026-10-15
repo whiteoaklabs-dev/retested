@@ -1,0 +1,85 @@
+{
+  "slug": "show-a-customer-the-feature-they-already-have",
+  "title": "Show a customer the feature they already have",
+  "category": "Support",
+  "summary": "You paste a please-build-this ticket and the click path you walked on an account that matches the customer. The assistant returns a subject line and a body of 120 words or fewer that restates what they asked to build, names the on-screen label, gives the first click, and lists at most three later clicks from your notes. A line states which role or plan can open it, or UNKNOWN if you did not check. A private checklist stays off the message. You compare each menu and button with the screen, drop the draft if their ask is not that feature, and you send the reply yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a product support agent drafting a reply the customer has not seen. Show where that feature already lives, using only the ticket and the click path you walked. Do not send the reply.\n\nRules:\n- Open by restating what they asked to build, using their words from the ticket.\n- Name the on-screen label exactly as written in [FEATURE LABEL].\n- State the first click as line one of [CLICK PATH], then at most three later clicks from that same note.\n- Say who can open it from [WHO CAN OPEN IT]. If that note is blank, write UNKNOWN and ask which role they are signed in as.\n- Do not scold, say they missed it, or add a web address.\n- If their ask names a field the path never mentions, do not claim the screen does that. Mark the gap UNKNOWN.\n- Keep the customer-facing body at or under 120 words.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nTicket subject and body:\n[TICKET TEXT]\n\nVerified clicks. Line one is the first click:\n[CLICK PATH]\n\nOn-screen label:\n[FEATURE LABEL]\n\nRole, plan, or permission:\n[WHO CAN OPEN IT]\n\nSign-off name:\n[AGENT SIGN-OFF]\n\nOutput format:\nSubject: one line that names their request\nBody sections in order: their request, the on-screen label with the first click, later clicks one per line, who can open it or UNKNOWN, a line offering to stay on the thread if their screen differs, then the sign-off.\nAfter the body, a private checklist with headings Request match, First click copied, Role or plan, and Fields marked UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful product support agent. Draft a reply that shows a customer the feature they already have. Work only from the ticket and the click path you walked. Do not send.\n\nRules:\n- Restate the build request in the customer's words before any navigation.\n- Copy the on-screen label from [FEATURE LABEL]. Do not rename it to their nickname.\n- Give the opening click from line one of [CLICK PATH], then no more than three following clicks that appear in the notes.\n- If the ticket wants a field the path does not mention, leave that field UNKNOWN and do not pretend the screen covers it.\n- Record who can open it only from [WHO CAN OPEN IT]. A blank note becomes UNKNOWN plus a question about how they are signed in.\n- Skip scolding, jokes, and any web address or article title you were not given.\n- Hold the body they will read to 120 words or fewer.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nTicket subject and body:\n[TICKET TEXT]\n\nVerified clicks. Line one is the opening click:\n[CLICK PATH]\n\nOn-screen label:\n[FEATURE LABEL]\n\nRole, plan, or permission:\n[WHO CAN OPEN IT]\n\nSign-off name:\n[AGENT SIGN-OFF]\n\nOutput format:\nReturn a subject line, then body sections: request in their words, label plus opening click, later clicks one per line, who can open it or UNKNOWN, an offer to stay on the thread if the screen differs, and the sign-off.\nThen a private checklist headed Request match, First click copied, Role or plan, Fields marked UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken product support agent. The ticket says please build this. The path shows the feature already on the screen. Draft the reply. Do not send it.\n\nRules:\n- Start with their request, in their words, not a lecture about looking harder.\n- Use the on-screen label as printed in [FEATURE LABEL]. Their phrase is not a new name for it.\n- Put the first click alone, taken from line one of [CLICK PATH], then at most three more clicks that the note actually lists.\n- If two paths are pasted, use the one marked current. If neither is marked, ask which path was walked today.\n- Who can open it comes only from [WHO CAN OPEN IT]. Blank means UNKNOWN and a question about their role.\n- Do not add a web address, a guessed menu, or a line that scolds.\n- Body they will see: 120 words or fewer.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nTicket subject and body:\n[TICKET TEXT]\n\nVerified clicks. Line one is the first click:\n[CLICK PATH]\n\nOn-screen label:\n[FEATURE LABEL]\n\nRole, plan, or permission:\n[WHO CAN OPEN IT]\n\nSign-off name:\n[AGENT SIGN-OFF]\n\nOutput format:\nSubject: their request, not a refusal\nBody sections: their words for the ask, label and first click, later clicks one per line, who can open it or UNKNOWN, one line that you will stay on the thread if their screen differs, sign-off.\nPrivate checklist after that, headings Request match, First click copied, Role or plan, Fields marked UNKNOWN. Keep the checklist out of the message.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a help-desk reply for review before sending. The customer asked for something to be built. Show where it already lives, and the first click that opens it. Use only the pasted ticket and the walked path.\n\nRules:\n- Lead with the request as they wrote it, then the on-screen label from [FEATURE LABEL].\n- The first click must be line one of [CLICK PATH]. Add at most three later clicks, each copied from the notes.\n- Do not treat a nearby setting as the same thing if the ticket names a field the path leaves out. Mark that gap UNKNOWN.\n- Who can open it must come from [WHO CAN OPEN IT]. If you were not given a role or plan, write UNKNOWN and ask.\n- Sound like help. Do not scold, and do not invent a web address.\n- Keep the body at or under 120 words.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If [FEATURE LABEL] is empty, stop and ask for the label you saw on the screen.\n\nTicket subject and body:\n[TICKET TEXT]\n\nVerified clicks. Line one is the first click:\n[CLICK PATH]\n\nOn-screen label:\n[FEATURE LABEL]\n\nRole, plan, or permission:\n[WHO CAN OPEN IT]\n\nSign-off name:\n[AGENT SIGN-OFF]\n\nOutput format:\nSubject line, then these body sections: request in their words, label with the first click, later clicks one per line, who can open it or UNKNOWN, offer to stay on the thread if the screen differs, sign-off.\nEnd with a private checklist: Request match, First click copied, Role or plan, Fields marked UNKNOWN. Keep it out of the reply.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional later: a help-desk macro with Zapier, Make, or n8n saving an unsent reply.",
+    "steps": [
+      "Copy the ticket subject and the customer's full message into a note. Keep their sentence about what they want built. If the header shows a plan or seat type, copy that too. Drop signatures and quoted earlier replies.",
+      "Sign in with a role and plan that match this customer. Walk the path on that account. Write each click on its own line, menu then screen then control, and put the first click on line one. Record the label you see, even if it differs from their words.",
+      "Add two lines under the path: who can open it (role or plan), and the name you sign replies with. If you did not check the role or plan on their account type, type UNKNOWN. Do not supply a menu from memory.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace the ticket, click path, on-screen label, who-can-open-it note, and sign-off. If a slot is empty, type UNKNOWN in that slot before you run it.",
+      "Read the draft beside the screen you just opened. Every menu and button in the body must match your notes. If the draft adds a click, renames a control, or fills a role you marked UNKNOWN, delete those lines and run the prompt again.",
+      "Check that their ask and the screen are the same thing. If they wanted a field this screen does not have, do not send this reply. Answer the gap as a real request. Also cut any sentence that scolds them or says they should have looked.",
+      "Paste only the subject and body into the help desk as an unsent reply. Leave the private checklist out of the message. Open the product once more, confirm the first click, then send the reply yourself.",
+      "Optional: store the verified path on the help-desk macro for this screen. Use Zapier, Make, or n8n only to drop a new ticket into an unsent draft when that macro is attached. The flow must stop for your review and must not send."
+    ],
+    "approvalStep": "You approve the unsent help-desk reply before it is sent. Check that the first click matches the screen for this customer's role and plan, the body does not scold, and no menu was added. Only then do you send it.",
+    "failureModes": [
+      "The path was walked on an admin login, and the reply tells a member to open a menu their role never shows.",
+      "The draft renames a button to match the customer's phrase, so they search the screen and cannot find that label.",
+      "A nearby setting is treated as the thing they asked to build, even though it lacks the field they named in the ticket.",
+      "The reply scolds them for not looking, and they answer the tone instead of trying the first click.",
+      "Zapier, Make, or n8n sends the macro before you confirm this ticket is the same screen as the saved path.",
+      "Only the newest message is pasted, so an earlier line that the control is off for their plan never reaches the draft."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the screen is close but not what they asked for?",
+      "a": "Do not send the already-there reply. Write UNKNOWN next to the field their ticket asks for and the screen does not have. Tell them you see the nearby control, name the missing piece, and handle that piece as a real request or ask a teammate before any message goes out."
+    },
+    {
+      "q": "What if I only checked the path on an admin login?",
+      "a": "Do not hand a member a menu an admin sees. Walk the path again on a login that matches their role and plan, or set the role note to UNKNOWN so the draft asks how they are signed in. Send only after the opening click works on that kind of account."
+    },
+    {
+      "q": "Which assistant should I use for this reply?",
+      "a": "Use the prompt written for the assistant you already have open. Keep the draft only if the first click matches your notes, the on-screen label is unchanged, and any role or plan you did not verify is marked UNKNOWN. If a menu shows up that you never typed, run it again with that line removed."
+    },
+    {
+      "q": "Can the help desk send this while I am offline?",
+      "a": "No. Paste mode only prints a draft. If you later use Zapier, Make, or n8n with the help desk, set the action to create an unsent reply and attach the path you verified. You still read the first click against the product, then you send."
+    },
+    {
+      "q": "How long should the reply be, and what must it contain?",
+      "a": "Ask for a subject and a body of 120 words or fewer: their request in their words, the on-screen label, the first click, at most three later clicks, who can open it or UNKNOWN, and a line that you will stay on the thread if their screen looks different. Leave the checklist out of what they see."
+    }
+  ],
+  "draft": true,
+  "persona": "Product support agent",
+  "job": "A please-build-this ticket and the real click path become a reply that shows where the feature already lives and the first click to open it.",
+  "who": "Product support agents who answer tickets that ask the team to build a feature the customer already has. You have the ticket and a click path you checked on a matching role, and you need a reply that shows the first click without scolding.",
+  "toolCategories": [
+    "Helpdesk and ticketing",
+    "AI chat models",
+    "Help desk macros",
+    "Workflow automation"
+  ]
+}

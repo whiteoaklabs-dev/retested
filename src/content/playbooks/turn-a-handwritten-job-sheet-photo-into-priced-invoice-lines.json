@@ -1,0 +1,84 @@
+{
+  "slug": "turn-a-handwritten-job-sheet-photo-into-priced-invoice-lines",
+  "title": "Turn a handwritten job-sheet photo into priced invoice lines",
+  "category": "Finance & admin",
+  "summary": "Photograph the handwritten job sheet from the truck, then paste your price card and a short tax note. The agent reads the customer name, service address, job date, labor hours or flat call, and each part on the sheet, and prices those lines only from the card. The draft lists labor, parts, tax, and a total, with any smudged digit, unmatched part, or missing rate marked UNKNOWN. You correct the reading against the photo, assign the invoice number, and approve the draft before it is emailed, charged, or posted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office helper for an independent plumber. Turn one handwritten job-sheet photo into priced invoice lines the plumber checks before anyone is billed.\n\nInputs: [JOB SHEET PHOTO], [PRICE CARD], and [TAX NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy customer, service address, job date, and phone only from readable handwriting. A smudged digit stays UNKNOWN.\n- From [PRICE CARD], price labor as hours times the standard rate, or the flat call fee if the sheet says flat. After-hours only if the card lists it and the sheet marks it.\n- Price each part from one card row. If a nickname fits two rows, mark the unit price UNKNOWN and name both.\n- Tax only what [TAX NOTE] allows, at the rate written there. If the note is silent, tax is UNKNOWN and stays out of the amount due.\n- Add a trip or disposal fee only when the sheet or the card states it. Two addresses means two groups. Do not email, charge, or post.\n\nOutput format:\nReturn headings: Header, Labor, Parts, Tax, Total, Unreadable, Confirm.\nHeader: Customer, Service address, Job date, Phone, Invoice number as NEXT NUMBER.\nLabor columns: Description, Hours or flat, Rate, Amount, Source.\nParts columns: Description, Qty, Unit price, Amount, Source.\nTax: taxable base, rate from the note, tax amount, lines left untaxed.\nTotal: subtotal, tax, amount due, or UNKNOWN if any line amount is UNKNOWN.\nEach description stays under 12 words, in the sheet's wording.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful billing clerk for an independent plumber. Read the handwritten [JOB SHEET PHOTO], the [PRICE CARD], and the [TAX NOTE], then draft priced lines for review.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Transcribe only marks you can see: customer, service address, job date, phone, clock times, and each part. A blurred digit is UNKNOWN.\n- Turn clock times into hours only when both are readable. If either is unclear, hours are UNKNOWN.\n- Take rates, the flat call fee, any trip fee, and part prices only from [PRICE CARD]. If two rows fit a nickname, list both and set the price to UNKNOWN.\n- Use an after-hours rate only when the card has that row and the sheet marks after hours. Otherwise use the standard row.\n- Follow [TAX NOTE] on what is taxable and which rate. If it is silent, tax is UNKNOWN and stays out of the amount due.\n- Keep two stops as two groups. Do not write a message to the homeowner or a payment link.\n\nOutput format:\nReturn headings: Header, Labor, Parts, Tax, Total, Unreadable, Confirm.\nHeader: Customer, Service address, Job date, Phone, Invoice number as NEXT NUMBER.\nLabor columns: Description, Hours or flat, Rate, Amount, Source.\nParts columns: Description, Qty, Unit price, Amount, Source.\nTax: taxable base, rate from the note, tax amount, lines left untaxed.\nTotal: subtotal, tax, amount due, or UNKNOWN if any amount is UNKNOWN.\nDescriptions stay under 12 words, in the sheet's wording.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken helper for an independent plumber turning a truck sheet into a bill. Use the handwritten [JOB SHEET PHOTO], the [PRICE CARD], and the [TAX NOTE]. Draft the lines only.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Read the scribble as written: name, address, date, phone, hours or flat, and parts. Guess no digit you cannot see.\n- Hours come from readable clock times or a number already on the sheet. Do not invent hours.\n- Labor rate, flat call fee, trip fee, and part prices come from [PRICE CARD] only. If a nickname fits two rows, the price stays UNKNOWN and you name both.\n- After-hours pay applies only when the sheet marks it and the card has that rate. No mark means the standard rate.\n- [TAX NOTE] decides if labor, parts, or both are taxed, and which rate. No note means no tax line, and the amount due stays UNKNOWN.\n- Two addresses means two groups of lines. Do not email, charge, or post.\n\nOutput format:\nReturn headings: Header, Labor, Parts, Tax, Total, Unreadable, Confirm.\nHeader: Customer, Service address, Job date, Phone, Invoice number as NEXT NUMBER.\nLabor columns: Description, Hours or flat, Rate, Amount, Source.\nParts columns: Description, Qty, Unit price, Amount, Source.\nTax: base, rate copied from the note, tax amount, lines left untaxed.\nTotal: subtotal, tax, amount due. If any amount is UNKNOWN, amount due is UNKNOWN.\nDescriptions stay under 12 words, in the sheet's words.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing an invoice draft an independent plumber will review before a homeowner sees it. Use the handwritten [JOB SHEET PHOTO], the [PRICE CARD], and [TAX NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy customer, service address, job date, and phone from the photo. If the sheet omits one, write UNKNOWN.\n- Build labor from hours or a flat call on the sheet, using the matching rate on [PRICE CARD]. State hours only when the figure or both clock times are readable.\n- Match each part to one card row. Do not merge different fittings onto one line. Two possible rows means the unit price is UNKNOWN.\n- Add a trip fee, disposal fee, or after-hours rate only when the sheet or the card states it. Two addresses means two groups.\n- Compute tax only from [TAX NOTE]. A missing rate means tax is UNKNOWN and is not added into the total.\n- Leave the invoice number as NEXT NUMBER. Do not draft an email, a card charge, or a ledger entry.\n\nOutput format:\nReturn headings: Header, Labor, Parts, Tax, Total, Unreadable, Confirm.\nHeader: Customer, Service address, Job date, Phone, Invoice number.\nLabor columns: Description, Hours or flat, Rate, Amount, Source.\nParts columns: Description, Qty, Unit price, Amount, Source.\nTax: taxable base, rate from the note, tax amount, lines excluded.\nTotal: subtotal, tax, amount due, or UNKNOWN when any line or the tax is UNKNOWN.\nEach description stays under 12 words in the sheet's wording.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A photo-capable chat in paste mode first. Later Google Sheets plus Zapier, Make, or n8n can store an unsent draft only.",
+    "steps": [
+      "Photograph the whole handwritten job sheet in even light: customer name, service address, date, time in and time out or a flat-call mark, each part, and any trip or after-hours note. Retake it if a corner or a digit is cut off.",
+      "Type your price card as plain lines: standard hourly rate, flat service-call fee, after-hours rate only if you charge one, trip or disposal fees, and the unit price of each part you stock. Leave a row blank instead of making up a price.",
+      "Write a tax note in your own words: whether this town taxes labor, whether it taxes parts, and the sales-tax rate you already charge on a plumbing bill. If you are unsure, write UNKNOWN so the draft cannot pick a rate.",
+      "Open the chat assistant you already use and upload the job-sheet photo. Paste the prompt for that assistant, replacing the price-card and tax-note placeholders with your card and your note. Ask only for the draft, not a note to the homeowner.",
+      "Check every labor line and parts line against the photo. Hours must match the scribbled times. Each part price must be one row on your card. Replace UNKNOWN only when you can see the digit or you know that price.",
+      "Write the real invoice number, the bill date, and your business name on the draft. Copy the checked lines into your invoicing screen or a Google Sheet and keep the status unsent. Store the photo beside that draft.",
+      "Optional agent mode: drop new job-sheet photos in a folder, keep the price card in Google Sheets, and use Zapier, Make, or n8n to run this prompt and append a draft row. Leave homeowner email, card charge, and the books post turned off."
+    ],
+    "approvalStep": "You match each labor line, part price, tax line, and the total to the photo and your price card, then approve the draft. Do not email the homeowner, take a card payment, or post the invoice until you send it yourself.",
+    "failureModes": [
+      "A smudged hour is read as a larger number, such as a two looking like a seven. Compare Hours or flat with the time-in and time-out marks before you approve.",
+      "A nickname on the sheet hits the wrong card row, such as cart meaning a faucet cartridge or a toilet fill valve. Watch the unit price when two rows could fit.",
+      "An after-hours rate is applied though the sheet has no after-hours mark. Watch any labor rate above the standard row on your card.",
+      "Tax lands on labor when your note says parts only, or a rate appears when the note was blank. Read the Tax section against the note you pasted.",
+      "Two stops on one sheet become one bill, or the afternoon job is dropped. Two addresses or two times should produce two groups of lines.",
+      "Automation emails the homeowner or marks the bill sent as soon as the row is filled. Keep the flow on an unsent draft until you approve it."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to read a job-sheet photo?",
+      "a": "Use the prompt for the chat assistant you already have, as long as it accepts a photo. Judge the draft by whether each hour and part name matches the handwriting and every price matches one row on your card. If a digit is marked UNKNOWN, read the photo yourself before you fill it."
+    },
+    {
+      "q": "What if the hours on the sheet are hard to read?",
+      "a": "Leave hours as UNKNOWN and do not let the draft guess. If time in and time out are both clear, you can compute the hours yourself and type that figure. If either clock time is a blur, call the job from memory only when you are sure, and write the number in your own hand on the draft."
+    },
+    {
+      "q": "The part I installed is not on my price card. Now what?",
+      "a": "The line should keep the part name from the sheet and set the unit price to UNKNOWN. Type the price you actually paid or the price you charge for that fitting, then recheck the amount. Do not borrow a nearby row, such as a different cartridge, just to fill the cell."
+    },
+    {
+      "q": "Can this email the invoice to the homeowner?",
+      "a": "No. Paste mode returns a draft you copy into your invoicing screen or a sheet. An automation may add that draft from a photo folder and your price card, but sending, charging a card, and posting to the books stay off until you approve every line and the total."
+    },
+    {
+      "q": "Should labor and parts both be taxed on this bill?",
+      "a": "Only the way your tax note says. Paste whether labor is taxed, whether parts are taxed, and the rate you already charge. If the note is blank, the draft should leave tax as UNKNOWN instead of picking a rate. You confirm that line before the bill goes out."
+    }
+  ],
+  "draft": true,
+  "persona": "Independent plumber",
+  "job": "A photo of a scribbled job sheet, priced from your own price card, becomes an invoice draft with labor, parts, tax, and a total you still approve.",
+  "who": "Independent plumbers who finish a call with a scribbled paper sheet in the truck and need labor, parts, tax, and a total written up before the bill goes to the homeowner.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Invoicing",
+    "Workflow automation"
+  ]
+}

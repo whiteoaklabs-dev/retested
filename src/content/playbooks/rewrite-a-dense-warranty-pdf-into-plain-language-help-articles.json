@@ -1,0 +1,85 @@
+{
+  "slug": "rewrite-a-dense-warranty-pdf-into-plain-language-help-articles",
+  "title": "Rewrite a dense warranty PDF into plain-language help articles",
+  "category": "Support",
+  "summary": "Copy the coverage period, covered parts, exclusions, required proof, and how service starts out of one manufacturer warranty PDF. Add your shop rules (in-home brands, drop-off brands, proof you require, and the next step for a covered visit versus a paid repair) plus the counter questions you want as pages. You get short plain-language help articles, one per question: when it applies, what is covered, what is not, proof to bring, and one next step taken from your rules. The chat rewrites that dense warranty wording and marks gaps UNKNOWN. You compare every line to the PDF, cut claims you will not stand behind, and only then publish a page or hand a sheet to a customer. Nothing is posted for you.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a help-desk editor for an appliance shop owner. Rewrite dense manufacturer warranty language into short plain-language help articles. Use only [WARRANTY TEXT], [SHOP RULES], and [QUESTION LIST].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Write one article per line in [QUESTION LIST]. If that list says NONE, use each exclusion heading plus the covered-parts heading in [WARRANTY TEXT].\n- In COVERED and NOT COVERED, name only parts, defects, and exclusions from [WARRANTY TEXT]. Do not add a part, a period, a fee, or who pays.\n- Take NEXT STEP only from [SHOP RULES] (shop call, drop-off, maker contact, or paid repair). If the rules are silent, write NEXT STEP: UNKNOWN.\n- Do not copy a buyer name, address, serial, or ticket. The page is for every owner of that model family.\n- If two families in the PDF use different terms, do not merge them. Name the family in the title and mark the other UNKNOWN.\n- Stay at or under 150 words per article. No legal advice and no promise the shop will honor a claim.\n\nOutput format:\nFor each article, these headings in order:\nTITLE\nAPPLIES WHEN: one sentence\nCOVERED: 40 words or fewer, plus the PDF heading\nNOT COVERED: 40 words or fewer, plus the PDF heading\nPROOF TO BRING: items named in [WARRANTY TEXT] or [SHOP RULES] only\nNEXT STEP: one line from [SHOP RULES], or UNKNOWN\nSOURCE: the heading or sentence used\nThen:\nDO NOT PUBLISH: claims with no source line\nUNKNOWN: one missing fact per line",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting editor for an appliance shop owner. Turn dense warranty PDF language into plain-language help articles the owner will check before anyone sees them. Draw only from [WARRANTY TEXT], [SHOP RULES], and [QUESTION LIST].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every COVERED and NOT COVERED sentence to a heading or sentence in [WARRANTY TEXT]. If you cannot, put the claim in DO NOT PUBLISH, not in the article.\n- One article per question in [QUESTION LIST]. If the list says NONE, one per exclusion heading and one for covered parts. Do not invent topics.\n- Do not blend model families. If periods or parts differ, split the articles and name the family in the title.\n- Copy NEXT STEP from [SHOP RULES] only. Shop call, drop-off, maker contact, and paid repair are different. Do not pick one the rules omit.\n- Leave out buyer names, addresses, serials, and tickets. Name a proof item only if the PDF or the rules already name it.\n- Cap each article at 150 words. Do not soften an exclusion, and do not add a fee or a payer the PDF never states.\n\nOutput format:\nFor each article, these sections in order:\nTITLE\nAPPLIES WHEN: one sentence\nCOVERED: 40 words or fewer, then the source heading\nNOT COVERED: 40 words or fewer, then the source heading\nPROOF TO BRING\nNEXT STEP: copied from [SHOP RULES], or UNKNOWN\nSOURCE: heading or sentence\nThen:\nDO NOT PUBLISH: each unsourced claim\nUNKNOWN: one gap per line",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken writer for an appliance shop counter. Rewrite a dense warranty PDF into short help articles a customer can follow. Use only [WARRANTY TEXT], [SHOP RULES], and [QUESTION LIST].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Talk like the counter, not like a contract. Keep each exclusion. Do not drop commercial use, a bad install, or skipped care if the PDF lists them.\n- One article for each question on [QUESTION LIST]. If the list says NONE, use the exclusion headings and the covered-parts heading as titles, and stop there.\n- COVERED may name a part only when [WARRANTY TEXT] names it. An ice maker, gasket, or board is not covered just because people ask about it.\n- NEXT STEP comes from [SHOP RULES]. If those rules do not say shop call, drop-off, maker contact, or paid repair, write UNKNOWN.\n- Do not paste a real job into the page: no buyer name, address, serial, or ticket. Model families with different terms get separate articles.\n- Hold each article to 150 words or fewer. No legal advice and no new promise about who pays.\n\nOutput format:\nWrite each article with these headings:\nTITLE\nAPPLIES WHEN\nCOVERED (40 words or fewer, plus the PDF heading)\nNOT COVERED (40 words or fewer, plus the PDF heading)\nPROOF TO BRING\nNEXT STEP (one line from [SHOP RULES], or UNKNOWN)\nSOURCE\nThen end with:\nDO NOT PUBLISH\nUNKNOWN (one missing fact per line)",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for an appliance shop owner. Prepare plain-language help articles from a dense warranty PDF so the owner can review them before they are posted or handed out. Use only [WARRANTY TEXT], [SHOP RULES], and [QUESTION LIST]. Do not publish anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Build one article per line of [QUESTION LIST]. If that list says NONE, one article per exclusion heading and one for covered parts in [WARRANTY TEXT].\n- Every covered item and every exclusion must name its source heading from [WARRANTY TEXT]. Unsourced lines go under DO NOT PUBLISH, not in the body.\n- Set NEXT STEP from [SHOP RULES] alone. If call, drop-off, maker contact, or paid repair was not chosen, leave NEXT STEP as UNKNOWN.\n- Keep model families apart when terms differ. Put the family in TITLE. Do not borrow a period or a part list from the other family.\n- Strip names, addresses, serials, and ticket ids. List proof only when the PDF or the shop rules already list it.\n- Keep each article to 150 words or fewer. Do not add a fee, a payer, or a legal conclusion.\n\nOutput format:\nReturn these sections for every article:\nTITLE\nAPPLIES WHEN: one sentence\nCOVERED: 40 words or fewer and the source heading\nNOT COVERED: 40 words or fewer and the source heading\nPROOF TO BRING\nNEXT STEP: one line from [SHOP RULES] or UNKNOWN\nSOURCE\nThen:\nDO NOT PUBLISH: unsourced claims\nUNKNOWN: one missing fact per line",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode. Later, a drive folder of warranty text plus a workflow tool can file an unpublished draft only.",
+    "steps": [
+      "Open the manufacturer warranty PDF for one brand and model family. Copy the coverage period, covered parts, exclusions, the proof the owner must keep, and how service starts. If the file is a scan, type only the lines you can read and leave the rest blank.",
+      "On the same page, write shop rules in your own words: which brands you service in the home, which are drop-off only, the proof you require, and the next step for a covered visit versus a paid repair. Leave a line blank if you have not decided it.",
+      "List the counter questions you want as articles, one per line, such as an ice maker leak, a door gasket, a control board, sealed-system noise, install damage, or a lost receipt. If you have no list, write NONE so the PDF headings set the titles.",
+      "Open a fresh chat, paste one prompt from this playbook, and replace each bracketed placeholder with the PDF text, the shop rules, and the question list. Ask for every article in a single reply. Do not ask the chat to publish a page or file a claim.",
+      "Read each COVERED and NOT COVERED line beside the PDF. Delete any part, period, or exclusion you cannot point to a heading. Replace each UNKNOWN with a fact from the PDF or your rules, or cut that sentence before a customer can see it.",
+      "Check NEXT STEP against your shop rules. A covered sealed-system visit and a paid install problem must not share the same instruction. Remove any buyer name, address, serial, or ticket that came from one real job.",
+      "Paste the articles you will stand behind into your help center or a Google Doc, or print a counter sheet. Leave them unpublished and unsent. Read one aloud as if the customer were standing at the counter with the unit.",
+      "When every coverage line matches the PDF and every next step matches your rules, publish or print them yourself. Optional later: keep the PDF text in Google Drive and use Zapier, Make, or n8n to create an unpublished Google Doc. Leave auto-publish off."
+    ],
+    "approvalStep": "You review each article beside the warranty PDF and your shop rules, confirm what is covered, what is not, and the next step, and only then publish the page or hand the sheet to a customer.",
+    "failureModes": [
+      "Invented part: the page says the ice maker or the control board is covered when the PDF only names the sealed system. Drop any part you cannot find in the text.",
+      "Dropped exclusion: a limit that is in the PDF, such as commercial use, a bad install, or skipped care, never appears, so a paid job reads as free. Put that sentence back under NOT COVERED.",
+      "Wrong desk: the next step says call the maker when your rules say drop the unit at the shop, or the reverse. Match that line to the rules before anyone sees it.",
+      "Term swap: the labor period and the parts period trade places, or coverage starts at install when the PDF says the purchase date. Compare those sentences before you post.",
+      "One job becomes policy: a serial, address, or ticket from a real repair is written as if every buyer has it. Strip that and keep the page general.",
+      "Scan gap filled in: the paste stops mid-sentence and the draft finishes the exclusion in smooth language. If the source line is missing, keep UNKNOWN."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I cannot copy text from the warranty PDF?",
+      "a": "Type only the sentences you can read: coverage period, covered parts, exclusions, proof required, and how service starts. Leave a blurry line blank. The draft should mark that gap UNKNOWN rather than guess a period or a part. Do not publish from a brochure or a packing slip that is not the warranty itself."
+    },
+    {
+      "q": "Will these articles post to my site on their own?",
+      "a": "No. Paste mode returns text for you to copy. If you later store the PDF text in Google Drive and connect Zapier, Make, or n8n, set that flow to create an unpublished Google Doc. You still approve covered, not covered, and the next step before a page goes live or a sheet is handed over."
+    },
+    {
+      "q": "Which model is best for these warranty articles?",
+      "a": "Use the prompt for the assistant you already have open. Judge a draft by whether each covered line, each exclusion, and the next step point at a sentence in the PDF or at your shop rules. Keep the version that needs the least correction against those two sources. Do not post a line you cannot point to."
+    },
+    {
+      "q": "The PDF covers several models with different terms. What then?",
+      "a": "Do not merge them into one page. Put the model family in the title and write separate articles where the periods or the parts differ. If the paste does not say which family a sentence belongs to, mark that sentence UNKNOWN and hold the page until you split the text yourself."
+    },
+    {
+      "q": "Can the counter read these aloud, or are they only for the site?",
+      "a": "Either, after you approve them. A counter sheet and a help-center page should use the same covered, not covered, and next-step lines. If a live job does not match the page, say so and open the PDF. Staff should not fill a gap the page left as UNKNOWN."
+    }
+  ],
+  "draft": true,
+  "persona": "Appliance shop owner",
+  "job": "Turn one manufacturer warranty PDF into short help articles on what is covered, what is not, and the next step the customer should take.",
+  "who": "An appliance shop owner whose counter keeps reopening the same dense manufacturer warranty PDF to decide if a leak, a board, or a noise is covered, and what the customer should do next.",
+  "toolCategories": [
+    "AI chat models",
+    "Document storage",
+    "Help center",
+    "Workflow automation"
+  ]
+}

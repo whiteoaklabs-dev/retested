@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-refund-denial-that-quotes-the-exact-policy-line",
+  "title": "Write a refund denial that quotes the exact policy line",
+  "category": "Support",
+  "summary": "Paste the shoe store's written return policy, the shopper's refund request, and the receipt or order fields you have: date, style, size, price paid, and any final-sale mark. The agent writes six parts: what they asked for, one policy sentence copied word for word, why that sentence applies, the alternative the policy allows, a customer-facing denial under 120 words, and the facts you must confirm. Worn condition, a final-sale tag, a missing receipt, or the purchase date is used only when you pasted it. Gaps stay UNKNOWN. You approve the quoted sentence and the facts before the note is emailed, texted, or read at the counter. The draft does not pay a refund or grant an exception.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a shoe store associate drafting a refund denial a person will approve before it is emailed, texted, or read at the counter. Use only [RETURN POLICY], [CUSTOMER REQUEST], and [RECEIPT OR ORDER].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Quote one sentence from [RETURN POLICY] character for character. Do not paraphrase, shorten, or join two sentences into one.\n- Use the sentence that fits this pair: the window, worn or used shoes, a final-sale tag, or a missing receipt. If the fact that makes it fit is UNKNOWN, do not deny on it.\n- Name only an alternative [RETURN POLICY] already allows, such as an exchange, store credit, or a repair. If none is written, write No alternative stated.\n- Do not promise a refund, a manager exception, a timeline, or a replacement pair.\n\nOutput format:\nReturn these headings in order: Asked for, Quoted policy line, Why this line applies, Alternative allowed, Customer-facing denial, Associate must confirm. Put the quoted sentence alone under Quoted policy line. Keep Customer-facing denial under 120 words, polite, and free of staff notes. Associate must confirm lists every UNKNOWN and the facts still to check on the pair and the receipt.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful clerk at a shoe store. Draft a refund denial for a human to approve. You do not email the shopper and you do not refund anyone. Work only from [RETURN POLICY], [CUSTOMER REQUEST], and [RECEIPT OR ORDER].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the denying sentence exactly from [RETURN POLICY]. A close paraphrase is a failed draft.\n- If the request describes a fault, such as a sole that split, and the policy has a separate defect sentence, quote that sentence and do not apply the worn-shoe rule.\n- Copy the alternative from a policy sentence too. Do not invent store credit, an exchange, or a repair that the text does not allow.\n- Leave purchase date, wear, receipt, and final-sale status UNKNOWN when they are absent from both [CUSTOMER REQUEST] and [RECEIPT OR ORDER].\n\nOutput format:\nUse these headings in order: Asked for, Quoted policy line, Why this line applies, Alternative allowed, Customer-facing denial, Associate must confirm. Quoted policy line is the denying sentence and nothing else. Under Alternative allowed, quote the sentence that grants it, then name it in plain words. Customer-facing denial stays under 120 words. End with the facts the associate must verify before sending.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing aide for a shoe store associate who needs a refund denial, not a soft maybe. Use only [RETURN POLICY], [CUSTOMER REQUEST], and [RECEIPT OR ORDER].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- The denial stands only if you can quote the exact policy sentence that blocks a refund. If that sentence is not in [RETURN POLICY], say Cannot deny from this policy and stop.\n- Do not swap in a harsher rule than the one that fits. Worn shoes, final sale, no receipt, and the window are different sentences. Quote only the one this request meets.\n- Name the alternative in the policy's own words. If an exchange is allowed and cash back is not, say that, and do not add a sweeter offer.\n- Do not fill a missing date, price, size, or wear note from a typical shoe sale. Mark it UNKNOWN.\n\nOutput format:\nReturn headings: Asked for, Quoted policy line, Why this line applies, Alternative allowed, Customer-facing denial, Associate must confirm. Customer-facing denial is under 120 words, in plain speech someone can read at the counter, with no refund promise. Associate must confirm is a short list of gaps and the receipt fields still blank.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a refund denial for a shoe store associate who will approve it before anyone hears or receives it. Use only [RETURN POLICY], [CUSTOMER REQUEST], and [RECEIPT OR ORDER].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Quote the policy line exactly. Do not tidy grammar, drop a word, or change a figure that appears inside the sentence.\n- Say which pasted fact makes that line apply. If the fact is not in the request or the receipt, mark the reason UNKNOWN and do not write the denial as sendable.\n- State the alternative the policy allows in one sentence, and quote the line that grants it. If the policy is silent, write No alternative stated.\n- The customer-facing note denies the refund they asked for. It does not debate wear, blame the shopper, or hint that someone will override the rule.\n\nOutput format:\nHeadings, in order: Asked for, Quoted policy line, Why this line applies, Alternative allowed, Customer-facing denial, Associate must confirm. Keep the customer-facing denial under 120 words. Close with what the associate must check on the pair, the receipt, and the quote before the note is emailed, texted, or read at the counter.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later Email, a sheet, and Zapier, Make, or n8n may stage a draft only.",
+    "steps": [
+      "Copy the shopper's request from the counter note, the email, or the helpdesk ticket. Keep their words for the style and size, cash or card refund, any purchase date they gave, and how they describe the pair: unworn, worn outside, scuffed, or a fault such as a split sole.",
+      "Open the return policy your store actually posts, whether that is the register binder, the counter card, or the policy page you already hand shoppers. Copy the whole text, including the window, worn or used shoes, final sale, missing receipt, exchanges, store credit, and any defect line.",
+      "If you have the receipt or the order on your register or in a sheet, copy the purchase date, style, size, price paid, and any final-sale or sale mark. If a field is not on that record, leave it blank. Do not fill it from memory.",
+      "Open the chat assistant you already use. Paste the prompt for that assistant, then replace the placeholders with the full policy, the request, and the receipt or order fields, blanks included.",
+      "Read the quoted sentence against your policy. It must match word for word, and it must be the sentence that covers this request. Check that the named alternative is also written in the policy, not a favor you would like to offer.",
+      "Decide the facts yourself: worn or not, inside the window or not, final sale or not, receipt present or not. If a fact you would deny on is missing, do not send. Edit the note so it only refuses what you can support.",
+      "Optional agent mode: with Zapier, Make, or n8n, watch a Gmail label or helpdesk queue for refund mail, attach your saved policy text, and write the draft to Google Sheets or an unsent reply. Leave send and refund actions off."
+    ],
+    "approvalStep": "You compare the quoted sentence to your policy and confirm the shoe facts before the denial is emailed, texted, or spoken as the store's answer. No refund is paid and no exception is offered until you approve the note.",
+    "failureModes": [
+      "The note paraphrases the rule instead of quoting your sentence. Read the quote beside the policy, word for word, before you send.",
+      "It quotes the window sentence when the issue is a worn sole or a final-sale tag. Match the sentence to a fact you can show on the receipt or the pair.",
+      "It offers cash back, a free pair, or a shipping label your policy never names. Keep only an alternative you can point to in the policy text.",
+      "A split sole or other fault is denied under the worn-shoe sentence. If your policy has a separate defect line, do not send this denial.",
+      "A date, price, or final-sale mark shows up that is not on the receipt or in the request. Do not send until that field is blank or marked UNKNOWN.",
+      "The note hints someone will bend the rule or make it right. Delete any exception you did not decide to approve yourself."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if several policy sentences could fit this pair?",
+      "a": "Paste the full policy and leave the uncertain fact blank, such as whether the shoes were worn outside. The draft should quote each sentence that might apply and mark the deciding fact UNKNOWN. You choose the sentence only after you know that fact, and you do not send the denial while it is still unknown."
+    },
+    {
+      "q": "They want cash back, but we only allow an exchange. Do I mention it?",
+      "a": "Yes, when your policy says an exchange is allowed. The denial should quote the sentence that blocks the cash refund and name the exchange in the policy's words, including any limit such as the same style or a different size. Do not add store credit unless a sentence in the policy allows it."
+    },
+    {
+      "q": "What if the shopper has no receipt?",
+      "a": "Paste the request and leave the receipt fields blank. If your policy has a missing-receipt sentence, the draft should quote that sentence and name only what it allows, such as an exchange at the current price. If the policy is silent, it should mark the outcome UNKNOWN so you decide before anyone is told no."
+    },
+    {
+      "q": "What if the sole split and they still want a refund?",
+      "a": "Paste the request as they wrote it, including the fault, plus the whole policy. If a defect sentence is in the policy, the draft should quote that sentence instead of the worn-shoe sentence and should not deny the refund under the wear rule. You decide whether this pair matches that defect sentence before you say no."
+    },
+    {
+      "q": "Which model is best for this denial?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Judge the draft by two checks: the quoted sentence matches your policy word for word, and the alternative is one your policy already names. If either check fails, fix the note yourself or run it again with the missing fact marked unknown. Do not send a draft that adds a rule you did not paste."
+    }
+  ],
+  "draft": true,
+  "persona": "Shoe store associate",
+  "job": "From the return policy and the customer's request, you get a short denial that quotes the exact line and names the alternative the policy allows.",
+  "who": "Shoe store associates who handle refund requests at the counter or by email and need a short denial that sticks to the posted policy instead of arguing about the pair.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Point of sale",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

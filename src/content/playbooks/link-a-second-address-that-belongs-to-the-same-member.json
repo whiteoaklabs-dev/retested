@@ -1,0 +1,85 @@
+{
+  "slug": "link-a-second-address-that-belongs-to-the-same-member",
+  "title": "Link a second address that belongs to the same member",
+  "category": "Support",
+  "summary": "A club membership admin pastes new complaints and the member roster and gets a link sheet on whether a From address belongs to someone already on file, before a second agent starts. Complaints bring From, subject, date, body, and any membership number. The roster brings member id, full name, primary email, linked addresses, phone, plan, and status. Each complaint is one row: ticket_from, subject, claimed_name, candidate_member_id, known_email, match_basis, link_call, evidence, and a blank decision. link_call is LINK, HOLD, or NO LINK. You write Approve link, Ask member, or Leave separate. Only Approve link saves the second address and notes the ticket for the agent on that case. No edit, merge, or reply happens while decision is blank.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the club membership admin on duty. A new complaint may be the same person writing from a second address. Work only from [NEW COMPLAINTS] and [MEMBER ROSTER] for [CLUB NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Propose a link only when one roster row shows the same membership number, the same full name, or the same phone as the complaint, and the From address is not already stored on that row.\n- A matching first name, last name alone, plan, or topic is not enough. If two rows still fit, set link_call to HOLD and list both member ids.\n- If the writer says they are a spouse, parent, or assistant, do not call that mailbox the member's own. Set link_call to HOLD.\n- Copy numbers, names, and addresses as written. Do not repair a digit or expand an initial into a full name.\n- Leave the decision column blank. Do not draft a reply, merge a ticket, or name an agent to start work.\n\nOutput format:\nReturn one table with columns ticket_from, subject, claimed_name, candidate_member_id, known_email, match_basis, link_call, evidence, decision.\nlink_call is LINK, HOLD, or NO LINK. match_basis is MEMBERSHIP_NUMBER, FULL_NAME, PHONE, or NONE. evidence is one short sentence copied from the complaint or the roster, or UNKNOWN. Leave decision empty.\nThen two headings: Ambiguous (every HOLD row) and No roster hit (every NO LINK row).",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful membership clerk. Decide whether each new complaint's From line belongs to a person already on the club roster, using a different address. Read only [NEW COMPLAINTS] and [MEMBER ROSTER] for [CLUB NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the roster has no member id, full name, or email column, ask which header is which before you match anything.\n- Link a row only when one person shares a membership number, a full name, or a phone with the complaint, and that From address is absent from their known addresses.\n- Do not match on a first name, a last name alone, the plan name, or a similar complaint topic. Two fitting people means link_call HOLD and both ids listed.\n- A spouse, parent, or assistant writing about someone else's dues is not that person's second address. Set HOLD.\n- Transcribe numbers and names exactly. Never fill a missing digit. Leave decision blank, and do not write a reply or assign an agent.\n\nOutput format:\nReturn a table with these columns: ticket_from, subject, claimed_name, candidate_member_id, known_email, match_basis, link_call, evidence, decision.\nlink_call is LINK, HOLD, or NO LINK. match_basis is MEMBERSHIP_NUMBER, FULL_NAME, PHONE, or NONE. evidence is one short sentence taken from the paste, or UNKNOWN. Keep decision empty.\nAfter the table, add headings Ambiguous for HOLD rows and No roster hit for NO LINK rows.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken club membership admin. Spot complaints from a second address that belongs to someone already on the books, before another agent starts. Use [NEW COMPLAINTS] and [MEMBER ROSTER] for [CLUB NAME]. Do not send anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- A link needs one roster person whose membership number, full name, or phone is in the complaint, while the From address is not already on that person.\n- First name only, last name only, the same plan, or the same gripe is not a link. When two people fit, set link_call to HOLD and show both ids.\n- If the note says a spouse, parent, or helper is writing, that mailbox is not the member's own second address. Use HOLD.\n- Keep every number, name, and address as printed. Do not guess a dropped digit or turn initials into a name you were not given.\n- Leave decision empty. Do not compose a reply, merge cases, or tell a second agent to begin.\n\nOutput format:\nReturn a table with columns ticket_from, subject, claimed_name, candidate_member_id, known_email, match_basis, link_call, evidence, decision.\nlink_call is LINK, HOLD, or NO LINK. match_basis is MEMBERSHIP_NUMBER, FULL_NAME, PHONE, or NONE. evidence is one short sentence copied from the complaint or roster, else UNKNOWN. decision stays blank.\nThen a heading Ambiguous for HOLD rows and a heading No roster hit for NO LINK rows.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a review sheet for the club membership admin. For each new complaint, say whether the From address belongs to a member who already has a different address on file. Use only [NEW COMPLAINTS] and [MEMBER ROSTER] at [CLUB NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the roster as the only list of people. Do not add a person, a plan, or an address that is not in the paste.\n- Set LINK only when a single roster row shares a membership number, full name, or phone with the complaint and does not already list that From address.\n- Refuse a match built on a first name, a surname alone, or a repeated topic. If two rows qualify, set HOLD and name both member ids.\n- When the writer is a spouse, parent, or assistant, do not store their mailbox as the member's second address. Set HOLD.\n- Copy ids and names character for character. Leave decision blank. Stop without a reply, a merge, or an assignment.\n\nOutput format:\nReturn only a table whose columns are ticket_from, subject, claimed_name, candidate_member_id, known_email, match_basis, link_call, evidence, decision.\nlink_call is LINK, HOLD, or NO LINK. match_basis is MEMBERSHIP_NUMBER, FULL_NAME, PHONE, or NONE. evidence is one short sentence from the source text, or UNKNOWN. Leave decision empty.\nThen sections Ambiguous (HOLD) and No roster hit (NO LINK). Do not add advice after those sections.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional Google Sheets plus Zapier, Make, or n8n to append proposed links to a review tab only.",
+    "steps": [
+      "From the helpdesk or Gmail, copy each unassigned complaint: From, subject, received date, full body, and any membership number written in the text. Keep one complaint per block in a scratch note, and leave card numbers out.",
+      "From the membership sheet or club database, copy member id, full name, primary email, addresses already linked, phone, plan, and status. Keep one row per person. If a cell is empty, leave it empty rather than typing a guess.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace [NEW COMPLAINTS] with the ticket blocks, [MEMBER ROSTER] with the roster rows, and [CLUB NAME] with the club. If a block is empty, type UNKNOWN.",
+      "Read every proposed row beside the source. The From address must be missing from that person's known addresses, and the number, full name, or phone in evidence must appear in both the complaint and that single roster row.",
+      "In the blank decision cell write Approve link, Ask member, or Leave separate. Use Ask member when two ids fit or a relative is writing. Use Leave separate when the roster has no shared number, full name, or phone.",
+      "For Approve link only, add the second address on that person's roster row and paste the member id into an internal helpdesk note. Hand the ticket to the agent already on that person, or hold it if nobody has opened it.",
+      "Optional later: in Zapier, Make, or n8n, watch the support inbox, attach the roster from Google Sheets, run the same prompt, and append rows on a Proposed links tab. The flow must not edit the live address, merge tickets, or send mail.",
+      "Each morning, open Proposed links and fill every decision yourself, then update the roster and the ticket note by hand. Leave Ask member rows and blank rows unchanged until the person confirms the address is theirs."
+    ],
+    "approvalStep": "You review every proposed row and write Approve link, Ask member, or Leave separate before the second address is saved, before tickets are merged, and before a second agent is assigned or any note is sent. A blank decision is not approval.",
+    "failureModes": [
+      "Two people share a surname and the complaint is tied to the wrong id. Compare the membership number and phone in evidence with both roster rows before you write Approve link.",
+      "A spouse or parent writes from their own mailbox about dues. That address is not the member's second address. Choose Ask member and do not add it to the roster.",
+      "A front-desk or shared club inbox is the From line on many complaints and gets stored on one person. If one address sits on unrelated names, choose Leave separate.",
+      "A membership number is off by one character and still looks close. Compare it character for character, and use Ask member if any character differs.",
+      "The sheet says LINK and another agent replies before decision is filled, so the person gets two answers. Keep the ticket unassigned until you write the decision."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What counts as the same member's second address?",
+      "a": "The From line is not already stored on that roster row, and the complaint itself shows a membership number, full name, or phone that matches one person. A first name, a plan name, or a complaint about the same issue is not enough. If two rows fit, the call is HOLD and you ask before anything is saved."
+    },
+    {
+      "q": "Should I link a household mailbox to the member?",
+      "a": "Only when the writer is the member and this is their other mailbox. If a spouse, parent, or assistant says they are writing for the member, leave that address off the record and choose Ask member. Saving it would file that person's later mail on the member."
+    },
+    {
+      "q": "Which model should I use for these links?",
+      "a": "Use the prompt for the assistant you already have open. Keep the same complaint blocks, roster columns, and placeholders. Judge the sheet by whether each LINK row quotes a membership number, full name, or phone you can see on both the complaint and one roster row, and by whether decision is still blank."
+    },
+    {
+      "q": "What if the complaint names no membership number?",
+      "a": "Do not invent one. The row should be NO LINK or HOLD, with evidence UNKNOWN when the body has no number, full name, or phone. You can look through the roster yourself, and if two people still seem possible, write Ask member rather than Approve link."
+    },
+    {
+      "q": "When may another agent start on the ticket?",
+      "a": "After you write Approve link or Leave separate and, for an approved link, the member id is on the internal note. Until that decision is filled, leave the ticket unassigned so a second agent does not open a fresh case for an address you have not checked."
+    }
+  ],
+  "draft": true,
+  "persona": "Club membership admin",
+  "job": "Paste new complaints and the known member emails, and get likely same-person repeats under a different address linked before a second agent starts.",
+  "who": "Club membership admins who get a complaint from an address that is not on the roster and need that second mailbox checked against known members before another agent starts a separate case.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email client",
+    "Spreadsheets",
+    "Helpdesk and ticketing",
+    "Workflow automation"
+  ]
+}

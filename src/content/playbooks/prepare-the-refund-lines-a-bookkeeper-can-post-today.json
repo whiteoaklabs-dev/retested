@@ -1,0 +1,85 @@
+{
+  "slug": "prepare-the-refund-lines-a-bookkeeper-can-post-today",
+  "title": "Prepare the refund lines a bookkeeper can post today",
+  "category": "Support",
+  "summary": "A retail bookkeeper pastes the approval message (email, chat, or ticket note that names the order, the amount allowed, the reason, and who approved it) and the order (export row or order screen with order id, tender, merchandise, tax collected, shipping, discounts, and any refund already posted). The agent prepares posting lines to enter today: side, account, amount, tender, order id, tax portion, and a reason code taken only from the store list. It stops when the order ids disagree, when the note names no tender, or when neither source shows the tax figure. The bookkeeper checks that debits equal credits and posts in the ledger only after that review. The agent does not post, pay, or message anyone.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a retail bookkeeper preparing refund journal rows for a person to check before entry. Use only [APPROVAL MESSAGE], [ORDER RECORD], [REASON CODE LIST], and [ACCOUNT LIST]. Date the batch with [POSTING DATE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the order id in [APPROVAL MESSAGE] differs from the order id in [ORDER RECORD], write MISMATCH and return no rows.\n- Debit returns (allowed sum minus tax) and tax payable (tax portion). Credit the tender for the allowed sum, not the original total. If it exceeds what is still open, write DO NOT POST.\n- The tax portion is copied, never calculated. Use tax stated in the approval or, on a full return only, tax collected on the sale. Else mark the tax portion UNKNOWN and skip the sales-tax row.\n- Tender is the method the approval names: card, cash, gift card, or store credit. If the note is silent, mark tender UNKNOWN. Do not substitute the original payment.\n- The reason code must be one value copied from [REASON CODE LIST]. If none match, mark it UNKNOWN. Account names come from [ACCOUNT LIST]. Add shipping only if the note includes it.\n\nOutput format:\nMatch check: both ids and MATCH or MISMATCH. Posting lines: a table with columns Line, Side, Account, Amount, Order ID, Tender, Tax portion, Reason code, Memo. Each memo under 20 words. Balance: debit total, credit total, and BALANCED or OUT OF BALANCE. Bookkeeper must confirm: every UNKNOWN and whether the batch is ready to enter.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful clerk drafting refund journal rows for a retail bookkeeper to review. Do not enter the ledger and do not pay the shopper. Work from [APPROVAL MESSAGE], [ORDER RECORD], [REASON CODE LIST], [ACCOUNT LIST], and [POSTING DATE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Compare the two order ids before any row. A shortened or nearby id is not a match. On MISMATCH, stop with no lines.\n- When the tax portion is known, debit the returns account for the allowed sum excluding tax, debit the tax account for the tax portion, and credit the tender account for the full allowed sum. Tax sits inside the credit, not on top.\n- When the tax portion is UNKNOWN, do not split the allowed sum. Omit the sales-tax row, mark the batch not ready, and name the source that is missing.\n- Copy shipping only when [APPROVAL MESSAGE] says this return includes shipping and [ORDER RECORD] shows a shipping figure. Keep shipping inside the allowed sum.\n- Map the reason to one code on [REASON CODE LIST] and copy the words you matched. Do not choose a nearby code. If money was already given back, show that beside the new sum.\n\nOutput format:\nSections: Match check, Posting lines, Balance, Sources, Bookkeeper must confirm. Posting lines columns are Line, Side, Account, Amount, Order ID, Tender, Tax portion, Reason code, and Memo under 20 words. Sources names where amount, tender, tax portion, and reason code came from. End with ready to enter: yes or no.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a retail bookkeeper turning an approval note and a sale into journal rows to enter today. Use [APPROVAL MESSAGE], [ORDER RECORD], [REASON CODE LIST], and [ACCOUNT LIST]. Put [POSTING DATE] on the batch. Do not post.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Order id, the sum allowed, tender, tax portion, and reason code must each trace to the note or the sale. If you cannot point to the source text, mark that field UNKNOWN.\n- Debit returns (sum minus tax) and tax payable (tax portion). Credit the tender the note names, using the matching account in [ACCOUNT LIST]. Store credit is not a card return.\n- The tax portion is a copied figure. Giving back the whole sale may copy tax collected from [ORDER RECORD]. A partial return needs the tax written in [APPROVAL MESSAGE], or the tax portion stays UNKNOWN.\n- A reason that is not on [REASON CODE LIST] stays UNKNOWN. Do not coin a code from the approver's sentence. Build the journal for the return as a whole, not item rows.\n- If debits do not equal credits, label the batch OUT OF BALANCE and DO NOT POST. Keep shipping out unless the note includes it.\n\nOutput format:\nReturn Match check, then a table titled Posting lines with columns Line, Side, Account, Amount, Order ID, Tender, Tax portion, Reason code, Memo. Keep each memo under 20 words. Then Balance: debit total, credit total, BALANCED or OUT OF BALANCE. Finish with Bookkeeper must confirm: unknowns and a hold or enter decision.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing refund journal rows for a retail bookkeeper who will approve them before they are posted. Read [APPROVAL MESSAGE], [ORDER RECORD], [REASON CODE LIST], and [ACCOUNT LIST]. Stamp [POSTING DATE] on the batch. Do not enter the ledger or contact the shopper.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Write both order ids first. Build rows only when they are identical. Otherwise write MISMATCH and stop.\n- Debit returns (sum minus tax) and tax payable (tax portion). Credit what the approver allowed today, not the original sale. Name the approver in the memo only if [APPROVAL MESSAGE] gives it.\n- Separate the tax portion from the rest of the sum. If you cannot copy the tax figure, leave the sales-tax row off and mark the tax portion UNKNOWN.\n- Use account names exactly as written in [ACCOUNT LIST]. If the named tender has no account on that list, mark the account UNKNOWN instead of creating a label.\n- The reason code is one value from [REASON CODE LIST]. Everyday wording in the note is not itself a code. Include shipping only when the note says shipping is part of this return.\n\nOutput format:\nMatch check with both order ids and MATCH or MISMATCH. Posting lines as a table: Line, Side, Account, Amount, Order ID, Tender, Tax portion, Reason code, Memo under 20 words. Balance with debit total, credit total, and BALANCED or OUT OF BALANCE. Bookkeeper must confirm: what to check before posting, including every UNKNOWN.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first. Later, Gmail, Google Sheets, and Zapier, Make, or n8n can stage a draft sheet only.",
+    "steps": [
+      "Copy the approval message from email, chat, or the ticket in full: approver name, approval date, order id, sum allowed, the reason in their words, and any tender they named, such as card, cash, gift card, or store credit.",
+      "From the order export or the order screen, copy order id, sale date, tender, merchandise, tax collected, shipping, discounts, sum paid, and any refund already posted. Leave a blank field blank instead of filling it from memory.",
+      "Beside those notes, paste the reason codes your store actually uses and the account names you post to, including sales returns, sales tax payable, and the accounts for card, cash, gift card, and store credit.",
+      "Open the chat assistant you already use, paste its prompt from this playbook, and replace each bracketed placeholder with the approval message, the order, the code list, the account list, and today's posting date.",
+      "Read the journal rows against both sources. Confirm the order ids are identical, debits equal credits, the tender is the one the approver named, the tax figure was copied, and the reason code is on your list.",
+      "If any field says UNKNOWN, the ids do not match, or the allowed sum is larger than what is still open, stop and ask the approver. Do not type a guessed tax reversal into the ledger.",
+      "Optional later path: with Zapier, Make, or n8n, watch a Gmail label for approval notes, pull the matching order row from Google Sheets, fill the prompt, and save the rows on a Draft tab. Leave the ledger connection off."
+    ],
+    "approvalStep": "You review each journal row against the approval message and the order, and you confirm the amount, the tender, the order id, the tax portion, and the reason code, before posting. You enter the batch yourself only after that review. Nothing is posted or paid until you approve it.",
+    "failureModes": [
+      "Tax added on top of a sum that already includes tax, so the tender credit is too large. The credit should equal what the approver allowed, with tax inside that figure.",
+      "Order ids differ by one digit and rows are still produced. Post nothing unless the match check shows the two ids are identical.",
+      "Store credit is booked to the card account because that is how the shopper paid. Use the tender the approval names, not the original payment.",
+      "A reason code is picked because it sounds close to the note. Keep the code only when it is on your list, and hold the batch when the code is UNKNOWN.",
+      "A partial return gets a tax figure made by splitting the sale tax. If the approval does not state tax, that field should stay UNKNOWN.",
+      "Money already given back on the sale is ignored, so today's sum is larger than what is still open. Compare both figures before you enter the batch."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the approval never states the tax?",
+      "a": "When the whole sale is given back, the tax portion may be copied from tax collected on the order, and the draft should name that source. On a partial return, or when one tax total covers many items, leave the tax portion UNKNOWN. Do not let the draft split tax. You add a sales-tax reversal only when you can point to a figure on the approval or the order."
+    },
+    {
+      "q": "The sale was on a card, but the approval says store credit. Which tender do I post?",
+      "a": "Post the tender the approval names, because that is what you are giving back today. Credit the store-credit account from your account list, not the card account. Put the original card tender in the memo so the change is visible. If the note names no tender, leave tender UNKNOWN and ask the approver before you enter the row."
+    },
+    {
+      "q": "Which model is best for these posting lines?",
+      "a": "Use the prompt for the assistant you already have open. Keep a draft only when the order ids match, debits equal credits, the tender is the one in the approval, the tax portion is copied from the approval or the order, and the reason code is on your list. If a figure appears that you did not paste, discard that draft and run it again with the blank field left blank."
+    },
+    {
+      "q": "Will these lines post themselves into the books?",
+      "a": "No. In paste mode you get text you type into the ledger yourself. If you later use Gmail, Google Sheets, and Zapier, Make, or n8n, save the rows on a Draft tab and leave the books disconnected. You post only after you have checked the amount, the tender, the order id, the tax portion, and the reason code."
+    },
+    {
+      "q": "What if part of this order was already refunded?",
+      "a": "The sum on today's rows is what this approval allows, not the original sale total. The draft should also show refunds already posted and what is still open. When the new sum is larger than what is still open, it should say DO NOT POST. You confirm the remaining balance with the approver before you enter anything."
+    }
+  ],
+  "draft": true,
+  "persona": "Retail bookkeeper",
+  "job": "From the approval message and the order, you get posting lines for the amount, the tender, the order id, the tax portion, and the reason code.",
+  "who": "Retail bookkeepers who turn a same-day refund approval and the original order into ledger lines, and who must line up the amount, the tender, the order id, the tax portion, and the reason code before they post.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Accounting",
+    "Workflow automation"
+  ]
+}

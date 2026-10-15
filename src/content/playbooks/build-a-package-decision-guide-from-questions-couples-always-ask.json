@@ -1,0 +1,85 @@
+{
+  "slug": "build-a-package-decision-guide-from-questions-couples-always-ask",
+  "title": "Build a package decision guide from questions couples always ask",
+  "category": "Support",
+  "summary": "Paste a spreadsheet or proposal with one row per offering: package name, included services, excluded services, add-ons, retainer, and payment timing. Add the inquiry emails or form replies where couples always ask the same questions, plus a booking note on what you will not promise. You get a decision guide with a how-to-choose section of at most 120 words, a comparison table, a map from each question to the row that answers it or a planner-must-answer line, an email opener of at most 80 words, and an UNKNOWN list. You correct any inclusion, fee, or date the sheet does not state, then you send it. The chat does not email anyone.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a wedding-planner editor. Build a decision guide a couple can skim before a consult. Use only [PACKAGE SHEET], [REPEAT QUESTIONS], and [BOOKING RULES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy each package name, inclusion, exclusion, add-on, retainer, and payment timing from [PACKAGE SHEET]. Do not add a vendor you hire, a fee, or a guest limit that row does not state.\n- Map every line in [REPEAT QUESTIONS] to the single package that answers it. If no row answers it, list it under PLANNER MUST ANSWER.\n- Do not say a date is free, held, or booked. The paste has no calendar.\n- Keep the guide general. Remove one inquiry's names, venue, and guest count so they do not look like the standard offer.\n- When [BOOKING RULES] say you recommend vendors, do not write that you book or hire them.\n- Honor the word caps below. Do not add a section that sells a consult.\n\nOutput format:\nReturn these sections in order:\nHOW TO CHOOSE: 120 words or fewer, one \"start here if\" line per package, each tied to an inclusion on that row.\nCOMPARISON TABLE: columns Package, Start here if, Included, Not included, Add-ons, Payment timing, Planner must answer.\nQUESTION MAP: each pasted question, then the package name that answers it, or PLANNER MUST ANSWER.\nEMAIL OPENER: 80 words or fewer, no new promise, written to sit above the guide.\nUNKNOWN: one missing fact per line.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful editor for a wedding planner who is tired of retyping package differences. Draw only from [PACKAGE SHEET], [REPEAT QUESTIONS], and [BOOKING RULES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [PACKAGE SHEET] as closed. Names, inclusions, exclusions, add-ons, retainers, and when the balance is due may be copied, not inferred from a question.\n- If two rows could answer one question, do not pick a favorite. List both package names and mark the choice PLANNER MUST ANSWER.\n- If [BOOKING RULES] conflict with a friendly assumption, follow the rules. Recommend is not the same as hire.\n- Refuse any sentence about an open date, a held date, or a booked date.\n- Strip names, venues, and headcounts that belong to one inquiry. The guide is for the next person who asks the same thing.\n- Do not calculate a new total, discount, or payment split. Copy timing words as written.\n\nOutput format:\nSections, in this order, with these headings:\nHOW TO CHOOSE (120 words or fewer; one start-here line per package, citing an inclusion from that row)\nCOMPARISON TABLE with columns: Package, Start here if, Included, Not included, Add-ons, Payment timing, Planner must answer\nQUESTION MAP: question, answering package or PLANNER MUST ANSWER, and the sheet field you used\nEMAIL OPENER (80 words or fewer, no promise that is not already on the sheet)\nUNKNOWN: one gap per line",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken assistant for a wedding planner. Turn the offerings and the questions people keep asking into a guide they can send. Use only [PACKAGE SHEET], [REPEAT QUESTIONS], and [BOOKING RULES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take package names and every included item, excluded item, add-on, retainer, and due timing straight from [PACKAGE SHEET]. If a cell is blank, write UNKNOWN. Do not fill it with a typical wedding fee.\n- Point each question at the row that actually contains the answer. A month-of row does not answer full vendor booking unless that row says so.\n- Leave dates alone. Do not say you are free, holding, or booked.\n- Drop the first names, venue, and headcount from any single inquiry so the guide stays reusable.\n- If [BOOKING RULES] say recommend, write recommend. Do not upgrade that to book, hire, or design.\n- Stay inside the word caps. No extra pitch at the end.\n\nOutput format:\nWrite these blocks:\nHOW TO CHOOSE: 120 words max, one start-here line per package tied to a real inclusion.\nThen a table titled COMPARISON with columns Package, Start here if, Included, Not included, Add-ons, Payment timing, Planner must answer.\nThen QUESTION MAP: the question, the package that answers it or PLANNER MUST ANSWER.\nThen EMAIL OPENER of 80 words max with no new promise.\nThen UNKNOWN, one gap per line.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a wedding planner. Prepare a decision guide they will edit before anyone receives it. Use [PACKAGE SHEET], [REPEAT QUESTIONS], and [BOOKING RULES] only. Do not send email.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy inclusions, exclusions, add-ons, retainer wording, and payment timing from the matching row of [PACKAGE SHEET]. Never move a fee from one package name to another.\n- For each question, name the sheet field that answers it. If you cannot point to a field, the line is PLANNER MUST ANSWER, not a guess.\n- Do not invent a travel fee, a guest cap, or a design service the sheet does not list.\n- Do not mention whether a date is open. There is no calendar in the paste.\n- Remove one client's names and venue so they are not treated as the offer for everyone.\n- Let [BOOKING RULES] override tone. Warm wording still may not say you hire a florist you only recommend.\n\nOutput format:\nReturn labeled sections:\nHOW TO CHOOSE: 120 words or fewer. One start-here line per package. Each line names an inclusion copied from that row.\nCOMPARISON TABLE columns: Package; Start here if; Included; Not included; Add-ons; Payment timing; Planner must answer.\nQUESTION MAP: question, package or PLANNER MUST ANSWER, source field.\nEMAIL OPENER: 80 words or fewer, meant to sit above the guide, with no promise absent from the sheet.\nUNKNOWN: one missing fact per line.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode. Optional later: Google Sheets, Gmail, and Zapier, Make, or n8n file a draft reply that you still approve and send.",
+    "steps": [
+      "Export or copy your current offerings into a spreadsheet with one row each: package name, included services, excluded services, add-ons, retainer, and payment timing. Paste the words already on your proposal. Leave a blank cell blank.",
+      "Gather the questions couples always ask. Copy them from recent inquiry emails, a contact-form export with the message column, or saved DMs. Keep their wording. Delete first names, wedding dates, and venue names so one client does not become the template.",
+      "Write a short booking note you will stand behind: whether you recommend vendors or book them, whether travel is an add-on, and lines you refuse, including a free date or a fee you have not published.",
+      "Open a fresh chat, paste one prompt above, and replace each bracketed placeholder with the spreadsheet rows, the question list, and the booking note. Ask for the full guide in a single reply. Do not ask the chat to email anyone.",
+      "Check the comparison table against the spreadsheet one row at a time. Delete any inclusion, exclusion, add-on, or payment line you cannot point to that row. Move unanswered questions onto the planner-must-answer list.",
+      "Read each start-here line. If it sends someone who wants every vendor handled to a month-of row, rewrite it toward the offering that lists that work. Replace every UNKNOWN with your own fact, or cut that sentence.",
+      "Paste the kept guide into a Google Doc, or into a Gmail draft with the To field empty. Read the opener aloud. Remove any line about being available, holding a date, or hiring a vendor your note says you only recommend.",
+      "Optional automation: save the approved guide in Google Sheets. Use Zapier, Make, or n8n so a new inquiry in Gmail creates a draft reply that inserts the guide. Set the action to create a draft, not to send. You add their names and send it."
+    ],
+    "approvalStep": "You review the guide beside the spreadsheet, confirm every inclusion, fee, and payment line matches a row, and only then send the email or attach the doc. A Gmail draft stays unsent until you approve it.",
+    "failureModes": [
+      "Invented hire: the guide says you book the florist, photographer, or venue when the sheet only says you recommend them. Delete any service you do not take on.",
+      "Swapped money line: a retainer or final due date from one offering lands on another name. Match each payment cell to that exact row before you send.",
+      "Wrong row for the ask: someone who wants every vendor handled is pointed at month-of help. Aim that line at the offering that lists the work.",
+      "Date slipped in: the opener says the wedding date is free or held. The calendar was not in the paste, so remove any availability sentence.",
+      "One inquiry became the offer: a venue, headcount, or first name from a single email shows up as standard. Strip those and keep the guide reusable.",
+      "The flow sends: Zapier, Make, or n8n is set to Send rather than create a Gmail draft. Confirm the action is draft-only before you turn it on."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste in before asking for the guide?",
+      "a": "Paste a spreadsheet or proposal with one row per offering: package name, included services, excluded services, add-ons, retainer, and payment timing. Paste the questions couples repeat, copied from inquiry emails, a contact-form message column, or saved DMs, with names and venues removed. Add a booking note that says whether you recommend vendors or book them, and which promises you will not make."
+    },
+    {
+      "q": "How do I stop a draft from saying I hire every vendor?",
+      "a": "Put that limit in the booking note in plain words, such as you recommend florists and photographers and the couple signs those contracts. After the draft, search for book, hire, and design. If your sheet does not use that verb for that service, delete the sentence or move the question to the planner-must-answer list."
+    },
+    {
+      "q": "Will this send the guide to couples for me?",
+      "a": "No. Paste mode only returns text. You put it in a Google Doc or a Gmail draft with the To line empty. If you later connect Gmail with Zapier, Make, or n8n, the action must create a draft. You still add the couple's names, check the table against your sheet, and send it yourself."
+    },
+    {
+      "q": "Which model is best for building this guide?",
+      "a": "Use the prompt written for the assistant you already open for client writing. Judge the reply by three checks: every inclusion and fee matches a row on your sheet, every repeated question is either answered from that row or marked for you, and the opener makes no date promise. Keep the draft that needs the least fixing in your own words."
+    },
+    {
+      "q": "What if two offerings could answer the same question?",
+      "a": "Do not let the draft pick one just to sound decisive. The question map should list both package names and mark the choice as something you must answer. You decide which start-here line is fair, usually by the work the inquiry actually needs, such as vendor booking versus month-of timeline help. If the sheet does not separate them, say so in your own sentence before you send."
+    }
+  ],
+  "draft": true,
+  "persona": "Wedding planner",
+  "job": "Paste your packages and the questions couples always ask, and get a decision guide you can send instead of retyping that email.",
+  "who": "A wedding planner who retypes the same inquiry reply about partial planning, full-service planning, and month-of coordination, and wants one decision guide to send instead.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Email",
+    "Workflow automation"
+  ]
+}
