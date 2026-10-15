@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { releases, type Release } from '../../data/releases';
+import { useCaseBySlug } from '../../data/useCases';
+export function getStaticPaths() { return releases.map(r => ({ params: { slug: r.slug }, props: { r } })); }
+const { r } = Astro.props as { r: Release };
+const schema = [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: r.title, datePublished: r.date }];
+---
+<Base title={r.title} description={r.summary.slice(0, 155)} schema={schema}>
+  <h1>{r.title}</h1><time datetime={r.date}>{r.date}</time>
+  {r.sponsored && <p class="sponsored">Sponsored release spotlight</p>}
+  <p>{r.summary}</p><p><a href={r.source} rel="nofollow">Source</a></p>
+  {r.affects.length > 0 && <><h2>Use cases this changes</h2><ul>{r.affects.map(s => { const u = useCaseBySlug(s); return u && <li><a href={`/use-cases/${u.slug}/`}>{u.title}</a></li>; })}</ul></>}
+  <p>Re-test queued: {r.retestQueued ? 'yes' : 'no'}</p>
+</Base>

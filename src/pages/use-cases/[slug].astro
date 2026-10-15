@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import RetestBadge from '../../components/RetestBadge.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
+import { useCases, type UseCase } from '../../data/useCases';
+import { toolBySlug } from '../../data/tools';
+import { SITE } from '../../data/site';
+export function getStaticPaths() { return useCases.map(u => ({ params: { slug: u.slug }, props: { u } })); }
+const { u } = Astro.props as { u: UseCase };
+const url = `${SITE.url}/use-cases/${u.slug}/`;
+const schema = [
+  { '@context': 'https://schema.org', '@type': 'HowTo', name: u.title, description: u.summary, step: u.setup.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: s })) },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: u.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'Article', headline: u.title, datePublished: u.published, dateModified: u.updated, url, publisher: { '@type': 'Organization', name: SITE.name } },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Use cases', item: `${SITE.url}/use-cases/` },
+    { '@type': 'ListItem', position: 2, name: u.title, item: url } ] },
+];
+const anyTested = u.tests.some(t => t.status !== 'not-yet-tested');
+---
+<Base title={u.title} description={u.summary.slice(0, 155)} schema={schema}>
+  <p><a href="/use-cases/">Use cases</a> › {u.category}</p>
+  <h1>{u.title}</h1>
+  <p class="answer"><strong>Short answer:</strong> {u.summary}</p>
+  <p><strong>Best model for this:</strong> {anyTested ? 'see results below' : 'Not yet tested. Cross-model results will appear here with model version and test date.'} · Updated {u.updated}</p>
+
+  <h2>Prompts by model</h2>
+  {u.tests.map(t => (
+    <div class="card">
+      <h3>{t.model} <RetestBadge test={t} /></h3>
+      <pre>{t.prompt}</pre>
+      <button type="button" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent)">Copy prompt</button>
+      {t.notes && <p>{t.notes}</p>}
+    </div>
+  ))}
+
+  <h2>Agent setup guide</h2>
+  <p><strong>Works with:</strong> {u.setup.agent}</p>
+  <ol>{u.setup.steps.map(s => <li>{s}</li>)}</ol>
+  <p><strong>Human approval step:</strong> {u.setup.approvalStep}</p>
+  <h3>Known failure modes</h3>
+  <ul>{u.setup.failureModes.map(f => <li>{f}</li>)}</ul>
+
+  <h2>Best tools for this job</h2>
+  <p class="sponsored">Some links may be affiliate links. They never change our picks. <a href="/disclosure/">Disclosure</a></p>
+  {u.toolPicks.map(p => { const t = toolBySlug(p.slug)!; return (
+    <div class="card">
+      <h3><a href={`/tools/${t.slug}/`}>{t.name}</a></h3>
+      <p><strong>Why:</strong> {p.why} <strong>Skip if:</strong> {p.whenNot}</p>
+      <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank" data-affiliate-placeholder={t.affiliateUrl ? undefined : 'true'}>Try {t.name} →</a>
+    </div>); })}
+
+  <h2>FAQ</h2>
+  {u.faq.map(f => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+  <NewsletterSignup />
+</Base>

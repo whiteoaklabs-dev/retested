@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import { tools } from '../../data/tools';
+import { useCases } from '../../data/useCases';
+const schema = [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: tools.map((t, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://retested.ai/tools/${t.slug}/`, name: t.name })) }];
+---
+<Base title="AI tool directory ranked by use case" description="AI tools for small business, ranked by the job you need done rather than listed alphabetically." schema={schema}>
+  <h1>AI tools, ranked by use case</h1>
+  {useCases.map(u => (
+    <section><h2><a href={`/use-cases/${u.slug}/`}>{u.title}</a></h2>
+      <ol>{u.toolPicks.map(p => { const t = tools.find(x => x.slug === p.slug)!; return <li><a href={`/tools/${t.slug}/`}>{t.name}</a> — {p.why} {t.featured && <span class="sponsored">Featured</span>}</li>; })}</ol>
+    </section>))}
+  <p><a href="/get-featured/">Make an AI tool? Get featured →</a></p>
+</Base>

@@ -1,0 +1,7 @@
+---
+import type { ModelTest } from '../data/useCases';
+const { test } = Astro.props as { test: ModelTest };
+---
+{test.status === 'not-yet-tested'
+  ? <span class="badge untested">Not yet tested</span>
+  : <span class="badge fresh">Tested {test.testedOn} · {test.modelVersion} · {test.status}</span>}

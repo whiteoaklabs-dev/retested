@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+// Launch prices are set by us and still to be tested; edit here. Payment links are placeholders until Stripe/Lemon Squeezy is set up.
+const plans = [
+  { name: 'Directory listing', price: '$99 one-time', items: ['Tool page reviewed by an editor', 'Placed under the use cases it actually fits', 'Dofollow link after review'] },
+  { name: 'Featured in a use case', price: '$199 / month per use-case category', items: ['"Featured" slot on tool and use-case pages in one category', 'Clearly labeled as paid', 'Monthly click report'] },
+  { name: 'Release spotlight', price: '$149 per launch', items: ['Sponsored item in the releases feed', 'Tagged to relevant use cases', 'Included in the weekly newsletter release section'] },
+];
+const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'Retested featured listings', provider: { '@type': 'Organization', name: 'Retested' } }];
+---
+<Base title="Get featured" description="Get your AI tool in front of small businesses looking for it, by use case. Paid placement is always labeled and never changes test results." schema={schema}>
+  <h1>Get your AI tool featured</h1>
+  <p class="answer">Small-business buyers find tools on Retested by searching for the job they need done. Featured placement puts your tool next to that job. Paid placements are always labeled, and <strong>payment never changes test scores or rankings</strong>.</p>
+  {plans.map(p => <div class="card"><h2>{p.name}: {p.price}</h2><ul>{p.items.map(i => <li>{i}</li>)}</ul><a href="#" data-payment-placeholder="true">Apply (checkout coming soon)</a></div>)}
+  <p>Questions: <a href="mailto:sponsors@retested.ai">sponsors@retested.ai</a> (placeholder address)</p>
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { tools, type Tool } from '../../data/tools';
+import { useCases } from '../../data/useCases';
+export function getStaticPaths() { return tools.map(t => ({ params: { slug: t.slug }, props: { t } })); }
+const { t } = Astro.props as { t: Tool };
+const wins = useCases.filter(u => u.toolPicks.some(p => p.slug === t.slug));
+const schema = [{ '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: t.name, applicationCategory: 'BusinessApplication', url: t.url }];
+---
+<Base title={`${t.name}: best use cases, tested`} description={`What ${t.name} is best at for small businesses, based on our use-case testing.`} schema={schema}>
+  <h1>{t.name}</h1>
+  {t.featured && <p class="sponsored">Featured listing (paid). Paid placement never changes test results.</p>}
+  <p><strong>Category:</strong> {t.category}</p>
+  <h2>Best for</h2>
+  <ul>{wins.map(u => <li><a href={`/use-cases/${u.slug}/`}>{u.title}</a></li>)}</ul>
+  <p>Pricing and test notes will be added after testing (with a date).</p>
+  <a href={t.affiliateUrl ?? t.url} rel={t.affiliateUrl ? 'sponsored nofollow' : 'nofollow'} target="_blank">Visit {t.name} →</a>
+</Base>

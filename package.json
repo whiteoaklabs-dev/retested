@@ -1,0 +1,7 @@
+{
+  "name": "retested",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "astro dev", "build": "astro build", "preview": "astro preview" },
+  "dependencies": { "astro": "^5.18.2", "@astrojs/sitemap": "^3.0.0" }
+}

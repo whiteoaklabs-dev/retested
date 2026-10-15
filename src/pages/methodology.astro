@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="How we test" description="How Retested tests prompts across ChatGPT, Claude, Grok, and Muse, and when we re-test.">
+  <h1>How we test</h1>
+  <ol><li>Each prompt runs on ChatGPT, Claude, Grok, and Muse with the same inputs.</li><li>We record the exact model version and date, and keep the raw output.</li><li>Each output is scored against a fixed rubric for the use case: pass, partial, or fail.</li><li>When a model updates, affected prompts are re-tested and the badge changes.</li><li>Until a prompt has a recorded run, it is labeled <em>Not yet tested</em>.</li></ol>
+  <p>Reviewer: to be named.</p>
+</Base>
