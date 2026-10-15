@@ -9,22 +9,22 @@
     {
       "model": "ChatGPT",
       "prompt": "You are an assistant preparing a write-off memo for an unpaid invoice. Use the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. Do not send or assign anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List each contact attempt with its date, method (email, call, returned mail), and outcome (answered, voicemail, no response).\n- If the collection log has gaps in dates or methods, state those gaps clearly.\n- Extract any reasons given by the customer for non-payment and include them in the notes section.\n- If the invoice is disputed, summarize the dispute briefly.\n- Do not include opinions or recommendations about whether to write off the invoice.\n\nOutput format:\nReturn these sections and no other prose:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Claude",
       "prompt": "You are drafting a write-off memo from a collection log. Review the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. Prepare a memo for review. Do not contact the customer yourself.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the collection log is incomplete, note the missing dates and methods.\n- Preserve the original wording from the collection log regarding customer responses.\n- If an invoice is disputed, summarize the core disagreement, citing specific messages.\n- Do not offer advice about whether a write-off is appropriate.\n- Do not suggest alternative solutions.\n\nOutput format:\nReturn only these headings:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Grok",
       "prompt": "You are preparing a write-off memo. From the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME], build a structured memo. Stop at the draft.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- State each attempt with its date, how you contacted the customer, and the result. \n- If you lack dates, methods, or results, note the gaps.\n- Copy reasons for non-payment exactly as the customer stated them.\n- If the customer disputed the invoice, briefly copy the dispute.\n- Do not add your advice about whether to write off the debt.\n\nOutput format:\nReturn these sections only:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Muse",
       "prompt": "You are drafting a memo to document the attempts to collect on an unpaid invoice. Work from the [INVOICE AMOUNT], the [COLLECTION LOG], and the [CUSTOMER NAME]. The memo is a record, not a message to the customer. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the log is missing information, write a gap in the collection history.\n- Use the customer's own words when describing reasons for non-payment.\n- Summarize the invoice dispute, if any, with a short record of the core point.\n- Do not draft a reply or a message; this is documentation only.\n- Do not suggest alternatives or next steps.\n\nOutput format:\nReturn these headings and nothing after them:\nCUSTOMER NAME:\nINVOICE AMOUNT:\nCOLLECTION HISTORY:\n- Date: Method: Outcome:\nNOTES:\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     }
   ],
   "setup": {

@@ -9,22 +9,22 @@
     {
       "model": "ChatGPT",
       "prompt": "You are a quality-assurance engineer reviewing directory listing pagination. Read the [PAGINATION FUNCTION] that generates pages for the [LISTING URL]. Identify any cases where an item is skipped, repeated, or a page returns empty while results remain. Do not generate pages; find problems in the code.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Focus only on off-by-one errors: skipped items, repeated items, or empty pages while more items exist\n- If the function uses external data, assume the data is valid and focus on the function's logic\n- Return each error with a description of the conditions needed to trigger it, and the expected output compared to the actual output\n- Do not explain pagination; only report errors\n\nOutput format:\nReturn these sections and no other prose:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Claude",
       "prompt": "You are a careful engineer auditing a directory listing's pagination. Examine the [PAGINATION FUNCTION] for the [LISTING URL]. Prepare a report of any errors where an item is skipped, repeated, or a page is empty while more results exist. Do not execute the code; analyze its logic.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- A skipped item is one that should be present but is not\n- A repeated item appears more than once on the same page or across adjacent pages\n- If the function relies on a database, assume the database query returns a complete result set\n- List each error with the conditions to reproduce it, and the expected result versus the actual result\n- Ignore display errors, focus on data errors\n\nOutput format:\nReturn only these headings:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Grok",
       "prompt": "You are a plain-spoken engineer checking directory listing pagination. From the [PAGINATION FUNCTION] and the [LISTING URL], build a report of errors. Look for skipped items, repeated items, or empty pages when items remain. Stop at the report.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Assume the data is real and complete; focus on the code\n- One error per line, with the condition to make it happen, the expected value, and the actual value\n- If no error appears, do not make one up. Report only what the code produces\n- If the function uses offset-based pagination, check boundary conditions\n\nOutput format:\nReturn these sections only:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Muse",
       "prompt": "You are drafting a pagination audit report for a directory listing. Work from the [PAGINATION FUNCTION] and the [LISTING URL]. The report is for a human to review before it is sent to engineering. Do not run the code.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Describe each error with the conditions needed to trigger it, and the difference between the expected and actual result\n- Focus on off-by-one errors: skipped items, repeated items, or empty pages when more results exist\n- If the function interacts with a data source, assume the source is valid and complete\n- Do not include formatting or commentary; only the report data\n\nOutput format:\nReturn these headings and nothing after them:\nLISTING URL:\nREPORT:\n- Condition: description\n  Expected: value\n  Actual: value\nMISSING:",
-      "status": "queued"
+      "status": "not-yet-tested"
     }
   ],
   "setup": {

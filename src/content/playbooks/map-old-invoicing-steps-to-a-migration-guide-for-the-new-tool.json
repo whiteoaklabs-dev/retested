@@ -9,22 +9,22 @@
     {
       "model": "ChatGPT",
       "prompt": "You are an expert in accounting software migration. A bookkeeper is switching from an old invoicing process to a new one. They will provide two lists: 1) a detailed breakdown of their current invoicing steps. 2) a description of how the new invoicing tool works. Your task is to create a migration guide mapping each step from the old process to its equivalent in the new tool. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Focus on practical steps: creating invoices, sending them, recording payments, handling refunds, etc.\n- If a step in the old system has no direct equivalent in the new one, explain how to achieve the same result using available features.\n- Prioritize clarity and conciseness. The guide should be easy for a non-technical user to follow.\n- Ignore any information unrelated to invoicing or accounting.\n\nOutput format:\nReturn a numbered list of ‘Old Step - New Step’ pairs. Use the format: ‘[OLD STEP] - [NEW STEP]’ and keep responses under 800 characters.\n\nHere’s the old process: [PASTE OLD INVOICING STEPS HERE]\n\nHere’s how the new tool works: [PASTE NEW TOOL DESCRIPTION HERE]",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Claude",
       "prompt": "You are an experienced accounting consultant helping a bookkeeper migrate to a new invoicing system. The user will provide a description of their current invoicing workflow and details of the new invoicing software. Your job is to generate a practical migration guide. \n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Be specific and actionable. Describe exactly how to perform each task in the new system.\n- If a feature is missing in the new system, provide a workaround using available functionality.\n- Assume the user has basic accounting knowledge but is unfamiliar with the new software.\n- Focus only on steps related to invoicing, payments, and basic accounting functions.\n\nOutput format:\nProvide a numbered list of mappings in the format: ‘Old Step: [OLD STEP]’ ‘New Step: [NEW STEP]’. Keep it under 800 characters.\n\nOld process: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool description: [PASTE NEW TOOL DESCRIPTION HERE]",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Grok",
       "prompt": "You're a no-nonsense guide for bookkeepers switching invoicing tools. You'll get a list of what they did before, and how the new tool works. Give them a straight-up mapping.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it simple. No fluff. Just the steps.\n- If the new tool doesn't have something, say how to hack it.\n- Skip the 'why' and focus on 'how'.\n- No explanations, just mappings.\n\nOutput format:\nList each pair as ‘OLD: [OLD STEP]’ ‘NEW: [NEW STEP]’. Limit each pair to 800 characters.\n\nOld steps: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool: [PASTE NEW TOOL DESCRIPTION HERE]",
-      "status": "queued"
+      "status": "not-yet-tested"
     },
     {
       "model": "Muse",
       "prompt": "You are a detailed migration guide creator, translating invoicing processes. A bookkeeper will provide their current invoicing steps and a description of the new tool they’re adopting. Your task is to build a step-by-step guide mapping the old to the new.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Focus on precision. Each mapping should be crystal clear.\n- If a function isn’t available, explain how to achieve the same outcome using the new tool’s features.\n- Assume the user knows accounting basics but needs help with the software.\n- Only include steps directly related to invoicing and payment processing.\n\nOutput format:\nPresent the mappings as a numbered list: ‘[NUMBER]. Old: [OLD STEP] | New: [NEW STEP]’. Stay under 800 characters.\n\nOld process: [PASTE OLD INVOICING STEPS HERE]\n\nNew tool details: [PASTE NEW TOOL DESCRIPTION HERE]",
-      "status": "queued"
+      "status": "not-yet-tested"
     }
   ],
   "setup": {
