@@ -1,0 +1,85 @@
+{
+  "slug": "turn-a-changelog-into-a-what-s-new-note-for-warm-leads",
+  "title": "Turn a changelog into a what's-new note for warm leads",
+  "category": "Sales",
+  "summary": "Turn warm leads who asked about a missing plugin behavior into separate what's-new notes. You paste one shipped changelog (version label, ship date, item title, a customer-facing or internal tag, and a one-line description of what the plugin does now) and a gap sheet (name, email, company or site, the gap in their words, the source of that ask, and the date). The result is one email per matched person: a subject of at most 9 words, a body of at most 110 words, the item title they were waiting on, and a short quote of their gap. People whose gap did not ship are listed and get no email. You choose the single ask, reject a weak match, and send each note yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up drafter for a plugin developer. Turn warm leads who asked about missing behavior into separate what's-new notes. Use only the pasted ship list and gap sheet.\n\nInputs:\nShip list: [SHIPPED CHANGELOG]\nGap sheet: [LEAD GAP SHEET]\nPlugin spelling: [PLUGIN NAME]\nHow you close mail: [SIGN-OFF]\nThe only ask, written by you: [ONE ASK]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Write one note per gap-sheet row. Do not merge people into one blast, and do not mention shipped items they did not ask about.\n- Match a row only when the gap and one customer-facing item describe the same behavior. If none fits, list the row under NO MATCH and write no body.\n- Echo a short phrase from that row's gap, then the item title exactly as pasted. Keep [PLUGIN NAME] spelled as given.\n- Do not add a price, discount, call time, install path, menu label, or host-app screen unless those words are in the two pastes.\n- If two items could fit one gap, set the match to UNKNOWN and skip the note. If [ONE ASK] is blank, set the ask to UNKNOWN.\n\nOutput format, one block per matched person, then the lists:\nLEAD:\nTO:\nSUBJECT: 9 words or fewer\nBODY: 110 words or fewer\nGAP QUOTE:\nMATCHED ITEM:\nWHY IT MATCHES:\nUNKNOWN:\nNO MATCH: name, gap, and why no item fits\nSKIPPED ITEMS: ship-list titles with nobody waiting",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful mail assistant for a plugin developer writing back to people who were waiting on a gap. Prepare one what's-new note per person, for the developer to edit. Draw only from the inputs below.\n\nShip list: [SHIPPED CHANGELOG]\nPeople and the gaps they raised: [LEAD GAP SHEET]\nPlugin name, copied exactly: [PLUGIN NAME]\nClosing line: [SIGN-OFF]\nSingle ask the developer chose: [ONE ASK]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every matched item to an item title on the ship list. If you cannot point to that title, do not draft the note.\n- Treat a match as valid only when the gap text and the item describe the same behavior, not merely the same noun. Otherwise put the person on NO MATCH.\n- Leave internal-tagged items out of every body. Leave other shipped items out of a note that is about one gap.\n- Subject: 9 words or fewer. Body: 110 words or fewer. Use [ONE ASK] once, and do not add a second request.\n- Do not imply they already installed, bought, or upgraded unless that row says so. Do not rewrite their gap into a stronger complaint.\n\nOutput format:\nFor each matched person, use the headings LEAD, TO, SUBJECT, BODY, GAP QUOTE, MATCHED ITEM, WHY IT MATCHES, and UNKNOWN.\nAfter those blocks, add NO MATCH (name, gap, reason) and SKIPPED ITEMS (titles nobody was waiting on).",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a plugin developer. People asked for gaps. Some of those gaps just shipped. Write a separate what's-new note for each person whose request matches a shipped, customer-facing item. Skip sales polish.\n\nPaste:\n[SHIPPED CHANGELOG]\n[LEAD GAP SHEET]\n[PLUGIN NAME]\n[SIGN-OFF]\n[ONE ASK]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One person, one note. Never a group message, and never a tour of the whole release.\n- Match on the behavior they asked for. Shared words are not enough. If the fit is weak or two items both fit, write NO MATCH or match UNKNOWN and stop.\n- Put their gap phrase in the note once, then the item title as pasted. Do not rename the plugin.\n- No price, no discount, no meeting, no install steps, no screen names, unless the paste already contains them.\n- If a row has no email, still list the person, set TO to UNKNOWN, and do not invent an address.\n- Sound like the person who ships the plugin. Short sentences. If the gap quote is longer than one sentence, keep the clause that names the missing behavior and do not paraphrase it into a new claim.\n\nOutput format:\nMatched blocks with LEAD, TO, SUBJECT (9 words or fewer), BODY (110 words or fewer), GAP QUOTE, MATCHED ITEM, WHY IT MATCHES, UNKNOWN.\nThen NO MATCH and SKIPPED ITEMS, each as its own list.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a plugin developer. Build what's-new notes for warm leads, one person at a time, and stop before anything is mailed. The developer reviews every block.\n\nUse only:\n[SHIPPED CHANGELOG] for the version that shipped\n[LEAD GAP SHEET] for who asked, in their words, with email, company or site, source, and date\n[PLUGIN NAME]\n[SIGN-OFF]\n[ONE ASK]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draft a note only after you pair one gap with one customer-facing item that changes the same behavior. Unpaired people go to NO MATCH with no body.\n- Keep each body on that single item. Do not fold in other fixes, internal work, or roadmap lines.\n- Copy the gap phrase and the item title from the paste. Copy [SIGN-OFF] and [ONE ASK] as written.\n- Cap the subject at 9 words and the body at 110 words. If [ONE ASK] is empty, mark it UNKNOWN instead of choosing an ask.\n- If the ship list and the gap sheet disagree about a name or a date, show both under UNKNOWN and do not pick a winner.\n\nOutput format:\nLEAD, TO, SUBJECT, BODY, GAP QUOTE, MATCHED ITEM, WHY IT MATCHES, UNKNOWN for each matched person.\nThen NO MATCH and SKIPPED ITEMS.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optional later: Google Sheets plus Zapier, Make, or n8n opens unsent Gmail drafts only.",
+    "steps": [
+      "From your release file, marketplace listing notes, or issue export, copy one shipped version: version label, ship date, item title, a tag of customer-facing or internal, and one line on what the plugin does now. Leave unshipped roadmap rows out.",
+      "Build a gap sheet with one row per warm contact. Columns: name, email, company or site, the gap in their words, source (support reply, marketplace message, or demo note), and the date they asked. Skip people who never named a missing behavior.",
+      "Open the chat assistant you already use, paste its prompt, and replace [SHIPPED CHANGELOG], [LEAD GAP SHEET], [PLUGIN NAME], [SIGN-OFF], and [ONE ASK]. Write the ask yourself, such as reply if this still misses the need. Do not paste prices.",
+      "Set each drafted block beside its sheet row. The item title must be on the ship list, and the gap quote must be in that row. If the behaviors are not the same, move the person to no match and discard the body.",
+      "Apply the caps before you trust the draft: subject at most 9 words, body at most 110 words, and the ask only as you wrote it. Cut any second request, discount, meeting time, or screen name you cannot find in the paste.",
+      "In Gmail, create one unsent message per approved person. Copy To from that row's email only. Paste the subject and body. Do not add no-match people, and do not put several addresses on one message.",
+      "Read each unsent message next to the ship row and the gap row. Send it yourself only when the named change is the behavior they asked about and no UNKNOWN remains. Leave every other message unsent.",
+      "Optional later: keep the gap sheet in Google Sheets. When you mark an item shipped, use Zapier, Make, or n8n to open unsent Gmail drafts for rows whose gap text matches that item. Leave auto-send off."
+    ],
+    "approvalStep": "Before sending, review each unsent Gmail message beside that person's gap row and the matching changelog item, confirm the named change is what they asked about, and approve it yourself.",
+    "failureModes": [
+      "Weak match: a note pairs a request for comment export with an order-export item because both say export. If the objects differ, move that person to no match and do not send.",
+      "Whole-release tour: the body lists other fixes from the same version. Keep only the item that matches their gap, and leave the rest on the skipped list.",
+      "Internal leak: a staff-only or untagged item is written as if the person can use it. Drop any row that is not tagged customer-facing and already shipped.",
+      "Invented path: the note names a menu, a screen, or install steps that neither paste contains. Delete that sentence or mark it UNKNOWN until you supply the real label.",
+      "Wrong inbox: two people at one company are merged, or To uses a marketplace handle instead of the sheet email. Send one note per row, only to the address on that row.",
+      "Stale ask: a newer message says they no longer need the gap, but the sheet still has the old sentence. Drop that row before you paste so the note does not revive a closed request."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste for the changelog and the leads?",
+      "a": "Paste one shipped version, not the roadmap. For each item include the title, the ship date, a customer-facing or internal tag, and one line on the behavior that changed. For leads, paste one row per person: name, email, company or site, the sentence where they named the gap, where that sentence came from, and the date. If a long thread hides the ask, copy that sentence into the gap column yourself so the wrong line is not treated as the request."
+    },
+    {
+      "q": "What if a shipped item only partly fits their request?",
+      "a": "Do not send that note. A partial fit belongs on the no-match list, or under UNKNOWN if you are unsure. You decide whether the behavior is the one they asked for. If two items could fit, pick one yourself and rerun with that item title written on the row, or wait. The draft must not choose for you."
+    },
+    {
+      "q": "Which model should I use for these notes?",
+      "a": "Use the prompt for the assistant you already write mail in. Paste the same ship list and gap sheet each time. Keep a result only when every note names one shipped item, quotes that person's gap, and leaves everyone else on the no-match list. If a note adds a price, a screen, or a second item, discard it and fill the missing field before you run the prompt again."
+    },
+    {
+      "q": "Will this send the notes for me?",
+      "a": "No. Paste mode returns text you copy. You create a separate unsent Gmail message per person and send it only after you check the match. If you later connect Google Sheets to Gmail with Zapier, Make, or n8n, limit that flow to unsent drafts. Leave auto-send off so a matched row cannot go out while you are away."
+    },
+    {
+      "q": "Can I mention the other fixes in the same note?",
+      "a": "No. This note is about the change that person was waiting on. Other shipped items belong on the skipped list, even when they are useful. A full release recap is a different email to a list, not a personal reply. If nobody asked about an item, do not turn it into a one-to-one note."
+    }
+  ],
+  "draft": true,
+  "persona": "Plugin developer",
+  "job": "Paste the changelog and which leads asked about those gaps, and get one update email per lead that names only the shipped change they were waiting on.",
+  "who": "Plugin developers who field gaps in support replies, marketplace messages, and demo notes, and who write each waiting person themselves when that behavior ships in the plugin.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

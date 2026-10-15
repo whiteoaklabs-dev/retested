@@ -1,0 +1,85 @@
+{
+  "slug": "map-outbound-email-work-onto-a-database-job-queue",
+  "title": "Map outbound email work onto a database job queue",
+  "category": "Coding & vibe coding",
+  "summary": "You paste a spreadsheet or CSV of pending outbound email and invoice tasks. A chat agent maps that list onto a jobs table: a CREATE TABLE or ALTER statement, a column dictionary tied to your headers, and the SQL a worker runs to claim one unlocked row. Source fields it must place are task type, recipient, customer id, subject or invoice label, body or line items, amount, currency, and the earliest time the work may run. Queue columns it may add, empty at first, are claimed_by, claimed_at, lease_until, external_ref, and last_error. You choose which task types may be claimed and how long a lease lasts. You approve the SQL on a scratch schema before anyone deploys it or a worker sends mail or issues an invoice.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a database assistant for a solo SaaS builder. Map the outbound list onto a jobs table and write SQL to claim one unlocked row. Use [TASK_EXPORT], [DATABASE_NOTES], and [SEND_POLICY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One column per export header: task type, recipient, customer id, subject or invoice label, body or line items, amount, currency, earliest run time, status\n- Extra columns only if absent, left empty, and only these: claimed_by, claimed_at, lease_until, external_ref, last_error\n- Keep email and invoice as separate task_type values. Claim only what [SEND_POLICY] allows\n- Use queued, claimed, done, failed, or cancelled unless the export already names other statuses\n- In one transaction, set status to claimed on one queued row past its earliest run time, skip a row another session holds, and return it. Use FOR UPDATE SKIP LOCKED only if the notes allow it\n- If the engine or lease length is missing, mark it UNKNOWN and ask. A person approves the id before any send or invoice\n\nOutput format:\nReturn Table, Columns, Claim, Release, then Open questions of at most 120 words.\nTable: CREATE TABLE, or ALTER when a jobs table already exists.\nColumns: source_field, column_name, type, nullable, notes.\nClaim: the transaction that claims one row, and at most 80 words on the lock.\nRelease: set done only when external_ref is supplied, and set queued after the lease only while the row is still claimed.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful SQL editor for a solo SaaS builder storing outbound work in a database queue. From [TASK_EXPORT], [DATABASE_NOTES], and [SEND_POLICY], write a jobs table and SQL that claims one unlocked row.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Place only headers from the export: task type, recipient, customer id, subject or invoice label, body or line items, amount, currency, earliest run time, status\n- Limit new columns to claimed_by, claimed_at, lease_until, external_ref, and last_error, and leave them empty\n- Treat invoice and email as different task_type values. Eligible values come only from [SEND_POLICY]\n- Keep status words already in the export. Otherwise use queued, claimed, done, failed, and cancelled\n- In one transaction, set status to claimed on one eligible row, skip a row another session holds, and honor earliest run time. Write FOR UPDATE SKIP LOCKED only if the notes say so\n- If the engine or lease is missing, ask and write UNKNOWN. A person approves the claimed id before any send or invoice\n\nOutput format:\nReturn Table, Columns, Claim, Release, then Open questions of at most 120 words.\nTable: CREATE TABLE, or ALTER when a jobs table is described.\nColumns: source_field, column_name, type, nullable, notes.\nClaim: the transaction that claims one row, and a lock note of at most 80 words.\nRelease: set done only after external_ref is provided, and restore queued after the lease only if the row is still claimed.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken database aide for a solo SaaS builder. Turn the outbound email and invoice list into a jobs table and the SQL that claims one unlocked row. Read [TASK_EXPORT], [DATABASE_NOTES], and [SEND_POLICY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One sheet header becomes one column: task type, recipient, customer id, subject or invoice label, body or line items, amount, currency, earliest run time, status\n- Add a queue column only from claimed_by, claimed_at, lease_until, external_ref, last_error. Ask before anything else\n- Keep email and invoice apart in task_type. Claim only values named in [SEND_POLICY]\n- Use queued, claimed, done, failed, and cancelled, or the status words already on the sheet\n- In one transaction, set status to claimed on one queued row past its earliest run time, skip a held row, and return it. Use FOR UPDATE SKIP LOCKED only when the notes confirm it\n- If the engine or lease length is missing, mark it UNKNOWN and ask. A person approves the id before a message or an invoice\n\nOutput format:\nReturn Table, Columns, Claim, Release, then Open questions of at most 120 words.\nTable: CREATE TABLE, or ALTER if a jobs table is already in the notes.\nColumns: source_field, column_name, type, nullable, notes.\nClaim: the transaction that claims one row, and at most 80 words on the lock.\nRelease: set done only when external_ref is present, and set queued after the lease only while status is still claimed.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook-and-SQL assistant for a solo SaaS builder mapping outbound chores onto a database job queue. Use [TASK_EXPORT], [DATABASE_NOTES], and [SEND_POLICY] for the jobs table and the claim.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Bind each pasted header to one column: task type, recipient, customer id, subject or invoice label, body or line items, amount, currency, earliest run time, status\n- Extra columns may only be claimed_by, claimed_at, lease_until, external_ref, and last_error, left empty\n- Store email and invoice under task_type. Claim a row only when [SEND_POLICY] lists that value\n- Status stays queued, claimed, done, failed, or cancelled unless the file names other statuses\n- In one transaction, set status to claimed on one queued row whose run time has arrived, skip a row held elsewhere, and return it. Use FOR UPDATE SKIP LOCKED only when the notes allow it\n- Ask when the engine or the lease is missing, and mark the gap UNKNOWN. A human approves the claimed id before any send or invoice\n\nOutput format:\nReturn Table, Columns, Claim, Release, then Open questions of at most 120 words.\nTable: CREATE TABLE, or ALTER when an existing jobs table is described.\nColumns: source_field, column_name, type, nullable, notes.\nClaim: the transaction that claims one row, and at most 80 words on the lock.\nRelease: set done only with external_ref supplied, and return the row to queued after the lease only if it is still claimed.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Later, Google Sheets plus n8n, Make, or Zapier can insert queued rows while Gmail and invoicing stay off.",
+    "steps": [
+      "Export pending outbound work as one row per task from your spreadsheet or notes, and keep the header row. Include task type (email or invoice), recipient, customer id, subject or invoice label, body or line items, amount, currency, earliest run time, and current status. Leave blank cells blank.",
+      "Write a short engine note: the database you run, whether a jobs table already exists, and the worker name to stamp on a claim. In a send policy, list which task types may be claimed now, which stay draft, and the lease length you choose. Leave off any decision you have not made yet.",
+      "Open a new chat and paste the prompt for the assistant you already use. Put the export where it says [TASK_EXPORT], the engine note where it says [DATABASE_NOTES], and the send policy where it says [SEND_POLICY].",
+      "Read Table and Columns before any SQL runs. Confirm each source header has one column, status words match the ones you already use, and the only added columns are claimed_by, claimed_at, lease_until, external_ref, and last_error.",
+      "Read Claim. It should start a transaction, lock one queued row whose earliest time has passed, skip a row another session holds, and return that row. Where your engine note allows it, that skip is FOR UPDATE SKIP LOCKED.",
+      "On a scratch schema, run only the CREATE TABLE or ALTER. Insert two rows you typed yourself, run the claim twice, and confirm the second result is a different id or an empty result. Leave the live database untouched.",
+      "Read Release. The finish statement should set done for that id only when you supply external_ref from a real send or a real issued invoice. The lease statement should restore queued only after the lease time, and only while status is still claimed.",
+      "Optional later pass: use Google Sheets with n8n, Make, or Zapier to insert a new spreadsheet row into the jobs table as queued. Keep Gmail and invoicing disconnected until you approve a claimed row for send or issue."
+    ],
+    "approvalStep": "You review the CREATE or ALTER and the claim statement on a scratch schema, confirm a second run does not return the same row, and approve before deploying the migration or letting a worker send mail or issue an invoice.",
+    "failureModes": [
+      "Two sessions take the same task when the claim is a plain select with no row lock. Watch one recipient or one invoice id become claimed twice.",
+      "A worker stops after the claim and the row never returns because lease_until is empty. Watch claimed rows with a blank lease or a lease already past.",
+      "One execution stamps every queued row as claimed. Watch the status column flip on the whole list instead of a single id.",
+      "An invoice row is handled on the email path, so a draft bill is treated as a message. Watch for a missing task_type check against your send policy.",
+      "A task whose earliest run time is still ahead gets taken. Watch the claim for a run_after predicate and compare it with the row returned.",
+      "Done is set with an empty external_ref, so a retry can send or issue a second time. Watch done rows that never stored a provider id."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to write this queue SQL?",
+      "a": "Use the prompt for the assistant you already have, and paste the same export, engine note, and send policy each time. Keep the draft whose columns match your headers, whose claim locks one unlocked row inside a transaction, and whose gaps say UNKNOWN. Discard a draft that sends mail or issues an invoice by itself."
+    },
+    {
+      "q": "What if a jobs table already exists?",
+      "a": "Paste its column list in the engine note and ask for ALTER statements that add only missing columns. Refuse a statement that drops rows or renames a column you already store. If the chat cannot see a column, that column stays UNKNOWN until you paste the definition."
+    },
+    {
+      "q": "Will this send the emails or create the invoices?",
+      "a": "No. Paste mode returns a table definition, a column dictionary, a claim statement, and the finish and lease statements. You run those on a scratch schema yourself. Gmail and invoicing stay disconnected until you approve one claimed row and supply its external_ref after the real send or the real issue."
+    },
+    {
+      "q": "How do I pick the lease length?",
+      "a": "You choose it and write it in the send policy. It should cover the time one worker needs to send one message or prepare one invoice, plus room for a retry you control. If you leave it out, the chat should mark the interval UNKNOWN. A lease that never ends leaves a crashed claim stuck."
+    },
+    {
+      "q": "What if my database has no skip-locked syntax?",
+      "a": "Say that in the engine note. The claim should still update a single id inside a transaction. The chat should mark the lock clause UNKNOWN and ask how a second session ought to behave, rather than inventing a clause your engine does not have. Do not deploy that statement until you accept the answer."
+    }
+  ],
+  "draft": true,
+  "persona": "Solo SaaS builder",
+  "job": "The list of email and invoice tasks becomes a jobs table and the SQL a worker uses to claim one unlocked row.",
+  "who": "Solo SaaS builders who keep outbound email and invoice chores in a spreadsheet and want that list stored as a database queue a worker can claim from one row at a time.",
+  "toolCategories": [
+    "AI chat models",
+    "Databases",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

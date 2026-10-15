@@ -1,0 +1,86 @@
+{
+  "slug": "correct-one-wrong-assumption-about-a-product-spec",
+  "title": "Correct one wrong assumption about a product spec",
+  "category": "Support",
+  "summary": "You paste the customer email and one spec-sheet row for the model they named: field name, published value, unit, condition or footnote, and the cell that says what the product does. The assistant returns a private fact card and a reply of 120 words or fewer. The reply restates their wrong assumption, gives that single sheet value with its unit and condition, and says what the product does instead using only that row. Other mistakes stay off the message. You check model, revision, and unit against the sheet, then you send the reply yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a hardware support agent drafting a reply you approve before it is sent. Correct one wrong assumption about a product spec. Use only the email and one spec-sheet row. Do not send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Correct only the assumption marked in [CUSTOMER EMAIL]. If several lines are wrong, fix the one they lead with and list the others as leave-out.\n- Copy value, unit, and condition from [SPEC SHEET ROW]. Do not round the value, drop the unit, or skip the condition.\n- Say what the product does instead only with words on that row. If that cell is blank, write UNKNOWN and do not describe a behavior.\n- The row must match [MODEL OR SKU]. If model, revision, or region differs, stop and ask which row to use.\n- Do not add a second spec, a price, a refund, or a web address.\n- Keep the customer-facing body at or under 120 words.\n\nCustomer email:\n[CUSTOMER EMAIL]\n\nSpec-sheet row (field, value, unit, condition, revision, does-instead):\n[SPEC SHEET ROW]\n\nModel or SKU:\n[MODEL OR SKU]\n\nSign-off:\n[AGENT NAME]\n\nOutput format:\nReturn two blocks. Private fact card headings: Model matched, Their assumption, Spec field, Sheet value, Unit, Condition, Does instead, Other claims left out, Gaps. Then the reply: Subject, greeting, their question in their words, one correction with value unit and condition, what it does instead or UNKNOWN, one line on the job they need done, and the sign-off. Leave the fact card out of the reply.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful hardware support agent. Draft a reply that corrects one wrong assumption about a product spec. Work only from the email and one spec-sheet row. A person approves the text before it is sent. Do not send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Find the assumption in [CUSTOMER EMAIL]. Correct that single fact. Park every other wrong line under Other claims left out.\n- Take value, unit, and condition from [SPEC SHEET ROW] as written. A friendlier round number is a failed draft.\n- Copy the does-instead sentence from that row. A blank cell stays UNKNOWN. Do not infer a capability from the field name.\n- If [MODEL OR SKU] does not match the row's model, revision, and region, do not correct anything. Ask which row is current.\n- Skip blame, a price, a refund, and any spec you were not asked to fix.\n- Hold the body they will read to 120 words or fewer.\n\nCustomer email:\n[CUSTOMER EMAIL]\n\nSpec-sheet row:\n[SPEC SHEET ROW]\n\nModel or SKU:\n[MODEL OR SKU]\n\nSign-off:\n[AGENT NAME]\n\nOutput format:\nTwo blocks. Fact card headings: Model matched, Their assumption, Spec field, Sheet value, Unit, Condition, Does instead, Other claims left out, Gaps. Then Subject and body sections: greeting, their question in their words, one correction with value unit and condition, what it does instead or UNKNOWN, a line on the job they need done, and the sign-off. Keep the fact card off the reply.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken hardware support agent. The email states one spec wrong. The sheet row has the published fact. Draft the correction. Do not send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Fix one assumption only, the one marked in [CUSTOMER EMAIL]. Extra wrong lines go on the fact card as leave-out, not into the reply.\n- Put the value, the unit, and the condition from [SPEC SHEET ROW] in the correction. No rounding, no dropped footnote, no swapped unit.\n- What the product does instead comes from that row alone. If the row has only a number, write UNKNOWN for the behavior and do not fill the gap.\n- [MODEL OR SKU] must be the row you were given. A mismatch means stop and ask. Do not borrow a neighbor row.\n- No scolding, no price, no refund, no second spec, no web address.\n- Body they will see: 120 words or fewer.\n\nCustomer email, assumption marked:\n[CUSTOMER EMAIL]\n\nSpec-sheet row for this model only:\n[SPEC SHEET ROW]\n\nModel or SKU:\n[MODEL OR SKU]\n\nSign-off:\n[AGENT NAME]\n\nOutput format:\nReturn a private fact card, then the reply. Fact card headings: Model matched, Their assumption, Spec field, Sheet value, Unit, Condition, Does instead, Other claims left out, Gaps. Reply sections: Subject, greeting, their question in their words, one correction with value unit and condition, what it does instead or UNKNOWN, one line on the job they need done, sign-off. Keep the fact card out of the message.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a hardware support reply for review before sending. Correct one wrong assumption about a product spec, and say what the product does instead. Use only the email and one spec-sheet row.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the marked sentence in [CUSTOMER EMAIL] as the only fact to correct. If no sentence is marked, ask which line is the assumption.\n- Copy value, unit, and condition from [SPEC SHEET ROW]. If two conditions are on the row, include both, or mark the choice UNKNOWN and ask.\n- Do not write what the product does unless that sentence is on the row. Otherwise the does-instead line is UNKNOWN.\n- Stop if [MODEL OR SKU] disagrees with the row. Do not guess a revision or a region.\n- Do not scold, and do not add a price, a refund, or a web address.\n- Keep the body at or under 120 words.\n- If the value cell is empty, stop and ask for the row. Do not draft a correction from the email alone.\n\nCustomer email:\n[CUSTOMER EMAIL]\n\nSpec-sheet row:\n[SPEC SHEET ROW]\n\nModel or SKU:\n[MODEL OR SKU]\n\nSign-off:\n[AGENT NAME]\n\nOutput format:\nTwo blocks. Fact card headings: Model matched, Their assumption, Spec field, Sheet value, Unit, Condition, Does instead, Other claims left out, Gaps. Then Subject and body sections: greeting, their question in their words, one correction with value unit and condition, what it does instead or UNKNOWN, one line on the job they need done, sign-off. Leave the fact card out of the reply.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional later: a help-desk macro that files an unsent reply with the saved spec row.",
+    "steps": [
+      "From the customer email, copy the From name, Subject, and full body into a note. Mark the one sentence that states the wrong spec. If several lines are wrong, keep the one they lead with and list the rest as leave-out. Copy the model or SKU they wrote, or write UNKNOWN if they named none.",
+      "Open the spec sheet for that model: the PDF page, a spreadsheet export, or the row in your spec workbook. Copy only the matching row: model or SKU, field name, published value, unit, condition or footnote, revision, and the cell on what the product does. Skip every other row.",
+      "Check the row yourself before any draft. Model or SKU, revision, and region must match the email. Keep the unit and the condition, such as the test setup named in the footnote. If two rows share the field name, pick the row that matches their stated use, or mark the value UNKNOWN.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace the email, the single spec-sheet row, the model or SKU, and your sign-off. If the does-instead cell is blank, type UNKNOWN there before you run it. Do not add a value from memory.",
+      "Read the private fact card in the chat reply before you touch the customer text. The value, unit, and condition must match the row you copied. If the reply corrects a second spec, drops the condition, or fills a blank does-instead line, delete those lines and run the prompt again.",
+      "Confirm this is the one assumption to fix, and that you can point to the row. Paste only the subject and body into the help desk or Gmail as an unsent reply. Leave the fact card in your note, not in the message the buyer will see.",
+      "Open the unsent reply beside the spec row once more, then send it yourself. Do not send if the model, unit, or condition still looks off, or if the does-instead sentence is not written on the sheet.",
+      "Optional: save a help-desk macro only for this model and this field. Use Zapier, Make, or n8n to place a matching ticket into an unsent Gmail or help-desk draft and attach the saved row. The flow must stop for your review and must not send."
+    ],
+    "approvalStep": "You review the unsent reply beside the spec-sheet row before it is sent. Confirm the model, the single corrected field, the unit, and the condition match that row, and that no second spec was added. Only then do you send it.",
+    "failureModes": [
+      "The reply fixes two or three lines from the email. Watch the fact card: anything under Other claims left out must not appear in the body you send.",
+      "The value is taken from another model, revision, or region. Watch the Model matched line and compare it to the SKU written in the email before you send.",
+      "The unit or the condition footnote is dropped, so the number sounds universal. Watch that both the unit and the condition from your row appear in the correction.",
+      "A behavior is filled in from memory when the does-instead cell was blank. Watch for any capability you cannot point to on that row, and mark it UNKNOWN.",
+      "A macro for one model and field lands on a ticket about another SKU. Watch the attached row before the draft is created, and do not let the flow send.",
+      "The published number is rounded or turned into a range. Watch the digits and the unit against the sheet, character for character, before the reply goes out."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the email gets more than one spec wrong?",
+      "a": "Correct only the assumption you marked, usually the line they lead with. Put every other wrong line on the private fact card as leave-out. A second correction belongs in a later message after they reply, unless you choose to cover it and you edit that sentence yourself before sending."
+    },
+    {
+      "q": "What if two sheet rows share the same field name?",
+      "a": "Do not let the draft choose. Compare revision, region, and the condition footnote with the email. If you still cannot tell which row is theirs, set the value to UNKNOWN and ask which model or setup they mean. Send only after you have selected one row."
+    },
+    {
+      "q": "Which assistant should I use for this reply?",
+      "a": "Use the prompt written for the assistant you already have open. Keep the draft only when the model, value, unit, and condition match the row you pasted, the reply fixes one assumption, and any blank cell is marked UNKNOWN. If a second spec or a remembered behavior appears, run the prompt again."
+    },
+    {
+      "q": "Can this reply send while I am away from the desk?",
+      "a": "No. Paste mode only prints a draft. If you later connect Gmail or the help desk with Zapier, Make, or n8n, set the action to create an unsent reply and attach the saved row for that model and field. You still compare the number, unit, and condition with the sheet, then you send."
+    },
+    {
+      "q": "What if the sheet has a number but no line on what it does?",
+      "a": "Leave the does-instead line as UNKNOWN. The reply can still correct the single value, unit, and condition, then say you will confirm what the product does for their job. Do not add a capability that is not written on the row you pasted."
+    }
+  ],
+  "draft": true,
+  "persona": "Hardware support agent",
+  "job": "A customer email that misstates a spec, plus the matching spec-sheet row, becomes a reply that corrects that single fact and says what the product does instead.",
+  "who": "Hardware support agents who answer email when a buyer states a spec the sheet does not support. You have the message and the official row for that model, and you need one calm correction, not a tour of the catalog.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Help desk",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

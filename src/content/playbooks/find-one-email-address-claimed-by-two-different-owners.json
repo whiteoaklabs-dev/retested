@@ -1,0 +1,84 @@
+{
+  "slug": "find-one-email-address-claimed-by-two-different-owners",
+  "title": "Find one email address claimed by two different owners",
+  "category": "Sales",
+  "summary": "A partner manager pastes a lead export and a contact export, each with its header row, the email address, the person name, the company or account, the status, and the owner. The agent must find every address claimed by two different owners, one on the lead and one on the contact. The output is a conflict table with that address, both names, both owners, both statuses, the company, the source row ids, and a blank keep cell. An address that appears once, or that shares one owner across both files, stays off the table and is mentioned only in a two-sentence omit note. The partner manager writes Keep lead owner, Keep contact owner, or Ask both before any owner field changes, any record is merged, any note is sent, or any row is deleted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an ownership checker for a partner manager. Using [OWNER COLUMN MAP], compare [LEAD EXPORT] with [CONTACT EXPORT] and find each email address claimed by two different owners.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If the address or owner header is unmapped in either file, stop and ask before you match\n- Match on the email address only. A shared name with two addresses is out of scope\n- Ignore capitals and extra spaces when comparing, and print the original text\n- Add a row only when the address is in both exports and the owner names still differ\n- A blank address or a blank owner is UNKNOWN and stays off the conflict table\n- Keep a nickname or a team suffix as a conflict. Do not merge two spellings into one person\n- Do not fill keep, write a rep note, or recommend a merge or a delete\n\nOutput format:\nReturn a table with columns email, lead_name, contact_name, lead_owner, contact_owner, lead_status, contact_status, company, lead_row, contact_row, keep.\nCross-file clashes only. lead_row and contact_row are source line numbers, header excluded. company is the lead company, or the contact account if that cell is blank. Leave keep empty.\nThen Inside one file, columns email, file, row_ids, owner_names, when one export repeats an address under owners that differ.\nThen Omitted: exactly two sentences and no address list, one for owners that agree and one for addresses in a single file.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a records checker for a partner manager. Read [LEAD EXPORT] and [CONTACT EXPORT] with [OWNER COLUMN MAP], and list each email address claimed by two different owners.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Ask which header is the address and which is the owner in each file before you join rows\n- Join on the address alone. A shared person name with two addresses is not a conflict here\n- Ignore capitals and extra spaces when comparing, and keep the original spelling\n- Add a conflict row only if the address is in both exports and the owner names still differ\n- A blank address or a blank owner stays off the conflict table and is marked UNKNOWN\n- A nickname or a team label stays a conflict. Do not collapse those spellings into one person\n- Do not fill keep, write to either rep, or recommend merging or deleting a record\n\nOutput format:\nReturn a table with columns email, lead_name, contact_name, lead_owner, contact_owner, lead_status, contact_status, company, lead_row, contact_row, keep.\nOnly cross-file clashes belong there. lead_row and contact_row count lines after the header. company comes from the lead, or from the contact account when the lead company is blank. Leave keep empty.\nThen Inside one file, columns email, file, row_ids, owner_names, when one export repeats an address under owners that differ.\nThen Omitted: exactly two sentences and no address list, one for owners that agree and one for addresses in a single file.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken ownership checker for a partner manager. Take [LEAD EXPORT] and [CONTACT EXPORT], apply [OWNER COLUMN MAP], and find every email address claimed by two different owners.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If you cannot see the address column or the owner column, ask before you flag a row\n- Use the address as the only match key. Same name with a different address means skip that pair\n- Treat capitals and stray spaces as the same value, but store the text exactly as pasted\n- A conflict row needs the address in both exports and owner names that still differ\n- A blank address or a blank owner is UNKNOWN and does not enter the conflict table\n- Sam versus Samantha, or a name plus a team label, stays a conflict for the partner manager\n- Do not pick who keeps the record, draft a rep note, or suggest a merge or a deletion\n\nOutput format:\nReturn a table with columns email, lead_name, contact_name, lead_owner, contact_owner, lead_status, contact_status, company, lead_row, contact_row, keep.\nCross-file clashes only. lead_row and contact_row skip the header. company is the lead company, else the contact account. Leave keep empty.\nThen Inside one file, columns email, file, row_ids, owner_names, when one export repeats an address under owners that differ.\nThen Omitted: exactly two sentences, no address list, for owners that agree and for addresses seen in a single file.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant for a partner manager. Using [LEAD EXPORT], [CONTACT EXPORT], and [OWNER COLUMN MAP], return each email address claimed by two different owners.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the column map first. Ask if either file has no address header or no owner header\n- Match the address and nothing else. Do not pair people just because their names look alike\n- Fold case and trim spaces for the comparison only. Printed cells stay as pasted\n- Keep a conflict row only when both exports contain that address and the owner names still differ\n- An empty address or an empty owner cell is UNKNOWN and stays off the conflict table\n- Leave a nickname or a team suffix as a conflict. Do not guess those strings are one person\n- Do not write a keep value, compose a note to either rep, or propose a merge or a delete\n\nOutput format:\nReturn a table with columns email, lead_name, contact_name, lead_owner, contact_owner, lead_status, contact_status, company, lead_row, contact_row, keep.\nLimit that table to cross-file clashes. lead_row and contact_row skip the header. company is the lead company, or the contact account when the lead company is blank. Leave keep empty.\nThen Inside one file, columns email, file, row_ids, owner_names, when one export repeats an address under owners that differ.\nThen Omitted: exactly two sentences and no list, one for owners that agree and one for addresses found in a single file.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to open a fresh review tab when a new pair of exports arrives.",
+    "steps": [
+      "Export the lead list and the contact list from your CRM as a CSV or a copied grid, and keep the header row. Include the email address, the person name, the company or account, the status, and the owner. Open a fresh chat and paste one prompt from this playbook.",
+      "Paste the lead grid as [LEAD EXPORT] and the contact grid as [CONTACT EXPORT]. In [OWNER COLUMN MAP], name the address header and the owner header in each file. If a header says Lead Owner, Contact Owner, or Assigned To, say which file it belongs to before you ask for matches.",
+      "Read the conflict table from top to bottom. Every row should show one address, two owner names that still differ, both person names, and both source row ids. A blank owner should be absent from that table and marked UNKNOWN, not filled with a guessed rep.",
+      "Spot-check before anyone is reassigned. Search both exports for an address you know shares one owner and confirm it is absent from the conflict table. If two owner strings differ only by a nickname or a team suffix, leave that row in place and decide it yourself.",
+      "In the blank keep column, write Keep lead owner, Keep contact owner, or Ask both. Leave the cell empty when you are unsure who should hold the relationship. Tell the team an empty cell is not a yes to change the record.",
+      "Copy the conflict table, the Inside one file section, and your keep marks into a new spreadsheet tab. Leave both original exports untouched so a bad match can be discarded without losing status, company, or either name.",
+      "Optional later step: when a new pair of exports lands in Google Sheets, use Zapier, Make, or n8n to create a fresh review tab with the same columns. Block that flow from editing the CRM, sending mail, merging records, or deleting a row.",
+      "After every row you intend to touch has a keep mark, update the owner field from the review tab yourself. Skip blank cells, and skip any address you still want a second look at, until that mark is written."
+    ],
+    "approvalStep": "The partner manager reviews every conflict row and writes Keep lead owner, Keep contact owner, or Ask both before submitting an owner change, sending a note to either rep, merging records, or deleting a row. A blank keep cell is not approval.",
+    "failureModes": [
+      "Nickname split: Sam on the lead and Samantha on the contact look like two owners even when they are one person. Compare last names and initials before you reassign.",
+      "Shared mailbox: one front-desk address is claimed by a partner on the lead and another partner on the contact. The text clash is real, but the mailbox may not be one buyer. Mark Ask both.",
+      "Case-fold miss: the chat treats the same address with different capitals as two addresses and returns an empty conflict table. Confirm it lowercased the address before you trust a blank result.",
+      "Wrong owner header: the lead column is the partner while the contact column is the account team. Every row then looks split. Recheck the column map before anyone is reassigned.",
+      "Queue versus person: a queue label and a rep name differ as text but may be the same assignment. Do not keep the person until you know the queue label is stale."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for finding an address with two owners?",
+      "a": "Use the prompt for the assistant you already have. Keep the run whose conflict table shows only an address present in both exports, copies both owner names as written, includes both source row ids, and leaves keep blank. Discard a run that invents a rep, fills keep, or adds an address found in only one file."
+    },
+    {
+      "q": "What if the owner headers differ between the two exports?",
+      "a": "Paste both header rows in the column map and say which header is the address and which is the owner in each file. Map Lead Owner, Contact Owner, Assigned To, or a plain Owner column to the right file. Leave status, company, and phone out of the match so they are not treated as a second owner."
+    },
+    {
+      "q": "Will this change owners or message the reps?",
+      "a": "No. Paste mode only returns the conflict table and the short omit note for you to copy into a new spreadsheet tab. Reassigning a record, merging two records, sending a note to a rep, or deleting a row waits until you have written a keep mark on that line. A later automation should create a new tab only, with sending and CRM edits turned off."
+    },
+    {
+      "q": "What if the same address is split inside one export?",
+      "a": "This job compares the lead export with the contact export. If one file already lists the same address on two rows with different owner names, those belong in the Inside one file section, with both row ids and both owner names, not in the cross-file table. You still choose the keeper by hand, the same way you do for a cross-file clash."
+    },
+    {
+      "q": "How do I run this when the exports are long?",
+      "a": "Paste in batches that fit the chat, and label each batch with the row range from the original file. Ask for conflict rows only. Stack those tables in one review tab, and do not paste a later batch over a keep mark you already wrote. Keep both original exports so you can search an address the table omitted."
+    }
+  ],
+  "draft": true,
+  "persona": "Partner manager",
+  "job": "Turn a lead export and a contact export into rows where the same email address has two different owners, each row carrying a blank keep cell.",
+  "who": "Partner managers who hold a lead export and a contact export and need every email address claimed by two different owners listed before a rep is told to stop or a record is reassigned.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "CRM exports"
+  ]
+}

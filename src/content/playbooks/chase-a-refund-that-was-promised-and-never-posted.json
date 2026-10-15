@@ -1,0 +1,84 @@
+{
+  "slug": "chase-a-refund-that-was-promised-and-never-posted",
+  "title": "Chase a refund that was promised and never posted",
+  "category": "Support",
+  "summary": "A cardholder pastes the message that promised the refund, today's date, and the card or bank lines that paid. The agent copies the promise sentence. One figure is stated even if the charge differs. No figure, or two different promised figures, stays UNKNOWN. SEND is only when no matching credit has posted and either the promise day is before today or no promise day was named. On SEND, one figure is stated and the note asks when the credit will post. No figure: ask the merchant to confirm the refund amount and the post date. Two figures: ask which amount and state neither. If the named day is today or still ahead, the result is WAIT: no chase and no question. You check that call, then send any reply yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a cardholder's writing aide. Mark WAIT or SEND first. The person sends mail only on SEND. Use only [PROMISE EMAIL], [TODAY DATE], and [CARD ACTIVITY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy each promise sentence from [PROMISE EMAIL] exactly. Do not smooth, shorten, or merge sentences.\n- Amount is the single refund figure in [PROMISE EMAIL], not the charge on [CARD ACTIVITY]. No figure, or two different figures, means Amount is UNKNOWN. Do not copy the charge. Do not pick either email figure.\n- If [TODAY DATE] is missing, set UNKNOWN and stop. Otherwise set WAIT if the posting day is after today or the same calendar day as today. Same day is not SEND. Set WAIT if a matching credit has posted. Set SEND only if no matching credit has posted and either the day is before today or the day was unnamed.\n- On WAIT or UNKNOWN, Sendable note is NONE. Do not ask the merchant anything, even if Amount is UNKNOWN.\n- SEND with one figure: state it and ask only the calendar date the credit will post. SEND with no figure: ask the merchant to confirm the refund amount and the post date. SEND with two figures: ask which amount will post and the post date, and state neither figure.\n\nOutput format: Subject; Promise sentence; Amount; Card check; Hold or send; Sendable note; Holder note; Unknown. SEND: subject under eight words, note under 120 words. WAIT or UNKNOWN: note is NONE with no question. Holder note under 40 words on WAIT.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a cardholder owed a promised refund. Do not send mail or contact a bank. Use only [PROMISE EMAIL], [TODAY DATE], and [CARD ACTIVITY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy every promise sentence in [PROMISE EMAIL] exactly. A paraphrase fails the task.\n- Amount is the single refund figure in [PROMISE EMAIL], not the charge on [CARD ACTIVITY]. No figure, or two different figures, means Amount is UNKNOWN. Do not copy the charge. Do not pick either email figure.\n- If [TODAY DATE] is missing, set UNKNOWN and stop. Otherwise set WAIT if the posting day is after today or the same calendar day as today. Same day is not SEND. Set WAIT if a matching credit has posted. Set SEND only if no matching credit has posted and either the day is before today or the day was unnamed.\n- On WAIT or UNKNOWN, Sendable note is NONE. Do not ask the merchant anything, even if Amount is UNKNOWN.\n- SEND with one figure: state it and ask only the calendar date the credit will post. SEND with no figure: ask the merchant to confirm the refund amount and the post date. SEND with two figures: ask which amount will post and the post date, and state neither figure.\n\nOutput format: Subject; Promise sentence; Amount; Card check; Hold or send; Sendable note; Holder note; Unknown. SEND: subject under eight words, note under 120 words. WAIT or UNKNOWN: note is NONE with no question. Holder note under 40 words on WAIT.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are drafting a cardholder follow-up. They send it only on SEND. Use only [PROMISE EMAIL], [TODAY DATE], and [CARD ACTIVITY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy each money-back sentence exactly from [PROMISE EMAIL]. If none exists, write NO PROMISE SENTENCE and stop.\n- Amount is the single refund figure in [PROMISE EMAIL], not the charge on [CARD ACTIVITY]. No figure, or two different figures, means Amount is UNKNOWN. Do not copy the charge. Do not pick either email figure.\n- If [TODAY DATE] is missing, set UNKNOWN and stop. Otherwise set WAIT if the posting day is after today or the same calendar day as today. Same day is not SEND. Set WAIT if a matching credit has posted. Set SEND only if no matching credit has posted and either the day is before today or the day was unnamed.\n- On WAIT or UNKNOWN, Sendable note is NONE. Do not ask the merchant anything, even if Amount is UNKNOWN.\n- SEND with one figure: state it and ask only the calendar date the credit will post. SEND with no figure: ask the merchant to confirm the refund amount and the post date. SEND with two figures: ask which amount will post and the post date, and state neither figure.\n\nOutput format: Subject; Promise sentence; Amount; Card check; Hold or send; Sendable note; Holder note; Unknown. SEND: subject under eight words, note under 120 words. WAIT or UNKNOWN: note is NONE with no question. Holder note under 40 words on WAIT.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a draft a cardholder must approve before it is sent. You do not send it. Use only [PROMISE EMAIL], [TODAY DATE], and [CARD ACTIVITY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy each promise sentence exactly. Do not fix grammar, drop a word, or change a figure inside it.\n- Amount is the single refund figure in [PROMISE EMAIL], not the charge on [CARD ACTIVITY]. No figure, or two different figures, means Amount is UNKNOWN. Do not copy the charge. Do not pick either email figure.\n- If [TODAY DATE] is missing, set UNKNOWN and stop. Otherwise set WAIT if the posting day is after today or the same calendar day as today. Same day is not SEND. Set WAIT if a matching credit has posted. Set SEND only if no matching credit has posted and either the day is before today or the day was unnamed.\n- On WAIT or UNKNOWN, Sendable note is NONE. Do not ask the merchant anything, even if Amount is UNKNOWN.\n- SEND with one figure: state it and ask only the calendar date the credit will post. SEND with no figure: ask the merchant to confirm the refund amount and the post date. SEND with two figures: ask which amount will post and the post date, and state neither figure.\n\nOutput format: Subject; Promise sentence; Amount; Card check; Hold or send; Sendable note; Holder note; Unknown. SEND: subject under eight words, note under 120 words. WAIT or UNKNOWN: note is NONE with no question. Holder note under 40 words on WAIT.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first. Your email client sends the note. A spreadsheet plus Zapier, Make, or n8n may only store a draft.",
+    "steps": [
+      "In Gmail or your mail app, open every merchant message that promised this refund. Copy the sender, the sent date, the subject, and the full body. If two messages name different refund figures, paste both, oldest first. Do not retype a figure from memory.",
+      "From your phone calendar, write today's date with the year. In the card or bank app that paid, copy the charge date, the descriptor, the charge figure, and the last four, and say whether a matching credit is posted, pending, or absent. Include the date of the newest line.",
+      "Open the assistant you already use, paste its prompt, and replace the promise email, today's date, and the card lines. Run it once. Do not add a remembered figure in that same turn.",
+      "Read Hold or send before the note. WAIT covers a day still ahead, a day that is today, and a credit already posted. Pending is not posted. Same day is not SEND. On WAIT, stop: the note must be NONE, and you ask nothing.",
+      "On SEND, state the one refund figure even if the charge differs. No figure, or two different figures, stays UNKNOWN. With no figure, ask the merchant to confirm the refund amount and the post date. With two, ask which amount will post, and state neither email figure.",
+      "Edit the SEND note only where the tone needs your own voice. Keep the copied promise sentence. Delete any dispute threat, any post date the merchant did not write, and any order id that was not in the message. Reply on the original thread and press send yourself.",
+      "Optional later pass: log the merchant, the figure status, the promised day, today's date, and WAIT or SEND on a spreadsheet. Zapier, Make, or n8n can save a Gmail draft when a new promise message arrives. The automation must not send."
+    ],
+    "approvalStep": "You review Hold or send, the copied promise sentence, and the figure rule before anything is sent. WAIT, including when the promised day is today, means you send nothing and you ask nothing. On SEND, you reply yourself from your email client. You do not file a dispute or pay anyone.",
+    "failureModes": [
+      "No figure, but the note copies the charge or asks only for a post date. On SEND, ask the merchant to confirm the refund amount and the post date. On WAIT, ask nothing.",
+      "Two promised figures collapsed into one email figure, often the larger. Amount must stay UNKNOWN. On SEND, ask which amount will post and the post date.",
+      "Same-day chase. The named posting day is today and the draft still asks a question. Same day is WAIT. Sendable note must be NONE.",
+      "Chase before the promised day. That day is still ahead, yet a note asks for a post date. Delete it. WAIT means no chase and no question.",
+      "Rewritten promise. The sentence is shorter or smoother than the message. Put the original sentence back, word for word, before you consider sending.",
+      "Pending treated as posted, or a dispute slipped in. Pending is not posted. Delete any issuer threat. A SEND note asks; it does not name the post date."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the promise email never names an amount?",
+      "a": "Leave the figure blank. Amount must be UNKNOWN, and the charge on the card must not be copied in as the refund. If Hold or send is SEND, the note asks the merchant to confirm the refund amount and the post date. If Hold or send is WAIT, including when the named posting day is today, Sendable note is NONE and you do not ask either question yet."
+    },
+    {
+      "q": "What if two emails promised different amounts?",
+      "a": "Paste both messages into the promise email field. Amount must be UNKNOWN. Do not use either email figure, and do not pick the larger one. If Hold or send is SEND, the note asks which amount will post and the post date, without stating either figure as the refund. If Hold or send is WAIT, send nothing and do not ask."
+    },
+    {
+      "q": "The email says the credit posts today. Do I send now?",
+      "a": "When the named posting day is the same calendar day as today's date, Hold or send is WAIT. Same day is not SEND. Sendable note must be NONE, with no question about the figure or the post date. Check the card after today's posting window. If the credit is still missing tomorrow, paste tomorrow's date and run the prompt again."
+    },
+    {
+      "q": "My card charge differs from the one refund figure. Which is the amount?",
+      "a": "If the message names exactly one refund figure, Amount is that figure. Show the charge only in the card check. A different charge is not a second promised figure, so do not mark Amount UNKNOWN and do not ask the merchant to choose. UNKNOWN is for no refund figure, or for two different refund figures. Only those SEND notes ask the merchant to confirm the amount and the post date."
+    },
+    {
+      "q": "Which assistant should I use for this follow-up?",
+      "a": "Use the prompt written for the assistant you already have. Paste the same promise email, the same today's date, and the same card lines. Judge the draft by three checks: the promise sentence matches the message word for word, Amount follows the one-figure or UNKNOWN rule, and a SEND note asks the right question while a WAIT result, including when the promised day is today, contains no ask."
+    }
+  ],
+  "draft": true,
+  "persona": "Cardholder waiting on money",
+  "job": "From the email that promised the refund and today's date, you get a follow-up that quotes the promise, states the amount, and asks for the date the credit will post.",
+  "who": "Cardholders who already hold a message promising money back and still do not see that credit on the card or bank account that paid.",
+  "toolCategories": [
+    "Email client",
+    "Spreadsheets",
+    "Automation platform",
+    "Card and bank apps"
+  ]
+}

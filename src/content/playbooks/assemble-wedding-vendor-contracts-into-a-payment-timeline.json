@@ -1,0 +1,84 @@
+{
+  "slug": "assemble-wedding-vendor-contracts-into-a-payment-timeline",
+  "title": "Assemble wedding vendor contracts into a payment timeline",
+  "category": "Back office",
+  "summary": "An engaged couple pastes each signed vendor agreement and any invoice already received, with the real file name on the first line, such as venue-contract.pdf. The assistant returns a payment timeline: one row per retainer, installment, and final balance, with due date, amount, currency, whether the file says that sum was received, and the source file name. A countdown such as two weeks before the ceremony becomes a calendar day only when the couple supplies the wedding date, and the clause plus the arithmetic stay visible. When an agreement and a later invoice disagree, both figures are listed. The couple checks every row against the named file and approves the timeline before any supplier is paid, reminded, or marked settled.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a clerk assembling a wedding payment timeline for an engaged couple. Do not pay or remind anyone. Use only [CONTRACT PACK], [WEDDING DATE], and [DATE SHAPE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Make one row for each named retainer, deposit, installment, or final balance. Do not fold a schedule into one package total due today.\n- Read the file name from the label on the first line of that block. If the label is missing, mark it UNKNOWN.\n- Turn a countdown, such as two weeks before the ceremony, into a calendar day only when [WEDDING DATE] is complete. Put the clause and the arithmetic in notes. If that date is absent, leave due_date UNKNOWN.\n- When the file says a sum was received or paid, set status to paid_in_document. When it is silent, set status to due. A transfer you were not shown is not proof.\n- If a signed schedule and a later invoice disagree on the same stage, do not pick a winner and do not average. List both figures under Conflicts with both file names.\n- Put unsigned quotes and estimates on Skipped.\n\nOutput format:\nReturn sections Timeline, Conflicts, Skipped, and Ask the vendor. Timeline is a table sorted by due_date, UNKNOWN dates last. Columns: due_date, vendor, payment_label, amount, currency, status, source_filename, source_line, notes. Dates use [DATE SHAPE]. source_line is at most 25 words from the file. Conflicts lists both sums and file names. Skipped says why. Ask the vendor lists each UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records reader for an engaged couple. Assemble a wedding payment timeline they will check before any money moves. Work only from [CONTRACT PACK], [WEDDING DATE], and [DATE SHAPE]. Do not pay or remind anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every sum to a sentence in a named file. If you cannot point to that sentence, mark the amount UNKNOWN.\n- Emit one row per retainer, deposit, installment, or final balance. A price split into stages is not one lump due today.\n- Copy the file name from the label that opens that block. Never build a file name from the supplier name.\n- Convert a relative deadline into a calendar day only when [WEDDING DATE] is a full date. Show the clause and the count in notes. Otherwise due_date is UNKNOWN.\n- Status is paid_in_document only when the file says received or paid. Silence means due. Skip unsigned quotes and estimates.\n- When the agreement and a later invoice state different sums for the same stage, place both in Conflicts. Do not choose.\n\nOutput format:\nSections: Timeline, Conflicts, Skipped, Ask the vendor. Timeline is a table sorted by due_date, UNKNOWN last, with columns due_date, vendor, payment_label, amount, currency, status, source_filename, source_line, notes. Dates use [DATE SHAPE]. source_line quotes at most 25 words. Conflicts lists both sums and both file names. Skipped gives the file name and the reason. Ask the vendor lists each UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are helping an engaged couple turn wedding agreements and invoices into a payment timeline. You only build the table. Use [CONTRACT PACK], [WEDDING DATE], and [DATE SHAPE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One named payment, one row. A deposit, a middle installment, and a final balance are three rows even in a single file.\n- The file name is the label on the first line of that block. If they forgot it, write UNKNOWN. Do not invent venue-contract.pdf from the supplier.\n- Balance due two weeks before the ceremony gets a calendar day only if [WEDDING DATE] is filled in. Write the clause and the arithmetic in notes. No ceremony date means due_date UNKNOWN.\n- If the page says the retainer was received, status is paid_in_document. If it does not, status is due. A remembered bank transfer is not a receipt.\n- Two different sums for the same stage go under Conflicts, one from the agreement and one from a later invoice. Do not average them.\n- Unsigned quotes and estimates stay off the timeline.\n\nOutput format:\nGive Timeline, Conflicts, Skipped, and Ask the vendor. Timeline is a table sorted by due_date, UNKNOWN dates last. Columns: due_date, vendor, payment_label, amount, currency, status, source_filename, source_line, notes. Format complete dates as [DATE SHAPE]. Keep source_line to at most 25 words from the file. Conflicts shows both amounts and both file names. Skipped says why. Ask the vendor is one line per UNKNOWN.",
+      "status": "queued"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a review timeline an engaged couple will approve before they pay a wedding supplier. Read [CONTRACT PACK], [WEDDING DATE], and [DATE SHAPE]. Do not send mail or move money.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Split each file into separate rows for every retainer, deposit, installment, and final balance the text names.\n- Keep a package total off the timeline when that file already lists the stages inside it.\n- Set the file name from the opening label of that block. A missing label is UNKNOWN, not a name you compose.\n- Apply [WEDDING DATE] only to turn a written countdown into a calendar day, and record the clause plus the arithmetic in notes. With no ceremony date, leave due_date UNKNOWN.\n- Mark status paid_in_document when the file states the sum was received or paid. Otherwise mark due.\n- If the signed schedule and a later invoice disagree, list both under Conflicts with their file names. Do not pick.\n- Put unsigned quotes and estimates on Skipped.\n\nOutput format:\nReturn Timeline, Conflicts, Skipped, then Ask the vendor. Timeline is a table ordered by due_date, UNKNOWN last. Columns: due_date, vendor, payment_label, amount, currency, status, source_filename, source_line, notes. Write dates in [DATE SHAPE]. source_line is at most 25 words copied from the file. Conflicts holds both amounts and both file names. Skipped names the file and why. Ask the vendor holds one line per UNKNOWN.",
+      "status": "queued"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later, Google Drive, a Google Sheet, and Zapier, Make, or n8n can append draft rows only.",
+    "steps": [
+      "Collect every signed wedding agreement and any invoice you have already received. For each file, paste the payment clauses into one note and put the real file name alone on the first line of that block, such as venue-contract.pdf. Leave unsigned quotes out of the note.",
+      "Above the files, write the ceremony date you want countdown clauses measured from, or write UNKNOWN if the date is not fixed. On the next line, write the date shape for the timeline, such as YYYY-MM-DD, so every complete day looks the same.",
+      "For any sum a file already calls received or paid, keep that sentence in the paste next to the file name. Do not add a payment you only remember from a bank app. If the page is silent, leave it silent so the draft cannot treat memory as proof.",
+      "Create a Google Sheet tab named Payment timeline. Add columns due_date, vendor, payment_label, amount, currency, status, source_filename, source_line, and notes. Leave status blank on new rows until you have compared them with the file.",
+      "Open the chat assistant you already use and paste its prompt from this playbook. Replace the bracketed placeholders with the labeled file text, the ceremony date, and the date shape. Keep the original files open beside the draft table.",
+      "Read each timeline row against the named file. Confirm the sum is a stage the file names, the file name matches your label, and any countdown shows the clause and arithmetic you can redo. Correct mismatches yourself before you copy rows into the sheet.",
+      "Optional later path: point Zapier, Make, or n8n at a Google Drive folder of new agreements and invoices, append a draft row to the sheet, and set status to needs review. The flow may fill cells. It must not pay a supplier or send a reminder."
+    ],
+    "approvalStep": "You compare each timeline row with the file named on that row, and you approve the due date, the amount, and the file name before any supplier is paid, reminded, or marked settled. Resolve every UNKNOWN yourself, or ask that supplier, before money moves.",
+    "failureModes": [
+      "A countdown such as two weeks before the ceremony becomes a calendar day even though you never supplied the wedding date. That due date should stay UNKNOWN, with the clause copied into notes.",
+      "A retainer the agreement already calls received is listed as money still due. Status should be paid_in_document, and that row should stay off what you still owe.",
+      "The signed schedule and a later invoice disagree, and the draft keeps only one figure. Both amounts belong under Conflicts with their file names so you can choose.",
+      "The file name is composed from the supplier name instead of the label on your paste. If the first line of a block has no file name, that cell should be UNKNOWN.",
+      "The same installment is copied from the agreement and again from the invoice, so you might pay it twice. Keep one row unless the two amounts actually differ.",
+      "An unsigned quote or a mood-board estimate is treated as a bill you must pay. Those files belong on Skipped until a signed agreement or an invoice exists."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the contract only says two weeks before the wedding?",
+      "a": "Put the ceremony date in the wedding-date placeholder before you run the prompt. The timeline may then show a calendar day, but only with the clause and the arithmetic in notes so you can recount it. If you leave that date blank, or the file never states the countdown, due_date stays UNKNOWN. Do not let a guessed Saturday stand in for a missing date. You confirm the day on your own calendar before you pay."
+    },
+    {
+      "q": "We already paid the florist retainer. Will it still look due?",
+      "a": "Only when the agreement or the invoice itself says that retainer was received or paid. Keep that sentence in the paste. The row should then use status paid_in_document and stay off the list of money still due. A transfer you remember, but that no file mentions, is not proof. Add a sentence you can point to, or leave status as due and decide while you review the row."
+    },
+    {
+      "q": "The venue contract and the new invoice show different balances. Which do we pay?",
+      "a": "Neither figure wins inside the draft. Both sums should appear under Conflicts, each with its file name and the sentence it came from. You choose the sum you will pay after you see whether the invoice is a revision, a credit for money already received, or a new add-on. Do not average the two figures, and do not pay until you have picked one and checked it against the file."
+    },
+    {
+      "q": "Which model is best for reading these vendor contracts?",
+      "a": "Use the prompt for the assistant you already have open. Paste the same labeled files, the same ceremony date, and the same date shape. Keep a row when the sum and the file name are in that file, and when any countdown shows the clause plus arithmetic you can redo. Fill each UNKNOWN from the document yourself. Set aside any draft that adds a payment the files do not name."
+    },
+    {
+      "q": "Will this timeline pay a vendor or email a reminder?",
+      "a": "Paste mode stops at a table you copy into the sheet. A Drive folder connected through Zapier, Make, or n8n may append a draft row and set status to needs review. Nothing here sends a reminder, moves money, or marks a balance settled. You do that only after you approve the due date, the amount, and the file name against the file named on the row."
+    }
+  ],
+  "draft": true,
+  "persona": "Engaged couple",
+  "job": "Vendor contracts and invoices become a payment timeline with each due date, amount, and the source filename, for the couple to approve before paying.",
+  "who": "Engaged couples with a folder of signed venue, photo, catering, floral, and music agreements, plus later invoices, who need one timeline of what is due, when, and which file said so before they pay.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Cloud storage",
+    "Workflow automation"
+  ]
+}
