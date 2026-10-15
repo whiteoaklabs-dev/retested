@@ -1,4 +1,5 @@
 ---
+import SponsorSlot from './SponsorSlot.astro';
 import Icon from './Icon.astro';
 import ModelDot from './ModelDot.astro';
 import { useCases, planned, CATEGORIES } from '../data/useCases';
@@ -17,7 +18,7 @@ const { searchId = 'lib-q' } = Astro.props;
     {CATEGORIES.map(c => <button data-cat={c} aria-pressed="false"><Icon name={c} />{c}<span class="count">{count(c)}</span></button>)}
     <div class="sep"></div>
     <div class="eyebrow" style="padding:0 10px 8px">Tested on</div>
-    <div style="display:flex;gap:6px;padding:0 10px" class="dots">{['ChatGPT','Claude','Grok','Muse'].map(m => <ModelDot model={m} />)}</div>
+    <div style="display:flex;gap:6px;padding:0 10px;align-items:center" class="dots">{['ChatGPT','Claude','Grok','Muse'].map(m => <ModelDot model={m} />)}<span style="font-size:11px;color:var(--faint);margin-left:2px">+6</span></div>
   </aside>
   <div>
     <div class="toolbar">
@@ -29,6 +30,8 @@ const { searchId = 'lib-q' } = Astro.props;
       </div>
       <span class="result-count" data-count></span>
     </div>
+    <div data-sp-cat="all"><SponsorSlot placement={Astro.props.sponsorPlacement || 'library'} /></div>
+    {CATEGORIES.map(c => <div data-sp-cat={c} hidden><SponsorSlot placement={`category:${c}`} label={c} /></div>)}
     <div class="cards">
       {items.map((it, i) => {
         const inner = <>
@@ -53,8 +56,8 @@ document.querySelectorAll('[data-lib]').forEach(lib=>{
   let cat='all',st='all';const q=lib.querySelector('#lib-q');const ext=document.getElementById(lib.dataset.search);
   const cards=[...lib.querySelectorAll('[data-card]')];const cnt=lib.querySelector('[data-count]');const empty=lib.querySelector('[data-empty]');
   const run=()=>{const t=(q.value||'').trim().toLowerCase();let n=0;cards.forEach(c=>{const ok=(cat==='all'||c.dataset.cat===cat)&&(st==='all'||c.dataset.status===st)&&(!t||t.split(/\s+/).every(w=>c.dataset.text.includes(w)));c.classList.toggle('hidden',!ok);if(ok)n++});cnt.textContent=n+' of '+cards.length;empty.style.display=n?'none':'block'};
-  lib.querySelectorAll('[data-cat]:not([data-card])').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;lib.querySelectorAll('.side [data-cat]').forEach(x=>x.setAttribute('aria-pressed',x===b));run()});
-  lib.querySelectorAll('[data-status]:not([data-card])').forEach(b=>b.onclick=()=>{st=b.dataset.status;lib.querySelectorAll('.chips [data-status]').forEach(x=>x.setAttribute('aria-pressed',x===b));run()});
+  lib.querySelectorAll('[data-cat]:not([data-card])').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;lib.querySelectorAll('.side [data-cat]').forEach(x=>x.setAttribute('aria-pressed',x===b));lib.querySelectorAll('[data-sp-cat]').forEach(d=>d.hidden=d.dataset.spCat!==cat);run()});
+  lib.querySelectorAll('[data-status]:not([data-card])').forEach(b=>b.onclick=()=>{st=b.dataset.status;lib.querySelectorAll('.chips [data-status]').forEach(x=>x.setAttribute('aria-pressed',x===b));lib.querySelectorAll('[data-sp-cat]').forEach(d=>d.hidden=d.dataset.spCat!==cat);run()});
   q.addEventListener('input',run);
   if(ext&&ext!==q){ext.addEventListener('input',()=>{q.value=ext.value;run()});ext.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();lib.scrollIntoView({behavior:'smooth'})}})}
   const p=new URLSearchParams(location.search).get('q');if(p){q.value=p;if(ext)ext.value=p}

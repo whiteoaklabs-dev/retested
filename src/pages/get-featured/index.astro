@@ -19,7 +19,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'Service', name: 'R
         <div class="price">{p.price} <small>{p.per}</small></div>
         <ul>{p.items.map(i => <li><Icon name="check" />{i}</li>)}</ul>
         <a class={`btn ${p.hot ? 'btn-primary' : ''}`} href={p.pay} rel="noopener">{p.cta}</a>
-        <a class="muted" href="#contact" data-plan={p.name} style="display:block;text-align:center;font-size:13px;margin-top:10px">Questions first? Apply instead</a>
+        <div class="muted" style="text-align:center;font-size:13px;margin-top:10px"><a href="#contact" data-plan={p.name}>Questions first? Apply</a> · <a href="/submit/">Submit free</a></div>
       </div>)}
     </div>
     <p class="muted" style="text-align:center;font-size:13px;margin-top:16px">Launch pricing. Secure checkout by Stripe. We review every tool before it goes live; questions? Use the form below.</p>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+const upgrades = [
+  { name: 'Directory listing', price: '$99 one-time', url: 'https://buy.stripe.com/6oU4gy6fJ4V714mdQofQI00' },
+  { name: 'Category featured spot', price: '$199 / month', url: 'https://buy.stripe.com/28EdR8fQjevH3cu27GfQI02' },
+  { name: 'Release spotlight', price: '$149 per launch', url: 'https://buy.stripe.com/8x2aEW9rVbjvcN48w4fQI01' },
+];
+---
+<Base title="Submit your tool" description="Submit your AI tool to Retested for free. We review every submission against real small-business playbooks.">
+  <div class="wrap">
+    <div class="page-head" style="text-align:center;margin:0 auto;max-width:760px"><div class="eyebrow">Free · for AI tool makers</div><h1>Submit your tool</h1><p style="margin-inline:auto">Tell us what your tool does. If it fits a playbook, an editor reviews it for the directory. Free submissions are reviewed in the order they arrive, with no guaranteed timeline or placement.</p></div>
+    <section style="max-width:760px;margin:0 auto;padding:32px;border:1px solid var(--line2);border-radius:20px;background:var(--panel)">
+      <form class="form js-api-form" data-endpoint="/api/sponsor" data-success="Thanks, your tool is submitted. We'll email you if it's a fit." novalidate>
+        <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <input type="hidden" name="type" value="free" />
+        <label class="field">Your name<input name="name" required autocomplete="name" /></label>
+        <label class="field">Work email<input type="email" name="email" required autocomplete="email" /></label>
+        <label class="field">Tool name<input name="tool" required /></label>
+        <label class="field">Website<input type="url" name="url" required placeholder="https://" /></label>
+        <label class="field full">Which job does it do best?<textarea name="message" placeholder="e.g. drafts replies to support emails from your help docs"></textarea></label>
+        <div class="full"><button class="btn btn-primary" type="submit" style="height:44px">Submit for free <Icon name="arrow" /></button><div class="note form-status" role="status" aria-live="polite" style="margin-top:10px"></div></div>
+      </form>
+    </section>
+    <section style="max-width:760px;margin:40px auto 0">
+      <h2 style="font-size:22px;font-weight:640;text-align:center">Want to skip the queue?</h2>
+      <p class="muted" style="text-align:center">Paid placements are reviewed first and always labeled. Payment never changes test results.</p>
+      <div class="up-grid">
+        {upgrades.map(u => <a class="up" href={u.url} rel="noopener"><strong>{u.name}</strong><span>{u.price}</span><em>Buy with Stripe →</em></a>)}
+      </div>
+      <p class="muted" style="text-align:center;font-size:13px"><a href="/get-featured/">Compare plans</a> · checkout by Stripe</p>
+    </section>
+  </div>
+</Base>
+<style>
+.up-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+@media (max-width:700px){.up-grid{grid-template-columns:1fr}}
+.up{display:flex;flex-direction:column;gap:4px;padding:18px;border:1px solid var(--line2);border-radius:14px;background:var(--panel);color:inherit;text-decoration:none;transition:border-color .15s,transform .15s}
+.up:hover{border-color:var(--accent);transform:translateY(-2px)}
+.up span{color:var(--muted);font-size:14px}.up em{font-style:normal;color:var(--accent);font-weight:600;font-size:14px;margin-top:6px}
+</style>
