@@ -1,0 +1,77 @@
+{
+  "slug": "draft-email-linkedin-and-text-as-one-follow-up-thread",
+  "title": "Draft email, LinkedIn, and text as one follow-up thread",
+  "category": "Sales",
+  "summary": "Paste the person, their company, the role or service you want to discuss, and what you last talked about, and get three ready-to-send drafts that form one follow-up thread: a short email, a LinkedIn note, and a text, each taking a different angle so you are not repeating yourself. The agent keeps names, dates, and details exactly as you gave them and marks anything missing as UNKNOWN. You review, edit, and choose when to send each message — nothing is sent for you.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up writer for a staffing agency owner. Draft one follow-up thread for [PERSON NAME] about [ROLE OR SERVICE] at [COMPANY], using [LAST CONVERSATION NOTE] as context.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the email under 150 words, the LinkedIn note under 80 words, and the text under 40 words\n- Give each channel a different angle: email carries the detail, LinkedIn stays social and light, text is a brief nudge\n- Use only the facts provided; do not add candidate names, timelines, or fees that were not supplied\n- End each message with one clear next step the reader can say yes or no to\nOutput format:\n1. EMAIL — subject line, then body\n2. LINKEDIN NOTE — ready to paste\n3. TEXT — ready to paste\n4. MISSING INFO — list anything marked UNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a staffing agency owner who follows up with hiring managers. Create one follow-up thread for [PERSON NAME] at [COMPANY] about [ROLE OR SERVICE], based only on [LAST CONVERSATION NOTE].\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the email under 150 words, the LinkedIn note under 80 words, and the text under 40 words\n- Make the angles distinct: email is specific and helpful, LinkedIn is warm and brief, text is a short timing check\n- Do not invent past meetings, candidate availability, or hiring timelines\n- Give each message one simple call to action and no pressure language\nOutput format:\nEMAIL: subject line plus body\nLINKEDIN NOTE: ready-to-paste text\nTEXT: ready-to-paste text\nUNKNOWN ITEMS: anything you could not confirm from the input",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct, plain-spoken outreach drafter for a staffing agency owner. Write one follow-up thread for [PERSON NAME] at [COMPANY] about [ROLE OR SERVICE], using [LAST CONVERSATION NOTE] as your only source.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the email under 150 words, the LinkedIn note under 80 words, and the text under 40 words\n- Use a different angle per channel: email gives the reason to talk, LinkedIn keeps the connection warm, text asks one quick question\n- Skip hype and generic sales phrases; write like a real person following up\n- Do not add names, dates, fees, or promises that were not in the input\nOutput format:\n1) EMAIL — subject and body\n2) LINKEDIN NOTE — final copy\n3) TEXT — final copy\n4) NEEDS CONFIRMING — list of UNKNOWN items",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a follow-up drafting helper for a staffing agency owner. Draft one connected follow-up thread for [PERSON NAME] at [COMPANY] about [ROLE OR SERVICE], drawn only from [LAST CONVERSATION NOTE] and [YOUR SERVICE NOTE].\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the email under 150 words, the LinkedIn note under 80 words, and the text under 40 words\n- Assign each channel its own job: email explains, LinkedIn reconnects, text nudges on timing\n- Mirror the person's actual role and company exactly as pasted; flag any mismatch as UNKNOWN\n- Close each draft with a single low-effort reply option for the reader\nOutput format:\nEMAIL — subject line, then body\nLINKEDIN NOTE — paste-ready copy\nTEXT — paste-ready copy\nMISSING INFO — every UNKNOWN item listed separately",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode; optionally a workflow automation tool connected to your email and contact sheet for drafting only.",
+    "steps": [
+      "Start in paste mode: open your chosen chat model, paste one prompt above, and fill in [PERSON NAME], [COMPANY], [ROLE OR SERVICE], and [LAST CONVERSATION NOTE] from your notes or CRM export.",
+      "Check every name, role title, and date in the three drafts against your source note. Fix anything marked UNKNOWN by adding the fact or deleting that line before you use the draft.",
+      "Edit the tone in your own voice: shorten sentences you would not say out loud, remove any claim about candidates or timelines you cannot back up, and keep one clear next step per message.",
+      "Send the email first from your normal email account, then copy the LinkedIn note and text manually when you are ready for the next touch. Log what you sent and when in your tracker.",
+      "Optional automated mode: use a workflow automation category tool to pull new rows from a contact sheet into a draft email in Gmail or your email tool — drafts only, never auto-send.",
+      "Review the thread weekly: if a contact replies on any channel, stop the other planned touches for that person and reply personally instead of continuing the sequence."
+    ],
+    "approvalStep": "You review all three drafts side by side and approve the exact wording, recipient, and send order before anything is copied into email, LinkedIn, or text. No message is sent, posted, or scheduled without your explicit approval.",
+    "failureModes": [
+      "Invented familiarity: the draft claims a past call or meeting that never happened. Watch for phrases like 'great catching up' when you only have a cold contact note.",
+      "Repetitive angles: all three messages say the same thing in shorter form, so the follow-up feels pushy. Check that email, LinkedIn, and text each add something different.",
+      "Wrong person or role details: a swapped company name or outdated job title from an old export makes the outreach look careless. Verify fields against your latest note.",
+      "Tone mismatch on text: a text that is too formal or too casual for the relationship can backfire. Only text contacts who have shared their number and expect to hear from you."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I need to paste in to get a usable thread?",
+      "a": "Paste the person's name and company, the role or service you want to discuss, and one or two lines on your last contact — for example a call note, a past placement, or a job they mentioned. The more specific that note is, the less the draft has to guess, and anything you leave out should come back marked UNKNOWN for you to fill in."
+    },
+    {
+      "q": "Will it send the messages for me?",
+      "a": "No. In paste mode you copy each draft into your own email, LinkedIn, and phone yourself, which keeps you in control of timing and tone. Even if you later connect a workflow automation tool, keep it set to create drafts only so you still approve the recipient and wording before anything goes out."
+    },
+    {
+      "q": "How do I keep the three messages from sounding identical?",
+      "a": "Ask for a different job for each channel: let the email carry the detail and next step, keep the LinkedIn note as a light connection touch, and make the text a short check-in. If the drafts still repeat a line, delete it from two of them and replace it with a question about timing or a new opening they may have."
+    },
+    {
+      "q": "Which model is best for this?",
+      "a": "It is not yet tested for this playbook, so there is no ranked answer yet. Try the same pasted details in the model you already use and judge the drafts on accuracy, tone, and how little editing they need before you would send them under your own name."
+    }
+  ],
+  "draft": true,
+  "persona": "Staffing agency owner",
+  "job": "Turn one contact and one role or service into an email, a LinkedIn note, and a text that each take a different angle in a single follow-up thread.",
+  "who": "A staffing agency owner or small recruiting team lead who places candidates with local employers and needs steady follow-up with hiring managers and prospects without sounding pushy or repetitive.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "CRM or contact sheets",
+    "Workflow automation"
+  ]
+}

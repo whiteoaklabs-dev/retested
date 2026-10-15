@@ -1,0 +1,84 @@
+{
+  "slug": "fill-pdf-invoices-from-a-template-and-a-client-sheet",
+  "title": "Fill PDF invoices from a template and a client sheet",
+  "category": "Coding & vibe coding",
+  "summary": "A freelance bookkeeper brings two inputs to a coding chat: a marked invoice template (issuer block, bill-to, number, dates, currency, line table, totals, payment terms, pay-to) and a client sheet with one row per charge. The chat returns a single HTML file that groups rows by invoice number, copies each description, multiplies quantity by rate, applies tax once using the bookkeeper's money rules, and downloads a PDF. Missing tax id, date order, or pay-to text stays UNKNOWN. You compare a sample PDF to the sheet, then approve every downloaded bill before sending it, posting it to the books, or putting the file on a shared host.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a coding partner for a freelance bookkeeper. Build one local HTML file that reads a client sheet and downloads a filled PDF bill. Nothing is emailed.\n\nInputs:\nPage slots and where each sits: [INVOICE LAYOUT]\nHeader row plus sample charges, one row per line: [CLIENT SHEET]\nLetterhead facts already on the books: [BUSINESS DETAILS]\nGrouping, date order, and money math: [MONEY RULES]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Group one PDF per bill number. A blank number is an error row, not a document glued onto the prior client\n- Compute each line as quantity times rate in cents, then subtotal, tax once, and total. If the sheet already has an amount, show both and flag a mismatch\n- Copy description, dates, currency, payment terms, and notes as text. Do not rewrite them or guess a date order\n- Take the issuer block only from [BUSINESS DETAILS]. Leave tax id, pay-to line, or logo as UNKNOWN when absent\n- The page may preview and download a PDF. It must not send mail, call a host, or write a sent status\n\nOutput format:\nReturn three sections headed Field map, App file, and Sample check.\nField map is a table with columns pdf_slot, sheet_column, rule, status.\nApp file is one complete HTML document the bookkeeper saves and opens locally.\nSample check uses only pasted rows: bill number, each line, subtotal, tax, total, and every UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful coding assistant for a freelance bookkeeper. Produce a single local HTML page that turns a charge sheet into a downloadable PDF bill. The bookkeeper reviews every file before it leaves the machine.\n\nUse these inputs only:\n[INVOICE LAYOUT] the labeled slots on their existing template\n[CLIENT SHEET] the header row and a few sample charge rows\n[BUSINESS DETAILS] legal name, address, email, tax id, and pay-to text they already use\n[MONEY RULES] how rows group, how dates are ordered, and how tax is applied\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- One PDF per bill number. Do not attach a row with a blank number to the previous client\n- Multiply quantity by rate in cents. Sum to a subtotal, apply tax a single time, then add to reach the total. When an amount column exists, print both figures and flag any clash\n- Keep description, dates, currency, terms, and notes verbatim. Do not invent a date order\n- Issuer text comes only from [BUSINESS DETAILS]. A missing tax id, pay-to line, or logo stays UNKNOWN\n- Offer preview and download only. Do not add mail, a remote call, or a status that says sent\n\nOutput format:\nReturn sections titled Field map, App file, and Sample check.\nThe field map table uses columns pdf_slot, sheet_column, rule, status.\nThe app file is one HTML document they can save and open in a browser.\nThe sample check lists only pasted rows: bill number, lines, subtotal, tax, total, and each UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken builder helping a freelance bookkeeper. Write one HTML file they open locally. It reads their charge sheet and downloads a filled PDF. You do not email anyone.\n\nPaste points:\nLayout slots: [INVOICE LAYOUT]\nSheet header and sample rows: [CLIENT SHEET]\nLetterhead they already print: [BUSINESS DETAILS]\nGrouping, dates, and math: [MONEY RULES]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Make one PDF for each bill number. If the number cell is empty, mark that row an error instead of merging it into the prior client\n- Figure line amount as quantity times rate in cents, then subtotal, tax once, and total. If the sheet also stores an amount, show both and flag a mismatch\n- Copy description, dates, currency, terms, and notes unchanged. Do not guess whether the day or the month comes first\n- Print the issuer block only from [BUSINESS DETAILS]. Tax id, pay-to text, or a logo that was not supplied is UNKNOWN\n- The page previews and downloads a PDF. It does not send mail, contact a server, or mark anything sent\n\nOutput format:\nReturn a Field map, an App file, and a Sample check.\nField map columns are pdf_slot, sheet_column, rule, and status.\nApp file is the full HTML they save and open on their computer.\nSample check walks only the pasted rows: bill number, each line, subtotal, tax, total, and every UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook-and-page partner for a freelance bookkeeper. Build one local HTML file that fills their bill layout from a charge sheet and downloads a PDF. They approve each file before sending.\n\nInputs to paste:\n[INVOICE LAYOUT] issuer, bill-to, number, dates, lines, totals, footer\n[CLIENT SHEET] column names plus sample rows, one row per charge\n[BUSINESS DETAILS] letterhead facts already used on paper bills\n[MONEY RULES] the grouping key, date order, and whether tax is added once\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Emit one PDF per bill number. A blank number stays an error row and is not folded into the previous client\n- Calculate quantity times rate in cents, then subtotal, tax once, and total. If an amount column is present, show it beside the calculated figure and flag a clash\n- Leave description, dates, currency, payment terms, and notes as copied text. Do not paraphrase or assume a date order\n- Draw the issuer block solely from [BUSINESS DETAILS]. Absent tax id, pay-to line, or logo is UNKNOWN\n- Include preview and PDF download. Exclude mail sending, remote calls, and any sent flag\n\nOutput format:\nReturn three headed sections: Field map, App file, and Sample check.\nField map is a table with columns pdf_slot, sheet_column, rule, status.\nApp file is one HTML document for them to save and open locally.\nSample check uses only the pasted rows and shows bill number, lines, subtotal, tax, total, and each UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A coding chat in paste mode first. Later, the saved HTML stays local, and Google Sheets plus Zapier, Make, or n8n only drops a CSV into a review folder.",
+    "steps": [
+      "Mark your blank template or a recent sample PDF: issuer block, bill-to, bill number, issue date, due date, currency, the line table (description, quantity, rate, amount), subtotal, tax, total, payment terms, and pay-to line. Note which corner each block sits in.",
+      "Export this month's charges as a CSV with a header row: client_id, client_legal_name, bill_to, client_email, invoice_number, issue_date, due_date, currency, description, quantity, rate, tax_rate, payment_terms, notes. Keep two short sample bills and set the real file aside.",
+      "Open a new chat, paste the prompt, and fill [INVOICE LAYOUT] with your marked slots, [CLIENT SHEET] with the header plus sample rows, [BUSINESS DETAILS] with letterhead you already use, and [MONEY RULES] with grouping, date order, and whether tax sits on the subtotal.",
+      "Save the returned HTML on your computer and open it in the browser. Load only the sample CSV. Download one PDF and read it next to those rows: names, dates, each line, subtotal, tax, and total.",
+      "If a slot is wrong, tell the chat which pdf_slot and which sheet cell disagreed, and ask for a revised file. Do not paste the full client list until the sample PDF matches the sheet and every gap says UNKNOWN.",
+      "Load the real CSV. Page through each bill number, confirm lines were not merged across clients, and download PDFs into a folder named for review. Leave email and any books entry until after that pass.",
+      "Optional later: keep the HTML on your machine and use Google Sheets with Zapier, Make, or n8n only to drop a fresh CSV into the review folder. Leave send, post, and delete actions off."
+    ],
+    "approvalStep": "You open each downloaded PDF beside its sheet rows and confirm the client, dates, line amounts, tax, and total before sending, posting to the books, or uploading to a shared host. A sample that still shows UNKNOWN in a required slot stays in review.",
+    "failureModes": [
+      "Blank bill numbers: rows with an empty number attach to the previous client and mix two jobs on one PDF. Check the preview list for a missing number before you download.",
+      "Penny drift: quantity times rate is rounded in a way that disagrees with your sheet by a cent. Compare subtotal and total on the sample before the full run.",
+      "Tax applied twice: a rate already inside the fee is added again on the subtotal. Check one bill whose tax you already worked by hand.",
+      "Date swap: 03/04 becomes March when your books put the day first. Read issue date and due date on a row you know.",
+      "Invented letterhead: a missing tax id or pay-to line is filled with a plausible bank sentence. Those slots must read UNKNOWN until you type them.",
+      "Quiet send: the page or a later automation emails the client or writes Sent. Confirm there is no send button and the flow only drops a file."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for building this bill app?",
+      "a": "It is not yet tested, so there is no ranking among ChatGPT, Claude, Grok, and Muse. Use the chat you already have, keep the run whose sample PDF matches your sheet, and discard a file that fills a blank with a guessed address or tax id."
+    },
+    {
+      "q": "Will this page email the finished PDF to the client?",
+      "a": "No. The file should only preview and download. You attach the PDF in your own mail after you have checked that bill. If a later Zapier, Make, or n8n step offers a send action, leave it switched off and keep the drop limited to a review folder."
+    },
+    {
+      "q": "My sheet stores several charges inside one cell. What should I do?",
+      "a": "Split those charges into their own rows before you paste, repeating the same bill number on each row. A packed cell lands as one line. Quantity or rate the page cannot see should stay UNKNOWN rather than being split out of a sentence into fake lines."
+    },
+    {
+      "q": "I already have a designed PDF template. Does the app edit that file?",
+      "a": "Paste mode builds a local HTML page that recreates the slots you listed, then downloads a new PDF. It does not redraw your designed file in place. If a slot on that design has no matching column, leave it UNKNOWN and type the real value on the preview before you download."
+    },
+    {
+      "q": "Should I paste the full client list into the chat?",
+      "a": "Start with two short sample bills, using shortened names if you prefer. Put only letterhead you are willing to show the chat into the business-details slot. Load the real CSV in the local HTML file after the sample PDF matches, so the full list stays on your machine."
+    }
+  ],
+  "draft": true,
+  "persona": "Freelance bookkeeper",
+  "job": "An invoice layout plus a client spreadsheet becomes a local app that fills each line and downloads one PDF per invoice number.",
+  "who": "Freelance bookkeepers who already keep a client spreadsheet of charges and a fixed invoice template, and want a small local app that fills each bill and downloads a PDF they can check before sending.",
+  "toolCategories": [
+    "AI coding chats",
+    "Spreadsheets",
+    "Local PDF apps",
+    "Workflow automation"
+  ]
+}

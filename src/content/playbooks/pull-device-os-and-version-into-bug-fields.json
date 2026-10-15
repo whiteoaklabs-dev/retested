@@ -1,0 +1,85 @@
+{
+  "slug": "pull-device-os-and-version-into-bug-fields",
+  "title": "Pull device, OS, and version into bug fields",
+  "category": "Support",
+  "summary": "Forward a crash email and pull device, OS, and version into bug fields without filing anything yet. You supply the whole forward: From, Subject, date, body, quoted replies, and any crash block, plus the four tracker labels you actually use. The agent returns phone model, operating system, app version, and steps to reproduce, each copied from the message or left UNKNOWN, then a short evidence note and a conflict note when two handsets or two build strings disagree. It will not swap in a store build, translate a hardware code into a product name, or add taps the reporter never wrote. You compare the four lines with the message and approve them before they go into the tracker, a reply goes out, or anyone is assigned.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a mobile-app support clerk filling bug fields for the builder of [APP NAME]. Read only the forwarded [CRASH EMAIL] and the [FIELD LIST].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Phone model is the handset string the message writes. A brand alone is not enough. Copy a hardware code as-is, and do not translate it into a product name.\n- Operating system is the system name and the release string printed in the message. Do not replace that string with a release you remember shipping against.\n- App version is the version or build the reporter states for this app, copied character for character. A store page or a build on your machine is not a source.\n- Steps to reproduce are actions the reporter described, in their order, with no added taps and no cause.\n- Trust a labeled Device, Model, OS, or Version line. Ignore a lookalike token inside a stack frame, a file path, or a library name.\n- If your forward note sits above the original and names a different handset or build, do not pick a winner.\n- Do not file the ticket, reply to the reporter, or assign a builder.\n\nOutput format:\nReturn these sections and no other prose:\nPHONE MODEL:\nOPERATING SYSTEM:\nAPP VERSION:\nSTEPS TO REPRODUCE: numbered actions, 80 words or fewer\nEVIDENCE: source sentence for each filled line, 60 words or fewer\nCONFLICTS: both competing strings, or NONE\nMISSING: which of the four lines still need a human\nOn any line you cannot copy, write UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful triage editor extracting device facts from a crash email for the builder of [APP NAME]. Use [CRASH EMAIL] and [FIELD LIST], and nothing you remember about the release.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take phone model, operating system, and app version only from words in the message. Do not infer a handset from a carrier, a time zone, or how the prose sounds.\n- When a labeled line and a later sentence disagree, copy neither into the field. Name both in CONFLICTS.\n- Prefer the original reporter over a note the builder typed at the top of the forward.\n- If the message says the details are in an attachment you were not given as text, leave those lines UNKNOWN.\n- Steps to reproduce stay the reporter's actions. Do not turn a bare crash into a path through the app.\n- Map your four lines onto [FIELD LIST] when the tracker uses different wording, and do not add severity, owner, or a suspected cause.\n- Stop at the draft. Do not write the reply that asks for a missing handset.\n\nOutput format:\nReturn only these headings:\nPHONE MODEL:\nOPERATING SYSTEM:\nAPP VERSION:\nSTEPS TO REPRODUCE: numbered, 80 words or fewer; UNKNOWN if an action would be dropped\nEVIDENCE: one source sentence per filled line, 60 words or fewer\nCONFLICTS: competing strings, or NONE\nMISSING: the lines a human still has to resolve\nWrite UNKNOWN wherever the message does not contain the value.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken bug clerk. Pull device, OS, and version into bug fields for [APP NAME] from the forwarded [CRASH EMAIL], using [FIELD LIST] as the labels the tracker expects.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the handset as written. Do not upgrade a brand to a specific phone, and do not decode a hardware code into a retail name.\n- Copy the operating system as written, including the release string. A patch level or API mention stays only if it is part of that same phrase.\n- Copy the app version or build as written. The word latest is not a version.\n- Repro steps are the actions they actually wrote, in order. If they only said it crashed, that sentence is the step, and you do not invent the path.\n- Skip release-like tokens that live only in a stack frame or a path.\n- Two handsets or two builds means you list both and leave the line unset for a human.\n- Do not file, send, or assign anything.\n\nOutput format:\nReturn these sections only:\nPHONE MODEL:\nOPERATING SYSTEM:\nAPP VERSION:\nSTEPS TO REPRODUCE: numbered actions, 80 words or fewer\nEVIDENCE: the sentence you copied from, 60 words or fewer\nCONFLICTS: both strings, or NONE\nMISSING: what is still open\nPut UNKNOWN on every field the message does not state.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a mobile app builder. From [CRASH EMAIL] and [FIELD LIST], prepare bug fields for [APP NAME] and stop before anything is filed.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Fill phone model only from a handset the reporter named. Leave it UNKNOWN when you would have to guess the model.\n- Fill operating system from the system name and release string in the message. Do not supply a number from memory.\n- Fill app version from the build or version string they wrote for this app. A channel such as beta is not a version.\n- Keep steps to reproduce as their actions only. Do not merge in your theory of the crash.\n- If the builder's note at the top of the forward conflicts with the reporter, show both under CONFLICTS and leave the line UNKNOWN.\n- Treat [FIELD LIST] as the allowed labels. Do not create a cause, a priority, or an owner.\n- Hand back a draft only. The builder reviews it before anyone is told.\n\nOutput format:\nReturn these headings and nothing after them:\nPHONE MODEL:\nOPERATING SYSTEM:\nAPP VERSION:\nSTEPS TO REPRODUCE: numbered, 80 words or fewer\nEVIDENCE: source sentence per filled field, 60 words or fewer\nCONFLICTS: competing values, or NONE\nMISSING: lines the builder must resolve\nWhere a value is absent, write UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model used by pasting first. Optionally Gmail, Google Sheets, and Zapier, Make, or n8n to stage a draft row only.",
+    "steps": [
+      "In Gmail, open the forwarded crash email and copy From, Subject, the date, the body, and any crash block under it. Keep quoted replies if a handset or build line might sit in an earlier note. Do not delete the stack text before you run the prompt.",
+      "On a scratch note, list the tracker labels you will paste into, in this order: Phone model, Operating system, App version, Steps to reproduce. If your tracker names them differently, write your names beside these four so the draft can map them.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace [CRASH EMAIL] with the copied message, [FIELD LIST] with your labels, and [APP NAME] with the app that crashed. Keep the raw message on screen beside the reply.",
+      "Read PHONE MODEL, OPERATING SYSTEM, and APP VERSION against the message. Each filled value must be a string you can point to. Read the repro steps and remove any tap or cause the reporter did not write. Set a bad line back to UNKNOWN yourself.",
+      "If CONFLICTS lists two handsets or two build strings, leave that line UNKNOWN. Write the question you would ask the reporter, naming the fact you still need, and hold that question until you approve it.",
+      "Approve the four lines only when you agree with each one. Then paste them into the bug yourself, or send the question you wrote. The chat reply must not be what files the ticket or emails the reporter.",
+      "Optional agent mode: when a crash email lands in Gmail, use Zapier, Make, or n8n to add a Google Sheets row that stores the message and leaves the four field cells empty, with status set to needs review. End the flow there.",
+      "Run the same prompt on that row so the four cells fill as a draft. Block any create, send, or assign action. You still compare the cells with the message and approve the row before a value is copied into the bug."
+    ],
+    "approvalStep": "You compare phone model, operating system, app version, and steps to reproduce with the crash email and approve those four lines before pasting them into the tracker, sending a reply, or assigning the bug. A chat reply or a sheet row is not approval.",
+    "failureModes": [
+      "Split identity: the prose names one handset and the crash block names another. Watch for a single phone model when both names are present and CONFLICTS says NONE.",
+      "Latest standing in for a build: the reporter wrote latest or the new update, and the draft inserts your current store build. Watch for an app version you cannot find in the message.",
+      "Stack lookalike: a frame or a library path contains a release-like token. Watch for an operating system or app version taken from the stack rather than a labeled line.",
+      "Grown repro: the reporter said it crashed on save, and the draft adds screens and taps. Watch for a step that is not written in the message.",
+      "Forward note wins: the line you typed above the original guesses a device, and the draft uses your guess. Watch for a value that appears only in your note.",
+      "Row files itself: Zapier, Make, or n8n opens a tracker issue as soon as the cells fill. Watch for a create, send, or assign action, and leave status on needs review until you approve."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best at reading a crash email?",
+      "a": "It is not yet tested, so there is no ranking to follow. Use whichever of ChatGPT, Claude, Grok, or Muse you already have open. If a filled line is not a string you can find in the message, run a second one and keep the draft that leaves the gap as UNKNOWN."
+    },
+    {
+      "q": "What if the email never names the phone or the build?",
+      "a": "Leave phone model, operating system, and app version as UNKNOWN. Keep steps to reproduce as the sentence they wrote, even when it is short. Ask for the handset name, the system string from their settings, and the version shown on the app's about screen. Do not file a ticket that pretends those three were in the email."
+    },
+    {
+      "q": "What if those facts are only inside a screenshot?",
+      "a": "The prompt reads text, not a picture you forgot to transcribe. Type the lines you can see under a heading called Attachment text, or leave the missing lines UNKNOWN. Do not fill a handset or a build from memory of what that screen usually shows."
+    },
+    {
+      "q": "The crash block shows a hardware code, not a retail name. Should I rewrite it?",
+      "a": "No. Copy the code exactly as the message prints it, and do not translate it into a retail name. If the prose also names a different handset, leave phone model UNKNOWN and keep both strings in CONFLICTS until the reporter confirms which device crashed."
+    },
+    {
+      "q": "Can the sheet automation file the bug once the cells look full?",
+      "a": "No. A Google Sheets row filled through Zapier, Make, or n8n is still a draft. You read the four cells against the email, then paste them into the tracker yourself or send your own question. Keep create, send, and assign actions out of the flow."
+    }
+  ],
+  "draft": true,
+  "persona": "Mobile app builder",
+  "job": "Forward a crash email and get phone model, operating system, app version, and the steps to reproduce copied into labeled fields.",
+  "who": "Mobile app builders who get a crash email from a tester or a customer and need the handset, operating system, app version, and repro steps copied into labeled bug fields before the ticket is filed.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "turn-a-photo-of-an-error-dialog-into-a-routed-bug",
+  "title": "Turn a photo of an error dialog into a routed bug",
+  "category": "Support",
+  "summary": "Turn a customer's photo of an error dialog into a routed bug while you keep the filing decision. You supply the popup image, the customer's note about what they tapped, and a screen ownership map with one row per screen: screen name, builder queue, and what that screen does. The agent reads only the dialog heading, message, buttons, and any code visible in the photo, then drafts a one-line ticket title, the likely screen, and that row's queue. A cropped photo, a missing map row, or two fitting screens comes back as UNKNOWN. You review the draft and approve the title, screen, and queue before the bug is submitted, assigned, or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a support triage clerk for a solo app founder. Read the uploaded [ERROR PHOTO], the plain-text [OWNERSHIP MAP], and the [CUSTOMER NOTE]. Draft one routed bug for [APP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Copy only the dialog heading, message, buttons, and any error code that are actually visible in the photo\n- Read each map row as screen name, then builder queue, then what that screen does\n- Choose the likely screen only from a screen name on the map; if two rows fit, name both and do not assign a queue\n- Set the builder queue only from the chosen row; if the screen is UNKNOWN, the queue is UNKNOWN\n- Write the ticket title as one line under 14 words, using the dialog's main phrase\n- Do not guess a stack trace, a root cause, a severity, or a code change\n- Do not write a customer reply, and do not file, assign, or notify a builder\n\nOutput format:\nReturn these sections and no other prose:\nTITLE: one line under 14 words\nLIKELY SCREEN: one map name, or UNKNOWN\nBUILDER QUEUE: that row's queue, or UNKNOWN\nVISIBLE TEXT: only the wording you can read\nWHY THIS ROUTE: at most two sentences linking visible words to the map row\nMISSING: what you still need before the bug can be filed",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful triage assistant for a solo app founder who files bugs from customer screenshots. Use only the uploaded [ERROR PHOTO], the [OWNERSHIP MAP], and the [CUSTOMER NOTE] to draft a routed bug for [APP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the map first; if screen name or builder queue is unlabeled, ask before you route\n- Expect each map row to carry the screen name, the builder queue, and a short purpose\n- Record only dialog heading, body, buttons, and a code you can see; skip anything cut off or blurry\n- Match the likely screen to exactly one map row; when two rows fit, list both and set the queue to UNKNOWN\n- Take the builder queue from that same row, never from a similar feature name\n- Keep the ticket title to a single line under 14 words that a builder can scan\n- Stop after the draft; do not compose a customer apology, a cause, or a handoff note\n\nOutput format:\nReturn only these headings:\nTITLE: one line under 14 words\nLIKELY SCREEN: a map name, or UNKNOWN\nBUILDER QUEUE: the owner on that row, or UNKNOWN\nVISIBLE TEXT: readable dialog wording only\nWHY THIS ROUTE: two sentences or fewer, tied to visible clues and the map\nMISSING: gaps to resolve before anyone submits the bug",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken bug router for a solo app founder. From the [ERROR PHOTO], the [OWNERSHIP MAP], and the [CUSTOMER NOTE], draft a routed bug for [APP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stick to words you can see in the popup: heading, body, buttons, and any code in the frame\n- Each map line should carry the screen name, the queue, and a plain purpose; if a line is missing one, ask\n- Pick the likely screen from the map only; a close feature name is not a match\n- If two screens still fit, show both and leave the builder queue UNKNOWN\n- Copy the queue from the matching row; if the screen is UNKNOWN, the queue is UNKNOWN\n- Make the ticket title one line under 14 words, built from the popup's main phrase\n- Skip the root cause, the severity, and any guess about which function failed\n- Leave filing and any note to the builder for the founder; you only route\n\nOutput format:\nReturn these sections only:\nTITLE: one line under 14 words\nLIKELY SCREEN: map name or UNKNOWN\nBUILDER QUEUE: owner of that row, or UNKNOWN\nVISIBLE TEXT: what the photo actually shows\nWHY THIS ROUTE: at most two sentences\nMISSING: facts still needed before filing",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a routing helper for a solo app founder turning customer popup photos into bugs. Work from the [ERROR PHOTO], the [OWNERSHIP MAP], and the [CUSTOMER NOTE] for [APP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Parse every map line into screen name, queue, and purpose before you match anything\n- Treat that map as the only list of screens and queues; do not add a screen that is not on it\n- Record the dialog heading, message, buttons, and any visible code, and ignore text you cannot read\n- If the customer note and the photo point at different rows, prefer the photo and mark the note as a conflict\n- Put a builder queue down only when a single row is selected; otherwise write UNKNOWN\n- Hold the ticket title to one line under 14 words, drawn from the popup's main phrase\n- Hand back a draft only; do not invent a stack, a culprit change, or a suggested patch\n\nOutput format:\nReturn these headings and nothing after them:\nTITLE: one line under 14 words\nLIKELY SCREEN: one map row, or UNKNOWN\nBUILDER QUEUE: that row's owner, or UNKNOWN\nVISIBLE TEXT: readable popup wording\nWHY THIS ROUTE: at most two sentences connecting the photo to the map\nMISSING: what the founder must confirm before the bug is submitted",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model that can read an uploaded photo, used by pasting first. Optionally Google Sheets, Gmail, and Zapier, Make, or n8n to fill a draft row only.",
+    "steps": [
+      "Collect the error photo, the customer's note about what they tapped, and a plain-text screen ownership map. Give the map three columns: screen name, builder queue, and what that screen does, using the labels customers see.",
+      "Open ChatGPT, Claude, Grok, or Muse and upload the photo. Paste that model's prompt. Fill in [APP NAME], [OWNERSHIP MAP], and [CUSTOMER NOTE]. If there is no note, write UNKNOWN in its place.",
+      "Compare TITLE, LIKELY SCREEN, and BUILDER QUEUE with the photo and your map. The screen must be one of your rows, and the queue must be the owner on that same row. Do not replace an UNKNOWN with a hunch.",
+      "When the draft names two possible screens, ask the customer which page was open. Leave the builder queue as UNKNOWN until they answer, and keep both screen names in the notes on the draft.",
+      "Approve the one-line title only after the screen and queue match a single map row. Then create the bug in your tracker or forward it to that builder. The chat reply itself is not the filing.",
+      "Optional agent mode: put the ownership map in Google Sheets, one screen per row. When a photo arrives in Gmail, use Zapier, Make, or n8n to store the image and the customer note on a new draft row, then stop.",
+      "Run the same prompt on that draft row so title, likely screen, and queue fill in. Block the automation from creating a tracker issue or messaging a builder. You still approve the row before anything is filed."
+    ],
+    "approvalStep": "You review the draft and approve the ticket title, the likely screen, and the builder queue before submitting the bug, assigning it, or sending it to a builder. A chat reply or a spreadsheet row is not approval.",
+    "failureModes": [
+      "Cropped photo: a cut-off message or hidden button can match the wrong page. Watch for VISIBLE TEXT that skips words you can see, and reread the image before you approve.",
+      "Nickname map: your row says Billing while the product header says Plan and payment, so the queue is a guess. Watch for a screen name that is not the label customers see.",
+      "Vague popup: the dialog only says something went wrong and names no page. Watch for a confident page when VISIBLE TEXT has no location clue, and keep the queue UNKNOWN.",
+      "Note fights the photo: the customer writes checkout while the dialog is from sign-in. Watch for a route that follows the note and ignores the popup wording.",
+      "Early filing: Zapier, Make, or n8n opens a tracker issue as soon as the row is filled. Watch for any create or notify action, and keep the flow on a draft row until you approve."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best at reading an error popup?",
+      "a": "It is not yet tested, so there is no ranking to follow. Use whichever of ChatGPT, Claude, Grok, or Muse already accepts your photo. Run a second one when the draft marks the screen UNKNOWN or names a queue that is not on your map. Keep the draft that sticks to visible dialog text and your ownership rows."
+    },
+    {
+      "q": "What if the screenshot cuts off the dialog?",
+      "a": "Ask the customer for another photo that shows the full popup and a little of the page behind it. Until that arrives, leave the likely screen and the builder queue as UNKNOWN. Do not fill in words that sit outside the frame, and do not file the bug on a partial heading."
+    },
+    {
+      "q": "What goes in the screen ownership map?",
+      "a": "One row for every screen a customer can open: the name they see, the builder queue that owns it, and a short line on what the screen is for. Include login, checkout, settings, and billing if those areas raise popups. If nobody owns a screen yet, write UNASSIGNED so a queue is not invented."
+    },
+    {
+      "q": "Can this tell me why the error happened?",
+      "a": "No. The draft restates the dialog you can see and picks a screen and queue from your map. A popup rarely includes the failing code. Cause, severity, and a fix stay out of the ticket until you or the builder look at the actual behavior behind that screen."
+    },
+    {
+      "q": "Do I need a bug tracker for this to help?",
+      "a": "No. Paste mode returns a title, a screen, and a queue you can copy into email or a sheet. Create the bug or notify a builder only after you agree with those three fields. A tracker is optional, and nothing should be submitted from the chat alone."
+    }
+  ],
+  "draft": true,
+  "persona": "Solo app founder",
+  "job": "Upload a customer's error-popup photo and get a ticket title, the likely screen, and the builder queue that owns that part of the app.",
+  "who": "A solo app founder who gets customer photos of error popups by email or chat and has to name the screen and the builder queue before a bug is filed.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Email",
+    "Workflow automation"
+  ]
+}

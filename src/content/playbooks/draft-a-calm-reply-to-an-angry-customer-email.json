@@ -1,0 +1,85 @@
+{
+  "slug": "draft-a-calm-reply-to-an-angry-customer-email",
+  "title": "Draft a calm reply to an angry customer email",
+  "category": "Back office",
+  "summary": "You paste the full customer complaint thread, the shop rule that applies (return, repair, or remake), and the single remedy you are willing to offer. The agent returns a subject line and a short reply that names the issue in the customer's own terms and states one exact next step, such as a refund to process, a replacement to ship, a repair pickup time, or a request for a photo or order number that is missing. It will not invent order facts, amounts, or causes. You edit anything that over-promises, then you send the reply yourself. An optional later step can file the thread for review, but nothing goes out until you approve the draft.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the writing assistant for an independent shop owner. Draft one calm reply to an angry customer email. Do not send it.\n\nRules:\n- Use only the complaint thread and the owner's notes below.\n- Name the customer's issue in plain words in the opening lines.\n- State exactly one next step taken from WHAT I CAN OFFER. Do not add a second remedy.\n- Do not argue, lecture, or mirror the customer's anger.\n- Do not admit a cause, delay, or defect the owner has not confirmed.\n- Keep the body at or under 90 words.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nComplaint thread:\n[COMPLAINT THREAD]\n\nShop policy to respect:\n[SHOP POLICY]\n\nThe only next step the owner will take:\n[WHAT I CAN OFFER]\n\nKnown order facts (item, order number, date). Leave UNKNOWN if not provided:\n[ORDER FACTS]\n\nShop name for the sign-off:\n[SHOP NAME]\n\nOutput format:\nSubject: one line, no blame\nBody:\n- sentence naming the issue\n- sentence with the exact next step and when it happens, or the one fact you still need\n- sign-off using the shop name\nThen three checklist lines labeled Issue named, Next step, and Facts marked UNKNOWN.\nNo other commentary.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful writing assistant for an independent shop owner. Write one calm reply to an angry customer email. You only draft. You do not send email.\n\nRules:\n- Stay inside the pasted thread and the owner's notes. Do not fill gaps with guesses.\n- Name the issue the customer raised, in plain words, before you offer anything.\n- Give exactly one next step, copied from WHAT I CAN OFFER, with no extra perk or promise.\n- Sound steady and brief. Do not scold, joke, or match an angry tone.\n- Do not confess a cause, a late shipment, or a defect unless the owner already confirmed it.\n- Hold the body to 90 words or fewer.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nComplaint thread:\n[COMPLAINT THREAD]\n\nShop policy to respect:\n[SHOP POLICY]\n\nThe only next step the owner will take:\n[WHAT I CAN OFFER]\n\nKnown order facts (item, order number, date). Leave UNKNOWN if not provided:\n[ORDER FACTS]\n\nShop name for the sign-off:\n[SHOP NAME]\n\nOutput format:\nSubject: one line, no blame\nBody: issue sentence, next-step sentence (include timing or the single missing fact), then the shop-name sign-off.\nAfter the body, three lines: Issue named / Next step / Facts marked UNKNOWN.\nStop there. Do not explain your wording.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are the shop owner's drafting hand. Produce one short, calm reply to an angry customer email. Draft only. Do not send.\n\nRules:\n- Pull facts only from the thread and the notes. If a fact is absent, mark it UNKNOWN.\n- Say what went wrong in the customer's terms, without debate.\n- Commit to one next step from WHAT I CAN OFFER and nothing else.\n- Skip sarcasm, policy lectures, and any line that sounds defensive.\n- Do not admit fault, a delay, or a broken item unless the owner confirmed it.\n- Body must stay at or under 90 words.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nComplaint thread:\n[COMPLAINT THREAD]\n\nShop policy to respect:\n[SHOP POLICY]\n\nThe only next step the owner will take:\n[WHAT I CAN OFFER]\n\nKnown order facts (item, order number, date). Leave UNKNOWN if not provided:\n[ORDER FACTS]\n\nShop name for the sign-off:\n[SHOP NAME]\n\nOutput format:\nSubject: one line, no blame\nBody: the named issue, the exact next step with a time or the one fact still needed, then the shop-name sign-off.\nFollow with three checklist lines: Issue named, Next step, Facts marked UNKNOWN.\nNo extra notes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a customer reply for an independent shop owner. Write one calm answer to an angry email. Produce the draft only. Do not send it.\n\nRules:\n- Limit yourself to the complaint thread and the owner's notes.\n- Name the issue in ordinary language near the start of the body.\n- State one next step, and only the step listed under WHAT I CAN OFFER.\n- Stay polite and short. Do not argue, apologize for an unconfirmed cause, or echo insults.\n- Do not invent an order number, a refund amount, a ship date, or a reason.\n- Keep the body to 90 words or fewer.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nComplaint thread:\n[COMPLAINT THREAD]\n\nShop policy to respect:\n[SHOP POLICY]\n\nThe only next step the owner will take:\n[WHAT I CAN OFFER]\n\nKnown order facts (item, order number, date). Leave UNKNOWN if not provided:\n[ORDER FACTS]\n\nShop name for the sign-off:\n[SHOP NAME]\n\nOutput format:\nSubject: one line, no blame\nBody: one sentence that names the issue, one sentence that states the next step and when it happens or which fact you need, then a sign-off with the shop name.\nThen three checklist lines: Issue named, Next step, Facts marked UNKNOWN.\nDo not add commentary.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional later: Gmail drafts plus Zapier, Make, or n8n to queue complaints for review.",
+    "steps": [
+      "Copy the full complaint into a note, including earlier messages in the thread. Keep the customer's words. Drop long signatures and legal footers so the paste stays readable.",
+      "Above the thread, write three lines you will not let the draft invent: the item or order, the issue as you understand it, and the one remedy you will offer today.",
+      "Add your shop rule in one line, such as the return window, repair policy, or remake rule. If a fact is unknown, type UNKNOWN next to it instead of guessing.",
+      "Open ChatGPT, Claude, Grok, or Muse. Paste that model's prompt, then paste your three lines, the shop rule, and the full thread into the matching placeholders.",
+      "Read the draft against the thread. Confirm it names the same issue, states only your next step, and marks UNKNOWN on any order number, date, or amount you did not supply.",
+      "Tighten the wording yourself. Remove any apology for a cause you have not checked, and remove any second offer. Leave one sentence the customer can act on.",
+      "Paste the finished subject and body into your email client as an unsent draft. Compare names and order facts with the real order before you send.",
+      "Optional: label complaint mail in Gmail, then use Zapier, Make, or n8n to copy the thread into a doc or sheet. The flow may create a draft. It must not send."
+    ],
+    "approvalStep": "You approve the reply in your own inbox before it is sent. The chat or the automation may only prepare a draft. You check the named issue, the next step, and the order facts, then you press send.",
+    "failureModes": [
+      "The draft apologizes for a defect or a late order you have not confirmed, which can lock the shop into a claim.",
+      "The model fills in an order number, a refund amount, or a pickup time that was never in the thread.",
+      "The reply answers the anger and never names the item or the problem, so the customer writes back with the same complaint.",
+      "An automation is set to send rather than save a draft, and a wrong offer leaves while you are away from the shop.",
+      "Only the latest message is pasted, so the reply misses an earlier promise or the customer's actual request.",
+      "The next step stays vague, such as a promise to look into it, and the customer has no action or time to expect."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Should I apologize if I am not sure we caused it?",
+      "a": "Say you are sorry they had a bad experience, in one short line, and do not admit a cause you have not checked. Name the issue they described and state the next step you will actually take. If a date, amount, or order number was not in your paste, the draft should ask for it or mark it UNKNOWN."
+    },
+    {
+      "q": "What if I do not know the order number?",
+      "a": "Paste the thread anyway and write UNKNOWN beside the order number in your notes. The reply should ask for the order number or the name on the order as the next step. It should not guess a number from the subject line or from how angry the message sounds."
+    },
+    {
+      "q": "Which model writes the calmest reply?",
+      "a": "It is not yet tested. Use the prompt for the chat tool you already open. Judge the draft yourself: it should name the issue, state only the next step you approved, and add no order facts you did not paste. If it invents a detail, regenerate with that field marked UNKNOWN."
+    },
+    {
+      "q": "Can this send the email for me?",
+      "a": "No. Paste mode only prints a draft on screen. If you later connect Gmail or a Zapier, Make, or n8n flow, set that flow to create a draft or a review row. You still read the named issue and the next step, then you send the message yourself."
+    },
+    {
+      "q": "How short should the reply be?",
+      "a": "Ask for a subject line and a body of 90 words or fewer: a greeting, the issue in their terms, one next step with a time or a single fact you need, and your shop name. Cut any sentence that argues, retells the whole thread, or offers a second remedy you did not approve."
+    }
+  ],
+  "draft": true,
+  "persona": "Independent shop owner",
+  "job": "The complaint thread goes in, and a short reply comes out that names the issue and states the exact next step.",
+  "who": "Independent shop owners who answer customer email themselves: a bakery, repair bench, boutique, or small online shop with no support desk. A heated complaint is in the inbox and you need a calm reply before you write back in a rush.",
+  "toolCategories": [
+    "Email",
+    "Chat assistants",
+    "Inbox automation",
+    "Spreadsheets"
+  ]
+}

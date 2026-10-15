@@ -1,0 +1,84 @@
+{
+  "slug": "flag-email-domains-that-disagree-with-the-company-name",
+  "title": "Flag email domains that disagree with the company name",
+  "category": "Sales",
+  "summary": "An SDR team lead pastes one CRM lead export, header row included, with company name, contact email, contact name, website, owner, and status. The agent flags rows whose email domain and company name disagree, and separates rows it cannot judge. Each flagged row keeps the original company name and email, shows the domain, a mismatch label, one sentence quoting both sides, and a suggested next step. The decision cell stays blank for the lead to write Fix company, Fix email, Ask owner, or Leave. Matching rows are not rewritten. No CRM field is changed, no sequence is submitted, and no lead is deleted until those decisions are filled in.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a CRM hygiene clerk for an SDR team lead. Using [COLUMN MAP], flag rows in [LEAD EXPORT] whose contact email domain disagrees with the company name.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If the company or email header is unmapped, stop and ask before you flag anything\n- Ignore Inc, LLC, Ltd, Corp, GmbH, and PLC, plus spaces and hyphens. Two words may match one host label, except a token only a couple of letters long\n- A host in [PERSONAL HOSTS] disagrees with the company name. If that list is empty, ask or mark consumer status UNKNOWN. Do not guess a provider\n- Judge the contact email only. A matching website does not clear the domain, and initials, a parent, or a former brand you cannot prove are UNCLEAR\n- Do not rewrite a company, draft a sequence, or tell anyone to delete a lead\n\nOutput format:\nReturn a table with columns source_row, company_name, email, email_domain, mismatch_type, reason, suggested_next, decision.\nsource_row is the lead line, header excluded. mismatch_type is CONSUMER_MAILBOX, OTHER_ORGANIZATION, or UNCLEAR. reason is one sentence quoting the company name and the domain. suggested_next is FIX_COMPANY, FIX_EMAIL, ASK_OWNER, or LEAVE, as a hint only. Leave decision blank.\nThen sections headed Cannot judge (missing company or email, marked UNKNOWN) and Agreement sample (a short set of unflagged rows with company_name and email_domain).",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a records checker for an SDR team lead. Read [LEAD EXPORT] with [COLUMN MAP], and list rows where the mailbox host disagrees with the account name.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If the map is blank, ask which header is the account and which is the contact address before comparing\n- Skip Inc, LLC, Ltd, Corp, GmbH, and PLC. Ignore capitals and hyphens. Two words may match one host label unless the token is only a couple of letters\n- Any host in [PERSONAL HOSTS] is a disagreement. If that list is empty, ask or mark consumer status UNKNOWN. Do not guess providers\n- Compare the contact address, not the website. A matching site does not excuse a different host\n- Use UNCLEAR for initials, a parent, or an old brand the pasted cells do not tie together\n- Do not supply a replacement account, write outreach, or recommend a deletion\n\nOutput format:\nReturn one table whose columns are source_row, company_name, email, email_domain, mismatch_type, reason, suggested_next, decision.\nsource_row counts lead lines only, not the header. mismatch_type is CONSUMER_MAILBOX, OTHER_ORGANIZATION, or UNCLEAR. reason is one sentence quoting the account and the host. suggested_next is FIX_COMPANY, FIX_EMAIL, ASK_OWNER, or LEAVE, as a hint only. Keep decision empty.\nThen headings Cannot judge (blank account or address, marked UNKNOWN) and Agreement sample (a short set of unflagged rows with company_name and email_domain).",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a list checker for an SDR team lead. Take [LEAD EXPORT], apply [COLUMN MAP], and call out rows where the email domain and the firm name disagree.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If you cannot see which column is the firm and which is the inbox, ask before you mark anything\n- Drop Inc, LLC, Ltd, Corp, GmbH, and PLC. Ignore case and hyphens. Two firm words may form one host label, except a token only a couple of letters long\n- Hosts in [PERSONAL HOSTS] disagree with the firm. If that list is empty, ask or mark consumer status UNKNOWN. Do not guess a brand\n- Ignore the website column. A site that fits the firm does not make a different inbox agree\n- If the firm is initials or a brand you cannot link from the paste, say UNCLEAR instead of a hard clash\n- Do not invent a corrected firm, write a cadence, or say to drop the person\n\nOutput format:\nReturn a table with columns source_row, company_name, email, email_domain, mismatch_type, reason, suggested_next, decision.\nsource_row is the lead line, skipping the header. mismatch_type is CONSUMER_MAILBOX, OTHER_ORGANIZATION, or UNCLEAR. reason is one sentence quoting the firm and the domain. suggested_next is FIX_COMPANY, FIX_EMAIL, ASK_OWNER, or LEAVE, as a hint. Leave decision blank.\nThen a section Cannot judge for a missing firm or inbox, marked UNKNOWN, and a section Agreement sample with a short set of unflagged rows showing company_name and email_domain.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant for an SDR team lead. Using [LEAD EXPORT] and [COLUMN MAP], return rows where the organization and the host disagree.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the column map first, and ask if organization or contact address has no header\n- Leave out Inc, LLC, Ltd, Corp, GmbH, and PLC. Ignore spacing and hyphens. Split words may match one host label, except tokens only a couple of letters long\n- A host in [PERSONAL HOSTS] disagrees with the organization. If that list is empty, ask or mark consumer status UNKNOWN. Do not guess hosts\n- Use the contact address, not the website. A matching site must not hide a host that disagrees\n- Label UNCLEAR when the organization is an acronym or a prior name the paste does not connect\n- Do not fill a new organization, compose a follow-up, or remove a line\n\nOutput format:\nReturn a table with columns source_row, company_name, email, email_domain, mismatch_type, reason, suggested_next, decision.\nsource_row points at the lead line, not the header. mismatch_type is CONSUMER_MAILBOX, OTHER_ORGANIZATION, or UNCLEAR. reason is one sentence quoting the organization and the host. suggested_next is FIX_COMPANY, FIX_EMAIL, ASK_OWNER, or LEAVE, as a hint only. Leave decision blank.\nThen sections headed Cannot judge (empty organization or address, each UNKNOWN) and Agreement sample (a short set of unflagged rows, with company_name and email_domain).",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to file a new review tab when another export arrives.",
+    "steps": [
+      "Export the leads you are reviewing from the CRM as a CSV or a copied grid, and keep the header row. Include company name, contact email, contact name, website, owner, and status. Open a fresh chat and paste one prompt from this playbook.",
+      "Paste that grid as [LEAD EXPORT]. Add [COLUMN MAP] stating which header is the company name and which is the contact email. Add [PERSONAL HOSTS], the free inbox labels your team already treats as personal, one label per line.",
+      "Read the flagged table row by row. Each reason should quote the company name and the email domain from that same source row. A blank company or email should appear as UNKNOWN under Cannot judge, not as a guessed firm.",
+      "Read Cannot judge and the agreement sample before you act on flags. Pull any true clash you find in the sample back into the flagged table. Leave initials, parents, and old brands as UNCLEAR until someone who knows the account says otherwise.",
+      "In the blank decision column, write Fix company, Fix email, Ask owner, or Leave on each flagged row. Leave the cell empty when you are unsure. Tell reps that an empty cell is not a yes.",
+      "Copy the flagged table, Cannot judge, and your decisions into a new spreadsheet tab. Do not paste over the export. Keeping the original grid means a bad flag can be discarded without losing owner, status, or website.",
+      "Optional later step: when a new export arrives in Google Sheets, let Zapier, Make, or n8n create a new review tab with the same columns. Stop that flow from editing the CRM, enrolling a sequence, sending mail, or deleting a lead.",
+      "Only after every row you intend to touch has a decision, a person updates the CRM from the review tab. Apply Fix company or Fix email solely where that decision is written, and skip UNCLEAR rows and blank decisions."
+    ],
+    "approvalStep": "The SDR team lead reviews every flagged row and writes Fix company, Fix email, Ask owner, or Leave before sending a sequence, submitting a CRM edit, posting a note, or deleting a lead. A blank decision is not approval.",
+    "failureModes": [
+      "Short-token agreement: a tiny company word sits inside an unrelated host, so a real clash never reaches the flagged table. Watch matches built on a couple of letters, and move that row onto the flag list.",
+      "Personal inbox on a real buyer: owners often use a free mailbox. The clash is real, but deleting the lead or pausing the sequence drops the account. Read CONSUMER_MAILBOX before a row is removed.",
+      "Parent or former brand: the host shows the group or an old name while the lead shows the local brand. OTHER_ORGANIZATION can be right as text and wrong as an account. Ask the owner before you rewrite the company.",
+      "Repeated agency inbox: one consultant host on many different company names looks like every firm is wrong. If the same domain sits on unrelated names, choose Ask owner instead of renaming them all to the agency.",
+      "Wrong column or extra label: the chat may compare the website and ignore the contact email, or treat a mail prefix as a different firm. Confirm the column map, and spot-check any host with more than one part."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for flagging domains that disagree?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already have, paste the same export, column map, and personal-host list, and keep the run that quotes the company name and the email domain, leaves decision blank, and puts missing cells in Cannot judge."
+    },
+    {
+      "q": "What if a good lead uses a personal inbox on purpose?",
+      "a": "Keep that row on the flagged table as CONSUMER_MAILBOX and write Leave if the inbox is intentional. The domain and the company name still disagree, and the person can stay in the pipeline. Do not delete the lead or pause the sequence merely because the mailbox is personal."
+    },
+    {
+      "q": "Will this update the CRM or email the leads?",
+      "a": "Paste mode only returns tables for you to copy into a new spreadsheet tab. It does not change a company name, replace an email, enroll a sequence, post a note, or delete a lead. A later Zapier, Make, or n8n flow should create that review tab and nothing else. CRM edits wait until the decision column is filled."
+    },
+    {
+      "q": "How should acronyms and former names be handled?",
+      "a": "If the company is initials, a parent group, or a former brand and the paste does not prove the link, the row stays flagged as UNCLEAR. You, or the rep who owns the lead, decide whether the host is the same firm. The chat must not invent a parent, a merger, or a corrected legal name."
+    },
+    {
+      "q": "What if the export is too big for one paste?",
+      "a": "Split the grid by owner or by status and run the same prompt, the same column map, and the same personal-host list on each slice. Keep source_row as the line from the original export so the slices stack into one review tab. Do not renumber inside a slice or the lead will lose the row."
+    }
+  ],
+  "draft": true,
+  "persona": "SDR team lead",
+  "job": "Turn a lead export into rows whose email domain and company name disagree, each with a blank decision for the lead.",
+  "who": "SDR team leads who inherit a lead export and need every row where the email domain disagrees with the company name marked before reps edit the CRM or continue a sequence.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "CRM exports"
+  ]
+}

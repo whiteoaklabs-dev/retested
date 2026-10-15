@@ -1,0 +1,83 @@
+{
+  "slug": "nurture-a-lead-who-will-not-buy-for-six-months",
+  "title": "Nurture a lead who will not buy for six months",
+  "category": "Sales",
+  "summary": "This playbook helps a capital equipment seller nurture a lead who will not buy for six months. You paste the buyer, the machine named on your quote, why they are waiting, the condition that would make them ready, the wait window, and the real updates you may share. The agent returns three check-in emails spaced across that wait. Each one has a subject, a send month, one update taken only from your list, a short body, and a light question about the ready condition. You assign which update belongs in which note, choose the send weeks, edit every line, and send each note yourself. Nothing goes out until you approve it.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up writer for a capital equipment seller. A lead will not buy for months. Write three check-in emails the seller will edit and send, spaced across the wait.\n\nFill these in:\nBuyer and company: [BUYER AND COMPANY]\nMachine on the quote: [MACHINE DISCUSSED]\nWhy they are waiting: [WHY THEY ARE WAITING]\nWhat would make them ready: [READY CONDITION]\nWait window: [WAIT START AND READY MONTH]\nUpdates you may share: [ALLOWED UPDATES]\nSign-off: [SELLER SIGN-OFF]\n\nRules:\n- Use only the inputs above. Never invent price, discount, lead time, specs, financing, availability, or a new option.\n- Space three notes across the wait: one early, one in the middle, and one in the month before they might be ready. Do not cluster them.\n- Put exactly one item from [ALLOWED UPDATES] in each note. If an update is not listed, mark it UNKNOWN and do not reuse an earlier update to fill the gap.\n- End each note with one light question about [READY CONDITION]. Do not ask for an order, a deposit, or a meeting to close.\n- Hold each body to 120 words or fewer, in plain sentences a busy buyer can read fast, and sign as [SELLER SIGN-OFF].\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nFor Check-in 1, Check-in 2, and Check-in 3, use these sections: Send month, Subject, Update used, Body, Light question. End with a section named Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful writing assistant for a capital equipment seller. The buyer will not buy for months. Draft three quiet check-in emails spaced across that wait. The seller will revise and send each one.\n\nUse these inputs:\nBuyer and company: [BUYER AND COMPANY]\nMachine they discussed: [MACHINE DISCUSSED]\nWhy they are waiting: [WHY THEY ARE WAITING]\nWhat would make them ready: [READY CONDITION]\nWait window: [WAIT START AND READY MONTH]\nFacts you may mention: [ALLOWED UPDATES]\nHow you sign mail: [SELLER SIGN-OFF]\n\nRules:\n- Stay inside the pasted inputs. Never invent price, discount, lead time, specifications, financing, stock, or an option that was not written down.\n- Place the notes early in the wait, near the middle, and in the month before the ready window. Keep long gaps between them.\n- Assign one distinct item from [ALLOWED UPDATES] to each note. When you run out of real items, mark the update UNKNOWN and leave that note as the light question only.\n- Ask one light question tied to [READY CONDITION]. Do not request an order, a deposit, or a meeting whose purpose is to close.\n- Keep each body at or under 120 words, respectful of a long capex cycle, and close with [SELLER SIGN-OFF].\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHeadings for Check-in 1, Check-in 2, and Check-in 3. Under each heading, these sections: Send month, Subject, Update used, Body, Light question. Finish with an Unknowns list.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing helper for a capital equipment seller. The lead will not buy for months. Produce three check-in emails spread across that wait. No hype. The seller edits and sends.\n\nInputs:\nBuyer and company: [BUYER AND COMPANY]\nMachine on the quote: [MACHINE DISCUSSED]\nWhy they are waiting: [WHY THEY ARE WAITING]\nWhat would make them ready: [READY CONDITION]\nWait window: [WAIT START AND READY MONTH]\nUpdates you may share: [ALLOWED UPDATES]\nSign-off: [SELLER SIGN-OFF]\n\nRules:\n- Pull every fact from the inputs. Never invent a price, a discount, a lead time, a spec, financing, or a feature.\n- Spread the three notes over the whole wait. One early, one midway, one in the month before they might be ready. Do not stack them.\n- One update per note, taken from [ALLOWED UPDATES] only. Do not repeat an update. If none remains, write UNKNOWN and keep the light question.\n- The last line is one light question about [READY CONDITION]. Do not ask them to buy, send a deposit, or book a close call.\n- Cap each body at 120 words. Write like a salesperson who already knows the account, and sign with [SELLER SIGN-OFF].\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nCHECK-IN 1, CHECK-IN 2, CHECK-IN 3. For each, sections named Send month, Subject, Update used, Body, and Light question. Then a list titled Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting for a capital equipment seller who will personally approve every note. A lead will not buy for months. Write three check-in emails spaced across the wait, each with one real update and one light question.\n\nProvide:\nBuyer and company: [BUYER AND COMPANY]\nMachine discussed: [MACHINE DISCUSSED]\nWhy they are waiting: [WHY THEY ARE WAITING]\nWhat would make them ready: [READY CONDITION]\nWait window: [WAIT START AND READY MONTH]\nUpdates allowed: [ALLOWED UPDATES]\nSign-off: [SELLER SIGN-OFF]\n\nRules:\n- Treat the inputs as the only source. Never invent pricing, a discount, lead time, specs, financing terms, or a product option.\n- Schedule one note early, one around the middle of the wait, and one in the month before [READY CONDITION] could be true. Leave real time between them.\n- Use a different line from [ALLOWED UPDATES] in each note. If the list is short, mark the missing update UNKNOWN instead of padding with general news.\n- Close with a single light question about whether [READY CONDITION] still holds. Do not ask for a purchase order or a decision meeting.\n- Limit each body to 120 words, sound like the seller, and end with [SELLER SIGN-OFF].\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nThree blocks labeled Check-in 1, Check-in 2, and Check-in 3. Sections inside each block: Send month, Subject, Update used, Body, Light question. End with Unknowns to confirm.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode first. Optional later: Gmail, Google Sheets, and Zapier, Make, or n8n to create drafts only.",
+    "steps": [
+      "From your quote PDF and the latest CRM note or call recap, copy the buyer, company, machine name, why they are waiting, and what would make them ready. Paste those with the wait months and two or three updates copied from a factory note, training calendar, or spec sheet you already have.",
+      "Read the three send months the draft proposes. Shift any date that falls in a plant shutdown, a holiday, or a week you will be away. Keep one note early, one near the middle, and one in the month before they might be ready.",
+      "Line each note up with a single item from your update list. Delete any price, discount, lead time, spec, or option the draft added that you did not paste, and replace that sentence with UNKNOWN.",
+      "Read the last line of each note. Keep one light question about the ready condition, such as whether the lease end or budget meeting is still the trigger. Remove any ask for an order, a deposit, or a closing meeting.",
+      "Save the edited notes in a Google Sheet. Use columns for buyer, company, machine, wait reason, ready condition, send month, subject, body, status, and reply. Set status to Hold until that send month, and do not copy the next note early.",
+      "When a send month arrives, open that row, confirm they have not replied with a new date or a lost deal, paste the note into Gmail, add your usual signature, and send it yourself. Log the day and any reply on the same row.",
+      "Optional later: connect Google Sheets and Gmail with Zapier, Make, or n8n so a Gmail draft is created when the send month on that row arrives. Leave the flow on draft creation only, and still send from Gmail after you reread the note."
+    ],
+    "approvalStep": "You review and approve every note against the wait reason, ready condition, and update list you pasted, then send it yourself from Gmail. A sheet row or an automation may store a draft, but nothing is sent, scheduled, or deleted until you approve that specific check-in.",
+    "failureModes": [
+      "The draft adds a price cut, a faster lead time, or a feature you never pasted. Read each sentence against your update list and swap anything extra for UNKNOWN before it can reach the buyer.",
+      "The three notes cluster in the first few weeks, which feels like chasing a buyer who already named a long wait. Respace them across the full window before you save the sheet.",
+      "The light question turns into a request for a purchase order. Rewrite the last line so it only asks whether the ready condition still stands.",
+      "A later note goes out after the buyer said the project slipped or they chose another supplier, because status was still Hold. Read the reply column before every send.",
+      "You only had one real update, so later notes repeat it or fill space with vague trade news. Skip a note, or send just the light question, until you have a new fact."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste from the quote and the CRM note?",
+      "a": "Paste the buyer name, title, company, and site, plus the machine name as it appears on your quote. Add why they are waiting in their words, the event that would make them ready, the start month and the likely buy month, and only updates you can defend, such as a training date or a spec revision already in writing."
+    },
+    {
+      "q": "How do I space three notes across a six-month wait?",
+      "a": "Place the first note about two months in, the second around the middle, and the third in the month before they said they might be ready. If they named a fiscal start or a lease end, anchor the last note to that event and shift the others off shutdown weeks. You pick the exact send weeks."
+    },
+    {
+      "q": "Can Zapier or Make send the notes while I travel?",
+      "a": "Stay in paste mode until the drafts sound like your own writing. If you later link Google Sheets and Gmail through Zapier, Make, or n8n, limit the flow to creating a draft on the send month. Open that draft, check the update, and send it yourself. Do not allow the flow to send or delete mail."
+    },
+    {
+      "q": "Which chat model should I use for a long capex wait?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Paste the same wait reason, ready condition, and allowed updates into the chat you already use, and keep the version that stays inside those facts and sounds like a note you would sign."
+    },
+    {
+      "q": "What if I have no fresh update this month?",
+      "a": "Skip that check-in, or send a short note that only asks the light question and says you have nothing new on the machine. Do not ask the model to invent a discount, a spec change, or a delivery improvement. A quiet month is safer than a filler note the buyer can spot."
+    }
+  ],
+  "draft": true,
+  "persona": "Capital equipment seller",
+  "job": "Paste why a lead will not buy yet and what would make them ready, then get three check-in emails spaced across that wait, each with one useful update and a light question.",
+  "who": "Capital equipment sellers who quote machines, trucks, or plant lines on long capex cycles and need a calm way to stay useful while a buyer waits on budget, a lease end, or a board decision.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets and CRM",
+    "Automation"
+  ]
+}

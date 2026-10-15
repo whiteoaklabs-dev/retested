@@ -1,0 +1,84 @@
+{
+  "slug": "extract-invoice-fields-from-vendor-emails-into-a-sheet",
+  "title": "Extract invoice fields from vendor emails into a sheet",
+  "category": "Back office",
+  "summary": "A part-time bookkeeper pastes forwarded vendor emails, including each subject, body, forward header, and any attachment text they can read. The agent extracts one payable row per bill, with vendor, invoice number, currency, amount due, due date, and invoice date, plus the sentence that supports those fields. Quotes, account statements, and receipts go on a skip list instead of the payable table. When several money figures appear, the row keeps only the figure named in the bookkeeper's amount rule, or marks the amount UNKNOWN. The bookkeeper checks each row against the thread and approves the sheet before a vendor is paid, a bill is posted, or a row is marked entered.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a part-time bookkeeper's clerk. Turn forwarded vendor emails into payable sheet rows a person will check before any bill is paid or posted.\n\nUse [VENDOR EMAILS], [AMOUNT RULE], and [DATE SHAPE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Emit one row per bill. Two bills in one forward means two rows. A quote, statement, or payment receipt goes to Skipped, not the payable table.\n- Vendor is the supplier printed on the bill. Ignore the forwarder's name and your own company in the forward header.\n- The invoice number is the value labeled invoice, bill, or inv no. Do not substitute a purchase order, account number, or order number.\n- Put in amount_due only the figure [AMOUNT RULE] names, usually balance due. Ignore subtotal, tax by itself, and amount already paid. Conflicting totals become UNKNOWN.\n- A due date must be written out. Do not convert a payment term into a calendar day. Write dates with [DATE SHAPE] only when the source date is complete.\n- Do not pay a vendor, post a bill, or mark a row entered.\n\nOutput format:\nReturn sections Payable rows and Skipped. Payable rows is a table with columns vendor, invoice_number, currency, amount_due, due_date, invoice_date, document_type, source_line. Set document_type to invoice on those rows. Skipped lists each non-bill with its document type and the reason. source_line copies the sentence that holds the number, the amount, and the due date.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records assistant for a part-time bookkeeper. You do not pay bills. Read [VENDOR EMAILS] with [AMOUNT RULE] and [DATE SHAPE], and prepare rows for a human review.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep one payable row per invoice. When one forward contains two invoice numbers, output two rows and do not merge the amounts.\n- Send quotes, account statements, and receipts to Skipped. Do not treat them as bills to enter.\n- Take the vendor from the supplier block on the bill. If the From line and the bill header name different companies, mark vendor UNKNOWN and name both.\n- Copy the invoice number only from a line that calls it an invoice or bill number. Leave purchase orders and account numbers out of that column.\n- amount_due follows [AMOUNT RULE] exactly. If the rule is blank, mark amount_due UNKNOWN instead of choosing among subtotal, tax, and balance.\n- due_date stays UNKNOWN unless a full date is written. Do not calculate from a term such as Net 30. Apply [DATE SHAPE] only to complete dates.\n- Leave payment, ledger posting, and entered status to the bookkeeper.\n\nOutput format:\nReturn a Payable rows table and a Skipped list. Columns are vendor, invoice_number, currency, amount_due, due_date, invoice_date, document_type, source_line. document_type is invoice for payable rows. Skipped names the document type and why it was excluded. source_line repeats the sentence behind the number, amount, and due date.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken bookkeeping aide. A part-time bookkeeper will paste forwarded vendor mail and then decide what gets paid. Build the rows only. Use [VENDOR EMAILS], [AMOUNT RULE], and [DATE SHAPE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One bill, one row. If the forward stacks two bills, make two rows. Park quotes, statements, and receipts on Skipped.\n- Vendor means the supplier on the bill header, not whoever hit forward and not the company name sitting in the forward banner.\n- Invoice number means the number the mail calls the invoice or bill number. A purchase order or customer account number stays out of that cell.\n- Fill amount_due from [AMOUNT RULE]. When the rule says balance due, do not drop in the subtotal or a payment already made. Two clashing totals means UNKNOWN.\n- Copy a due date only when the day is written on the page. Never turn due on receipt or a Net term into a made-up day. Format complete dates as [DATE SHAPE].\n- Stop at the table. No payment, no ledger post, and no status of entered.\n\nOutput format:\nGive Payable rows as a table with columns vendor, invoice_number, currency, amount_due, due_date, invoice_date, document_type, source_line, then a Skipped list with document type and reason. Use invoice as document_type on payable rows. source_line is the sentence that supplied the number, amount, and due date.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a review sheet for a part-time bookkeeper who stages supplier bills from forwarded email. Do not pay or post anything. Sources are [VENDOR EMAILS], [AMOUNT RULE], and [DATE SHAPE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Produce one payable row for each invoice inside the paste. Split a forward that contains two invoice numbers into two rows.\n- If the message is a quote, a statement of account, or a receipt, list it under Skipped with the document type.\n- Set vendor from the supplier name on the bill. When only a person's display name is present, mark vendor UNKNOWN.\n- Read invoice_number from the label invoice number or bill number. Do not reuse a purchase order, account number, or order number.\n- Set amount_due using [AMOUNT RULE]. If that rule does not match a printed figure, mark amount_due UNKNOWN. Do not add tax onto a total that already includes it.\n- Set due_date only from a printed date. If the mail gives a term and no calendar day, mark due_date UNKNOWN. Render complete dates in [DATE SHAPE].\n- Hand the sheet back for approval. Do not mark any row entered.\n\nOutput format:\nReturn two headed sections, Payable rows and Skipped. The table columns are vendor, invoice_number, currency, amount_due, due_date, invoice_date, document_type, source_line. Payable rows use document_type invoice. Skipped holds document type and a short reason. Put the supporting sentence in source_line.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Later, Gmail plus Zapier, Make, or n8n can append draft rows to a Google Sheet.",
+    "steps": [
+      "In Gmail or Outlook, open the forwarded vendor messages for this batch and copy each full thread into one note. Keep the subject, the body, and the forward header. Leave older lines in place so a second bill is not dropped.",
+      "When a PDF or image is attached, add a heading Attachment text and type only the lines you can read: supplier name, invoice number, each total, and each date. If a digit is cut off or blurry, leave that spot blank.",
+      "Under the note, write an amount rule and a date shape. State which printed figure to capture, such as balance due rather than subtotal or amount paid, and how dates should look, such as YYYY-MM-DD.",
+      "Create a Google Sheet tab named Vendor bills with columns vendor, invoice_number, currency, amount_due, due_date, invoice_date, document_type, source_line, and status. New rows start with status set to needs review.",
+      "Paste the prompt for the chat tool you have open. Replace the bracketed placeholders with the forwarded mail, the amount rule, and the date shape. Run it once, and keep the original thread on screen beside the draft table.",
+      "Check every payable row against the thread. The vendor should be the supplier, the number should be the bill number, the amount should match your rule, and the due date should not be the invoice date. Fix mismatches yourself.",
+      "Optional later path: connect Gmail to that sheet with Zapier, Make, or n8n so mail in a vendor-bills label appends a draft row with status needs review. The flow may fill cells. It must not pay, post, or mark a row entered."
+    ],
+    "approvalStep": "You review every payable row against the forwarded email and the attachment text, and you approve the sheet before paying a vendor, posting the bill, or marking the row entered. Clear each UNKNOWN yourself, or ask the sender, before that payment.",
+    "failureModes": [
+      "A quote, statement, or receipt is written up as a bill to pay. Read document_type and keep anything that is not an invoice off the rows you will enter.",
+      "Subtotal, tax, or a sum already paid lands in amount_due, or a credit is stored as money you owe. Follow the amount rule and mark the cell UNKNOWN when totals disagree.",
+      "The invoice date is saved as the due date, or a Net 30 term is turned into a day the mail never states. If no due date is written, leave that cell UNKNOWN.",
+      "The forwarder's company, or a mailbox display name, is saved as the vendor. Take the supplier name from the bill header, not from who forwarded the thread.",
+      "Two bills in one forward collapse into a single row, or a purchase order number replaces the invoice number. Keep one row per bill and use only the labeled invoice number.",
+      "The same bill forwarded twice becomes two rows you might pay. Match vendor plus invoice number against rows already on the sheet before you approve."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which figure belongs in amount due?",
+      "a": "Use the amount rule you typed before the prompt ran. Most bookkeepers want balance due or amount due, and they leave out the subtotal, the tax line by itself, and any payment already received. If two figures both look like a total, leave amount_due as UNKNOWN and pick the right one during review. Do not let the draft add tax on top of a total that already includes tax."
+    },
+    {
+      "q": "What if the mail only says Net 30?",
+      "a": "A term such as Net 30 is not a due date by itself. If the message also prints an invoice date, the draft should copy that date into invoice_date, put the term in source_line, and leave due_date UNKNOWN unless a calendar day is written. You choose the day from your own calendar after you review the row. The draft must not invent that day."
+    },
+    {
+      "q": "The PDF will not let me copy text. Now what?",
+      "a": "Paste the email body, then type only the lines you can read from the PDF under the heading Attachment text. Any supplier name, number, amount, or date you cannot read stays blank so the row shows UNKNOWN. Do not fill blurry digits from memory, and do not enter a bill from the subject line alone."
+    },
+    {
+      "q": "Which model is best for these vendor emails?",
+      "a": "It is not yet tested for this playbook, so no model is ranked. Use the prompt for the chat tool you already have open, keep the same forwarded thread and the same amount rule, and accept a row only when vendor, invoice number, amount, and due date each appear in the source text."
+    },
+    {
+      "q": "Will this sheet pay the vendor for me?",
+      "a": "Paste mode ends at a table you copy into the sheet. A Gmail automation with Zapier, Make, or n8n may append a draft row and set status to needs review. Nothing in this playbook pays a vendor, posts a bill to the books, or marks a row entered. You do that only after you approve the row against the email."
+    }
+  ],
+  "draft": true,
+  "persona": "Part-time bookkeeper",
+  "job": "Forwarded vendor emails become sheet rows of vendor, invoice number, amount due, and due date for the bookkeeper to approve before entry.",
+  "who": "Part-time bookkeepers who receive supplier bills as forwarded emails and need a sheet of vendor, invoice number, amount, and due date before a bill is entered or paid.",
+  "toolCategories": [
+    "Email",
+    "Spreadsheets",
+    "Workflow automation",
+    "Billing and invoicing"
+  ]
+}

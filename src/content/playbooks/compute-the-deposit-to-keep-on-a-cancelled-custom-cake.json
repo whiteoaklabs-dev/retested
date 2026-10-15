@@ -1,0 +1,86 @@
+{
+  "slug": "compute-the-deposit-to-keep-on-a-cancelled-custom-cake",
+  "title": "Compute the deposit to keep on a cancelled custom cake",
+  "category": "Support",
+  "summary": "This playbook shows a bakery owner how to compute the deposit to keep when a custom cake is cancelled. You paste the signed order (cake, event date, total, sum received, and the cancellation clause) and the date the customer cancelled. The agent applies only that written clause and returns three labeled results: deposit retained, amount to return, and a customer message that states both figures. It shows the subtraction and the clause sentence it used. A missing date or a missing clause comes back as UNKNOWN instead of a guessed refund. You check the arithmetic against the order and approve the message before any money is returned or any note is sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the order desk at a custom-cake bakery. Compute the deposit to keep on a cancelled order, and draft the customer message that shows both figures.\n\nUse [CAKE CONTRACT], [CANCELLATION DATE], [AMOUNT RECEIVED], [RETURN METHOD], and [SHOP SIGN-OFF].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take the cake, event date, order total, and cancellation clause only from [CAKE CONTRACT]. An unwritten shop habit does not apply.\n- Compare [CANCELLATION DATE] with the event date and apply only the written window those dates hit. If a date is missing, or no window covers them, mark the window UNKNOWN and name no forfeiture.\n- Keep the flat fee, the full deposit, or the stated share of whichever base the clause names. Add a design fee or ingredients only when that page states the amount. If the clause returns everything, the sum kept is zero.\n- Amount to return equals [AMOUNT RECEIVED] minus the sum kept. Never keep or return more than was received. If the receipt and the order disagree, mark both sums UNKNOWN.\n- Do not offer a remake, a credit, or a payout date the order does not state. Use [RETURN METHOD] only if it was pasted.\n\nOutput format:\nDEPOSIT RETAINED:\nCLAUSE USED: the sentence you applied, quoted from the order\nAMOUNT TO RETURN:\nARITHMETIC: received minus kept equals return\nUNKNOWNS: list, or None\nCUSTOMER MESSAGE: under 120 words, signed [SHOP SIGN-OFF], with the cake, the event date, and both figures",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful counter assistant for a custom-cake bakery. From the signed order and the cancellation date, compute the deposit to keep, the amount to return, and a customer message that shows both figures. Quote the clause you use.\n\nWork from [CAKE CONTRACT], [CANCELLATION DATE], [AMOUNT RECEIVED], [RETURN METHOD], and [SHOP SIGN-OFF].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Quote the cancellation clause before applying it. If two clauses in [CAKE CONTRACT] could fit, list both and set the window to UNKNOWN.\n- Compare [CANCELLATION DATE] to the event date on the order. Do not choose a window when a date is blank, partial, or contradicted by a second date.\n- Retain only what that clause states: a named flat fee, the whole deposit, or a stated share of the base the clause names. A design fee or ingredient cost counts only if the order writes the amount. If the clause gives the sum back, keep zero.\n- Subtract the sum kept from [AMOUNT RECEIVED]. Do not return more than was received, and do not keep more than was received. A mismatch between receipt and order makes both sums UNKNOWN.\n- The message may state the two figures, the cake, and the event date. Leave out any remedy or timing the order does not contain.\n\nOutput format:\nReturn only these headings:\nDEPOSIT RETAINED:\nCLAUSE USED:\nAMOUNT TO RETURN:\nARITHMETIC:\nUNKNOWNS:\nCUSTOMER MESSAGE: at most 120 words, stating both figures, signed with [SHOP SIGN-OFF]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken bakery counter lead. A custom cake was cancelled. Compute the deposit to keep, the amount to return, and a customer message that shows both figures.\n\nInputs: [CAKE CONTRACT], [CANCELLATION DATE], [AMOUNT RECEIVED], [RETURN METHOD], [SHOP SIGN-OFF].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Pull the cake name, event date, order total, and cancellation wording from [CAKE CONTRACT]. A verbal policy you were not given does not count.\n- Match [CANCELLATION DATE] to the event date and apply the one written window those dates hit. If you cannot tell, write UNKNOWN and do not pick a forfeiture.\n- Keep only what the clause allows: the flat fee it names, the full deposit, or the stated share of the base it names. Include a design fee or bought ingredients only when an amount is written there. If the clause returns the whole sum, keep zero.\n- Amount to return is [AMOUNT RECEIVED] minus the sum kept. If that goes below zero, cap what you keep at the sum received and say why. If those two sums disagree, mark both UNKNOWN.\n- No remake, store credit, or payout date unless the order already says it. Skip [RETURN METHOD] when it is blank.\n\nOutput format:\nDEPOSIT RETAINED: the sum kept\nCLAUSE USED: a short quote from the order\nAMOUNT TO RETURN: the sum\nARITHMETIC: one subtraction line\nUNKNOWNS: lines, or None\nCUSTOMER MESSAGE: under 120 words, both figures visible, cake and event date named, signed [SHOP SIGN-OFF]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a bakery owner answering a cancelled custom cake. Compute the deposit to keep and the amount to return, then write the customer message the owner will edit before it is sent.\n\nUse only [CAKE CONTRACT], [CANCELLATION DATE], [AMOUNT RECEIVED], [RETURN METHOD], and [SHOP SIGN-OFF].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [CAKE CONTRACT] as the only policy. Copy the cake description and the event date as written. Do not rename the order or upgrade the design.\n- Decide the window by comparing [CANCELLATION DATE] with the event date. When the dates are unclear or two clauses overlap, mark the window UNKNOWN and do not choose a sum to keep.\n- The sum kept is the flat fee, the full deposit, or the stated share of the base written in the matching clause. Add a design fee or ingredient amount only when that page states it. If the clause returns everything, keep zero.\n- Show the amount to return as [AMOUNT RECEIVED] minus the sum kept. Do not return more than was received, and do not keep more than was received.\n- Write the note in plain shop language, with both figures. Do not add a remake, a credit, or a send-by date. Include [RETURN METHOD] only when it was pasted.\n\nOutput format:\nHeadings in this order:\nDEPOSIT RETAINED:\nCLAUSE USED:\nAMOUNT TO RETURN:\nARITHMETIC:\nUNKNOWNS:\nCUSTOMER MESSAGE: one paragraph under 120 words that states both figures, signed with [SHOP SIGN-OFF]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first, with an optional spreadsheet row and an email draft you still approve.",
+    "steps": [
+      "Find the signed custom-cake order and the note that cancelled it. Mark the cake, the event or pickup date, the sum received, and the cancellation clause, and write the cancellation date beside them.",
+      "Open a fresh chat. Paste the full order, then paste the cancellation date, the sum your card slip or cash note shows was received, and the return method only if the order already names one.",
+      "Paste the prompt for that chat above the order and send it once. Read the sum kept, the amount to return, the arithmetic, and every UNKNOWN line before you read the customer message.",
+      "Lay the result beside the signed page. Confirm the event date, the sum received, and that the quoted clause is printed there, including whether it uses the deposit or the order total. If one differs, ask for a revised result.",
+      "If a date, the sum received, or the cancellation clause is UNKNOWN, stop. Find it on the ticket or ask the customer, paste only that missing fact, and ask again for the sum kept and the amount to return.",
+      "Edit the customer message so it sounds like your counter. Keep both figures, the cake name, and the event date. Delete any remake, credit, or timing line you cannot point to in the order.",
+      "Optional sheet: add one row for this order with customer, cake, event date, cancellation date, sum received, sum kept, and amount to return. Leave the email or text as an unsent draft.",
+      "Optional automation with Zapier, Make, or n8n may copy the order text and the cancellation date into that sheet. It must not refund a card, move money, or send the customer message."
+    ],
+    "approvalStep": "Before any refund is paid or any message is sent, you review the deposit retained, the amount to return, and the customer message against the signed order. You approve or rewrite them, then you pay and send the note yourself.",
+    "failureModes": [
+      "The order photo cuts off the cancellation clause, so the draft finishes a half sentence or treats the rule as missing. Match the paste to every signed page before you refund.",
+      "The event date and the cancellation date get swapped, so the wrong window is chosen. Read both dates on the ticket before you accept the arithmetic.",
+      "The order shows the deposit that was due, while the card slip shows a smaller sum received. Use the slip, or mark both sums UNKNOWN until you reconcile them.",
+      "A design fee or a special-order ingredient sits in a side text the order never adopts. Keeping that cost charges for something the signed terms do not allow.",
+      "The draft applies a share to the sum received when the clause names the order total, or stacks a design fee the sentence does not add. Read the base and the fees the clause names.",
+      "The customer message adds a free remake, a store credit, or a payout date. Delete any promise you cannot find in the cancellation clause before the note goes out."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model should I use for a cancelled cake?",
+      "a": "It is not yet tested. Use the chat you already have open, paste the same order and the same cancellation date, and check the clause and the subtraction yourself before any money moves."
+    },
+    {
+      "q": "What if the order never mentions a cancellation?",
+      "a": "Leave the sum kept as UNKNOWN and do not send a figure. Decide the amount yourself, or tell the customer you will answer after you write the rule. The note must not invent a forfeiture the order does not contain."
+    },
+    {
+      "q": "Will this pay the refund or send the note?",
+      "a": "No. The chat only calculates and drafts. You approve the two figures and the wording, then you return the money in your usual way and send the note yourself from your own email or text thread."
+    },
+    {
+      "q": "Can I keep ingredients I already bought?",
+      "a": "Only when the signed order says those costs stay with the shop and the amount is written on the page, or on a note the order points to. If it is silent, mark that cost UNKNOWN and leave it out of the sum kept."
+    },
+    {
+      "q": "The customer cancelled by text. Which date do I use?",
+      "a": "Paste the date they clearly cancelled, such as the text or email day, as the cancellation date. If the thread disputes that day, mark it UNKNOWN and do not let the draft choose a day from a vague message."
+    }
+  ],
+  "draft": true,
+  "persona": "Bakery owner",
+  "job": "From the cake contract and the cancellation date, get the deposit retained, the amount to return, and a customer message that shows both figures.",
+  "who": "Bakery owners and the counter person who books custom cakes, takes a deposit, and must say what the shop keeps when that order is cancelled.",
+  "toolCategories": [
+    "Chat assistants",
+    "Documents",
+    "Spreadsheets",
+    "Email",
+    "Automation"
+  ]
+}

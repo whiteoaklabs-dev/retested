@@ -1,0 +1,84 @@
+{
+  "slug": "recap-a-chat-so-the-email-thread-starts-warm",
+  "title": "Recap a chat so the email thread starts warm",
+  "category": "Support",
+  "summary": "A live chat agent pastes the widget transcript, the mailbox already stored on the chat profile, the case id, the issue label, and a sign-off name. The model returns one email recap so the thread starts warm: a short opener that this continues the same chat, each decision already made with who stated it, what the visitor already provided, what is still open, and the next step. Requests are not rewritten as approvals. Screenshot contents, internal whispers, and a missing mailbox stay UNKNOWN. You review those points against the transcript, set the To address, and send the note yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a live chat agent drafting the email that continues a finished widget conversation. Recap the chat so the thread starts warm and the person does not start over. Work only from [CHAT TRANSCRIPT], [CUSTOMER EMAIL], [CASE ID], [ISSUE LABEL], and [AGENT SIGN-OFF].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Repeat only points the transcript already settled, and say whether the visitor or the agent stated each one\n- Do not ask them to restate the issue, an order number, or any answer already given in the chat\n- Do not treat a request as an approval. A wish for a refund, replacement, waiver, or date stays open unless the agent agreed in the transcript\n- Leave screenshot contents, internal whispers, and a mailbox nobody typed as UNKNOWN\n- Open by saying this continues the same chat. Sign with [AGENT SIGN-OFF]. Add no new offer, discount, or deadline\n\nOutput format:\nSUBJECT: Continuing your chat on [ISSUE LABEL], case [CASE ID]\nEMAIL: under 180 words with headings Decided, Already on file, Still open, Next\nPRIVATE: one UNKNOWN gap per line, kept out of the customer text\nDo not send the email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful live-chat correspondent. Turn [CHAT TRANSCRIPT] into an email recap so the thread starts warm and nobody has to begin again. Also use [CUSTOMER EMAIL], [CASE ID], [ISSUE LABEL], and [AGENT SIGN-OFF]. Separate lines the visitor saw from internal comments.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Put a point under Decided only when the transcript shows it was agreed, and name who stated it\n- Keep internal whispers, tags, and teammate asides out of the customer text; list them under PRIVATE\n- Do not restart troubleshooting or ask again for facts already on file, such as an order number or account email\n- A request is not a decision. If the visitor asked for a refund or a replacement and the agent did not agree, place that item under Still open\n- If the profile mailbox and the transcript disagree, show both and mark the To address UNKNOWN for a human to choose\n\nOutput format:\nReturn sections in order: Subject, Decided, Already on file, Still open, Next, PRIVATE.\nKeep the customer-facing email under 180 words. Subject must name the issue and the case id.\nEnd PRIVATE with any gap a human must resolve before sending. Do not send anything.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken live chat agent. Read [CHAT TRANSCRIPT] and write the email that picks up where the chat left off. The thread should start warm. The person should not have to start over. Use [CUSTOMER EMAIL], [CASE ID], [ISSUE LABEL], and [AGENT SIGN-OFF] as given.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Copy settled points only. Name who said each one, visitor or agent, in everyday words\n- Skip any question they already answered. Do not walk them back through a fix the chat already finished\n- If they asked for a refund, replacement, waiver, or date and the agent never agreed, say it is still open\n- Do not guess a mailbox from a display name. If [CUSTOMER EMAIL] is blank, mark it UNKNOWN\n- No new promise, no discount, and no deadline that the messages did not lock. Sign with [AGENT SIGN-OFF]\n\nOutput format:\nSUBJECT: one line with the issue label and the case id\nEMAIL: under 180 words, headings Decided, Already on file, Still open, Next\nPRIVATE: gaps labelled UNKNOWN, one per line\nSay that this draft is not sent.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a live chat agent who must move a widget conversation into email. Build a recap from [CHAT TRANSCRIPT], [CUSTOMER EMAIL], [CASE ID], [ISSUE LABEL], and [AGENT SIGN-OFF] so the thread starts warm and the visitor does not start over. A human will approve it before it is sent.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Under Decided, one line per settled point, with who stated it and a short pointer to the chat line, such as the timestamp or the speaker name\n- Under Already on file, list order numbers, account emails, and answers already given so they are not requested again\n- Under Still open, list only unresolved items. Move anything the agent already closed out of this section\n- Leave screenshot contents and internal whispers as UNKNOWN in the customer text\n- Sign with [AGENT SIGN-OFF]. Do not invent a send time, a ticket status change, or a mailbox\n\nOutput format:\nSubject line that continues the chat, naming the issue and the case id.\nEmail body under 180 words with headings Decided, Already on file, Still open, Next.\nThen a block labelled PRIVATE with UNKNOWN gaps and a line AGENT MUST APPROVE: To address, each decided point, still-open items.\nDo not send, schedule, or close the chat.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Zapier, Make, or n8n saves a Gmail or helpdesk draft when a chat is closed, with sending left off.",
+    "steps": [
+      "In your helpdesk, export the live chat as plain text with visitor name, agent name, and timestamps still visible. Open a fresh model chat, paste one prompt from this playbook, and place that export in [CHAT TRANSCRIPT].",
+      "Fill [CUSTOMER EMAIL] only with a mailbox already stored on the chat profile or typed in the transcript. Fill [CASE ID] and [ISSUE LABEL] from the ticket. If no mailbox is on file, type UNKNOWN rather than guessing from a display name.",
+      "Type [AGENT SIGN-OFF] as the name you will sign. If your desk uses a chat-to-email macro, paste its greeting and sign-off rules under the transcript so the recap follows that house style.",
+      "Run the prompt. Read each Decided bullet against the transcript. Keep a bullet only when you can point to the line that settled it. Delete any refund, replacement, fee waiver, or date that the chat never closed.",
+      "Read Already on file and Still open. Cut any question the visitor already answered, including order numbers and account emails. If a closed point landed under Still open, move it. Leave a mentioned screenshot as UNKNOWN unless the text describes it.",
+      "Copy the customer-facing sections into the same ticket as an unsent reply, or into a Gmail draft. Put the verified mailbox in To. Park the private UNKNOWN list in an internal note so the visitor never sees it.",
+      "Optional agent mode: with Zapier, Make, or n8n, pass a chat-closed export into the prompt and save the result as a Gmail or helpdesk draft. Leave sending off, and repeat the decision check on every draft before you send it yourself."
+    ],
+    "approvalStep": "You review the draft against the live chat transcript and approve the To address, every decided point, and each still-open item before sending. You send the email yourself from the ticket. Nothing is sent or scheduled until that check is done.",
+    "failureModes": [
+      "Start-over recap: the email asks the visitor to describe the issue again or repeats a fix the chat already finished. Watch for 'please explain' and for instructions that begin at the first step.",
+      "Invented promise: a refund, replacement, waiver, or arrival date shows up with no matching line. If you cannot point to that line in the transcript, delete the sentence.",
+      "Request written as a decision: the visitor asked for a refund and the draft says it was approved. Tie each Decided line to the agent message, not to the ask.",
+      "Display name in the To field: a chat handle is used as a mailbox. Send only to an address stored on the profile or typed in the transcript.",
+      "Whisper leaked: an internal tag, a sentiment label, or a note to a teammate appears in the customer text. Keep those lines in the private note only.",
+      "Earlier ticket mixed in: a decision from a previous case is treated as settled here. Use this transcript alone unless you meant to paste the other case."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste from the live chat?",
+      "a": "Export the widget transcript as text with names and timestamps, plus the case id and the issue label from the ticket. Add the mailbox only if it is already on the profile or written in the chat. Add your sign-off name. Do not paste a different ticket unless you mean this email to cover that case too."
+    },
+    {
+      "q": "Does this send the email for me?",
+      "a": "No. Paste mode returns a draft you copy into the ticket or into Gmail. You choose the To address and you send it. If you connect Zapier, Make, or n8n, let that flow create a draft only and leave sending off until you have checked every decision against the transcript."
+    },
+    {
+      "q": "What if the chat never collected an email address?",
+      "a": "Mark the customer email placeholder as UNKNOWN and do not invent one from a first name or a chat handle. The draft can still recap the decisions for you to hold. Look the mailbox up in your own records, or ask for it in the widget, before you put anyone in the To field."
+    },
+    {
+      "q": "Which model is best for this recap?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the prompt for the chat you already have, and keep the draft that repeats only decisions present in the transcript, marks gaps UNKNOWN, and does not make the visitor start over."
+    },
+    {
+      "q": "What if a decision lived only in an internal whisper?",
+      "a": "Leave it out of the customer email. The visitor did not see that line, so treating it as agreed can surprise them or contradict what they heard. Put it in the private note and decide yourself whether a teammate must confirm it before you send."
+    }
+  ],
+  "draft": true,
+  "persona": "Live chat agent",
+  "job": "Turn a live chat transcript into an email that repeats the decisions already made so the customer does not start over.",
+  "who": "Live chat agents on a small support desk who finish a widget conversation and must continue it by email, repeating decisions already made so the visitor does not retell the issue.",
+  "toolCategories": [
+    "AI chat models",
+    "Helpdesk and live chat",
+    "Email",
+    "Workflow automation"
+  ]
+}

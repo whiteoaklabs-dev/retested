@@ -1,0 +1,83 @@
+{
+  "slug": "shape-interview-notes-into-a-customer-story-email",
+  "title": "Shape interview notes into a customer story email",
+  "category": "Marketing & SEO",
+  "summary": "For a design agency owner who has raw interview notes but no time to write them up, this playbook turns a pasted client interview and one client-approved outcome statement into a ready-to-review story email. The agent extracts the challenge, decision, and result in the client wording, then drafts a headline, a short narrative, a pull quote taken only from the notes, and one clear ask. You stay in control by confirming the outcome wording, checking every quote and claim against the notes, and approving the final draft before it is pasted into your email tool.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a story editor for a design agency owner turning client interviews into email drafts.\nUse only the material I paste below. Turn it into one customer story email I can review and send.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Use only the outcome wording in [CLIENT-APPROVED OUTCOME] and do not strengthen or broaden it\n- Take the pull quote word for word from [INTERVIEW NOTES] and name the speaker; if no usable line exists, mark it UNKNOWN\n- Keep the story in this order: situation, problem, what we did, outcome, lesson for the reader\n- Write in plain, specific language for [AUDIENCE] and keep the full email under 450 words\nOutput format:\n1. Headline: one line, no hype\n2. Subject line options: give two options\n3. Email body: short paragraphs in the order above\n4. Pull quote: exact quote plus speaker name and role\n5. One ask: one sentence using [YOUR ONE ASK]\n6. Missing or unclear: list anything marked UNKNOWN\nInputs:\n[INTERVIEW NOTES]\n[CLIENT-APPROVED OUTCOME]\n[CLIENT NAME AND BUSINESS TYPE]\n[YOUR ONE ASK]\n[AUDIENCE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful email copy editor helping a design agency owner shape client interview notes into a customer story email.\nWork only from what I provide. Do not fill gaps from general knowledge about this client, sector, or project type.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Repeat the outcome only as written in [CLIENT-APPROVED OUTCOME]; do not add causes, timeframes, or scope that are not stated\n- Choose the pull quote verbatim from [INTERVIEW NOTES]; if the notes are paraphrased bullets with no direct line, write Pull quote: UNKNOWN\n- Flag any sentence you cannot trace back to the notes with [CHECK] so I can verify it\n- Keep the email under 450 words and end with exactly one ask, not two\nOutput format:\nHeadline:\nEmail body: opening hook, client situation, problem, project decision, outcome as approved, closing lesson\nPull quote: with speaker attribution or UNKNOWN\nOne ask: based on [YOUR ONE ASK]\nEditor notes: brief list of [CHECK] items and unknowns\nInputs:\n[INTERVIEW NOTES]\n[CLIENT-APPROVED OUTCOME]\n[CLIENT NAME AND BUSINESS TYPE]\n[YOUR ONE ASK]\n[TONE NOTES]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct story editor for a design agency owner who needs one sendable customer story email from interview notes.\nStick to the pasted notes and the approved outcome. Your job is shaping, not adding.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Do not rewrite [CLIENT-APPROVED OUTCOME] into a bigger claim; quote or closely paraphrase it and label it as client-approved\n- Pull quote must be copied exactly from [INTERVIEW NOTES] with the speaker named; no clean-up beyond removing filler words, and mark edits with brackets\n- If the notes conflict on facts, names, or project order, stop and list the conflict instead of picking a version\n- Use short paragraphs and plain words a busy owner at [AUDIENCE] can scan quickly\nOutput format:\n1. Headline\n2. Email body under 450 words: hook, before, what changed, what we did, approved outcome\n3. Pull quote: exact line and attribution\n4. One ask: one sentence from [YOUR ONE ASK]\n5. Conflicts or UNKNOWN items\nInputs:\n[INTERVIEW NOTES]\n[CLIENT-APPROVED OUTCOME]\n[CLIENT NAME AND BUSINESS TYPE]\n[YOUR ONE ASK]\n[AUDIENCE]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a story editor inside a design agency workflow, drafting a customer story email from interview notes for owner review.\nUse only the inputs below and keep a clear trail so the owner can check every claim before sending.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- The only result claim allowed is [CLIENT-APPROVED OUTCOME] exactly as the client approved it; do not add metrics, rankings, or comparisons\n- Pull quote must come verbatim from [INTERVIEW NOTES]; attribute it to the speaker and role, or mark it UNKNOWN if no direct quote exists\n- Keep names, project steps, and deliverables exactly as named in the notes; do not rename services or infer tools used\n- Draft for [AUDIENCE] in the owner voice: helpful and specific, no hype phrases\nOutput format:\n- Headline: one line\n- Email body: under 450 words in five short sections labelled Situation, Problem, Decision, Outcome, Takeaway\n- Pull quote: verbatim line plus attribution\n- One ask: single closing sentence using [YOUR ONE ASK]\n- Source check: list each factual claim and the note line it came from\nInputs:\n[INTERVIEW NOTES]\n[CLIENT-APPROVED OUTCOME]\n[CLIENT NAME AND BUSINESS TYPE]\n[YOUR ONE ASK]\n[AUDIENCE]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any major AI chat assistant in paste-in mode to start; no code, connector, or automation is needed for the first draft.",
+    "steps": [
+      "Gather your source pack before drafting: interview transcript or bullet notes, the exact outcome sentence the client approved in writing, client name and business type, and your one ask for this email.",
+      "Open your chosen AI chat assistant, paste one of the prompts from this playbook, and replace every placeholder with your source pack. Do not add background from memory that is not in the notes.",
+      "Read the draft against the notes line by line. Check names, project steps, the pull quote wording and speaker, and that the outcome matches the client-approved sentence with nothing added.",
+      "Send the headline, pull quote, and outcome paragraph to the client for written permission to publish. Note any edits they require and update the approved outcome wording before you reuse it.",
+      "Revise the draft once with the client edits, shorten anything that repeats, and confirm the email still ends with exactly one ask that matches the action you want readers to take next.",
+      "Paste the approved final draft into your email marketing tool, add the subject line, preview it on mobile and desktop, and save it as a draft rather than scheduling it straight away.",
+      "Optional automated mode: store approved story drafts in a spreadsheet or doc folder by client and project type, then use an automation tool category such as workflow automation to file new transcripts for drafting."
+    ],
+    "approvalStep": "You approve twice before anything is sent: first you verify the draft against the interview notes, then the client approves the headline, pull quote, and outcome wording in writing. Only after both checks do you paste the final version into your email tool and press send yourself.",
+    "failureModes": [
+      "Invented pull quote: the model smooths paraphrased bullet notes into a polished quote the client never said. Compare the quote word for word against the transcript before use.",
+      "Outcome drift: an approved outcome gets rewritten as a stronger or broader claim. Keep the client-approved sentence visible while editing and reject any added scope or cause.",
+      "Missing permission: the story is accurate but the client has not agreed to be named. Do not schedule the email until name, business, quote, and outcome use are confirmed in writing.",
+      "Mixed-up projects: notes from two interviews or project phases get merged into one story. Label each source pack by client and date and draft one story at a time.",
+      "Two asks creep in: the closing asks readers to reply, book, and read more at once. Cut to the single ask you chose in the inputs so readers have one next step."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What exactly should I paste in as interview notes?",
+      "a": "Paste the transcript if you have one, or your bullet notes with the client name, business type, project, and speaker names kept in. Keep direct client phrases marked as quotes so the model can tell verbatim lines from your paraphrases and does not turn a summary into a pull quote."
+    },
+    {
+      "q": "What counts as an outcome the client will stand behind?",
+      "a": "It is one sentence the client has approved in writing, in words they are comfortable seeing published with their name attached. Bring that exact sentence to the prompt. If the client has only described the result loosely in conversation, get the tightened wording approved before you draft the email around it."
+    },
+    {
+      "q": "Which model is best for this story email task?",
+      "a": "It is not yet tested for this exact workflow, so there is no best model to recommend here. Use the same source pack and prompt structure in the assistant you already use, then judge the draft on quote accuracy, outcome fidelity, and how little you had to correct against the notes."
+    },
+    {
+      "q": "What if my notes have no good pull quote line?",
+      "a": "Keep the pull quote marked UNKNOWN rather than letting the model create one. You can run the email without a pull quote, ask the client for a short approved line about the project, or go back to the transcript for a direct sentence. A missing quote is better than an invented one with the client name on it."
+    },
+    {
+      "q": "Can I reuse this for case studies or sales pages too?",
+      "a": "Yes, the same source pack works as a starting brief, but shorten or expand from the approved email rather than drafting fresh claims. Keep the headline and ask specific to each format, and re-check that the outcome wording and pull quote permission still cover the new place you plan to publish it."
+    }
+  ],
+  "draft": true,
+  "persona": "Design agency owner",
+  "job": "Paste interview notes and the one outcome the client will stand behind, and get a story email with a headline, a pull quote from the notes, and one ask you can send after client approval.",
+  "who": "A design agency owner who sells project work through past client stories, does client interviews personally, and writes their own newsletter or outreach emails without a copywriter or content team.",
+  "toolCategories": [
+    "AI chat assistant",
+    "Email marketing",
+    "Transcription",
+    "Workflow automation"
+  ]
+}

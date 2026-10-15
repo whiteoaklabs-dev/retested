@@ -1,0 +1,83 @@
+{
+  "slug": "plan-day-two-day-five-and-day-ten-quote-follow-ups",
+  "title": "Plan day-two, day-five, and day-ten quote follow-ups",
+  "category": "Sales",
+  "summary": "Paste your quote summary and the date you sent it, and the agent drafts three short follow-up emails timed for day two, day five, and day ten after the quote. Each email gives the homeowner a different, specific reason to reply — a quick check, a useful detail from the quote, and a low-pressure close-out — using only facts you provided. You review, edit, and send every message yourself; nothing goes out automatically.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a sales follow-up writer for a small solar installer. Your job is to turn one sent quote into three short follow-up emails the installer can review, edit, and send.\n\nPaste these inputs before sending:\nCustomer: [CUSTOMER NAME]\nQuote sent on: [DATE SENT]\nQuote summary: [QUOTE SUMMARY]\n\nRules:\n- Use only facts in [QUOTE SUMMARY]; never invent system size, price, savings, rebates, or install dates.\n- Keep each email under 110 words, plain and friendly, with no hype, urgency tricks, or pressure.\n- Give each email a different reason to reply: day two confirms receipt, day five clarifies one quote detail, day ten offers a clean yes or no.\n- End each email with one question the homeowner can answer in a single line.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nFor each of Day 2, Day 5, and Day 10, output: Send on [calendar date], Subject line, Email body, and One-line reply prompt. Finish with a short list of anything marked UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful follow-up assistant for a residential solar installer. You write calm, helpful emails that help a homeowner decide without feeling chased.\n\nUse these inputs:\nHomeowner: [CUSTOMER NAME]\nDate quote was sent: [DATE SENT]\nFull quote summary to paste: [QUOTE SUMMARY]\nOptional note: [INSTALLER NOTE]\n\nRules:\n- Pull system size, price, panel count, and timeline only from [QUOTE SUMMARY]; do not add rebates, savings, or deadlines that are not written there.\n- Keep each email under 110 words and use a warm, direct tone the installer could send as-is.\n- Make the reasons distinct: day two checks the quote arrived, day five invites questions about one specific detail, day ten asks whether to keep the quote open or close it.\n- Ask one clear question per email and avoid attachments, links, or claims you cannot support.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nDay 2 — Send on: [date] / Subject: / Body:\nDay 5 — Send on: [date] / Subject: / Body:\nDay 10 — Send on: [date] / Subject: / Body:\nEnd with: Details I did not assume.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct, no-fluff writing helper for a solar installer who needs to follow up on a quote without sounding pushy. Turn the pasted quote into three emails.\n\nInputs to fill in:\nCustomer name: [CUSTOMER NAME]\nQuote send date: [DATE SENT]\nQuote summary: [QUOTE SUMMARY]\nYour name and company: [INSTALLER NAME]\n\nRules:\n- Stick to [QUOTE SUMMARY] for every number and promise; do not invent savings, payback, rebates, financing, or install dates.\n- Keep each email under 110 words, conversational and specific, naming one real detail from the quote in each message.\n- Use three different hooks: day two is a receipt check, day five tackles a likely concern like roof, net metering, or timeline only if mentioned, day ten is a polite close-the-loop.\n- Close each email with a single easy question and sign off as [INSTALLER NAME].\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nDAY 2 (send [date]): Subject + body\nDAY 5 (send [date]): Subject + body\nDAY 10 (send [date]): Subject + body\nThen list any UNKNOWN items.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, acting as a follow-up drafting assistant for a small solar installation business. Your task is to write three emails the owner will personally review before sending.\n\nProvide these inputs:\nHomeowner: [CUSTOMER NAME]\nQuote sent: [DATE SENT]\nQuote summary: [QUOTE SUMMARY]\nPreferred sign-off: [SIGN OFF]\n\nRules:\n- Use only facts found in [QUOTE SUMMARY]; never invent pricing, system size, savings, incentive, or scheduling details.\n- Keep each email under 110 words, helpful and low-pressure, written in first person as the installer.\n- Vary the reason to reply: day two confirms delivery, day five highlights one quote detail worth a question, day ten asks for a simple keep-open or close-out answer.\n- Include the correct send date for each email, counted from [DATE SENT], and one replyable question per email.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\n## Day 2 — Send on [date]\nSubject:\nBody:\n## Day 5 — Send on [date]\nSubject:\nBody:\n## Day 10 — Send on [date]\nSubject:\nBody:\n## Unknowns to confirm",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat AI in paste mode to start; optional automation later with Gmail, Google Sheets, and Zapier, Make, or n8n.",
+    "steps": [
+      "Open your chat AI and paste one of the prompts, then fill in [CUSTOMER NAME], [DATE SENT], and [QUOTE SUMMARY] with the system size, price, and options from the quote you already sent.",
+      "Check the three send dates the AI calculates from your send date, and correct any date that lands on a weekend or holiday to the next business day you actually work.",
+      "Read each draft against your original quote line by line, fixing or deleting any number, date, or detail the AI added that is not in the quote summary you pasted.",
+      "Save the approved drafts in a simple Google Sheet or doc with columns for customer, quote date, day-two date, day-five date, and day-ten date so nothing is followed up twice.",
+      "On each send date, copy the matching email into Gmail, add your normal signature, and send it yourself; log the send date and any reply in the same sheet row.",
+      "Optional agent mode: connect Gmail and Google Sheets with Zapier, Make, or n8n to create a draft on each follow-up date, but keep sending manual so you always approve first.",
+      "After day ten, mark the row as closed, waiting, or booked for a site visit based on the reply, and do not keep emailing unless the homeowner asks you to stay in touch."
+    ],
+    "approvalStep": "You read all three drafts side by side with the original quote before anything is scheduled, and you press send yourself in Gmail on each follow-up date; no email is sent, posted, or queued automatically without that review.",
+    "failureModes": [
+      "The AI invents savings, rebates, or an install date that was never in your quote, so always compare every number in the draft to the pasted quote summary before sending.",
+      "Send dates are miscounted or fall on weekends and holidays, making the follow-up look careless; confirm each calendar date yourself when you save the drafts.",
+      "All three emails sound the same and just repeat the ask, so check that day two, day five, and day ten each carry the different reason to reply described in the prompt.",
+      "A pasted quote summary is missing price, system size, or expiry details and the AI fills the gap; watch for vague or overly specific claims and replace them with UNKNOWN.",
+      "You follow up after the homeowner already replied, declined, or booked, because the tracking sheet was not updated; check the row status before every send."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What exactly do I need to paste to get started?",
+      "a": "Paste the customer name, the date you sent the quote, and the quote summary itself — system size, panel count, total price, battery or roof notes, and any expiry date written on the quote. The fuller the summary, the less the AI has to leave as UNKNOWN, and you will have fewer edits to make before sending."
+    },
+    {
+      "q": "Can this send the three emails automatically for me?",
+      "a": "Start in paste mode where you copy each approved draft into Gmail and send it yourself. If you later connect Gmail and Google Sheets with Zapier, Make, or n8n, set the automation to create drafts on the day-two, day-five, and day-ten dates only. Keep the final send manual so you can stop a follow-up if the homeowner already replied."
+    },
+    {
+      "q": "What if the homeowner replies after the day-two email?",
+      "a": "Stop the sequence and reply personally to what they actually asked. Mark the day-five and day-ten drafts as not needed in your tracking sheet so you do not send a generic nudge after a real conversation has started. You can reuse the later drafts only if the homeowner goes quiet again and you choose to restart follow-up."
+    },
+    {
+      "q": "Which model writes the best follow-up emails?",
+      "a": "That is not yet tested for this playbook, so there is no ranking to rely on. Try the same quote summary in the prompt for your usual chat tool, compare the three drafts against your original quote for accuracy and tone, and keep the version you would be comfortable sending under your own name."
+    },
+    {
+      "q": "How do I keep the emails from sounding pushy?",
+      "a": "Keep the word limit, use the three different reasons to reply, and let the day-ten email offer a clean no as a welcome answer. Remove countdown language, added deadlines, or savings claims that are not in the quote. If a draft pressures the homeowner more than you would in person, soften that line before you approve it."
+    }
+  ],
+  "draft": true,
+  "persona": "Solar installer",
+  "job": "Turn one pasted quote summary and send date into three ready-to-edit follow-up emails for day two, day five, and day ten, each with a distinct reason to reply.",
+  "who": "Solar installers, estimators, and small sales teams who send residential quotes and lose track of follow-ups while juggling site visits, permits, and installs.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets and CRM",
+    "Automation"
+  ]
+}

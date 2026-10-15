@@ -1,0 +1,84 @@
+{
+  "slug": "write-delivery-and-follow-up-emails-for-a-free-guide",
+  "title": "Write delivery and follow-up emails for a free guide",
+  "category": "Marketing & SEO",
+  "summary": "Paste two sources: a guide outline (title, the reader it is for, and each section name with one line on what it covers) and an offer sheet (paid offer name, who it is for, what is included, and the reply you want), plus your sign-off and how they receive the guide. You get three emails: a delivery note, a next-day tip from one named section, and a softer note one week later. Each has a subject, a preview line, and a body capped at 140, 120, or 110 words. Facts you leave out stay marked UNKNOWN. You approve the wording, the real guide handoff, and the timing before anything is scheduled or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an email writer for a career coach. From [GUIDE TITLE], [GUIDE OUTLINE], [READER], [PAID OFFER], [COACH SIGN OFF], and [GUIDE LINK OR ATTACHMENT NOTE], write the delivery email, a next-day tip, and a softer note for one week later.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take the next-day tip from one named section in [GUIDE OUTLINE], and name that section under the email\n- Do not add a price, session count, promise, or outcome that is not written in [PAID OFFER]\n- Use the delivery email to hand over the guide; put the paid offer in one soft line only in the later two emails\n- Write short sentences in the coach's voice, with no hype and no push to buy on the first email\n- Copy [GUIDE LINK OR ATTACHMENT NOTE] exactly; if it is empty, put UNKNOWN on the handoff line\nOutput format:\n1. DELIVERY EMAIL - Subject (8 words or fewer); Preview (12 words or fewer); Body (140 words or fewer); Handoff line\n2. NEXT-DAY TIP - Subject; Preview; Body (120 words or fewer); Outline section used\n3. WEEK-LATER NOTE - Subject; Preview; Body (110 words or fewer); one question; one offer line the reader can ignore\n4. UNKNOWN - each missing fact on its own line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a career coach who delivers a free guide and then follows up. Use only [GUIDE TITLE], [GUIDE OUTLINE], [READER], [PAID OFFER], [COACH SIGN OFF], and [GUIDE LINK OR ATTACHMENT NOTE]. Produce the delivery email, the next-day tip, and the softer note for one week later.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If [GUIDE OUTLINE] has no section that can support a concrete tip, do not write a generic tip; mark the tip UNKNOWN\n- Treat [PAID OFFER] as a closed list: include only the offer name, audience, inclusions, and reply step that appear there\n- Keep the week-later note softer than the tip: one question about the guide, then an offer line that is easy to decline\n- Do not claim the reader will get a job, a raise, or a clearer path unless those words are in the source text\n- Preserve [COACH SIGN OFF] and the guide handoff text exactly as pasted\nOutput format:\nDELIVERY EMAIL: Subject (8 words or fewer), Preview (12 words or fewer), Body (140 words or fewer), Handoff line\nNEXT-DAY TIP: Subject, Preview, Body (120 words or fewer), Section of the outline the tip came from\nWEEK-LATER NOTE: Subject, Preview, Body (110 words or fewer), Question, Skippable offer line\nUNKNOWN ITEMS: one missing fact per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken email drafter for a career coach. Write three emails from [GUIDE TITLE], [GUIDE OUTLINE], [READER], [PAID OFFER], [COACH SIGN OFF], and [GUIDE LINK OR ATTACHMENT NOTE]: the guide delivery, a tip for the next day, and a softer note one week later.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Base the next-day tip on one named part of [GUIDE OUTLINE] and say which part you used\n- Leave out price, package length, and promises unless they are already in [PAID OFFER]\n- Make the first email a handoff, the second email one useful tip, and the third email a check-in with room to say no\n- Sound like [COACH SIGN OFF] talking to [READER], not like a newsletter blast\n- Do not replace the guide handoff with a new address or a guessed file name\nOutput format:\n1) DELIVERY EMAIL - subject (8 words or fewer), preview (12 words or fewer), body (140 words or fewer), handoff line\n2) NEXT-DAY TIP - subject, preview, body (120 words or fewer), outline section\n3) WEEK-LATER NOTE - subject, preview, body (110 words or fewer), one question, one soft offer line\n4) NEEDS CONFIRMING - list every UNKNOWN item",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a follow-up drafting helper for a career coach. Draft the guide delivery email, a next-day tip, and a softer note for one week later. Draw only from [GUIDE TITLE], [GUIDE OUTLINE], [READER], [PAID OFFER], [COACH SIGN OFF], and [GUIDE LINK OR ATTACHMENT NOTE].\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Choose the next-day tip from a single section in [GUIDE OUTLINE] and label that section so the coach can check it\n- If [PAID OFFER] says not to mention the offer, omit offer lines from all three emails\n- Keep each email to one job: handoff, then tip, then a quiet check-in\n- Match the career stage in [READER]; do not widen it to other jobs or seniority levels\n- Put the guide handoff only in the delivery email, copied exactly from [GUIDE LINK OR ATTACHMENT NOTE]\nOutput format:\nEMAIL 1 DELIVERY - Subject (8 words or fewer), Preview (12 words or fewer), Body (140 words or fewer), Handoff line\nEMAIL 2 NEXT-DAY TIP - Subject, Preview, Body (120 words or fewer), Outline section used\nEMAIL 3 WEEK LATER - Subject, Preview, Body (110 words or fewer), Question, Offer line the reader can skip\nMISSING INFO - every UNKNOWN item on its own line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode. Later, a spreadsheet of guide requests and a workflow tool may create unsent email drafts only.",
+    "steps": [
+      "Collect two sources before you open a chat model: the guide outline (title, who it is for, each section name, and one line on what that section covers) and the offer sheet (offer name, who it is for, what is included, and the reply you want).",
+      "In paste mode, paste one prompt above and replace each bracketed placeholder with text from those sources, including your name and sign-off. If the guide has no public address yet, write PDF attached or leave that handoff marked UNKNOWN.",
+      "Compare the three drafts to your outline and offer sheet line by line. Fill any UNKNOWN yourself or delete that sentence. Remove any price, session count, or career outcome that you did not supply.",
+      "Edit for your voice. Read each email aloud. Keep the delivery email on the guide itself, keep the next-day email to a single tip from one section, and make the week-later note one question plus an easy no.",
+      "Create three unsent drafts in Gmail, or your usual email tool, addressed to yourself: delivery when someone requests the guide, the tip on the next day, and the softer note one week later. Leave sending and scheduling off.",
+      "Preview each unsent draft. Check that the guide handoff text matches your real link or attachment note, the sign-off is yours, the reader description matches, and every offer line matches your sheet.",
+      "Only after you approve the drafts, schedule them yourself: delivery on the day the guide is requested, the tip on the next day, and the softer note one week later. Skip any remaining email once that person replies.",
+      "Optional agent mode: when a new row lands in Google Sheets, use Zapier, Make, or n8n to create three unsent Gmail drafts. Keep auto-send off, and cancel the later emails if that person replies."
+    ],
+    "approvalStep": "You read all three emails beside your guide outline and offer sheet, confirm the guide handoff is the real one, and approve subjects and timing before any email is scheduled or sent. Your email tool stays on drafts until you approve.",
+    "failureModes": [
+      "Invented offer details: a price, session count, or job outcome appears that is not on your offer sheet. Delete any offer line you did not write yourself.",
+      "Tip outside the guide: the next-day email teaches a step your outline never names. Confirm the cited section exists before you schedule that email.",
+      "Hard sell on day one: the delivery email pushes the paid offer instead of handing over the guide. Move offer talk to the later notes.",
+      "Broken handoff: the guide line is blank, rewritten, or given a made-up location. Paste your real handoff text or attachment note, or leave UNKNOWN.",
+      "Follow-up after a reply: the tip or week-later note still sends after the reader writes back or buys. Pause the rest of the sequence for that person."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I need to paste in before I draft?",
+      "a": "Paste the guide title, who it is for, and the outline as section names with one line on what each section covers. Also paste the paid offer name, who it is for, what they get, and the reply you want, plus your name and how the reader receives the guide. Leave out any price or package detail you have not settled."
+    },
+    {
+      "q": "Will these emails send on their own?",
+      "a": "No. Paste mode only gives you text to copy. If you later connect a spreadsheet of guide requests to an email tool through a workflow automation tool, set it to create drafts. You still approve the guide handoff, the offer lines, and the timing before a message is scheduled or sent."
+    },
+    {
+      "q": "How do I keep the week-later note from sounding pushy?",
+      "a": "Ask for one question about whether the guide was useful, and one offer line the reader can ignore. Cut countdown language, bonus language, and any line that implies they will miss out. If the draft repeats the full offer, shorten it to the offer name and the single reply you actually want."
+    },
+    {
+      "q": "Which model is best for these emails?",
+      "a": "It is not yet tested for this playbook, so there is no ranked answer. Use the model you already write with, paste the same outline and offer sheet, and keep the draft that stays closest to your facts and needs the least rewriting in your own voice."
+    },
+    {
+      "q": "What if I do not want to mention the paid offer yet?",
+      "a": "Say so in the offer placeholder by writing that the offer should not appear, or delete the offer lines after the draft is done. The delivery email should still hand over the guide, and the next-day email can be only the tip. The week-later note can stay a check-in with no offer at all."
+    }
+  ],
+  "draft": true,
+  "persona": "Career coach",
+  "job": "Describe a free guide and the paid offer it leads toward, then draft the delivery email, a next-day tip, and a softer note one week later.",
+  "who": "A career coach who sends a free guide to people weighing a job move or career change, then follows with a practical tip and a quiet note about a paid coaching offer.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

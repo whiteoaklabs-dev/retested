@@ -1,0 +1,84 @@
+{
+  "slug": "turn-a-product-changelog-into-a-customer-newsletter",
+  "title": "Turn a product changelog into a customer newsletter",
+  "category": "Marketing & SEO",
+  "summary": "Turn a rough product changelog into one customer newsletter. Paste the changelog for a single shipped version (version label or ship date, item title, tag of feature, fix, or internal, and your one-line description) plus a voice note on how you talk to subscribers (product name, you or we, words you use, words you avoid, sign-off, and the single next step). You get one email: a subject line, a preview line, a short section per customer-facing item, and that one next step. Internal work stays on a left-out list. Gaps stay UNKNOWN. You edit the voice, confirm the next step is a real screen or reply, and only then send or schedule it.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an email editor for an indie SaaS founder. From [CHANGELOG] and [VOICE NOTE], write one subscriber email. Spell the product as [PRODUCT NAME]. Use only the ask in [NEXT STEP].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep an item only when a subscriber can see or use it; list internal and unshipped items under Left out, not in the body\n- Give each kept item its own section: a plain heading and at most 40 words, with no ticket id or commit hash\n- Follow [VOICE NOTE] for you or we, word choice, and sign-off, and do not use a word that note tells you to avoid\n- Put [NEXT STEP] once at the end; do not add a second ask, a price, a discount, or a plan name\n- If a screen name or control name is not in [CHANGELOG] or [VOICE NOTE], do not create one\n\nOutput format:\nSUBJECT: 9 words or fewer\nPREVIEW: 14 words or fewer\nOPENING: two sentences\nSECTIONS: heading plus body for each kept item\nNEXT STEP: one line copied from [NEXT STEP]\nSIGN-OFF: copied from [VOICE NOTE]\nLEFT OUT: each skipped item and the reason\nUNKNOWN: one missing fact per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for an indie SaaS founder turning a rough changelog into one subscriber email. Use only [CHANGELOG], [VOICE NOTE], [PRODUCT NAME], and [NEXT STEP].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every section heading to an item title in [CHANGELOG]; if you cannot point to that title, mark the section UNKNOWN\n- Leave internal, staff-only, and unshipped items out of the body and name them under Left out\n- Cap each section body at 40 words and the opening at two sentences, in the voice the note describes\n- Do not turn a fix into a benefit, a time claim, or a plan limit unless those words are already in [CHANGELOG]\n- Close with one next step copied from [NEXT STEP] and no other ask, price, or offer\n\nOutput format:\nSUBJECT: 9 words or fewer\nPREVIEW: 14 words or fewer\nOPENING: two sentences\nSECTIONS: heading, body of at most 40 words, and the changelog item title it came from\nNEXT STEP: one line\nSIGN-OFF: from [VOICE NOTE]\nLEFT OUT: item title and reason\nUNKNOWN: one missing fact per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken email drafter for an indie SaaS founder. Write one subscriber email from [CHANGELOG] and [VOICE NOTE]. The product name is [PRODUCT NAME]. The only ask is [NEXT STEP].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Sound like the voice note, not like a commit log; strip ticket ids, commit hashes, and engineer shorthand\n- One short section per item a subscriber would notice, at most 40 words, and skip internal notes\n- Do not add a result, a plan limit, or who can use an item unless [CHANGELOG] says so\n- If [NEXT STEP] is blank, write NEXT STEP: UNKNOWN and do not invent an ask\n- If [VOICE NOTE] and [CHANGELOG] disagree, show both lines under UNKNOWN and do not pick a winner\n\nOutput format:\nSUBJECT: 9 words or fewer\nPREVIEW: 14 words or fewer\nOPENING: two sentences\nSECTIONS: heading plus body for each kept item\nNEXT STEP: one line copied from [NEXT STEP]\nSIGN-OFF: copied from [VOICE NOTE]\nLEFT OUT: skipped items\nUNKNOWN: each gap on its own line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a newsletter drafting helper for an indie SaaS founder. Prepare one subscriber email for the founder to review before it is mailed. Draw only from [CHANGELOG], [VOICE NOTE], [PRODUCT NAME], and [NEXT STEP].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Sort items into kept or left out before you draft; kept means a subscriber can see or use the change\n- Write kept items as separate sections, in changelog order, each with a heading and at most 40 words\n- Copy the sign-off and [NEXT STEP] as pasted; do not invent a screen name, a menu label, or a second ask\n- If [CHANGELOG] does not say which plan or role gets an item, mark that limit UNKNOWN or leave the item out\n- Keep [PRODUCT NAME] and every feature name spelled as pasted; do not rename them\n\nOutput format:\nSUBJECT: 9 words or fewer\nPREVIEW: 14 words or fewer\nOPENING: two sentences\nSECTIONS: heading, body, and source item title\nNEXT STEP: one line from [NEXT STEP]\nSIGN-OFF: from [VOICE NOTE]\nLEFT OUT: item title and reason\nUNKNOWN: one fact per line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode. Later, a sheet of changelog rows plus a workflow tool can open an unsent email draft only.",
+    "steps": [
+      "Collect the changelog for a single shipped version before you open a chat: version label or ship date, each item title, a tag of feature, fix, or internal, and the one-line description from your release notes, issue export, or bullet file.",
+      "On the same page, write a voice note: product name, whether you say you or we, words you use, words you avoid, your sign-off, and one next step, such as a screen to open, a reply you want, or a feature to try.",
+      "Open a chat model, paste one prompt from this playbook, and replace each bracketed placeholder with text from the changelog and the voice note. Do not add prices, plan names, or stories that are not in those pastes.",
+      "Check each section against the changelog item it cites. Move internal and unshipped items to the left-out list. Fill any UNKNOWN from your own notes, or delete that sentence so a gap is not mailed as fact.",
+      "Read the draft aloud in your voice. Cut ticket ids, commit hashes, and any avoided word. Keep one subject, one preview, the short sections, and a single next step. Delete any second ask.",
+      "Paste the wording into your newsletter tool, or into Gmail if that is how you mail subscribers, and save an unsent draft to yourself. Preview the subject, the preview line, and the next step on a phone-width screen.",
+      "Compare that unsent draft to the changelog and the voice note. When the sections match shipped, customer-facing items and the next step is real, send or schedule it yourself. If a line is still UNKNOWN, hold the send.",
+      "Optional later: store changelog rows in Google Sheets. When a row is marked ready, use Zapier, Make, or n8n to create an unsent draft in Gmail or your newsletter tool. Leave auto-send off until you approve."
+    ],
+    "approvalStep": "You review the unsent draft beside the changelog and the voice note, confirm every section is customer-facing and shipped, and approve the single next step before the email is sent or scheduled.",
+    "failureModes": [
+      "Internal leak: a migration, staff-only setting, or unshipped plan appears as a section. Drop anything tagged internal or not yet shipped.",
+      "Invented payoff: a benefit, plan limit, or customer result appears that the changelog never stated. Delete any outcome you did not write.",
+      "Stacked asks: the close tells readers to try a feature, book a call, and change plan. Keep only the next step written in your voice note.",
+      "Commit-log tone: ticket ids, commit hashes, or a banned word from your voice note remain in the subject or a section. Rewrite those lines before you send.",
+      "Audience mix-up: an admin-only or higher-plan item is phrased as if every subscriber has it. If the changelog never names who gets it, mark that UNKNOWN or cut the item."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste in as the changelog?",
+      "a": "Paste one shipped version only. Include the version label or ship date, each item title, a tag of feature, fix, or internal, and the one-line description from your release notes, issue export, or bullet doc. Leave the roadmap and anything not shipped out of the paste. If an item has no tag, add one yourself so internal work is easy to drop."
+    },
+    {
+      "q": "Will this email go out to subscribers on its own?",
+      "a": "No. Paste mode only returns text for you to copy. If you later connect a spreadsheet of changelog rows to Gmail or your newsletter tool with Zapier, Make, or n8n, set that flow to create an unsent draft. You still approve the subject, the sections, and the next step before anyone is mailed."
+    },
+    {
+      "q": "Which model is best for this newsletter?",
+      "a": "It is not yet tested for this playbook, so there is no ranked answer. Use the chat model you already write with, paste the same changelog and voice note, and keep the draft that stays closest to those facts and needs the least rewriting in your own voice."
+    },
+    {
+      "q": "What if this version is mostly small fixes?",
+      "a": "Keep one short section that names the fixes a subscriber would notice, and drop internal fixes. If nothing customer-facing shipped, do not invent a feature story. Mark the sections UNKNOWN and skip the send until you have a real item or a next step you still want to mail."
+    },
+    {
+      "q": "What if the changelog has no next step?",
+      "a": "Put the next step in the voice note yourself: one screen to open, one reply you want, or one feature to try. If you do not have one, leave that line UNKNOWN. Do not send until you choose a real action. A changelog that only lists what changed is not yet an email."
+    }
+  ],
+  "draft": true,
+  "persona": "Indie SaaS founder",
+  "job": "Paste a rough changelog and a note on how you talk to customers, and get one subscriber email with a subject line, short sections, and a single next step.",
+  "who": "An indie SaaS founder who ships in small releases, keeps a rough changelog instead of a marketing plan, and writes the subscriber email personally, with no marketer or copywriter.",
+  "toolCategories": [
+    "AI chat models",
+    "Email marketing",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

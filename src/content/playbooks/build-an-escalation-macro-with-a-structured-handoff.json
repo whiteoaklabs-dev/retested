@@ -1,0 +1,85 @@
+{
+  "slug": "build-an-escalation-macro-with-a-structured-handoff",
+  "title": "Build an escalation macro with a structured handoff",
+  "category": "Support",
+  "summary": "A tier-one agent copies a help-desk ticket export: the full message thread, private notes, ticket id, and product area. A chat model builds a structured escalation macro with four fields: the customer's goal in one sentence, what was already tried, the error text copied character for character, and one question for engineering. The agent checks each field against a message in the thread, sets anything they cannot point to as UNKNOWN, and pastes the macro into a private note. That person approves the note before the handoff is submitted, assigned, or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a tier-one support agent building a structured escalation macro for a teammate in engineering. Use only the [TICKET THREAD], the [INTERNAL NOTES], the [TICKET ID], and the [PRODUCT AREA]. Do not send or assign anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- State the customer's goal as the task they were trying to finish, in one sentence of 30 words or fewer\n- List what was already tried as actions present in the thread or the notes, oldest first, one action per line, at most eight lines\n- Copy the error text character for character, codes and paths included; if the case has no error, write UNKNOWN\n- Ask engineering one question only, 40 words or fewer, with no suspected cause and no request for a patch\n- Drop greetings, signatures, and repeated status pings\n- Do not draft a reply to the customer\n\nOutput format:\nReturn these sections and no other prose:\nTICKET:\nPRODUCT AREA:\nCUSTOMER GOAL:\nALREADY TRIED:\n- action\nERROR TEXT:\nONE QUESTION FOR ENGINEERING:\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful tier-one support agent turning a long case into a structured handoff macro. Read the [TICKET THREAD] and the [INTERNAL NOTES] for [TICKET ID] in [PRODUCT AREA]. Prepare the macro for a human to file. Do not contact engineering yourself.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If a private note conflicts with a public message, keep the public wording for what the customer hit, and record the conflict under MISSING\n- Write the goal as the outcome the customer wanted, one sentence, 30 words or fewer, not a restatement of their frustration\n- Record already-tried items only when the thread shows someone did them, in chronological order, at most eight lines\n- Reproduce the error text exactly, including punctuation; do not translate a code into a plain-language summary\n- Limit the engineering ask to one sentence of 40 words or fewer that a specialist can accept or deny\n- Leave out a root cause, a severity label, and any customer apology\n\nOutput format:\nReturn only these headings:\nTICKET:\nPRODUCT AREA:\nCUSTOMER GOAL:\nALREADY TRIED:\n- action\nERROR TEXT:\nONE QUESTION FOR ENGINEERING:\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken tier-one support agent. From the [TICKET THREAD], the [INTERNAL NOTES], the [TICKET ID], and the [PRODUCT AREA], build a structured escalation macro. Stop at the draft.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Put the customer's goal in one sentence of 30 words or fewer: the job they wanted done, not the mood of the thread\n- Already tried means steps a person actually took, oldest first, at most eight, with no advice about what to try next\n- If two different errors appear, copy both in order and do not choose a cause\n- If no error was pasted or typed, set ERROR TEXT to UNKNOWN rather than describing a screenshot\n- One question for engineering, 40 words or fewer, naming the action and the screen or setting when the thread has them\n- No patch suggestion, no queue assignment, no note written as if the customer will read it\n\nOutput format:\nReturn these sections only:\nTICKET:\nPRODUCT AREA:\nCUSTOMER GOAL:\nALREADY TRIED:\n- action\nERROR TEXT:\nONE QUESTION FOR ENGINEERING:\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a structured escalation macro that a tier-one agent will review before it is filed. Work from the [TICKET THREAD], the [INTERNAL NOTES], the [TICKET ID], and the [PRODUCT AREA]. The macro is a private note, not a message to the customer or to engineering.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the customer's goal to one sentence under 30 words naming the task they were attempting\n- Pull already-tried lines only from messages and notes, in time order, eight lines maximum, skipping duplicate retellings of the same attempt\n- Copy error text exactly; if a screenshot is mentioned but the words were not typed, write UNKNOWN\n- Write one engineering question under 40 words that could be answered without inventing a fix\n- If the notes are empty, do not infer what the agent tried off-stage\n- Do not add a greeting, a sign-off, or a promise about when engineering will reply\n\nOutput format:\nReturn these headings and nothing after them:\nTICKET:\nPRODUCT AREA:\nCUSTOMER GOAL:\nALREADY TRIED:\n- action\nERROR TEXT:\nONE QUESTION FOR ENGINEERING:\nMISSING:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. Optional help desk plus Zapier, Make, or n8n to save a private draft note only.",
+    "steps": [
+      "From your help desk, export or copy the full conversation: each customer message, each public reply, and every private note. Put the ticket id and product area on line one, and keep timestamps so attempt order stays visible.",
+      "If the failure is only in a screenshot, type the visible message, code, and button labels under a heading ERROR TEXT. Leave any unreadable word as UNKNOWN. Do not describe the image in your own words.",
+      "Open ChatGPT, Claude, Grok, or Muse and paste that model's prompt. Replace [TICKET THREAD], [INTERNAL NOTES], [TICKET ID], and [PRODUCT AREA]. If private notes are empty, type NONE in that slot.",
+      "Compare the four fields with the conversation. The goal must be the task the customer was trying to finish. Each tried line must name an action a person took. The error text must match the typed message, not a cleaned-up version.",
+      "Read the engineering ask out loud. It should be one sentence a specialist can answer. If it bundles a cause, a second ask, or a requested code change, cut it down to the single question you still cannot answer.",
+      "Scan the macro for passwords, full card numbers, and password-reset links that were pasted into the conversation. Delete those strings. Keep the error code and the screen name.",
+      "When every kept line points at a real message, paste the macro into a private note or the escalation field. Do not submit, assign, or notify anyone until you have reread the goal, the tried steps, and the error text.",
+      "Optional agent mode: in Zapier, Make, or n8n, start when a ticket is tagged for escalation. Pull the public conversation and private notes, run the same prompt, and write the macro to a private draft note only.",
+      "Open that draft note and repeat the four-field check. Fill UNKNOWN lines yourself or ask the customer before you escalate. Submit or assign the ticket only after the note matches the conversation."
+    ],
+    "approvalStep": "You review the macro and approve the customer's goal, the steps already tried, the error text, and the single question before anyone submits the escalation, assigns the ticket, or notifies engineering. A chat reply is not approval.",
+    "failureModes": [
+      "Smoothed error: the draft rewrites a code or dialog into plain language. Watch for error text whose characters do not match what the customer pasted, and restore the original before you approve.",
+      "Future steps listed as history: the draft adds actions nobody took. Watch for a tried line that is absent from customer messages, your replies, and private notes, and delete it.",
+      "Two asks in one sentence: a repro question is joined to a request for a patch. Watch for a second request after the first, and keep only the question you need answered.",
+      "Complaint treated as the goal: the macro says they want the error gone when they were trying to finish a task such as an export. Watch for a goal with no action they attempted.",
+      "Secrets copied forward: a password, full card number, or reset link from the conversation lands in the macro. Watch for those strings and remove them before the note is saved.",
+      "Private note goes public: the automation posts the macro as a customer reply or pings a queue on the tag. Watch Zapier, Make, or n8n for a send, assign, or notify action, and keep the flow on a draft note."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for this escalation macro?",
+      "a": "It is not yet tested, so there is no ranking to follow. Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies the failure message exactly and asks one question you can trace to a message in the conversation."
+    },
+    {
+      "q": "What if the conversation has no error text?",
+      "a": "Leave that field as UNKNOWN. Do not borrow wording from a help article, a similar case, or a guess about what the dialog usually says. You can still escalate with the goal, the steps already tried, and a question that says the failure message was never provided."
+    },
+    {
+      "q": "Should I paste my own summary instead of the thread?",
+      "a": "Paste the full conversation and the private notes. A summary you wrote already hides which attempts happened. The macro is the short version engineering should read; the conversation is the only source the model may use."
+    },
+    {
+      "q": "Can this macro name the root cause?",
+      "a": "No. The handoff carries the goal, what was already tried, the error text, and one question. A suspected cause or a code change does not belong in those fields. Engineering answers the question after you submit the note you approved."
+    },
+    {
+      "q": "What makes the engineering question specific enough?",
+      "a": "Name the action, the screen or setting, and the failure message when you have them, and ask one thing you cannot answer yourself. A usable ask is whether a named permission blocks the export the customer attempted. A vague please-look request is too thin to send."
+    }
+  ],
+  "draft": true,
+  "persona": "Tier-one support agent",
+  "job": "A long ticket thread goes in. An escalation macro comes out with the customer's goal, what was already tried, the error text, and one question for engineering.",
+  "who": "Tier-one support agents who must hand a long ticket to engineering when a bug, a permission gap, or a broken flow is past their tools, and who need a structured macro instead of forwarding the whole conversation.",
+  "toolCategories": [
+    "Helpdesk and ticketing",
+    "AI chat models",
+    "Workflow automation"
+  ]
+}

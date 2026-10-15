@@ -1,0 +1,85 @@
+{
+  "slug": "split-a-youtube-chapter-list-into-native-social-posts",
+  "title": "Split a YouTube chapter list into native social posts",
+  "category": "Marketing & SEO",
+  "summary": "Paste the YouTube description that already holds your timestamped chapter list, plus a trainer note: who the session is for, the equipment you used, the call to action you want, chapters to hold back, and claims you will not make. The agent splits that list into four native social drafts that do not share chapters: a LinkedIn post, a short-video caption, a YouTube community post, and a one-line teaser for a story frame or pinned comment. Each draft names the titles and timestamps it used, keeps sets and moves only when they appear in your notes, and marks gaps UNKNOWN. You check that no chapter is reused and that no injury or body-change line slipped in, then you post each one yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a social editor for a home workout creator. Split one YouTube description into four native posts that do not share chapters. Use only [VIDEO DESCRIPTION] and [TRAINER NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- A chapter is a timestamped title line in [VIDEO DESCRIPTION]. Skip lines with no timestamp.\n- LinkedIn gets two training chapters, the short-video caption one named exercise, the community post one warm-up or modification, and the teaser one leftover training chapter. No title in two posts.\n- Copy titles and timestamps as pasted. Do not rename a move.\n- Do not add sets, reps, rest, weights, or easier versions unless [VIDEO DESCRIPTION] or [TRAINER NOTES] already states them.\n- Refuse injury, medical, weight-loss, and body-change claims, plus any refusal in [TRAINER NOTES]. Held-back chapters go under UNUSED.\n- If a slot has no matching chapter, mark that post UNKNOWN instead of reusing a title.\n- LinkedIn says who the session is for, the caption names one move, the community post asks one question the source can answer, and the teaser is one sentence with its timestamp for a story frame or pinned comment.\n\nOutput format:\nReturn these sections:\nLINKEDIN POST - chapters used - 160 words or fewer\nSHORT-VIDEO CAPTION - chapter used - 40 words or fewer\nCOMMUNITY POST - chapter used - 90 words or fewer\nTEASER - chapter used - 25 words or fewer\nUNUSED: intro, subscribe, and held-back lines\nUNKNOWN: one gap per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting editor for a home workout creator who must not give away the same chapter twice. Work only from [VIDEO DESCRIPTION] and [TRAINER NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Pull chapters solely from timestamped lines in [VIDEO DESCRIPTION]. A line without a time is not a chapter.\n- Keep titles exclusive: LinkedIn gets two plan or form chapters, the short-video caption gets one exercise title, the community post gets one warm-up or scaling title, and the teaser gets one remaining training title.\n- Write the teaser as one sentence for a story or pinned comment, and include its timestamp.\n- If [TRAINER NOTES] holds a title back, that title is off limits for every post. Park it under UNUSED with the reason held back.\n- Quote timestamps and titles as pasted. Do not invent a low-impact option, a rep count, a load, or a rest period.\n- Drop medical, injury, weight-loss, and body-change lines even when the chapter title sounds like a promise. Use the move, not the promise.\n- If fewer than four distinct training titles exist, leave the extra post as UNKNOWN instead of repeating one.\n\nOutput format:\nUse these headings.\nLINKEDIN POST - chapters used (title + timestamp) - text of 160 words or fewer\nSHORT-VIDEO CAPTION - chapter used - text of 40 words or fewer\nCOMMUNITY POST - chapter used - text of 90 words or fewer\nTEASER - chapter used - text of 25 words or fewer\nThen UNUSED and UNKNOWN, one item per line.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken editor for a home workout creator. Turn one YouTube chapter list into four native social posts. Sources allowed: [VIDEO DESCRIPTION] and [TRAINER NOTES] only.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Read the chapter list inside [VIDEO DESCRIPTION]. Keep a line only when it has a timestamp and a title.\n- Split the list so no title is reused: LinkedIn explains two training chapters, the short caption hooks one move, the community post talks about one warm-up or modification chapter, and the teaser points at one chapter nobody else used.\n- Write like someone coaching in a living room. Do not add gym slang unless those words are already in the description.\n- Leave sets, reps, weights, and easier swaps out unless [TRAINER NOTES] or the description states them.\n- No pain-relief promises, no weight-loss promises, and no body-change promises. Honor every refusal and every held-back title in [TRAINER NOTES].\n- The teaser is one sentence for a story frame or pinned comment, and it must include the timestamp copied from that chapter line.\n\nOutput format:\nReturn four blocks, then two lists.\nLINKEDIN POST | chapters used | 160 words or fewer\nSHORT-VIDEO CAPTION | chapter used | 40 words or fewer\nCOMMUNITY POST | chapter used | 90 words or fewer\nTEASER | chapter used | 25 words or fewer\nUNUSED\nUNKNOWN, including any block that would need a repeated chapter",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a home workout creator. Prepare four native social drafts from one YouTube description. Do not publish anything. Use [VIDEO DESCRIPTION] and [TRAINER NOTES] only.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Build the roster from timestamped chapter lines in [VIDEO DESCRIPTION]. Skip intro, outro, and subscribe lines unless [TRAINER NOTES] says to feature one.\n- Give each surface different chapters: two for the LinkedIn post, one exercise for the short-video caption, one warm-up or modification for the community post, and one unused training chapter for the teaser.\n- Write that teaser as one sentence for a story frame or a pinned comment, with the timestamp in the sentence.\n- If assigning a title would duplicate a title already used, write UNKNOWN for that surface and name the titles already taken.\n- Copy the call to action from [TRAINER NOTES]. If none is written, end LinkedIn with UNKNOWN rather than inventing a comment prompt.\n- Do not add equipment, reps, or modifications that the description and notes do not list.\n- Strip injury, medical, weight-loss, and body-change claims. A held-back chapter stays in UNUSED.\n\nOutput format:\nSections, in this order, with the source title and timestamp on the line above the copy:\nLINKEDIN POST (160 words or fewer)\nSHORT-VIDEO CAPTION (40 words or fewer)\nCOMMUNITY POST (90 words or fewer)\nTEASER (25 words or fewer)\nUNUSED\nCLASHES\nUNKNOWN",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode. Optional later: Google Sheets plus Zapier, Make, or n8n to queue drafts with publish left off.",
+    "steps": [
+      "Open the YouTube video and copy the full description, including every timestamped chapter line, into a note. Put the video title on the first line so this session is not mixed with last week's workout.",
+      "On a second note, write who the session is for, the equipment you actually used, the one call to action you want, any chapter you want held back, and claims you refuse, such as pain relief or a visible body change.",
+      "In paste mode, open a chat, paste one prompt from this playbook, and replace [VIDEO DESCRIPTION] and [TRAINER NOTES] with those two notes. Run it once so all four drafts come from the same chapter list.",
+      "Read the four titles as a set. The LinkedIn post, the short-video caption, the community post, and the teaser must name different timestamp lines copied from your description. If two share a title, send only those two back and ask for a swap.",
+      "Strike any set, rep, weight, or easier version you did not say in the description or your note. Fill or delete every UNKNOWN yourself, and move a held-back chapter, such as a finisher you do not want spoiled, onto the unused list.",
+      "Read each draft aloud in your own voice. LinkedIn should explain the session for people training at home. The caption should name one move. The community post should ask one question the video already answers. The teaser should be one sentence plus its timestamp.",
+      "Put the four drafts in a spreadsheet with columns for surface, chapter titles, timestamp, draft text, and status. Label the teaser row as story frame or pinned comment. Leave status as hold, and do not open any composer yet.",
+      "Optional agent mode: when a row is marked approved, use Zapier, Make, or n8n with Google Sheets to copy that draft into a scheduler or a holding doc. Leave publish and schedule off so nothing goes live from the flow."
+    ],
+    "approvalStep": "You review the four drafts beside the YouTube chapter list, reject any post that reuses a chapter or adds a move you did not film, and only then paste into LinkedIn, the short-video caption, the community composer, and the teaser spot. Nothing is posted or scheduled until you approve each one.",
+    "failureModes": [
+      "Shared chapter: the finisher shows up in both the short-video caption and the teaser. Read the four titles as a set and swap one before you post.",
+      "Invented programming: the draft adds sets, reps, or a weight the description never states. Delete any line you cannot point to in the description or your note.",
+      "Body or injury claim: a post promises pain relief or a visible change. Cut it even when the tone sounds encouraging, and keep that chapter's move only.",
+      "Timestamp drift: a minute is rounded or two digits are swapped. Compare each timestamp to the chapter list character by character.",
+      "Housekeeping hook: an intro or subscribe line becomes the LinkedIn opener. Move it to unused and give that post a training chapter that is still free.",
+      "Early publish: a scheduler or automation posts the community update while you are still editing. Keep the flow on draft and confirm schedule is off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste before I ask for the four posts?",
+      "a": "Paste the YouTube description that already contains the timestamped chapter list, with the video title at the top. On a second note, paste who the session is for, the equipment you used, the call to action you want, any chapter to hold back, and claims you refuse. Those two notes are the only sources the draft may use."
+    },
+    {
+      "q": "What if the description has only a few training chapters?",
+      "a": "Do not reuse a chapter to fill a slot. Leave the extra post marked UNKNOWN and write that one yourself, or skip that surface for this video. Intro, outro, and subscribe lines do not count as training chapters unless your note says to feature one."
+    },
+    {
+      "q": "Will this publish to LinkedIn or YouTube for me?",
+      "a": "No. Paste mode only returns text. If you later connect a spreadsheet to a scheduler with Zapier, Make, or n8n, set that flow to create a draft and leave schedule off. You still check that each post uses a different chapter, then you post or schedule it yourself."
+    },
+    {
+      "q": "Which model is best for this chapter split?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already write with, paste the same description and the same trainer note, and keep the draft whose chapter titles you can point to a timestamp line and whose wording needs the least fixing in your own voice."
+    },
+    {
+      "q": "Can two posts mention one move if the chapters differ?",
+      "a": "Only when the description itself gives that move two different chapter titles, such as a demo and a later finisher, and you assign each title to a different post. Do not let both posts retell the whole session. If you marked one title as held back, neither post may use it."
+    }
+  ],
+  "draft": true,
+  "persona": "Home workout creator",
+  "job": "A YouTube description with chapters goes in, and a LinkedIn post, a short-video caption, a community post, and a teaser come out, each using different chapters.",
+  "who": "A home workout creator who films one living-room session, writes a YouTube description with a chapter list, and still needs a LinkedIn post, a short-video caption, a community post, and a teaser that each feature a different chapter.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Social schedulers",
+    "Workflow automation"
+  ]
+}

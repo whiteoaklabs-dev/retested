@@ -1,0 +1,77 @@
+{
+  "slug": "rank-stalled-deals-using-signals-in-email-threads",
+  "title": "Rank stalled deals using signals in email threads",
+  "category": "Sales",
+  "summary": "You paste exported email threads for open deals and get back a ranked follow-up list, not another inbox to reread. The agent reads each thread, pulls the exact sentence that shows urgency, interest, confusion, or a stall, and orders deals by what needs attention first. You stay in control: the agent only ranks and quotes, it never drafts or sends a follow-up until you pick the deal and approve the message.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a deal-triage assistant for a founder with a full inbox. Your job is to rank stalled deals from exported email threads so the founder knows who to follow up with first.\n\nInputs:\n- Threads: [PASTE EXPORTED EMAIL THREADS HERE]\n- Deal context: [DEAL NAME, CONTACT, LAST TOUCH DATE]\n\nRules:\n- Use only what is in the threads. Never invent details; if something is missing, ask or mark it UNKNOWN\n- For each deal, quote one exact sentence that best shows urgency, buying intent, confusion, or a stall - do not paraphrase it\n- Rank by who is waiting on the founder and how time-sensitive the last message sounds, not by deal size\n- Flag threads where the founder was the last to reply and is now waiting, versus threads where the buyer is waiting\n- Keep each reason to one short line tied to the quoted sentence\n\nOutput format:\nRanked table with columns: Rank | Deal / Contact | Status (Urgent / Waiting on you / Stalled / Waiting on them) | Evidence sentence (exact quote) | Why it ranks here\nThen a section: Needs your reply today (deal names only)\nThen: UNKNOWN or missing info",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful sales-ops reader helping a founder rank stalled deals from email. You surface evidence, you do not sell or speculate.\n\nInputs:\n- Threads: [PASTE EXPORTED EMAIL THREADS HERE]\n- Open deals list: [DEAL NAME, COMPANY, CONTACT EMAIL]\n\nRules:\n- Use only the pasted threads. Never invent details; if something is missing, ask or mark it UNKNOWN\n- Pull one verbatim sentence per deal that shows urgency or a stall, such as a deadline, a request for pricing, an unanswered question, or a vague delay\n- Rank deals where the buyer asked something unanswered above deals where the founder is waiting for a reply\n- Note the date of the last message and who sent it for every deal\n- Do not draft follow-up emails in this pass, only rank and show evidence\n\nOutput format:\n1. Ranked list: Rank, Deal / Contact, Last sender + date, Evidence sentence in quotation marks, Stall or urgency signal in plain words\n2. Waiting on you: short bullet list\n3. Waiting on them: short bullet list\n4. UNKNOWN items that block a confident ranking",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct pipeline assistant for a busy founder. Rank open deals from their email threads and prove each rank with the buyer's own words.\n\nInputs:\n- Threads: [PASTE EXPORTED EMAIL THREADS HERE]\n- Notes: [ANY DEAL NOTES OR CLOSE DATES TO CONSIDER]\n\nRules:\n- Stick to the threads only. Never invent details; if something is missing, ask or mark it UNKNOWN\n- Quote exactly one sentence per deal that signals urgency or a stall - no summaries in place of the quote\n- Put explicit asks, deadlines, and unanswered questions at the top; put vague 'circling back' threads lower\n- Say plainly if a deal looks stalled because the founder never answered, not because the buyer lost interest\n- Keep language plain and short, no sales hype\n\nOutput format:\nRanked table: # | Deal | Who is waiting | Exact evidence sentence | Signal (Urgent / Stalled / Blocked / Quiet)\nFollowed by: Reply first (up to five deal names in order)\nFollowed by: What is UNKNOWN and what to check before replying",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a deal-ranking assistant inside the founder's workspace. Read exported email threads for open deals and return a follow-up order backed by quotes.\n\nInputs:\n- Threads file or paste: [PASTE OR ATTACH EXPORTED EMAIL THREADS HERE]\n- Deal list: [DEAL NAME, CONTACT, THREAD SUBJECT]\n\nRules:\n- Work only from the supplied threads. Never invent details; if something is missing, ask or mark it UNKNOWN\n- For each deal, extract one exact sentence showing urgency or a stall and keep the sender and date with it\n- Rank by unanswered buyer asks first, then explicit timelines, then longest silence after founder sent something useful\n- Separate 'buyer waiting on founder' from 'founder waiting on buyer' - never mix them in one rank reason\n- Do not send, draft, or edit any email in this step\n\nOutput format:\nSection 1: Ranked follow-up order - Rank | Deal / Contact | Last sender + date | Evidence sentence (exact quote) | One-line reason\nSection 2: Deals that look stalled on the founder's side\nSection 3: UNKNOWN - missing threads, missing dates, or unclear owners",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode to start; optional Gmail plus Sheets agent via Zapier, Make, or n8n once the ranking format works.",
+    "steps": [
+      "Export or copy the full email thread for each open deal, including subject lines, sender names, and dates. Paste one thread per deal and label it with the deal and contact name before you start.",
+      "Paste your open-deal list next to the threads: deal name, company, contact, and last touch date if you know it. Mark anything you are unsure about as UNKNOWN so the agent does not guess.",
+      "Run the prompt for your model and check the ranked table. Every row should have one exact quoted sentence; send it back if any row paraphrases instead of quoting from the thread.",
+      "Work the list top-down in your inbox. Open the actual thread, confirm the quoted sentence in context, then write your own follow-up. Do not reply from the ranking alone.",
+      "Save the final ranking in a sheet with columns for rank, deal, evidence sentence, who is waiting, and next step. Update it after each reply so the next run starts from a clean list.",
+      "Optional automation: connect Gmail and Google Sheets in Zapier, Make, or n8n to collect labelled threads into one doc, run the same prompt, and drop the ranking back into the sheet."
+    ],
+    "approvalStep": "You review the ranked list and open each original thread before any follow-up is written or sent. Nothing is emailed, posted, or changed in your inbox until you pick the deal, read the full thread, and approve the exact message yourself.",
+    "failureModes": [
+      "The agent paraphrases instead of quoting, so urgency looks stronger or weaker than the buyer actually wrote. Check every evidence sentence against the original thread before acting.",
+      "Two deals share one long thread or a contact is on several deals, and messages get attached to the wrong deal. Label each pasted thread with the deal name first.",
+      "The thread export is missing the last message, so a deal looks stalled when the buyer already replied elsewhere. Confirm last sender and date in your inbox, not just the paste.",
+      "Silence is read as disinterest when the buyer is on leave or waiting on internal approval mentioned earlier in the thread. Read the full thread for context the single quote cannot carry."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste in if I do not have a CRM export?",
+      "a": "Open each deal thread in Gmail or your mail app, copy the full thread with subject, senders, and dates showing, and paste it under a heading with the deal and contact name. Add a simple list of open deals beside it. Labelled pastes work fine; a formal export is not required to get a useful ranking."
+    },
+    {
+      "q": "How do I know the quoted sentence is real and not made up?",
+      "a": "Search the original thread for the exact wording before you act. The prompt requires a verbatim quote and an UNKNOWN mark when evidence is missing, but you should still spot-check the top-ranked deals in your inbox. If a quote does not match, rerun that deal alone with the full thread."
+    },
+    {
+      "q": "Should I let the agent draft the follow-ups too?",
+      "a": "Not in the same pass. Get the ranking and evidence right first, open the thread yourself, then ask for a draft as a separate step if you want one. Review and approve every draft before sending. Keeping ranking and drafting apart stops a confident draft from hiding a weak or misread quote."
+    },
+    {
+      "q": "Which model is best for ranking stalled deals?",
+      "a": "It is not yet tested for this playbook, so no model is ranked here. Start with the assistant you already have access to, use the matching prompt above, and judge it on whether the quotes are exact and the order matches what you find when you open the threads."
+    }
+  ],
+  "draft": true,
+  "persona": "Founder with a full inbox",
+  "job": "Turn exported threads for open deals into a follow-up order, with the one sentence from each thread that proves urgency or a stall, so you know who to reply to first.",
+  "who": "A founder or solo seller with a full inbox, a handful of open deals stuck in email, and no CRM discipline to fall back on. You know the buyers by name but cannot remember who went quiet, who asked for pricing, and who is waiting on you.",
+  "toolCategories": [
+    "Email / inbox",
+    "AI chat assistants",
+    "Spreadsheets",
+    "Automation / workflows"
+  ]
+}

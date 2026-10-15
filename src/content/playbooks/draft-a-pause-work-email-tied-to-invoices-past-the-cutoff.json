@@ -1,0 +1,86 @@
+{
+  "slug": "draft-a-pause-work-email-tied-to-invoices-past-the-cutoff",
+  "title": "Draft a pause-work email tied to invoices past the cutoff",
+  "category": "Finance & admin",
+  "summary": "Paste the unpaid invoices tied to one design client and the contract stop-work clause, and the agent drafts a single email that says work pauses until the stated balance is paid. You provide each bill past the cutoff with its number, project, issue date, due date, open balance, currency, and billing contact, plus the clause text, the cutoff rule, the pause date, the live projects that would halt, and the To and Cc names. You get one note with a subject, a short body, the qualifying bill lines, a brief clause quote, the stated balance, what stops, and what resumes after payment, followed by facts used and a confirm list. You decide the figure, whether the clause allows the pause, and who is copied, and you send the email yourself.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the billing writer for a design studio producer. Draft one pause-work email the producer will edit before it is sent. Use [UNPAID INVOICE LIST], [STOP WORK CLAUSE], [CUTOFF RULE], [PAUSE DATE], [RECIPIENTS], and [LIVE PROJECTS]. The email must say work pauses until the stated balance is paid.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List a bill only if [UNPAID INVOICE LIST] and [CUTOFF RULE] both show it is past the cutoff. Drop paid, disputed, or not-yet-due lines, and drop any other client's bills.\n- Copy bill number, project, due date, open balance, and currency as written. Do not recompute a line or subtract a partial again. When every included line has an open amount in one currency, the stated balance is their sum; otherwise mark it UNKNOWN.\n- Quote a short excerpt from [STOP WORK CLAUSE] in its own words. Do not add lawyers, interest, credit reports, or a halt the clause does not allow.\n- Say which live projects stop on [PAUSE DATE] and that work resumes only when the stated balance is paid, using [LIVE PROJECTS]. If the clause requires notice you were not given, mark the pause date UNKNOWN.\n- Keep the body under 180 words, in the producer's voice, calm and plain.\n\nOutput format:\nHeadings: To, Cc, Subject, Body, Bills past the cutoff (number, project, due date, open balance, currency), Clause quote, Stated balance, Facts used, Producer must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a design studio producer. You do not send mail. From [UNPAID INVOICE LIST], [STOP WORK CLAUSE], and [CUTOFF RULE], write one email that pauses work until the stated balance is paid. Apply [PAUSE DATE], [RECIPIENTS], and [LIVE PROJECTS].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the cutoff as a test you apply, not a guess. A bill enters the email only when its due date and open balance satisfy [CUTOFF RULE]. Otherwise leave it out and list it under Unknowns.\n- Sum the pasted open balances into the stated balance only when every included line has an amount in one currency. If any amount is blank or currencies differ, mark the stated balance UNKNOWN and show the lines. Do not subtract a partial a second time.\n- The clause quote must be copied, not tightened. If [STOP WORK CLAUSE] does not authorize a pause, say so and do not announce a halt.\n- Name exceptions the clause keeps in motion, such as already-approved files, and do not stop those. Use only [LIVE PROJECTS].\n- Body under 170 words. No guilt, no sarcasm, no legal advice. Subject under 12 words.\n\nOutput format:\nReturn sections titled To, Cc, Subject, Body, Qualifying bills (number, project, due date, open balance, currency), Clause quote, Stated balance, What pauses, What continues, Facts used, Confirm before sending, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing aide for a design studio producer who needs a pause-work email, not a soft reminder chain. Turn [UNPAID INVOICE LIST] and [STOP WORK CLAUSE] into one draft that says work pauses until the stated balance is paid. Follow [CUTOFF RULE], [PAUSE DATE], [RECIPIENTS], and [LIVE PROJECTS].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put only bills past the cutoff in the email. If you cannot tell from the due date and [CUTOFF RULE], exclude the bill and mark it UNKNOWN.\n- Repeat each open balance exactly and do not subtract a partial again. Add those amounts into the stated balance only when every included line shares one currency; otherwise mark the stated balance UNKNOWN.\n- The pause stands only on words present in [STOP WORK CLAUSE]. If the clause is silent, ask for payment without announcing a halt.\n- State the pause date, the projects that stop, and the pay instruction only when that instruction was pasted. Do not threaten a lawsuit or a public complaint.\n- Keep the body under 160 words. Plain sentences. Producer voice.\n\nOutput format:\nOutput these blocks: To, Cc, Subject, Body, Bills past the cutoff (number, project, due date, open balance, currency), Clause quote, Stated balance, Facts used, Producer must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing a pause-work draft for a design studio producer who will approve every send. Build one email from [UNPAID INVOICE LIST], [STOP WORK CLAUSE], [CUTOFF RULE], [PAUSE DATE], [RECIPIENTS], and [LIVE PROJECTS]. The note says production pauses until the stated balance is paid.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One client only. If the bill list mixes accounts, do not guess which lines apply; mark them UNKNOWN and leave them out of the body.\n- Tie every included bill to the cutoff: show number, project, due date, open balance, and currency, copied from the list. The stated balance is the sum of those open amounts only when every line shares one currency; otherwise mark it UNKNOWN.\n- Quote the stop-work clause briefly and only where it supports the pause. Do not paraphrase it into a harsher penalty.\n- Say work resumes when that stated balance is paid, not when the client promises a date. If notice days in the clause are unmet, mark the pause date as not yet allowed.\n- Stay under 180 words. Do not add payment links that were not pasted.\n\nOutput format:\nUse headings To, Cc, Subject, Body, Bills past the cutoff (number, project, due date, open balance, currency), Clause quote, Stated balance, Resume condition, Facts used, Confirm before sending, Unknowns.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first; later Gmail and a sheet, with Zapier, Make, or n8n creating a draft only.",
+    "steps": [
+      "From the studio billing screen or each invoice PDF, copy only this client's unpaid bills you believe are past the cutoff: number, project, issue date, due date, open balance, currency, and billing contact. Leave any blank field blank.",
+      "Paste the stop-work clause in full, then write the cutoff rule in your own words, any notice the clause requires, and the live projects that would halt. Note any work the clause says must continue, such as files already approved.",
+      "Add the pause date you intend to name, your name and producer title, the To and Cc people, and payment instructions already printed on the bills. Do not type a fee, an interest line, or a lawyer step the agreement does not contain.",
+      "Open a chat assistant, paste the prompt for the model you use, and replace every placeholder with the bill list, the clause, the cutoff rule, the pause date, the recipients, and the live projects. Ask for one email, not a reminder series.",
+      "Read the draft beside the ledger and the clause. Check that every named bill is past the cutoff, the stated balance matches those open amounts, and the quote uses the clause's words rather than a harsher paraphrase.",
+      "Edit any line you would not send. Delete lawyers, credit reports, or interest the clause does not allow. Save the text in a sheet with client, stated balance, pause date, and a status of not sent.",
+      "On send day, recheck the open balances, copy the approved email into Gmail, attach only the qualifying invoice PDFs, and send it yourself. Tell the internal team which projects halt only after that send.",
+      "Optional agent mode: connect the sheet to Gmail with Zapier, Make, or n8n so a row you marked approved becomes a Gmail draft. Leave sending switched off so an overnight payment can still stop the note."
+    ],
+    "approvalStep": "You review the draft against the unpaid bills and the stop-work clause before sending. Confirm the stated balance, the pause date, the projects that halt, and the recipients, then send the email yourself. A Gmail draft from automation waits until that review.",
+    "failureModes": [
+      "A bill that is not past the cutoff, already paid, or from another client appears in the list. Match each number to this account and to the cutoff rule before you approve.",
+      "The stated balance ignores a partial payment or mixes currencies, so the note chases the wrong figure. Compare it with the open amount on the billing screen.",
+      "The clause does not allow a pause, or it demands notice you have not given, yet the draft announces an immediate halt. Read the quote next to the agreement.",
+      "Lawyers, outside collectors, or interest show up even though the clause never mentions them. Delete any consequence you did not paste.",
+      "The halt list includes a project the clause says must continue. Check exceptions, such as files already approved, before you tell the team to stop.",
+      "The note goes out after the client paid because a Gmail draft sat overnight. Recheck every open balance on the morning you send."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which unpaid invoices belong in the pause email?",
+      "a": "Include only this client's bills that meet the cutoff written in the contract, with number, project, issue date, due date, open balance, currency, and billing contact. Leave out paid bills, disputed lines you are not ready to halt over, and anything not yet past that cutoff. If a due date is missing, keep that bill out and mark it unknown."
+    },
+    {
+      "q": "What if the stop-work clause is vague or missing?",
+      "a": "Do not send a pause announcement. The draft should say a halt is not supported and mark the clause unknown, rather than inventing a right to stop. You can still write a plain payment request in your own words, or ask the studio principal before anyone tells the team to down tools."
+    },
+    {
+      "q": "Which model should I use for this pause email?",
+      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have, then keep the draft only when every bill is past the cutoff, the clause quote matches the contract, and the stated balance matches your ledger."
+    },
+    {
+      "q": "Who should be on To and Cc?",
+      "a": "Address the billing contact named on the invoices, usually accounts payable. Copy the client-side producer only if you want them to see the halt. Avoid the whole creative team unless your clause or your own judgment says they must be notified. You pick the recipients before send."
+    },
+    {
+      "q": "Should the draft add up the stated balance?",
+      "a": "Only when every qualifying line has an open amount in the same currency. If a line is blank, partial, or in another currency, the stated balance should stay unknown and you fill the figure from the billing screen. You confirm that figure before the email goes out."
+    }
+  ],
+  "draft": true,
+  "persona": "Design studio producer",
+  "job": "The unpaid invoices past the cutoff and the contract's stop-work clause become a draft email that says work pauses until the stated balance is paid.",
+  "who": "Design studio producers who schedule client work and chase their own invoices, and who need a pause-work email when bills sit past the contract cutoff.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

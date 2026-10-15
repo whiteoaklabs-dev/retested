@@ -1,0 +1,84 @@
+{
+  "slug": "turn-a-whatsapp-sales-chat-into-a-formal-follow-up-email",
+  "title": "Turn a WhatsApp sales chat into a formal follow-up email",
+  "category": "Sales",
+  "summary": "Paste a WhatsApp sales chat from your food import desk, the counterparty company and person, and the product named in the messages. The agent returns one formal follow-up email with headings for what was discussed, each quantity, each price, the decision still open, and one next step. Each figure stays in the original unit and currency and is tied to the sender who typed it. Conflicting offers are both listed. A missing pack size, Incoterm, currency, shelf life, or voice-note transcript is marked UNKNOWN. The letter does not place an order. You approve the recipient and the figures, then send it yourself from your own mailbox.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a commercial clerk for a food importer. Turn the pasted WhatsApp sales chat into one formal follow-up email. Use only [WHATSAPP THREAD], [COUNTERPARTY], and [PRODUCT]. Confirm quantities and prices, and name the decision still open. This is not a purchase order.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Copy each quantity and each price exactly as typed, including the unit and currency, and name the sender of that line\n- Do not convert cases, kilograms, pallets, or containers, and do not convert one currency into another\n- If two prices or two quantities disagree, list both and do not pick a winner\n- State the decision still open, such as volume, payment terms, shipment window, or sample sign-off, and do not say the order is placed\n- Leave grade, origin, pack size, Incoterm, shelf life, and certificates as UNKNOWN when the thread does not state them\n- Drop emoji and slang. Do not add a discount, a ship date, or a lab result that nobody wrote\n\nOutput format:\nSUBJECT: one line with the product and the word follow-up\nEMAIL: under 220 words, with headings Discussed, Quantities, Prices, Still open, Next step\nUNKNOWN: one missing field per line, including any voice note or photo that has no transcript\nDo not send the email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful correspondence assistant for a food importer who must turn a WhatsApp sales chat into a formal follow-up email. Work only from [WHATSAPP THREAD] about [PRODUCT] with [COUNTERPARTY]. Confirm the quantities and the prices, and keep the buying decision open.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Treat the thread as the only source. A WhatsApp display name is not an email address; leave the recipient address for the human\n- Quote quantities and prices in the original unit and currency, and attach each figure to the person who sent that message\n- When an earlier offer and a later offer both appear, show both figures and ask which one still stands\n- Write Still open as volume, payment terms, shipment window, or sample sign-off, whichever the thread did not close\n- If a line is only a voice note or a photo, do not describe its contents; mark that line UNKNOWN\n- Keep the body formal and short. Do not turn a casual ok into acceptance of a full order\n\nOutput format:\nReturn these sections in order: Subject, Discussed, Quantities, Prices, Still open, Next step, UNKNOWN.\nKeep the email body under 220 words. Use one bullet per quantity and one bullet per price.\nEnd with a single question the counterparty can answer. Do not send anything.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken follow-up drafter for a food importer. Read [WHATSAPP THREAD] with [COUNTERPARTY] about [PRODUCT] and write one formal email that confirms quantities and prices and says what is still open. Do not make it sound like a closed sale.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Pull every quantity and every price straight from the chat, with the unit, the currency, and the sender name\n- Do not convert a case count into kilograms, a pallet into a container, or one currency into another\n- If the thread has two prices or two quantities, print both and leave the choice blank\n- Name the decision still open in plain words: volume, payment terms, shipment window, or sample sign-off\n- Skip grade, origin, pack, Incoterm, shelf life, and certificates unless the messages actually contain them\n- No emoji, no hype, and no promise of a discount or a delivery date that the chat did not lock\n\nOutput format:\nSUBJECT: product name plus follow-up\nEMAIL: under 220 words, headings Discussed, Quantities, Prices, Still open, Next step\nUNKNOWN: a list of every gap, one per line\nSay clearly that no order is placed by this email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a food importer who needs a formal follow-up after a WhatsApp sales chat. Build the email only from [WHATSAPP THREAD], [COUNTERPARTY], [PRODUCT], and [YOUR COMPANY]. Confirm quantities and prices. Leave the decision open for a human to close.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- List each quantity on its own line with the sender, the number, and the unit exactly as written\n- List each price on its own line with the sender, the amount, the currency, and the unit exactly as written\n- If two figures conflict, show both and write CHOICE NEEDED instead of choosing\n- Put the unclosed point under Still open: volume, payment terms, shipment window, or sample sign-off\n- Mark voice notes, photos, and missing Incoterm, pack size, shelf life, or certificates as UNKNOWN\n- Sign the draft with [YOUR COMPANY]. Do not invent a mailbox, a purchase-order number, or a send time\n\nOutput format:\nSubject line.\nEmail body under 220 words with headings Discussed, Quantities, Prices, Still open, Next step.\nThen a checklist labelled UNKNOWN.\nDo not send, schedule, or forward the email.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Zapier, Make, or n8n can create a Gmail draft from a copied thread, with sending left off.",
+    "steps": [
+      "Export the WhatsApp chat without media, or copy the messages so the dates and sender names remain. Open a fresh model chat, paste one prompt from this playbook, and paste the export where it says [WHATSAPP THREAD].",
+      "Type the supplier or buyer company and the person on the thread into [COUNTERPARTY]. Type the food item into [PRODUCT], and add grade, origin, or pack size only when those words already appear in the messages.",
+      "Read the Quantities and Prices sections line by line against the chat. Confirm each figure, unit, and currency matches the message it came from, and that the sender named in the draft is the person who typed that line.",
+      "Read Still open. Leave volume, payment terms, the shipment window, and any sample or label sign-off open unless a message clearly closes that point. Remove any sentence that says an order was placed or that a purchase order already exists.",
+      "If the chat shows two prices or two quantities, keep both and leave a question asking which figure stands. Replace an UNKNOWN only with a fact you already have in another written note. If you do not have it, leave the gap.",
+      "Copy the finished note into your own mailbox as an unsent draft. Pick the address you already use for this counterparty, because a WhatsApp display name is not a mailbox. Use a subject that names the product and says follow-up.",
+      "Optional agent mode: connect Zapier, Make, or n8n so a copied thread creates a Gmail draft and nothing more. Leave sending off. When a new draft appears, repeat the same figure check before you send it yourself."
+    ],
+    "approvalStep": "You compare the draft with the WhatsApp thread and approve the recipient, every quantity, every price, and the still-open decision before the email is sent. Nothing is sent, scheduled, or forwarded until you send it yourself.",
+    "failureModes": [
+      "Quote treated as an order: the draft says the purchase is confirmed when the thread only requested a price. Watch for order confirmed, we accept, or a purchase-order number nobody issued.",
+      "Two offers collapsed: an earlier price and a later price both sit in the thread, and the draft keeps one. If you see a single figure, scroll back for a second number before you trust it.",
+      "Unit swap: a case count is rewritten as kilograms, pallets, or a container load. Check any quantity whose unit was absent or different in the original message.",
+      "Sides swapped: your counter-offer is written as the supplier price, or the buyer request is written as your quote. Match every figure to the sender name on that chat line.",
+      "Currency added: the chat shows a bare number and the draft names a currency. That field has to stay UNKNOWN until you type the currency from your own records.",
+      "Hidden media: a voice note or a spec photo has no transcript, and the draft fills in grade, shelf life, or pack size. Those items should be listed as UNKNOWN."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I copy from the WhatsApp chat?",
+      "a": "Export the chat without media, or copy the messages with the dates and sender names still showing, and paste that text as the thread. Add the counterparty company and the product name. Include grade, origin, or pack size only when those words are already in the messages. A display name is not a mailbox, so you still choose the real address yourself."
+    },
+    {
+      "q": "Will this send the email or place an order?",
+      "a": "No. Paste mode only returns a draft for you to copy into your own mailbox. The letter should say which decision is still open, so a quote is not treated as a purchase. If you later connect a workflow tool, let it create a draft and leave sending off until you have checked the recipient, the figures, and the open point."
+    },
+    {
+      "q": "What if the chat names two prices?",
+      "a": "Keep both. The draft should name who wrote each offer, with the unit and currency exactly as typed, and ask which figure still stands. Do not let it average them, convert them, or drop the earlier one to make the note look tidy. You decide which number, if either, belongs in the final letter before you send it."
+    },
+    {
+      "q": "Which model is best for this?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Paste the same thread into the chat you already use and keep the draft that preserves every quantity and price, marks gaps as UNKNOWN, and leaves the buying decision open instead of sounding like a closed order."
+    },
+    {
+      "q": "How should I handle a voice note or a photo?",
+      "a": "If you did not type a transcript, the model cannot hear the voice note or see the photo. Paste any words you are willing to stand behind, such as a grade or a pack size you read off the image, and leave everything else UNKNOWN. Do not expect the draft to invent shelf life, a certificate, or a lab result from a file it never received."
+    }
+  ],
+  "draft": true,
+  "persona": "Food importer",
+  "job": "Paste the WhatsApp thread, and get a formal email that confirms quantities, prices, and the decision still open.",
+  "who": "A food importer, or the person on their buying desk, who negotiates with suppliers and wholesale buyers on WhatsApp and needs one formal email before the chat is treated as an order.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Workflow automation",
+    "Team messaging"
+  ]
+}

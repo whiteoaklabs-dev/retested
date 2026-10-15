@@ -1,0 +1,85 @@
+{
+  "slug": "request-the-missing-tax-form-before-paying-a-contractor",
+  "title": "Request the missing tax form before paying a contractor",
+  "category": "Finance & admin",
+  "summary": "A nonprofit treasurer pastes a contractor invoice and the name of the tax form still missing from the vendor file, usually a W-9, W-8BEN, or W-8BEN-E. The agent drafts one email that requests that exact form, names the vendor and the invoice number, and states that payment stays held until a signed copy is on file. You check the legal name, the form choice, and the tone, then send the note yourself before paying. The agent does not release money, does not mark the bill approved, and does not collect a tax identification number.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the drafting aide for a nonprofit treasurer who will edit this before it goes out. Using [INVOICE TEXT] and [MISSING FORM], write one email that names the missing tax form and holds payment until that form arrives. Sign as [TREASURER NAME] of [ORGANIZATION NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the vendor legal name, invoice number, invoice date, and amount only from [INVOICE TEXT]. Do not recalculate the amount or add a fee.\n- Request only the form named in [MISSING FORM]. If that field says W-9, do not switch to W-8BEN. If it says W-8BEN or W-8BEN-E, do not ask for a W-9.\n- State that this bill stays unpaid until a signed copy of that form is on file. Do not offer a pay date or a partial release.\n- Do not request a Social Security number, employer identification number, or bank account in the message. Use [RETURN METHOD] for how they send the form, or mark that line UNKNOWN.\n- Keep the body under 140 words. Polite and plain. Do not give tax advice or cite a statute.\n\nOutput format:\nUse these headings in order: Subject, Greeting, Body, Hold statement, What to return, Sign-off, Facts used, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful correspondence drafter for a nonprofit treasurer. You do not send mail and you do not approve payment. From [INVOICE TEXT], [MISSING FORM], [RETURN METHOD], [TREASURER NAME], and [ORGANIZATION NAME], draft one email that names the missing tax form and holds payment until it arrives.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the vendor legal name, invoice number, invoice date, and amount exactly as written in [INVOICE TEXT]. If two names appear, mark the legal name UNKNOWN and ask which one belongs on the form.\n- The only form you may request is the one written in [MISSING FORM]. Do not add a second form or a state form the treasurer did not name.\n- Make the hold explicit: payment on this invoice will not be released until the signed form is on file. Do not soften that into a suggestion.\n- Never ask the contractor to type a taxpayer identification number into the reply. Direct the paperwork only to [RETURN METHOD].\n- Keep the body under 150 words. No threat and no statement about whether the organization must file an information return.\n\nOutput format:\nReturn one email with labels Subject, Greeting, Body, Hold statement, What to return, and Sign-off. Then add Facts used and Unknowns as two short lists.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-language aide for a nonprofit treasurer who wants a hold note, not a tax memo. Turn [INVOICE TEXT] and [MISSING FORM] into one email that names the missing tax form and holds payment until it arrives. Use [TREASURER NAME], [ORGANIZATION NAME], and [RETURN METHOD].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put the vendor legal name, invoice number, and amount in the body, copied from [INVOICE TEXT] only. If the amount is blank, write UNKNOWN and do not guess a figure.\n- Ask for the form named in [MISSING FORM] and for no other form. Say the signed copy must use the same legal name as the bill.\n- State that the bill remains unpaid until that form is on file. Do not promise a date for payment after the form arrives.\n- Do not collect a Social Security number, employer identification number, or bank details by email. Send them to [RETURN METHOD], or mark the method UNKNOWN.\n- Keep the body under 130 words. Skip jokes, guilt, and any talk of penalties or backup withholding.\n\nOutput format:\nGive Subject, Greeting, Body, Hold statement, What to return, and Sign-off. End with Facts used and Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing a send-ready draft for a nonprofit treasurer who approves every message. Build one email from [INVOICE TEXT], [MISSING FORM], [RETURN METHOD], [TREASURER NAME], and [ORGANIZATION NAME]. The email must name the missing tax form and hold payment until it arrives.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use a single bill. If [INVOICE TEXT] contains more than one invoice number, do not choose among them. Mark the invoice number UNKNOWN and ask which bill is on hold.\n- Request only [MISSING FORM]. Repeat that form name in the subject and again in the hold statement.\n- Write the hold in the treasurer's voice: payment on this bill cannot go out until the signed form is on file. Do not invent a board policy.\n- Do not ask for a tax identification number, a bank account, or a signature pasted into the reply. Point only to [RETURN METHOD].\n- Stay under 140 words. Warm and direct. No tax advice and no threat.\n\nOutput format:\nUse headings in this order: Subject, Greeting, Body, Hold statement, What to return, Sign-off, Facts used, Unknowns. Close with a line labeled Approve before sending that lists what the treasurer must check.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Gmail, a spreadsheet, and Zapier, Make, or n8n may stage drafts later. You still send.",
+    "steps": [
+      "From the contractor invoice and vendor folder, copy the legal name, invoice number, invoice date, amount due, and a one-line description of the work. Note the missing form: W-9, W-8BEN, or W-8BEN-E. Decide that from your policy before you draft.",
+      "Open a fresh chat and paste the prompt for ChatGPT, Claude, Grok, or Muse. Fill in [INVOICE TEXT], [MISSING FORM], [ORGANIZATION NAME], [TREASURER NAME], and [RETURN METHOD]. If a field is blank, type UNKNOWN instead of guessing.",
+      "Read the draft beside the invoice. Confirm the legal name, invoice number, and amount match the bill, and that the form in the subject is the one you entered. Confirm the note says payment on this bill stays held until a signed copy is on file.",
+      "Remove any pay date, tax lecture, or line that asks the contractor to type a Social Security number or employer identification number into the reply. Leave only the return path your organization already uses for sensitive forms.",
+      "Copy the subject and body into your own email, send it yourself, and file the sent copy with the unpaid invoice. Leave the bill flagged on hold in your books so it cannot be paid from the normal queue while you wait.",
+      "Optional agent mode: connect Gmail and a Google Sheet through Zapier, Make, or n8n. List invoices you coded as tax form missing, and have the flow create a Gmail draft from your approved wording. Leave auto-send switched off.",
+      "When the signed form arrives, a person compares its legal name to the vendor record, saves it in the locked vendor folder, and only then moves that invoice into the normal payment approval queue. Do not pay from the chat."
+    ],
+    "approvalStep": "You review the draft beside the invoice and approve the wording in the chat before sending. You paste it into your own mailbox and send it yourself. The agent does not send the note, pay the contractor, or mark the bill approved.",
+    "failureModes": [
+      "The draft names a W-9 for a foreign contractor who needs a W-8BEN or W-8BEN-E. Read the form in the subject against the status you already decided.",
+      "An invoice number, amount, or pay date appears that is not on the bill. Compare each figure with the invoice and replace any guess with UNKNOWN.",
+      "The note asks the contractor to reply with a Social Security number or employer identification number. Cut that line and keep your secure return path.",
+      "Another bill from the same vendor gets paid because the hold existed only in the draft. Leave every related unpaid bill flagged until the signed form is filed.",
+      "The message adds a penalty, a filing deadline, or a lecture on reporting that you did not write. Delete it and keep the request to the missing form and the hold.",
+      "The legal name on the invoice and the name you expect on the form do not match. Hold the email until you decide which name the signed form must use."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which tax form should the email name?",
+      "a": "You choose before the draft. Name a W-9 when your policy treats the contractor as a U.S. person, or a W-8BEN or W-8BEN-E when your policy treats them as foreign. Paste that choice in the missing-form field. The draft should not swap forms or decide whether a 1099 is due."
+    },
+    {
+      "q": "Can the agent release payment after the form arrives?",
+      "a": "No. This workflow only drafts the hold email. When the signed form comes back, a person checks the legal name, files the form in your locked vendor folder, and sends the invoice through your normal approval. Do not let a chat or an automation pay the bill."
+    },
+    {
+      "q": "Which model should I use for this hold email?",
+      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have. Keep a draft only when the form, vendor legal name, and invoice number match your notes and the hold is explicit."
+    },
+    {
+      "q": "What if the vendor legal name is missing?",
+      "a": "Type UNKNOWN for that field and do not let the draft borrow a nickname from an email signature. Ask which legal name belongs on the form, and do not send a request that could put the wrong person or entity on the paperwork."
+    },
+    {
+      "q": "Should I mention a penalty or a deadline?",
+      "a": "Only if your board has already written that sentence and you paste it with the invoice. Otherwise the email should name the missing form and state that payment stays held. If a penalty or a date shows up on its own, delete it before sending."
+    }
+  ],
+  "draft": true,
+  "persona": "Nonprofit treasurer",
+  "job": "Turn a contractor invoice that arrived without the required tax form into an email that names the missing form and holds payment until it arrives.",
+  "who": "Nonprofit treasurers who open a contractor invoice, find no W-9 or foreign-status form in the vendor file, and need an email that names the missing form and keeps the bill unpaid.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

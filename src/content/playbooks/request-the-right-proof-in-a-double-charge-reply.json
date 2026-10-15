@@ -1,0 +1,84 @@
+{
+  "slug": "request-the-right-proof-in-a-double-charge-reply",
+  "title": "Request the right proof in a double-charge reply",
+  "category": "Support",
+  "summary": "This playbook turns a vague 'charged twice' email and your invoice rules into a short, send-ready reply that asks for one exact piece of proof. You paste the customer email, the relevant invoice fields (invoice number, date, amount, billing descriptor, last four digits), and your rules for duplicates, pending holds and separate subscriptions. The agent drafts a reply that names the precise receipt line or bank descriptor the customer should photograph, instead of asking for 'proof' in general. The human agent checks the descriptor, amount and tone, edits if needed, and approves before anything is sent to the customer.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a billing support agent handling a customer who says they were charged twice. Read [CUSTOMER EMAIL] and [INVOICE RULES] and draft a reply that names the exact receipt line or bank descriptor the customer should photograph or screenshot so you can verify the claim.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the billing descriptor, amount and date exactly as written in [INVOICE RULES]; do not shorten them.\n- Ask for one specific item only: the receipt line or bank statement line showing descriptor, date, amount and last four digits.\n- Do not promise a refund, reversal or timeline until the proof has been checked.\n- Use a calm, plain tone and do not blame the customer or their bank.\nOutput format: Line one is 'Subject:' plus a short subject. Then a reply under 180 words in three short paragraphs: what you understood, the exact line to photograph, and what you will do once it arrives. End with one clear next step.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a billing support agent drafting a reply to a customer reporting a double charge. Use [CUSTOMER EMAIL] and [INVOICE RULES] to write a reply that tells the customer exactly which receipt line or bank descriptor to photograph.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Name the descriptor word-for-word from [INVOICE RULES] and match it to the amount in [CHARGE DETAILS].\n- If the rules describe a pending hold versus a settled charge, explain that difference in one plain sentence and say which line proves it.\n- Ask for a cropped photo or screenshot that hides full card numbers but keeps descriptor, date, amount and last four digits readable.\n- Do not promise an outcome before you have seen the proof.\nOutput format: Start with 'Draft reply:' then give a reply under 170 words. After the reply, add a short 'For agent only:' note listing any UNKNOWN fields. Keep the customer-facing part free of internal notes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a billing support agent answering a 'charged twice' email. From [CUSTOMER EMAIL] and [INVOICE RULES], draft a direct reply that names the exact receipt line or bank descriptor the customer should send a photo of.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Quote the descriptor and amount exactly from [INVOICE RULES]; do not guess a descriptor variant.\n- Ask for one item only and list the four fields it must show: descriptor, date, amount, last four digits.\n- If two charges could be separate subscriptions, say so briefly and ask which account email appears on [SECOND INVOICE LINE].\n- Keep the tone short, polite and free of jargon or bank blame.\nOutput format: First line 'Subject:' plus subject. Then a reply under 160 words in short paragraphs, ending with a single sentence telling the customer how to attach the photo in their reply.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a billing support agent preparing a reply for human approval, not sending it yourself. Read [CUSTOMER EMAIL] and [INVOICE RULES] and draft a message that asks for the exact receipt line or bank descriptor as proof of a double charge.\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use the invoice number, date, amount and descriptor from [INVOICE DETAILS] exactly as provided.\n- Request one cropped screenshot or photo showing descriptor, date, amount and last four digits; remind the customer to cover the full card number.\n- Do not state that a duplicate occurred until the proof confirms it.\n- Keep the reply under 180 words and avoid legal or accounting jargon.\nOutput format: Output 'SUBJECT:' on line one, then the draft reply in three short paragraphs. Finish with a bracketed '[AGENT CHECK: ...]' line listing fields the human must verify before sending.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first, with optional helpdesk and no-code automation to pre-fill invoice fields.",
+    "steps": [
+      "Open your chat tool in paste mode. Paste the customer email thread, then paste your invoice rules covering descriptors, pending holds, duplicates and separate subscriptions.",
+      "Add the invoice fields for this case: invoice number, charge date, amount, billing descriptor as it appears on statements, and the card last four digits if you have them.",
+      "Paste the prompt for your model, replace the bracketed placeholders with the email, rules and invoice fields, and run it to get a draft reply for review.",
+      "Check the draft line by line against the invoice: descriptor spelling, amount, date and tone. Fix any mismatch yourself instead of re-prompting with new facts mixed in.",
+      "If the reply looks right, copy it into your helpdesk or email thread, attach any relevant invoice copy, and keep the original customer wording in the ticket notes.",
+      "Optional automated mode: use a no-code automation tool to pull new 'charged twice' tickets from your helpdesk, fetch matching invoice fields from a sheet or billing export, and fill the prompt placeholders for you.",
+      "In automated mode, save the output as a draft reply or internal note only. Review the ticket weekly for wrong descriptors or amounts and update your invoice rules text when your descriptor changes."
+    ],
+    "approvalStep": "A human billing agent must read the full draft against the actual invoice and bank descriptor before it is pasted into the ticket and sent. No reply, refund note or account change leaves the helpdesk until that check is done and the agent clicks send themselves.",
+    "failureModes": [
+      "Wrong descriptor named: the rules list an old or shortened descriptor, so the customer photographs the wrong line. Check the descriptor against a recent real statement before reuse.",
+      "Missing or invented amounts: the email lacks a date or amount and the draft fills the gap. Watch for any figure that does not appear in your pasted invoice fields.",
+      "Refund promised too early: the draft implies a refund is approved before proof is seen. Remove outcome promises and keep wording to what you will check next.",
+      "Too much proof requested: the draft asks for full statements or full card numbers. Limit the request to one cropped line with the full card number covered.",
+      "Pending hold mistaken for a second charge: the reply confirms a duplicate when one line is still pending. Compare settled versus pending wording in your rules each time."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What exactly should I paste in as invoice rules?",
+      "a": "Paste the short text you already use internally: the billing descriptor exactly as it appears on bank statements, how pending holds are worded, what counts as a true duplicate, and how separate subscriptions or family accounts appear. Add one real invoice example with invoice number, date, amount and last four digits."
+    },
+    {
+      "q": "What if the customer email has no amount or date?",
+      "a": "Leave those fields blank or mark them UNKNOWN when you run the prompt. The draft should then ask the customer for the date and amount as shown on the line they photograph, rather than guessing. Do not send a draft that states a figure you did not paste in."
+    },
+    {
+      "q": "Should I ask for a bank statement or a receipt photo?",
+      "a": "Ask for whichever line shows the descriptor your rules name. Receipts suit card purchases from your checkout, while a cropped bank statement line suits descriptor disputes. In both cases ask for descriptor, date, amount and last four digits only, with the full card number covered."
+    },
+    {
+      "q": "Which model is best for this reply?",
+      "a": "It is not yet tested for this playbook, so no model is ranked here. Use the prompt version for the tool you already have, keep the same invoice rules and placeholders, and judge the draft by whether it names the correct descriptor and asks for one clear item."
+    },
+    {
+      "q": "Can I automate this so replies send themselves?",
+      "a": "You can automate the gathering step, such as pulling the ticket and invoice fields into the prompt, but keep the send step manual. Save automation output as a draft or internal note, then have a human check descriptor, amount and tone before anything reaches the customer."
+    }
+  ],
+  "draft": true,
+  "persona": "Billing support agent",
+  "job": "Turn a charged-twice email plus invoice rules into a reply that names the exact receipt line or bank descriptor the customer should send back.",
+  "who": "Billing support agents and small-team support leads who answer 'I was charged twice' emails and need to collect usable proof without long back-and-forth threads.",
+  "toolCategories": [
+    "Helpdesk and ticketing",
+    "Email client",
+    "Billing and invoicing",
+    "Automation platform",
+    "Document storage"
+  ]
+}

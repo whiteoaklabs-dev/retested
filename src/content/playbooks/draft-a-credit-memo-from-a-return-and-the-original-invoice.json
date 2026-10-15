@@ -1,0 +1,85 @@
+{
+  "slug": "draft-a-credit-memo-from-a-return-and-the-original-invoice",
+  "title": "Draft a credit memo from a return and the original invoice",
+  "category": "Finance & admin",
+  "summary": "Paste the shopper's return email, the original sales invoice, and your written return policy. The agent drafts a credit memo that includes only the SKUs and quantities named in the email, copies unit price and tax from the matching invoice lines, and states the reason in the shopper's words. It shows the balance before, the amount of the memo, and the balance after. A restocking fee or return-shipping deduction appears only when the policy already allows it. A missing price, quantity, or received-back status is marked UNKNOWN. You choose a refund or store credit, confirm the goods are back when your policy requires that, and approve the memo before it is emailed, money is paid back, or the entry is posted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the bookkeeper for an online store, writing a credit memo the owner will edit before anyone is paid or emailed. From [RETURN EMAIL], [ORIGINAL INVOICE], and [RETURN POLICY], draft a memo that states the reason and shows the lower open balance. Put [CREDIT DATE] on the header.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Include only SKUs and quantities the shopper named in [RETURN EMAIL]. Leave every other line off the memo.\n- Copy description, unit price, and any line tax from the matching row on [ORIGINAL INVOICE]. Do not reprice or round.\n- Add a restocking fee or a return-shipping deduction only when [RETURN POLICY] already says so, and quote that sentence under Adjustments.\n- If the email never says the goods arrived back, set Received back to UNKNOWN and say the memo is not ready to post.\n- State the reason in the shopper's words, in one sentence under 40 words. Do not soften or escalate the claim.\n\nOutput format:\nReturn these headings in order: Header, Reason, Lines, Adjustments, Totals, Customer note, Owner must confirm. Lines is a table with columns SKU, Description, Qty credited, Unit price, Line credit. Totals lists balance before, memo amount, and balance after. Customer note stays under 80 words. Owner must confirm lists every UNKNOWN plus the refund-versus-store-credit choice.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful finance clerk for an online store owner. You do not email shoppers and you do not post entries. Build a credit memo from [RETURN EMAIL], [ORIGINAL INVOICE], [RETURN POLICY], and [CREDIT DATE] that states why the balance drops.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Match each requested item to one invoice row by SKU. If the email gives only a product name and two rows could fit, mark the SKU UNKNOWN and do not pick.\n- Take quantity from the email, never from the full quantity sold. If the email says some units but not how many, mark Qty UNKNOWN.\n- Carry unit price, tax, and shipping from [ORIGINAL INVOICE] only. If tax is one lump sum and not per line, mark tax UNKNOWN instead of splitting it.\n- Apply restocking or return freight only by quoting a sentence that already exists in [RETURN POLICY]. If the policy is silent, write No deduction stated.\n- Keep the reason factual and short. Do not add blame, a promise of faster service, or a new explanation.\n\nOutput format:\nUse headings Header, Reason, Lines, Adjustments, Totals, Customer note, and Owner must confirm. The Lines table columns are SKU, Description, Qty credited, Unit price, Line credit, and Source row. Totals shows balance before, memo amount, and balance after, or UNKNOWN when the open balance was not pasted. Customer note under 80 words. End with the fields the owner must check.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing aide for an online store owner who wants a credit memo, not a chatty apology. Use only [RETURN EMAIL], [ORIGINAL INVOICE], and [RETURN POLICY]. Date the header with [CREDIT DATE]. Show the reason and the balance after this memo.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the email names an order number that is not on [ORIGINAL INVOICE], stop and say the documents do not match. Do not force a memo.\n- Credit the units asked for, not the whole order. A similar SKU on the bill is not a match.\n- Prices, tax, and shipping come from the invoice line. Do not look up a current price or a sale price.\n- Restocking and return shipping stay off the memo unless [RETURN POLICY] states the rule in writing. Quote it, do not paraphrase a harsher fee.\n- Write the reason as one plain sentence under 40 words, tied to what the shopper actually wrote, such as damaged, wrong item, or changed mind.\n\nOutput format:\nReturn a memo with headings Header, Reason, Lines, Adjustments, Totals, Customer note, Owner must confirm. Lines columns: SKU, Description, Qty credited, Unit price, Line credit. Totals: balance before, memo amount, balance after. Customer note under 80 words, no refund promise. Owner must confirm is a short list of gaps and the refund or store-credit decision.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a credit memo for an online store owner who will approve it before it is sent, paid, or posted. Work only from [RETURN EMAIL], [ORIGINAL INVOICE], [RETURN POLICY], and [CREDIT DATE]. State the reason and the lower open balance.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the email as the list of what comes off the bill. Do not add gifts, leftover units, or shipping unless the email or the policy says to.\n- Copy names, SKUs, prices, and the open balance character for character from [ORIGINAL INVOICE]. If a digit is unreadable, mark that field UNKNOWN.\n- When the policy allows store credit for a change of mind and money back for a damaged good, note which rule applies, and still leave the final choice to the owner.\n- Set Received back from the email only. A request for a label is not proof the goods came back.\n- Do not draft a payment, a label, or an apology thread. The deliverable is the memo.\n\nOutput format:\nHeadings, in order: Header, Reason, Lines, Adjustments, Totals, Customer note, Owner must confirm. Lines is a table with columns SKU, Description, Qty credited, Unit price, and Line credit. Totals lists balance before, memo amount, and balance after. Keep the customer note under 80 words. Close with what the owner must approve before emailing or posting.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later Gmail, Google Sheets, and Zapier, Make, or n8n may stage a draft only.",
+    "steps": [
+      "From the shopper's return email in Gmail or your store inbox, copy the full message: order or invoice number, SKUs or product names, quantities, the reason they gave, and whether they asked for money back or store credit.",
+      "Open the original invoice PDF or the order export. Copy invoice number, date, shopper name, each line's SKU, description, quantity sold, unit price, tax, shipping, payments already applied, and the open balance. Leave any blank field blank.",
+      "Paste your written return policy next to those notes: the return window, the restocking rule, who pays return shipping, and when a damaged item is treated differently from a change of mind.",
+      "Open a chat assistant, paste the prompt for the model you use, and replace the placeholders with the return email, the invoice, the policy, and the credit date you want printed on the memo.",
+      "Read the draft. Confirm every credited SKU and quantity is in the email, every unit price is on the invoice, and the reason matches what the shopper wrote rather than a new story.",
+      "Choose refund or store credit, and keep or remove any restocking line so it matches your policy. Save the memo in a sheet or doc with columns for invoice number, memo amount, and status Waiting.",
+      "Optional agent mode: with Zapier, Make, or n8n, watch a Gmail label for return mail, pull the matching invoice row from Google Sheets, and fill the prompt. Save the result as a draft file. Leave email and posting switched off."
+    ],
+    "approvalStep": "You review the memo against the return email and the original invoice before it is emailed, a refund is paid, or the entry is posted. Nothing goes out until you approve the lines, the reason, and the new balance.",
+    "failureModes": [
+      "A SKU the shopper did not mention is included because a similar product is on the bill. Match each credited SKU to the return email before you approve.",
+      "The memo uses the full quantity sold when the email returns only some units. Compare the credited quantity with the quantity named in the email.",
+      "A restocking fee or return-shipping deduction appears when your policy is silent, or is missing when the policy requires it. Read Adjustments against the policy text.",
+      "The new balance ignores a payment already applied, so the memo is larger than the amount still open. Use the open balance on the invoice, not the original total.",
+      "The reason is milder or harsher than the shopper wrote, which matters on damaged or wrong-item claims. Keep the reason tied to their words.",
+      "The draft treats the goods as received when the email only asks for a label. Do not post until you confirm they are back, or your policy allows the entry first."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the return email names a product but no SKU?",
+      "a": "Paste the email as written and leave the SKU blank. The memo should match the product name to one invoice line and mark the SKU UNKNOWN when two lines could fit. You pick the line yourself before anything is posted or paid."
+    },
+    {
+      "q": "Should this refund the card or issue store credit?",
+      "a": "The draft can note what the shopper asked for, and you decide. If your policy says store credit for a change of mind and money back for a damaged item, apply that rule yourself and edit the memo before anyone is paid or emailed."
+    },
+    {
+      "q": "Which model is best for this credit memo?",
+      "a": "It is not yet tested, so no model is ranked. Use the prompt for ChatGPT, Claude, Grok, or Muse, whichever you already have open. Keep the draft that copies invoice prices exactly and states the reason from the return email."
+    },
+    {
+      "q": "Can this post the credit in my books by itself?",
+      "a": "No. Paste mode returns a memo you copy into a sheet or your billing screen. An automation may prepare that draft from Gmail and a sheet, but posting, paying a refund, and emailing the shopper stay off until you approve the lines and the reason."
+    },
+    {
+      "q": "What if tax is one total and the return is only part of the order?",
+      "a": "Give back tax only on the lines being returned, using tax already printed on those invoice lines. If the invoice shows one tax total and not tax per line, the memo should mark tax UNKNOWN so you work that figure before you post."
+    }
+  ],
+  "draft": true,
+  "persona": "Online store owner",
+  "job": "A return email and the original invoice become a credit memo that states the reason and shows the lower open balance.",
+  "who": "Online store owners who handle returns from their own inbox and need a credit memo tied to the original invoice before they email the shopper, pay a refund, or post the entry.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

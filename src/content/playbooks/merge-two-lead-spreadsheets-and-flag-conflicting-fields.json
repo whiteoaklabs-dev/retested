@@ -1,0 +1,84 @@
+{
+  "slug": "merge-two-lead-spreadsheets-and-flag-conflicting-fields",
+  "title": "Merge two lead spreadsheets and flag conflicting fields",
+  "category": "Sales",
+  "summary": "Sibling cofounders paste two lead spreadsheets for the same market. Each export needs its header row plus name, email, phone, company, title, city, and call notes. The agent matches on exact email, then full name plus company, and returns one merged sheet that keeps both source values side by side. It flags conflicting fields where email, phone, or company disagree, listing both raw values, the file each came from, and a blank Keep cell. People found in only one file stay on the sheet with that file named. Both cofounders write Keep A, Keep B, or Call first on every clash before a file is overwritten, a CRM import is submitted, outreach is sent, or a row is deleted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a lead-list clerk for sibling cofounders who each exported the same market. Merge [LEAD SHEET A] and [LEAD SHEET B] using [HEADER MAP], and flag conflicting fields.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If the header map is blank, ask which columns are name, email, phone, and company before you join anything\n- Match exact email first, then full name plus company, then full name only when the city also agrees\n- Keep every person, including rows that appear in only one file, and name that source file on the row\n- When email, phone, or company disagree, show both raw values and leave the kept value blank\n- Ignore capitalization and extra spaces when comparing, but store the original text unchanged\n- Do not choose a winner, draft outreach, or tell anyone to delete a source file\n\nOutput format:\nReturn a table with columns match_id, match_basis, full_name, company_a, company_b, email_a, email_b, phone_a, phone_b, title, city, website, notes, conflict_flag, source.\nThen sections headed Disagreements, Possible duplicates, and Unmatched. In Disagreements, one sentence per clashing field with both values and the file each value came from. In Possible duplicates, list near-matches you refused to join and why. In Unmatched, list rows that stayed in a single file.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records assistant for two sibling cofounders reconciling lead exports of one market. Join [LEAD SHEET A] with [LEAD SHEET B], following [HEADER MAP] exactly.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stop and ask if Account, Organization, Firm, Mobile, or Direct is not already mapped to company or phone\n- Prefer an exact email match; use full name plus company next; use name alone only when the city agrees\n- Preserve people who show up in a single export as their own rows and name the file they came from\n- For any email, phone, or company that still differs, print both original strings and leave the decision blank\n- Treat stray spaces and capital letters as the same value without rewriting the stored cell\n- Do not fill in a winner, write a sales note, or suggest replacing either workbook\n\nOutput format:\nReturn one merged table with columns match_id, match_basis, full_name, company_a, company_b, email_a, email_b, phone_a, phone_b, title, city, website, notes, conflict_flag, source.\nThen a report with headings Disagreements, Possible duplicates, and Unmatched. Under Disagreements, one sentence per field that clashes, naming both values and the source file. Under Possible duplicates, explain each pair you kept apart. Under Unmatched, list single-file rows only.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken list merger for sibling cofounders who both worked the same market. Take [LEAD SHEET A] and [LEAD SHEET B], apply [HEADER MAP], and produce one combined sheet plus a punch list of clashes.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If name, email, phone, or company is unmapped, ask for the column title before you combine rows\n- Join on exact email, then full name plus company, and only then on full name when the city matches too\n- A person who exists in just one export still gets a row, marked with that file name\n- If email, phone, or company differ, put the two raw strings side by side and leave Keep blank\n- Extra spaces and capital letters count as the same value, but the cells keep their original text\n- Skip a winner, skip outreach copy, and skip any note that says to overwrite a sibling's file\n\nOutput format:\nReturn a table whose columns are match_id, match_basis, full_name, company_a, company_b, email_a, email_b, phone_a, phone_b, title, city, website, notes, conflict_flag, source.\nFollow it with sections titled Disagreements, Possible duplicates, and Unmatched. Each disagreement is one sentence stating the field, the value from each file, and the file name. Possible duplicates are near-matches you did not join. Unmatched rows are people present in one export only.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant helping sibling cofounders fold two lead exports of one market into a single working list. Use [LEAD SHEET A], [LEAD SHEET B], and [HEADER MAP].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the header map first, and ask before joining if name, email, phone, or company has no column\n- Match exact email, then full name plus company, then full name only when the city agrees\n- Retain rows found in a single export and record which file supplied them\n- Where email, phone, or company differ, show both untouched values and a blank decision cell\n- Do not treat a formatting quirk as a new fact, and do not alter the text that was pasted\n- Do not fill the decision, write outreach, or replace either original export\n\nOutput format:\nReturn a merged table with these columns: match_id, match_basis, full_name, company_a, company_b, email_a, email_b, phone_a, phone_b, title, city, website, notes, conflict_flag, source.\nThen sections headed Disagreements, Possible duplicates, and Unmatched. Give each clashing field one sentence with both values and the file it came from. Say why each possible duplicate stayed split. List unmatched rows as single-file people with their source.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to write a fresh tab when a new export arrives.",
+    "steps": [
+      "Export each cofounder's lead list with the header row included, either as a CSV or by copying the grid. Paste one prompt above into a new chat, then paste both grids and label which sibling owns [LEAD SHEET A] and [LEAD SHEET B].",
+      "In the same chat, paste both header rows as [HEADER MAP]. Point to the columns that hold full name, email, phone, and company. If a header says Account, Organization, or Firm, map it to company before you ask for the join.",
+      "Read the merged table from top to bottom and tick off every person from both files. Confirm that single-file rows name their source and that call notes from either sibling still appear in the notes column.",
+      "Open the Disagreements section together. For each email, phone, or company clash, write Keep A, Keep B, or Call first in the blank cell. Leave no clash blank on a row you plan to contact.",
+      "Scan Possible duplicates for a shared first name, a nickname, or a brand sitting next to a legal name. Add a manual match only when both of you agree those two rows are the same person.",
+      "Copy the merged table and the report into a new spreadsheet tab. Leave both original files untouched so a bad join can be discarded without losing either sibling's notes.",
+      "Optional later step: use a spreadsheet app and a workflow tool such as Zapier, Make, or n8n so a fresh export creates a new tab and a new disagreement report. Restrict the flow so it can write that new tab and nothing else.",
+      "After every Keep choice is filled, copy only the chosen email, phone, and company onto the outreach list you actually dial from. Keep the rejected value in the report in case the other sibling still needs it."
+    ],
+    "approvalStep": "Both cofounders review the disagreement report together and write Keep A, Keep B, or Call first on every email, phone, or company clash before any row is sent, imported, posted, or deleted. Neither original file is overwritten until that review is done.",
+    "failureModes": [
+      "Same-name join: two different people who share a name and a city collapse into one row. Watch any match_basis that says name only, and split it when the inboxes are unrelated.",
+      "Format-only clash: the same phone with parentheses in one file and a country code in the other looks like two numbers. Compare digits before you treat it as a real disagreement.",
+      "Shared front desk: one general inbox or one main switchboard pulls unrelated leads into a single row. If the company text also differs, keep those people separate.",
+      "Header slip: Account in one export and Company in the other dumps the firm into notes, so company cells look empty. Map headers before you trust any flag.",
+      "Silent overwrite: pasting the merge onto a sibling's original tab drops call notes the other file never had. Write only into a new tab."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for merging our two lead lists?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Run the same two exports and the same header map in the chat you already use, and keep the run that shows every email, phone, and company clash with both raw values and drops no person from either file."
+    },
+    {
+      "q": "What if our column names do not match?",
+      "a": "Paste both header rows and say which column is name, email, phone, and company in each file. Map Account, Organization, or Firm to company, and map Mobile or Direct to phone. Leave every other column in notes so an unmapped field is not guessed into the wrong place."
+    },
+    {
+      "q": "Will this delete our old sheets or email anyone?",
+      "a": "No. Paste mode only returns a merged table and a disagreement report for you to copy into a new tab. Outreach, a CRM import, and any deletion wait until both cofounders have marked each clash. If you add an automation later, let it create a new tab only, with sending turned off."
+    },
+    {
+      "q": "When is a difference a real conflict?",
+      "a": "Treat email, phone, or company as a clash when the values still differ after you ignore capitalization and extra spaces. A brand name beside a legal name is a decision for you, not for the chat. The same digits written in another phone format are a format note. A blank cell is UNKNOWN, not a second value."
+    },
+    {
+      "q": "Can we run this again when new leads show up?",
+      "a": "Yes. Keep the original files, append the new rows, and paste the updated exports with the same prompt. Ask for clashes only on rows that are new or still blank in the decision column, so earlier Keep choices stay where you left them."
+    }
+  ],
+  "draft": true,
+  "persona": "Sibling cofounders",
+  "job": "Two spreadsheets of the same market go in; one merged sheet and a report where email, phone, or company disagree come out.",
+  "who": "Sibling cofounders who each keep a lead spreadsheet for the same market and need one shared list, with email, phone, and company clashes marked, before either of them starts outreach.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "CRM or contact sheets"
+  ]
+}

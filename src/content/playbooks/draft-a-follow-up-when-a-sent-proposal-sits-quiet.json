@@ -1,0 +1,85 @@
+{
+  "slug": "draft-a-follow-up-when-a-sent-proposal-sits-quiet",
+  "title": "Draft a follow-up when a sent proposal sits quiet",
+  "category": "Sales",
+  "summary": "When a brand proposal sits quiet, paste the sent date from your mail, the full last client message, the title on the proposal PDF or deck, the client and company, and a decision date you can hold. You get one follow-up in fixed sections: subject line, body of at most 120 words, exactly one question, that decision date as a calendar day, the facts used, and any gap marked UNKNOWN. Fees, extra concept rounds, and guessed reasons for the silence stay out. You edit the voice, check the day on your calendar, and send the reply yourself on the original thread. Nothing is sent until you approve it.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up writer for an independent brand designer. A sent proposal sits quiet. Draft one short reply the designer will edit and send.\n\nInputs:\nProposal sent on: [PROPOSAL SENT DATE]\nLast client email, pasted in full: [LAST CLIENT EMAIL]\nTitle on the proposal PDF or deck: [PROPOSAL TITLE]\nClient and company: [CLIENT NAME]\nDecision date the designer will hold: [DECISION DATE]\nStart window from the proposal cover, or blank: [START WINDOW]\nSign-off: [STUDIO SIGN OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Use only the inputs above. Do not add fees, discounts, extra concept rounds, meetings, or a reason they have been quiet.\n- Keep the subject to eight words or fewer. Keep the body at or under 120 words, in a calm studio voice.\n- Ask exactly one question. If the last email leaves one open point, ask about that point and tie it to [DECISION DATE]. If it leaves none, ask only whether to hold or release the start slot by that day. Do not ask both.\n- Name [DECISION DATE] once in the body, as a calendar day. Open with one fact that appears in [LAST CLIENT EMAIL].\n- If [START WINDOW] is blank, do not mention a start. If the email already names a later day, do not override it. Mark the clash UNKNOWN.\n\nOutput format, in this order:\nSUBJECT:\nBODY:\nONE QUESTION:\nDECISION DATE NAMED:\nFACTS USED:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful mail assistant for a brand designer whose proposal has gone quiet. Write one reply they can send after they read it. Do not chase, and do not re-pitch the work.\n\nUse only these inputs:\nSent on: [PROPOSAL SENT DATE]\nFull last client email: [LAST CLIENT EMAIL]\nCover title: [PROPOSAL TITLE]\nClient and company: [CLIENT NAME]\nDay they chose for a decision: [DECISION DATE]\nStart window copied from the cover, or blank: [START WINDOW]\nHow they sign mail: [STUDIO SIGN OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Do not assume the work was missed, disliked, or forgotten. If the message does not say it, leave it out.\n- Subject: eight words or fewer. Body: 120 words or fewer, first person, no slogans.\n- One question only. When the message leaves an open point, ask about that point and attach [DECISION DATE] to it. When it leaves none, ask only whether to hold or release the start slot. Never ask both.\n- Put the decision day in the body once. The first two sentences must rest on a fact written in [LAST CLIENT EMAIL].\n- A blank [START WINDOW] means you stay silent about timing. If their message already names a later day, keep theirs and mark any clash UNKNOWN.\n\nOutput format:\nSubject\nBody\nThe single question on its own line\nThe decision date exactly as it appears in the body\nFacts used, as a list\nUNKNOWN, as a list",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a brand designer. Their proposal sits quiet. Write one short note they will check before it leaves the inbox. Skip sales polish.\n\nFill in:\nSent date: [PROPOSAL SENT DATE]\nLast email from the client, in full: [LAST CLIENT EMAIL]\nName on the proposal: [PROPOSAL TITLE]\nWho it went to: [CLIENT NAME]\nDecision day they will hold: [DECISION DATE]\nStart window from the cover, or blank: [START WINDOW]\nSign-off: [STUDIO SIGN OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stick to those fields. No new fee, discount, extra round, meeting, or guessed reason for the silence.\n- Subject in eight words or fewer. Body at or under 120 words. Short sentences. No chase lines such as circling back, bumping this, or touching base.\n- Ask one question and stop. If their email left an open point, ask about that point, tied to [DECISION DATE]. If not, ask only to hold or release the start slot by that day.\n- Use [PROPOSAL TITLE] once so two open projects are not mixed up. Name the decision day once in the body.\n- If you cannot find a real fact for the opening line, write UNKNOWN there and say what to add. Do not fake warmth.\n\nOutput format:\nSUBJECT\nBODY\nONE QUESTION\nDECISION DATE NAMED\nFACTS USED\nUNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a brand designer. Turn a quiet proposal thread into one email that asks for a decision on a date the designer already chose. They approve every word before sending.\n\nPaste:\n[PROPOSAL SENT DATE] when the PDF or deck went out\n[LAST CLIENT EMAIL] the newest client message, in full, or the send itself if they never replied\n[PROPOSAL TITLE] the cover title, copied exactly\n[CLIENT NAME] client and company\n[DECISION DATE] the calendar day the designer can hold\n[START WINDOW] the start line from the cover, or blank\n[STUDIO SIGN OFF] name and studio\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Do not invent a reason for the silence, a new deliverable, or a change in fee or timeline.\n- Write the body in first person, 120 words or fewer, ready for a light edit. Keep the subject to eight words or fewer.\n- Ask one question only. Tie it to the open point in [LAST CLIENT EMAIL] when one exists. Otherwise ask whether to hold or release the start slot. Do not add a second ask.\n- Name [DECISION DATE] once, inside the body. If that day is blank or earlier than [PROPOSAL SENT DATE], stop and mark both UNKNOWN.\n- If [START WINDOW] is blank, omit it. Echo one concrete fact from the client message in the opening.\n\nOutput format with these headings:\nSUBJECT\nBODY\nONE QUESTION\nDECISION DATE NAMED\nFACTS USED\nUNKNOWN",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optional later: Google Sheets and Gmail, with Zapier, Make, or n8n creating drafts only.",
+    "steps": [
+      "In your Sent folder, open the message that carried the proposal PDF or deck. Copy the send date, the cover title, and the newest message on that thread. If the client never wrote back, copy your own send and note that no reply exists.",
+      "On your calendar, choose the decision date you will actually hold the project start for, and write that day down. If the proposal cover states a start window, copy that line. Leave it blank if you do not want it mentioned.",
+      "Open ChatGPT, Claude, Grok, or Muse, paste that model's prompt, and replace every bracket. Paste the message in full rather than a paraphrase. Put your chosen day in the decision-date field so the model cannot pick one.",
+      "Lay the returned sections beside the source message: subject, body, one question, decision date named, facts used, and unknown. Delete any fee, discount, extra concept round, meeting, or reason for the silence that the source does not contain.",
+      "Confirm the subject is eight words or fewer, the body is at most 120 words, and there is a single question mark. Confirm the named day matches the day you wrote down. Fill any real gap, or cut a sentence left as UNKNOWN.",
+      "Read the body aloud, then put your real name and studio on the sign-off. In Gmail, paste it into a reply on the original thread, check the To line is only people already on that thread, and leave the reply unsent.",
+      "After you send, add a Google Sheets row with columns for client, proposal title, sent date, decision date, note sent (yes or no), and status. Do not start another note before that decision date unless they write back and you answer directly.",
+      "Optional agent mode: connect that sheet to Gmail with Zapier, Make, or n8n so a still-quiet row creates a draft reply only. Leave auto-send off, and skip any row where note sent is already yes."
+    ],
+    "approvalStep": "Before sending, review the unsent Gmail reply next to the last client message and your calendar. Approve only when the one question, the decision date, the To line, and every factual line match what you pasted. Then send it yourself.",
+    "failureModes": [
+      "A second ask sneaks in, often a call plus a deadline, so there is no single reply. Count question marks in the body and keep one.",
+      "The named day is already past, lands when you are away, or conflicts with a later day their message already names. Check your calendar before you approve.",
+      "The note offers a discount, a free extra round, or a meeting that is not in the source. Strike any new promise you cannot point to in the text.",
+      "The opening ignores a founder review or a pause that their message already stated, and reads like a generic bump. The first lines need one fact from that message.",
+      "The cover title gets softened into a generic branding project and mixes up two open files, such as identity and packaging. The title in the note must match the cover.",
+      "A second note goes out before the decision date because the sheet was not updated. Open the row and stop if note sent is already yes."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the client never replied after the proposal?",
+      "a": "Paste your own send as the last message and write that no client reply exists. Expect UNKNOWN where a fact from them should be. The note should name the cover title and the sent date, then ask your one question. Do not let it invent a reason they have been quiet or claim the file bounced."
+    },
+    {
+      "q": "Who picks the decision date, me or the model?",
+      "a": "You do. Choose a day you can hold the start slot, long enough for them to read the proposal with whoever they named, and type it into the decision-date field before you run the prompt. If you leave it blank, the draft should mark that day UNKNOWN instead of guessing a weekday."
+    },
+    {
+      "q": "Will this send the follow-up for me?",
+      "a": "No. Paste mode ends as text you copy into a reply on the original thread and send from your own mailbox. If you later connect Gmail and Google Sheets with Zapier, Make, or n8n, use that only to create a draft. Leave auto-send off so a quiet row cannot mail someone while you are away."
+    },
+    {
+      "q": "Which model is best for writing this follow-up?",
+      "a": "It is not yet tested. Use whichever chat model you already write client mail in. Keep a result only when the cover title matches, the body has one question, every fact is in the message you pasted, and the decision date is the day you chose."
+    },
+    {
+      "q": "Should the note restate the fee or reattach the PDF?",
+      "a": "Do not restate the fee unless their last message asked about price. A repeated fee can look like a fresh price. Reattach the PDF only if you decide they may have missed it. The model must not claim a bounce. Still name the cover title so two open projects stay distinct."
+    }
+  ],
+  "draft": true,
+  "persona": "Brand designer",
+  "job": "From the proposal send date and the last client email, draft one follow-up of at most 120 words that asks one question and names a decision date you chose.",
+  "who": "Independent brand designers and small studios who sent a proposal PDF or deck for an identity, packaging, or brand system and are waiting after the client's last message.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

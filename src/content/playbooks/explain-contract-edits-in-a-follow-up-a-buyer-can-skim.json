@@ -1,0 +1,81 @@
+{
+  "slug": "explain-contract-edits-in-a-follow-up-a-buyer-can-skim",
+  "title": "Explain contract edits in a follow-up a buyer can skim",
+  "category": "Sales",
+  "summary": "This playbook turns your plain summary of requested contract edits into a short follow-up email a buyer can skim in one pass. You paste the original clause or section name, what the buyer asked to change, and any dates, fees, or scope items mentioned, and the agent returns an email that lists each edit in plain language, groups agreed changes separately from open questions, and ends by asking the buyer to confirm what is still unresolved. You stay in control by checking every edit against the source contract before sending, deciding which open items need a decision now, and approving the final wording so nothing is promised that was not in the documents you provided.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are an email drafting assistant for a freelance contractor explaining contract edits to a client buyer. Turn my notes into a clear follow-up email.\nRules:\n- Use only the edits, dates, and terms in the input; do not add clauses or commitments.\n- Translate legal wording into plain language a non-lawyer can skim quickly.\n- Group items under Changed and Still open, with one edit per bullet.\n- Keep each bullet to one sentence and name the contract section it refers to.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\nOutput format: Subject line, one short opening line, Changed section, Still open section, then a closing line asking the buyer to confirm the open items by reply.\nInputs: [CONTRACT NAME AND SECTION] [PASTE EDIT SUMMARY HERE] [CLIENT NAME AND PROJECT] [ANY DEADLINE OR FEE MENTIONED]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful writing assistant helping a freelance contractor explain contract edits to a buyer in a follow-up email. Use the contract notes I provide below.\nRules:\n- Stick to the exact edits I list; do not rewrite the contract or add new terms.\n- Explain each edit in plain language and name the section it affects.\n- Separate agreed changes from questions that still need a decision.\n- Flag any edit where the buyer wording is vague instead of guessing the meaning.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\nOutput format: Start with Subject:, then a brief greeting, a Changed list, a Still open list, and a final line asking the buyer to reply confirming or correcting the open items.\nInputs: [PASTE ORIGINAL CLAUSE OR SECTION NAME] [PASTE REQUESTED EDIT IN YOUR OWN WORDS] [BUYER NAME AND COMPANY] [WHAT YOU NEED CONFIRMED]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct email assistant for a freelance contractor who needs to explain requested contract edits so a busy buyer can skim and reply.\nRules:\n- Use only the information I paste; do not assume dates, prices, or scope beyond it.\n- Make each edit one short bullet a non-lawyer can understand at a glance.\n- Put settled edits first and unresolved edits in their own section.\n- Keep the tone polite and neutral, with no sales language or pressure.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\nOutput format: Subject line, one-line recap of why you are writing, Changed bullets, Still open bullets with a clear question for each, and a closing asking for confirmation.\nInputs: [CONTRACT OR PROPOSAL NAME] [PASTE EDIT NOTES LINE BY LINE] [CLIENT CONTACT NAME] [RESPONSE DATE YOU WANT TO REQUEST]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are an email drafting assistant for a freelance contractor sending a contract-edit follow-up to a client buyer. Draft the email from my pasted summary only.\nRules:\n- List each requested edit separately and reference its contract section.\n- Describe what changed in plain language without adding legal advice.\n- Group the email into Changed and Still open so the buyer can skim.\n- End with a specific ask for the buyer to confirm each open item.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\nOutput format: Subject line, short opening sentence, Changed section, Still open section formatted as questions, and a polite sign-off with my name left as a placeholder.\nInputs: [YOUR NAME AND BUSINESS NAME] [PASTE CONTRACT EDIT SUMMARY] [SECTION NUMBERS OR HEADINGS] [OPEN QUESTIONS FOR THE BUYER]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant used in paste mode, with optional email drafting inside Gmail or Outlook.",
+    "steps": [
+      "Open your contract or statement of work and write a plain summary of each requested edit, one line per edit, with the section name, the old wording, and the requested new wording.",
+      "Paste that summary into your chosen assistant along with the client name, project name, and any deadline or fee the buyer mentioned, using one of the prompts in this playbook.",
+      "Read the draft email and check every bullet against your source contract, fixing any edit that is missing, merged with another edit, or worded more strongly than the original.",
+      "Copy the corrected draft into Gmail or Outlook as a draft, attach or link the current contract version from your document storage, and do not send it yet.",
+      "Optional automated mode: save the approved draft as a reusable template in your email tool or connect Gmail to Zapier, Make, or n8n to log sent follow-ups in Google Sheets.",
+      "After the buyer replies, update your edit summary to mark confirmed items as closed and rerun the prompt only for the items that remain open."
+    ],
+    "approvalStep": "You review and approve the draft inside your email client before anything is sent. Check each Changed bullet against the contract, confirm every Still open item is phrased as a question, and only then press Send yourself.",
+    "failureModes": [
+      "The assistant merges two separate edits into one bullet, so the buyer confirms one change while missing the other entirely.",
+      "Vague buyer wording like later or soon is turned into a specific date or commitment that was never agreed in the source notes.",
+      "An open question is written as a settled change, and the buyer replies as if that term is already final.",
+      "The draft uses legal phrasing that sounds like advice, so always remove advice language and keep it to a summary of the edits."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Do I need to paste the whole contract?",
+      "a": "No. Paste only the section name, the current wording, and the requested change for each edit. A short summary per edit keeps the email skimmable and reduces the chance the assistant mixes up unrelated clauses."
+    },
+    {
+      "q": "What if the buyer asked for an edit I do not understand?",
+      "a": "Put that edit in the Still open section as a question instead of guessing. Write what the buyer said in their own words, mark anything unclear as UNKNOWN, and ask them to confirm the exact meaning before you update the contract."
+    },
+    {
+      "q": "Can this replace a lawyer reviewing my contract?",
+      "a": "No. This playbook only explains edits you already have in plain language for a follow-up email. For new clauses, liability, payment disputes, or anything you are unsure about, have a qualified lawyer review the actual contract document."
+    },
+    {
+      "q": "Which model is best for this playbook?",
+      "a": "It is not yet tested, so there is no ranking to rely on. Try the same pasted edit summary in the tool you already use, check the draft against your contract, and keep the version that lists each edit most clearly."
+    },
+    {
+      "q": "How should I handle fees or dates in the email?",
+      "a": "Only include a fee or date if it appears in your pasted notes or the contract itself. If the buyer mentioned a number verbally, label it as needing confirmation in the Still open section rather than stating it as agreed."
+    }
+  ],
+  "draft": true,
+  "persona": "Freelance contractor",
+  "job": "Paste a plain summary of each requested edit and get a skimmable email that lists what changed and asks the buyer to confirm what is still open.",
+  "who": "Freelance contractors who send contracts, statements of work, or change requests to clients and need to explain redlines and requested edits without legal jargon or a long email thread.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email clients",
+    "Document storage",
+    "Contract templates"
+  ]
+}

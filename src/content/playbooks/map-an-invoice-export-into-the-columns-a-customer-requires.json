@@ -1,0 +1,85 @@
+{
+  "slug": "map-an-invoice-export-into-the-columns-a-customer-requires",
+  "title": "Map an invoice export into the columns a customer requires",
+  "category": "Finance & admin",
+  "summary": "A SaaS founder pastes a billing export and the buyer's required column sample. The export keeps its header row and should carry invoice number, issue date, due date, legal name, currency, line description, quantity, unit price, line amount, tax, document total, status, plan name, and service period. The sample is their header row, an example row if they sent one, and notes on date format and row grain. The agent returns a crosswalk from each buyer header to a source field, a filled sheet using only those headers in that order, and an exceptions list for UNKNOWN cells. You confirm every Amount, Date, and ID pairing, fill or accept each blank, and approve the sheet before it is emailed, uploaded, or marked submitted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a billing clerk for a SaaS founder whose buyer will only accept a spreadsheet in the buyer's own column layout. Map [INVOICE EXPORT] onto [CUSTOMER COLUMN SAMPLE], using [FIELD NOTES] when a pairing is already named.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Use only the buyer's headers, in the sample's order, on the filled sheet. Do not add, rename, or reorder them\n- If Amount, Date, Number, or ID could come from more than one source field, ask which field the buyer means before you fill rows\n- Follow the row grain in the sample or notes: one row per invoice, or one row per line. Do not switch it\n- Copy figures, dates, currency codes, and invoice numbers exactly. Reformat a date or currency only when the sample shows that pattern\n- When a required header has no source field, such as a PO number, tax ID, cost center, or GL code, leave UNKNOWN\n- Do not email, upload, or mark any bill submitted, and do not drop paid, credit, or zero-dollar rows unless the notes say so\n\nOutput format:\nReturn three sections headed Crosswalk, Filled sheet, and Exceptions.\nCrosswalk is a table with columns buyer_header, source_field, transform, status.\nFilled sheet is a table whose first row is exactly the customer headers, then one data row per the required grain.\nExceptions lists every UNKNOWN cell, every format clash, leftover source fields, and any invoice number present in the export but missing from the filled sheet.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records assistant for a SaaS founder reformatting bills into a buyer's required layout. Place [INVOICE EXPORT] into [CUSTOMER COLUMN SAMPLE]. Honor [FIELD NOTES] before you infer any pairing.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the filled sheet limited to the sample headers, spelled and ordered exactly as pasted\n- Stop and ask when Amount, Date, Number, or ID has two plausible source fields, and wait for the founder's choice\n- Obey the grain they wrote down, whether that is one row per invoice or one row per line\n- Leave dates, currency codes, and document numbers as copied text unless an example row shows a different pattern\n- A header with no source, including PO number, tax ID, cost center, or GL code, stays UNKNOWN rather than being borrowed from a memo\n- Skip sending, portal upload, and any status change, and keep paid, credit, and zero-dollar rows unless notes exclude them\n\nOutput format:\nReturn sections titled Crosswalk, Filled sheet, and Exceptions.\nThe crosswalk table uses columns buyer_header, source_field, transform, status.\nThe filled sheet table starts with the customer's header row and then the data rows at the required grain.\nExceptions names each UNKNOWN cell, each format clash, leftover source fields, and every invoice number from the export that the filled sheet omitted.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken billing aide for a SaaS founder who has to hand a buyer a sheet in that buyer's columns. Take [INVOICE EXPORT] and fit it to [CUSTOMER COLUMN SAMPLE]. Apply [FIELD NOTES] wherever the founder already decided a pairing.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- The filled sheet gets the buyer's headers only, in their order, with no extra or renamed headers\n- When Amount, Date, Number, or ID could be two different source fields, ask which one before writing rows\n- Stick to the grain in the notes: one row per invoice, or one row per line\n- Copy amounts, dates, currency codes, and invoice numbers as they appear. Change a format only if the sample already uses it\n- If PO number, tax ID, cost center, or GL code is absent from the export, write UNKNOWN. Do not lift one from a comment\n- Do not email the file, upload it, or mark a bill submitted. Keep paid, credit, and zero-dollar rows unless told to drop them\n\nOutput format:\nReturn a Crosswalk, a Filled sheet, and an Exceptions list.\nCrosswalk columns are buyer_header, source_field, transform, and status.\nFilled sheet is a table with the customer header row first, then one row per the grain they require.\nExceptions covers UNKNOWN cells, format clashes, leftover source fields, and invoice numbers that were in the export but not on the filled sheet.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant helping a SaaS founder lay a billing export into the columns a buyer requires. Use [INVOICE EXPORT], [CUSTOMER COLUMN SAMPLE], and [FIELD NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Build the filled sheet from the sample headers alone, keeping their spelling and order\n- Ask before filling if Amount, Date, Number, or ID is not pinned to a single source field in the notes\n- Match the stated grain, one row per invoice or one row per line, and do not pick the other\n- Preserve figures, dates, currency codes, and document numbers. Adopt a new date or currency pattern only when the example row shows it\n- Required headers with no source field, such as PO number, tax ID, cost center, or GL code, stay UNKNOWN\n- Do not send, upload, or change a payment status. Do not omit paid, credit, or zero-dollar documents unless the notes say to\n\nOutput format:\nReturn three headed sections: Crosswalk, Filled sheet, and Exceptions.\nCrosswalk is a table with columns buyer_header, source_field, transform, status.\nFilled sheet is a table whose header row copies the customer sample, followed by data rows at the required grain.\nUnder Exceptions, list UNKNOWN cells, format clashes, source fields that had nowhere to go, and any invoice number missing from the filled sheet.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Later, Google Sheets plus Zapier, Make, or n8n can drop a new billing file into a fresh tab.",
+    "steps": [
+      "From your billing tool, export this buyer's documents for the period they named and keep the header row. Include invoice number, issue date, due date, legal name, currency, line description, quantity, unit price, line amount, tax, total, status, plan name, and service period.",
+      "Put their column sample next to that file: the header row they sent, one example row if you have it, and any note on date format, required fields, and whether they want one row per invoice or one row per line.",
+      "Open a new chat and paste the prompt for the model you use. Put the billing file where it says [INVOICE EXPORT], the header sample and notes where it says [CUSTOMER COLUMN SAMPLE], and any pairing you already know where it says [FIELD NOTES].",
+      "Read the crosswalk before the filled rows. For each buyer header, confirm the source field. Fix any pairing that uses the line amount where they asked for the document total, or the issue date where they asked for the due date.",
+      "Check the grain. If they want one row per invoice, confirm line amounts were summed, descriptions were joined, and the total was copied rather than invented. If they want one row per line, confirm the document total is repeated only when their example row does that.",
+      "Open the exceptions list. For each UNKNOWN cell, type the real value from your billing record or leave it blank and tell the buyer the field is absent. Reject any PO number, tax ID, or cost center that was not in the file.",
+      "Copy only the filled buyer headers into a new spreadsheet tab, in their order. Leave the original export untouched so a bad pairing can be discarded without losing the source rows.",
+      "Optional later pass: use Google Sheets and a workflow tool such as Zapier, Make, or n8n so a fresh export lands in a new tab and the crosswalk runs again. Keep email and portal upload switched off until you approve that tab."
+    ],
+    "approvalStep": "You review the crosswalk and the filled sheet against the buyer's header row, and you confirm every Amount, Date, and ID pairing, before the file is emailed or submitted. Leave upload off until each UNKNOWN you care about is filled or left blank on purpose.",
+    "failureModes": [
+      "Lookalike headers: Amount is filled from the line figure when the buyer meant the document total, or Date is the issue date when they meant the due date. Read those names on the crosswalk first.",
+      "Grain clash: the sample is one row per invoice but the export is one row per line, so a total repeats and the buyer double-counts. Watch one document number show up once per line.",
+      "Quiet invention: a blank PO number, tax ID, or cost center gets a value taken from a memo or last month. Those cells should say UNKNOWN unless the export contains them.",
+      "Format drift: a date is rewritten into another style, or a currency code becomes a symbol the sample never showed. Compare a few cells with the raw export text.",
+      "Dropped bills: paid, credited, or zero-dollar documents vanish because the chat kept only open items. Match document numbers in the export to the filled sheet.",
+      "Wrong file goes out: the crosswalk or the raw export is uploaded instead of the filled buyer headers. Check that the first row matches their sample exactly."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for mapping an invoice export?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Run the same export and the same column sample in the chat you already use, and keep the run whose filled sheet uses only their headers and marks every missing cell UNKNOWN."
+    },
+    {
+      "q": "What if their headers do not match our billing export?",
+      "a": "Paste both header rows and, in the field notes, name which source field feeds each buyer header when the labels differ. Spell out Amount, Date, Number, and ID. Leave a required header with no source as UNKNOWN instead of guessing a nearby field."
+    },
+    {
+      "q": "They want one row per invoice and we export lines. What then?",
+      "a": "Say that grain in the column-sample notes. The chat should sum line amounts, join descriptions, and keep the document total copied from the export. If the lines do not add up to that total, the row belongs in Exceptions for you to fix."
+    },
+    {
+      "q": "Will this upload the sheet to their portal?",
+      "a": "No. Paste mode only returns a crosswalk, a filled sheet, and an exceptions list. You copy the filled headers into a new tab, and you email or submit that file yourself after you approve it. A later automation should write a new tab only, with upload and email off."
+    },
+    {
+      "q": "What if we do not have their PO number or tax ID?",
+      "a": "Leave those cells UNKNOWN and tell the buyer the field is not in your billing export. Type a number yourself only after you have checked it in a source you trust. A guessed purchase order is a common reason a portal rejects the file."
+    }
+  ],
+  "draft": true,
+  "persona": "SaaS founder",
+  "job": "Your invoice export and a sample of the customer's columns become a filled spreadsheet that uses their headers, order, and row grain.",
+  "who": "SaaS founders whose buyers reject a native billing export and instead require a spreadsheet whose headers, order, and row grain match the buyer's accounts-payable column sample.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Billing exports",
+    "Workflow automation"
+  ]
+}

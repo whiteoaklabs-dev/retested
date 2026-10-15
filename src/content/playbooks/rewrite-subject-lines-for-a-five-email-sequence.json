@@ -1,0 +1,85 @@
+{
+  "slug": "rewrite-subject-lines-for-a-five-email-sequence",
+  "title": "Rewrite subject lines for a five-email sequence",
+  "category": "Back office",
+  "summary": "Paste five course emails in send order, each labeled with its job and full body, plus an audience note: course name, who the reader is, what they have already tried, the one claim you will stand behind, and words you refuse in an inbox. You get five rows back and nothing else: a distinct subject, a preview that adds a different fact from that same body, the angle, the source sentence, and UNKNOWN wherever a fact was not supplied. Word caps stay at 9 for the subject and 16 for the preview. You strike lookalike lines, fix any crossed email, and approve the five pairs on a test to yourself before the sequence is scheduled or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a subject-line editor for an online course creator. Using only [FIVE DRAFT EMAILS] and [AUDIENCE NOTE], write one inbox subject and one preview text per email, in the order pasted. Leave every body untouched.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Cap each subject at 9 words and each preview at 16 words.\n- Give the five subjects different openings: the first three words of any two rows must not match, and they must not repeat the same promise.\n- Take the subject from a sentence inside that same body, and copy that sentence into the Source column.\n- The preview must add a fact the subject left out, still drawn from that same body.\n- Do not add a price, coupon, deadline, bonus, module name, or learner result unless it is written in [FIVE DRAFT EMAILS] or [AUDIENCE NOTE].\n- If [AUDIENCE NOTE] names words to skip, those words stay out of every subject and preview.\n- When a body is blank, put UNKNOWN on that row and do not borrow lines from another email.\n\nOutput format:\nTable columns: Order | Job label | Subject | Preview | Angle | Source sentence | UNKNOWN\nThen a short list titled Lookalikes for any pair that still sounds the same.\nFive rows only, in paste order.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful inbox-line editor for an online course creator. Draft a subject and a preview text for each message in [FIVE DRAFT EMAILS], guided only by that paste and by [AUDIENCE NOTE]. Do not revise the bodies.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Hold every subject to 9 words or fewer and every preview to 16 words or fewer.\n- Trace each subject to one sentence in the matching body and quote that sentence in Source so the creator can check it.\n- Keep the five subjects distinct in opening words and in the promise they make; if two share a promise, mark the second Lookalike and offer a different angle from that body.\n- Write the preview as a second fact from the same body, never a repeat of the subject.\n- Treat prices, coupons, end dates, bonuses, lesson titles, and learner outcomes as closed: if they are absent from [FIVE DRAFT EMAILS] and [AUDIENCE NOTE], write UNKNOWN instead.\n- Honor any skip-list inside [AUDIENCE NOTE]; do not sneak those words into a clever paraphrase.\n- A missing body stays UNKNOWN for both lines. Do not invent a fifth message to fill the sequence.\n\nOutput format:\nOne block per email with headings Order, Job label, Subject, Preview, Angle, Source sentence, UNKNOWN.\nAfter the five blocks, a Lookalikes section naming any pair that still overlaps.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken editor for an online course creator who needs inbox lines, not new emails. From [FIVE DRAFT EMAILS] and [AUDIENCE NOTE], produce one subject and one preview for each body, in send order.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Subjects stay at 9 words or fewer. Previews stay at 16 words or fewer.\n- No two subjects may open with the same three words or pitch the same benefit.\n- Point each subject at a real sentence in that body and put the sentence in Source.\n- Use the preview for a detail the subject skipped. If the body has no second fact, mark the preview UNKNOWN.\n- Leave out price, coupon, deadline, bonus, module title, and student outcome unless the paste already states it in [FIVE DRAFT EMAILS] or [AUDIENCE NOTE].\n- Drop any word [AUDIENCE NOTE] tells you to skip, including hype the creator flagged.\n- Do not write a body, a postscript, or a replacement email when one of the five is missing.\n\nOutput format:\nColumns: Order | Job label | Subject | Preview | Angle | Source sentence | UNKNOWN\nThen Lookalikes: name any two rows that still sound alike.\nStop at five rows.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are an inbox helper for an online course creator. Rewrite only the subject and the preview text for the five messages in [FIVE DRAFT EMAILS], using [AUDIENCE NOTE] for who will read them. Keep the bodies exactly as pasted.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Limit the subject to 9 words and the preview to 16 words.\n- Make each subject earn its place in the sequence: a different opening and a different reason to open, taken from that message alone.\n- Show the source sentence under each subject so a mismatch is obvious.\n- Let the preview carry the next concrete detail from the same message, not a restatement of the subject.\n- If a price, coupon, close date, bonus, module name, or learner result is not in [FIVE DRAFT EMAILS] or [AUDIENCE NOTE], do not imply it.\n- Apply the skip words in [AUDIENCE NOTE] to both the subject and the preview.\n- Blank message: both fields UNKNOWN. Never fill the gap with a generic course pitch.\n\nOutput format:\nFive labeled rows: Order, Job label, Subject, Preview, Angle, Source sentence, UNKNOWN.\nEnd with a Lookalikes list. Do not return rewritten bodies.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat model in paste mode. Optional later: Google Sheets plus Zapier, Make, or n8n may fill subject and preview on unsent drafts only.",
+    "steps": [
+      "From your course email tool, copy the five drafts in send order. For each one, keep the job label you use (welcome, lesson, story, offer, close, or your own names), the full body, and the subject already saved on that draft, if any.",
+      "On the same page, write the audience note the prompt expects: course name, who the reader is, what they have already tried, the single claim you will stand behind, and any words that must not show up in an inbox.",
+      "Paste one prompt above into a chat. Replace [FIVE DRAFT EMAILS] with the five labeled bodies and [AUDIENCE NOTE] with that description. Do not add a price, coupon, or date that is not already written in those pastes.",
+      "Check the five rows against the matching body. Each subject must trace to the source sentence on that same email. If a body was blank, leave the row as UNKNOWN and do not let a neighbor fill it.",
+      "Read the five subjects aloud in send order. If two open the same way or sell the same beat, rewrite that one yourself from a different sentence in its own body before you go on.",
+      "Check each preview. It should add a fact the subject skipped, stay at 16 words or fewer, and avoid repeating the subject. Cut any price, deadline, bonus, or learner outcome you did not supply.",
+      "Paste each kept subject and preview into the matching unsent draft in your course email tool. Leave scheduling off. Send a test only to yourself and confirm the two lines differ and sit on the correct body.",
+      "Optional agent mode: put order, job label, body, subject, and preview in Google Sheets. Use Zapier, Make, or n8n to copy the subject and preview onto unsent drafts only. Keep send and schedule switched off until you approve."
+    ],
+    "approvalStep": "You read each subject and preview beside its own body, strike any claim missing from that body or the audience note, and approve all five pairs on a test to yourself before the sequence is scheduled or sent.",
+    "failureModes": [
+      "Same opener across the set: several subjects start with the course name or the same verb. Rewrite the repeats from a different sentence in that body.",
+      "Borrowed promise: a subject names a price, coupon, deadline, bonus, or learner result the body never states. Delete that line and mark the row UNKNOWN.",
+      "Crossed emails: the offer subject describes the lesson, or the close teases a story that already went out. Match each line to its own body before you save it.",
+      "Preview echo: the preview repeats the subject, so the inbox shows one idea twice. Replace it with a different fact from that same draft.",
+      "Skip-list ignored: a banned word from your audience note still appears, or the lines use jargon your readers do not use. Swap in their phrasing.",
+      "Live too soon: the email tool still holds the old subjects, or a workflow turns drafts into a send. Confirm the new lines on your own test before anyone else can receive them."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste in before I ask for subject lines?",
+      "a": "Paste five bodies in send order, each with the job label you use and any subject already saved on that draft. Add an audience note with the course name, who the reader is, what they have already tried, the one claim you will stand behind, and words you will not use. The bodies stay as written. Only the inbox lines are new."
+    },
+    {
+      "q": "Should the preview text repeat the subject?",
+      "a": "No. The subject carries one idea from that email, and the preview adds a second fact from the same body so a phone inbox does not show the same line twice. If the draft has only one usable fact, mark the preview UNKNOWN instead of padding it with a promise you did not write."
+    },
+    {
+      "q": "Which model is best for these subject lines?",
+      "a": "It is not yet tested for this playbook, so there is no ranked answer. Paste the same five drafts and the same audience note into the model you already write with, and keep the set that stays inside each email's facts and needs the least rewriting in your voice."
+    },
+    {
+      "q": "Can I use this for a launch and for an evergreen run?",
+      "a": "Yes. The drafts decide what is allowed. If a body has no cart date, coupon, or bonus, those words stay out, which fits an evergreen run. If a launch draft names a real close date, that date may appear only on the email that states it, and only after you confirm the date is still true."
+    },
+    {
+      "q": "What if only three of the five emails are written?",
+      "a": "Paste the three you have and mark the other two blank. Those rows should come back UNKNOWN. Do not let the model invent a story, an offer, or a close you have not drafted. Write those bodies first, then run the same prompt again on the full set."
+    }
+  ],
+  "draft": true,
+  "persona": "Online course creator",
+  "job": "Paste five draft course emails and a short audience note, then get five distinct subjects and preview texts without rewriting the bodies.",
+  "who": "An online course creator who already wrote five emails for a launch, a waitlist, or a new-student run and needs a different subject and preview for each one, written for the people the course is for.",
+  "toolCategories": [
+    "AI chat models",
+    "Email marketing",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

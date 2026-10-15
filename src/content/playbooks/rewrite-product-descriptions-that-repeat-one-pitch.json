@@ -1,0 +1,85 @@
+{
+  "slug": "rewrite-product-descriptions-that-repeat-one-pitch",
+  "title": "Rewrite product descriptions that repeat one pitch",
+  "category": "Marketing & SEO",
+  "summary": "Paste a listing export (product name, SKU, and the current description) and a spec sheet with scent notes, burn time, and room size on the same rows. Add the one pitch those descriptions repeat. You get a block per SKU: a lead detail no other jar uses, a description of at most 110 words that opens on that detail, and a spec line copied from the sheet. House facts such as wax or vessel appear only where your voice note allows them. Missing cells stay UNKNOWN. You check each lead against the sheet and approve the wording before a listing is edited or published.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a product-copy editor for a small-batch candle maker. Rewrite listings that all open on one pitch. Use only [CURRENT DESCRIPTIONS], [SPEC SHEET], [REPEATED PITCH], and [VOICE NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Open each candle on one lead detail taken from its own scent notes, burn time, or room size, and do not reuse that lead on another SKU.\n- Remove [REPEATED PITCH] from every first sentence. A house fact may appear later only when [VOICE NOTES] says it is allowed.\n- Copy scent notes, burn time, and room size exactly. Do not swap them across product names or round a burn time.\n- Do not add soot, allergy, mood, gift, or whole-home claims that are not written in [SPEC SHEET].\n- Keep each product name and SKU unchanged, and match the tone in [VOICE NOTES].\n\nOutput format:\nFor each product return these sections:\nSKU:\nPRODUCT NAME:\nLEAD DETAIL: the fact, plus the spec field it came from\nDESCRIPTION: 110 words or fewer, with the lead in the first sentence\nSPEC LINE: scent notes; burn time; room size\nThen LEAD CLASHES: any pair of products whose leads overlap\nThen UNKNOWN: one missing fact per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful listing editor for a small-batch candle maker whose descriptions repeat one pitch. Draw only from [CURRENT DESCRIPTIONS], [SPEC SHEET], [REPEATED PITCH], and [VOICE NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [SPEC SHEET] as closed: scent notes, burn time, and room size may be copied, not inferred from the old description.\n- Choose a lead detail that appears in that row only, and name the column it came from. If another row already used it, pick a different column or mark the lead UNKNOWN.\n- Strip [REPEATED PITCH] from the opening. Keep a wax, wick, or vessel fact only if [VOICE NOTES] allows it, and only once in the batch.\n- Do not upgrade a room size into a whole-home claim, and do not add safety, allergy, or mood language.\n- Leave the product name and SKU as pasted. Do not merge two candles into one blurb.\n\nOutput format:\nReturn one block per SKU with headings NAME, SKU, LEAD DETAIL, SOURCE COLUMN, DESCRIPTION (110 words or fewer), and SPEC LINE.\nEnd with a section titled CLASHES listing repeated leads, and a section titled UNKNOWN with one gap per line.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken shop editor for a small-batch candle maker. The listings repeat one pitch. Rewrite them from [CURRENT DESCRIPTIONS], [SPEC SHEET], [REPEATED PITCH], and [VOICE NOTES] only.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Give every candle a different opening fact from its scent notes, burn time, or room size. Say that fact in the first sentence.\n- Drop [REPEATED PITCH] wherever it is the opener. If [VOICE NOTES] allows one house fact, use it once, not on every jar.\n- Keep burn time and room size as written on [SPEC SHEET]. Do not trade them between SKUs.\n- Skip soot-free talk, allergy talk, gift talk, and mood talk unless those words are already in [SPEC SHEET].\n- Do not rename the product or invent a size, wick, or wax the sheet does not list.\n\nOutput format:\nA block per product with these fields:\nSKU | NAME | LEAD (and the spec field) | DESCRIPTION of 110 words or fewer | SPEC LINE\nThen a short list titled SAME LEAD for any overlap, and a list titled UNKNOWN for gaps.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a small-batch candle maker who needs distinct listing copy. Use [CURRENT DESCRIPTIONS], [SPEC SHEET], [REPEATED PITCH], and [VOICE NOTES]. Do not publish anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Pick the lead for each candle from a single cell: one scent note, the burn time, or the room size. The next candle must open on a different cell value.\n- Start the description with that lead, then the rest of the scent only as written in [SPEC SHEET].\n- Delete the pitch in [REPEATED PITCH] unless [VOICE NOTES] keeps a shortened house line, and then use that line on one product only.\n- Refuse claims about a clean burn, allergies, feelings, or how far a scent travels when the sheet does not say them.\n- Preserve SKU and product name. If two rows share a name, keep both and mark the clash UNKNOWN.\n\nOutput format:\nSections per candle, in this order: SKU, PRODUCT NAME, LEAD DETAIL, FIELD USED, DESCRIPTION (110 words or fewer), SPEC LINE (scent notes; burn time; room size).\nAfter the blocks, add LEAD OVERLAP and UNKNOWN as separate lists.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode. Optional later: a spreadsheet and a workflow tool stage unpublished shop edits only.",
+    "steps": [
+      "Export live listings into a spreadsheet with one row per candle: product name, SKU, and the current description. On that same row, add scent notes, burn time, and room size from your spec sheet. Leave a blank column named ready copy.",
+      "On a short note, write the pitch those descriptions repeat, any house fact that may appear once (wax, wick, or vessel), and claims you refuse, such as soot, allergy, mood, or coverage beyond the room size on the sheet.",
+      "In paste mode, open a chat, paste one prompt above, and replace each bracketed placeholder with the listing rows, the spec sheet, the repeated pitch, and your voice note. Run it once for the whole batch.",
+      "Point every lead detail at the scent notes, burn time, or room size cell it came from. If two leads match, send only those rows back and ask for a different fact that is still written on the sheet.",
+      "Fill or delete every UNKNOWN yourself. Read each description aloud, cut any sentence you would not say at a market stall, and keep a shared house fact in one place only if your note allows it.",
+      "Paste the kept wording into the ready copy column. Leave the live product editor closed, and do not overwrite the current description column, so you can still compare the old pitch with the new lead.",
+      "For each SKU, sit with the sheet and the live listing. Confirm the name, the lead, and the spec line match that row before you paste ready copy into the product editor.",
+      "Optional agent mode: when a Google Sheets row is marked ready, use Zapier, Make, or n8n to create an unpublished product draft in your store admin. Leave publish and schedule off until you approve that SKU."
+    ],
+    "approvalStep": "You review each ready description beside its spec-sheet row and the live listing, reject any lead you cannot point to a scent, burn time, or room size cell, and only then update that product. Nothing is posted or published until you approve the SKU.",
+    "failureModes": [
+      "Same opener twice: two listings still start on one scent note or on the old pitch. Read the lead lines as a set before you touch the live shop.",
+      "Swapped specs: a burn time or room size from one SKU lands on another name. Match the spec line to the sheet row for that exact product.",
+      "Extra comfort claim: the draft adds soot-free, allergy, mood, or whole-home coverage the sheet never states. Delete any line you cannot point to.",
+      "Pitch crept back: the retired opening returns in the second sentence. Search the batch for that phrase and cut every hit except a house fact you allowed.",
+      "UNKNOWN left in: a blank scent or burn time stays as the word UNKNOWN or gets filled with a guess. Hold that SKU until you supply the cell or cut the sentence.",
+      "Live overwrite: a workflow writes onto the published listing. Keep store updates as drafts and confirm publish is still off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste in before rewriting?",
+      "a": "Paste a listing export or spreadsheet with one row per candle: product name, SKU, and the current description. On those rows, paste scent notes, burn time, and room size from your spec sheet. Also paste the pitch sentence you want retired, and a voice note that says which house facts may appear once and which claims are off limits."
+    },
+    {
+      "q": "How do I stop every jar from opening the same way?",
+      "a": "Ask for one lead detail per SKU, taken from that row's scent notes, burn time, or room size, and forbid reusing it. After the draft, read the lead lines as a list. If two match, send those rows back and ask for a different cell from the sheet. When the sheet has no second fact, you choose the opening yourself."
+    },
+    {
+      "q": "Will this update my shop on its own?",
+      "a": "No. Paste mode only returns text for your spreadsheet. If you later connect Google Sheets to your store with Zapier, Make, or n8n, set that flow to create an unpublished draft. You still compare the lead and the spec line to the sheet, and you approve before anything is posted or the live description is replaced."
+    },
+    {
+      "q": "Which model is best for these product rewrites?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already write with, paste the same listings and the same spec sheet, and keep the draft whose lead details you can point to a cell and whose wording needs the least fixing in your own voice."
+    },
+    {
+      "q": "What if two candles share a scent note?",
+      "a": "They may both show that note on the spec line, because the sheet says so. They should not both open on it. Give one jar that note as the lead, and open the other on its burn time, its room size, or a second note from its own row. If nothing else is written, mark the second lead UNKNOWN and pick the opening yourself before you approve."
+    }
+  ],
+  "draft": true,
+  "persona": "Small-batch candle maker",
+  "job": "Rewrite product descriptions that repeat one pitch, using a spec sheet of scent, burn time, and room size, so each candle opens on its own lead detail.",
+  "who": "A small-batch candle maker whose shop listings open with the same pitch on every jar, while scent notes, burn time, and room size already differ on a spec sheet.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Ecommerce",
+    "Workflow automation"
+  ]
+}

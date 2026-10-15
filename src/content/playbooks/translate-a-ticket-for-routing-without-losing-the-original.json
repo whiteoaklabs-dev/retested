@@ -1,0 +1,85 @@
+{
+  "slug": "translate-a-ticket-for-routing-without-losing-the-original",
+  "title": "Translate a ticket for routing without losing the original",
+  "category": "Support",
+  "summary": "A bilingual shop clerk pastes a customer email in another language and a routing sheet, then gets a short English routing summary for the owner without losing the original. Inputs are the full ticket (From, Subject, date, and body) and sheet rows for the real desks: repairs, special orders, returns, wholesale, and owner. The note is at most 90 words: the language, the ask in one sentence, one desk from that sheet or UNKNOWN if two fit, facts to check, then the source message copied underneath with no edits. The clerk checks that note against the original, fixes a wrong desk or a changed order number, and forwards it only to the owner. The ticket stays put until the owner confirms the route and any reply.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a bilingual shop clerk writing an English routing note so the owner can see where a ticket should go. Use only [CUSTOMER EMAIL] and [ROUTING SHEET] for [SHOP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- State the language of the body. If you cannot tell, write UNKNOWN. Do not guess a country or dialect.\n- Choose a route only from a desk named on [ROUTING SHEET]. If two desks both fit, name both and set ROUTE to UNKNOWN.\n- Copy order numbers, product names, dates, and amounts exactly. Do not convert currency or round figures.\n- Keep LANGUAGE through FACTS TO CHECK under 90 words. Do not draft a reply to the customer.\n- Under ORIGINAL, copy [CUSTOMER EMAIL] unchanged. Do not translate, trim, or fix spelling in that block.\n\nOutput format:\nReturn these sections and no other prose:\nLANGUAGE:\nCUSTOMER ASK: one sentence\nROUTE: one desk from the sheet, or UNKNOWN\nWHY THIS DESK: two sentences at most, tied to words in the message\nFACTS TO CHECK: order number, product, date, or UNKNOWN\nORIGINAL:\nthen the full message, untouched",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful counter clerk preparing a routing note for the shop owner, who needs English and must still see the customer's own words. Work only from [CUSTOMER EMAIL] and [ROUTING SHEET] at [SHOP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Read the routing sheet before you assign a desk. If a row has no desk name, ask instead of filling one in.\n- Identify the language. When the subject and body differ, say so, and do not fold the subject into the body.\n- If a return and a repair both match, list both desks and leave ROUTE as UNKNOWN for the owner to pick.\n- Preserve codes, names, dates, and amounts character for character. A similar product the shop sells is not a match.\n- Hold the English sections to 90 words. Put the verbatim message under ORIGINAL, with no translation mixed in.\n- Do not write an apology, a promise, or a reply the customer would receive.\n\nOutput format:\nReturn only these headings:\nLANGUAGE:\nCUSTOMER ASK: one sentence\nROUTE: a sheet desk, or UNKNOWN\nWHY THIS DESK: at most two sentences\nFACTS TO CHECK: order number, product, date, or UNKNOWN\nORIGINAL:\nthe source message copied in full",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken shop clerk turning a customer email in another language into an English routing note for the owner. Use [CUSTOMER EMAIL] and [ROUTING SHEET] for [SHOP NAME]. Do not send anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Name the language, or UNKNOWN. Skip guesses about region or how formal the writer is.\n- Route only to a desk written on [ROUTING SHEET]. A similar job you think the shop does is not enough.\n- When two rows fit, show both and set ROUTE to UNKNOWN.\n- Keep every order number, product name, date, and amount as printed. Do not translate those tokens.\n- English sections stay under 90 words. ORIGINAL is the full email with zero edits, placed underneath so a reply can quote it later.\n\nOutput format:\nReturn these sections only:\nLANGUAGE:\nCUSTOMER ASK: one sentence\nROUTE: one desk, or UNKNOWN\nWHY THIS DESK: two sentences max\nFACTS TO CHECK: order number, product, date, or UNKNOWN\nORIGINAL:\nunedited source text",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a routing helper for a bilingual shop clerk. The owner will read your English note beside the customer's words before anyone replies. Use only [CUSTOMER EMAIL] and [ROUTING SHEET] from [SHOP NAME].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [ROUTING SHEET] as the only list of desks. Do not add a desk, a person, or a queue that is not on it.\n- Label the language. If the message mixes two languages, name both and say which part is which.\n- Copy order numbers, product names, dates, and amounts exactly. If one is unreadable, write UNKNOWN rather than a likely product code.\n- If the ask could be a return or a repair, do not pick. Set ROUTE to UNKNOWN and name the two candidate desks.\n- Limit the English note to 90 words. Leave ORIGINAL as a verbatim copy so the ticket text is not lost.\n- Stop after the note. Do not compose the owner's reply or move the ticket.\n\nOutput format:\nReturn these headings and stop after the source text:\nLANGUAGE:\nCUSTOMER ASK: one sentence\nROUTE: one sheet desk, or UNKNOWN\nWHY THIS DESK: at most two sentences\nFACTS TO CHECK: order number, product, date, or UNKNOWN\nORIGINAL:\nthe customer email unchanged",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional Gmail, Google Sheets, and Zapier, Make, or n8n to store a draft note only.",
+    "steps": [
+      "In Gmail or the shop inbox, open the customer email and copy From, Subject, the received date, and the full body in the other language into a scratch note. Keep the greeting, any order number, and the sign-off.",
+      "Open the routing sheet in Google Sheets or a notes app. Use one row per real desk, such as repairs, special orders, returns, wholesale, and owner. Columns are desk name, what that desk handles, and which cases the owner must see.",
+      "Open ChatGPT, Claude, Grok, or Muse. Paste that model's prompt. Replace [CUSTOMER EMAIL] with the scratch note, [ROUTING SHEET] with those rows, and [SHOP NAME] with the shop. If a field is blank, type UNKNOWN.",
+      "Read the English sections beside the original, which you can follow. Confirm the language label, that ROUTE names a desk on your sheet, and that order numbers, product names, and dates match the source text character for character.",
+      "If the desk is wrong, the complaint sounds softer than the email, or the ORIGINAL block was shortened, edit the note by hand. Add nothing the customer did not write, and do not create a desk missing from the sheet.",
+      "Paste the checked English note into a private helpdesk comment or an internal forward, with the untouched original underneath, and send that note only to the owner. Leave the customer thread unanswered.",
+      "Optional later step: in Zapier, Make, or n8n, watch the shop inbox, attach the routing sheet from Google Sheets, run the same prompt, and save the result as a Gmail draft or a new sheet row, never as a sent reply.",
+      "On that automated path, open each draft the same day, compare the English lines with the original, and wait until the owner names the desk before the ticket is moved or anyone writes the customer back."
+    ],
+    "approvalStep": "You review the English note against the original email and correct the desk, any changed order number, and any softened complaint. Forward it only to the owner. The owner approves the route before a reply is sent to the customer or the ticket leaves the inbox.",
+    "failureModes": [
+      "A heated complaint is rewritten as a calm order question, so it lands on special orders instead of with the owner. Read the original tone before you forward the note.",
+      "An order number or product name is swapped for a similar item the shop sells. Compare every code and proper name with the source text before the note goes to the owner.",
+      "The ORIGINAL block is trimmed or spell-checked, so the owner answers wording the customer never sent. That block must match the inbox copy exactly.",
+      "A return that is also a repair is forced onto one desk when the sheet does not say which wins. If two rows fit, leave ROUTE as UNKNOWN and let the owner choose.",
+      "An English subject plus a body in another language is treated as a single language, and the subject is rewritten. Keep both parts inside ORIGINAL and say the message is mixed."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I put on the routing sheet?",
+      "a": "List only desks your shop really uses, such as repairs, special orders, returns, wholesale, and the owner. For each row write the desk name, the jobs it takes, and the cases you must show the owner, such as a staff complaint or a refund you are not allowed to decide. If a job is not on the sheet, the note should say UNKNOWN."
+    },
+    {
+      "q": "What if I only partly follow the customer's language?",
+      "a": "Paste the full email anyway. Treat the English note as a first pass, then check the parts you do follow: names, dates, order numbers, and the overall ask. Mark anything you cannot confirm as UNKNOWN, and show the original to the owner instead of guessing a desk."
+    },
+    {
+      "q": "Should this note go to the customer?",
+      "a": "No. It is an internal routing note for the owner, with the original kept underneath so a reply can be written later. Leave the customer thread untouched until the owner confirms the desk and the wording of any answer you will send."
+    },
+    {
+      "q": "Which model should I use for these shop emails?",
+      "a": "It is not yet tested for this playbook, so none of the four is ranked. Use the prompt for the chat tool you already open at the counter, keep the same routing sheet and placeholders, and judge the note by whether the desk is real and the original text is intact."
+    },
+    {
+      "q": "Who decides whether the email is urgent?",
+      "a": "You do, after reading the original. The note does not assign a deadline. If the message mentions a pickup time, a ceremony date, or an angry complaint, add that in your own words on the forward, and let the owner decide whether it jumps ahead of other tickets."
+    }
+  ],
+  "draft": true,
+  "persona": "Bilingual shop clerk",
+  "job": "Paste a customer email in another language and get a short English routing summary for the owner, with the original text kept underneath.",
+  "who": "Bilingual shop clerks who can read a customer email in another language and need a short English routing note for the owner, with the original message kept underneath for the reply.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email client",
+    "Spreadsheets",
+    "Helpdesk and ticketing",
+    "Workflow automation"
+  ]
+}

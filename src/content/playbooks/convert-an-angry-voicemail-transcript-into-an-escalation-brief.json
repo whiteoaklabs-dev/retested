@@ -1,0 +1,85 @@
+{
+  "slug": "convert-an-angry-voicemail-transcript-into-an-escalation-brief",
+  "title": "Convert an angry voicemail transcript into an escalation brief",
+  "category": "Support",
+  "summary": "You paste an angry voicemail transcript, the order row from your help desk (order number, item, amount paid, ship date, credits already issued), and the return rules you are allowed to apply. The agent converts that into a one-page escalation brief: the customer's ask in one sentence, the dollar amount they want back, facts marked VERIFIED or UNKNOWN, claims you must not treat as fact, and two to four decisions a manager must pick. You read the brief and correct any mismatch before it reaches a manager. No refund, replacement, email, or text goes out until a person approves both the decision and the callback wording.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a frontline phone agent converting an angry voicemail into an escalation brief for a manager. Read only [VOICEMAIL TRANSCRIPT], [ORDER RECORD], and [RETURN RULES]. Do not contact the caller and do not approve money.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put the customer's ask in one sentence drawn from the voicemail. Do not soften insults into a milder request.\n- Tag a fact VERIFIED only when order number, item, amount paid, ship date, or a prior credit appears in [ORDER RECORD].\n- Show two dollar lines: what the caller wants back, and what the purchase shows as paid. Do not choose a refund.\n- List two to four manager options that [RETURN RULES] allow. If the rules do not allow a full refund, do not offer one.\n- Label the callback script DO NOT SEND. It must not promise a credit, a replacement, or a timeline.\n\nOutput format:\nReturn these sections only:\nCustomer ask: one sentence under 40 words.\nDollar amount: asked, paid, already credited (UNKNOWN if absent).\nVerified facts: bullets, each ending with VERIFIED.\nUnverified claims: bullets from the voicemail only.\nManager decision needed: the options, then the single question the manager must answer.\nCallback script: under 60 words, first words DO NOT SEND.\nMissing fields: a list.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful frontline phone agent preparing an escalation brief from an angry voicemail so a manager can decide a return or refund. Use [VOICEMAIL TRANSCRIPT], [ORDER RECORD], and [RETURN RULES]. The page stays internal.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep caller claims about damage, a rude employee, or a promised exception under Unverified claims unless [ORDER RECORD] states them.\n- Copy order number, item name, amount paid, and dates exactly. If the voicemail names a different purchase, flag the conflict instead of picking one.\n- Separate the dollar amount they asked for from the amount paid and from any credit already issued.\n- Manager options come only from [RETURN RULES]. When the rules are silent on a window or a photo, write UNKNOWN rather than a deadline.\n- The callback script is wording for later, marked DO NOT SEND, with no apology for a fault the purchase row does not show.\n\nOutput format:\nUse these headings and no preamble:\nCustomer ask (one sentence, under 40 words)\nDollar amount (asked / paid / already credited)\nVerified facts\nUnverified claims\nManager decision needed (two to four options plus the question to answer)\nCallback script (under 60 words, labeled DO NOT SEND)\nMissing fields",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a frontline phone agent. Turn [VOICEMAIL TRANSCRIPT] plus [ORDER RECORD] and [RETURN RULES] into a one-page escalation brief. A manager will pick the decision. You will not call the customer and you will not issue a refund.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not treat anger, a threat to dispute the card, or a threat to post a review as proof the shipment failed.\n- The customer ask must name the outcome they want, including the dollar amount if they stated one. If they stated none, mark that amount UNKNOWN.\n- Verified facts are limited to fields present in [ORDER RECORD]. Everything else from the recording stays unverified.\n- If [RETURN RULES] require a photo or a manager for this dollar amount, say so in the decision section. Do not skip that requirement.\n- Callback wording stays inside the page and starts with DO NOT SEND. No promise that money is coming back.\n\nOutput format:\nSections in this order, nothing after them:\nCustomer ask: one sentence under 40 words.\nDollar amount: asked, paid, already credited.\nVerified facts: one bullet per field, tagged VERIFIED.\nUnverified claims: one bullet per claim.\nManager decision needed: options allowed by the rules, then the decision they must make.\nCallback script: under 60 words.\nMissing fields: list.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting an escalation brief that a frontline phone agent will review before a manager sees it. Work from [VOICEMAIL TRANSCRIPT], [ORDER RECORD], and [RETURN RULES]. Do not send a text, email, or refund.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- State the ask in the caller's terms, one sentence, including a dollar amount only when the voicemail says one.\n- A line may be marked VERIFIED only if the same value is written in [ORDER RECORD]. Tone is not evidence.\n- If two purchases could match the callback number, list both and set the order number to UNKNOWN.\n- Give the manager two to four choices that [RETURN RULES] permit, such as refund the asked amount, replace the item, or decline. Leave the choice unselected.\n- Write a callback the agent might use later. Begin it with DO NOT SEND and do not say the decision is already made.\n\nOutput format:\nReturn only these sections:\nCustomer ask: under 40 words.\nDollar amount: asked, paid, already credited.\nVerified facts.\nUnverified claims.\nManager decision needed.\nCallback script: under 60 words.\nMissing fields.\nThen one line starting [AGENT CHECK] that names which purchase fields a person must compare before the page is handed upward.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first. Optional help desk, Google Sheets, and Zapier, Make, or n8n to save a draft note only.",
+    "steps": [
+      "Copy the full angry voicemail transcript from your phone system or help desk, including caller name, callback number, timestamp, and every sentence. Do not shorten the recording text before you paste it.",
+      "Under that, paste the purchase row you can actually see: order number, item name, amount paid, ship or pickup date, delivery status, and any refund or replacement already issued. Write UNKNOWN for any blank field.",
+      "Add your return rules for this case only: outcomes you may offer, outcomes that need a manager, whether a photo is required, and any window the policy states. If the policy is silent, write UNKNOWN.",
+      "Open the chat tool you use, paste that model's prompt, and replace [VOICEMAIL TRANSCRIPT], [ORDER RECORD], and [RETURN RULES] with those three pastes. Run it once and keep the first page it returns.",
+      "Check that page against both sources. The ask must match the voicemail, the dollar lines must match the purchase row, and every VERIFIED tag must point at a field you pasted. Edit mismatches by hand.",
+      "Paste the corrected page into an internal help-desk note for the manager. Do not call, text, or email the customer, and do not issue a credit, from this draft.",
+      "Optional later: with Google Sheets plus Zapier, Make, or n8n, pull new voicemail transcripts and the matching purchase columns into the same prompt and save the result as a draft internal note.",
+      "On that automated path, leave the help-desk action as an internal note. You still compare the page to the recording and the purchase row, and a manager still picks the decision, before any callback or refund."
+    ],
+    "approvalStep": "You review the page against the voicemail transcript and the purchase row, and a manager approves one decision, before any refund is paid or any callback, email, or text is sent. You place the call or issue the credit only after that approval.",
+    "failureModes": [
+      "Dollar line uses the full purchase total when the caller asked only for shipping or a single item. Compare the ask sentence with the dollar lines before the note goes to a manager.",
+      "Anger written as fact: a threat or an insult becomes a verified failure. Keep those lines under unverified claims unless the purchase row states the same event.",
+      "Order id filled in: the recording has no order number and the page invents one. Reject any id that is not in the transcript or the purchase row you pasted.",
+      "Callback promises the outcome: the script says the credit is already approved. Delete that sentence until the manager has picked a decision.",
+      "Wrong purchase on a shared phone: two open orders match the callback number and the page uses the older one. Match name, item, and date to the voicemail before you escalate.",
+      "Policy deadline added: the page states a return window you did not paste. If your rules text is silent, that line must stay UNKNOWN."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the voicemail never names an order number?",
+      "a": "Leave the order number as UNKNOWN and paste only a purchase row you found by phone or name. If the name and the item do not both match the recording, say the match is unverified. Do not grab the newest purchase on the account just to fill the blank."
+    },
+    {
+      "q": "A manager supposedly promised a refund yesterday. Is that fact?",
+      "a": "Treat it as a claim unless a ticket note or the purchase row says that promise was made. Put the caller's words under unverified claims and add the missing note to Missing fields. The manager decision should still be an open choice, not a done deal."
+    },
+    {
+      "q": "Should I text the callback script as soon as the page looks right?",
+      "a": "No. The script is labeled DO NOT SEND so it stays inside the internal note. A manager picks full refund, partial refund, replacement, or decline first. Only then do you call or text, using wording that matches the decision they actually picked."
+    },
+    {
+      "q": "Which model is best for this brief?",
+      "a": "It is not yet tested for this playbook, so no model is ranked here. Use the prompt for the chat tool you already have, keep the same transcript, purchase row, and return rules, and judge the page by whether the ask, the dollar amount, and the manager decision are explicit."
+    },
+    {
+      "q": "The dollar amount in the voicemail does not match the order. What now?",
+      "a": "Show both numbers on separate lines and do not average them or pick the larger one. Mark the conflict in the manager decision section so they choose which figure applies. If you cannot see one of the numbers in either paste, that line stays UNKNOWN."
+    }
+  ],
+  "draft": true,
+  "persona": "Frontline phone agent",
+  "job": "Turn one voicemail transcript and the matching order record into a one-page brief with the ask, the dollar amount, verifiable facts, and the decision a manager must make.",
+  "who": "Frontline phone agents who take angry voicemails about returns, refunds, damaged goods, or missed deliveries and must hand a manager a brief before any money moves.",
+  "toolCategories": [
+    "Helpdesk and ticketing",
+    "Phone and voicemail",
+    "Spreadsheets",
+    "Automation platform"
+  ]
+}

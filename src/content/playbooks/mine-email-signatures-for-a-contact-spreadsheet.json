@@ -1,0 +1,85 @@
+{
+  "slug": "mine-email-signatures-for-a-contact-spreadsheet",
+  "title": "Mine email signatures for a contact spreadsheet",
+  "category": "Back office",
+  "summary": "A commission-only salesperson pastes a batch of recent email threads, each with its subject and every signature block, plus the mailbox that must be left off so their own sign-off is not saved as a prospect. The agent returns one deduplicated sheet with columns for name, role, company, email, phone, source subject, and a review flag. Matching addresses collapse to a single row. When role, company, or phone disagree, both values stay visible for the salesperson to pick. Picture-only blocks and blank phones stay UNKNOWN. No row is written to a CRM, no message is sent, and no thread is deleted until each line has been checked against the block it came from.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a clerk for a commission-only salesperson. Mine signature blocks in a batch of recent threads and return one deduplicated contact sheet. Use only [THREAD BATCH] and [MY MAILBOX].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take name, role, company, email, and phone from the signature block, not from the pitch in the body or a title sitting in the subject.\n- Drop any block whose address matches [MY MAILBOX], and drop legal footers that name no person.\n- Deduplicate on the email address, ignoring case. If that address shows two roles, companies, or phones, keep both raw values and set review to Needs review.\n- Prefer the signature on the newest message in the thread. Put an older quoted employer or title under Conflicts instead of overwriting the current company.\n- Copy the phone exactly as printed, including an extension. Do not treat a switchboard or fax line as a direct number.\n- Do not draft a follow-up, write to a CRM, or delete a thread.\n\nOutput format:\nReturn a table with columns name, role, company, email, phone, source_subject, and review. Then a Conflicts section with one sentence per clash, or NONE. Then an Excluded section for your own block, footers, and picture-only blocks left UNKNOWN. Keep each conflict sentence under 30 words.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a records clerk for a commission-only salesperson. Build one contact row per outside person from signatures in recent threads. Use only [THREAD BATCH] and [MY MAILBOX]. Do not email anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Fill name, role, company, email, and phone from the signature block. If the From display name differs, keep the block's name and note the clash.\n- Exclude any address equal to [MY MAILBOX]. A legal disclaimer, office banner, or phone-app footer is not a person.\n- One row per email address. When role, company, or phone disagree across threads, show every raw value and flag the row for a human.\n- Use the newest signature in a thread. If a quoted chain names a former employer, list it under Conflicts and do not replace the current company.\n- Leave a blank phone as UNKNOWN. Never build a number from digits scattered in the message body.\n- Do not write outreach or choose which phone, role, or company to keep.\n\nOutput format:\nReturn columns in this order: name, role, company, email, phone, source_subject, review. Add a Conflicts list, or NONE, and an Excluded list. review is Clear or Needs review. Hold each conflict note under 30 words.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are helping a commission-only salesperson turn recent threads into a contact sheet they will check by hand. Mine the signatures in [THREAD BATCH]. Leave out [MY MAILBOX].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Pull name, role, company, email, and phone only from text that sits in a signature, not from the sales pitch above it.\n- Skip the salesperson's own block and any teammate address written beside [MY MAILBOX]. Skip footers that contain no person's name.\n- Deduplicate by email address. The same address with a different role, company, or phone stays one row, with both values and review set to Needs review.\n- When a thread quotes an older signature, keep the latest block and record the older company or role under Conflicts.\n- If the signature was a picture and no text was pasted, mark name, role, company, and phone UNKNOWN rather than borrowing the From line.\n- Do not compose a message, import a file, or drop a source thread.\n\nOutput format:\nA table with columns name, role, company, email, phone, source_subject, review. Then Conflicts, one sentence each or NONE. Then Excluded, naming why each block was left out. Cap every conflict sentence at 30 words.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a back-office clerk for a commission-only salesperson. From [THREAD BATCH], build a deduplicated sheet of people found in signatures, leaving out [MY MAILBOX]. Stop at a draft for the human to review.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use the signature block only. A job title mentioned in the message body does not fill the role column.\n- Remove the salesperson and any extra mailboxes named with [MY MAILBOX]. Remove confidentiality lines and phone-app footers that have no name.\n- Collapse repeats that share an email address. If company, role, or phone differ, print both and set review to Needs review instead of picking a winner.\n- Trust the latest signature in each thread. Place an earlier employer or title under Conflicts.\n- Copy phone text as written. A missing direct line stays UNKNOWN. Do not guess a mobile from a main office number.\n- Do not draft outreach, rank who to call, or tell the salesperson which row to keep.\n\nOutput format:\nTable columns: name, role, company, email, phone, source_subject, review. Follow with Conflicts, or NONE, and Excluded. Keep each conflict line under 30 words. review is only Clear or Needs review.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Chat assistant in paste mode first, then an optional Gmail-to-sheet flow that only stages rows for review.",
+    "steps": [
+      "In paste mode, open Gmail or Outlook and copy each recent thread you want mined, including every signature block and the subject. Separate threads in one note with a blank line. Keep earlier replies when they name other people.",
+      "At the top of that note, write your own mailbox and any teammate addresses that must stay off the sheet, on a line labeled My mailbox. That line is how your repeated sign-off gets excluded.",
+      "If a signature arrived as a picture and did not paste as text, type only the words you can read under that subject. Leave unread phone digits out so they cannot be guessed later.",
+      "Open the chat tool you use, paste its prompt, and replace the two bracketed placeholders with the thread note and your mailbox line. Run it once. Keep the original note beside the table.",
+      "Read every row against the block it cites. Correct a role taken from the message body, a company taken from a legal footer, or a phone that belongs to you. Leave UNKNOWN in place until you know the value.",
+      "On any row marked Needs review, choose which role, company, or phone you will keep, or drop the row. The draft should show both raw values and should not have chosen for you.",
+      "Optional later path: use Gmail with Zapier, Make, or n8n to append each new thread into a Google Sheets staging tab. A chat step may fill the five contact fields and set status to needs review.",
+      "Copy only rows you have checked into your contact sheet or CRM. Leave any send action off. The flow must not message anyone and must not delete the source threads."
+    ],
+    "approvalStep": "You review each row against the signature it came from and approve the sheet before any contact is saved in a CRM, any message is sent, or any source thread is deleted. You settle every UNKNOWN cell and every Needs review clash yourself.",
+    "failureModes": [
+      "Your own sign-off is copied on every reply and shows up as a prospect. Watch for your mailbox repeating down the sheet and confirm those rows landed in Excluded.",
+      "A confidentiality footer or main switchboard is stored as a direct phone. Keep a number only when it sits beside a person's name in the block.",
+      "A quoted signature from a former employer overwrites the current company. The newest block should win, with the older company listed under Conflicts.",
+      "Two people on one thread get their phones swapped. Check that the name, address, and phone on a row all come from the same block.",
+      "The same address has a mobile and a desk line, and one disappears. Both values should stay visible until you pick which to keep.",
+      "A picture block pastes blank and the From display name fills the person. If the block had no text, those cells should stay UNKNOWN."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the signature is only a picture?",
+      "a": "Paste the thread anyway and type the words you can read. Fields you cannot see should come back UNKNOWN, including a phone that is cut off. Do not let the draft borrow a name from the From line when the block itself did not paste as text."
+    },
+    {
+      "q": "Do people who were only on CC belong on the sheet?",
+      "a": "Include them only when their own signature block is in the pasted thread. An address on the CC line, with no name, role, company, and phone in a block, is not enough. Leave that person off, or mark the missing fields UNKNOWN."
+    },
+    {
+      "q": "Which model is best for mining these signatures?",
+      "a": "It is not yet tested for this playbook, so no model is ranked. Use the prompt that matches the chat tool you already have, keep the same thread batch and mailbox line, and judge the sheet by whether every filled cell appears in a signature."
+    },
+    {
+      "q": "The same person uses two email addresses. Will the rows merge?",
+      "a": "Deduping is by email address, so two mailboxes stay two rows even when the name matches. You decide whether they are one human after you read both rows. The draft should not merge on name alone."
+    },
+    {
+      "q": "Can this load the rows straight into my CRM?",
+      "a": "Paste mode stops at a table you copy yourself. An automation may stage rows in a sheet with status needs review, but it should not write to the CRM, send a message, or delete threads. You approve the sheet first, then you import it."
+    }
+  ],
+  "draft": true,
+  "persona": "Commission-only salesperson",
+  "job": "A batch of recent email threads goes in, and a deduplicated sheet of name, role, company, email, and phone comes out.",
+  "who": "Commission-only salespeople who work from their own inbox and need name, role, company, email, and phone pulled from recent threads without retyping each signature.",
+  "toolCategories": [
+    "Email",
+    "Spreadsheets",
+    "Workflow automation",
+    "CRM"
+  ]
+}

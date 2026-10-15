@@ -1,0 +1,84 @@
+{
+  "slug": "turn-an-approved-change-order-into-a-supplemental-invoice",
+  "title": "Turn an approved change order into a supplemental invoice",
+  "category": "Finance & admin",
+  "summary": "This playbook turns an approved change-order email and the original contract number into a supplemental invoice for a remodel. You paste the thread that holds the client's written yes, the added scope, and the agreed price, plus the contract number, client legal name, and job-site address from the base agreement, and a short billing note for payment terms, tax treatment, and where to pay. The agent drafts a bill that cites the base job in a reference block and lists only the added work, with any missing price, tax, or retainage marked UNKNOWN. You assign the invoice number, check every amount against the email, and you alone send the bill or post it to the books.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a remodeling project manager. Turn the approved change order into a supplemental invoice that cites the base job and bills only the added work.\n\nInputs: [CHANGE ORDER EMAIL], [CONTRACT NUMBER], [JOB DETAILS], and [BILLING NOTE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Charge only added scope, quantities, and prices written in [CHANGE ORDER EMAIL]. Do not bill the original contract sum or base-scope work.\n- Put [CONTRACT NUMBER], client legal name, and job-site address from [JOB DETAILS] in a reference block, not as a charge.\n- Copy terms, tax treatment, and where to pay only from [BILLING NOTE]. If tax, retainage, or a deposit credit is absent, mark it UNKNOWN and omit it from the amount due.\n- Require a written yes, the approver's name, and the approval date. If the yes is missing or vague, do not draft a bill; ask what is missing.\n- Print NEXT NUMBER for the invoice number. Do not create a due date or a past-due flag.\n\nOutput format:\nReturn these headings in order: Header, Bill to, References, Line items, Exclusions, Totals, Payment, Missing, Cover note.\nLine items is a table with columns Description, Qty, Unit, and Amount.\nExclusions is one sentence stating the original contract is not rebilled.\nTotals lists Subtotal, Tax or UNKNOWN, and Amount due. Omit retainage and credits unless a source states them.\nCover note is under 90 words. Do not send the bill.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are the office lead helping a remodeling project manager prepare a supplemental invoice for review. Use only [CHANGE ORDER EMAIL], [CONTRACT NUMBER], [JOB DETAILS], and [BILLING NOTE]. Cite the base job. Bill only added work that was approved in writing.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Build each charge from an added item named in [CHANGE ORDER EMAIL], keeping the quantity and price as written. Never fold the base contract price into the total.\n- In References, show [CONTRACT NUMBER] and the job-site address from [JOB DETAILS], plus the email subject, approval date, and approver name. If one of those is absent, write UNKNOWN.\n- Apply sales tax, retainage, or a deposit credit only when [BILLING NOTE] or the email states both the rule and the figure. Otherwise omit that line and list it under Missing.\n- If the thread has a second extra with no written yes of its own, exclude it and name it under Missing.\n- Do not invent an invoice number, a late fee, or any promise about the schedule.\n\nOutput format:\nUse these headings: Header; Bill to; References; Line items; Exclusions; Totals; Payment; Missing; Cover note.\nUnder Line items, output a four-column table labeled Description, Qty, Unit, Amount.\nUnder Missing, list every UNKNOWN as a bullet.\nThe cover note must stay under 90 words and must say the bill covers added work only. Stop after the draft. Do not say it has been sent.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a remodeling project manager drafting a supplemental invoice from a change order the client already approved. Sources are [CHANGE ORDER EMAIL], [CONTRACT NUMBER], [JOB DETAILS], and [BILLING NOTE]. Cite the base job. Bill the added work and nothing from the original scope.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Each Amount must be copied from [CHANGE ORDER EMAIL]. If a price says it will follow, or the figure is blank, set Amount to UNKNOWN and do not compute a total.\n- Show [CONTRACT NUMBER] and the job address from [JOB DETAILS] as references, not as lines on the bill.\n- Take terms, tax, and pay-to instructions only from [BILLING NOTE]. Do not assume a tax rate, a retainage holdback, or a deposit.\n- Name the person who approved and the date they approved. No written yes means stop and ask; do not produce a finished bill.\n- Print NEXT NUMBER for the invoice number. The project manager will assign the real one.\n\nOutput format:\nReturn nine sections with these headings: Header, Bill to, References, Line items, Exclusions, Totals, Payment, Missing, Cover note.\nLine items is a table. Columns are Description, Qty, Unit, Amount.\nExclusions is a single sentence that the original contract is cited and not rebilled.\nPayment is under 40 words.\nCover note is under 90 words. End with Missing so the human can see every gap before anyone is billed.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a supplemental invoice a remodeling project manager will review before a client sees it. Read [CHANGE ORDER EMAIL], [CONTRACT NUMBER], [JOB DETAILS], and [BILLING NOTE]. Cite the base job and include only added work from the written approval.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Line amounts come only from prices and quantities in [CHANGE ORDER EMAIL]. Do not add trip charges or base-contract work the email does not list.\n- References must include [CONTRACT NUMBER], client legal name, job-site address from [JOB DETAILS], the email subject, approval date, and approver.\n- If [BILLING NOTE] is silent on tax or retainage, omit those lines from Totals and record them as UNKNOWN in Missing.\n- Keep one supplemental bill per written yes. Do not merge a later request that is still unanswered.\n- Print NEXT NUMBER. Leave the date UNKNOWN unless [BILLING NOTE] gives one.\n\nOutput format:\nUse these headings in order: Header, Bill to, References, Line items, Exclusions, Totals, Payment, Missing, Cover note.\nFormat Line items as a table with columns Description, Qty, Unit, and Amount.\nHeader says Supplemental invoice and NEXT NUMBER.\nExclusions is one sentence: original contract work is not billed.\nCover note stays under 90 words. End with Ready for review: yes or no, only from whether any Amount is UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Optional email, spreadsheet, and automation tools can assemble an unsent draft.",
+    "steps": [
+      "Collect the full approved change-order email, including the client's written yes, the added scope, the agreed price, and the date of that yes. From the base agreement, copy the original contract number, the client legal name, and the job-site address.",
+      "On a separate note, list your company name, where payment should be sent, the payment terms you actually use, and whether sales tax applies on this remodel. If you have not assigned the next bill number, write NEXT NUMBER rather than making one up.",
+      "Open your chat tool. Paste the prompt that matches the model you use. Replace each bracketed placeholder with the approval email, the contract number, the job details, and the billing note. Run it once and keep the draft on screen.",
+      "Read every line against the email. Keep only added work. Check that the contract number and job address are cited and that the original contract sum is not a charge. Fill any UNKNOWN price yourself, or stop and get it in writing.",
+      "Type the real supplemental invoice number, the invoice date, and your name as preparer. Keep retainage or a deposit credit only when the approval email states that figure. If it does not, leave the holdback off the total.",
+      "Copy the checked draft into your invoice file, a Google Sheet row, or your invoicing screen as an unsent draft. Store the approval email beside it so the file shows which written yes this bill is based on.",
+      "Optional automated mode: label the approval thread in Gmail, then use Zapier, Make, or n8n to pull that thread plus the contract number from Google Sheets into the same prompt. Save the result as a draft only."
+    ],
+    "approvalStep": "The project manager compares every line, amount, contract number, tax note, and approver name with the approval email, then approves the supplemental invoice. Do not email the client, post it to the books, or mark it paid until that person sends it.",
+    "failureModes": [
+      "Base scope sneaks onto the bill. If a line describes work already inside the original contract, delete it and rebuild the total from the added items only.",
+      "An open price gets filled in. When the yes says the figure will follow, or no figure is in the email, the amount must stay UNKNOWN until you type the agreed number.",
+      "Two extras from one thread get combined. If the written yes covers only one item, drop the other. A request with no yes is not billable yet.",
+      "The wrong remodel is cited. One client can have several jobs. Match the street address and contract number on the draft to the agreement before you file it.",
+      "Tax or retainage shows up from nowhere. Remove any rate or holdback that was not in the approval email or in the billing note you pasted."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model should I use for this supplemental invoice?",
+      "a": "It is not yet tested, so no model is ranked for this playbook. Use the prompt for the chat tool you already have, keep the same four inputs, and judge the draft by whether it cites the contract number and bills only the added work named in the approval email."
+    },
+    {
+      "q": "What if the approval email has no price?",
+      "a": "Do not invent a figure and do not send the bill. Leave the amount as UNKNOWN, ask the client for the agreed price in writing, and run the prompt again only after that number is in the email or you have typed it into the billing note yourself."
+    },
+    {
+      "q": "Should the original contract total appear on the bill?",
+      "a": "Cite the contract number, job-site address, and client name so the bill points at the base job. Do not put the original contract sum in the amount due. Show that sum only when it is actually in the documents you pasted, and label the line as reference, not billed."
+    },
+    {
+      "q": "What counts as an approved change order?",
+      "a": "A written yes in the email from the client or the person named to decide, plus the added scope and the price. A note that only says the idea sounds fine, with no scope and no price, is not enough. Mark the gaps UNKNOWN and wait for a clearer reply before you issue the bill."
+    },
+    {
+      "q": "Can automation email the client for me?",
+      "a": "Use Gmail, Google Sheets, and an automation tool only to gather the labeled approval thread and the contract number and to save a draft. The project manager still checks the amounts and the contract citation, then sends the supplemental invoice. Leave auto-send off."
+    }
+  ],
+  "draft": true,
+  "persona": "Remodeling project manager",
+  "job": "An approved change-order email and the original contract number become a supplemental invoice that cites the base job and bills only the added work.",
+  "who": "Remodeling project managers who already have a client's written yes on extra work and need a supplemental invoice that cites the original contract without billing the base scope again.",
+  "toolCategories": [
+    "Email client",
+    "Spreadsheets",
+    "Invoicing",
+    "Automation platform",
+    "Document storage"
+  ]
+}

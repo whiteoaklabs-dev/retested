@@ -1,0 +1,85 @@
+{
+  "slug": "score-raw-leads-against-a-written-ideal-customer",
+  "title": "Score raw leads against a written ideal customer",
+  "category": "Sales",
+  "summary": "Score each raw lead against your written ideal customer. Paste dated notes that name project types, the buyer role, industries in and out, and deal-breakers, plus a lead export with company, website, contact name, title, email, source, inquiry message, and any budget or timeline cell. The agent returns one row per company: a fit judgment of Strong fit, Possible fit, Poor fit, or Insufficient data, the criteria met, the criteria missed, blank fields marked UNKNOWN, a reason of at most 40 words, and a suggested next step of Review, Ask one question, or Set aside. You mark Pursue, Ask, or Set aside yourself. No email goes out, no sequence starts, and no CRM row is updated or deleted until that mark is yours.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a fit reviewer for a small design agency owner. Score every company in [LEAD EXPORT] only against the written ideal customer in [IDEAL CUSTOMER NOTES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Apply only must-haves and deal-breakers written in the notes; do not add budget, taste, or industry rules they did not write\n- Count a deal-breaker only when the notes name it and that row shows it, such as unpaid concepts, a logo contest, a template-only ask, or a vendor pitch\n- Do not treat a polished website, a familiar sector, or a senior title as fit unless the notes say those things count\n- If company or the inquiry message is blank, use Insufficient data rather than imagining a project\n- Do not draft an email, a fee, a sequence, or a CRM note\n\nOutput format:\nReturn one table with columns company, contact, fit_judgment, criteria_met, criteria_missed, missing_fields, reason, next_human_step.\nfit_judgment must be Strong fit, Possible fit, Poor fit, or Insufficient data.\ncriteria_missed uses the note's own wording, or NONE only when every must-have is present in that row.\nmissing_fields lists blank cells the notes rely on, each marked UNKNOWN.\nreason is 40 words or fewer and may cite only cells from that row.\nnext_human_step is only Review, Ask one question, or Set aside.\nThen a section headed Needs your decision for Possible fit and Insufficient data.\nThen a section headed Set aside, with each Poor fit and the criterion it missed.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records reader helping a small design agency owner judge raw inquiries. Compare [LEAD EXPORT] with [IDEAL CUSTOMER NOTES] and do not go beyond either paste.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If the notes lack a must-have and a deal-breaker, stop and ask the owner to name them before you judge any row\n- Trace each missed criterion to a cell in that row, such as the inquiry message, title, source, budget, or timeline; if you cannot point to a cell, do not call it a miss\n- Stay silent on money unless the notes require a stated budget; an empty budget cell stays UNKNOWN\n- Refuse to upgrade a row because the website looks finished or the sector is one you recognize\n- Do not write outreach, a price, or instructions to delete the company\n\nOutput format:\nReturn a table with these columns: company, contact, fit_judgment, criteria_met, criteria_missed, missing_fields, reason, next_human_step.\nUse only these fit_judgment labels: Strong fit, Possible fit, Poor fit, Insufficient data.\nPut NONE in criteria_missed only when every must-have in the notes is visible in the row.\nKeep reason to 40 words and name the company so a neighbor's story cannot bleed across.\nnext_human_step is Review, Ask one question, or Set aside, and it is a suggestion, not a send order.\nAfter the table, add Needs your decision for Possible fit and Insufficient data, then Set aside for each Poor fit with the missed criterion.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken screener for a small design agency owner who is tired of chasing the wrong inquiries. Judge [LEAD EXPORT] against [IDEAL CUSTOMER NOTES] and nothing else.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- The notes win; do not smuggle in extra rules about budget, team size, or how nice the brand looks\n- When the notes bar unpaid spec work, a logo contest, template-only jobs, or vendors selling to the studio, mark Poor fit if that row shows the same problem\n- A blank company or a blank inquiry message is Insufficient data, not a polite Possible fit\n- Keep each miss in the words the notes used, not a softer rewrite that makes a bad fit sound close\n- Do not draft the reply, the fee, or a reason to delete the row from the export\n\nOutput format:\nReturn a table whose columns are company, contact, fit_judgment, criteria_met, criteria_missed, missing_fields, reason, next_human_step.\nfit_judgment is Strong fit, Possible fit, Poor fit, or Insufficient data.\ncriteria_missed names the failed note or NONE.\nmissing_fields are UNKNOWN, not guesses.\nreason stays within 40 words and uses only that row's cells.\nnext_human_step is Review, Ask one question, or Set aside.\nThen two sections: Needs your decision (Possible fit and Insufficient data) and Set aside (Poor fit plus the criterion missed).",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a studio assistant preparing a review queue for a small design agency owner. Score [LEAD EXPORT] against the owner's written ideal customer in [IDEAL CUSTOMER NOTES], then stop for a human decision.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the notes before the export, and ignore any criterion that is not written there\n- Map deal-breakers only when both the notes and that row support them, including free concepts, a contest, a template shop, or a pitch aimed at the studio\n- Leave budget, timeline, title, and source as UNKNOWN when those cells are empty; do not borrow them from the website\n- Mark Insufficient data when you cannot tell what the company wants designed\n- Do not compose an email, book a call, or file the judgment as a final CRM status\n\nOutput format:\nReturn one table with columns company, contact, fit_judgment, criteria_met, criteria_missed, missing_fields, reason, next_human_step.\nAllowed fit_judgment values are Strong fit, Possible fit, Poor fit, and Insufficient data.\ncriteria_met and criteria_missed quote the notes' wording; use NONE for criteria_missed only if every must-have is present.\nCap reason at 40 words, tied to that company alone.\nnext_human_step may only be Review, Ask one question, or Set aside, for the owner to accept or override.\nFollow the table with a Needs your decision section and a Set aside section that lists each Poor fit beside the criterion it missed.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to fill empty judgment columns when a new form row arrives.",
+    "steps": [
+      "Write the ideal-customer notes in a doc you keep: project types you will take, the buyer role you need, industries you want and industries you refuse, and deal-breakers such as unpaid spec work, a logo contest, a template-only job, or a vendor pitching your studio. Date the notes at the top.",
+      "Export the raw leads as a CSV, or copy the grid from your contact form, CRM, or event list. Keep the header and these fields when you have them: company, website, contact name, title, email, source, inquiry message, budget, and timeline. Leave thin rows in. Do not delete anyone yet.",
+      "Open a new chat and paste one prompt from this playbook. Put the dated notes in place of [IDEAL CUSTOMER NOTES] and one batch you can check row by row, header included, in place of [LEAD EXPORT]. If the notes name no must-haves, add them before you score.",
+      "Read every Strong fit row. The reason should cite that company's own inquiry message or another cell in that row, and criteria missed should say NONE only when each must-have in your notes is actually present. Send the table back if a blank message was treated as a real project.",
+      "For Possible fit and Insufficient data, read the missing-fields column. A blank budget is UNKNOWN, and it matters only if your notes require a stated budget. You choose whether to ask one question or set the row aside. Do not let the chat write that email.",
+      "Add a column you own and mark each row Pursue, Ask, or Set aside. Leave Poor fit as Set aside unless you are dropping that criterion from the notes. A Strong fit label is not permission to contact the company.",
+      "Copy the table and the two sections into a new spreadsheet tab named with the notes date. Keep the original export untouched. Do not import the judgments into a mail sequence or overwrite CRM records from this paste.",
+      "Optional later step: connect the spreadsheet and a workflow tool such as Zapier, Make, or n8n so a new form row writes a draft judgment into empty columns only. Leave send, CRM update, and delete actions off until you have marked the row."
+    ],
+    "approvalStep": "You review the full table and write Pursue, Ask, or Set aside on every row before any email is sent, any outreach sequence is started, any CRM record is changed, or any lead is deleted. The agent's suggestion is not approval to contact anyone.",
+    "failureModes": [
+      "Polished-site drift: a handsome website or a familiar industry is marked Strong fit while the inquiry cell is blank or only says hello. Check any Strong fit whose reason never cites that row's message.",
+      "Softened deal-breaker: your notes refuse unpaid concepts, yet a row that asks for free work comes back Possible fit with the missed-criterion cell empty. That row should be Poor fit.",
+      "Invented budget: an empty budget cell gets filled from a job title or a guess about company size. If the export did not state it, the cell must say UNKNOWN.",
+      "Batch bleed: one referral's project story is copied onto later companies in the same paste. Each reason must name that row's company and no neighbor.",
+      "Stale brief: an undated niche from an older season scores this month's form export. Read the date on the notes before you trust a judgment, and rescore if the studio's focus has changed.",
+      "Send creep: an automation treats Strong fit as a cue to email the contact or to overwrite your CRM. Allow it to fill empty judgment columns only, with sending left off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for scoring a lead export?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Use the chat you already work in, paste the same notes and the same export, and keep the run that marks blank cells UNKNOWN and names the missed criterion from your notes."
+    },
+    {
+      "q": "My ideal-customer notes are only rough bullets. Can I still run this?",
+      "a": "Yes. Paste the bullets as the notes, but name must-haves and deal-breakers in your own words before you score. If a bullet is too vague to apply, the agent should stop and ask rather than invent a rule. After the first batch, add any criterion you kept overriding so the next run uses the tighter notes."
+    },
+    {
+      "q": "The export has no budget column. Does every row fail?",
+      "a": "No. A blank or absent budget is UNKNOWN, and it is a miss only when your notes say a stated budget is required. If the notes never mention money, the agent must not fail a row for that gap. Judge from the inquiry message, the buyer title, the source, and the other fields your notes actually name."
+    },
+    {
+      "q": "Will this email anyone or delete weak leads from my CRM?",
+      "a": "Paste mode only returns the table and two short sections for you to copy into a new spreadsheet tab. Sending mail, starting a sequence, updating the CRM, and deleting a row wait until you have written Pursue, Ask, or Set aside. If you add Zapier, Make, or n8n later, let that flow fill empty judgment columns and leave every send action off."
+    },
+    {
+      "q": "What do I do when I change who I want as a client?",
+      "a": "Change the dated notes first, then rescore rows you have not marked, plus any row you set aside under a criterion you dropped. Keep the old tab so you can see why a company was passed over last time. Do not let an automation keep running on an undated copy of the notes."
+    }
+  ],
+  "draft": true,
+  "persona": "Small design agency owner",
+  "job": "Your ideal-customer notes and a lead export go in; every lead returns with a fit judgment and the criteria it missed.",
+  "who": "A small design agency owner who gets a mixed pile of form inquiries, CRM rows, and event contacts, and needs each company held up against notes they wrote about the projects and buyers they actually want.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Workflow automation",
+    "Forms and CRM exports"
+  ]
+}

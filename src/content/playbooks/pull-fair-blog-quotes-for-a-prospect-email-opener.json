@@ -1,0 +1,84 @@
+{
+  "slug": "pull-fair-blog-quotes-for-a-prospect-email-opener",
+  "title": "Pull fair blog quotes for a prospect email opener",
+  "category": "Sales",
+  "summary": "You paste two or three recent posts from one prospect shop's blog, each marked with the title and date shown on the page, plus the shop name and one line on the handmade goods you wholesale. The agent pulls at most five rows: a verbatim quote of 25 words or fewer, the source title, the source date, where the line sits in the post, and an email opener of 40 words or fewer that uses the quote in the same sense. It does not invent a missing date, write the rest of the email, or turn a note about another maker into demand for your line. You check each quote as a continuous span in the post, keep one fair opener, and approve that wording before it is copied into a draft or sent.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a prospect-research writer for a handmade goods wholesaler. Pull short, fair blog quotes and an email opener that uses each quote without twisting it.\n\nInputs:\n- Shop: [SHOP NAME]\n- Posts with the title and date above each one: [BLOG POSTS]\n- Goods you wholesale: [WHOLESALE LINE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Copy each quote as a contiguous span from [BLOG POSTS]; do not join sentences or tidy the shop's words\n- Keep each quote to 25 words or fewer and each opener to 40 words or fewer\n- Mention [WHOLESALE LINE] only as your reason for writing, never as a need the shop stated\n- If a post complains, says goodbye, or is about another maker, mark Fairness TWISTED and give no pitch\n- Put UNKNOWN for a title, date, or buyer name that was not in the paste\n\nOutput format:\nColumns: Quote | Source title | Source date | Location in post | Opener | Fairness (OK or TWISTED)\nThen a list titled Rows to drop\nThen a list titled UNKNOWN fields\nAt most five rows. Do not write the subject line or the rest of the email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful reading assistant for a handmade goods wholesaler. From one prospect shop's blog, pull short quotes and an email opener that keeps each quote's original sense.\n\nInputs:\n- Shop: [SHOP NAME]\n- Full post text, titles, and dates: [BLOG POSTS]\n- Your offer in one line: [WHOLESALE LINE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Quote only a contiguous span that appears in [BLOG POSTS]; do not paraphrase inside the Quote column\n- Read the sentences just before and after the span, and reject a quote that flips meaning when shortened\n- Keep the quote to 25 words or fewer and the opener to 40 words or fewer\n- The opener may say you noticed the point; it may not claim the shop wants [WHOLESALE LINE]\n- If title or date is absent, write UNKNOWN rather than guessing from memory\n\nOutput format:\nA table with columns Quote, Source title, Source date, Location in post, Opener, Fairness (OK or TWISTED)\nThen a section Rows to drop, with the reason each row fails\nThen a section UNKNOWN fields\nReturn at most five rows and do not draft the rest of the prospect email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken research aide for a handmade goods wholesaler. Pull fair blog quotes and write a short email opener that does not twist them.\n\nInputs:\n- Shop: [SHOP NAME]\n- Blog posts: [BLOG POSTS]\n- What you sell wholesale: [WHOLESALE LINE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Every quote must be a continuous word span from [BLOG POSTS], not a cleaned-up mix of lines\n- Do not add praise, and do not say you loved the post; the opener points at the quote and stops\n- Cap the quote at 25 words and the opener at 40 words\n- Do not turn a complaint, a farewell, or praise for another maker into interest in [WHOLESALE LINE]\n- Missing title, date, or name stays UNKNOWN; never backfill it\n\nOutput format:\nTable columns: Quote | Source title | Source date | Location in post | Opener | Fairness (OK or TWISTED)\nThen: Rows to drop\nThen: UNKNOWN fields\nFive rows at most. Stop before a subject line or a full email.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are an opener editor for a handmade goods wholesaler. Pull a few fair quotes from a prospect shop's blog and shape one email opener per quote without changing the shop's point.\n\nInputs:\n- Shop name: [SHOP NAME]\n- Pasted posts, titles, and dates: [BLOG POSTS]\n- Handmade line you wholesale: [WHOLESALE LINE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- The Quote cell must be copied contiguously from [BLOG POSTS], with no merged sentences\n- Write the opener in one or two sentences that a wholesaler could say out loud, at 40 words or fewer\n- Keep the quote itself to 25 words or fewer, and do not polish the shop's grammar\n- You may name [WHOLESALE LINE] as the reason you wrote; you may not imply the shop requested it\n- If the post is a complaint or a goodbye, mark Fairness TWISTED and leave the opener blank\n\nOutput format:\nColumns in a table: Quote | Source title | Source date | Location in post | Opener | Fairness (OK or TWISTED)\nFollow with a list: Rows to drop\nFollow with a list: UNKNOWN fields\nAt most five rows. Do not add a subject line or the rest of the email.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode; later, Google Sheets with Zapier, Make, or n8n may file approved rows only.",
+    "steps": [
+      "On the shop blog, copy the full text of two or three recent posts into a doc. Put the title and the date shown on the page on their own lines above each post. If no date is visible, leave that line blank.",
+      "Above those posts, write the shop name, the buyer name only if you already know it, and one line describing the handmade goods you wholesale. Do not fill the buyer name from a caption or an about blurb you did not copy.",
+      "Open a fresh chat, paste the prompt that matches your model, then paste the whole doc. Ask for the quote table only. Do not ask it to finish a prospect email in the same pass.",
+      "Search your doc for each quote as a continuous span of words. Drop any row you cannot find, and drop any opener that aims the sentence at your goods when the post was about another maker, a complaint, or a goodbye.",
+      "Choose one opener for the shop. Smooth any stiff wording so it sounds like you, and do not add prices, dates, or claims that were not in the post or in your one-line offer.",
+      "Record the keeper in a sheet with columns for shop, quote, source title, source date, opener, and a yes or no. Use that sheet as the only list you draw first lines from.",
+      "When a row is marked yes, paste that opener into a Gmail draft under a subject you write, then add your wholesale ask in your own words. Leave it in drafts.",
+      "Optional later: use Zapier, Make, or n8n to move new shop rows from Google Sheets into a holding doc, run this same prompt, and write the table back. Leave every send action off."
+    ],
+    "approvalStep": "Before any opener is sent, you open the source post, confirm the quote is a continuous fair span, and approve the exact sentences. Nothing is emailed, scheduled, or released by an automation until you sign off on that shop.",
+    "failureModes": [
+      "Joined lines: the table glues the start of one sentence to the end of another, so the shop seems to say what they never wrote. Find the whole span in your doc before you keep the row.",
+      "Wrong subject: a post about a maker they already stock, or a family memory, is turned into interest in your line. Read the span beside the sentences around it.",
+      "Stale moment: a holiday pop-up, a sold-out drop, or a season that already ended is treated as news. Trust the date you copied, and skip the row if that moment has passed.",
+      "Filled-in blanks: a missing title, date, or buyer name comes back looking real instead of UNKNOWN. If you did not paste it, do not use it.",
+      "Praise on a complaint: the shop criticized rushed goods or said a line is ending, and the opener thanks them for enthusiasm. Drop a row whose post is a critique or a farewell."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if the blog is mostly photos with short captions?",
+      "a": "Paste the captions that are actual sentences, and skip alt text, product names, and hashtag piles. If a caption is only a few words, the table should mark it too thin and return no opener rather than padding it. You can still write the shop by hand when the blog does not give you a full thought."
+    },
+    {
+      "q": "How can I tell the opener twisted the quote?",
+      "a": "Read the quote and the two sentences around it in your doc. The opener is twisted if it claims the shop wants your goods, has a problem you solve, or said something the span does not say. A fair opener only shows that you noticed the point they actually made, then names your line as your reason for writing."
+    },
+    {
+      "q": "Can the agent send the prospect email for me?",
+      "a": "No. The output stops at the quote, its source, and a short opener. You write the rest of the note, you choose the recipient, and you send it from your own mailbox. If you connect a sheet later, keep it on filing approved rows only, with sending left off."
+    },
+    {
+      "q": "Should I use a post that praises a maker they already buy from?",
+      "a": "Only when you can mention that line without pretending they asked for a new supplier. Many shops write about makers they already carry. A fair opener notices that care and then, in your own words, says what you wholesale. If the sentence only works as a pitch by changing its subject, drop it."
+    },
+    {
+      "q": "Which model is best for pulling these quotes?",
+      "a": "It is not yet tested for this playbook, so no model is ranked. Use the assistant you already have, with the matching prompt, and judge it by whether every quote is a continuous span you can find in the post and whether the opener keeps that meaning."
+    }
+  ],
+  "draft": true,
+  "persona": "Handmade goods wholesaler",
+  "job": "Blog posts from one prospect shop go in; short verbatim quotes with title, date, and location, plus an email opener that uses each quote without twisting it, come out.",
+  "who": "Wholesalers of handmade goods who write to independent shops. The shop's blog is open in front of you, and you want a prospect email to start from a line the shop wrote, used in the same sense, not from a generic compliment.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Automation / workflows"
+  ]
+}

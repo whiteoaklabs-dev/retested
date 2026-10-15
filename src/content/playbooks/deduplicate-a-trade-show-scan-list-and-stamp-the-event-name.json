@@ -1,0 +1,85 @@
+{
+  "slug": "deduplicate-a-trade-show-scan-list-and-stamp-the-event-name",
+  "title": "Deduplicate a trade-show scan list and stamp the event name",
+  "category": "Sales",
+  "summary": "An event sales coordinator pastes one trade-show badge-scan export, header included, from the booth scanner or the lead-retrieval file. The grid carries badge id, first name, last name, email, phone, company, title, scan time, and a booth note or qualifier answer. They also paste the event name plus start and end dates from the contract or show guide. The agent collapses repeat swipes of the same badge into one row, keeps every note with its scan time, and stamps event_name, event_start, and event_end on each row. Pairs that share a name but not a badge id stay split and keep both values. The coordinator writes Merge, Keep separate, or Fix fields on every flagged pair before a CRM import, a message is sent, or the raw file is deleted.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a booth-list clerk for an event sales coordinator cleaning a scanner file. Deduplicate [BADGE SCAN EXPORT] and stamp every surviving row with [EVENT NAME AND DATES]. Use [COLUMN MAP] for badge id, name, email, phone, company, title, scan time, and notes.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If badge id, email, or full name is unmapped, ask which header it is before joining\n- Collapse rows that share one badge id, and also collapse an exact email match when the company text agrees\n- When notes or qualifier answers differ, keep every note and put the scan time in front of each\n- If two rows share a name but not a badge id or an email, leave them split and flag the pair for a human\n- If one badge carries two emails or two phones, show both raw values and set review_flag to Needs review\n- Copy event_name, event_start, and event_end only from the dates given, never from the file name\n- Do not draft outreach, do not import anything, and do not drop the raw scan\n\nOutput format:\nReturn a table with columns lead_id, event_name, event_start, event_end, badge_id, first_name, last_name, email, phone, company, title, scan_count, first_scan_time, last_scan_time, booth_notes, dedupe_key, review_flag.\nThen sections headed Merge log, Needs review, and Missing fields. Merge log names each collapsed badge and its source rows. Needs review lists pairs you refused to join and why. Missing fields lists any email, name, or date left UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful records assistant helping an event sales coordinator reconcile one scanner export from a booth. Clean [BADGE SCAN EXPORT], apply [COLUMN MAP], and stamp survivors with [EVENT NAME AND DATES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stop and ask if badge id, email, or full name is not already named in the column map\n- Join on a shared badge id first; join on an exact email only when the company text is the same\n- Preserve every booth note and qualifier answer, each prefixed with the time of that pass\n- Keep apart any pair that shares a personal name but not a badge id and not an email, and say why\n- When one badge has two emails or two phones, print both original strings and mark the row Needs review\n- Stamp event_name, event_start, and event_end solely from the supplied show name and dates\n- Skip outreach copy, skip any CRM load, and skip any instruction to erase the export\n\nOutput format:\nReturn one table whose columns are lead_id, event_name, event_start, event_end, badge_id, first_name, last_name, email, phone, company, title, scan_count, first_scan_time, last_scan_time, booth_notes, dedupe_key, review_flag.\nThen a report with headings Merge log, Needs review, and Missing fields. Under Merge log, one line per collapsed badge with its source row numbers. Under Needs review, explain each pair kept apart. Under Missing fields, name every email, name, or date marked UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken list cleaner for an event sales coordinator who just received the booth scanner file. Take [BADGE SCAN EXPORT], follow [COLUMN MAP], and stamp the keepers with [EVENT NAME AND DATES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- If badge id, email, or full name is unmapped, ask for that header before you combine anything\n- Fold together rows with the same badge id, and fold an exact email match only when the company also matches\n- Hang on to every booth note and qualifier answer, with the scan time written ahead of each one\n- A shared personal name without a shared badge id or email stays two people, marked for a human decision\n- If one badge shows two emails or two phones, keep both raw strings and set review_flag to Needs review\n- Write event_name, event_start, and event_end only from what was typed, not from a file title\n- Do not write a follow-up, do not push a CRM, and do not tell anyone to trash the raw file\n\nOutput format:\nReturn a table with these columns: lead_id, event_name, event_start, event_end, badge_id, first_name, last_name, email, phone, company, title, scan_count, first_scan_time, last_scan_time, booth_notes, dedupe_key, review_flag.\nFollow it with sections titled Merge log, Needs review, and Missing fields. Merge log states the badge and the source row numbers that folded in. Needs review states each pair left split and why. Missing fields states each email, name, or date left UNKNOWN.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a workbook assistant for an event sales coordinator turning one badge-scan export into a single working list. Use [BADGE SCAN EXPORT], [COLUMN MAP], and [EVENT NAME AND DATES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Read the column map first, and ask before joining if badge id, email, or full name has no header\n- Match a shared badge id, then an exact email when the company text agrees, and stop there\n- Retain each booth note and qualifier answer, and place that pass's scan time before the text\n- Do not join on a personal name alone; put those pairs in the review section with the reason\n- Where one badge holds two emails or two phones, show both untouched values and flag the row\n- Apply event_name, event_start, and event_end from the given show name and dates only\n- Do not write outreach, do not load a CRM, and do not replace the original export\n\nOutput format:\nReturn a cleaned table with columns lead_id, event_name, event_start, event_end, badge_id, first_name, last_name, email, phone, company, title, scan_count, first_scan_time, last_scan_time, booth_notes, dedupe_key, review_flag.\nThen sections headed Merge log, Needs review, and Missing fields. Give each collapsed badge one line with its source row numbers. Say why each held pair stayed split. List missing emails, names, and dates as UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode first. Optionally Google Sheets plus Zapier, Make, or n8n to write a new tab when a scanner CSV arrives.",
+    "steps": [
+      "From the booth scanner or the show lead-retrieval portal, export the scan file as a CSV with the header row. Open a new chat, paste one prompt, then paste the grid and label it [BADGE SCAN EXPORT]. Keep the original file.",
+      "In that same chat, paste [EVENT NAME AND DATES] exactly as printed on the exhibitor contract or the show guide: official show name, first day, and last day. If a date is absent, say so instead of filling one in.",
+      "Paste the header row as [COLUMN MAP]. Point to badge id, first name, last name, email, phone, company, title, scan time, and the booth note or qualifier column. If a header says Barcode or Registration ID, map it to badge id.",
+      "Read the cleaned table row by row. Confirm each survivor carries the event_name, event_start, and event_end you typed, and that scan_count equals how many times that badge appears in the raw file.",
+      "Open the Needs review section. On each pair write Merge, Keep separate, or Fix fields. Merge only when you know it is one person, such as a nickname beside a legal name at the same firm.",
+      "Open Merge log and read booth_notes. Check that a later swipe's qualifier answer was appended after the earlier note, with its scan time in front, rather than dropped.",
+      "Copy the cleaned table and the three report sections into a new spreadsheet tab named for the show. Leave the raw export on its own tab so a bad collapse can be discarded.",
+      "Optional later step: use a spreadsheet and a workflow tool such as Zapier, Make, or n8n so a new scanner CSV creates a fresh tab and a fresh report. Restrict the flow so it writes that tab only, with mail and CRM pushes off.",
+      "After every Needs review line has your mark, copy only Clear rows and rows you marked Merge into the CRM, and put the official show name in the source or campaign field. Hold any row whose email is UNKNOWN."
+    ],
+    "approvalStep": "The coordinator reviews every flagged pair and writes Merge, Keep separate, or Fix fields before any lead is imported, a sequence is submitted, a message is sent, or the raw scan file is deleted.",
+    "failureModes": [
+      "Repeat swipe left split: the same badge captured at the aisle and again at a demo stays two rows when badge id was never mapped. Watch any pair that shares a badge id and still has two lead rows.",
+      "Shared company inbox: one generic address pulls two coworkers into a single person. If the badge ids differ, keep those attendees apart even when the email text matches.",
+      "Qualifier dropped: the second pass held the rep's answer and the first pass was blank, yet the kept note is empty. Compare booth_notes with every source row named in Merge log.",
+      "Show name taken from the file title: a city nickname lands in event_name instead of the name on the contract. Match the stamp to the show guide before any import.",
+      "Own staff scanned: badges from your booth crew show up as leads. Watch for your firm name, a rep's email, or a title such as Exhibitor, and hold those rows out of the import."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which model is best for cleaning a badge-scan list?",
+      "a": "It is not yet tested for this playbook, so there is no ranking to follow. Paste the same scanner export, the same show name and dates, and the same column map into the chat you already use. Keep the run that folds shared badge ids, stamps the show on every survivor, and leaves uncertain pairs split."
+    },
+    {
+      "q": "What if the export has no badge id column?",
+      "a": "Say that in the column map. Matching should then use an exact email plus the company, and same-name rows with a blank or different email stay in Needs review. You mark those Merge or Keep separate. A missing badge id stays UNKNOWN rather than a made-up code."
+    },
+    {
+      "q": "Will this email anyone or replace the scan file?",
+      "a": "No. Paste mode only returns a cleaned table and a merge log for you to copy into a new tab. A CRM import, a sequence, and any deletion of the raw export wait until you have marked every flagged pair. An automation added later should create a new tab only, with sending left off."
+    },
+    {
+      "q": "How should notes from a second swipe be kept?",
+      "a": "Keep every booth note and qualifier answer, and put the scan time in front of each so you can see which pass it came from. A blank first swipe is not a reason to drop a later sentence. If two notes contradict, show both and set review_flag to Needs review instead of picking a winner."
+    },
+    {
+      "q": "What should I do with a lead that has no email?",
+      "a": "Leave the email as UNKNOWN and keep the person, along with badge id, name, company, and notes. Do not build an address from the employer name. Hold that row out of any mail import until someone on the team has a real address to type."
+    }
+  ],
+  "draft": true,
+  "persona": "Event sales coordinator",
+  "job": "A badge-scan spreadsheet and the official event name go in; one deduplicated lead list stamped with that show, plus a merge log, come out.",
+  "who": "Event sales coordinators who come back from a booth with a scanner export full of repeat badge swipes and need one lead row per person, labeled with that show, before anyone is loaded into the CRM.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "CRM or contact sheets",
+    "Workflow automation"
+  ]
+}

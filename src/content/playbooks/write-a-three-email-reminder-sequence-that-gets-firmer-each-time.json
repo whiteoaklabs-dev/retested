@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-three-email-reminder-sequence-that-gets-firmer-each-time",
+  "title": "Write a three-email reminder sequence that gets firmer each time",
+  "category": "Finance & admin",
+  "summary": "Paste one overdue client invoice and a short payment history, and the agent drafts a three-email reminder sequence that gets firmer each time. You supply the invoice number, issue date, due date, open balance, currency, project or retainer name, and billing contact, plus how recent bills were paid, any partial payment, and any date the client already named. You get three dated messages labeled friendly note, firmer follow-up, and final warning, each with a subject, a short body, the facts used, and a confirm line. You pick the send dates, you allow a late fee or a pause in work only when your terms already say so, and you send each message yourself after it matches the invoice.",
+  "published": "2026-10-15",
+  "updated": "2026-10-15",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the bookkeeper for a boutique agency, writing a chase the owner will edit before it goes out. Using [OVERDUE INVOICE] and [PAYMENT HISTORY], draft a three-email reminder sequence that gets firmer each time.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the invoice number, issue date, due date, open balance, currency, and project name only from [OVERDUE INVOICE].\n- From [PAYMENT HISTORY], cite at most one true prior pattern, such as a late payment or a partial amount. Skip bills that were paid on time.\n- Email 1 is a friendly note that assumes the bill was overlooked. Email 2 is a firmer follow-up that restates the open balance and asks for a pay date. Email 3 is a final warning.\n- In the final warning, name a next step only when it is written in [AGENCY TERMS]. Do not add lawyers, credit reports, fees, or a work stoppage on your own.\n- Keep each body under 120 words, first person, plain, and free of hype. Use the dates in [SEND DATES].\n\nOutput format:\nFor Email 1, Email 2, and Email 3, use these headings: Send date, Firmness, Subject, Body, Facts used, Owner must confirm. Close with a heading Unknowns listing every missing field.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful collections drafter for a boutique agency owner. You do not send mail. From [OVERDUE INVOICE], [PAYMENT HISTORY], and [AGENCY TERMS], write a three-email reminder sequence that gets firmer each time, dated with [SEND DATES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the open balance as the only amount due. If [PAYMENT HISTORY] shows a partial payment, do not recompute the total; use the open balance already stated.\n- Keep client names, project names, and prior invoice numbers exactly as pasted. If a history line might belong to another account, mark it UNKNOWN and leave it out of the body.\n- Make the tone rise on purpose: a friendly note, then a firmer follow-up that asks for a specific pay date, then a final warning.\n- The final warning may mention a late fee or a pause in work only if [AGENCY TERMS] already allows that step, and it must quote that step briefly rather than inventing a penalty.\n- Stay under 130 words per body. No guilt, no sarcasm, and no legal advice.\n\nOutput format:\nReturn three sections titled Email 1 Friendly note, Email 2 Firmer follow-up, and Email 3 Final warning. Inside each: Send date, Subject, Body, Facts used. After the three sections, add Owner decisions still open as a short list.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a blunt writing aide for a boutique agency owner who dislikes awkward chasing. Turn [OVERDUE INVOICE] and [PAYMENT HISTORY] into three dated emails that get firmer each time. Schedule them on [SEND DATES]. Respect [AGENCY TERMS].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put the invoice number, due date, and open balance in every email, copied from [OVERDUE INVOICE], not from memory.\n- Email 1 assumes a simple miss and tells them how to pay using only instructions already in the invoice paste.\n- Email 2 is firmer: say the balance is still open, mention one real history fact if you have one, and ask which day they will pay.\n- Email 3 is the final warning. State the owner's next step only if [AGENCY TERMS] contains it. Otherwise stop at a clear request for payment or a call.\n- Do not threaten lawsuits, outside collectors, or public posts. Keep each body under 110 words.\n\nOutput format:\nOutput a list of three emails. For each give Send date, Firmness label, Subject, Body, and Facts used. End with Unknowns the owner should fill before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing collection drafts for a boutique agency owner who will approve every send. Build a three-email reminder sequence that gets firmer each time from [OVERDUE INVOICE], [PAYMENT HISTORY], [AGENCY TERMS], and [SEND DATES].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use one client only. If the history mixes accounts, do not guess which lines apply.\n- Friendly note first: short and warm, names the project and the open balance, and assumes the due date slipped past them.\n- Firmer follow-up second: still polite, but direct about how long the bill has sat open and a request for a pay date.\n- Final warning third: last note before the next step in [AGENCY TERMS]. If no next step is written, ask for payment and mark the consequence UNKNOWN instead of inventing one.\n- Write in the owner's voice. Each body stays under 120 words. Do not add links or payment portals that were not pasted.\n\nOutput format:\nUse headings Email 1, Email 2, and Email 3. Under each heading include Send date, Firmness, Subject, Body, and Facts used. Finish with a section called Confirm before sending.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first; later Gmail, a sheet, and Zapier, Make, or n8n may stage drafts only.",
+    "steps": [
+      "From your billing screen or the invoice PDF, copy the invoice number, issue date, due date, open balance, currency, project or retainer name, and the billing contact into a note. Leave any blank field blank.",
+      "Under that note, paste a payment history for this client only: recent invoice numbers, whether each was paid on time, any partial amount still open, any dispute, and any date they said they would pay.",
+      "Open a chat assistant, paste the prompt for the model you use, and replace the placeholders with the invoice, the history, your written terms, and the three send dates you actually intend to use.",
+      "Read the three drafts in order. Confirm the tone moves from a friendly note to a firmer follow-up to a final warning, and that every amount, date, and history fact is in what you pasted.",
+      "Edit any line you would not send. Remove a late fee, a lawyer mention, or a work pause that your terms do not allow. Save the messages in a sheet with client, invoice number, send date, and status.",
+      "On each send date, copy only that one message into Gmail or your mail app, attach the invoice PDF, and send it yourself. If the client has paid or replied, mark the later rows stopped.",
+      "Optional agent mode: connect Gmail and the sheet with Zapier, Make, or n8n so each send date creates a Gmail draft from the approved text. Leave sending switched off so you still release each draft."
+    ],
+    "approvalStep": "You review all three drafts against the invoice and payment history before anything is scheduled. On each send date you approve that one email and send it yourself. No draft is sent by an automation until you release it.",
+    "failureModes": [
+      "A late fee, lawyer threat, or work pause shows up in the final warning even though your terms do not allow it. Read that email for any consequence you did not paste.",
+      "The open balance ignores a partial payment, so the note chases the original total. Match the figure to the balance still open on your billing screen.",
+      "A history line belongs to another client or to a bill already paid in full. Check the client name on every fact before you approve.",
+      "The three notes stay equally soft or jump straight to a threat, so the sequence does not get firmer. Compare the firmness labels side by side.",
+      "A later note goes out after the client paid or replied because the sheet still says not sent. Check status on the morning you plan to send.",
+      "Send dates land on a weekend or stack on one day, so accounts payable never sees a gap. Move each date to a weekday you chose."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste from the invoice and the history?",
+      "a": "Paste the invoice number, issue date, due date, open balance, currency, project or retainer name, and the billing contact. For history, add recent bills for this client, whether each was paid on time, any partial payment, any dispute, and any date they already offered. Do not paste another client's ledger."
+    },
+    {
+      "q": "Can the final warning mention a late fee or stopping work?",
+      "a": "Only when that step is written in the terms you paste. If the contract is silent, say those steps are not allowed. The final warning should then ask for payment or a call, and you delete any fee or pause the draft adds on its own."
+    },
+    {
+      "q": "Which model should I use for these three emails?",
+      "a": "It is not yet tested for this playbook, so there is no ranking. Use the prompt for the chat tool you already have, then keep a draft only when the amounts match the invoice and the tone gets firmer without threats you did not authorize."
+    },
+    {
+      "q": "What if they pay or reply after the friendly note?",
+      "a": "Stop the sequence. Mark the firmer follow-up and the final warning as stopped in your sheet, and answer their message yourself. Do not send a warning after a payment or a real reply just because those dates were already written down."
+    },
+    {
+      "q": "Should I send all three emails on the same day?",
+      "a": "Approve the set, then send only the friendly note first. Keep the other two as dated drafts and release each one on its own date if the balance is still open. Sending the warning the same day skips the point of a sequence that gets firmer over time."
+    }
+  ],
+  "draft": true,
+  "persona": "Boutique agency owner",
+  "job": "Turn one overdue invoice and that client's payment history into three dated emails that move from a friendly note to a firmer follow-up to a final warning.",
+  "who": "Boutique agency owners who send their own invoices and need one overdue account turned into a polite first note, a firmer second note, and a final warning, without hiring a collections desk.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}
