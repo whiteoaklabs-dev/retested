@@ -1,0 +1,86 @@
+{
+  "slug": "turn-my-messy-job-notes-into-a-clean-invoice",
+  "title": "Turn my messy job notes into a clean invoice",
+  "category": "Finance & admin",
+  "summary": "Paste the messy notes from one finished house clean, the customer card, and the prices you already charge. Notes can be a phone scratch, a text thread, or a checklist you typed out: visit date, rooms finished, extras, and any hours you wrote. The assistant returns one draft bill with bill-to, service address, visit date, clean type, a line table (description, quantity, unit, rate, line amount), subtotal, tax, deposit, amount due, payment instructions you supplied, a job note of at most 60 words, and an email you have not sent. Gate codes and pet notes stay off the customer copy. Blanks are marked UNKNOWN. You check every rate and add-on, fill the blanks, and you send the bill yourself.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office helper for a cleaning business owner. Draft one customer bill from a finished house visit. Do not email it or mark it paid.\n\nJob notes:\n[JOB NOTES]\n\nCustomer card:\n[CUSTOMER CARD]\n\nPrices you already charge:\n[PRICE LIST]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One visit, one address. If two homes appear, stop and ask which visit to bill.\n- Copy the payer name and billing email from [CUSTOMER CARD]. If a manager pays, bill the manager and put the house on the service-address line.\n- Price every line from [PRICE LIST] only. Do not choose a rate or turn a room list into hours.\n- Bill oven, fridge, inside windows, or laundry only when [JOB NOTES] say that extra was finished.\n- Keep gate codes, alarm codes, lockbox steps, and pet names under Private, off the customer copy.\n- A deposit, a repeat reduction, or sales tax appears only when the paste states the figure. Otherwise mark that line UNKNOWN.\n- No bill number means NUMBER UNKNOWN. Name the clean type only when the notes name it. Job note at most 60 words. Subject at most 12 words. Email body at most 90 words.\n\nOutput format:\nHeadings in order: Bill from, Bill to, Service address, Visit date, Clean type, Invoice number, Line table (description, quantity, unit, rate, line amount), Subtotal, Tax, Deposit or credit, Amount due, Payment instructions, Job note, Email subject, Email body, Private, Unknowns, Owner must confirm.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a cleaning business owner. Prepare one bill from a finished visit. Do not send it or mark it paid.\n\nVisit notes:\n[JOB NOTES]\n\nWho pays, and where the house is:\n[CUSTOMER CARD]\n\nThe owner's own prices:\n[PRICE LIST]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Bill a single visit. Two streets in the paste means you stop and ask which house.\n- Take the payer name, billing email, and service address from [CUSTOMER CARD]. When a manager pays, name the manager, not the resident.\n- Every rate comes from [PRICE LIST]. Do not turn rooms into hours or upgrade maintenance into a deep clean.\n- An add-on is billable only when [JOB NOTES] say the oven, fridge, inside windows, or laundry was finished.\n- Alarm codes, gate codes, lockbox steps, and pet names belong under Private, never on the customer-facing lines.\n- A deposit, a repeat reduction, or sales tax appears only when a paste states the figure. If it does not, mark the line UNKNOWN.\n- Leave the bill number as NUMBER UNKNOWN when none was supplied. Job note at most 60 words. Subject at most 12 words. Body at most 90 words.\n\nOutput format:\nHeadings in order: Bill from, Bill to, Service address, Visit date, Clean type, Invoice number, Line table (description, quantity, unit, rate, line amount), Subtotal, Tax, Deposit or credit, Amount due, Payment instructions, Job note, Email subject, Email body, Private, Unknowns, Owner must confirm.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You write the bill a cleaning business owner will check after a house visit. You do not email it, and you do not mark it paid.\n\nWhat got done:\n[JOB NOTES]\n\nCustomer and who pays:\n[CUSTOMER CARD]\n\nPrices already on the card:\n[PRICE LIST]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One house, one visit. If the notes name a second address, ask which visit and draft nothing else yet.\n- Put the payer from [CUSTOMER CARD] on Bill to. A resident who let the crew in is not the payer when a manager is.\n- Use [PRICE LIST] for every rate. A flat price stays flat. Do not invent hours from a note that only says the crew stayed all morning.\n- Bill oven, fridge, inside windows, or laundry only when [JOB NOTES] say that extra was finished.\n- Strip gate codes, alarm codes, lockbox steps, and pet names from the customer copy. Park them under Private.\n- Do not add tax, a deposit credit, or a repeat discount unless the paste already gives that figure. Mark a missing one UNKNOWN.\n- No bill number means NUMBER UNKNOWN. Clean type stays UNKNOWN unless the notes name it. Job note 60 words max. Subject 12 words max. Email body 90 words max.\n\nOutput format:\nHeadings in order: Bill from, Bill to, Service address, Visit date, Clean type, Invoice number, Line table (description, quantity, unit, rate, line amount), Subtotal, Tax, Deposit or credit, Amount due, Payment instructions, Job note, Email subject, Email body, Private, Unknowns, Owner must confirm.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting one bill for a cleaning business owner who approves every send. Do not email anyone.\n\nNotes from the finished clean:\n[JOB NOTES]\n\nPayer, email, phone, and service address:\n[CUSTOMER CARD]\n\nFlat prices, add-on prices, and any hourly rate:\n[PRICE LIST]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stay on one service address. If [JOB NOTES] mention a second home, ask which visit before you draft a line.\n- Copy Bill to from [CUSTOMER CARD]. If a property manager pays, do not swap in the resident who texted.\n- Apply only prices written in [PRICE LIST]. Do not pick a rate, and do not convert a room list into hours.\n- Include oven, fridge, inside windows, or laundry only when the notes say that extra was finished.\n- Keep gate codes, alarm codes, lockbox steps, and pet names under Private, off the customer copy.\n- Tax, a deposit, or a repeat reduction stays UNKNOWN unless the paste states the figure. Do not compute a substitute.\n- A missing bill number is NUMBER UNKNOWN. A missing clean type is CLEAN TYPE UNKNOWN. Job note at most 60 words. Subject at most 12 words. Body at most 90 words.\n\nOutput format:\nHeadings in order: Bill from, Bill to, Service address, Visit date, Clean type, Invoice number, Line table (description, quantity, unit, rate, line amount), Subtotal, Tax, Deposit or credit, Amount due, Payment instructions, Job note, Email subject, Email body, Private, Unknowns, Owner must confirm.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later, Gmail and Google Sheets, with Zapier, Make, or n8n storing an unsent draft.",
+    "steps": [
+      "From the phone note, the text thread, or the checklist you typed after the visit, copy one house only: date, rooms finished, extras, any hours you wrote, who worked, and stains or damage you want the customer to see. Leave a blank empty.",
+      "On the customer card, write the payer's name, billing email, phone, service address, and whether a property manager pays while a resident lives there. Add how they already pay, in your own words, such as check, bank transfer, or a pay link you use.",
+      "Write the prices you already charge for this kind of visit: flat price by clean type, add-on prices, an hourly rate only if you use one, any tax rate you charge, and a deposit already collected. Do not look up a new price.",
+      "Open the chat assistant you already use, paste the prompt for that assistant, and replace each placeholder with the job notes, the customer card, and the price list. Ask for one draft of this visit, not a stack of bills.",
+      "Read the line table beside the notes. Each description should match work the notes say was finished. Check quantity, unit, rate, and line amount against your price list. Confirm the job note stays within 60 words and skips codes.",
+      "Fill every UNKNOWN yourself or delete that line. Move gate codes, alarm codes, and pet notes out of the customer copy. Retotal only after you change a line, a deposit, or tax. Save the draft in Google Sheets with status not sent.",
+      "When the lines match the visit, paste them into the billing tool or document you already send from. Put the approved email in Gmail as a message you have not sent, attach the bill if you usually do, and send it yourself.",
+      "Optional later: when a Gmail label or a new Google Sheets row means a visit is ready, use Zapier, Make, or n8n to run the same prompt and store the draft in a sheet column. Leave every send and mark-paid action switched off."
+    ],
+    "approvalStep": "You review the draft against the job notes and your price list before it is emailed or marked paid. Confirm each line, the rate, tax, any deposit already collected, and that gate codes stayed off the customer copy. Then you send the bill yourself.",
+    "failureModes": [
+      "A question about the oven becomes a billed extra. If the notes never say that extra was finished, take the line off before you send.",
+      "A maintenance visit is priced as a deep clean because the room list is long. Match the clean type to the words in the notes, not to how messy the house felt.",
+      "Hours appear from a note that only says the crew was there all morning. Keep the flat price, or write the hours yourself from a timer you trust.",
+      "The resident who texted is named as the payer when the property manager is billed. Compare Bill to with the customer card before the email goes out.",
+      "A gate code, alarm code, or pet note lands in the job note or the email body. Read the customer copy once for anything you would not want forwarded.",
+      "A deposit already collected is still inside the amount due, or tax is added when you do not charge it. Recheck those two lines against the card before you send."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I copy from the notes I took in the van?",
+      "a": "Copy one house: the visit date, the rooms you finished, extras you actually did, any hours you wrote down, who worked, and stains or damage you want the customer to see. Add the payer's name, billing email, service address, and the prices you already charge. Leave gate codes and alarm codes in a separate scratch line so they can be kept off the bill."
+    },
+    {
+      "q": "What if I charge a flat price and the notes only list rooms?",
+      "a": "Put the flat price for that clean type on your price list and say the visit was a flat charge. The draft should use that price as one line and should not turn the room list into hours. If the notes never name the clean type, the type stays unknown until you pick maintenance, deep, move-out, or post-construction yourself."
+    },
+    {
+      "q": "Which assistant should I use to draft this bill?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft only when every line matches work the notes say was finished, every rate matches your price list, and codes and pet notes are off the customer copy. Fill any unknown yourself before you send."
+    },
+    {
+      "q": "The manager pays, but the resident texted me. Who goes on the bill?",
+      "a": "Put the payer from your customer card on Bill to, and put the house on the service-address line. If the resident only let the crew in, their name stays off the payer line unless the card says they pay. You confirm that split before the email is sent, because the chat will follow whichever name you wrote down."
+    },
+    {
+      "q": "Will this email the invoice or mark it paid for me?",
+      "a": "No. The chat result is a draft you review. If you later connect Gmail or Google Sheets with Zapier, Make, or n8n, stop at an unsent draft in a sheet column. You send only after the lines, the rate, tax, and any deposit match the visit. Leave any auto-send or mark-paid switch off."
+    }
+  ],
+  "draft": true,
+  "persona": "cleaning business owner",
+  "job": "Messy notes from one clean, the customer card, and your prices go in. A draft bill with lines, a short job note, and flagged blanks comes out.",
+  "who": "Cleaning business owners who finish a house, jot the rooms and extras in a phone note or a text, and need a customer-ready bill before the next stop.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

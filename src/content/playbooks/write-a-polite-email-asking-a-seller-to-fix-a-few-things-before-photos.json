@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-polite-email-asking-a-seller-to-fix-a-few-things-before-photos",
+  "title": "Write a polite email asking a seller to fix a few things before photos",
+  "category": "Real estate",
+  "summary": "You paste walkthrough notes and seller details. The assistant writes one polite email asking them to fix a few things before photos. Include the property address, the photo date and arrival time, the photographer's name, and one line per item with the room, what you saw, and a tag of Must-fix or Skip. The draft has a subject, a short reason the prep helps the shoot, a numbered list of only the Must-fix items due by that photo time, a Skip line for tasks you will handle, and your sign-off. Blank names, dates, or rooms stay UNKNOWN. You choose each tag before the draft is written, edit the list and the tone, then send the message yourself.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the listing agent's writing assistant. Write one polite email asking the seller to fix a few things before photos. Draft only. Do not send it.\n\nSeller first name: [SELLER FIRST NAME]\nProperty address: [PROPERTY ADDRESS]\nPhoto date and arrival time: [PHOTO DATE AND TIME]\nPhotographer: [PHOTOGRAPHER NAME]\nWalkthrough notes, one line per item with room, what you saw, and Must-fix or Skip: [WALKTHROUGH NOTES]\nSign-off: [AGENT SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Ask only for lines tagged Must-fix. Move every Skip line into a short note of what you or the photographer will handle.\n- For each ask, name the room or yard spot and the object to move, replace, or clear. Do not add paint, repairs, or costs the notes never state.\n- Keep the body at or under 160 words. Sound helpful and specific, not like a home inspection.\n- Use the photo date as the deadline. If the date, address, or a room is blank, mark it UNKNOWN and ask one question.\n- If a note is a safety issue or a real repair, put it under Agent to confirm. Do not assign it to the seller.\n- Leave out price, offers, and any line about going live unless those words are in the notes.\n\nOutput format:\nSubject: photo prep and the date, or UNKNOWN\nBody sections: greeting, one reason this helps the photos, numbered Must-fix items, a Skip line, one reply question, then the sign-off\nChecklist headings: Included, Skipped, Agent to confirm, UNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a listing agent. Produce one polite email asking the seller to fix a few things before photos. You only write the draft. You do not send email.\n\nUse only these fields:\n[SELLER FIRST NAME]\n[PROPERTY ADDRESS]\n[PHOTO DATE AND TIME]\n[PHOTOGRAPHER NAME]\n[WALKTHROUGH NOTES]\n[AGENT SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Include a seller ask only when the note says Must-fix. Skip means you or the photographer will handle it, so it is not a chore for them.\n- Describe the spot and the object in plain words, such as the lamp in the dining room or toys on the front walk. Do not call the home dirty or neglected.\n- Hold the body to 160 words or fewer. One reason the prep helps the photos, then the list, then a single question inviting a reply.\n- Take the deadline from the photo date. A missing date, address, or room becomes UNKNOWN rather than a guess.\n- Park safety issues and repairs under Agent to confirm. Do not turn them into demands.\n- Do not mention price, offers, or a go-live plan unless the notes already say it.\n\nOutput format:\nSubject line\nBody with these sections: greeting, why it helps the photos, numbered Must-fix list, Skip line, reply question, sign-off\nThen headings Included, Skipped, Agent to confirm, and UNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a listing agent. Write one polite email asking the seller to fix a few things before photos. Draft it. Do not send it.\n\nPaste:\nSeller: [SELLER FIRST NAME]\nAddress: [PROPERTY ADDRESS]\nWhen photos happen: [PHOTO DATE AND TIME]\nWho is shooting: [PHOTOGRAPHER NAME]\nNotes (room, what you saw, Must-fix or Skip): [WALKTHROUGH NOTES]\nSign-off: [AGENT SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Only Must-fix lines become asks. Skip lines stay in a short note of what you will handle.\n- Name the room and the thing to move, swap, or clear. If the notes do not mention paint, carpet, or a repair cost, do not add them.\n- Body stays at or under 160 words. Polite, direct, and easy to do before the photographer arrives.\n- The photo date is the deadline. A blank date, address, or room is UNKNOWN, plus one question.\n- A safety issue or a repair goes under Agent to confirm, not on the seller's list.\n- No price, no offer talk, and no going-live line unless the notes include it.\n\nOutput format:\nSubject\nSections: greeting, one reason this helps the photos, numbered Must-fix list, Skip line, reply question, sign-off\nChecklist: Included, Skipped, Agent to confirm, UNKNOWN",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting for a listing agent who will approve every word before it is sent. Write one polite email asking the seller to fix a few things before photos. Return the draft only.\n\nFields to use and no others:\n[SELLER FIRST NAME] is who you greet\n[PROPERTY ADDRESS] is the house\n[PHOTO DATE AND TIME] is the deadline\n[PHOTOGRAPHER NAME] is who is shooting, or UNKNOWN if blank\n[WALKTHROUGH NOTES] are the only items allowed in the email\n[AGENT SIGN-OFF] closes the note\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Turn Must-fix lines into numbered asks. Keep Skip lines as work you or the photographer will do.\n- Each ask states the room and the object. Do not upgrade a tidy-up into paint, flooring, or a paid repair.\n- Stay at or under 160 words. Thank them for access in one line, then the list, then one question.\n- If the photo date or a room is missing, stop and mark it UNKNOWN.\n- Put hazards and repairs under Agent to confirm so the agent decides, not the draft.\n- Omit price, offers, and listing timing unless the notes state them.\n\nOutput format:\nSubject\nBody sections in order: greeting, why this helps the photos, numbered Must-fix items, Skip line, reply question, sign-off\nEnd with Included, Skipped, Agent to confirm, and UNKNOWN",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Optional later: Gmail drafts created from a Google Sheet by Zapier, Make, or n8n, with send left off.",
+    "steps": [
+      "From the listing file or the notes on your phone, copy the seller's first name, street address, photo date, arrival time, photographer name, and how you sign email. If any of those is blank, write UNKNOWN beside it instead of guessing from another file.",
+      "Under that header, add one line per thing you saw on the walkthrough: the room or yard spot, the object, and a tag of Must-fix or Skip. Must-fix is their job before photos. Skip is what you or the photographer will handle.",
+      "Open the assistant you already use. Paste that model's prompt and replace each bracketed field with your header and your item lines. Do not attach an inspection report, a repair estimate, or pricing notes.",
+      "Read the draft against your lines. The subject should name the photo date, every seller ask should be a Must-fix you wrote, and every Skip item should sit in the line about what you will handle.",
+      "Edit the tone yourself so it stays polite. Delete any paint, carpet, cost, or safety demand you did not write. Fill a real UNKNOWN from the listing file, or leave the question in the email.",
+      "Paste the subject and body into Gmail as an unsent draft to the seller only. Match the street address and the arrival time to the photo appointment on your calendar before you think about sending.",
+      "On a Google Sheet, log columns for address, photo date, room, item, tag, and whether you sent the note. Keep that sheet as the record if you reuse the same prep list on a later listing.",
+      "Optional: connect that sheet to Gmail with Zapier, Make, or n8n so a new Must-fix row creates an unsent draft. Leave send off. You still open the draft and approve the wording yourself."
+    ],
+    "approvalStep": "You review the unsent Gmail draft and approve it before sending. Confirm the address, the photo time, and that every ask is a Must-fix line you wrote. Then you press send. The chat and any Zapier, Make, or n8n flow may only save the draft.",
+    "failureModes": [
+      "The draft adds paint, carpet, or a repair you never wrote on the walkthrough, and the seller treats the email as an inspection demand.",
+      "A Skip item, such as your lockbox or a car the photographer will crop, is assigned to the seller and reads like an extra chore.",
+      "The street address or photo time is taken from a different listing in the same note, so the wrong house is asked to prepare.",
+      "The wording judges how they live. They push back or cancel the shoot instead of moving the few items you meant.",
+      "A Zapier, Make, or n8n flow is set to send, and an item you were unsure about leaves before you can cut it.",
+      "The notes say only to tidy the house, with no room named, so the email has no specific ask and the seller does not know what to move."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste from the walkthrough?",
+      "a": "Paste the seller's first name, the property address, the photo date and arrival time, the photographer's name, and your sign-off. Then add one line per thing you saw: the room or yard spot, the object, and Must-fix or Skip. Must-fix is what you want them to do before the shoot. Skip is what you or the photographer will handle. If a field is blank, type UNKNOWN."
+    },
+    {
+      "q": "Is this the same email as an inspection repair request?",
+      "a": "No. This note is only the short prep list before listing photos. Do not paste the inspection report, a repair credit, or price talk. If a line is a real repair or a safety issue, leave it off the seller's chore list and mark it Agent to confirm so you decide the next step yourself."
+    },
+    {
+      "q": "Which assistant should I use for this email?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Judge the draft against the lines you pasted: the subject names the photo date, only Must-fix items are asked of the seller, Skip items stay on your side, and any blank field is UNKNOWN. If a repair appears that you did not write, delete that line and run the prompt again."
+    },
+    {
+      "q": "Can this send the email for me?",
+      "a": "Paste mode only shows a draft on screen. If you later connect Gmail and a Google Sheet through Zapier, Make, or n8n, set the flow to create an unsent draft when a new Must-fix row is added. You still open that draft, check the address and the photo time, and send it yourself."
+    },
+    {
+      "q": "How do I keep the note from sounding like a scolding?",
+      "a": "Tag only true blockers as Must-fix, such as a burnt bulb in the room being shot or toys on the front walk, and mark the rest Skip. The draft should thank them for access, give the photo time as the deadline, and offer to handle Skip items. Read it once before you send, and cut any line that judges how they live."
+    }
+  ],
+  "draft": true,
+  "persona": "realtor",
+  "job": "Rough walkthrough notes and seller details become one polite email asking them to fix a few things before photos.",
+  "who": "Listing agents who walked a house before the photographer arrives and need a polite email so the seller can clear specific rooms without the note sounding like a scolding.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

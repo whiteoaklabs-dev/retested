@@ -1,0 +1,86 @@
+{
+  "slug": "answer-a-customer-asking-if-i-am-licensed-and-insured",
+  "title": "Answer a customer asking if I am licensed and insured",
+  "category": "Support",
+  "summary": "A customer asking if you are licensed and insured gets a reply from only your paste: their message, the license card (state, classification, number, expiration), the coverage sheet (carrier, workers' compensation status, expiration, any bond, and a dollar figure only if you will show it), and share rules for which numbers may appear. You get a text or email of 120 words or fewer, an attach note (card photo, certificate, or none), an UNKNOWN list, and a flag if a date is expired. It does not invent a number or say the policy covers this job. You match the draft to the card and the certificate, choose the file to attach, and you send it. Zapier, Make, or n8n may queue a later draft, and that flow still cannot send.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office drafter for a general contractor. Write one reply to a customer asking if the company is licensed and insured. Draft only. Do not send a text or email.\n\nUse only these inputs:\n[CUSTOMER MESSAGE]\n[LICENSE CARD]\n[COVERAGE SHEET]\n[SHARE RULES]\n[SIGN-OFF]\n[TODAY]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Open with a direct answer on licensing and coverage, using only statuses written on the card and the sheet.\n- If any expiration is on or before [TODAY], do not call that item current. Hold the reply and list it under DATE FLAGS.\n- Leave out a card number, carrier, policy number, or dollar limit when [SHARE RULES] says withhold.\n- Do not write that the policy covers this job, this address, or this person.\n- Repeat workers' compensation only as the sheet states it, including exempt or no employees.\n- Do not say a subcontractor is covered unless the sheet names that trade and says their certificate is in hand.\n- Keep MESSAGE at or under 120 words. No legal lecture and no board website.\n\nOutput format, in this order:\nCHANNEL: text or email, copied from the customer note\nSUBJECT: one line, or NONE when the channel is text\nMESSAGE: greeting, direct answer, card line, coverage line, one missing fact if needed, then [SIGN-OFF]\nATTACH: license photo, certificate, or NONE, following [SHARE RULES]\nUNKNOWN LIST: every blank field\nDATE FLAGS: expirations on or before [TODAY], or NONE\nStop after those sections.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful writing assistant for a general contractor who will edit every line before it is sent. Draft one reply to a customer asking if you are licensed and insured. Do not send it.\n\nInputs you may use, and nothing else:\n[CUSTOMER MESSAGE]\n[LICENSE CARD]\n[COVERAGE SHEET]\n[SHARE RULES]\n[SIGN-OFF]\n[TODAY]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put the yes, no, or UNKNOWN for licensing and for coverage in the first two sentences. Do not soften a blank into a yes.\n- Compare each expiration to [TODAY]. A date that has arrived or passed is not current. Record it under DATE FLAGS and keep the reply on hold.\n- Hide any card number, carrier name, policy number, or dollar figure that [SHARE RULES] marks withhold.\n- Do not claim the policy applies to this remodel, this property, or the person who wrote.\n- Workers' compensation must match the sheet. If the sheet says sole owner or no employees, keep that wording.\n- Skip subcontractor coverage unless the sheet names the trade and says that certificate is already in hand.\n- Hold MESSAGE to 120 words or fewer.\n\nOutput format:\nCHANNEL\nSUBJECT (NONE for a text)\nMESSAGE\nATTACH (license photo, certificate, or NONE)\nUNKNOWN LIST\nDATE FLAGS (or NONE)\nDo not add a seventh section.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You draft replies for a general contractor who is on the job and will send the message themselves. A customer is asking if they are licensed and insured. Produce the draft. Do not send it.\n\nStick to [CUSTOMER MESSAGE], [LICENSE CARD], [COVERAGE SHEET], [SHARE RULES], [SIGN-OFF], and [TODAY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Answer licensing and coverage up front, and only with what the card and the sheet actually say.\n- An expiration on or before [TODAY] means that item is not current. Flag it and hold the reply.\n- If [SHARE RULES] says withhold, the card number, carrier, policy number, and dollar limit stay out of MESSAGE.\n- Do not write that coverage applies to this job, this address, or this homeowner.\n- Copy the workers' compensation status. Exempt, sole owner, or no employees stays as written.\n- A subcontractor is mentioned only when the sheet names the trade and confirms their certificate is in hand.\n- MESSAGE stays at or under 120 words.\n\nOutput format:\nCHANNEL: text or email\nSUBJECT: one line or NONE\nMESSAGE: greeting, answer, card line, coverage line, one ask if a holder name or job address is missing, sign-off\nATTACH: license photo, certificate, or NONE\nUNKNOWN LIST\nDATE FLAGS\nNo extra notes after DATE FLAGS.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a general contractor. They will read the card and the certificate before anyone else sees this. Write one reply to a customer asking if they are licensed and insured. Do not send the message.\n\nWork only from [CUSTOMER MESSAGE], [LICENSE CARD], [COVERAGE SHEET], [SHARE RULES], [SIGN-OFF], and [TODAY].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- State licensing and coverage in plain words at the start. A missing status is UNKNOWN, not a cheerful yes.\n- Check expirations against [TODAY]. If a date is due or past, do not call it current. List it in DATE FLAGS and mark the reply held.\n- Follow [SHARE RULES] on the card number, the carrier, the policy number, and any dollar limit. Withhold means omit.\n- Do not say the policy covers the job they asked about, the property, or the sender.\n- Use the sheet's workers' compensation line verbatim in meaning. Do not upgrade exempt or no employees into a policy.\n- Name a subcontractor only if the sheet names that trade and says you have their certificate.\n- Cap MESSAGE at 120 words.\n\nOutput format with these headings:\nCHANNEL\nSUBJECT\nMESSAGE\nATTACH\nUNKNOWN LIST\nDATE FLAGS\nCHANNEL is text or email. SUBJECT is NONE for a text. ATTACH is license photo, certificate, or NONE. End there.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional later: Gmail, Google Sheets, and Zapier, Make, or n8n to queue drafts for review.",
+    "steps": [
+      "Copy the customer's text or email into a note, word for word, including their name, the job they named, and any street or city. Label the channel you will answer on, either text or email.",
+      "Open the license card, or the board printout saved on your phone, and write state, classification, number, and expiration on separate lines. If the card is not in front of you, write UNKNOWN. Do not recall a number from memory.",
+      "From the current certificate or declarations page, copy carrier, workers' compensation status, expiration, and bond if one is printed. Add a dollar figure only if you will show it. Write SHARE NO beside anything you will not put in a text.",
+      "Write one share-rules line: whether the reply may show the card number, the carrier, the policy number, and any dollar figure. If you already know the certificate holder, name the homeowner, the HOA, or the property manager.",
+      "Do not upload the policy PDF into the chat. Open the assistant you already use, paste that model's prompt, and fill the placeholders with the message, the card lines, the coverage lines, the share rules, your sign-off, and today's date.",
+      "Read the draft beside the card and the certificate. Every digit must match, withheld numbers must be absent, and a past expiration must sit in DATE FLAGS instead of being called current. Delete any line that says the policy covers this job.",
+      "Paste the message into your texting app or email and leave it unsent. Check the customer's name and the job address against the thread. Attach a photo of the card or the certificate only after you decide the wording is right.",
+      "Optional later: store one Google Sheets row with the card number, both expirations, the carrier, and the share rules. Point Zapier, Make, or n8n at new questions and save a Gmail draft or a doc. The flow must not send."
+    ],
+    "approvalStep": "You review the unsent text or email before sending. Match every number to the license card and the certificate, confirm the holder name, and choose the file to attach. Only then do you press send. The chat and any automation stop at the draft.",
+    "failureModes": [
+      "The reply completes a license number or a dollar limit you never typed, usually by finishing a half-entered digit.",
+      "An old line on your website that says the shop is insured is treated as current, so a lapsed policy reads as active.",
+      "Workers' compensation is stated for a solo contractor whose sheet says no employees or exempt.",
+      "The homeowner is named as certificate holder when the question came from an HOA or a property manager.",
+      "The job is in another state than the card, and the reply still says you are licensed for that property.",
+      "Share rules said to withhold the policy number, and that number still lands in the text."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Should I put the policy number in the text?",
+      "a": "Leave the policy number out unless your share-rules line says to include it. A homeowner usually needs to hear that you carry liability coverage and that you can email a certificate. Write SHARE NO next to the policy number in your notes so the reply offers the certificate and keeps the number off the message. You still choose whether to attach the PDF before you send."
+    },
+    {
+      "q": "They asked to be named as additional insured. What do I write?",
+      "a": "Do not promise additional-insured wording unless your notes say your agent already agreed. Ask for the exact holder name and the property address, and say you will request the certificate from your agent. If the holder is an HOA or a property manager, use that name rather than the neighbor who texted. You send the file only after the agent issues it."
+    },
+    {
+      "q": "Which assistant should I use to draft this?",
+      "a": "Use the prompt for the assistant you already have open, whether that is ChatGPT, Claude, Grok, or Muse. Judge the result against the card and the certificate in front of you: every digit matches, withheld numbers are absent, blank fields say UNKNOWN, and a past expiration is flagged instead of called current. If a digit appears that you did not paste, run it again with that field marked UNKNOWN."
+    },
+    {
+      "q": "I have no employees and no workers' comp policy. What should I say?",
+      "a": "Write that status on the coverage sheet in your own words, such as sole owner, no employees, workers' compensation not carried. The reply should repeat that status and should not upgrade it into a policy you do not hold. If the job will use a subcontractor, name that trade only when their certificate is in your hand. You decide whether to keep bidding after they read it."
+    },
+    {
+      "q": "Should I upload the certificate PDF into the chat?",
+      "a": "No. Read the PDF yourself and type the fields: carrier, any figure you are willing to show, workers' compensation status, expiration, and bond if it is listed. Uploading the whole policy can drop a policy number into the reply even when your share rules say withhold. Attach the real PDF from your phone only after you approve the unsent message."
+    }
+  ],
+  "draft": true,
+  "persona": "general contractor",
+  "job": "Paste the question, the license card fields, and the coverage sheet, and get a short reply you send only after you check it.",
+  "who": "General contractors who answer their own texts and email, such as a small remodel crew or a solo GC bidding a kitchen, deck, or roof. A homeowner, HOA, or property manager just asked if you are licensed and insured, and the note has to match the card and certificate you hold.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Document storage",
+    "Workflow automation"
+  ]
+}

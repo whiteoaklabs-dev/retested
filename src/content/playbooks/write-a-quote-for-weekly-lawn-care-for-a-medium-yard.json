@@ -1,0 +1,86 @@
+{
+  "slug": "write-a-quote-for-weekly-lawn-care-for-a-medium-yard",
+  "title": "Write a quote for weekly lawn care for a medium yard",
+  "category": "Sales",
+  "summary": "A landscaping owner pastes the homeowner name and address, site-visit notes describing this medium yard, the chores done on every mowing visit, the work left off that visit, the callback number, and the weekly price already chosen. The assistant returns a lawn-care quote in fixed sections: subject or first line, greeting, property, weekly service, not included, price, schedule, billing, acceptance, an UNKNOWN list, and a cover of at most 120 words. It must not invent a rate, a lot measurement, or extras such as hedges or fertilizer. You match the amount and the crew day to your notes, edit the cover, and send the text or email yourself. The address stays off the route until you approve.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the quote clerk for a landscaping owner. Arrange one weekly lawn-care quote for a medium yard they already walked. You do not set the price and you do not send it.\n\nFields:\n[BUSINESS NAME] [CALLBACK NUMBER] [CUSTOMER NAME] [PROPERTY ADDRESS] [QUOTE CHANNEL]\n[SITE NOTES] [INCLUDED TASKS] [EXCLUDED WORK] [WEEKLY PRICE] [BILLING CADENCE]\n[VISIT DAY] [START DATE] [SEASON WINDOW] [VALID UNTIL] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Copy tasks and exclusions as written. Do not add hedges, beds, fertilizer, aeration, haul-off, a rain policy, a fuel surcharge, or a cancel fee unless the notes already state it. Do not swap blow for bag.\n- If [INCLUDED TASKS] is blank, weekly service is UNKNOWN. Do not fill in a standard mow package.\n- Print [WEEKLY PRICE] as given. Copy a filled [BILLING CADENCE]. If it is blank, billing is UNKNOWN. Do not multiply into a month or season total.\n- If [SITE NOTES] has no measurement, size is UNKNOWN. Do not guess feet or acres. Copy gate, dog, or slope lines only when present. Use [CALLBACK NUMBER] or leave the phone out.\n- Cover: 120 words or fewer, plain enough to text, naming the weekly amount once.\n\nOutput format, these headings in order and nothing after:\nSUBJECT OR FIRST LINE\nGREETING\nPROPERTY\nWEEKLY SERVICE\nNOT INCLUDED\nPRICE\nSCHEDULE\nBILLING\nACCEPTANCE\nUNKNOWN\nCOVER",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a landscaping owner. Prepare a weekly lawn-care quote for one medium yard from the notes only. The owner sends it.\n\nRead:\n[BUSINESS NAME] [CALLBACK NUMBER] [CUSTOMER NAME] [PROPERTY ADDRESS]\n[QUOTE CHANNEL] [SITE NOTES] [INCLUDED TASKS] [EXCLUDED WORK]\n[WEEKLY PRICE] [BILLING CADENCE] [VISIT DAY] [START DATE]\n[SEASON WINDOW] [VALID UNTIL] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Keep the visit inside [INCLUDED TASKS]. Hedges, beds, fertilizer, aeration, and haul-off stay out unless that list names them. Do not swap blow for bag.\n- An empty task list means weekly service is UNKNOWN. Do not supply a sample mow, edge, and blow.\n- Repeat [WEEKLY PRICE] unchanged. Copy a filled [BILLING CADENCE]. If it is blank, billing is UNKNOWN. Do not multiply into a month or season total.\n- No measurement in [SITE NOTES] means size is UNKNOWN, not acres. Copy a gate, dog, or slope sentence only if it is written. No phone unless [CALLBACK NUMBER] is filled.\n- Do not add a rain policy, fuel surcharge, or cancel fee that the notes do not state. Cover is 120 words or fewer and names the amount once.\n\nOutput format:\nReturn only these headings:\nSUBJECT OR FIRST LINE\nGREETING\nPROPERTY\nWEEKLY SERVICE\nNOT INCLUDED\nPRICE\nSCHEDULE\nBILLING\nACCEPTANCE\nUNKNOWN\nCOVER",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a landscaping owner. Draft a weekly lawn-care quote for one medium yard. Do not send it or pick the number.\n\nPaste:\nBusiness and phone: [BUSINESS NAME] [CALLBACK NUMBER]\nHomeowner and lot: [CUSTOMER NAME] [PROPERTY ADDRESS]\nText or email: [QUOTE CHANNEL]\nWhat you saw: [SITE NOTES]\nEach visit, one line: [INCLUDED TASKS]\nLeft off the visit: [EXCLUDED WORK]\nAmount you charge: [WEEKLY PRICE]\nPer visit or monthly: [BILLING CADENCE]\nCrew day and first day: [VISIT DAY] [START DATE]\nSeason and deadline: [SEASON WINDOW] [VALID UNTIL]\nHow they agree: [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Stick to pasted chores. Do not toss in hedges, beds, fertilizer, aeration, haul-off, a rain policy, or a cancel fee they did not write. Do not swap blow for bag.\n- Blank [INCLUDED TASKS] means the service block is UNKNOWN. Do not invent a usual mowing package.\n- Print [WEEKLY PRICE] as given. Copy a filled [BILLING CADENCE]. If it is blank, billing is UNKNOWN. Do not multiply into a month or season total.\n- No tape-measure guess. Missing size is UNKNOWN. Copy gate, dog, and slope lines only when they are there. Leave the phone out if [CALLBACK NUMBER] is empty.\n- Cover stays at or under 120 words, sounds like the owner, and states the amount once.\n\nOutput format, headings in this order:\nSUBJECT OR FIRST LINE\nGREETING\nPROPERTY\nWEEKLY SERVICE\nNOT INCLUDED\nPRICE\nSCHEDULE\nBILLING\nACCEPTANCE\nUNKNOWN\nCOVER",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a landscaping owner. Build one weekly lawn-care quote for a single medium yard. The owner sends it.\n\nMap each bracket:\n[BUSINESS NAME] [CALLBACK NUMBER]\n[CUSTOMER NAME] [PROPERTY ADDRESS] [QUOTE CHANNEL]\n[SITE NOTES] size words, gate, dog, or slope\n[INCLUDED TASKS] one chore per line\n[EXCLUDED WORK] one refusal per line\n[WEEKLY PRICE] amount with currency\n[BILLING CADENCE] [VISIT DAY] [START DATE]\n[SEASON WINDOW] [VALID UNTIL] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN\n- Treat [INCLUDED TASKS] as the whole visit. A blank list is UNKNOWN. Do not swap blow for bag or add hedges, beds, fertilizer, or haul-off.\n- Put [EXCLUDED WORK] under not included. An empty list is UNKNOWN, not unlimited scope.\n- Show [WEEKLY PRICE] in the price section and once in the cover. Copy a filled [BILLING CADENCE]. If it is blank, billing is UNKNOWN. Do not multiply into a month or season total.\n- Do not turn medium into square feet or acres. Size comes from [SITE NOTES] or is UNKNOWN. No rain policy, surcharge, or cancel fee unless the notes state it.\n- Omit the phone if [CALLBACK NUMBER] is empty. Cover: 120 words or fewer. Text gets no padded subject.\n\nOutput format:\nSUBJECT OR FIRST LINE\nGREETING\nPROPERTY\nWEEKLY SERVICE\nNOT INCLUDED\nPRICE\nSCHEDULE\nBILLING\nACCEPTANCE\nUNKNOWN\nCOVER",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optional later: Google Sheets, Gmail or texting, and Zapier, Make, or n8n making unsent drafts only.",
+    "steps": [
+      "Open your site-visit notebook or the homeowner text. Copy the name, the property address, the callback number, and every line that describes this medium yard, including slope, gate, or dog. If you never measured, leave size blank.",
+      "From your service menu, list the chores you will do on each mowing visit, one per line, and the work you will not do. Add the weekly amount you already chose, with currency, and whether you bill per visit or once a month.",
+      "Add the crew day you can actually run that street, the first date you can start, when the season stops, how long the offer stays open, and whether this goes by text or email. Add your business name and how they should say yes.",
+      "Open the assistant you already use. Paste the prompt for that assistant and replace every bracket with your notes. Where a bracket is empty, type the word blank. Do not ask it to choose a price or a lot size.",
+      "Read the weekly service and the not-included list against your menu. Delete hedges, beds, fertilizer, aeration, or haul-off you did not write. Confirm the amount matches your figure digit for digit and that no season total was added.",
+      "Check the schedule against your route book. If the crew day or start date is not a day you can mow that street, change it yourself. Fill any UNKNOWN from your notebook, or delete that line before a homeowner sees it.",
+      "Paste the cover into an unsent text on your phone or a Gmail draft. Leave it unsent. Do not write the address onto the mowing route, and do not collect payment, until they reply yes to the amount and the day.",
+      "Optional agent mode: store name, address, weekly amount, task list, and a status column in Google Sheets. Use Zapier, Make, or n8n to create a Gmail or text draft only after you set status to approved. Leave auto-send off."
+    ],
+    "approvalStep": "Before the text or email is sent, compare the unsent draft with your price note, task list, and route book. Approve only when the weekly amount, exclusions, and crew day match what you decided. You send it yourself.",
+    "failureModes": [
+      "Hedges, bed edging, or fertilizer appear even though your menu never listed them, so the weekly amount now covers a larger job. Delete any chore you cannot point to in your notes.",
+      "A figure or phone you did not write shows up, or the weekly amount is stretched into a season total. Put your own amount and callback number back.",
+      "Medium yard is rewritten as square feet or acres you never measured. When your notes have no measurement, the size line must say UNKNOWN.",
+      "The not-included list disappears, so a mow-and-blow visit reads like full yard care. Put the refused work back before anyone sees the message.",
+      "The crew day is a weekday you do not run that street. Match the schedule line to the route book before you approve it.",
+      "Zapier, Make, or n8n sends the text while the sheet still says draft. Keep auto-send off until you have reread the amount."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Can the assistant pick a weekly price for a medium yard?",
+      "a": "No. You choose the amount before you paste, from your rate card or from what you charge similar lots you have already walked. If that bracket is blank, keep the draft only when the price section says UNKNOWN. Do not send a number the assistant supplied. You also decide per-visit or monthly billing before you run the prompt, so a weekly amount is not quietly turned into a different bill."
+    },
+    {
+      "q": "What if I never measured the lot?",
+      "a": "Paste what you did see: front and back, a fence, a slope, a gate, or a dog. Leave the measurement out. The size line should say UNKNOWN rather than acres or square feet. You can still send the message after you confirm the visit chores and the amount match the yard you walked."
+    },
+    {
+      "q": "My notes mention hedges and a one-time cleanup. Do those belong in this quote?",
+      "a": "Keep this draft to the recurring mowing visit. Put hedges and the cleanup on the excluded list unless you mean to fold them into the weekly amount. If you want a separate price for that extra work, write it in your notes as its own line with its own amount. Otherwise the draft should not invent a second total."
+    },
+    {
+      "q": "Which assistant should I use to draft this?",
+      "a": "Use the prompt written for the assistant you already text customers from. Keep the draft only when every visit chore matches your menu, the amount matches your price note, the exclusions are still listed, and any blank field says UNKNOWN. Then edit the cover in your own words and send it yourself."
+    },
+    {
+      "q": "Will this text the homeowner or add the yard to my route?",
+      "a": "Paste mode ends as words you copy into an unsent text or a Gmail draft. You send it. A later Zapier, Make, or n8n flow should create a draft only after you mark the sheet row approved, with auto-send left off. Add the address to the mowing route only after they accept the amount and the day."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaping business owner",
+  "job": "From site notes, the visit task list, and the price you set, draft a ready-to-send quote for weekly lawn care on one medium yard.",
+  "who": "Landscaping business owners who walked a medium yard, already chose the weekly price, and need a homeowner-ready lawn-care quote that lists the mowing visit without folding in hedges, beds, or fertilizer.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Text messaging",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

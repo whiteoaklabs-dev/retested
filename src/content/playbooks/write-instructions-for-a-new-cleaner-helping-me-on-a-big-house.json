@@ -1,0 +1,84 @@
+{
+  "slug": "write-instructions-for-a-new-cleaner-helping-me-on-a-big-house",
+  "title": "Write instructions for a new cleaner helping me on a big house",
+  "category": "Back office",
+  "summary": "Paste one large-house booking: the customer name or a house nickname, the street, the date, the arrival window, how to get in, the floors and rooms, anything to skip, product bans, pets, and the phone a new cleaner should use if stuck. You get a one-page instruction sheet with headings for entry, room order, hands-off spots, products, pets and people, what finished looks like, and when to stop and text you. Missing facts stay marked UNKNOWN, including any code the notes do not contain. The assistant does not message anyone. You compare the sheet to the booking, fill each blank yourself, and text, email, or hand it over only after you approve.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office helper for a cleaning company. Write the instruction sheet for a new cleaner on one big house. Do not send it.\n\nHouse and room notes:\n[HOUSE NOTES]\n\nCustomer name, address, date, arrival, and access:\n[CUSTOMER DETAILS]\n\nProduct bans, pets, and who is home:\n[PRODUCT AND PET RULES]\n\nName and phone if they get stuck:\n[WHO TO TEXT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One house only. If two addresses are pasted, stop and ask which house.\n- Copy a lockbox, alarm, or gate code only when the notes already contain it. Otherwise write CODE UNKNOWN.\n- List only rooms and tasks the notes name. Do not add an attic, basement, windows, or beds.\n- Repeat bans and allowed products only. Do not name a brand or a substitute.\n- Leave pay and tips out unless the notes state them. Do not promise extra work.\n- Short lines for a phone. No pep talk.\n\nOutput format:\nReturn only these headings, each at most six lines:\nHEADER: nickname, street, date, arrival window\nGET IN: door, key or lockbox in the notes' words, shoes, parking\nROOM ORDER: floors and rooms in the notes' order, or ORDER UNKNOWN\nHANDS OFF: rooms and items to skip, or SKIP LIST UNKNOWN\nPRODUCTS: bans and allowed products, or PRODUCT RULES UNKNOWN\nPETS AND PEOPLE: only what the notes say\nDONE LOOKS LIKE: checklist of tasks the notes include\nSTOP AND TEXT: name and phone from the notes, and when to stop\nUNKNOWNS: every UNKNOWN field, one per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a cleaning company owner. Write a first-visit instruction sheet for a new cleaner on one large house. Do not send it.\n\nHouse and room notes:\n[HOUSE NOTES]\n\nCustomer name, address, date, arrival, and access:\n[CUSTOMER DETAILS]\n\nProduct bans, pets, kids, and anyone home:\n[PRODUCT AND PET RULES]\n\nName and phone if they get stuck:\n[WHO TO TEXT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If the paste contains two streets, stop and ask which house. Do not merge them.\n- Repeat access lines in the customer's words. If no code is written, write CODE UNKNOWN.\n- Rooms and tasks must come from the notes. Do not add an attic, basement, windows, or beds.\n- Restate a ban or an allowed product only. Do not suggest a brand or a substitute.\n- Omit pay and tips unless the notes state them. Do not offer work that was not booked.\n- Short lines for walking the house.\n\nOutput format:\nHeadings only, six lines or fewer each:\nHEADER: nickname, street, date, arrival window\nGET IN: door, key or lockbox as written, shoes, parking\nROOM ORDER: floors and rooms in the notes' order, or ORDER UNKNOWN\nHANDS OFF: rooms and items to leave alone, or SKIP LIST UNKNOWN\nPRODUCTS: bans and allowed products only, or PRODUCT RULES UNKNOWN\nPETS AND PEOPLE: only what the notes say is home\nDONE LOOKS LIKE: checklist of tasks the notes include\nSTOP AND TEXT: name, phone, and when to stop\nUNKNOWNS: every field marked UNKNOWN, one per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You write the van sheet for a cleaning company owner. One big house, one new cleaner, one draft. You do not text it.\n\nHouse and room notes:\n[HOUSE NOTES]\n\nCustomer name, address, date, arrival, and access:\n[CUSTOMER DETAILS]\n\nProduct bans, pets, and who is home:\n[PRODUCT AND PET RULES]\n\nName and phone if they get stuck:\n[WHO TO TEXT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One address only. Two streets in the paste means you stop and ask which house.\n- A code goes on the sheet only when the notes already contain it. Otherwise write CODE UNKNOWN.\n- Name only rooms and tasks written down. A large house does not mean you add an attic, a basement, or beds.\n- Say a product is banned or allowed only when the notes say so. Do not name a brand.\n- No pay and no extra tasks unless the notes include them.\n- Plain lines, the way you would brief someone in the driveway.\n\nOutput format:\nHeadings only, each section at most six lines:\nHEADER: nickname, street, date, arrival window\nGET IN: door, key or lockbox in the notes' words, shoes, parking\nROOM ORDER: floors and rooms as ordered, or ORDER UNKNOWN\nHANDS OFF: skip rooms and fragile items, or SKIP LIST UNKNOWN\nPRODUCTS: bans and allowed products, or PRODUCT RULES UNKNOWN\nPETS AND PEOPLE: pets, kids, or anyone home, from the notes\nDONE LOOKS LIKE: tasks the notes actually list\nSTOP AND TEXT: the name and phone given, and when to stop\nUNKNOWNS: each UNKNOWN on its own line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a methodical office assistant for a cleaning business. Write instructions a new cleaner can follow on one large house. Do not send them.\n\nRooms and the job:\n[HOUSE NOTES]\n\nCustomer name, street, date, arrival window, and entry:\n[CUSTOMER DETAILS]\n\nBans, pets, and people who will be there:\n[PRODUCT AND PET RULES]\n\nName and phone if something is wrong:\n[WHO TO TEXT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Work one house. If two addresses appear, ask which one and write nothing else yet.\n- Copy entry steps as written. If no lockbox, alarm, or gate code is written, use CODE UNKNOWN.\n- Do not add floors or chores the notes skip, such as windows, laundry, or an attic.\n- Keep bans separate from company supplies. If no product rule is named, write PRODUCT RULES UNKNOWN.\n- Leave money out unless a rate is written in the notes. Do not promise add-on work.\n- Room names, order, and stop rules only.\n\nOutput format:\nThese headings only, six lines maximum each:\nHEADER: nickname, street, date, arrival window\nGET IN: door, key or lockbox as written, shoes, parking\nROOM ORDER: floors and rooms in stated order, or ORDER UNKNOWN\nHANDS OFF: off-limits rooms and items, or SKIP LIST UNKNOWN\nPRODUCTS: bans and allowed products only, or PRODUCT RULES UNKNOWN\nPETS AND PEOPLE: only facts from the notes\nDONE LOOKS LIKE: checklist of stated tasks\nSTOP AND TEXT: supplied name and phone, and when to stop\nUNKNOWNS: one UNKNOWN per line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "The chat assistant you already use, in paste mode. Later, a Google Sheet plus Zapier, Make, or n8n can hold unsent drafts.",
+    "steps": [
+      "From the booking app, the paper job card, or the customer text thread, copy one house into a scratch note: nickname, street, date, arrival window, door and key notes, floors and rooms, and anything they said to skip. Leave blanks empty.",
+      "Under that note, add the rules you actually use: shoes, parking, products you bring, products this customer bans, pets or kids, and the name and phone the new cleaner should text if stuck. If you have no rule, write UNKNOWN.",
+      "Open the chat assistant you already use and paste the prompt with that assistant's name. Fill the house notes, customer details, product and pet rules, and who to text, then delete the brackets around values you typed.",
+      "Read the sheet beside the original booking. Check street, arrival, room order, skips, and product bans. Cross out any code, room, brand, or pay figure the notes never contained, and fill each UNKNOWN yourself or delete that line.",
+      "Send or hand over the sheet only after that check. Text or email it yourself, or print it for the van. Do not forward a draft that still says UNKNOWN for the address, the entry, or a product ban.",
+      "Optional later: make a Google Sheet with columns Nickname, Date, Street, Access, Rooms, Skips, Products, Pets, Contact, Draft, and Status. When you add a row, use Zapier, Make, or n8n to fill Draft only and set Status to Needs review.",
+      "On that sheet, change Status to Approved only after the draft matches the booking. Copy the text into the message you already use with that cleaner. Leave the automation unable to text or email them."
+    ],
+    "approvalStep": "You read the instruction sheet beside the booking and approve it before it is texted, emailed, or handed to the new cleaner. Confirm street, entry, rooms, skips, and product bans, fill every UNKNOWN yourself, and send it yourself. No automation may message them.",
+    "failureModes": [
+      "A lockbox, alarm, or gate code appears that you never typed. Treat that sheet as unusable and draft again from the booking, or type the real code yourself.",
+      "Two addresses were pasted together and the sheet mixes rooms from both homes. Split the notes and run one house at a time before anyone is sent.",
+      "The customer banned bleach or scent and the sheet names a strong bathroom product anyway. Match every product line to the preference note before you send.",
+      "A third floor, office, or attic shows up even though the booking never listed it. Walk the room list against the note and delete rooms you did not write.",
+      "Pay, an hourly rate, or extra work the customer did not book lands in the sheet. Cut money and extras unless your own note stated them.",
+      "The stop-and-text line is blank or uses the customer's number when you meant your own. The new cleaner should reach you, not guess who to call."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I paste this into?",
+      "a": "Use the prompt named for the assistant you already open. Judge the sheet against the booking in front of you: the street and arrival match, rooms and skips match the note, product bans match, and every blank says UNKNOWN. If a line adds a code, a room, or a product you did not type, do not send that sheet."
+    },
+    {
+      "q": "What if the alarm code is not written down?",
+      "a": "Leave that line blank in the paste. The sheet should say CODE UNKNOWN, not a made-up number. You fill the real code from the customer card, or you tell the new cleaner you will disarm it yourself. Do not send a sheet that contains a code you did not type."
+    },
+    {
+      "q": "My notes are a long customer text. What do I paste?",
+      "a": "Paste the thread or the paper job card for this house only, plus your own line about products, pets, and who to text. You do not need to tidy it first. After the draft, delete any room, price, or promise the thread never stated, and split the paste if a second address slipped in."
+    },
+    {
+      "q": "Should the hourly rate be on the sheet?",
+      "a": "Only when your own note already states the rate and you want the new cleaner to see it. The prompt leaves pay out when the notes are silent. Many owners keep money in a separate text. If a rate appears that you did not write, delete it before you send the instructions."
+    },
+    {
+      "q": "Can two new cleaners share one sheet?",
+      "a": "Draft one sheet for the house, then decide who takes which floor. If your notes name a split, the room order should show it. If they do not, mark the split UNKNOWN and assign floors yourself before you text anyone. Do not let the draft invent who covers the upstairs."
+    }
+  ],
+  "draft": true,
+  "persona": "cleaning business owner",
+  "job": "Turn one house's rough booking notes and customer details into a one-page instruction sheet a new cleaner can follow, with blanks left UNKNOWN until you approve the send.",
+  "who": "Cleaning business owners briefing a new cleaner who is helping on a large house for the first time. You already have a booking note, a customer text, or a paper job card, and you want a plain sheet to check before anyone goes to the door.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Messaging",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

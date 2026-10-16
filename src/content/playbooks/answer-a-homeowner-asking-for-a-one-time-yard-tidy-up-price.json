@@ -1,0 +1,85 @@
+{
+  "slug": "answer-a-homeowner-asking-for-a-one-time-yard-tidy-up-price",
+  "title": "Answer a homeowner asking for a one time yard tidy up price",
+  "category": "Sales",
+  "summary": "You paste the homeowner's text, email, or app message asking for a one-time yard tidy-up price, plus your site notes and the figure you already chose. The assistant returns a short reply you can send, with separate lines for included tasks, exclusions, the price, and the visit window. It copies only what you wrote. A blank price stays marked unknown, and a yard you have not walked is not turned into a firm quote. You check every line against your notes, then send the message yourself.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You write the reply a landscaping owner sends when a homeowner is asking for a one-time yard tidy-up price. Do not send it.\n\nInputs:\n[CUSTOMER MESSAGE] their text, email, or app note\n[CUSTOMER DETAILS] name, address, phone, how they wrote\n[SITE NOTES] what you saw, or your words about their photos\n[PRICE DECISION] your figure and any condition, or blank\n[INCLUDED TASKS] this visit, one line each\n[EXCLUDED TASKS] left out, one line each\n[VISIT WINDOW] when you can come, or blank\n[REPLY CHANNEL] text, email, or same thread\n[SIGN OFF] business name and first name\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy [PRICE DECISION] exactly, condition included. If blank, the price is UNKNOWN. Do not calculate from lot size or photos.\n- Take tasks only from [INCLUDED TASKS] and exclusions only from [EXCLUDED TASKS]. A blank list stays UNKNOWN. Do not add a standard scope.\n- If [SITE NOTES] say the yard was not walked and the price is blank, ask for a look and state no figure.\n- One visit only, 150 words or fewer, first person, signed with [SIGN OFF]. No weekly mowing, dump fee, crew size, or duration unless an input already states it. Use a name or address only if pasted.\n\nOutput format:\nHeadings: CHANNEL, SUBJECT OR NONE, CUSTOMER REPLY, INCLUDED, NOT INCLUDED, PRICE, VISIT, UNKNOWN, OWNER CHECK. SUBJECT OR NONE is NONE unless [REPLY CHANNEL] is email. OWNER CHECK notes price match, whether the yard was seen, and what to fix before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a landscaping owner. One homeowner asked for a single yard tidy price. Write the reply the owner will edit. Do not send it, and do not make it a lawn plan.\n\nInputs:\n[CUSTOMER MESSAGE] the text, email, or app note\n[CUSTOMER DETAILS] name, address, phone, channel\n[SITE NOTES] walk-through, or your description of the photos\n[PRICE DECISION] figure, condition, or blank\n[INCLUDED TASKS] lines for this visit\n[EXCLUDED TASKS] lines you will not do\n[VISIT WINDOW] day or range, or blank\n[REPLY CHANNEL] text, email, or same thread\n[SIGN OFF] business name and first name\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Reproduce [PRICE DECISION] as written. Blank means UNKNOWN, not a figure derived from the yard.\n- Match every included bullet to [INCLUDED TASKS] and every exclusion to [EXCLUDED TASKS]. Do not invent a typical exclusion list.\n- If the notes say the property was not seen and no figure was given, offer a look and leave the price UNKNOWN.\n- Keep the reply to one visit and 150 words or fewer, in the owner's voice. Skip hauling, tree work, a second visit, or a duration unless the inputs say so. Use a pasted name and address only.\n\nOutput format:\nHeadings: CHANNEL, SUBJECT OR NONE, CUSTOMER REPLY, INCLUDED, NOT INCLUDED, PRICE, VISIT, UNKNOWN, OWNER CHECK. If [REPLY CHANNEL] is not email, SUBJECT OR NONE is NONE. OWNER CHECK has price match, yard seen, and what to hold before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken writer for a landscaping owner. The homeowner wants a price for one yard tidy, not a weekly route. Draft the reply. The owner sends it.\n\nPaste:\n[CUSTOMER MESSAGE] their words\n[CUSTOMER DETAILS] name, address, phone, source\n[SITE NOTES] yard notes, and whether you walked it\n[PRICE DECISION] price, any condition, or blank\n[INCLUDED TASKS] tasks on this visit\n[EXCLUDED TASKS] tasks left out\n[VISIT WINDOW] arrival window or blank\n[REPLY CHANNEL] text, email, or same thread\n[SIGN OFF] business name and first name\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy [PRICE DECISION] exactly. Blank means UNKNOWN. Do not price from grass height, a photo, or guessed hours.\n- A task appears only if [INCLUDED TASKS] names it. An exclusion appears only if [EXCLUDED TASKS] names it.\n- Unseen yard and a blank price: ask when you can look, and print no figure.\n- One tidy, 150 words or fewer, first person, signed with [SIGN OFF]. No weekly pitch, dump charge, or crew count unless the paste has it. No address that was not pasted.\n\nOutput format:\nSections in order: CHANNEL, SUBJECT OR NONE, CUSTOMER REPLY, INCLUDED, NOT INCLUDED, PRICE, VISIT, UNKNOWN, OWNER CHECK. SUBJECT OR NONE is NONE for text or an app thread. OWNER CHECK says if the figure matches, if the yard was seen, and what to fix before sending.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting for a landscaping owner who must answer a homeowner asking for a one-time yard tidy-up price. The owner approves before anyone receives it. Do not send it.\n\nFields:\n[CUSTOMER MESSAGE] inbound text, email, or app message\n[CUSTOMER DETAILS] name, address, phone, channel\n[SITE NOTES] what the owner saw, or their photo notes\n[PRICE DECISION] figure and any condition, or blank\n[INCLUDED TASKS] this visit, one line each\n[EXCLUDED TASKS] not this visit, one line each\n[VISIT WINDOW] when they can come, or blank\n[REPLY CHANNEL] text, email, or same thread\n[SIGN OFF] business name and first name\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Put [PRICE DECISION] on the price line without rounding or dropping a condition. If blank, write UNKNOWN. Do not estimate.\n- Included lines come only from [INCLUDED TASKS]. Exclusions come only from [EXCLUDED TASKS]. An empty list is UNKNOWN.\n- If [SITE NOTES] say the yard was not walked and the price is blank, ask for a look and leave the figure unknown.\n- One visit, 150 words or fewer, first person, signed with [SIGN OFF]. Omit duration, dump fees, tree work, and repeat mowing unless an input states them.\n\nOutput format:\nSections: CHANNEL, SUBJECT OR NONE, CUSTOMER REPLY, INCLUDED, NOT INCLUDED, PRICE, VISIT, UNKNOWN, OWNER CHECK. Subject only when [REPLY CHANNEL] is email; otherwise NONE. OWNER CHECK covers price match, whether the yard was seen, and lines to correct before sending.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Optional later: Google Sheets plus Gmail drafts via Zapier, Make, or n8n, left unsent until you approve.",
+    "steps": [
+      "Copy the homeowner's message from your text thread, email, or neighborhood app. Under it, write the name, property address, and phone if they gave them, and note which app or inbox the message came from.",
+      "Add yard notes in your own words: front or back, grass, weeds, hedges, leaves, debris, gate, slope, and pets. If they sent photos, describe what you see. State whether you walked the property or only read the message.",
+      "Write the one-time price you will charge, including any condition such as front yard only, or leave that line blank. List tasks you will do, tasks you will not do, and the visit window you can actually offer.",
+      "Open the chat assistant you already use, paste that model's prompt, and replace each bracket with your notes. Where a field is empty, type the word blank so the draft cannot fill it.",
+      "Read the customer reply beside your notes. Delete any task, fee, date, or address you did not write. If the price line is not your figure, change it to your figure or to UNKNOWN before you continue.",
+      "Match the channel. A text or app reply stays one message with no subject. An email may keep a short subject. Remove any weekly mowing offer, second visit, or signup line so this stays a single tidy.",
+      "Paste the checked reply into the same thread the homeowner used, or into Gmail if they emailed. Send it yourself. Add a Google Sheet row with Customer, Address, Channel, Price, Sent on, and Reply.",
+      "Optional later: when a new inquiry arrives in Gmail, use Zapier, Make, or n8n to add a sheet row and open an unsent draft. You still type the price. Leave auto-send off."
+    ],
+    "approvalStep": "Before anything is sent, compare the price line, included tasks, exclusions, and visit window with your notes. Send the reply yourself only after that check. Do not let a connected draft send on its own.",
+    "failureModes": [
+      "A blank price comes back as a dollar figure guessed from grass height or lot size. Send only when the price line matches what you wrote, or stays UNKNOWN.",
+      "A note about leaves becomes mowing, hedges, and a haul. Every included line must appear in the homeowner's message or in your site notes.",
+      "A condition you wrote, such as front yard only, is dropped and the reply prices the whole property. Keep the condition on the price line and in the message.",
+      "Dump access, a locked gate, or a steep slope was in your notes but vanished, so the tidy looks easier than the visit. Put those facts back as included, excluded, or UNKNOWN.",
+      "The draft offers weekly service or a start day you never gave. This answer is one visit. Delete any repeat plan and any date missing from your visit window.",
+      "You have not seen the yard, yet the reply reads as firm. If your notes say you only have a message, require a look unless you deliberately filled a price."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I only have their text and have not seen the yard?",
+      "a": "Paste the message and write in your site notes that you have not walked the property. Leave the price blank unless you already chose a number on purpose. The reply should ask for a time to look and mark the price unknown. You decide whether a firm figure goes out before you have been there."
+    },
+    {
+      "q": "Can the chat choose the tidy price for me?",
+      "a": "You type the figure, including any condition such as front yard only, from your own rate note or from a similar job you remember. If that field is blank, the price line should say UNKNOWN. Do not send a reply whose amount you cannot point to in the notes you pasted."
+    },
+    {
+      "q": "Which chat should I use to write this reply?",
+      "a": "Use the prompt for the assistant you already have. Judge the draft by lining up the price, each task, and the visit window with your notes. Keep the version where every missing fact says UNKNOWN and the wording sounds like a message you would actually send under your name."
+    },
+    {
+      "q": "They want bushes cut and junk hauled too. How do I split that?",
+      "a": "Put only the work you will do on this visit in the included list, and put the rest in the excluded list. If hauling needs a dump fee you have not priced, leave that fee out of the price field so the draft marks it unknown. You choose whether one figure covers the whole ask or whether part of it waits for a second look."
+    },
+    {
+      "q": "How do I keep this from turning into a weekly lawn plan?",
+      "a": "Write in the excluded list that repeat mowing is not part of this visit, and give a single date or a single week as the visit window. Before you send, read the draft for a second visit, a monthly figure, or a signup line, and delete those. The homeowner asked for one tidy."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaping business owner",
+  "job": "Turn the homeowner's tidy-up request, your yard notes, and your price into a short reply that lists the one-time work, what is left out, and when you can come.",
+  "who": "Landscaping owners who answer a homeowner asking what a single yard tidy costs, using a text, an email, or a neighborhood-app message, and who set the price themselves before anything goes out.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email and texting",
+    "Spreadsheets",
+    "Automation connectors"
+  ]
+}

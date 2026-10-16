@@ -1,0 +1,86 @@
+{
+  "slug": "write-a-simple-invoice-note-for-a-weeks-writing-work",
+  "title": "Write a simple invoice note for a weeks writing work",
+  "category": "Finance & admin",
+  "summary": "Paste rough notes from a week's writing work and the customer details. You get a simple invoice note ready to paste into an email: a subject line, a short summary of the pieces, a line list with description, quantity, unit, rate, and amount, then how to pay and the due date. On later weeks with the same client, you reuse the same note shape. Rates and payee details come only from what you typed. You check each line and the total, fill any gap marked unknown, and send it yourself. Nothing goes out until you do.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a billing clerk for a freelance writer. Draft a simple invoice note for a week's writing work. The writer checks the figures and sends the email.\n\nUse only these inputs:\nRough notes: [ROUGH NOTES]\nCustomer details: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take titles, quantities, units, rates, amounts, and week dates only from [ROUGH NOTES].\n- Take the client, company, email, writer name, business name, currency, invoice number, due date, and payment method only from [CUSTOMER DETAILS].\n- Give each piece its own line: description, quantity, unit, rate, and amount. Copy an amount that is already written.\n- If an amount is blank, multiply quantity by rate only when both are present and use the same unit. If the units disagree or a rate is missing, mark that amount UNKNOWN.\n- Do not add tax, a discount, a rush fee, a late fee, or any piece that is not listed in [ROUGH NOTES].\n\nOutput format:\nReturn these headings in order: Subject, Greeting, Work summary, Lines, Total, Payment, Sign-off, Unknowns.\nSubject includes the client name, both week dates, and the word Invoice.\nWork summary is at most 60 words and names only the pieces from this week.\nLines use Description | Quantity | Unit | Rate | Amount, with the named currency on every amount.\nTotal is the sum of the line amounts, or UNKNOWN if any amount is missing.\nPayment states how to pay, the due date, and the invoice number.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful billing editor for a freelance writer. Turn this week's writing work into one simple invoice note the writer can paste into an email after checking it. Stop at the draft. Do not send it.\n\nInputs to use:\nRough notes: [ROUGH NOTES]\nCustomer details: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not reuse a rate, a client, or a payment method from an earlier chat. This message is the only source.\n- From [ROUGH NOTES], copy each piece title, type, quantity, unit, rate, amount, and the week dates.\n- From [CUSTOMER DETAILS], copy the client, company, email, writer name, business name, currency, invoice number, due date, and how they pay.\n- If an amount is already written, keep it. If it is blank, multiply only when quantity and rate share one unit. Otherwise mark that amount UNKNOWN.\n- Do not insert tax, a revision charge, a retainer, or work from another week.\n\nOutput format:\nReturn headings in this order: Subject, Greeting, Work summary, Lines, Total, Payment, Sign-off, Unknowns.\nSubject carries the client name, both week dates, and the word Invoice.\nWork summary stays at most 60 words and covers this week only.\nEach line is Description | Quantity | Unit | Rate | Amount, currency shown on every amount.\nTotal sums the line amounts, or is UNKNOWN when any amount is missing.\nPayment names the method, the due date, and the invoice number.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are the freelance writer's billing assistant. Write a simple invoice note for one week of writing work. The writer reviews the figures and sends it. You never send email and you never mark the note paid.\n\nInputs:\nRough notes: [ROUGH NOTES]\nCustomer details: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Ignore any rate that is not written in [ROUGH NOTES]. Ignore any payee detail that is not written in [CUSTOMER DETAILS].\n- One line per piece, in this order: description, quantity, unit, rate, amount.\n- Copy a written amount. Multiply quantity by rate only when both are present, they share a unit, and the amount is blank. Otherwise mark that amount UNKNOWN.\n- Do not add tax, fees, or extra pieces. Show the named currency on every amount, or mark the currency UNKNOWN.\n- Keep the wording short and plain, the way a writer emails a client about work already done.\n\nOutput format:\nReturn these blocks: Subject, Greeting, Work summary, Lines, Total, Payment, Sign-off, Unknowns.\nSubject: client name, week start, week end, and the word Invoice.\nWork summary: at most 60 words, pieces from [ROUGH NOTES] only.\nLines: Description | Quantity | Unit | Rate | Amount.\nTotal: sum of line amounts, or UNKNOWN if any amount is missing.\nPayment: how to pay, due date, invoice number, copied from [CUSTOMER DETAILS].",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting a client email for a freelance writer who will check every figure before it goes out. Write one simple invoice note for a week's writing work. Draft only. Do not send the email.\n\nProvide:\nRough notes: [ROUGH NOTES]\nCustomer details: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw piece titles, types, quantities, units, rates, amounts, and week dates only from [ROUGH NOTES].\n- Draw the client, company, email, writer name, business name, currency, invoice number, due date, and payment method only from [CUSTOMER DETAILS].\n- Put each piece on its own line. Copy an amount that is written. Multiply only when quantity and rate are both present and use the same unit.\n- If you cannot multiply, mark that amount UNKNOWN. Do not guess a rate to fill the gap.\n- Skip tax, rush fees, discounts, and pieces from a different week. No praise and no sales pitch.\n\nOutput format:\nUse headings Subject, Greeting, Work summary, Lines, Total, Payment, Sign-off, Unknowns.\nSubject: one line with the client name, the week dates, and the word Invoice.\nWork summary: at most 60 words naming this week's pieces, in plain sentences.\nLines: Description | Quantity | Unit | Rate | Amount, currency on every amount.\nTotal: the sum of line amounts, or UNKNOWN if any amount is missing.\nPayment: how to pay, the due date, and the invoice number. Sign-off uses the writer name and business name.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first; later a sheet of weekly pieces and Gmail, with Zapier, Make, or n8n making a draft only.",
+    "steps": [
+      "Write the week's rough notes in one paste: start date, end date, and each piece. For every piece include the title, the type (article, newsletter, edit, or script), the quantity, the unit (words, hours, or a flat piece), the rate you agreed, and any amount you already calculated.",
+      "Under the notes, write the customer details: client name, company, the email you will send to, your name, your business name, currency, invoice number if you already use one, due date, and how they pay. If a field is blank, type UNKNOWN on that line.",
+      "Open the chat assistant you already use. Paste the prompt for that assistant. Replace [ROUGH NOTES] with your piece list and [CUSTOMER DETAILS] with the client block. Send that one message and wait for the draft.",
+      "Read the draft beside your rough notes. Check every piece title, quantity, unit, rate, and amount. Replace each UNKNOWN yourself. Make sure the subject names this week, not an earlier one. Do not send yet.",
+      "Add up the line amounts on paper or in a sheet and compare your sum with the total in the note. If they differ, correct the note before you trust it. Confirm the currency matches what you agreed with the client.",
+      "Paste the corrected note into a new Gmail message or another email. Put the subject line in the subject field. Attach a separate invoice file only if you already made one in a sheet or a billing tool. Leave it unsent.",
+      "If you bill this client on later weeks, keep a Google Sheet with columns for date, piece title, type, quantity, unit, rate, and amount, plus a tab for customer details. Copy that week's rows into the same prompt.",
+      "Optional draft helper: connect that sheet to Gmail with Zapier, Make, or n8n so a row you mark ready becomes an email draft. Leave sending switched off. The draft waits until you approve it."
+    ],
+    "approvalStep": "Before the note is sent, you review the subject, client name, each line amount, the total, the due date, and the payment instructions against your rough notes. You press send yourself. A Gmail draft made by Zapier, Make, or n8n stays unsent until that review.",
+    "failureModes": [
+      "The notes say the usual rate but never state the number, and the draft fills in a price you did not write. Check that every rate on the note appears in your rough notes.",
+      "A piece from an earlier week is still in the scratch notes and gets billed again. Match titles and dates to notes you already sent this client.",
+      "The quantity is in words while the rate is per hour, so the line amount is nonsense. Each line must use the same unit on the quantity and the rate.",
+      "Payment details from a different client get pasted into this note. Read the account name and the company name together before you send.",
+      "Tax, a rush fee, or a revision charge appears even though this week's notes never mention it. Delete any charge you did not agree with the client.",
+      "The subject names the wrong week, so the client files the note against an older invoice. Check the date range in the subject and the opening lines."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this invoice note?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft only when every piece title, rate, date, and payment detail matches your notes, and missing items are marked UNKNOWN. If a line amount does not match the quantity times the rate you wrote, fix that line before you send."
+    },
+    {
+      "q": "What if I charge one flat fee for the whole week?",
+      "a": "Put the flat fee in the rough notes as one line and list the piece titles under it. The note should show that single amount and name the pieces in the summary. Do not let the draft split the fee into per-word rates you never agreed. Leave any unused rate field marked UNKNOWN."
+    },
+    {
+      "q": "Can this email the invoice to the client for me?",
+      "a": "No. The assistant only writes the note. You paste it into Gmail or your own email, check the total and the payment instructions, and send it. A sheet plus Zapier, Make, or n8n can prepare a draft, and that draft still waits until you approve it."
+    },
+    {
+      "q": "Should I paste my bank details into the chat?",
+      "a": "Only if you are comfortable putting those details into that assistant. You can write UNKNOWN for how they pay, then type the account into the note yourself after the draft is done. Never leave a guessed account in the message you send."
+    },
+    {
+      "q": "What goes in the note if I already keep an invoice file?",
+      "a": "The note is the short email: what you wrote this week, the line amounts, the total, the due date, and how to pay. If you already keep a numbered invoice in a sheet or a billing tool, attach that file yourself. The assistant does not build a tax form or a page layout."
+    }
+  ],
+  "draft": true,
+  "persona": "freelance writer",
+  "job": "Paste the week's piece list, agreed rates, and customer details, and get a simple invoice note with line items, a total, and payment instructions.",
+  "who": "Freelance writers who finish a week of articles, newsletters, edits, or scripts for one client and need a simple invoice note that names the pieces, the amount due, and how to pay.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Billing and invoicing",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

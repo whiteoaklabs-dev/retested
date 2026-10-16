@@ -1,0 +1,83 @@
+{
+  "slug": "write-a-menu-description-for-a-new-chicken-dish",
+  "title": "Write a menu description for a new chicken dish",
+  "category": "Marketing & SEO",
+  "summary": "Paste the prep sheet for a new chicken dish (working name, cut, cook method, sauce or glaze, sides, heat, special or permanent, and any allergen the kitchen already tracks) plus who orders it and two lines from the current card. You get a printed-column description, a shorter specials-board line, one sentence a server can say, and allergen flags copied only from that sheet. Blank facts stay UNKNOWN. You choose the final name, whether the price or the flags print, and which line goes on the card, the board, or the website. Nothing goes to the printer, the POS, or the site until you approve the wording.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the menu writer for my restaurant. Draft the wording for one new chicken dish from my notes only, before anything is printed.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only [PREP SHEET], [GUEST DETAILS], [CARD SAMPLES], and [BANNED WORDS].\n- State the cut, cook method, sauce, side, and heat only when [PREP SHEET] includes them.\n- Do not add a farm, a region, a supplier, or a texture I did not write.\n- Keep CARD between 25 and 40 words, in the voice of [CARD SAMPLES], and drop every word in [BANNED WORDS].\n- If [BANNED WORDS] is empty, still skip hype such as amazing, delicious, and mouthwatering.\n- List allergen flags only when [PREP SHEET] names them. Do not infer them from a sauce or a side.\n- Include a price line only when [PREP SHEET] says the price should be seen or said. Otherwise omit it.\n\nOutput format:\nDISH NAME: the working name from the sheet\nCARD: 25 to 40 words for the printed menu column\nBOARD: 12 words or fewer for the specials board\nSERVER LINE: one sentence staff can say at the table\nALLERGEN FLAGS: copied from the sheet, or UNKNOWN\nPRICE LINE: only if the sheet asks for it, otherwise omit\nUNKNOWN: one missing fact per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful menu editor for my restaurant. Draft wording for one new chicken dish, and keep every phrase tied to a fact I pasted.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw only from [PREP SHEET], [GUEST DETAILS], [CARD SAMPLES], and [BANNED WORDS].\n- If you cannot point a CARD claim back to [PREP SHEET], move that claim to UNKNOWN.\n- Match the plainness of [CARD SAMPLES]. Do not sound grander than those lines.\n- Cap CARD at 40 words and BOARD at 12 words. Name cut, method, sauce, side, and heat only if the sheet has them.\n- Copy allergen flags from [PREP SHEET] alone. A sauce name is not an allergen list.\n- If [GUEST DETAILS] and [PREP SHEET] disagree, show both under UNKNOWN and do not pick a winner.\n- Omit the price line unless [PREP SHEET] says the price is meant to be printed or spoken.\n\nOutput format:\nDISH NAME: working name as pasted\nCARD: 25 to 40 words\nSOURCE: the sheet phrase behind each fact in CARD\nBOARD: 12 words or fewer\nSERVER LINE: one sentence\nALLERGEN FLAGS: from the sheet, or UNKNOWN\nPRICE LINE: include only when requested\nUNKNOWN: one gap per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are my restaurant menu writer. Be direct. Draft one chicken dish for the card, using only what I paste. Do not decorate it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to [PREP SHEET], [GUEST DETAILS], [CARD SAMPLES], and [BANNED WORDS].\n- If a word is in [BANNED WORDS], it does not appear. If that list is blank, still cut amazing, delicious, and mouthwatering.\n- Name cut, method, sauce, side, and heat only when [PREP SHEET] actually names them.\n- CARD is 25 to 40 words. BOARD is 12 words or fewer. SERVER LINE is one sentence staff can say without adding a story.\n- Do not invent a farm, a region, a crunch, or a dietary label. Allergen flags come only from [PREP SHEET].\n- If the price is not marked for the card or for servers in [PREP SHEET], do not write a price.\n- Let [CARD SAMPLES] set the voice. [GUEST DETAILS] only tells you who is reading, not new facts about the plate.\n\nOutput format:\nDISH NAME: working name from the sheet\nCARD: 25 to 40 words for the printed column\nBOARD: 12 words or fewer\nSERVER LINE: one sentence\nALLERGEN FLAGS: from the sheet, or UNKNOWN\nPRICE LINE: omit unless the sheet asks for it\nUNKNOWN: each gap on its own line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are the house menu writer. Prepare a draft the owner will edit before it reaches the printer, the specials board, or the site. One new chicken dish only.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use [PREP SHEET] for the plate, [GUEST DETAILS] for who orders it, [CARD SAMPLES] for voice, and [BANNED WORDS] for bans.\n- Write CARD so it could sit beside the sample lines without sounding like a different room.\n- Keep CARD to 25 to 40 words and BOARD to 12 words or fewer. Do not pad with origin, farm, or texture.\n- Repeat a fact only if [PREP SHEET] states it. Allergen flags are copied, never guessed from a glaze or a side.\n- Leave the price line out unless the sheet says the price is meant to be seen or said.\n- If a field is blank, write UNKNOWN for that field. Do not fill it from a typical chicken plate.\n\nOutput format:\nDISH NAME: working name as pasted\nCARD: 25 to 40 words\nBOARD: 12 words or fewer\nSERVER LINE: one sentence staff can say\nALLERGEN FLAGS: copied, or UNKNOWN\nPRICE LINE: omit if not requested\nUNKNOWN: one missing fact per line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat model in paste mode. Optional later: a spreadsheet of approved dish rows copies text into a menu document, with print and publish left off.",
+    "steps": [
+      "From today's prep sheet, recipe card, or ticket scribble, copy the working name, chicken cut, cook method, sauce or glaze, sides, heat level, special versus permanent, and any allergen the kitchen already tracks. Leave a blank empty.",
+      "On that same page, write who orders this plate, dietary questions guests already ask, two lines copied from the current printed card, and words you refuse to print, such as a farm name you do not have.",
+      "Open the chat assistant you already use, paste the prompt for that assistant, and replace each bracket with the prep sheet, the guest details, the two card lines, and the banned-word list.",
+      "Check every cut, method, sauce, side, heat level, and allergen flag against the prep sheet. Move anything you cannot point to into the gap list, or delete it, before a guest could see it.",
+      "Pick the printed-column block, the short board block, or both. Decide if the price stays in the POS only, and if allergen flags go on the card, a server sheet, or both. Edit the sentences yourself.",
+      "Optional later: put approved plates in Google Sheets with columns for name, card, board, server line, allergen flags, and status. Use Zapier, Make, or n8n to copy a row marked approved into your menu document. Leave print and publish off.",
+      "After you approve, paste the wording into the printer file, the POS menu editor, or the website yourself. Keep the prep sheet beside it so the next chicken special starts from the same fields."
+    ],
+    "approvalStep": "You read the card block, the board block, and the server sentence next to today's prep sheet and approve them before they are sent to the printer, entered in the POS, posted on the website, or called out as a special.",
+    "failureModes": [
+      "Invented plate: a farm, a region, or a crisp texture appears that the prep sheet never stated, so the card promises a bite the kitchen does not serve.",
+      "Guessed allergen: a nut, dairy, or gluten flag is inferred from a sauce name. A guess is as risky as a miss, so a blank stays UNKNOWN until the kitchen writes it.",
+      "Column cutoff: the card block is too long for the printed menu column and gets sliced mid-sauce, so the side and the heat never reach the guest.",
+      "Wrong room: no lines from the current card were pasted, so the tone turns flowery on a lunch counter. Paste two real lines and draft again.",
+      "Old special: yesterday's spice level or price lands on this plate. Match the wording to today's prep sheet, not the previous card."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I only have a scribble on the ticket?",
+      "a": "Paste that scribble as the prep sheet. Keep the working name, cut, method, sauce, sides, heat, and allergens only where the scribble states them, and leave every other field blank. The draft should mark those blanks UNKNOWN. Fill a blank from the kitchen, or cut the sentence, before the line is printed or chalked."
+    },
+    {
+      "q": "Should the price sit inside the description?",
+      "a": "Only when you want guests or servers to see it in the wording. Say that on the prep sheet, and still type the amount yourself. If you do not say so, the price line stays off the draft and lives in the POS. The assistant must not invent an amount or copy one from an older special."
+    },
+    {
+      "q": "Which model is best for this menu line?",
+      "a": "Use the prompt for the assistant you already have. Keep the draft where every cut, sauce, side, and allergen traces to the prep sheet, the card block stays inside the word cap, and anything missing says UNKNOWN. If a sentence would not sound right read aloud at the table, edit it before it is printed."
+    },
+    {
+      "q": "Can one draft feed the card and the specials board?",
+      "a": "Yes. The card block is the longer line for the printed column. The board block is the short line for the chalkboard or the online specials list. The server sentence is for staff, not for the card, unless you decide to post it. You choose which blocks go out after you approve them against the prep sheet."
+    },
+    {
+      "q": "How do I stop it sounding like a different restaurant?",
+      "a": "Paste two lines already on your card and list words you will not print. If the draft still drifts, point at the sentence that does not match those lines and ask for a rewrite that stays inside them. Reject a farm story, a texture, or a dietary label you did not write."
+    }
+  ],
+  "draft": true,
+  "persona": "restaurant owner",
+  "job": "Paste a chicken-dish prep sheet and who orders it, and get a menu description you approve before it is printed or posted.",
+  "who": "Restaurant owners and chef-owners who write the card themselves and need clear wording for a new chicken dish before it is printed, chalked as a special, or typed into the online menu.",
+  "toolCategories": [
+    "AI chat models",
+    "Spreadsheets",
+    "Documents",
+    "Workflow automation"
+  ]
+}

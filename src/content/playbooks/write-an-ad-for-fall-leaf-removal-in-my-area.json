@@ -1,0 +1,85 @@
+{
+  "slug": "write-an-ad-for-fall-leaf-removal-in-my-area",
+  "title": "Write an ad for fall leaf removal in my area",
+  "category": "Marketing & SEO",
+  "summary": "You paste rough notes for your fall leaf service and get one local ad you can post or text after you read it. The notes name your business, the towns or neighborhoods you will drive to, what a visit includes, what you will not do, the price you already charge or the sentence you use when you quote on site, how a neighbor books, the last week you take new yards, and your phone. The draft comes back with a headline, a service-area line, included and not-included lines, a price or quote line, a booking line, a neighborhood-group post, and a shorter text. You check every town, price, task, and phone number against your notes, pick which version to use, and you post or send it yourself. Nothing goes out until you approve the wording.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a local-ad writer for a landscaper who needs one fall leaf-removal ad for the towns they already serve. Draft the ad only. Do not post it or text it.\n\nFill the ad from these inputs only:\n[BUSINESS NAME]\n[SERVICE TOWNS]\n[VISIT INCLUDES]\n[PRICE OR QUOTE RULE]\n[HOW TO BOOK]\n[LAST NEW-YARD WEEK]\n[WILL NOT DO]\n[ROUGH NOTES]\n\nRules:\n- Write short sentences a neighbor can read on a phone. No hype and no slogan.\n- Name only towns, tasks, dates, prices, and the booking phone or reply word written in the inputs.\n- If [PRICE OR QUOTE RULE] has no amount, do not invent one. Repeat the quote-on-site sentence, or mark the price UNKNOWN.\n- Do not add gutter cleaning, bagging, haul-away, or same-week service unless [VISIT INCLUDES] lists that task.\n- Keep any customer name, street, or private complaint inside [ROUGH NOTES] out of the public ad.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE: one line with leaf removal and one town from [SERVICE TOWNS]\nSERVICE AREA: only the towns listed\nINCLUDED: one task per line from [VISIT INCLUDES]\nNOT INCLUDED: one limit per line from [WILL NOT DO], or UNKNOWN\nPRICE OR QUOTE LINE: the price or quote rule, unchanged\nBOOKING LINE: [HOW TO BOOK] with the phone or reply word\nGROUP POST: one paragraph under 90 words for a neighborhood group\nTEXT VERSION: under 45 words for last year's customers\nCHECK BEFORE YOU POST: towns, price, tasks, and phone to re-read\nUNKNOWN: one missing field per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a landscaper. From the notes below, write one fall leaf-removal ad for their real service area. You do not post, text, or print it.\n\nSources:\n[BUSINESS NAME]\n[SERVICE TOWNS]\n[VISIT INCLUDES]\n[PRICE OR QUOTE RULE]\n[HOW TO BOOK]\n[LAST NEW-YARD WEEK]\n[WILL NOT DO]\n[ROUGH NOTES]\n\nRules:\n- Stay inside the notes. A town, task, date, price, or phone that is not written there does not go in the ad.\n- If a bracket is empty, write UNKNOWN and add a question. Do not borrow a nearby town to fill the map.\n- Put an amount in the ad only when [PRICE OR QUOTE RULE] already states one. Otherwise use their quote sentence.\n- Treat [WILL NOT DO] as limits, not as services to sell. Do not turn a refusal into an add-on.\n- Strip customer names, house numbers, and complaints out of [ROUGH NOTES] before you write the public lines.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nReturn these headings in order:\nHEADLINE\nSERVICE AREA\nINCLUDED\nNOT INCLUDED\nPRICE OR QUOTE LINE\nBOOKING LINE\nGROUP POST (one paragraph, under 90 words)\nTEXT VERSION (under 45 words)\nCHECK BEFORE YOU POST\nUNKNOWN\n\nUnder CHECK BEFORE YOU POST, list each town, the price line, each task, and the booking phone so the landscaper can match them to the notes.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing aide for a landscaper who talks like a person, not an agency. Turn the notes into one fall leaf-removal ad for their area. Stop when the draft is ready. Do not post it.\n\nUse only:\n[BUSINESS NAME]\n[SERVICE TOWNS]\n[VISIT INCLUDES]\n[PRICE OR QUOTE RULE]\n[HOW TO BOOK]\n[LAST NEW-YARD WEEK]\n[WILL NOT DO]\n[ROUGH NOTES]\n\nRules:\n- Sound like the crew owner: plain words, short lines, no hype.\n- Do not claim they are the fastest, the cheapest, or the only crew in town.\n- Use their towns only. If [SERVICE TOWNS] is thin, mark the area UNKNOWN instead of widening it.\n- Repeat [PRICE OR QUOTE RULE] as written. Do not invent a flat price, a discount, or a per-bag charge.\n- Do not promise a task, a week, or a haul that [VISIT INCLUDES] and [LAST NEW-YARD WEEK] do not support.\n- Leave private customer details out of the public wording.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE\nSERVICE AREA\nINCLUDED\nNOT INCLUDED\nPRICE OR QUOTE LINE\nBOOKING LINE\nGROUP POST: under 90 words, neighborhood group\nTEXT VERSION: under 45 words\nCHECK BEFORE YOU POST: towns, price, tasks, phone\nUNKNOWN: missing fields, one per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing a fall leaf-removal ad a landscaper will read and approve before it is posted or texted. Build it only from the notes they paste.\n\nNotes:\n[BUSINESS NAME]\n[SERVICE TOWNS]\n[VISIT INCLUDES]\n[PRICE OR QUOTE RULE]\n[HOW TO BOOK]\n[LAST NEW-YARD WEEK]\n[WILL NOT DO]\n[ROUGH NOTES]\n\nRules:\n- Draft, then stop. Do not post, text, print, or hand the ad to another tool.\n- Keep every town inside [SERVICE TOWNS]. If the list is missing, mark SERVICE AREA UNKNOWN and ask.\n- Copy tasks from [VISIT INCLUDES] and limits from [WILL NOT DO]. Do not add gutters, hauling, or bagging they did not name.\n- Show a price only when [PRICE OR QUOTE RULE] gives one. If they quote after a look, keep that sentence and do not invent an amount.\n- Use [HOW TO BOOK] and [LAST NEW-YARD WEEK] as written. A missing phone or cutoff is UNKNOWN.\n- Drop any customer name, street, or complaint found in [ROUGH NOTES]. The public ad is not a job file.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE: leaf removal plus one listed town\nSERVICE AREA: listed towns only\nINCLUDED: one task per line\nNOT INCLUDED: one limit per line, or UNKNOWN\nPRICE OR QUOTE LINE: unchanged from the notes\nBOOKING LINE: their phone or reply word\nGROUP POST: under 90 words\nTEXT VERSION: under 45 words\nCHECK BEFORE YOU POST: towns, price, tasks, phone\nUNKNOWN: one gap per line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optionally Google Sheets with Zapier, Make, or n8n to store an approved draft, with posting and sending left off.",
+    "steps": [
+      "Start in a blank note, not an ad account. Write your business name, every town you will drive to this fall, what one leaf visit includes, what you will not do, your real price or your quote-on-site sentence, how a neighbor books, the last week you take new yards, and the phone you answer.",
+      "Open the chat assistant you already use. Paste the prompt labeled for that assistant. Replace each bracket with the matching line from your note. If you do not have a price or a cutoff week, type UNKNOWN in that bracket instead of guessing.",
+      "Run the prompt once. Read the headline, service area, included list, not-included list, price line, and booking line next to your note. Mark any town, task, date, or phone number that is not in the note.",
+      "Edit the draft yourself. Delete extra towns and any task you do not offer, such as gutters or haul-away if you left those out. Put your quote sentence back if an amount appeared that you never wrote.",
+      "Pick the neighborhood-group post or the short text, not both at once. Copy the one you might use into a note or a Google Sheet row with columns for town list, price line, version, and status set to not posted.",
+      "Optional agent mode: when the same approved wording should sit ready for several texts, use Zapier, Make, or n8n to copy that sheet cell into a Gmail draft or a text draft. Leave sending and posting off.",
+      "After the approval check, you post the group version or send the text yourself. Save the approved wording in the sheet so the next ad starts from the same towns, price, and phone."
+    ],
+    "approvalStep": "You read the draft beside your notes and approve the towns, included tasks, price or quote line, and booking phone before anything is posted, texted, or printed. You publish or send it yourself. A Gmail or text draft from Zapier, Make, or n8n stays unsent until that review.",
+    "failureModes": [
+      "The ad names a town you do not serve. Watch for any place missing from your town list. Delete it before you post, or you will get calls from yards you will not drive to.",
+      "A flat price appears when you quote after seeing the yard. Watch for an amount you did not type. Replace it with your quote sentence so neighbors do not expect that number.",
+      "Gutter cleaning, haul-away, or a same-week promise shows up though your notes never offered it. Watch the included list. Cut any task you do not do this fall.",
+      "A customer's street, name, or complaint from your notes lands in the public post. Watch for anything beyond your business name, towns, tasks, price, and booking line.",
+      "The phone number or reply word is off by a digit or is a number you stopped using. Read the booking line against the phone you typed before you text anyone.",
+      "An automation posts or texts the draft when you only meant to save it. Watch for a live post or a sent item you never opened. Keep the tool on draft only."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to write this leaf ad?",
+      "a": "Use the prompt written for the assistant you already have. Judge the draft by whether every town is on your list, the price matches your notes or stays a quote-on-site line, no extra task appears, and the booking line is your real phone. If a field is blank, it should say UNKNOWN instead of guessing."
+    },
+    {
+      "q": "What notes should I paste before I ask for the ad?",
+      "a": "Paste your business name, the towns you will drive to, what one visit includes, what you will not do, the price you already charge or your quote-on-site sentence, how a neighbor books, the last week you take new yards, and your phone. Customer details means how people asked to book last fall, not a neighbor's address for a public post."
+    },
+    {
+      "q": "What if I do not want a price in the ad?",
+      "a": "Write your quote rule in the price field: the sentence you say when you need to see the yard first. The draft should repeat that sentence. If you leave the price blank, it should come back UNKNOWN. You decide whether the public post shows a number at all."
+    },
+    {
+      "q": "Can I text this to last year's leaf customers?",
+      "a": "Yes, after you approve the short text. Paste only that approved text into your phone or into a Gmail or sheet draft. Do not let an automation send it. Skip anyone who asked you not to text, and do not put their old yard notes or street into the message."
+    },
+    {
+      "q": "Where should the longer version go?",
+      "a": "You choose a neighborhood group, a printed note, or a text. The draft gives you a group post and a shorter text so you can pick one. Read both against your notes, then post or send the version you approved. The assistant does not publish it for you."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaper",
+  "job": "Paste your towns, leaf-visit notes, price, and how neighbors book. Get a ready-to-send local ad for fall leaf removal, plus a shorter text, and you post or send it yourself.",
+  "who": "Landscapers and lawn-crew owners who already haul fall leaves and need a local ad from notes they have: the towns they cover, what a visit includes, the price they charge, and how a neighbor books.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Text messaging",
+    "Automation"
+  ]
+}

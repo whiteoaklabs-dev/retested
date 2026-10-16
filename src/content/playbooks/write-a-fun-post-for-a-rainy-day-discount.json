@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-fun-post-for-a-rainy-day-discount",
+  "title": "Write a fun post for a rainy day discount",
+  "category": "Marketing & SEO",
+  "summary": "You paste rough notes from the specials board or the register memo (the item, the discount as it rings, clock times, dine-in or takeout or delivery, exclusions, and whether it runs only while rain is falling), plus customer details on who comes when the patio is wet and the one surface they check, and two or three old captions. The assistant returns one fun post: a hook, a caption under that surface's word cap, offer lines copied from the board, one ask, a staff line the host can say, and a gap list. You match those lines to the register, tell the host, and approve the caption before it is posted or texted.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the social editor for a restaurant owner. Draft one fun post for a rainy day discount, for review before it is posted or texted. Use only [BOARD NOTE], [GUEST NOTE], [VOICE LINES], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy the item, the discount, the clock times, dine-in or takeout or delivery, and every exclusion from [BOARD NOTE]. Do not add a drink, a second plate, or a longer window.\n- Be fun only with a phrase already in [BOARD NOTE] or [VOICE LINES]. If there is no joke, set JOKE to NONE and keep the hook plain. No stock rain jokes.\n- Say rain is falling only if a note says to post because it is raining now.\n- Fit [POST SURFACE] only. Text: 40 words or fewer, no tags. Google Business update: 60 words or fewer. Instagram or Facebook: 80 words or fewer.\n- Use the spelling, sign-off, and refused words in [VOICE LINES]. An emoji only if those lines already use one. Name a guest only if [GUEST NOTE] says they agreed.\n- One ask, copied from the notes, or ASK: UNKNOWN. Do not stack this discount unless [BOARD NOTE] says it does.\n\nOutput format:\nSURFACE (from [POST SURFACE]). HOOK: 14 words or fewer, with the item. CAPTION: inside the word cap. OFFER LINES: Item, Deal, Window, Where it works, Who it is for, Exclusions. ASK: one sentence. STAFF LINE: 20 words or fewer. JOKE: pasted phrase or NONE. UNKNOWN: one gap per row. MATCH: Same or Changed, naming any drifted offer line.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting editor for a restaurant owner. Prepare one fun post for a rainy day discount. Do not post it. Use only [BOARD NOTE], [GUEST NOTE], [VOICE LINES], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace Item, Deal, Window, Where it works, and Exclusions to [BOARD NOTE]. If you cannot point to the field, mark that line UNKNOWN.\n- If [BOARD NOTE] and [GUEST NOTE] disagree on the audience or the surface, list both under UNKNOWN.\n- Borrow fun only from a phrase those notes already contain. If there is no joke, set JOKE to NONE. No stock rain jokes.\n- Mention falling rain only when a note says to post because it is raining now.\n- Obey [POST SURFACE]. Text: 40 words or fewer, no tags. Google Business update: 60 words or fewer. Instagram or Facebook: 80 words or fewer.\n- Honor spelling, sign-off, and refused words in [VOICE LINES]. No emoji unless those lines use one. Name a guest only if [GUEST NOTE] says they agreed.\n- Copy one ask, or write ASK: UNKNOWN. Do not let the discount stack unless the board note says so.\n\nOutput format:\nSURFACE (from [POST SURFACE]). HOOK: 14 words or fewer, with the item. CAPTION: inside the word cap. OFFER LINES: Item, Deal, Window, Where it works, Who it is for, Exclusions, each with its source field. ASK: one sentence. STAFF LINE: 20 words or fewer. JOKE: pasted phrase or NONE. UNKNOWN: one gap per row. MATCH: Same or Changed, naming any drifted field.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken writer for a restaurant owner. Write one fun post for a rainy day discount from their notes. They check it before it goes anywhere. Use only [BOARD NOTE], [GUEST NOTE], [VOICE LINES], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep the discount the board already uses. Copy the item, the clock times, dine-in or takeout or delivery, and every exclusion. Do not sweeten the deal.\n- Be funny only with a joke they wrote in [BOARD NOTE] or [VOICE LINES]. If they gave you none, keep the hook plain and set JOKE to NONE.\n- Do not say it is raining unless a note says this post is for rain falling now.\n- Write for one [POST SURFACE]. Text: 40 words or fewer, no tags. Google Business update: 60 words or fewer. Instagram or Facebook: 80 words or fewer.\n- Sound like [VOICE LINES]: their spelling, their sign-off, none of their refused words. An emoji only if they already use one.\n- Do not name a regular unless [GUEST NOTE] says they agreed. One ask, or ASK: UNKNOWN. If the board says the discount does not combine, do not say it does.\n\nOutput format:\nSURFACE (from [POST SURFACE]). HOOK: 14 words or fewer, item included. CAPTION: under the word cap. OFFER LINES: Item, Deal, Window, Where it works, Who it is for, Exclusions. ASK: one sentence. STAFF LINE: 20 words or fewer. JOKE: their phrase or NONE. UNKNOWN: each gap. MATCH: Same or Changed, naming any offer line that moved.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a restaurant owner. Build one fun post for a rainy day discount for review. Do not post, text, or schedule it. Sources: [BOARD NOTE], [GUEST NOTE], [VOICE LINES], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [BOARD NOTE] as closed. Copy the item, the discount, the hours, where it works, and the exclusions. Do not improve the deal.\n- If [BOARD NOTE] and [GUEST NOTE] clash on who it is for, keep the board limits and list both wordings under UNKNOWN.\n- Use a fun line only when the owner already wrote one. Otherwise JOKE is NONE. No stock rain jokes.\n- Say rain is falling only if the notes say to publish because it is raining now.\n- Follow [POST SURFACE] only. Text: 40 words or fewer, no tags. Google Business update: 60 words or fewer. Instagram or Facebook: 80 words or fewer.\n- Use the spelling, sign-off, and refused words in [VOICE LINES]. Skip emojis they did not use. Name a guest only if [GUEST NOTE] records agreement.\n- One copied ask, or ASK: UNKNOWN. No stacking unless the board note allows it.\n\nOutput format:\nSections in order: SURFACE (from [POST SURFACE]), HOOK (14 words or fewer, with the item), CAPTION (inside the word cap), OFFER LINES (Item, Deal, Window, Where it works, Who it is for, Exclusions), ASK (one sentence), STAFF LINE (20 words or fewer), JOKE (pasted phrase or NONE), UNKNOWN (one gap per row), MATCH (Same or Changed, naming any drifted offer line).",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode. Optional later: Google Sheets plus Zapier, Make, or n8n can file an unsent caption only.",
+    "steps": [
+      "Copy today's specials-board note or the register memo into a doc. Keep the item, the discount exactly as it rings, start and end times, dine-in or takeout or delivery, every exclusion, and whether it runs only while rain is falling. Leave a blank as UNKNOWN.",
+      "Write customer details from what you see on wet days: who actually comes in, the one surface they check (Instagram, Facebook, a Google Business update, or a text to regulars), and a cross-street only if you want it public. Leave out a guest's name unless they asked to be mentioned.",
+      "Add two or three old captions you like, the name on the sign, words you refuse, and your sign-off. Open ChatGPT, Claude, Grok, or Muse and paste that prompt. Put the board copy in [BOARD NOTE], customer details in [GUEST NOTE], old captions in [VOICE LINES], and the channel in [POST SURFACE].",
+      "Read the offer lines beside the board note. Item, discount, window, where it works, and exclusions must match what the register will honor. If the match line says Changed, or a field is blank, correct the caption from the note before you show it to anyone.",
+      "Read the hook and caption aloud. They should sound like your old captions. Remove any weather joke, dish, emoji, hashtag, or guest name you did not paste. Keep a single ask, such as walk in or order the named item.",
+      "Read the staff line to the host or the pass. If they cannot ring that discount, or the item is sold out, hold the post and fix the wording. If you will attach a photo, shoot the item on the board, not a stock rain picture.",
+      "Look outside and decide whether you still want this rainy-day post today. Paste the kept caption into the one surface you named, or into an unsent text. Do not schedule it for a later day you have not checked.",
+      "Optional agent mode: put Item, Deal, Window, Where, Exclusions, and Surface in Google Sheets. Use Zapier, Make, or n8n to drop the approved caption into a social scheduler or an unsent text. Leave publish and send off until you approve that day."
+    ],
+    "approvalStep": "You compare each offer line with the specials board or register memo, read the staff line to the host, and approve the caption before it is posted, texted, or scheduled.",
+    "failureModes": [
+      "Deal drift: the caption changes the discount, adds a drink, or drops an exclusion such as alcohol or another special. Put the board wording back before anyone posts.",
+      "Weather claim: the hook says it is pouring when your notes never said to post because rain is falling. Delete that line, or wait until you have looked outside.",
+      "Wrong length: a text-length caption is used on Instagram, or tags land on a Google Business update. Run the prompt again for the one surface you will actually use.",
+      "Named regular: a guest's name from your customer details appears in the public caption. Remove it unless that person asked to be mentioned.",
+      "Floor miss: the post goes up before the host has the staff line, or the item sold out after you copied the board. Hold it until the pass agrees.",
+      "Auto schedule: a scheduler publishes the caption on a later morning when the note was only for rain today. Leave send and publish off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste before I ask for the post?",
+      "a": "Paste four notes: the specials-board or register memo with the item, the discount as it rings, the hours, where it works, and the exclusions; customer details on who comes in the rain and the one surface they check; two or three old captions plus words you refuse; and the surface name. A blank stays blank so the draft can mark it unknown."
+    },
+    {
+      "q": "What if I am not sure it will keep raining?",
+      "a": "The draft should not claim rain is falling unless you wrote that in the notes. Look outside and decide whether to post today. If the discount is only for wet weather, wait. Do not leave the caption scheduled for a later morning inside a social tool."
+    },
+    {
+      "q": "Which assistant should I use for this post?",
+      "a": "Use the prompt written for the assistant you already have. Judge the draft by three checks: the offer lines match the board, the joke comes from your notes, and the caption fits the one surface. Keep the draft that needs the least fixing. Do not pick an assistant from a ranking."
+    },
+    {
+      "q": "Can one draft cover Instagram and a text to regulars?",
+      "a": "Use one surface per run. A text should stay short and carry no tags, while an Instagram caption can run longer. Paste the same board note a second time with the other surface, then approve each caption on its own before you post or send it."
+    },
+    {
+      "q": "How do I stop the joke from changing the discount?",
+      "a": "Read the offer lines against the specials board before you look at the hook. If the funny line adds a drink, a second plate, or a longer window, delete the joke and keep the deal as it rings. The staff line should match that same wording so the host and the caption agree."
+    }
+  ],
+  "draft": true,
+  "persona": "restaurant owner",
+  "job": "Paste the specials-board note and who comes in the rain, and get one fun post that keeps the same discount for a single surface.",
+  "who": "A restaurant owner who writes the day's post, already has the rainy discount on the specials board or in the register, and needs a fun caption the host can repeat without promising a different deal.",
+  "toolCategories": [
+    "AI chat models",
+    "Social schedulers",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

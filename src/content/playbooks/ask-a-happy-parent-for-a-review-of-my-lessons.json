@@ -1,0 +1,86 @@
+{
+  "slug": "ask-a-happy-parent-for-a-review-of-my-lessons",
+  "title": "Ask a happy parent for a review of my lessons",
+  "category": "Marketing & SEO",
+  "summary": "Paste the parent first name, the child's first name, the subject and level, the sentence that shows they are pleased, recent lesson notes with dates, the review place you already share, and whether you write by email or text. You get one unsent draft: SEND or HOLD, a subject only for email, a short message, the facts it drew on, and the private details it left out. The message makes a single request for a review and does not compose one in their voice. Surname, school, scores, fees, and other pupils stay out. Anything missing is marked UNKNOWN. You match the draft to the thread, adjust the voice, and send it yourself on the conversation you already have. Nothing goes out until you approve it.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a writing assistant for a private tutor. Write one message asking a happy parent for a review of the lessons. Do not send it, and do not compose the review in their voice.\n\nInputs you may use:\nAdult: [PARENT FIRST NAME]\nPupil: [CHILD FIRST NAME]\nSubject: [SUBJECT AND LEVEL]\nPleased sentence: [HAPPY SIGNAL]\nTopics and dates: [LESSON NOTES]\nReview place, link only if you have it: [WHERE TO REVIEW]\nEmail or text: [CHANNEL]\nClosing: [TUTOR SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Set STATUS to SEND only when [HAPPY SIGNAL] shows thanks, a rebook, or praise they already sent. A complaint, an unpaid balance, a cancellation, or a blank signal is HOLD.\n- Write to the adult. Keep the pupil's first name. Strip surname, school, street, grades, scores, diagnoses, classmates, and the fee.\n- Mention a topic only when [LESSON NOTES] names it. Do not add a passed exam, a higher mark, or a skill the notes leave out.\n- Ask once, for a review at [WHERE TO REVIEW]. If that field is empty, write UNKNOWN and do not invent a page or a link. Offer no free lesson, discount, or gift.\n- Follow [CHANNEL]. Email: subject of at most 8 words, body of at most 120 words. Text: subject NONE, body of at most 60 words. A blank channel is HOLD. Close with [TUTOR SIGN-OFF]. Do not supply a paragraph for them to post.\n\nOutput format:\nReturn these headings in order:\nSTATUS: SEND or HOLD\nCHANNEL:\nTO:\nSUBJECT:\nMESSAGE:\nFACTS USED:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a private tutor. Prepare one unsent note that asks a happy parent for a review of the lessons. Stop before any send. Do not write the review as if they wrote it.\n\nDraw only on:\n[PARENT FIRST NAME]\n[CHILD FIRST NAME]\n[SUBJECT AND LEVEL]\n[HAPPY SIGNAL]\n[LESSON NOTES]\n[WHERE TO REVIEW]\n[CHANNEL]\n[TUTOR SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- SEND requires [HAPPY SIGNAL] to contain their thanks, a rebook, or praise already in the thread. Complaints, money owed, a cancellation, or an empty signal stay HOLD.\n- Address the adult by first name. The pupil appears as a first name only. Surname, school, street, grades, scores, diagnoses, other pupils, and fees stay in LEFT OUT.\n- A lesson topic enters the message only if [LESSON NOTES] states it, with no extra claim that a test was passed or a mark rose.\n- One request only: leave a review where [WHERE TO REVIEW] says. Empty means UNKNOWN, not a page or a link you created. No free lesson, no discount, no gift.\n- [CHANNEL] decides the shape. Email: subject at most 8 words, body at most 120 words. Text: subject NONE, body at most 60 words. If the channel is blank, HOLD. Sign [TUTOR SIGN-OFF]. Include no sample wording for their post.\n\nOutput format:\nHeadings, in this order, and nothing else:\nSTATUS: SEND or HOLD\nCHANNEL:\nTO:\nSUBJECT:\nMESSAGE:\nFACTS USED:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a private tutor. From their notes, draft one ask so a happy parent can review the lessons. You do not send it. You do not ghostwrite the post.\n\nUse:\n[PARENT FIRST NAME] for the adult\n[CHILD FIRST NAME] for the pupil\n[SUBJECT AND LEVEL]\n[HAPPY SIGNAL] for the pleased sentence\n[LESSON NOTES] for topics and dates\n[WHERE TO REVIEW] for the place, and a link only if pasted\n[CHANNEL] as email or text\n[TUTOR SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- STATUS is SEND only if [HAPPY SIGNAL] is thanks, a rebook, or praise they already gave. Complaint, balance due, cancellation, or a blank line means HOLD.\n- Talk to the adult. Pupil first name only. Cut surname, school, street, grades, scores, diagnoses, classmates, and the fee.\n- Stick to topics written in [LESSON NOTES]. Skip any claim of a passed test, a higher mark, or a skill that is not in those notes.\n- Ask one time, to review at [WHERE TO REVIEW]. Blank place stays UNKNOWN. Do not make up a page or a link. No free lesson, discount, or gift.\n- Email means a subject of 8 words or fewer and a body of 120 words or fewer. Text means no subject and 60 words or fewer. Blank [CHANNEL] is HOLD. End with [TUTOR SIGN-OFF]. Do not hand them sentences to paste into the review.\n\nOutput format:\nLabels only, in this order:\nSTATUS: SEND or HOLD\nCHANNEL:\nTO:\nSUBJECT:\nMESSAGE:\nFACTS USED:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a private tutor. Produce one unsent message asking a happy parent for a review of the lessons. Do not write the review for them.\n\nSources, and no others:\nAdult: [PARENT FIRST NAME]\nPupil: [CHILD FIRST NAME]\nSubject: [SUBJECT AND LEVEL]\nPleased sentence: [HAPPY SIGNAL]\nTaught: [LESSON NOTES]\nDestination: [WHERE TO REVIEW]\nEmail or text: [CHANNEL]\nClosing: [TUTOR SIGN-OFF]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use SEND only when [HAPPY SIGNAL] is their thanks, a rebook, or praise. Use HOLD for a complaint, an unpaid balance, a cancellation, or a missing signal.\n- The note goes to the adult. Show the pupil by first name. Move surname, school, street, grades, scores, diagnoses, classmates, and the fee to LEFT OUT.\n- Pull topics solely from [LESSON NOTES]. Leave out any result, exam, or mark the notes do not state.\n- Request a review once, at [WHERE TO REVIEW]. If the destination is empty, mark it UNKNOWN and invent neither a page nor a link. Add no free lesson, discount, or gift.\n- Shape the note to [CHANNEL]. Email: subject of 8 words or fewer, body of 120 words or fewer. Text: subject NONE, body of 60 words or fewer. No channel means HOLD. Sign [TUTOR SIGN-OFF]. Do not draft words for them to publish.\n\nOutput format:\nReturn only these sections, in order:\nSTATUS: SEND or HOLD\nCHANNEL:\nTO:\nSUBJECT:\nMESSAGE:\nFACTS USED:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode first. Optional later: Google Sheets with Zapier, Make, or n8n storing a draft and never sending it.",
+    "steps": [
+      "From the family thread in your texts, email, or lesson log, copy the adult's first name, the pupil's first name, the subject, and the sentence that shows they are pleased. Add the topics you actually taught, each with its date. Remove surname, school, scores, and fees before you paste.",
+      "On the following lines, write whether you usually reach them by email or by text, the review place you already share (the profile or page name, and the link only if it is open in front of you), and the sign-off on your ordinary notes.",
+      "Open the chat assistant you already use and paste the prompt for that assistant. Fill every bracket from your lines, including [HAPPY SIGNAL] and [LESSON NOTES]. Leave [WHERE TO REVIEW] blank if you do not have the place yet. Do not attach the full pupil file.",
+      "Set the draft beside the original thread. Allow SEND only when the pleased sentence is really theirs. Keep HOLD if you find a complaint, money still owed, a cancellation, or no signal. Strike any topic you cannot point to in the lesson notes.",
+      "Edit stiff lines until the note sounds like you. Confirm the word cap for that channel, a single request, and your sign-off. Check that surname, school, scores, fees, and any sample paragraph for them to post are gone.",
+      "When the draft is approved, paste it into the existing email or text thread with that adult and send it yourself. Do not contact the pupil, do not publish a review for the family, and do not send a HOLD.",
+      "In the lesson log or a sheet, record the adult's first name, the subject, sent or held, and the day. On a held row, write the reason so the same family is not drafted again next week.",
+      "Optional later: make a Google Sheet with columns for adult, subject, signal, notes, draft, and status. Use Zapier, Make, or n8n to fill the draft and set status to Needs review when a row is added. Leave send actions off. You still send from your own mail or phone."
+    ],
+    "approvalStep": "Check the unsent message against the thread and the lesson notes before it is sent or posted. Approve it only when STATUS is SEND, the pleased sentence is theirs, every fact is in your notes, and private details are gone. You send it yourself. Automation must not contact anyone.",
+    "failureModes": [
+      "A complaint or an unpaid balance sits under a short thanks, and the draft still asks. Read the whole thread and leave every HOLD unsent.",
+      "The pupil's surname, school, or a score lands in the message. Delete that line. A public post can repeat whatever the ask contains.",
+      "The reply includes a finished review written as the family, ready to publish. Discard it. This workflow only produces the request.",
+      "A free lesson or a discount appears even though your notes never offered one. Remove it. Do not trade a perk for the post.",
+      "The destination was blank and the draft filled in a page or a link. Send nothing until that line matches the place you actually use.",
+      "This family was already asked last term because the log was not checked. Search the name before a second note goes out."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What counts as a pleased sentence?",
+      "a": "Copy words the adult already sent you: a thank-you, a request to rebook, or praise of the lessons, from a text, an email, or a line you logged at the time. A paid invoice, a polite goodbye, or your own sense that the term went well does not qualify. If you cannot point to their sentence, keep the status on HOLD and do not send."
+    },
+    {
+      "q": "Can the draft write the review so I can post it?",
+      "a": "No. The only message you should keep is the one you send, asking them to write in their own words at the place you named. If a sample paragraph shows up, written as though they said it, delete that paragraph. You do not post, edit, or submit a review for the family."
+    },
+    {
+      "q": "Which details have to stay off the note?",
+      "a": "Use a first name for the pupil if the note needs one, and leave out the surname, school, street, grades, scores, diagnoses, classmates, and the fee. People often repeat the ask when they write in public. If a private detail is the only proof they were pleased, keep it in your log and out of the message."
+    },
+    {
+      "q": "Two subjects, or two children, in one home?",
+      "a": "Send one note per subject, and only for a subject their pleased sentence actually names. Do not combine a second pupil or a second subject unless that sentence mentions both. When the notes disagree, mark the extra subject UNKNOWN and send nothing until you have split the drafts."
+    },
+    {
+      "q": "Which assistant should I use for this?",
+      "a": "Use the prompt for the assistant you already have. Keep the draft if SEND or HOLD matches their sentence, every topic is in your lesson notes, and the surname, school, and scores are absent. If a line adds a result or a perk you did not write, delete that line or replace it with UNKNOWN."
+    }
+  ],
+  "draft": true,
+  "persona": "tutor",
+  "job": "Paste rough lesson notes and the family details and get one draft that asks a happy parent for a review of the lessons.",
+  "who": "Private tutors, music teachers, and after-school coaches who already have a written thanks or a rebook from a family, and who want one ask they can edit before it is sent.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation",
+    "Phone messaging"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "reply-to-a-bad-review-about-a-long-wait-for-parts",
+  "title": "Reply to a bad review about a long wait for parts",
+  "category": "Marketing & SEO",
+  "summary": "Paste the public complaint about a long wait for parts, plus the job-card lines you are willing to say out loud: display name, part name, drop-off date, the date the part was ordered, whether the car is still in the bay or already picked up, what you already told the driver, and the one remedy you approved. You get a public answer of 110 words or fewer, a private call note that stays off the listing, the facts the draft used, and anything left unknown. You decide whether to name the part and the dates, whether to post or hold, and you paste the answer into the review box yourself.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the service writer's hand for an auto shop owner. Draft a public reply to a bad review about a long wait for parts. Do not post it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only the review and the shop notes. Do not add an arrival date, a discount, or a loaner the notes omit.\n- If the review and the notes are different visits, set POST OR HOLD to HOLD.\n- Acknowledge the wait in the driver's words. Do not argue the rating or ask them to edit or remove the review.\n- Name the part, the drop-off, and whether the car is still waiting or already gone only when the notes say so.\n- Leave out the VIN, plate, repair-order number, wholesale cost, supplier, technician, and last name.\n- Offer only the line in [ONE REMEDY]. If it says NONE, add no make-good.\n- Keep the public reply at or under 110 words. Sign [RESPONDER NAME] at [SHOP NAME]. Include a phone number only if the notes have one.\n\nPublic review (display name, rating, date, full text):\n[REVIEW TEXT]\n\nRepair-order notes you will say in public (part, dates, status, what you told them):\n[SHOP NOTES]\n\nThe one remedy already approved, or NONE:\n[ONE REMEDY]\n\nShop name and your name:\n[SHOP NAME]\n[RESPONDER NAME]\n\nOutput format:\nPOST OR HOLD: POST or HOLD\nPUBLIC REPLY:\nPRIVATE CALL NOTE: or NONE\nFACTS USED:\nLEFT UNKNOWN:\nSTRIPPED:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for an auto shop owner answering a public review. Write one reply about a long wait for parts. You draft only. You do not post.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw every date, part name, and status from the shop notes. If the review and the notes describe different visits, set POST OR HOLD to HOLD.\n- Open by acknowledging the wait. Do not debate the rating, and do not ask for the review to be changed or taken down.\n- If the car is still in the bay, say it is still waiting. Say the work is finished only when the notes say the car was picked up.\n- Do not publish a VIN, plate, repair-order number, supplier, wholesale price, technician name, or surname.\n- The only make-good is the text in [ONE REMEDY]. NONE means no offer at all.\n- Public reply: 110 words maximum. Sign [RESPONDER NAME], [SHOP NAME]. A phone number appears only if the notes include it.\n\nPublic review (display name, rating, date, and full text):\n[REVIEW TEXT]\n\nRepair-order notes cleared for a public reply:\n[SHOP NOTES]\n\nSingle approved remedy, or NONE:\n[ONE REMEDY]\n\nShop name:\n[SHOP NAME]\n\nYour name:\n[RESPONDER NAME]\n\nOutput format:\nPOST OR HOLD:\nPUBLIC REPLY:\nPRIVATE CALL NOTE:\nFACTS USED:\nLEFT UNKNOWN:\nSTRIPPED:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for an auto shop owner. From a bad review about a long wait for parts, draft the public reply. Do not post it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use the review for what the driver complained about, and the shop notes for what you will confirm. Do not fill a gap with a guess.\n- If the review and the notes are different visits, set POST OR HOLD to HOLD.\n- Admit the wait without a fight. Do not argue the rating, and do not ask them to change or delete the post.\n- State the part and the timeline only as the notes give them. A car still waiting stays still waiting. Do not write that it is done.\n- Strip the VIN, plate, repair-order number, supplier, wholesale cost, tech name, and last name before the reply is finished.\n- One remedy only, copied from [ONE REMEDY]. If it says NONE, offer nothing extra.\n- 110 words or fewer. Sign [RESPONDER NAME] at [SHOP NAME]. No phone number unless the notes already have one.\n\nPublic review (display name, rating, date, full text):\n[REVIEW TEXT]\n\nNotes from the job card and parts line that may be said in public:\n[SHOP NOTES]\n\nApproved remedy, or NONE:\n[ONE REMEDY]\n\nShop name and responder:\n[SHOP NAME]\n[RESPONDER NAME]\n\nOutput format:\nLabels only, in this order:\nPOST OR HOLD:\nPUBLIC REPLY:\nPRIVATE CALL NOTE:\nFACTS USED:\nLEFT UNKNOWN:\nSTRIPPED:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, helping an auto shop owner reply in public to a bad review about a long wait for parts. Produce a draft a person will read. Do not post or send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Limit the reply to the pasted review and the shop notes. Missing dates stay UNKNOWN rather than becoming tomorrow or next week.\n- If the review and the notes are different visits, set POST OR HOLD to HOLD.\n- Thank them for writing and acknowledge the wait. Do not argue, and do not request a rating change or a takedown.\n- Mention the part and the car's status only when [SHOP NOTES] includes them. Still in the bay means say so. Finished means the notes say finished.\n- Remove VIN, license plate, repair-order number, supplier name, parts cost, technician, and last name from anything public.\n- Put no perk in the reply beyond [ONE REMEDY]. NONE means zero offer.\n- Keep PUBLIC REPLY at or under 110 words, signed [RESPONDER NAME] from [SHOP NAME]. Add a phone number only if the notes provide it.\n\nPublic review, copied in full:\n[REVIEW TEXT]\n\nJob-card notes cleared for public use:\n[SHOP NOTES]\n\nOne remedy you already approved, or NONE:\n[ONE REMEDY]\n\nShop name:\n[SHOP NAME]\n\nResponder name:\n[RESPONDER NAME]\n\nOutput format:\nReturn only these sections:\nPOST OR HOLD:\nPUBLIC REPLY:\nPRIVATE CALL NOTE:\nFACTS USED:\nLEFT UNKNOWN:\nSTRIPPED:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode first. Optional later: Google Sheets plus Zapier, Make, or n8n stores a draft and never posts the reply.",
+    "steps": [
+      "On Google, Yelp, or Facebook, open the review about the parts wait and copy the display name, the rating, the date, and the full text into a scratch note. Do not type a reply in the box yet.",
+      "From the repair order and the parts line, write only what you will say in public: part name, drop-off date, date ordered, whether the car is still waiting or already picked up, and what you already told the driver. Leave the VIN, plate, ticket number, supplier, and wholesale cost off that note.",
+      "Add the one remedy you have already approved, or type NONE. Add the shop name, your name, and a phone number only if that number should appear in public. If a date or the car's status is missing, type UNKNOWN beside it.",
+      "Open the chat assistant you already use and paste the prompt for that assistant. Fill [REVIEW TEXT], [SHOP NOTES], [ONE REMEDY], [SHOP NAME], and [RESPONDER NAME] with the lines from your scratch note.",
+      "Read POST OR HOLD, the public reply, and STRIPPED next to the repair order. The part, the dates, and the status must match your notes. Cross out any supplier, price, VIN, plate, or arrival date you did not clear.",
+      "Edit the public reply until it sounds like you and stays at or under 110 words. Remove any line that asks them to change or delete the review. Keep the private call note off the listing. If the flag says HOLD, stop.",
+      "Paste only the public reply into the reply box on the same listing where the review sits. Read it once in that box, then post it yourself. Make the private call only if you still want that conversation.",
+      "On the repair order, write review replied and the date after the reply is live. If you held it, write the reason so the next pass does not draft the same visit again.",
+      "Optional later: in Google Sheets, add columns for display name, review text, part, status, remedy, draft reply, and Post or hold. Let Zapier, Make, or n8n fill the draft and set the row to Needs review. You still paste and post it yourself."
+    ],
+    "approvalStep": "You approve the public reply before posting it. Match the part, the wait, and the one remedy to the repair order, delete anything listed as stripped, and press post yourself. A sheet or an automation must not publish the reply.",
+    "failureModes": [
+      "An arrival date or a supplier name that lived only on the parts screen slips into the public reply and turns into a promise you never made.",
+      "The display name matches two open tickets, so the draft talks about the wrong car. Hold it until the repair order and the review are the same visit.",
+      "The reply asks the driver to change or delete the rating. Take that sentence out before you post, or the answer reads as a dispute.",
+      "A VIN, plate, repair-order number, or wholesale price from the notes shows up in the public box. Throw out that draft and run it again from a cleaned note.",
+      "The car is still in the bay, but the reply says the job is finished. Post only the status the repair order actually shows.",
+      "Zapier, Make, or n8n is set to publish the listing reply instead of saving a draft, and a HOLD answer goes live while you are under a car."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I paste this into?",
+      "a": "Use the prompt written for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft when the part, the dates, and the car's status match the job card, the public answer stays within 110 words, and anything you did not type is marked unknown. If it argues the rating or adds a promise, do not post that wording."
+    },
+    {
+      "q": "Should the public reply name the part and the dates?",
+      "a": "Name the part, the drop-off, or the order date only when those lines are on the job card and you are willing to say them in public. Leave the supplier, the wholesale cost, and any arrival date you do not have off the listing. If the card is thin, the answer should mark the missing line unknown and invite a call, rather than building a timeline."
+    },
+    {
+      "q": "What if the car is still in the bay?",
+      "a": "Say the car is still waiting, using only the status on the job card, and offer the single remedy you already approved, such as a call today or a loaner you already promised. Do not write that the part shows up tomorrow unless that date is written down. If you have no next step, set the remedy to NONE and hold the reply until you pick one."
+    },
+    {
+      "q": "Can I ask them to change or remove the review?",
+      "a": "Leave that request out of the public answer. Acknowledge the wait and state the status you can support. Asking for a new rating or a deletion makes the reply look like a dispute. If you want a private conversation, use the call note and phone them yourself. Post only the public wording you have approved."
+    },
+    {
+      "q": "What if I cannot match the review to a job card?",
+      "a": "Set the draft to HOLD. A first name with no vehicle in the review can match more than one ticket in the bay. Do not guess the part. Find the right job card, paste those lines, and run the prompt again before anything goes on the listing."
+    }
+  ],
+  "draft": true,
+  "persona": "auto shop owner",
+  "job": "Paste the bad review and your job-card notes and get a short public reply about the long wait for parts, ready for you to post.",
+  "who": "Auto shop owners and the advisor at the counter who answer Google, Yelp, or Facebook reviews themselves. A driver wrote that the car sat while a part was on order, and you want a public answer that matches the job card before you post.",
+  "toolCategories": [
+    "Chat assistants",
+    "Spreadsheets",
+    "Automation",
+    "Business listings"
+  ]
+}

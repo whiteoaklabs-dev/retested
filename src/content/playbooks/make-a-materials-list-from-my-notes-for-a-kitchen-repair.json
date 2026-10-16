@@ -1,0 +1,85 @@
+{
+  "slug": "make-a-materials-list-from-my-notes-for-a-kitchen-repair",
+  "title": "Make a materials list from my notes for a kitchen repair",
+  "category": "Back office",
+  "summary": "A handyman pastes a kitchen walk-through and a short customer card. The walk-through is a phone note or a voice-memo transcript: what is broken, the spot in the room, any tape readings, brands or colors named aloud, and parts already in the house. The card has the name, job-site address, the repair they asked for, and who buys. The assistant returns a draft with one row per part, a do-not-buy section, a question for every gap, and customer text under 120 words. You match each spec to the paste and the tape, fill only figures you measured, and approve that text before you send it or buy a single part. Nothing is priced and nothing is ordered.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the shop helper for a handyman who just left a kitchen. Build a materials list from the walk-through before any part is bought or the homeowner is contacted.\n\nUse only these inputs: [JOB NOTES] and [CUSTOMER CARD].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy sizes, colors, brands, and counts only from the walk-through. A vague length stays as written. Do not invent a cut length, cabinet width, pipe size, or tile size.\n- One row per part. Keep a faucet, supply lines, and a P-trap separate unless the walk-through already calls them one kit. A drip at a handle is not a new faucet.\n- Put a number in Qty only when the walk-through states a count, or a measurement plus a counting rule. Otherwise Qty is UNKNOWN. Add no prices, labor, tax, or trip charge.\n- Parts already on site, or that the homeowner will bring, go under Do not buy. Two repairs, such as the sink and a cabinet door, stay in two groups.\n- Do not text, email, or place a store order.\n\nOutput format:\nReturn headings: Header, Materials, Do not buy, Ask before you buy, Customer text.\nHeader: Customer, Address, Repair in one sentence from the walk-through, Who buys.\nMaterials columns: Item, Where it goes, Spec from notes, Qty, Unit, Finish or brand, Buy or supplied, Notes.\nAsk before you buy: one question per UNKNOWN, each under 20 words.\nCustomer text: under 120 words, naming the repair and every UNKNOWN. Leave it unsent.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful clerk for a handyman. Turn a kitchen walk-through into a materials list before contact or a purchase.\n\nSources: [JOB NOTES], a phone note or voice-memo transcript, and [CUSTOMER CARD], with name, job-site address, phone, the repair asked for, who buys, and any finish already chosen.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Transcribe sizes, colors, brands, and counts exactly. A vague phrase stays vague. Do not infer a cabinet width, supply-line diameter, tile size, or caulk color.\n- Split combined hardware. A hinge, a drawer slide, and screws are separate rows unless the walk-through names a kit. Do not expand a loose hinge into new doors.\n- Qty stays UNKNOWN unless a count is written, or a measurement is paired with a counting rule. Leave money, labor hours, tax, and trip fees off this list.\n- If the homeowner supplies a part, or it is already in the house, place it under Do not buy. Keep sink work apart from door or drawer work.\n- Write questions instead of filling gaps. Do not send the customer text.\n\nOutput format:\nReturn headings: Header, Materials, Do not buy, Ask before you buy, Customer text.\nHeader fields: Customer, Address, Repair in one sentence, Who buys.\nMaterials columns: Item, Where it goes, Spec from notes, Qty, Unit, Finish or brand, Buy or supplied, Notes.\nEach Ask line is one UNKNOWN and stays under 20 words.\nCustomer text stays under 120 words, repeats every UNKNOWN, and is a draft only.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken helper for a handyman. From a kitchen walk-through, draft a materials list before a store run. Nothing is texted or ordered until the handyman says so.\n\nPaste [JOB NOTES] and [CUSTOMER CARD]. The card has the name, address, phone, what they asked fixed, who buys, and any finish already picked.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Sizes, colors, brands, and counts come only from that paste. About three feet stays about three feet. Do not pick a cabinet width, pipe size, tile size, or caulk color.\n- One part, one row. A faucet, its lines, and the trap are different rows unless the paste calls them one kit. A drip at the handle is not a whole new faucet.\n- Qty is a number only with a written count, or a measurement plus a counting rule. No count means UNKNOWN. Skip prices, labor, tax, and any trip charge.\n- Parts already in the house, or that the homeowner will bring, go under Do not buy. Sink work and a loose cabinet door stay in separate groups.\n- Do not text, email, or send a supplier order.\n\nOutput format:\nReturn headings: Header, Materials, Do not buy, Ask before you buy, Customer text.\nHeader: Customer, Address, Repair in one sentence, Who buys.\nMaterials columns: Item, Where it goes, Spec from notes, Qty, Unit, Finish or brand, Buy or supplied, Notes.\nAsk before you buy: one question per UNKNOWN, under 20 words each.\nCustomer text: under 120 words, names the repair and every UNKNOWN, and stays unsent.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting a kitchen-repair materials list for a handyman to review before sending.\n\nInputs: [JOB NOTES] for what is broken, the spot, measurements, brands, colors, and parts already there. [CUSTOMER CARD] for name, address, phone, the repair requested, who buys, and any finish already chosen.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep every spec in the words of the walk-through. Do not turn a vague length into a cut list, or assume cabinet width, pipe size, tile size, or caulk color.\n- Give each part its own row. Leave a faucet, supply lines, and a P-trap split unless the notes name one kit. Do not turn a handle drip into a faucet replacement.\n- Qty is numeric only from a stated count or a measurement with a counting rule. Otherwise UNKNOWN. Omit prices, labor, tax, and trip fees.\n- On-site parts and homeowner-supplied parts belong under Do not buy. If two repairs are described, group rows by the spot named in the walk-through.\n- The customer text is a draft to edit. Do not send it.\n\nOutput format:\nReturn headings: Header, Materials, Do not buy, Ask before you buy, Customer text.\nHeader: Customer, Address, Repair in one sentence from the walk-through, Who buys.\nMaterials columns: Item, Where it goes, Spec from notes, Qty, Unit, Finish or brand, Buy or supplied, Notes.\nAsk before you buy lists one question per UNKNOWN, each under 20 words.\nCustomer text is under 120 words, names every UNKNOWN, and is not sent.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later, Google Sheets with Zapier, Make, or n8n can append an unsent draft only.",
+    "steps": [
+      "After the kitchen walk-through, paste one block from your phone note or voice-memo transcript: what is broken, which spot (sink, door, drawer, backsplash), any tape readings, brands or colors named aloud, and parts already in the house.",
+      "On a second block, write the customer card: name, job-site address, phone, the repair they asked for in their words, who buys the parts, and any finish they already picked. If a field was never said, write MISSING instead of guessing.",
+      "Open the chat assistant you already use. Paste that assistant's prompt. Replace the job-notes placeholder with your walk-through block and the customer-card placeholder with the card. Ask for the materials draft only.",
+      "Read each materials row against the walk-through. A size, color, brand, or count that is not written there must say UNKNOWN. Split a row that bundles a faucet with lines the paste never called one kit. Move on-site parts to Do not buy.",
+      "Before you fill an UNKNOWN size, measure that spot again with the tape and type the figure you just read. Leave color and brand open when the homeowner has not chosen them. Do not type a price, a labor hour, or a tax line.",
+      "Read the customer text. It should name the repair, list only parts from the checked table, and mention every UNKNOWN. Cut any sentence that adds a part or a promise the walk-through does not support. Keep it under 120 words.",
+      "Copy the checked table into a note or a Google Sheet and set a status cell to unsent. Send the customer text yourself, by text or email, only after you accept it. Do not order from a supplier in that same step.",
+      "Optional agent mode: keep the walk-through and the customer card in Google Sheets, and use Zapier, Make, or n8n to run this prompt and append an unsent draft tab. Leave texting, email, and any supplier order switched off."
+    ],
+    "approvalStep": "Before you text or email the homeowner, or buy any part, match every materials row to the walk-through and your tape. Approve the customer text only when each UNKNOWN is filled by you or still asked as a question, then send it yourself.",
+    "failureModes": [
+      "A vague length such as about three feet becomes an exact cut. Keep the spec in the walk-through's words, and leave Qty UNKNOWN until you measure that spot.",
+      "A drip at the handle turns into a new faucet, lines, and a sprayer nobody named. Every row needs a phrase that appears in the walk-through.",
+      "A part the homeowner already owns lands in the buy rows. Those belong under Do not buy, marked as supplied by them.",
+      "Prices, labor, or tax show up and the page starts to read like a quote. This list has no money columns. Delete any amount before you send it.",
+      "Sink work and a loose cabinet door collapse into one group, so a hinge is listed at the sink. Where it goes must name the spot from the walk-through.",
+      "A sheet flow texts the homeowner or fires a supplier order when the draft tab fills. Leave send and order actions off until you approve the list."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this kitchen materials list?",
+      "a": "Use the prompt for the assistant you already open on your phone. Judge the draft by whether every size, brand, and count is in your walk-through, every gap says UNKNOWN, and the customer text adds no part you did not accept. If a row has no source line, drop it before you buy."
+    },
+    {
+      "q": "My note only says about three feet. What should Qty be?",
+      "a": "Leave the spec in those words and set Qty to UNKNOWN. Measure with the tape, then type the number you just read. Do not let the draft pick a cabinet width, a pipe size, a tile size, or a caulk color the walk-through never stated."
+    },
+    {
+      "q": "Can this text the homeowner or order the parts?",
+      "a": "No. Paste mode returns a draft, including customer text you have not sent. You check the rows, then you send that text yourself. If you later connect Google Sheets with Zapier, Make, or n8n, keep texting, email, and any supplier order switched off."
+    },
+    {
+      "q": "The homeowner already bought the faucet. Where does it go?",
+      "a": "Under Do not buy, with Buy or supplied set to homeowner-supplied, and only if your walk-through says they have it. Related pieces the paste does not mention, such as new supply lines or a new trap, stay off the buy rows or sit as questions."
+    },
+    {
+      "q": "Should prices or labor hours be on this list?",
+      "a": "No. This draft is parts only, so the homeowner can confirm what will be bought before you spend. Leave prices, hours, tax, and trip charges off, even when you know your rate. Price the repair in your usual way after they confirm the list."
+    }
+  ],
+  "draft": true,
+  "persona": "handyman",
+  "job": "Rough notes from a kitchen repair go in so you can make a materials list and a short customer text, which you approve before anyone buys or is contacted.",
+  "who": "Handymen who leave a kitchen with a phone note or a voice memo and need a parts list they can check, then send, before a store run or a trip the homeowner makes to buy supplies.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Workflow automation"
+  ]
+}

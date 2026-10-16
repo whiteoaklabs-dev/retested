@@ -1,0 +1,84 @@
+{
+  "slug": "make-a-closing-checklist-for-the-workshop-at-night",
+  "title": "Make a closing checklist for the workshop at night",
+  "category": "Back office",
+  "summary": "You paste tonight's bay board, open repair orders, parts scribbles, and customer lines (name, phone, vehicle or plate, RO, bay, and any approval or pickup words already written). The assistant drafts a night closing checklist for the workshop: an opener text of 90 words or fewer, a car table, a shop-walk list you still tick by looking, and a gap list. Table columns are RO, customer, phone, vehicle, bay, keys, status, safe to move, and morning action. Missing key hooks, ready times, and phones are marked UNKNOWN. You walk the bays, correct the rows, decide whether phones stay in the sent text, and only then send it to the opener. Nothing is texted to a customer, locked, or marked released for you.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the night closer at an auto repair workshop. Draft a closing checklist the morning opener can follow. Do not text anyone, lock the doors, or release a car.\n\nFill [SHOP NAME], [CLOSE DATE], [CLOSER NAME], [ROUGH NOTES], and [CUSTOMER DETAILS]. Notes are the bay board, open repair orders, and parts scribbles. Customer lines are name, phone, year make model or plate, RO, bay, and approval or pickup words already written.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One row per car on the lot. Copy RO, name, phone, vehicle, and bay as written. Do not merge tickets that share a last name.\n- Status may be only finished, waiting on part, waiting on approval, comeback, or UNKNOWN. Vague is not ready.\n- Keys and safe-to-move only if a note says so. Finished work does not mean the car can roll.\n- Morning action uses the note's words. Do not add a clock time, a price, or a promise.\n- Do not mark lifts, lights, doors, compressor, alarm, or the drawer done.\n- OPENER TEXT is 90 words or fewer. Keep phones in the table only.\n\nOutput format:\n1) OPENER TEXT: shop, date, closer, then the short message.\n2) CARS STAYING: columns RO | Customer | Phone | Vehicle | Bay | Keys | Status | Safe to move | Morning action.\n3) SHOP WALK: lifts down, key board, compressor off, lights, bay doors, alarm, drawer, parts on the bench. Each line YES, NO, or UNKNOWN.\n4) GAPS: every UNKNOWN and any clash between the pad and the customer lines.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful night clerk for an auto repair workshop. Prepare the morning opener's closing checklist. Do not contact anyone or release a car.\n\nSources: [SHOP NAME], [CLOSE DATE], [CLOSER NAME], [ROUGH NOTES], [CUSTOMER DETAILS]. Notes are the bay board, open repair orders, and parts scribbles. Customer lines are name, phone, year make model or plate, RO, bay, and written approval or pickup words.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every table cell to a line in the notes or the customer lines. If you cannot, write UNKNOWN.\n- If the pad and a repair order disagree, copy both into GAPS and do not pick a winner.\n- Keep two rows when two tickets share a last name. Match on the RO, not the surname.\n- Allowed status words: finished, waiting on part, waiting on approval, comeback, or UNKNOWN.\n- Do not infer keys, a hook number, or safe-to-move from a note that only says the work is finished.\n- Do not add a price or a clock time. Leave shop-walk lines UNKNOWN until the closer looks.\n- Keep OPENER TEXT to 90 words and leave phones out.\n\nOutput format:\n1) OPENER TEXT: shop, date, closer, then the short message.\n2) CARS STAYING: columns RO | Customer | Phone | Vehicle | Bay | Keys | Status | Safe to move | Morning action.\n3) SHOP WALK: lifts down, key board, compressor off, lights, bay doors, alarm, drawer, parts on the bench. Each line YES, NO, or UNKNOWN.\n4) GAPS: each UNKNOWN and each clash, naming the two source lines.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are writing the night close for a working auto repair workshop. The morning opener needs a checklist, not a polished story. Do not text customers, lock up, or call a car ready.\n\nUse [SHOP NAME], [CLOSE DATE], [CLOSER NAME], [ROUGH NOTES], and [CUSTOMER DETAILS]. Notes are the bay board, open repair orders, and parts scribbles, spelling included. Customer lines are name, phone, year make model or plate, RO, bay, and approval or pickup words only if already written.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not diagnose a noise, a leak, or a comeback. Copy the complaint words and stop.\n- One car, one row. Two tickets with the same last name stay two rows. Copy RO, phone, and bay as written.\n- Status is only finished, waiting on part, waiting on approval, comeback, or UNKNOWN. Vague is not ready.\n- No key hook, no safe-to-move, and no pickup time unless the pad already says it.\n- Do not tick lifts, lights, doors, compressor, alarm, or the drawer. You cannot see them.\n- OPENER TEXT stays at or under 90 words. No phones in that text.\n\nOutput format:\n1) OPENER TEXT: shop, date, closer, then the short message.\n2) CARS STAYING: columns RO | Customer | Phone | Vehicle | Bay | Keys | Status | Safe to move | Morning action.\n3) SHOP WALK: lifts down, key board, compressor off, lights, bay doors, alarm, drawer, parts on the bench. Each line YES, NO, or UNKNOWN.\n4) GAPS: what is UNKNOWN, and any place the pad fights the repair order.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting the night close for an auto repair workshop. You cannot see the bays. The closer walks and decides what is sent. Do not text, lock, or release anything.\n\nI will paste [SHOP NAME], [CLOSE DATE], [CLOSER NAME], [ROUGH NOTES], and [CUSTOMER DETAILS]. Notes are the bay board, open repair orders, and parts scribbles. Customer details are name, phone, year make model or plate, RO, bay, and any approval or pickup words already written.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Propose rows only from those pastes. Do not guess a ticket number that is not written.\n- Status may be finished, waiting on part, waiting on approval, comeback, or UNKNOWN. Do not upgrade a note to ready.\n- Leave Keys and Safe to move UNKNOWN unless the paste states them. Finished does not mean the car can roll.\n- If two notes clash, show both under GAPS. Do not choose one.\n- Shop-walk lines stay UNKNOWN. Do not mark doors, lifts, lights, compressor, alarm, or the drawer.\n- OPENER TEXT is 90 words or fewer, for the opener, not the car owner. Omit phones there.\n\nOutput format:\n1) OPENER TEXT: shop, date, closer, then the short draft message.\n2) CARS STAYING: columns RO | Customer | Phone | Vehicle | Bay | Keys | Status | Safe to move | Morning action.\n3) SHOP WALK: lifts down, key board, compressor off, lights, bay doors, alarm, drawer, parts on the bench. Each line YES, NO, or UNKNOWN.\n4) GAPS: every UNKNOWN and every clash. Then stop and wait.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in the assistant you already use. After you approve the walk, Google Sheets plus Zapier, Make, or n8n can stage a Gmail draft you still send.",
+    "steps": [
+      "Before you lock up, collect the bay board or pad, every open repair order still in the building, parts scribbles, and customer lines: name, phone, year make model, RO, bay, and any approval or pickup words already written. Do not smooth them into sentences.",
+      "Open a fresh chat with the assistant you already use. Paste that prompt from this playbook. Fill [SHOP NAME], [CLOSE DATE], [CLOSER NAME], [ROUGH NOTES], and [CUSTOMER DETAILS]. If the pad has no phone, leave the phone blank.",
+      "Read OPENER TEXT, CARS STAYING, SHOP WALK, and GAPS. Find each RO on the board. Delete any ready time, price, key hook, or safe-to-move value your notes do not state, and set that cell to UNKNOWN.",
+      "Walk the bays with SHOP WALK in hand. Mark lifts, the key board, compressor, lights, doors, alarm, and the drawer from what you see. A car still in the air is not safe to move, even when the ticket says the work is finished.",
+      "Choose what the opener may see. Keep phones on the car table for the person who will call. If the text will hit a wider shop thread, strip phones and complaint details before it leaves your hands.",
+      "Copy the corrected car table into a Google Sheet tab named with the close date, using the same columns, so the opener can filter rows still waiting on a part or an approval.",
+      "Optional later step: point Zapier, Make, or n8n at that approved sheet and have it create a Gmail draft to the opener. Leave send turned off. You open that draft after the walk and send it yourself."
+    ],
+    "approvalStep": "You review the opener text against the corrected car table and the shop walk you just marked, confirm every car still inside, and approve it before sending. Do not text a customer from this draft.",
+    "failureModes": [
+      "Two repair orders with the same last name collapse into one row, so the opener calls the wrong person about the wrong car. Match each row to its RO.",
+      "A pickup clock time shows up when the pad only said the customer asked about morning. Delete any time you did not write.",
+      "Keys get a hook number the notes never gave. Unless you saw that hook on the walk, leave the cell UNKNOWN.",
+      "A car still up on the lift is marked safe to move because the ticket says finished. Look at the lift before you trust that cell.",
+      "Phones and a complaint, such as a brake noise, land in a wide group thread. Strip them if those people should not have them.",
+      "The drawer line says counted because a blank was filled. Leave money UNKNOWN unless you counted it and wrote the figure."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "My notes are half sentences on a pad. Is that enough to paste?",
+      "a": "Yes. Paste the pad as written, plus each open repair order and the customer lines you can read: name, phone, vehicle, RO, and bay. Do not clean up spelling first. Blanks should come back UNKNOWN. You still walk the bays and mark the shop-walk lines yourself before anyone is texted."
+    },
+    {
+      "q": "Should customer phone numbers go in the shop group text?",
+      "a": "Keep phones on the car table for the opener who will call. Leave them out of the short opener text if that text goes to a group with people who do not need the numbers. Check the message before you send it. Do not text the customer from this checklist."
+    },
+    {
+      "q": "Which assistant is best for the night close?",
+      "a": "Use the prompt for the assistant you already have. Judge the draft by whether every RO, phone, bay, and status matches the pad and what you see on the floor. Keep the version that adds the fewest lines you have to delete. A tidy paragraph that adds a ready time you never wrote is a bad draft."
+    },
+    {
+      "q": "The work is done but the customer has not paid. What status do I use?",
+      "a": "If the notes say the work is finished, status stays finished. Do not write released, and do not tell the opener the car can leave, unless your note already says that. Put an amount owed in the morning action only when the repair order already shows it. You decide the hold after you look at the ticket."
+    },
+    {
+      "q": "Can I forward this same text to the customer?",
+      "a": "No. The opener text is for the person opening the shop. It can mention holds, unpaid work, and where keys are. A note to the car owner is a separate message you write on purpose, and only after you decide the car is actually ready to release. Do not forward this checklist."
+    }
+  ],
+  "draft": true,
+  "persona": "mechanic",
+  "job": "Paste tonight's bay notes and customer details and get a night closing checklist you check on the floor before you send it to the opener.",
+  "who": "A mechanic who closes the workshop at night and must tell the morning opener which cars stay, where the keys are, and who still needs a call, using a greasy pad and the repair orders still on the bench.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Workflow automation"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "write-a-message-offering-extra-lessons-before-big-tests",
+  "title": "Write a message offering extra lessons before big tests",
+  "category": "Sales",
+  "summary": "You paste a pupil block and your rough lesson notes, and the assistant writes one message offering extra lessons before big tests. The block names the learner, who you write to (parent, guardian, or the learner), and the channel. The notes name the paper or mock, its date, and the topics from your mark book or last session. You also paste open windows and the fee only if that family already pays one. You get a subject when the channel is email, a body of at most 140 words, the windows, one reply ask, a sign-off, and a gap list. You check the name, the date, the topics, and the fee, then copy the text into email, WhatsApp, or SMS yourself. Nothing goes out until you send it.",
+  "published": "2026-10-16",
+  "updated": "2026-10-16",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a drafting assistant for a maths tutor. Write one message offering extra lessons before a big test. Draw only on [PUPIL BLOCK], [ROUGH NOTES], [SLOTS AND FEE], and [CHANNEL].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Address only the recipient named in [PUPIL BLOCK]. Do not write to a parent and a pupil in the same note unless that block says both.\n- State the paper or mock and the date only as written in [ROUGH NOTES]. Do not add a board, a grade, or a score.\n- Cover only topics listed in [ROUGH NOTES]. Skip any unit that block does not name.\n- Offer only the times, length, place, and fee written in [SLOTS AND FEE]. If the fee says not stated, keep money out of the body.\n- Use one reply ask, such as choosing a window. No second service, no scare line, and no claim about a result.\n- Stay at or under 140 words in the body, in short sentences that read clearly on a phone.\n\nOutput format:\nCHANNEL\nSUBJECT: 8 words or fewer, or NONE when [CHANNEL] is not email\nGREETING\nBODY: 140 words or fewer\nCOVERS: one topic per line, copied from the notes\nSLOTS: one window per line\nFEE: the pasted amount, or NOT STATED\nASK: one sentence\nSIGN-OFF: copied from [PUPIL BLOCK], or UNKNOWN\nUNKNOWN: one missing item per line\nCHECK: recipient, paper, date, topics, windows, and fee, each marked Yes or No",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful writing assistant for a maths tutor. Prepare one message offering extra lessons before a named test. Stay inside [PUPIL BLOCK], [ROUGH NOTES], [SLOTS AND FEE], and [CHANNEL]. The tutor will send it, not you.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace the greeting to the recipient field in [PUPIL BLOCK]. If that field is a parent, do not switch the note to the child.\n- Trace the paper name and the date to [ROUGH NOTES]. When either is absent, write UNKNOWN rather than a guessed day or a guessed board.\n- Trace every topic in COVERS to a line in [ROUGH NOTES]. Drop a topic you cannot point to.\n- Trace each window, the length, the place, and the fee to [SLOTS AND FEE]. A fee marked not stated must not appear as a number in the body.\n- If two blocks disagree, keep both wordings under UNKNOWN and do not pick a winner.\n- One ask only. If [PUPIL BLOCK] names no sign-off, set SIGN-OFF to UNKNOWN.\n\nOutput format:\nCHANNEL\nSUBJECT (8 words or fewer, else NONE when the channel is not email)\nGREETING (who it is for)\nBODY (140 words or fewer)\nCOVERS (one topic per line, with the note line it came from)\nSLOTS (one window per line)\nFEE (copied figure or NOT STATED)\nASK (one sentence)\nSIGN-OFF\nUNKNOWN (one gap per line)\nCHECK (Yes or No for recipient, paper, date, topics, windows, fee)",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken assistant for a maths tutor. Draft one short message offering extra lessons before big tests. Use only what is inside [PUPIL BLOCK], [ROUGH NOTES], [SLOTS AND FEE], and [CHANNEL].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Talk to the person named in [PUPIL BLOCK], in the kind of words that tutor already uses with that family.\n- Mention the test only by the name and date written in [ROUGH NOTES]. Leave out boards, scores, and predicted grades.\n- Stick to the topics in those notes. Do not bolt on a revision plan you were not given.\n- Put in only the windows from [SLOTS AND FEE]. If no fee is written, do not mention money.\n- Sound like a normal text or email, not a poster. No countdown, no last-places line, and no line about failing.\n- One question at the end so they can pick a window or say no.\n\nOutput format:\nCHANNEL\nSUBJECT: up to 8 words, or NONE if [CHANNEL] is not email\nGREETING\nBODY: 140 words or fewer\nCOVERS: topics copied from the notes, one per line\nSLOTS: each window on its own line\nFEE: amount from the paste, or NOT STATED\nASK: one sentence\nSIGN-OFF: from [PUPIL BLOCK] or UNKNOWN\nUNKNOWN: each gap on its own line\nCHECK: Yes or No beside recipient, paper, date, topics, windows, and fee",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a tutor's drafting helper. Build one ready-to-review message offering extra lessons before a big test. Read [PUPIL BLOCK], [ROUGH NOTES], [SLOTS AND FEE], and [CHANNEL]. Do not send, schedule, or text anyone.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take the learner's name and the recipient from [PUPIL BLOCK] and spell them the same way. Do not merge two households.\n- Take the paper and the date from [ROUGH NOTES] only. A missing date stays UNKNOWN, even if the test sounds familiar.\n- List in COVERS just the topics those notes already name. Do not add homework, a worksheet, or a past paper you were not given.\n- Copy windows, length, place, and fee from [SLOTS AND FEE]. When the fee is not stated, the body must not contain a price.\n- Keep a single next step: reply with a window, or decline. No bundle, no referral ask, and no review request.\n- If the channel is WhatsApp or SMS, set SUBJECT to NONE and keep the body short enough to read without scrolling far.\n\nOutput format:\nSections in this order: CHANNEL, SUBJECT (8 words or fewer, or NONE), GREETING, BODY (140 words or fewer), COVERS (one topic per line), SLOTS (one window per line), FEE (copied or NOT STATED), ASK (one sentence), SIGN-OFF, UNKNOWN (one gap per line), CHECK (Yes or No for recipient, paper, date, topics, windows, and fee).",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant you paste into. Later, a pupil sheet can open an unsent Gmail draft through Zapier, Make, or n8n.",
+    "steps": [
+      "From your diary or mark book, copy the pupil's first name, year or grade, who you are writing to (parent, guardian, or the pupil), and whether you usually reach them by email, WhatsApp, or SMS. Add the paper or mock name and the date exactly as your notes record them.",
+      "From the last session notes, list only the topics the extra time should cover, such as a weak algebra unit or a past-paper question type you already worked on. Leave out any unit you have not taught and any mark you did not write down.",
+      "Write the windows you can actually teach, how long each one is, and whether it is online or in your usual room. Add the fee only when that family already pays it. If you have not agreed a fee, type FEE NOT STATED instead of a figure.",
+      "Open the chat assistant you already use and paste the prompt labeled for it. Replace the pupil block, the rough notes, the slots and fee block, and the channel. Ask for a single family, not a batch of names.",
+      "Read the returned note beside your diary. The recipient, paper, date, topics, windows, and fee must match what you pasted. Fill any UNKNOWN yourself. Delete a result prediction, a fear line, or a second offer you did not request.",
+      "Copy the kept wording into a fresh unsent Gmail draft, or into WhatsApp or your phone's messages, and do not press send yet. Read it on your phone in the voice you normally use with that family.",
+      "Optional later step: one row per pupil in Google Sheets, with name, recipient, channel, paper, date, topics, windows, and fee. Point Zapier, Make, or n8n at that row to create an unsent Gmail draft only, with send and schedule left off."
+    ],
+    "approvalStep": "You compare the draft with your diary and mark book, confirm the name, paper, date, topics, windows, and fee, and approve it before anything is sent or scheduled. An unsent Gmail draft stays unsent until you send it yourself.",
+    "failureModes": [
+      "Wrong household: the greeting uses another pupil's name, or it speaks to the child when your block named the parent. Fix the greeting before you send.",
+      "Made-up mark: the body cites a score, a grade boundary, or a predicted result that is not in your notes. Delete that sentence and keep the topics you listed.",
+      "Fee slipped in: a price appears after you wrote FEE NOT STATED, or the amount is not the family's usual charge. Restore your figure or take money out of the note.",
+      "Ghost window: a time shows up that you did not list, or two windows are merged into one. Put back only the slots you can teach.",
+      "Hard sell: the wording says the pupil will fail, or that places are running out, even though you did not write that. Replace it with the plain offer.",
+      "Row mix in agent mode: the sheet row for a different family is pulled into this draft. Match the sheet name to the greeting before you approve send."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I paste in before I ask for the draft?",
+      "a": "Paste four blocks: the pupil's name, year, and who you write to; the channel you will use; rough notes with the paper or mock name, the date, and the topics from your mark book; and the windows plus the fee only if it is already agreed. Leave a blank as UNKNOWN rather than filling it from memory."
+    },
+    {
+      "q": "What if I have not agreed a fee for the extra time?",
+      "a": "Type FEE NOT STATED in the slots block. The message should leave money out. If a figure appears anyway, delete it before you send. Add a price only after you decide what that family will pay, then run the prompt again with the real amount."
+    },
+    {
+      "q": "Which assistant should I use for this note?",
+      "a": "Use the prompt written for the assistant you already have. Judge the draft by whether the recipient, paper, date, topics, windows, and fee match your paste, and whether it still sounds like you. Keep the version that needs the least fixing. Do not pick an assistant from a ranking."
+    },
+    {
+      "q": "Can one draft go to every family before the mocks?",
+      "a": "Run it once per pupil. Topics, dates, and free windows differ, and a shared paragraph will carry the wrong name. In the sheet version, approve each row on its own before that Gmail draft is created. Do not mail a merged list."
+    },
+    {
+      "q": "The school has not told me the exam date yet. What now?",
+      "a": "Leave the date as UNKNOWN. The draft should not invent a day. Check the school letter or ask the parent, write the date into your notes, and run the same prompt again. Do not send a note that names a day you have not confirmed."
+    }
+  ],
+  "draft": true,
+  "persona": "maths tutor",
+  "job": "Turn a pupil block and rough lesson notes into one ready-to-send message offering extra lessons before a named test.",
+  "who": "One-to-one maths tutors who already teach a school pupil and want a plain note to a parent, guardian, or older pupil before a mock, an end-of-term paper, or a public exam.",
+  "toolCategories": [
+    "AI chat models",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}
