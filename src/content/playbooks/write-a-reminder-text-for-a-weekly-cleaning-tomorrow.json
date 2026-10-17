@@ -1,0 +1,84 @@
+{
+  "slug": "write-a-reminder-text-for-a-weekly-cleaning-tomorrow",
+  "title": "Write a reminder text for a weekly cleaning tomorrow",
+  "category": "Back office",
+  "summary": "Paste the client card and tomorrow's line from the route sheet or booking calendar: first name, mobile, home label, usual weekday, arrival window, entry method, pet or product note, and any extra task for this visit. Add your business name and any do-not-text mark. You get one text of 55 words or fewer saying the weekly cleaning is tomorrow, plus a match line and SEND or HOLD. A blank window, a second home, a missing mobile, a code copied into the message, or a price the sheet does not list comes back UNKNOWN. You compare the wording with the route line, cut anything you did not write, and you send the text yourself.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the scheduler for a house-cleaning route. Draft one text that this client's weekly cleaning is tomorrow. Do not send.\n\nUse [CLIENT CARD], [ROUTE NOTES], [BUSINESS NAME], and [VISIT DAY]. The card has the first name, the mobile, the home label, and any do-not-text mark. The notes are tomorrow's route line: weekday, arrival window, entry method, pet or product note, and any extra task.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Say the cleaning is tomorrow only when [VISIT DAY] is that next day and the notes name the same weekday. A blank or different day means READY HOLD and the day is UNKNOWN.\n- Name only the home on that route line. Two homes means HOLD. Do not pick one.\n- Repeat the arrival window as the notes write it. Do not turn it into a clock time, and do not add a price, a tip, a review ask, or an extra room.\n- Keep alarm codes, lockbox codes, gate codes, the surname, and any payment demand out of the message. A do-not-text mark or a blank mobile means READY HOLD.\n- Mention a pet, a product, parking, being home, or an extra task only when the notes already name it. You may say you will use the usual entry, but never print a code.\n- One text, 55 words or fewer, signed with [BUSINESS NAME]. Ask them to reply YES if tomorrow still works, or to name another day. A blank window means READY HOLD and the window is UNKNOWN.\n\nOutput format:\nREADY: SEND or HOLD\nMESSAGE:\nMATCH: First name | Home | Weekday | Window | Mobile\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful clerk for a house cleaner. Prepare one reminder that the weekly cleaning is tomorrow. You only draft.\n\nRead [CLIENT CARD], [ROUTE NOTES], [BUSINESS NAME], and [VISIT DAY]. From the card, take the first name, the mobile, the home label, and any do-not-text mark. From the route line, take the weekday, the arrival window, the entry method, any pet or product note, and any extra task.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace the weekday to [VISIT DAY] and to the route line. If either is empty, or they name different days, set READY to HOLD and mark the day UNKNOWN.\n- If the card lists two homes, do not choose. Set READY to HOLD and mark the home UNKNOWN.\n- Copy the arrival window as written. Leave out any clock time, price, tip, review request, or extra room the notes do not state.\n- Omit alarm codes, lockbox codes, gate codes, and the surname. If texting is marked off, or the mobile is blank, READY is HOLD.\n- Include a pet, a product, parking, a request to be home, or an extra task only by repeating a line in the notes. You may say the usual entry will be used, but never print a code.\n- Keep the message to 55 words or fewer. Sign with [BUSINESS NAME]. Ask for YES if tomorrow still works, or another day if not. If the window is empty, mark it UNKNOWN and set READY to HOLD.\n\nOutput format:\nReturn only these labels:\nREADY: SEND or HOLD\nMESSAGE:\nMATCH: First name | Home | Weekday | Window | Mobile\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a working house cleaner. Write one text that the weekly cleaning is tomorrow. The cleaner hits send. You stop at the draft.\n\nUse [CLIENT CARD], [ROUTE NOTES], [BUSINESS NAME], and [VISIT DAY]. The card has the first name, the mobile, the home label, and a do-not-text mark if one is written. The notes are tomorrow's route line: weekday, arrival window, how you get in, pets or products, and any extra task.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Tomorrow is allowed only when [VISIT DAY] matches the weekday on the route line. No day, or a clash, means HOLD.\n- One home only. Two addresses on the card means HOLD. Do not guess which one.\n- Stick to the window already written. No clock time, no price, no tip, no review ask, no extra room.\n- No alarm code, no lockbox code, no gate code, and no surname in the message. Do-not-text or a missing mobile means HOLD.\n- A pet, a product, parking, or an extra task appears only when the notes already say it. Mention the usual entry without printing a code. Do not scold them about a missed week.\n- Sound like a route text, 55 words or fewer, signed [BUSINESS NAME]. Ask them to reply YES if tomorrow still works, or to name another day. A blank window means HOLD and the window is UNKNOWN.\n\nOutput format:\nREADY: SEND or HOLD\nMESSAGE:\nMATCH: First name | Home | Weekday | Window | Mobile\nMISSING:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting one reminder for a house cleaner. The message says the weekly cleaning is tomorrow. Do not send it or store it on a phone. Stop after the draft.\n\nThe cleaner will paste [CLIENT CARD], [ROUTE NOTES], [BUSINESS NAME], and [VISIT DAY]. The card supplies the first name, the mobile, the home label, and any do-not-text mark. The notes are the route line: weekday, arrival window, entry method, pet or product note, and any extra task.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use tomorrow only if [VISIT DAY] is present and the notes name that same weekday. Otherwise READY is HOLD and the day is UNKNOWN.\n- Do not choose a home when two are listed. Mark the home UNKNOWN and set READY to HOLD.\n- Repeat only the arrival window the notes write. Leave out any clock time, price, tip, review request, or extra room that is not written.\n- Keep alarm codes, lockbox codes, gate codes, and the surname out of MESSAGE. A do-not-text mark or a blank mobile forces HOLD.\n- Mention a pet, a product, parking, or an extra task only when the notes include it. You may name the usual entry and must not print a code.\n- One short text, 55 words or fewer, signed with [BUSINESS NAME]. Ask for YES if tomorrow still works, or another day if it does not. If the window is empty, mark it UNKNOWN.\n\nOutput format:\nREADY: SEND or HOLD\nMESSAGE:\nMATCH: First name | Home | Weekday | Window | Mobile\nMISSING:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Start in paste mode with the chat assistant you already use. Later, a Google Sheet plus Zapier, Make, or n8n can store drafts. You still send every text.",
+    "steps": [
+      "Open tomorrow's line on your paper route sheet or booking calendar. Copy the first name, mobile, home label, usual weekday, arrival window, entry method, pet or product note, and any extra task. Copy a do-not-text mark from the client card. Leave every blank empty.",
+      "On the same scratch note, write your business name and the reply you want, such as YES if tomorrow still works or another weekday if it does not. If this visit was moved off the usual day, write the new weekday. If you have no reply line yet, leave that blank.",
+      "Open a fresh chat in the assistant you already use. Paste this playbook's prompt for that assistant. Fill [CLIENT CARD], [ROUTE NOTES], [BUSINESS NAME], and [VISIT DAY] from the scratch note. Keep the name and the home label spelled as they appear on the card.",
+      "Read READY, MESSAGE, MATCH, and MISSING beside tomorrow's route line. The first name, home, weekday, and arrival window must match that line. Delete a price, a tip, a review request, a clock time, or an alarm, lockbox, or gate code the message should not carry.",
+      "If READY is HOLD, or the window, mobile, or home is marked unknown, do not send. When two homes are on the card, keep only the one on tomorrow's route and run the draft again. A do-not-text mark means you call that household or skip the nudge.",
+      "Send the wording you kept from your own phone, on the existing thread for that mobile. Check the digits against the client card before it leaves. After it goes out, tick tomorrow's route line so the same nudge is not drafted again tonight.",
+      "Optional later: add a Google Sheet with columns for first name, mobile, home, weekday, window, entry method, extra task, draft message, and status. Let Zapier, Make, or n8n fill the draft on rows whose visit is tomorrow and set status to Needs review. Leave every send action off."
+    ],
+    "approvalStep": "You compare the message with tomorrow's route line, confirm the mobile, the home, and that the weekly cleaning is tomorrow, then send it yourself from your phone. A sheet may store the draft. It must not text the client.",
+    "failureModes": [
+      "Tomorrow is not the usual weekday, and the notes never say the visit moved. The message still says tomorrow. Hold it and check the route line before anyone is nudged.",
+      "The sheet says morning or a range, but the message names a clock time. Keep a time only when that exact time is already written on the route line.",
+      "Two homes share one card and the message names the other address. Match the street or unit to tomorrow's line, or hold it and draft again with one home.",
+      "An alarm code, lockbox code, or gate code appears in the message. Take it out. Codes stay in your private notes, and the text only says you will use the usual entry.",
+      "A price, a tip, a review request, a cancellation fee, or an oven add-on appears. Keep that sentence only when tomorrow's route notes already list it.",
+      "The number is an old landline, or the card says not to text. Match the digits to the card and skip the send when texting is marked off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I copy off the route sheet and the client card?",
+      "a": "Copy the first name, the mobile, the home label, the usual weekday, the arrival window, how you get in, any pet or product note, and any extra task written for this visit. Add your business name and a do-not-text mark if the card has one. Leave a blank field blank so the draft can flag it instead of filling a guess."
+    },
+    {
+      "q": "Which assistant should I paste this prompt into?",
+      "a": "Use the prompt written for the assistant you already have. Keep a draft only when the first name, the home, the weekday, and the arrival window match tomorrow's route line, and when a blank mobile or a do-not-text mark is set to hold. If a sentence adds a price, a clock time, or a lockbox code you did not mean to send, do not send that message."
+    },
+    {
+      "q": "The route line has no arrival window. Can I still send the text?",
+      "a": "Hold the message. A missing window should come back unknown, with ready set to hold. Check the route sheet, the booking note, or the last text you sent this household, and type the window only when you can read it there. Do not let the wording invent a clock time when the sheet says morning, or says nothing."
+    },
+    {
+      "q": "This client has two homes. Which address should the text name?",
+      "a": "Neither, until you choose. If the card lists two homes, the draft should hold and mark the home unknown. Paste only the home on tomorrow's route, with its street or unit label, and draft again. Match that label to the route line before the message leaves your phone."
+    },
+    {
+      "q": "Can a spreadsheet send the reminder text for me?",
+      "a": "A Google Sheet, with Zapier, Make, or n8n, can store the draft and mark it as needing a look. It should not text the household. Change the status to approved only after the wording matches tomorrow's route line, then paste that text into your phone and send it yourself. Leave the send action switched off."
+    }
+  ],
+  "draft": true,
+  "persona": "house cleaner",
+  "job": "Paste tomorrow's route line and the client card and get one short reminder that the weekly cleaning is tomorrow, for you to check and send from your phone.",
+  "who": "A house cleaner, or the person who books the route, who wants one plain text telling a weekly client that cleaning is tomorrow, using tomorrow's route line and the mobile on the client card.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Automation",
+    "Phone messaging"
+  ]
+}

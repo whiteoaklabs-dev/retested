@@ -1,0 +1,87 @@
+{
+  "slug": "reply-to-a-bad-review-about-a-missed-online-lesson",
+  "title": "Reply to a bad review about a missed online lesson",
+  "category": "Marketing & SEO",
+  "summary": "A tutor copies the listing complaint about a missed online lesson and the matching booking-calendar row: pupil first name, subject, scheduled start, the time zone printed on the booking, the meeting tool, who joined, and the cause they can defend. They add one fix already approved, or NONE. The assistant returns a listing answer of 90 words or fewer, an inbox note that stays off the listing, the sourced lines, and gaps marked UNKNOWN. The tutor checks the row, removes any join link or surname, and publishes the answer by hand.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the desk aide for a private tutor. Draft a public answer to a bad review about a missed online lesson. Do not publish it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [REVIEW TEXT] as the complaint and [BOOKING ROW] as the only facts you may confirm. If the pupil or the date does not match, set DECISION to WAIT.\n- Describe the miss only as the row supports: you were late, the link was never sent, the pupil was absent, the platform failed, or the clocks disagreed. Do not blame the pupil when the row shows you joined late.\n- Do not argue the rating, and do not ask anyone to edit or delete the post.\n- Offer only the wording in [ONE FIX]. NONE means no makeup and no refund. Do not add a clock time or an amount the row lacks.\n- Listing answer: 90 words or fewer. Sign [YOUR NAME] at [LISTING NAME]. No surname, school, fee, email, phone, password, or full join link in that answer. A link belongs in the inbox note only when the row already contains it.\n\nPublic complaint (display name, rating, date, full text):\n[REVIEW TEXT]\n\nBooking row you will stand behind (first name, subject, start, time zone, meeting tool, who joined, cause):\n[BOOKING ROW]\n\nThe one fix already approved, or NONE:\n[ONE FIX]\n\nListing name and your name:\n[LISTING NAME]\n[YOUR NAME]\n\nOutput format:\nDECISION: PUBLISH or WAIT\nLISTING ANSWER: (90 words max)\nINBOX NOTE: (60 words max, or NONE)\nSOURCED:\nGAPS:\nKEPT PRIVATE:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a precise drafter beside a tutor who teaches live online. Write one public answer to a bad review about a missed lesson. You draft only. You do not publish.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Confirm a start time, a join, or a cause only when [BOOKING ROW] states it. A mismatch with [REVIEW TEXT] means DECISION is WAIT.\n- If you joined late, say so. If the pupil was absent, say so only when the row records your join and their absence. A blank join log stays UNKNOWN.\n- Skip any fight about the rating. Do not request an edit or a takedown.\n- The sole offer is [ONE FIX]. When it reads NONE, name neither a makeup hour nor a refund.\n- Keep the listing answer to 90 words or fewer, signed [YOUR NAME], [LISTING NAME]. Hold back surname, school, fee, email, phone, meeting password, and the full join link. The inbox note may carry a link only if the row already has one, and must stay within 60 words.\n\nComplaint, copied in full:\n[REVIEW TEXT]\n\nCalendar row cleared for a public answer:\n[BOOKING ROW]\n\nApproved fix, or NONE:\n[ONE FIX]\n\nListing name:\n[LISTING NAME]\n\nYour name:\n[YOUR NAME]\n\nOutput format:\nReturn these headings in order:\nDECISION: PUBLISH or WAIT\nLISTING ANSWER:\nINBOX NOTE:\nSOURCED:\nGAPS:\nKEPT PRIVATE:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a straight-talking helper for a tutor answering a bad review about a missed online lesson. Draft the public answer. Do not publish it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- The complaint in [REVIEW TEXT] is what they claim. [BOOKING ROW] is what you may confirm. A different pupil or a different date means DECISION is WAIT.\n- State the cause in the row's words: late tutor, unsent link, absent pupil, platform failure, or a clock mix-up. Never write a no-show if the row says you were late.\n- No argument about the rating. No request to change or remove the post.\n- Copy the offer from [ONE FIX] and stop. NONE means you offer nothing, and you invent no amount.\n- 90 words or fewer on the listing. Sign [YOUR NAME] at [LISTING NAME]. Strip surname, school, fee, email, phone, password, and join link from that answer. The inbox note may include a link only when the row already shows it, capped at 60 words.\n\nComplaint (display name, rating, date, full text):\n[REVIEW TEXT]\n\nBooking row (first name, subject, start, time zone, tool, who joined, cause):\n[BOOKING ROW]\n\nApproved fix, or NONE:\n[ONE FIX]\n\nNames:\n[LISTING NAME]\n[YOUR NAME]\n\nOutput format:\nLabels only, in this order:\nDECISION: PUBLISH or WAIT\nLISTING ANSWER:\nINBOX NOTE:\nSOURCED:\nGAPS:\nKEPT PRIVATE:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting beside a tutor who needs a public answer to a bad review about a missed online lesson. Produce text a person will read. Do not publish or send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stay inside [REVIEW TEXT] and [BOOKING ROW]. If the hour or the pupil does not line up, set DECISION to WAIT.\n- Say the lesson was missed in the way the row records: late arrival, a link that was never sent, an absent pupil, a platform error, or two clocks. Do not invent a no-show.\n- Thank them for writing without debating the rating or asking for a deletion.\n- Put no perk in the answer beyond [ONE FIX]. NONE means zero offer and no made-up refund.\n- LISTING ANSWER stays at or under 90 words and is signed [YOUR NAME] from [LISTING NAME]. Move surname, school, fee, email, phone, password, and the full join link to KEPT PRIVATE. A link may sit in the inbox note only if the row contains it. Keep that note to 60 words.\n\nFull complaint:\n[REVIEW TEXT]\n\nBooking row you can defend:\n[BOOKING ROW]\n\nOne fix already approved, or NONE:\n[ONE FIX]\n\nListing:\n[LISTING NAME]\n\nTutor:\n[YOUR NAME]\n\nOutput format:\nReturn only these sections:\nDECISION: PUBLISH or WAIT\nLISTING ANSWER:\nINBOX NOTE:\nSOURCED:\nGAPS:\nKEPT PRIVATE:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode first. Optional later: a calendar export in Google Sheets plus Zapier, Make, or n8n may store a draft and must never publish it.",
+    "steps": [
+      "Open the review on Google, Facebook, or your tutoring directory. Copy the display name, the rating, the posted date, and the full complaint about the missed online lesson into a scratch note. Leave the reply box empty.",
+      "From the booking calendar, copy the pupil first name, subject, scheduled start, time zone on the booking, meeting tool, who joined, minutes waited or UNKNOWN, and the cause you can defend. Omit surname, school, email, phone, fee, password, and the full join link.",
+      "On the next line, write the single fix you have already approved, or type NONE. A makeup hour counts only if the thread already offers it. A refund counts only if the booking tool already shows it approved. Add your name and the listing name you will sign.",
+      "Open the chat assistant you already use and paste the prompt written for it. Replace [REVIEW TEXT], [BOOKING ROW], [ONE FIX], [LISTING NAME], and [YOUR NAME] with your scratch note. If a field is blank, type UNKNOWN instead of guessing a cause or a time.",
+      "Read DECISION, the listing answer, SOURCED, and GAPS beside the booking row. The start, who joined, and the cause must match that row. If two bookings share the first name, set the answer aside until you know which hour the complaint means.",
+      "Edit the listing answer until it sounds like you and stays at or under 90 words. Cut any line that blames the pupil against your join log, asks for a deletion, or shows a link, a password, a fee, or a surname. If DECISION says WAIT, stop.",
+      "Paste only the listing answer into the reply box on that same review and publish it yourself. Send the inbox note from your own email or text only when you still want that conversation and the address is already on the booking.",
+      "On the booking row, write replied or held, plus the date. If you held it, note the reason, such as the wrong pupil or an undecided fix, so the next pass does not draft that hour again.",
+      "Optional later: export the calendar into Google Sheets with columns for display name, complaint, start, who joined, fix, draft, and decision. Let Zapier, Make, or n8n fill the draft and set the row to Needs review. You still paste and publish it yourself."
+    ],
+    "approvalStep": "You approve the listing answer before it is published. Match the start, who joined, and the one fix to the booking row, delete any join link or surname, and press publish yourself. A sheet or an automation must not post the answer.",
+    "failureModes": [
+      "The join log shows you arrived late, but the draft says the pupil never came. Publish only the cause written on the booking row.",
+      "Two pupils share a first name that week, so the draft describes the wrong hour. Wait until the complaint and the booking row are the same session.",
+      "A meeting password, a full join link, a fee, or a surname from the calendar lands in the public box. Discard that draft and run it again from a cleaned note.",
+      "The draft names a refund amount or a makeup time you have not approved. Keep only the line in your one fix, or NONE.",
+      "The family and the booking use different clocks, and the draft states one start time as if both sides agreed. Mark the gap and wait.",
+      "Zapier, Make, or n8n is set to publish the listing answer instead of saving a draft, so a WAIT response goes live while you are teaching."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I paste this into?",
+      "a": "Use the prompt written for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft when the start time, who joined, and the cause match the booking row, the listing answer stays within 90 words, and anything you did not type is marked unknown. If it blames the pupil against your join log or adds a fix you did not approve, do not publish that wording."
+    },
+    {
+      "q": "Should the public answer say the pupil never joined?",
+      "a": "Say the pupil was absent only when the booking row records that you joined and they did not. If the row shows you were late, the link was never sent, or the platform failed, say that instead. If the join log is blank, mark who joined as UNKNOWN and do not guess a no-show."
+    },
+    {
+      "q": "Can I put the new meeting link in the public reply?",
+      "a": "Leave the full join link, the password, and the pupil email off the listing. Anyone can read that box. If your notes already contain a link and you want them to have it, put it only in the inbox note and send that note yourself from the thread you already use."
+    },
+    {
+      "q": "What if a parent wrote the review about a child's lesson?",
+      "a": "Address the display name on the complaint. Use the pupil first name only if the booking row and the complaint both use it, and you are willing to say it in public. Keep the surname, the school, and the fee out. If you cannot tell which child the post means, set the decision to WAIT."
+    },
+    {
+      "q": "What if I have not decided on a makeup or a refund?",
+      "a": "Type NONE in the fix field. The listing answer should acknowledge the missed hour and invite a message, without naming a new time or a refund amount. Decide the fix in your booking tool first, then run the prompt again if you want that offer in the public wording."
+    }
+  ],
+  "draft": true,
+  "persona": "tutor",
+  "job": "Paste the bad review plus the booking row and get a public reply about the missed online lesson that you can post yourself.",
+  "who": "Solo tutors and small tutoring studios whose Google, Facebook, or directory listing just received a complaint that an online lesson did not happen, and who want the public wording to follow the booking row.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Business listings",
+    "Spreadsheets",
+    "Workflow automation",
+    "Email"
+  ]
+}

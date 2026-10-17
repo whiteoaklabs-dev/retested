@@ -1,0 +1,86 @@
+{
+  "slug": "reply-to-a-customer-who-says-the-quote-is-too-high",
+  "title": "Reply to a customer who says the quote is too high",
+  "category": "Sales",
+  "summary": "Paste three things: the customer message that says the landscaping quote is too high, the quote you already sent (yard address, each line such as bed prep, mulch, plants, edging, irrigation, or haul-away, plus exclusions, total, deposit, and date), and a flex note that either holds the figure or names one line to drop or delay. The assistant returns one reply of at most 160 words, a subject only for email, the lines kept, any smaller or later option taken only from that flex note, the figures copied as written, an UNKNOWN list, and a send-or-hold flag. You decide whether a concession exists, match every amount to the sent quote, and send the text or email yourself.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office voice for a landscaping owner. A customer says the quote is too high. Write one reply the owner will edit. Do not send it.\n\nPaste:\n[OBJECTION TEXT] their text or email\n[SENT QUOTE] address, line items, exclusions, total, deposit, date\n[FLEX NOTES] hold the figure, or the one line to drop or delay\n[YARD ADDRESS]\n[REPLY CHANNEL] text or email\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Acknowledge that they called the figure too high. Do not apologize, and do not describe the price as a mistake or a special deal.\n- Copy kept lines, exclusions, the total, and any deposit from [SENT QUOTE] only. Do not round, shave the total, or match another crew.\n- A smaller job or a later phase is allowed only when [FLEX NOTES] name the line, such as patio, extra mulch, or one irrigation zone. If the notes say to hold the figure, repeat the original total.\n- Do not split the total into labor, plants, and haul-away dollars unless those amounts are already written in the quote or the notes.\n- If they mention a cheaper bid, use only the sentence in [FLEX NOTES]. If that sentence is absent, leave the bid unmentioned.\n- Stay at or under 160 words, first person, plain speech. Name [YARD ADDRESS]. Email needs a subject of 10 words or fewer. A text has no subject.\n\nOutput format:\nHeadings in order: Channel, Subject, Reply, Word count, Lines kept, Smaller or later option, Figures copied, Owner must decide, Unknowns, Send or hold.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a landscaping owner. The homeowner wrote that the quote is too high. Prepare a single reply the owner will compare with the sent sheet. Do not send mail or a text.\n\nSources, pasted as written:\n[OBJECTION TEXT]\n[SENT QUOTE]\n[FLEX NOTES]\n[YARD ADDRESS]\n[REPLY CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Open by recognizing their objection. Do not concede that the number was wrong, and do not offer a courtesy discount.\n- Lift scope rows, exclusions, total, and deposit straight from [SENT QUOTE]. Leave digits unchanged. Do not rebuild the total from hourly guesses.\n- Read [FLEX NOTES] before you remove anything. A dropped or delayed line must be named there, for example the patio, a second mulch delivery, or one irrigation zone. A note that says hold means the same total stays.\n- Skip a cost split across labor, plants, and disposal unless those dollar lines are already on the sheet or in the notes.\n- A rival bid is mentioned in the reply only when [FLEX NOTES] supply the exact sentence. Otherwise omit it.\n- Cap the reply at 160 words. First person. Sound like the person who walked the yard. Subject only if [REPLY CHANNEL] is email, and keep that subject to 10 words or fewer. Work the address in so the property is obvious.\n\nOutput format:\nReturn sections titled Channel, Subject, Reply, Word count, Lines kept, Smaller or later option, Figures copied, Owner must decide, Unknowns, Send or hold.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a landscaping owner who just heard the quote is too high. Write the reply they will paste into the thread. Do not send it.\n\nUse only:\n[OBJECTION TEXT]\n[SENT QUOTE]\n[FLEX NOTES]\n[YARD ADDRESS]\n[REPLY CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Be direct and calm. No groveling, no speech about being the cheapest, and no apology for charging for real yard work.\n- Prices, inclusions, and exclusions come from [SENT QUOTE] digit for digit. Do not shave the total to win the job.\n- Change the scope only if [FLEX NOTES] name what comes off or waits, such as patio pavers, extra mulch, or a single irrigation zone. Hold means hold.\n- Do not invent a labor-versus-materials breakdown. If the sheet has one total, the reply keeps one total.\n- If a cheaper crew was named, answer with the flex-note sentence alone. No jab at that crew and no invented match.\n- 160 words max. Name the yard. Email gets a short subject. Text does not. One next step the owner already wrote, otherwise mark that ask UNKNOWN.\n\nOutput format:\nChannel:\nSubject:\nReply:\nWord count:\nLines kept:\nSmaller or later option:\nFigures copied:\nOwner must decide:\nUnknowns:\nSend or hold: SEND or HOLD, plus the reason drawn from the inputs.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting for a landscaping owner who must answer a customer who says the quote is too high. The owner approves every send. Do not text, email, or schedule anything.\n\nMap the brackets:\n[OBJECTION TEXT] the message claiming the price is too high\n[SENT QUOTE] property, lines, exclusions, total, deposit, date\n[FLEX NOTES] hold, or the single change the owner will allow\n[YARD ADDRESS]\n[REPLY CHANNEL] text or email\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a reply to that objection, not a fresh quote and not a chain of follow-ups.\n- Acknowledge the complaint without surrendering the number. Do not add a discount, a coupon, or a free extra bed.\n- Copy lines and figures from [SENT QUOTE]. If a digit is missing, write UNKNOWN. Do not guess from yard size.\n- Apply [FLEX NOTES] as the only permission to shrink or phase work. Name the patio, mulch, or irrigation change only when the note names it. If the note is silent, the option section says none.\n- Leave other crews out unless the note gives the sentence to use. Do not argue with a price you have not seen.\n- Keep Reply at or under 160 words, in the owner's voice. Put [YARD ADDRESS] in the body. Subject only for email, 10 words or fewer.\n\nOutput format:\nUse headings Channel, Subject, Reply, Word count, Lines kept, Smaller or later option, Figures copied, Owner must decide, Unknowns, Send or hold.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Later, Gmail or phone texts, a Google Sheet, and Zapier, Make, or n8n may remind you or open a draft. You still send.",
+    "steps": [
+      "Open the text or email where the homeowner says the quote is too high. Copy that message in full. Then copy the quote you sent, whether it was an email, a PDF, or a photo of your sheet: yard address, each line, exclusions, total, deposit, and the date.",
+      "Under that, write a flex note in your own words. Either say hold the figure, or name the one line you will drop or delay, such as the patio, a second mulch drop, or one irrigation zone. If they mentioned a cheaper crew, write the only sentence you will send, or write none.",
+      "Open the chat assistant you already use and paste the prompt for that assistant. Replace every bracket with the objection message, the sent quote, your flex note, the yard address, and text or email. Where a digit is unreadable, type UNKNOWN instead of guessing.",
+      "Read Lines kept and Figures copied beside the quote. Plant counts, mulch, edging, exclusions, the total, and any deposit must match what you pasted. Delete a discount, a free bed, a start date, or a unit-cost split you did not write down.",
+      "Read Smaller or later option. It may include only a cut named in your flex note. If you wrote hold the figure, the reply must keep the original total and describe the included yard work, with no money off and no new scope.",
+      "Read Send or hold, then read the reply aloud. It should name the property, stay within the word cap, and sound like you. If the flag says HOLD, or they asked for financing or a remeasure you did not answer, do not send. Fix the channel if it does not match how they wrote.",
+      "When the reply matches the quote and your flex note, paste only the Reply section into the same text thread or the Gmail reply. Check the recipient name on the screen, then send it yourself. Do not send from the chat window.",
+      "Optional later: add a Google Sheet row with the yard, the total, and whether you held the figure. Zapier, Make, or n8n can remind you the next morning or create a Gmail draft. Leave every send action off so a text cannot go out while you are on a job."
+    ],
+    "approvalStep": "You review the reply against the sent quote and your flex note before anything is sent. Confirm the total, any line you allowed to drop or delay, the yard address, and the recipient, then send the text or email yourself. A sheet or Zapier, Make, or n8n reminder is not approval.",
+    "failureModes": [
+      "The draft shaves the total even though your flex note said to hold the figure. Compare the amount in the reply with the quote you sent before you approve it.",
+      "A later phase drops plants, haul-away, or an irrigation zone you meant to keep. If your note did not name that cut, delete the option.",
+      "They named a cheaper crew and the draft matches that bid or insults the other crew. Send only the sentence you wrote, or send none.",
+      "The reply invents labor hours or a dump fee the sheet never listed. If you wrote one total, do not let a new breakdown appear.",
+      "A smudged digit on a photo of the handwritten quote becomes a clean total. If you typed UNKNOWN, do not send a guessed figure.",
+      "The note goes by email when they texted, or a Zapier, Make, or n8n step sends it while you are still deciding. Check the channel and keep send actions off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I will not lower this yard quote?",
+      "a": "Write hold the figure in your flex note and do not name a line to remove. The reply should acknowledge that they called it too high, restate the included yard work from the quote you sent, and keep the same total. If a lower number appears, delete it before you send. You can offer another walk-through only by typing that sentence yourself."
+    },
+    {
+      "q": "They say another crew is cheaper. Do I match it?",
+      "a": "Only when your flex note already contains the exact sentence you want sent. Otherwise the draft must not name a match or comment on the other crew. You can still point at haul-away, plants, or bed prep that your quote includes. You decide whether this job is worth a change, and you write that change before the next paste."
+    },
+    {
+      "q": "Can the reply offer a smaller yard instead of money off?",
+      "a": "Yes, when your flex note names the line to drop or delay, such as the patio, a second mulch drop, or one irrigation zone. The reply may describe that smaller yard and must not invent a new total. If you did not write the reduced figure, that amount stays unknown and you fill it before sending. You still approve the wording."
+    },
+    {
+      "q": "Which assistant should I use for this reply?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft only if the total matches the sent quote, any smaller option matches your flex note, and the tone sounds like something you would send from the truck. If a figure or a plant count is wrong, edit it or paste the notes again."
+    },
+    {
+      "q": "The quote is a blurry photo. What do I paste?",
+      "a": "Type each line you can read: address, tasks, exclusions, total, and deposit. If a digit is smudged, write UNKNOWN for that figure instead of filling it from memory. Send the reply only after you have held it next to the paper. Do not let the draft turn a blurry total into a clean discount."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaping business owner",
+  "job": "Turn the customer message that says the quote is too high, the yard quote you sent, and your flex note into one reply you check before sending.",
+  "who": "Landscaping business owners who get a text or email from a customer who says the quote is too high, and who need one plain reply that does not give away plants, haul-away, or labor by accident.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Text messaging",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

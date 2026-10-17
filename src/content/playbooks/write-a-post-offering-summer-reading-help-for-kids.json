@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-post-offering-summer-reading-help-for-kids",
+  "title": "Write a post offering summer reading help for kids",
+  "category": "Marketing & SEO",
+  "summary": "You paste the summer card you already keep for parents, the family list, and two or three old texts. The card holds grades or ages, session length, meeting place, first and last dates, what a lesson includes, what you will not do, the fee line, open spots, and how a parent replies. The family list holds the town you will name, whether the note is for past families or new parents, and any school or child only with a parent's OK. You get one draft for one surface: a hook, a caption inside that surface's word cap, lesson lines copied from the card, a reply a parent can send, a boundary you can say at the door, and a gap list. You correct every drifted line and approve the draft before it is posted or emailed.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the social editor for a reading tutor. Draft one post offering summer reading help for kids. The tutor reviews it before it is posted or emailed. Use only [SUMMER CARD], [FAMILY LIST], [OLD TEXTS], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Copy every lesson field from [SUMMER CARD] only. Do not add a package, a trial, or a second fee.\n- Do not name a child, school, current book, or score unless [FAMILY LIST] has an explicit public OK. Past families only: do not invite the town.\n- Do not name a disorder or promise a grade or level change. If the card does not say you assess, write that you teach reading and you do not diagnose.\n- No summer-loss claim, study, or parent quote. Use a warm phrase, emoji, or hashtag only when [OLD TEXTS] already has it. Keep spelling, sign-off, and refused words.\n- Fit [POST SURFACE] only. Caps: parent or Facebook 110 words, Instagram 70, neighborhood 90, past-family email 140 plus an 8-word subject, library bulletin 80. Else ask.\n\nOutput format:\nSURFACE. SUBJECT or NONE. HOOK: 16 words or fewer, summer reading and who it is for. CAPTION: inside the cap. LESSON LINES columns Field, Wording, Source (card, list, or texts). Rows: Grades or ages, Where, Dates, Session length, Included, Left out, Fee, Spots, Reply. PARENT REPLY: one sentence. BOUNDARY: 30 words or fewer. GAPS: one item per row. DRIFT: Same or Changed, naming any line that moved.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting editor for a reading tutor. Prepare one post offering summer reading help for kids. Use only [SUMMER CARD], [FAMILY LIST], [OLD TEXTS], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every lesson field to [SUMMER CARD]. If a field is not on the card, mark that row UNKNOWN.\n- If [SUMMER CARD] and [FAMILY LIST] disagree on who may be addressed, put both wordings under GAPS and copy neither.\n- Keep out a child, school, current book, or score unless [FAMILY LIST] records an explicit public OK. Past families only: do not invite the town.\n- Do not name a disorder or promise a grade or level change. If the card does not offer an assessment, say you teach reading and you do not diagnose.\n- No summer-loss claim, study, or parent quote. A warm phrase, emoji, or hashtag only if [OLD TEXTS] already has it. Honor spelling, sign-off, and refused words.\n- Obey [POST SURFACE]. Caps: parent or Facebook 110 words, Instagram 70, neighborhood 90, past-family email 140 plus an 8-word subject, library bulletin 80. Else ask.\n\nOutput format:\nSURFACE. SUBJECT (NONE if not the email). HOOK: 16 words or fewer. CAPTION: inside the cap. LESSON LINES columns Field, Wording, Source (card, list, or texts). Rows: Grades or ages, Where, Dates, Session length, Included, Left out, Fee, Spots, Reply. PARENT REPLY: one sentence. BOUNDARY: 30 words or fewer. GAPS: one item per row. DRIFT: Same or Changed, name any moved row.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken writer for a reading tutor. Write one post offering summer reading help for kids. Do not post it. Use only [SUMMER CARD], [FAMILY LIST], [OLD TEXTS], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep the lesson the card already offers. Copy each lesson field from [SUMMER CARD]. Do not add a trial or a second price.\n- No child name, school, book, or score unless [FAMILY LIST] says that parent agreed it can be public. Past families only: do not invite the town.\n- Do not name a disorder or say a grade or reading level will rise. If the card does not say you assess, write that you teach reading and you do not diagnose.\n- No summer-loss claim, study, or made-up parent line. Be warm only with a phrase already in [OLD TEXTS]. Keep their spelling, sign-off, and refused words. No new emoji or hashtag.\n- One surface, from [POST SURFACE]. Caps: parent or Facebook 110 words, Instagram 70, neighborhood 90, past-family email 140 plus an 8-word subject, library bulletin 80. Else ask which one.\n\nOutput format:\nSURFACE. SUBJECT or NONE. HOOK: 16 words or fewer, summer reading and who it is for. CAPTION: under the cap. LESSON LINES columns Field, Wording, Source (card, list, or texts). Rows: Grades or ages, Where, Dates, Session length, Included, Left out, Fee, Spots, Reply. PARENT REPLY: one sentence. BOUNDARY: 30 words or fewer. GAPS: one hole per row. DRIFT: Same or Changed, and which line moved.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a reading tutor. Build one post offering summer reading help for kids. Use only [SUMMER CARD], [FAMILY LIST], [OLD TEXTS], and [POST SURFACE].\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat [SUMMER CARD] as closed. Copy each lesson field from it. Do not add a free lesson or a discount.\n- If the card and [FAMILY LIST] clash on audience, put both under GAPS and do not pick a winner.\n- A child, school, book, or score needs an explicit OK on [FAMILY LIST] before it is public. Past families stay off the public invitation.\n- No disorder names, and no promise that a grade or level will change. If the card is silent on assessment, say you teach reading and you do not diagnose.\n- No summer-loss claim, study, or made-up parent quote. Warm wording and any emoji must already be in [OLD TEXTS]. Honor spelling, sign-off, and refused words.\n- Match [POST SURFACE]. Caps: parent or Facebook 110 words, Instagram 70, neighborhood 90, past-family email 140 plus an 8-word subject, library bulletin 80. Else stop and ask.\n\nOutput format:\nSURFACE. SUBJECT (NONE if not the email). HOOK: 16 words or fewer. CAPTION: inside the cap. LESSON LINES columns Field, Wording, Source (card, list, or texts). Rows: Grades or ages, Where, Dates, Session length, Included, Left out, Fee, Spots, Reply. PARENT REPLY: one sentence. BOUNDARY: 30 words or fewer. GAPS: one item per row. DRIFT: Same or Changed, naming any row that differs.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode. Later, a sheet plus Zapier, Make, or n8n can file an unsent draft only.",
+    "steps": [
+      "Paste mode starts in a blank note. Copy the summer card you already hand to parents: grades or ages, session length, where you meet, first and last dates, what a lesson includes, what you will not do, the fee line, open spots, and how a parent replies. Leave any blank as UNKNOWN.",
+      "On a second note, write the family list: the town or neighborhood that may be public, whether this is for past families or new parents, and a school or child only if that parent agreed. Name one surface, such as a parent group, Instagram, a neighborhood post, an email, or a library bulletin.",
+      "Add two or three old texts to parents, your sign-off, and words you refuse to use about a child. Open ChatGPT, Claude, Grok, or Muse, paste that prompt, and replace [SUMMER CARD], [FAMILY LIST], [OLD TEXTS], and [POST SURFACE]. Run it once for that single surface.",
+      "Read each lesson line beside the summer card. Grades, place, dates, session length, included work, exclusions, fee, spots, and the reply path must match. If DRIFT says Changed, or a gap is still open, fix the caption from the card before a parent could see it.",
+      "Read the hook and caption aloud. Cut a child name, a school, a score, a disorder, a study line, or a level-change promise you did not write. Keep one reply ask. If the caption is over the word cap for that surface, shorten it yourself.",
+      "Check the boundary the way you would say it at the door. You teach reading, you do not diagnose, and you do not promise a grade or a level change, unless the card already says you assess. Rewrite any sentence a parent could hear as a promise.",
+      "Paste the kept caption into that one surface as a draft only: the group composer, Instagram, the neighborhood box, an unsent Gmail to yourself, or the library bulletin. Leave post, send, and schedule off until you approve the wording.",
+      "After you mark a Google Sheets row approved, use Zapier, Make, or n8n to copy that caption into a scheduler draft or an unsent Gmail. Confirm the run log shows a draft only, and that publish and send stay off."
+    ],
+    "approvalStep": "You match grades, dates, place, fee, spots, and the reply line to the summer card, remove any child name that lacks a parent's OK, and approve the caption before it is posted, emailed, or passed to a scheduler.",
+    "failureModes": [
+      "Fee drift: the caption changes the fee, adds a trial, or lengthens the visit. Watch for a price or a time you cannot find on the summer card, and put that wording back.",
+      "Named child: a student's name, school, current book, or score shows up in the caption. Watch for a private detail from the family list, and remove it unless that parent gave an explicit OK.",
+      "Diagnosis creep: the post names a disorder or says a grade or reading level will rise. Watch for a promise you would not say at the door, then delete it and keep the boundary.",
+      "Method added: the caption names a branded program or a certificate that is not on the summer card. Watch for a method you did not write, and list only the lesson work from the card.",
+      "Wrong room: an email-length note is used as an Instagram caption, or a past-families note invites the whole town. Watch the surface label, and run it again for the one place you will use.",
+      "Early send: Zapier, Make, or n8n posts to the parent group or emails families while you are still editing. Watch for a sent item before the row says approved, then stop the run and leave publish off."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste before I ask for the summer post?",
+      "a": "Paste four notes. The summer card has grades or ages, session length, where you meet, first and last dates, what a lesson includes, what you will not do, the fee line, open spots, and how a parent replies. The family list has the town you will name, past families or new parents, and any school or child only with a parent's OK. Add two or three old texts plus words you refuse, and the one surface name. A blank stays blank so the draft can mark it unknown."
+    },
+    {
+      "q": "What if I do not want my fee or a school in public?",
+      "a": "Leave the fee off the summer card, or write the exact rates line you are willing to show, such as message me for rates. Leave the school off the family list. The draft should mark a missing fee as unknown and should not invent an amount or a campus. Before you post, delete any figure or school name you cannot point to in those notes."
+    },
+    {
+      "q": "Which assistant should I use for this post?",
+      "a": "Use the prompt written for the assistant you already have. Judge the draft by three checks: the lesson lines match the summer card, a child is named only when the family list has an explicit OK, and the caption fits the one surface. Keep the draft that needs the least fixing. Do not pick an assistant from a ranking."
+    },
+    {
+      "q": "Can one draft serve the parent group and the past-family email?",
+      "a": "Use one surface per run. A group post and an email have different word caps, and only the email gets a subject. Paste the same summer card again with the other surface in [POST SURFACE], then approve each caption on its own before you post or send it. A note marked past families only should not be pasted into the public group."
+    },
+    {
+      "q": "How do I keep a diagnosis or a grade promise out of the post?",
+      "a": "Write the limits on the summer card before you run the prompt: no disorder names, and no claim that a grade or a reading level will change, unless you truly offer an assessment. After the draft, search for catch up, behind, and any disorder word. Delete that sentence. Keep the boundary line, and do not post while it still sounds like a promise."
+    }
+  ],
+  "draft": true,
+  "persona": "reading tutor",
+  "job": "Paste your summer card and family list and get one ready post offering reading help for kids on a single surface.",
+  "who": "Independent reading tutors and small studios who already know their summer lessons and need one parent-facing post that leaves a child's name, a diagnosis, and any grade promise off the public page.",
+  "toolCategories": [
+    "AI chat models",
+    "Social schedulers",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "turn-a-happy-customer-text-into-a-post-for-my-facebook-page",
+  "title": "Turn a happy customer text into a post for my Facebook page",
+  "category": "Marketing & SEO",
+  "summary": "A house-cleaning owner pastes the happy customer text from their phone, a yes-or-no permission note, and rough job notes that name the clean type, the rooms finished, and the town they are willing to share. The assistant returns a Facebook page draft: caption, name line, photo line, any wording copied exactly, a withheld list, and UNKNOWN gaps. Streets, door codes, last names, prices, pet notes, and pictures of the home stay off the caption unless that permission note allows the exact item. The owner reads the draft beside the original message and posts it on the page. The assistant does not publish, schedule, or reply.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the Facebook page writer for a house-cleaning owner. Turn one happy customer text into a page post for review. Do not publish it or reply to the household.\n\nInputs:\n[CUSTOMER TEXT]\n[PERMISSION NOTE]\n[JOB NOTES]\n[VOICE NOTES]\n[WORD CAP]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Praise only rooms, tasks, and results written in [CUSTOMER TEXT] or [JOB NOTES]. Do not add an oven, a fridge, a stain, or a product that is not named.\n- Follow [PERMISSION NOTE]. A first name or a town goes on the page only when that note says yes. If consent is blank, keep the household anonymous.\n- Put their wording under QUOTED WORDS only when the note allows quoting, and copy it exactly. Otherwise set QUOTED WORDS to NONE.\n- Keep the street, unit, door code, keypad, lockbox, alarm, last name, phone, and price off the page. List each one under WITHHELD.\n- Name a picture only if [JOB NOTES] lists a file the permission note allows. Otherwise set PHOTO LINE to DO NOT ATTACH.\n- Sound like [VOICE NOTES]: their sign-off, refused words, and emoji habit. Skip any hashtag, discount, or booking line they did not write.\n- Stay at or under [WORD CAP]. If the cap is blank, keep POST TEXT to 80 words or fewer. Do not invent a network limit.\n\nOutput format:\nPOST TEXT\nCUSTOMER LINE\nPHOTO LINE\nQUOTED WORDS\nWITHHELD\nUNKNOWN\nREADY TO POST: NO",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a house-cleaning owner. Prepare one Facebook page post from a happy customer text. Do not publish it or message the household.\n\nSources, and nothing else:\n[CUSTOMER TEXT]\n[PERMISSION NOTE]\n[JOB NOTES]\n[VOICE NOTES]\n[WORD CAP]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Every compliment in POST TEXT must be traceable to a phrase in [CUSTOMER TEXT] or a room in [JOB NOTES]. If you cannot point to it, mark that line UNKNOWN.\n- Treat [PERMISSION NOTE] as the only consent. First name and town appear only on a yes. A blank note means an anonymous household and no quoted wording.\n- Copy words into QUOTED WORDS only after a yes, character for character. Any other case is NONE. Do not tidy spelling inside a permitted quote.\n- Strip street, unit, door code, keypad, lockbox, alarm, last name, phone, price, pet names, and how messy the home was. Put each stripped item under WITHHELD.\n- PHOTO LINE may name a file only when both [JOB NOTES] and the permission note allow that file. Otherwise write DO NOT ATTACH.\n- Apply [VOICE NOTES] for sign-off, refused words, and emoji. Hashtags, discounts, and booking lines appear only when those notes already contain them.\n- Honor [WORD CAP]. When it is blank, cap POST TEXT at 80 words and mark the cap UNKNOWN. Do not borrow a limit from a network.\n\nOutput format:\nPOST TEXT\nCUSTOMER LINE\nPHOTO LINE\nQUOTED WORDS\nWITHHELD\nUNKNOWN\nREADY TO POST: NO",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken writer for a house-cleaning owner. Turn a happy customer text into one Facebook page post they can check. You do not publish it, and you do not text them back.\n\nUse only:\n[CUSTOMER TEXT]\n[PERMISSION NOTE]\n[JOB NOTES]\n[VOICE NOTES]\n[WORD CAP]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to praise they actually wrote and rooms [JOB NOTES] say the crew finished. No extra oven, fridge, stain, or product.\n- Read [PERMISSION NOTE] before you name anyone. First name and town need a yes. No note means the household stays anonymous.\n- Quote them under QUOTED WORDS only if the note says yes, and keep their spelling. Otherwise write NONE.\n- Leave the street, unit, door code, keypad, lockbox, alarm, last name, phone, and price off the caption. Park them under WITHHELD.\n- Mention a picture only when [JOB NOTES] names a file they allowed. If not, PHOTO LINE is DO NOT ATTACH.\n- Match [VOICE NOTES]: same sign-off, none of their refused words, emoji only if they already use it. No new hashtag, discount, or booking line.\n- Fit [WORD CAP]. If they left it blank, keep POST TEXT to 80 words or fewer and mark the cap UNKNOWN.\n\nOutput format:\nPOST TEXT\nCUSTOMER LINE\nPHOTO LINE\nQUOTED WORDS\nWITHHELD\nUNKNOWN\nREADY TO POST: NO",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting helper for a house-cleaning owner. Build a review packet that turns one happy customer text into a Facebook page post. Do not publish, schedule, or reply.\n\nPacket sources:\n[CUSTOMER TEXT]\n[PERMISSION NOTE]\n[JOB NOTES]\n[VOICE NOTES]\n[WORD CAP]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Build POST TEXT from [CUSTOMER TEXT] and the rooms in [JOB NOTES]. A result you cannot point to stays UNKNOWN.\n- Let [PERMISSION NOTE] decide the name line. Yes means first name or town may appear. Blank or no means an anonymous household.\n- Fill QUOTED WORDS only when quoting is allowed, copied exactly. Otherwise NONE. Do not polish their spelling.\n- Move street, unit, door code, keypad, lockbox, alarm, last name, phone, price, and any note about mess, illness, pets, or children into WITHHELD.\n- Set PHOTO LINE to a file name only when [JOB NOTES] and the permission note both allow it. Otherwise DO NOT ATTACH.\n- Follow [VOICE NOTES] on sign-off, refused words, and emoji. Add a hashtag, discount, or booking line only if those notes already include it.\n- Keep POST TEXT inside [WORD CAP]. If the cap is empty, use 80 words or fewer and mark the cap UNKNOWN. Do not guess what a network will cut.\n\nOutput format:\nPOST TEXT\nCUSTOMER LINE\nPHOTO LINE\nQUOTED WORDS\nWITHHELD\nUNKNOWN\nREADY TO POST: NO",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Any chat assistant in paste mode. Optional later: Google Sheets plus Zapier, Make, or n8n can copy an approved row into a scheduler with publish left off.",
+    "steps": [
+      "Open the text thread and copy the happy customer text into a note exactly as it arrived, including a short thank-you with no room named. If it was a screenshot, type the words you can read and keep their spelling. Put the send date at the top of the note.",
+      "Under that message, write yes or no for a first name, a town, quoting their words, and each picture you might attach. If you never asked, write permission UNKNOWN. A kind text is not consent to use a name or show the home.",
+      "Add rough job notes: business name, clean type, rooms the crew finished, and the town you will say in public. Leave out the street, unit, door code, keypad, lockbox, alarm, last name, phone, price, and pet names.",
+      "Add voice lines the page already uses: your sign-off, words you refuse, whether emoji belong, and hashtags you already post. Write a word cap if you want one. Leave the cap blank when you have not chosen a ceiling.",
+      "Open the assistant you already use and paste this playbook's prompt for that assistant. Replace [CUSTOMER TEXT], [PERMISSION NOTE], [JOB NOTES], [VOICE NOTES], and [WORD CAP] with your notes. If a yes-or-no line is missing, type UNKNOWN instead of guessing.",
+      "Read POST TEXT beside the original message. Every compliment must be a phrase you can point to in that message or in the room list. Delete any oven, product, stain, or result that is not written there. Fill each UNKNOWN yourself or cut the line.",
+      "Check CUSTOMER LINE, PHOTO LINE, QUOTED WORDS, and WITHHELD. The caption must hide the street, last name, phone, and any picture the permission note did not allow. If consent is UNKNOWN, keep the household anonymous and attach nothing.",
+      "Paste the kept caption into the Facebook composer and stop before you publish. Optional later: put the same fields in Google Sheets and use Zapier, Make, or n8n to copy an approved row into a scheduler with publish left off."
+    ],
+    "approvalStep": "You read the caption beside the original message and the permission note, confirm the street, last name, and unapproved pictures are absent, and only then publish it on your Facebook page yourself.",
+    "failureModes": [
+      "Address leak: the caption names a street, unit, door code, or landmark from the job notes. Delete it and keep only a town the permission note marked public.",
+      "Name overreach: a last name or a first name appears when the permission note was blank or said no. Switch the line to an anonymous household.",
+      "Extra shine: the caption adds an oven, a fridge, or a stain the message never mentioned. Cut every result you cannot highlight in their words or your room list.",
+      "Private mess: the caption describes dirt, illness, pets, or children's rooms. Move that detail to the withheld list and keep the public lines to the praise.",
+      "Picture overreach: a before shot of a bathroom is named when permission covered a thank-you only. Set the photo line to do not attach.",
+      "Early publish: a scheduler sends the caption while you are still reading consent. Leave publish off until you post the page update yourself."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this Facebook post?",
+      "a": "Use the prompt for the assistant you already have. Keep the caption when every compliment sits in the message, the name and pictures match the permission note, and the street and last name are absent. If a line fails, mark the gap UNKNOWN and run that same paste again."
+    },
+    {
+      "q": "Can I show a first name and a kitchen picture?",
+      "a": "Only when the permission note says yes to a first name and yes to that picture. A thank-you on its own does not allow the inside of the home on the page. If you have not asked, leave the household anonymous, attach nothing, and ask them before you publish."
+    },
+    {
+      "q": "The message is only a short thank-you. What can the caption say?",
+      "a": "Thank them in general and name the clean type only if your job notes already list it. Do not invent rooms, products, or a longer compliment. Put the missing detail under UNKNOWN and keep the caption short until you have a real detail to add."
+    },
+    {
+      "q": "Should I add our price or a discount for new bookings?",
+      "a": "Leave the price and any discount out unless your voice notes already contain the exact offer you want on the page. A message about one visit is not a coupon. If no offer is written down, the draft must not create one."
+    },
+    {
+      "q": "Will this publish the caption on my Facebook page?",
+      "a": "No. Paste mode returns a caption for you to read. If you later send an approved row from Google Sheets through Zapier, Make, or n8n into a scheduler, leave publish off. You still check consent, then you publish it yourself."
+    }
+  ],
+  "draft": true,
+  "persona": "cleaning business owner",
+  "job": "A happy customer text, a permission note, and rough job notes go in. A Facebook page draft comes out for you to review and post yourself.",
+  "who": "House-cleaning owners who get a kind text after a visit and want a Facebook page post that uses only that message, the rooms they actually cleaned, and the permission they already have.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Social schedulers",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

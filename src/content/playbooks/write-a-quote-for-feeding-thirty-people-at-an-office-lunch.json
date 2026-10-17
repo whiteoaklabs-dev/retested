@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-quote-for-feeding-thirty-people-at-an-office-lunch",
+  "title": "Write a quote for feeding thirty people at an office lunch",
+  "category": "Sales",
+  "summary": "A cafe owner pastes the organizer's email or text and the till prices, and gets one quote for an office lunch feeding thirty people. Inputs: name, company, email, lunch date, serve window, office address or pickup, dietary lines, dishes the kitchen can finish with today's unit price, the portion plan, service style, and any delivery fee, tax rule, deposit, and valid-until line already used. Output: subject, opening, lunch facts, food table columns item, portions, unit price, and line amount, diets, gear, exclusions, a bill that shows the addition, conditions, how they confirm, a missing list, and a message of at most 220 words. The owner rechecks the math and the kitchen load, then sends it. Nothing is booked or charged until they approve.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You draft a cafe quote email for an office lunch feeding thirty people. The owner sets prices and sends it.\n\nPaste:\n[CAFE NAME] [ORGANIZER NAME] [COMPANY] [ORGANIZER EMAIL]\n[LUNCH DATE] [SERVE WINDOW] [SITE] [HEADCOUNT]\n[DIETARY NOTES] [SERVICE STYLE] [MENU AND PRICES]\n[PORTION PLAN] [INCLUDED GEAR] [FEE AND TERMS] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only [HEADCOUNT]. If it is not thirty, or two figures disagree, mark the count UNKNOWN and do not resize the food.\n- Copy unit prices from [MENU AND PRICES] digit for digit. No per-guest package. A missing price makes that line and the total UNKNOWN.\n- Portions come only from [PORTION PLAN]. Line amount is portions times unit price only when both were pasted. Show the working. Do not round.\n- Copy allergy lines only from [DIETARY NOTES]. Do not call a dish nut-free, gluten-free, or safe unless those words are already there.\n- Keep [SERVICE STYLE] as pasted. Add servers or chafers only when [INCLUDED GEAR] names them.\n- Copy delivery fee, tax, deposit, and valid-until only from [FEE AND TERMS]. Empty tax is UNKNOWN. Any UNKNOWN addend makes the total UNKNOWN.\n- MESSAGE is 220 words or fewer, one way to confirm. Keep the subject out.\n\nOutput format, headings in order, nothing after:\nSUBJECT\nOPENING\nTHE LUNCH\nFOOD TABLE\nDIETS\nWHAT GOES WITH THE FOOD\nLEFT OFF\nTHE BILL\nCONDITIONS\nHOW THEY CONFIRM\nMISSING\nMESSAGE\nColumns: item, portions, unit price, line amount.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a cafe owner. Prepare one quote for an office lunch that feeds thirty people. They send it.\n\nRead only:\n[CAFE NAME] [ORGANIZER NAME] [COMPANY] [ORGANIZER EMAIL]\n[LUNCH DATE] [SERVE WINDOW] [SITE] [HEADCOUNT]\n[DIETARY NOTES] [SERVICE STYLE] [MENU AND PRICES]\n[PORTION PLAN] [INCLUDED GEAR] [FEE AND TERMS] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- [HEADCOUNT] is the only guest figure. If it is blank, not thirty, or fights another figure, mark it UNKNOWN. Do not rescale.\n- Copy unit prices from [MENU AND PRICES] with the same digits. No bundle price per guest. One blank price makes that row and the total UNKNOWN.\n- Portions come from [PORTION PLAN] alone. Line amount is portions times unit price only if both were supplied. Show the working. Do not round.\n- Keep diet wording inside [DIETARY NOTES]. Do not attach nut-free, gluten-free, or safe unless those words are already there.\n- Record [SERVICE STYLE] as written. Staff and chafers appear only when [INCLUDED GEAR] lists them.\n- Delivery fee, tax, deposit, and the closing date come only from [FEE AND TERMS]. Empty tax stays UNKNOWN. Any UNKNOWN addend makes the total UNKNOWN.\n- Hold MESSAGE to 220 words or fewer, one confirm line, no subject inside it.\n\nOutput format:\nSUBJECT\nOPENING\nTHE LUNCH\nFOOD TABLE\nDIETS\nWHAT GOES WITH THE FOOD\nLEFT OFF\nTHE BILL\nCONDITIONS\nHOW THEY CONFIRM\nMISSING\nMESSAGE\nColumns: item, portions, unit price, line amount.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You help a cafe owner write a quote for an office lunch feeding thirty people. They send it. Do not pick prices or mail the office.\n\nPaste:\n[CAFE NAME] [ORGANIZER NAME] [COMPANY] [ORGANIZER EMAIL]\n[LUNCH DATE] [SERVE WINDOW] [SITE] [HEADCOUNT]\n[DIETARY NOTES] [SERVICE STYLE] [MENU AND PRICES]\n[PORTION PLAN] [INCLUDED GEAR] [FEE AND TERMS] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Guest count comes from [HEADCOUNT] only. If it is not thirty, or the note gives two counts, put UNKNOWN and do not resize boxes or platters.\n- Print each unit price from [MENU AND PRICES] as written. No per-guest deal. A blank price means that row and the total are UNKNOWN.\n- Packing counts come from [PORTION PLAN]. Line amount equals portions times unit price only when both numbers are there. Show it. Do not round.\n- Allergy lines stay in [DIETARY NOTES]. Do not stamp a dish nut-free, gluten-free, or safe on your own.\n- [SERVICE STYLE] stays as pasted. No extra staff or chafers unless [INCLUDED GEAR] says so.\n- Delivery fee, tax, deposit, and expiry come from [FEE AND TERMS] only. Blank tax is UNKNOWN. One UNKNOWN addend makes the total UNKNOWN.\n- MESSAGE is 220 words max, one way to confirm, subject kept separate.\n\nOutput format, this order:\nSUBJECT\nOPENING\nTHE LUNCH\nFOOD TABLE\nDIETS\nWHAT GOES WITH THE FOOD\nLEFT OFF\nTHE BILL\nCONDITIONS\nHOW THEY CONFIRM\nMISSING\nMESSAGE\nColumns: item, portions, unit price, line amount.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are the drafting partner for a cafe owner. Build one quote email for an office lunch feeding thirty people. They accept or reject it. Do not send, book, or charge.\n\nPaste:\n[CAFE NAME] [ORGANIZER NAME] [COMPANY] [ORGANIZER EMAIL]\n[LUNCH DATE] [SERVE WINDOW] [SITE] [HEADCOUNT]\n[DIETARY NOTES] [SERVICE STYLE] [MENU AND PRICES]\n[PORTION PLAN] [INCLUDED GEAR] [FEE AND TERMS] [HOW TO ACCEPT]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- If [HEADCOUNT] is blank, not thirty, or conflicts with another figure, the count is UNKNOWN. Do not force the food to thirty.\n- Copy unit prices only from [MENU AND PRICES]. No package rate. A missing price makes that row and the total UNKNOWN.\n- Portions come from [PORTION PLAN]. A line amount is portions times unit price only when both are present. Show it. Do not round.\n- Carry diet lines across unchanged. Do not add nut-free, gluten-free, or safe unless [DIETARY NOTES] says so.\n- Do not upgrade [SERVICE STYLE]. Extra staff or gear appear only in [INCLUDED GEAR].\n- Fees, tax, deposit, and the close date come from [FEE AND TERMS] alone. Blank tax is UNKNOWN. Any UNKNOWN addend makes the total UNKNOWN.\n- MESSAGE stays at or under 220 words, first person, one confirm step.\n\nOutput format:\nSUBJECT\nOPENING\nTHE LUNCH\nFOOD TABLE\nDIETS\nWHAT GOES WITH THE FOOD\nLEFT OFF\nTHE BILL\nCONDITIONS\nHOW THEY CONFIRM\nMISSING\nMESSAGE\nColumns: item, portions, unit price, line amount.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Optional later: Google Sheets and Gmail, with Zapier, Make, or n8n creating an unsent draft only.",
+    "steps": [
+      "From the organizer's email or text, copy their name, company, email address, lunch date, serve window, office address or pickup note, every dietary line, and the sentence that gives the headcount. If that sentence is not exactly thirty people, keep their words next to yours.",
+      "From the printed menu or the till screen, copy only dishes you can finish before that serve window. For each one write the name, the portion size, and the unit price showing today. If a price is not on the screen, leave it empty instead of recalling it.",
+      "Write the portion plan yourself: how many boxes, platters, or bowls you will send, and whether this is drop-off, platters, or a staffed buffet. List labels, napkins, or chafers only if they leave with the food. Add your delivery fee, deposit, tax rule, and valid-until line, or leave each empty.",
+      "Open the chat assistant you already use. Paste the prompt for that assistant and replace every bracket with your notes. Where a bracket is empty, type UNKNOWN. Do not ask it to choose a per-guest rate, a tax rate, or a safety label.",
+      "Compare the food table with the till, digit for digit, and the portions with your plan. Delete a dish you cannot cook in that window, and any server or chafer you did not list. If the guest figure is not the one in the inquiry, stop and correct it before a total is shown.",
+      "Add the food lines, the delivery fee, and tax on paper, using only numbers you pasted. If one figure is empty, the bill must say UNKNOWN. Read the message aloud and cut any promise about a hot plate or a safety claim you would not make at the counter.",
+      "Paste the subject and the message into an unsent Gmail draft addressed to the organizer. Check the To line. Leave the draft unsent. Do not write this lunch on the kitchen board, and do not take a card, until they confirm the menu and the bill.",
+      "Optional later: in Google Sheets, log the company, the lunch date, the bill, and a status column. Use Zapier, Make, or n8n to create a Gmail draft only after you set that status to approved. Leave auto-send off so a new row cannot email the office during service."
+    ],
+    "approvalStep": "Before sending the email, you review the unsent Gmail draft against the till prices, the portion plan, and the dietary lines for this office lunch. You send it yourself. No kitchen ticket, deposit, or card charge happens until you approve.",
+    "failureModes": [
+      "A per-guest package price shows up that is not on the printed menu or the till. If you cannot point to that unit price in your notes, delete the row and keep the bill as UNKNOWN.",
+      "Box or platter counts drift away from the inquiry, so the quote feeds a different room. When the notes do not clearly say thirty, the guest figure must stay UNKNOWN.",
+      "A dish is called nut-free or safe when the organizer only named an allergy. Repeat their words. Remove any safety claim you cannot find in the thread.",
+      "Drop-off boxes turn into a staffed buffet with a server charge and chafers. Put the service style back to the words in the inquiry before you approve the email.",
+      "A delivery fee, a deposit, or a tax figure appears that you left empty on purpose. Empty tax stays UNKNOWN. Do not let a supplied rate reach the organizer.",
+      "Zapier, Make, or n8n mails the quote while the sheet still says draft, or the kitchen ticket prints early. Keep auto-send off, and do not book the lunch until you have reread the bill."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if they said about thirty, not a firm headcount?",
+      "a": "Paste the phrase they actually wrote and do not round it up or down to thirty. The draft should mark the guest figure UNKNOWN and should not scale boxes or platters. Ask for a firm count, or type the number of meals you are willing to cook and run the prompt again before you price anything."
+    },
+    {
+      "q": "Can it choose prices off a standard office menu?",
+      "a": "No. Type each dish and the unit price from today's printed menu or the till screen. An empty price stays UNKNOWN, and so does the bill. You decide what to charge. The draft only arranges figures you already use at the counter."
+    },
+    {
+      "q": "How should a nut allergy in their email appear?",
+      "a": "Copy their sentence into the dietary notes, including any dish they asked you to skip. The quote may repeat that request. It may not call an item nut-free or safe unless your own notes already use those words. If a recipe is in doubt, leave that line UNKNOWN and phone them before you send."
+    },
+    {
+      "q": "Will this email the office or book the kitchen?",
+      "a": "No. You copy the subject and message into an unsent Gmail draft and send it yourself after the prices match the till. A Google Sheet can store the row. Zapier, Make, or n8n may open that draft only once you mark the row approved. Leave auto-send off. The kitchen board stays clear until they confirm."
+    },
+    {
+      "q": "Which assistant should I use for this quote?",
+      "a": "Use the prompt for the assistant you already have open. Keep the draft only when every unit price matches today's menu, the guest figure matches the inquiry, dietary lines repeat their words, and the bill adds up on paper. If one of those fails, fix the notes and paste them again."
+    }
+  ],
+  "draft": true,
+  "persona": "cafe owner",
+  "job": "Turn the office inquiry, today's till prices, and your portion plan into a quote email for feeding thirty people that you review and send yourself.",
+  "who": "Cafe owners and the person running the counter who get a short email asking for an office lunch for thirty people and need a quote they can send before the next service without making up prices.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

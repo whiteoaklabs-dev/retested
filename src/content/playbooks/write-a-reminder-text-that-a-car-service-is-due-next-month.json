@@ -1,0 +1,84 @@
+{
+  "slug": "write-a-reminder-text-that-a-car-service-is-due-next-month",
+  "title": "Write a reminder text that a car service is due next month",
+  "category": "Sales",
+  "summary": "You paste rough notes from the last invoice or work order, plus the customer card: first name, mobile, year make model, the date of the last visit, the work done, and the month that work comes due again. Add the shop name, the shop phone, and any do-not-text mark. The assistant returns one reminder text of 50 words or fewer saying the car service is due next month, a check line, and SEND or HOLD. A blank month, a second car, a missing mobile, or a price the ticket does not state comes back UNKNOWN. You match the wording to the invoice, cut anything you did not write, and send it yourself from the shop phone.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office helper at an independent repair shop. Draft one reminder text that this customer's car service is due next month. Do not send it or put it on a phone.\n\nFill [CUSTOMER DETAILS], [ROUGH NOTES], [SHOP NAME], [SHOP PHONE], and [DUE MONTH]. Details are the first name, the mobile, and the year make model on the customer card. Notes are the last invoice or work order: the date, the work done, and any do-not-text mark.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Say the visit is due next month only when [DUE MONTH] is filled and the notes name that same month. A blank month, or a different month, means STATUS HOLD and the month is UNKNOWN.\n- Name only the vehicle on that invoice. Two vehicles means HOLD. Do not choose between them.\n- Describe only the work the notes already name. Do not add a mileage gap, a factory schedule, a price, a coupon, a loaner, or a clock time.\n- Leave the plate, the VIN, the last name, and the street out of the text. A do-not-text mark or a blank mobile means STATUS HOLD.\n- Do not call the car unsafe, failing, or overdue unless the notes already use those words.\n- Write one plain shop text of 50 words or fewer, signed with [SHOP NAME]. Ask them to call [SHOP PHONE] only when that number is present. If it is blank, ask them to reply and mark the phone UNKNOWN.\n\nOutput format:\nSTATUS: SEND or HOLD\nTEXT:\nCHECK: First name | Vehicle | Due month | Service | Mobile\nHELD OR UNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful clerk for an independent mechanic. Prepare one reminder that the car service is due next month. The mechanic sends it. You only draft.\n\nRead [CUSTOMER DETAILS], [ROUGH NOTES], [SHOP NAME], [SHOP PHONE], and [DUE MONTH]. Details come from the customer card: first name, mobile, year make model. Notes come from the last invoice or work order: date, work performed, and any do-not-text mark.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace the month, the vehicle, and the named work to a line in the notes. If [DUE MONTH] is empty or the notes name another month, set STATUS to HOLD.\n- If the card lists two vehicles, do not pick one. Set STATUS to HOLD and mark the vehicle UNKNOWN.\n- Do not infer a mileage gap, a factory interval, a price, a coupon, a loaner car, or a reserved time. Those lines stay out unless the notes already state them.\n- Omit plate, VIN, surname, and street. If the card says do not text, or the mobile is blank, STATUS is HOLD.\n- Do not describe the car as unsafe, failing, or overdue unless those words are already in the notes.\n- Keep the text to 50 words or fewer. Sign with [SHOP NAME]. Include a call to [SHOP PHONE] only when the number was supplied. Otherwise ask for a reply and mark the phone UNKNOWN.\n\nOutput format:\nReturn only these labels:\nSTATUS: SEND or HOLD\nTEXT:\nCHECK: First name | Vehicle | Due month | Service | Mobile\nHELD OR UNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a working mechanic. Write one reminder text that the car service is due next month. The mechanic hits send. You stop at the draft.\n\nUse [CUSTOMER DETAILS], [ROUGH NOTES], [SHOP NAME], [SHOP PHONE], and [DUE MONTH]. Details are first name, mobile, and year make model from the card. Notes are the last invoice: date, what was done, and a do-not-text mark if one is written.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Next month is allowed only when [DUE MONTH] matches the month written in the notes. No month, or a clash, means HOLD.\n- One vehicle only. Two cars on the card means HOLD. Do not guess which one.\n- Stick to the work already written. No mileage gap, no factory schedule, no price, no coupon, no loaner, no clock time.\n- No plate, no VIN, no last name, no street in the text. Do-not-text or a missing mobile means HOLD.\n- Do not scare them. Unsafe, failing, or overdue appears only when the notes already say it.\n- Sound like a shop text, 50 words or fewer, signed [SHOP NAME]. Mention [SHOP PHONE] only if it was filled in. If not, ask them to reply and mark the phone UNKNOWN.\n\nOutput format:\nSTATUS: SEND or HOLD\nTEXT:\nCHECK: First name | Vehicle | Due month | Service | Mobile\nHELD OR UNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are drafting one reminder for an independent mechanic. The message says the car service is due next month. Do not send, schedule, or store it on a phone. Stop after the draft.\n\nThe mechanic will paste [CUSTOMER DETAILS], [ROUGH NOTES], [SHOP NAME], [SHOP PHONE], and [DUE MONTH]. Details are first name, mobile, and year make model. Notes are the last invoice or work order, including the date, the work done, and any do-not-text mark.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use next month only if [DUE MONTH] is present and the notes name that month. Otherwise STATUS is HOLD and the month is UNKNOWN.\n- Do not choose a vehicle when two are listed. Mark the vehicle UNKNOWN and set STATUS to HOLD.\n- Repeat only the work the notes name. Leave out any mileage gap, factory interval, price, coupon, loaner, or clock time that is not written.\n- Keep plate, VIN, surname, and street out of TEXT. A do-not-text mark or a blank mobile forces HOLD.\n- Do not warn that the car is unsafe, failing, or overdue unless the notes already use those words.\n- One short text, 50 words or fewer, signed with [SHOP NAME]. Ask for a call to [SHOP PHONE] only when that field is filled. If it is empty, ask for a reply and mark the phone UNKNOWN.\n\nOutput format:\nSTATUS: SEND or HOLD\nTEXT:\nCHECK: First name | Vehicle | Due month | Service | Mobile\nHELD OR UNKNOWN:",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Start in paste mode with the chat assistant you already use. After you approve a draft, Google Sheets plus Zapier, Make, or n8n can store it. You still send the text.",
+    "steps": [
+      "From the last paid invoice or the open work order, copy the first name, the mobile, the year make model, the service date, the work performed, and the month the next visit is due. Copy a do-not-text mark if the card has one. Leave blanks empty.",
+      "On that same scratch note, write the shop name, the phone customers already call, and the reply you want, such as call the shop or text a weekday that suits them. If you have not chosen a reply line, leave it blank.",
+      "Open a fresh chat in the assistant you already use. Paste this playbook's prompt for that assistant. Fill [CUSTOMER DETAILS], [ROUGH NOTES], [SHOP NAME], [SHOP PHONE], and [DUE MONTH] from the scratch note. Keep the name and the vehicle spelled as written.",
+      "Read STATUS, TEXT, CHECK, and HELD OR UNKNOWN beside the invoice. The first name, the vehicle, the month, and the named work must match that ticket. Delete a price, a mileage gap, a coupon, a loaner, or a clock time the paperwork does not state.",
+      "If STATUS is HOLD, or the month, the mobile, or the vehicle is marked unknown, do not send. When two cars are on the card, keep only the one that is due and run the draft again. A do-not-text mark means you call or skip.",
+      "Send the wording you kept from the shop phone, on the thread for that mobile. Check the digits against the customer card before it leaves. After it goes out, write the date on the invoice so this reminder is not drafted twice.",
+      "Optional later: add a Google Sheet with columns for first name, mobile, vehicle, due month, work, draft text, and status. Let Zapier, Make, or n8n fill the draft on rows due next month and set status to Needs review. Leave every send action off."
+    ],
+    "approvalStep": "You read the reminder beside the last invoice, confirm the mobile, the vehicle, and that the visit is due next month, then send it yourself from the shop phone. A sheet may hold the draft and must not text the customer.",
+    "failureModes": [
+      "The invoice names a later month, but the text still says next month. Read the month on the ticket and hold the message when they do not match.",
+      "An oil change and an inspection fall in different months, or a mileage gap appears that the work order never stated. Name only the work due next month.",
+      "Two cars share the card and the draft names the wrong one. Match year, make, and model to the invoice, or hold and draft again.",
+      "A price, a coupon, a loaner, or a reserved bay time shows up. Keep it only when that offer is already written in your notes.",
+      "The digits belong to an old landline, or the card says not to text. Check the mobile you are about to use and do not send.",
+      "The same household gets a second nudge because the invoice was never marked. Write the send date only after the message goes out."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What should I copy off the invoice and the card?",
+      "a": "Copy the first name, the mobile, the year make model, the date of the last visit, the work that was done, and the month the next one falls in. Add the shop name, the shop phone, and a do-not-text mark if the card has one. Leave a blank field blank so the draft can flag it instead of filling a guess."
+    },
+    {
+      "q": "Which assistant should I paste this into?",
+      "a": "Use the prompt for the assistant you already have. Keep a draft only when the first name, the vehicle, the month, and the named work match the invoice in front of you, and when a blank mobile or a do-not-text mark is set to hold. If a sentence adds a price, a mileage gap, or a bay time you did not type, do not send that message."
+    },
+    {
+      "q": "The paperwork never names the next month. Can I still send?",
+      "a": "Hold the message. A missing month should come back unknown, with status hold. Check the invoice, the windshield sticker, or your own booking note, and type the month only when you can read it. Do not let the wording say next month when you cannot point to that month on the paperwork."
+    },
+    {
+      "q": "The household has two cars. Which one gets named?",
+      "a": "Neither, until you choose. If the card lists two vehicles, the draft should hold and mark the vehicle unknown. Paste only the car whose visit is due, with its year make model, and draft again. Match that name to the invoice before the message leaves the shop phone."
+    },
+    {
+      "q": "Can the sheet text them for me?",
+      "a": "A Google Sheet, with Zapier, Make, or n8n, can store the draft and mark it as needing a look. It should not text the household. Change the status to approved only after the wording matches the invoice, then paste that text into the shop phone and send it yourself."
+    }
+  ],
+  "draft": true,
+  "persona": "mechanic",
+  "job": "Paste rough notes from the last invoice and the customer card and get one short reminder that the car service is due next month, for you to check and send.",
+  "who": "An independent mechanic, or the person who books the bays, who wants one plain reminder that a customer's car service is due next month, using the last invoice and the mobile on the card.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Automation",
+    "Phone messaging"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "text-a-landscaping-customer-that-the-job-is-done-and-ask-for-a-review",
+  "title": "Text a landscaping customer that the job is done and ask for a review",
+  "category": "Marketing & SEO",
+  "summary": "You paste one landscaping customer's finished visit: first name, the day the crew left, yard notes listing each service and area (mow, edge, blow, mulch, hedges, plantings), any return trip or damage, your crew name, where the public note should go (Google, Nextdoor, or Facebook), and the link you already use. You get one phone text of at most 420 characters that says what is done, keeps open items out, and adds a single review ask only when the notes show a clean finish. You match every service and area to the notes, drop the ask if they already complained, and send it yourself from the thread you have with them. A sheet may store the draft. It does not send the text.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the truck-side drafter for a landscaper who just finished one property. Write one phone text that says the job is done and, only if the visit was clean, asks for a review. Do not send it.\n\nInputs:\n[CUSTOMER FIRST NAME]\n[YARD NOTES]\n[FINISHED ON]\n[CREW NAME]\n[REVIEW PLACE]\n[REVIEW LINK]\n[OPEN ITEMS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One customer, one text. Do not draft the rest of the mowing route.\n- Call a service or area done only when [YARD NOTES] says that part finished. A return trip in [OPEN ITEMS] means you must not call the whole property done.\n- Name a plant, mulch color, or bed only if the notes name it. Leave out price, invoice, gate code, alarm code, and any neighbor or dog line.\n- Set ASK to HOLD when the notes or [OPEN ITEMS] mention a complaint, damage, a callback, or work still open. The text may still say what finished, with no review request.\n- Use [REVIEW PLACE] as written, such as Google, Nextdoor, or Facebook. Put [REVIEW LINK] once, only when ASK is INCLUDE. If the link is blank, write LINK MISSING and mark it UNKNOWN. Do not create a web address.\n- Do not offer a free cut, a discount, or a gift, and do not tell them what rating to give or which words to write. Cap the text at 420 characters. Sign with [CREW NAME].\n\nOutput format:\nREADY TEXT:\nCHARACTERS:\nSERVICES COPIED:\nAREAS COPIED:\nASK: INCLUDE or HOLD\nWHY HOLD:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a landscaper closing a single yard. Prepare one text they will match to their notes before anyone is texted. Do not send, schedule, or post it.\n\nRead only these fields:\n[CUSTOMER FIRST NAME]\n[YARD NOTES]\n[FINISHED ON]\n[CREW NAME]\n[REVIEW PLACE]\n[REVIEW LINK]\n[OPEN ITEMS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Trace every done service and area to a phrase in [YARD NOTES]. If you cannot point to the phrase, omit it and list the gap under UNKNOWN.\n- When [OPEN ITEMS] names a return, a bare bed, or a hedge still tall, limit the text to parts marked finished. Never say the whole property is done.\n- Set ASK to HOLD for damage, a complaint, a missed spot they already flagged, or a crew coming back. The done lines can remain. The review sentence cannot. Say why in WHY HOLD.\n- Copy [FINISHED ON] exactly. With no date, the text must not name a weekday. Mention a photo only if the notes say one is attached.\n- Copy [REVIEW LINK] once, at the end, only for INCLUDE. An empty field becomes LINK MISSING. Do not swap in a homepage or a pin you were not given.\n- Keep codes, prices, pet names, and neighbor disputes in LEFT OUT. At most four short sentences, 420 characters, signed [CREW NAME]. No sweetener and no scripted lines for their post.\n\nOutput format:\nReturn these labels in order:\nREADY TEXT:\nCHARACTERS:\nSERVICES COPIED:\nAREAS COPIED:\nASK: INCLUDE or HOLD\nWHY HOLD:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You help a landscaper write one text from the truck after a single yard. It says what is done and asks for a review only when the visit was clean. They will paste your draft into the phone thread themselves.\n\nUse:\n[CUSTOMER FIRST NAME]\n[YARD NOTES]\n[FINISHED ON]\n[CREW NAME]\n[REVIEW PLACE]\n[REVIEW LINK]\n[OPEN ITEMS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stay on this property. If another stop was pasted by mistake, ignore it and say so under LEFT OUT.\n- Sound like someone who just loaded the trailer. Name services and areas the notes already list, such as front mowed and edged, beds mulched, or hedges cut. Do not turn a mow into a redesign.\n- If [OPEN ITEMS] still has work, describe only the finished parts and set ASK to HOLD. A later return means the whole job is not done.\n- A complaint, a nicked irrigation line, ruts, or mulch left on the drive means HOLD. You may report finished parts. You may not ask them to post.\n- One ask, using their wording for [REVIEW PLACE]. Attach [REVIEW LINK] only when they pasted it. A blank link is LINK MISSING and UNKNOWN, not an address you composed.\n- No free mow, no gift, and no suggested wording for the post. 420 characters maximum. Sign [CREW NAME]. Park gate codes, prices, and neighbor notes in LEFT OUT.\n\nOutput format:\nREADY TEXT:\nCHARACTERS:\nSERVICES COPIED:\nAREAS COPIED:\nASK: INCLUDE or HOLD\nWHY HOLD:\nLEFT OUT:\nUNKNOWN:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a landscaper. Build one text for a single finished property that says the work is done and, when the visit was clean, asks for a review. The landscaper checks it and sends it. Do not text anyone.\n\nFill each label from what they paste:\n[CUSTOMER FIRST NAME]\n[YARD NOTES]\n[FINISHED ON]\n[CREW NAME]\n[REVIEW PLACE]\n[REVIEW LINK]\n[OPEN ITEMS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- One property in, one text out. If two households share a first name, do not merge their yards.\n- Copy finished claims from [YARD NOTES] only. A service still sitting in [OPEN ITEMS] cannot be called done.\n- Set ASK to HOLD when there is a complaint, damage, or a return visit. Keep the done lines. Drop the review sentence and explain the hold.\n- Date the message only from [FINISHED ON]. No date in the paste means no weekday in the text. Skip photo talk unless the notes say a picture goes with it.\n- Put [REVIEW LINK] at the end only when ASK is INCLUDE and that field has characters. Otherwise write LINK MISSING and mark the link UNKNOWN. Do not invent a page.\n- Write a short truck text, 420 characters or fewer, and end with [CREW NAME]. Do not offer money off, a free visit, or lines for them to paste into the post. Keep codes and prices in LEFT OUT.\n\nOutput format:\nSections in this order: READY TEXT, CHARACTERS, SERVICES COPIED, AREAS COPIED, ASK (INCLUDE or HOLD), WHY HOLD, LEFT OUT, UNKNOWN.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in the chat assistant you already use. A Google Sheet plus Zapier, Make, or n8n can store the draft later. You still send the text from your phone.",
+    "steps": [
+      "From the finished visit, copy the customer's first name, the day the crew left, and a yard list: each service, each area (front, back, or side), and plant or mulch names only if you wrote them down. Add any return trip, damage, or complaint already in the thread.",
+      "Under that, write the crew or company name you sign with, where you want the public note (Google, Nextdoor, or Facebook), and the link you already hand to homeowners. If the link is not on your phone, type UNKNOWN. Do not guess a page.",
+      "Open the chat assistant you already use, paste this playbook's prompt for it, and replace every bracket with those lines. Paste one property only. Leave a blank fact as UNKNOWN instead of filling it from memory in the truck.",
+      "Compare SERVICES COPIED and AREAS COPIED with your yard list. Delete any plant, mulch color, bed, or weekday that list does not contain. If a return trip is still open, the text must not say the whole property is done.",
+      "Read ASK. When it says HOLD, or the thread already mentions a complaint, a nicked irrigation head, ruts, or mulch on the drive, do not add a review request. Send a short done update, or send nothing, until that problem is fixed.",
+      "Read the ready text aloud. It should sound like you: what is done, one line that they can reply if something looks off, and at most one ask. Cut any price, gate code, invoice line, or offer of a free cut.",
+      "Paste only the ready text into the phone thread you already have with that customer. Check the name on the screen, then send it yourself. Optional: log name, property, date, and ask or hold on a Google Sheet. Zapier, Make, or n8n may fill the row. Leave send actions off."
+    ],
+    "approvalStep": "You compare the ready text with the yard list, confirm the customer name on your phone, and send it yourself. When ASK is HOLD, you do not add a review request. A Google Sheet row or a Zapier, Make, or n8n update is not approval to text them.",
+    "failureModes": [
+      "The yard list covers the front only, but the text says the whole property is done while the back hedge is still scheduled. Delete that sentence before you send.",
+      "A plant name, mulch color, or bed you never wrote shows up in the bubble. That line was invented. Remove it, or paste the notes again with the missing name marked UNKNOWN.",
+      "They already messaged about edging through a drip line or mulch on the driveway, and the draft still asks for a review. Send a fix note, or wait. Leave the ask off.",
+      "A gate code, a price, or a neighbor dispute lands in the message. Delete that draft and rewrite from the yard list with those lines kept out.",
+      "The link is blank, or it is your homepage instead of the review page you meant. Do not send until the last line is the link you pasted, or you remove the ask.",
+      "The same household gets a second ask because the route sheet still says not sent. Mark the row only after the text leaves your phone."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What do I paste from the truck?",
+      "a": "Paste the customer's first name, the day you left, and a yard list of services and areas you actually finished. Add a return trip, damage, or complaint if there is one, plus your crew name, the place you ask (Google, Nextdoor, or Facebook), and the link you already use. Leave off the gate code and the price. If a fact is not in front of you, type UNKNOWN."
+    },
+    {
+      "q": "What if the back hedge is still unfinished?",
+      "a": "Say only the parts the yard list marks finished, such as the front mowed and edged, and do not call the whole property done. Keep the review ask on hold until the return trip is finished and you would still want that household to post. You make that call while you read the draft, before anything is sent."
+    },
+    {
+      "q": "Can I offer a free mow for a review?",
+      "a": "Leave sweeteners out. The draft should not offer a free cut, a discount, or a gift, and it should not tell them what rating to give or which words to write. One plain sentence with the link you pasted is the whole ask. If a freebie shows up, delete it before you send."
+    },
+    {
+      "q": "Which assistant should I use for this text?",
+      "a": "Use the prompt for the assistant you already have open. Keep the draft only if every service and area matches your yard list, the day matches when the crew left, open problems stay out of the ask, and you would send those words from your own phone. If a line fails that check, edit it or paste the list again."
+    },
+    {
+      "q": "Can a spreadsheet send the text?",
+      "a": "No. You copy the ready text into the existing thread and send it. A Google Sheet can store the name, the date, and whether you asked or held. Zapier, Make, or n8n can add that row after the visit. Leave every send action off so a finished-job trigger cannot text them while you are still on the route."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaper",
+  "job": "Turn one finished-yard note and the customer's details into a short done text, with a review ask you can hold, then send from your phone.",
+  "who": "Solo landscapers and small lawn crews who finish a property, sit in the truck, and need one plain text that names the work and asks for a review only when that yard actually came out clean.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Phone messaging",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

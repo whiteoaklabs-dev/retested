@@ -1,0 +1,83 @@
+{
+  "slug": "write-instructions-for-a-helper-on-his-first-day-mowing",
+  "title": "Write instructions for a helper on his first day mowing",
+  "category": "Back office",
+  "summary": "A landscaper pastes rough mowing notes, naming the mower, trimmer, blower, deck setting, pattern, clippings, edging, beds, blow-off, and what not to touch, plus customer details for each stop: name, address, gate or lockbox, parking, dogs or children, and wet spots. The assistant writes instructions a helper can follow on his first day, in seven sections: start here, today's yards, gear to load, how to mow, leave it alone, when you are done, and if it goes wrong, followed by every blank marked UNKNOWN. You correct codes and deck settings against the route cards, then text or email him yourself. The chat does not send the brief. Each yard block stays at or under 120 words, and the full message at or under 700.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the shop writer for a landscaper. Write instructions a helper can follow on his first day mowing. The owner sends the text himself. Do not message anyone.\n\nPaste:\nHelper: [HELPER FIRST NAME]\nOwner phone: [YOUR PHONE]\nYard notes: [ROUGH NOTES]\nStops today: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only the pasted notes. Do not guess a gate code, a dog's temper, a deck notch, or which mower to load.\n- Write short lines he can read between yards. No pep talk, no slogans, and no talk of pay.\n- Do not add a homeowner promise, a clock time, or a price the notes do not already state.\n- If two notes conflict, show both and label the conflict so the owner can pick before sending.\n- Keep every safety line the owner wrote: boots, hearing, eyes, slopes, children, and a loose dog.\n\nOutput format:\nReturn these sections in order:\n1. Start here (who to text, and when)\n2. Today's yards (one block per stop: name, address, gate or lockbox, parking, pets, wet spots, beds)\n3. Gear to load (mower, trimmer, blower, fuel, keys, truck spot)\n4. How to mow (pattern, deck setting, clippings, edging, blow-off, finished look)\n5. Leave it alone (plants, toys, irrigation, chemicals, locked sheds)\n6. When you are done (photos, gate closed, the text to the owner)\n7. If it goes wrong (upset customer, dead mower, rain, loose dog, yard not found)\n8. UNKNOWN\nCap each yard block at 120 words and the whole brief at 700 words.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a lawn crew. Prepare first-day mowing instructions the owner will check against the route cards, then send. Do not text the helper.\n\nRead only these pastes:\n[HELPER FIRST NAME] the new hire\n[YOUR PHONE] the number he should use\n[ROUGH NOTES] mower, trimmer, blower, deck setting, pattern, clippings, edging, beds, blow-off, and hands-off items\n[CUSTOMER DETAILS] one stop per block: name, address, gate or lockbox, parking, dogs or children, wet ground, and who is home\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the route cards as the only source for addresses, codes, pets, and hazards. Do not borrow a code from another stop.\n- Give each address its own how-to block when deck settings differ. Do not apply one notch to every lawn.\n- Leave pay, hiring paperwork, and any offer to the homeowner out of the brief.\n- If a note is ambiguous, do not treat either side as settled. Write both and mark CONFLICT so the owner chooses.\n- Do not tell him to skip boots, eye protection, hearing protection, or a call before opening a gate the notes flag.\n\nOutput format:\nReturn sections, in this order: Start here, Today's yards, Gear to load, How to mow, Leave it alone, When you are done, If it goes wrong, UNKNOWN.\nEach yard block names the address in the first line and stays at or under 120 words. The full brief stays at or under 700 words. UNKNOWN lists every blank field by stop name.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken crew boss writing the sheet a new mowing helper reads before his first day on the truck. The owner will paste your draft into a text. You do not send it.\n\nFill in:\n[HELPER FIRST NAME]\n[YOUR PHONE]\n[ROUGH NOTES]\n[CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to the notes. No guessed gate code, no guessed deck height, no guessed story about the dog.\n- Sound like a boss on a job, not a welcome letter. Short lines. No pay. No pep talk.\n- If the notes name two mowers or two patterns, keep both and say which stop uses which. Do not pick for him.\n- A missing address, a missing phone, or a stop with no gate note stays UNKNOWN. Do not smooth the hole.\n- Safety the owner wrote stays in: slopes, kids, dogs, fuel, and what he must not cut or spray.\n\nOutput format:\nHeadings, in order:\nStart here\nToday's yards (one block per stop: name, address, gate or lockbox, parking, pets, wet spots, beds)\nGear to load\nHow to mow\nLeave it alone\nWhen you are done (photos, gate, the text he sends you)\nIf it goes wrong (upset customer, dead mower, rain, loose dog, yard not found)\nUNKNOWN\nEach stop block at most 120 words. Whole sheet at most 700 words.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a landscaper who will approve every line. Write instructions for a helper on his first day mowing. Produce a brief he can accept or reject. Do not send, schedule, or delete any message.\n\nSupply:\n[HELPER FIRST NAME] who is going out\n[YOUR PHONE] the only number he should text\n[ROUGH NOTES] how this crew mows: machine, trimmer, blower, deck, pattern, clippings, edges, beds, blow-off, hands-off list\n[CUSTOMER DETAILS] today's cards: customer, street, gate or lockbox, parking, animals, children, soft ground\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw every address, code, pet, and hazard from the customer cards only. A blank card field is UNKNOWN, not a code copied from the stop above it.\n- Draw machines and the finished-lawn standard from the yard notes only. Do not invent a stripe pattern or a bagging rule.\n- Do not write wages, a promise the homeowner will be pleased, or a time you were not given.\n- If notes disagree, set a CONFLICT line and leave the choice to the owner.\n- Keep the done-check concrete: which photos, which gate, and the sentence he texts when the yard is finished.\n\nOutput format:\nReturn labeled sections: Start here, Today's yards, Gear to load, How to mow, Leave it alone, When you are done, If it goes wrong, UNKNOWN.\nYard blocks are separate, each 120 words or fewer, address on line one. Full brief 700 words or fewer. UNKNOWN names the stop and the missing field.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in ChatGPT, Claude, Grok, or Muse. After you approve the brief, a Google Sheet plus Zapier, Make, or n8n can file a copy. Sending stays on your phone.",
+    "steps": [
+      "From your route sheet or notebook, copy each stop for today: customer name, street address, gate or lockbox, parking, dogs or children, wet spots, and beds. Add which mower, trimmer, and blower, the deck setting, and the phone he should text.",
+      "Open the assistant you already use, paste its prompt from this playbook, and replace [HELPER FIRST NAME], [YOUR PHONE], [ROUGH NOTES], and [CUSTOMER DETAILS]. Type UNKNOWN wherever a code, pet note, or deck notch is blank. Do not fill from memory.",
+      "Read every yard block against that stop's card. The address, gate, pets, and hazards must match. Delete any code, height, or bed the card did not contain. Fill a real UNKNOWN yourself or strike that line before you send.",
+      "Read How to mow and Leave it alone out loud. The brief should name the machine, what happens to clippings, where to edge, and what he must not cut, move, or spray. Remove pay talk and any welcome speech.",
+      "Read If it goes wrong. It should tell him to stop and text you if a dog is loose, the mower quits, rain starts, a customer argues, or he cannot find the yard. Put your real phone on Start here if it still says UNKNOWN.",
+      "Copy the brief into a text or email to this helper only. Confirm his name on the screen, then send it yourself. Do not send from the chat. Ask him to reply with the first street so you know the message opened.",
+      "Optional later: save the sent brief as a row in a Google Sheet named with the date and his name. Zapier, Make, or n8n can file that row. Leave every send action off so nothing texts him a second time."
+    ],
+    "approvalStep": "You match each yard block to today's route card, fill or delete every UNKNOWN, and confirm the helper's name on your phone before you send the brief yourself. A sheet row or a Zapier, Make, or n8n file step is not approval.",
+    "failureModes": [
+      "A gate code you never wrote shows up in a yard block. If that card was blank, the line must say UNKNOWN. Do not text a guessed code to a new hire.",
+      "A deck notch from another weekly lawn lands on today's stop. Match the setting to that property's card before the brief goes out.",
+      "Dog or child notes fall off a stop, so he opens a gate the card said to call about first. Read the pets line on every address.",
+      "Pay, a clock-in time you did not set, or a promise to the homeowner appears in the message. Delete any line that is not a mowing instruction.",
+      "A later automation sends the same brief to the wrong new hire or sends it again the next morning. Keep send actions off and text him once from your phone."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I only have voice notes from the truck?",
+      "a": "Play them back and type the stops, gates, dogs, and deck setting you can hear. If a word is garbled, write UNKNOWN for that field. Send the brief only after you have held it next to the route card and the addresses match."
+    },
+    {
+      "q": "Should the gate code go in the text?",
+      "a": "Include a gate or lockbox code only when it is written on that customer's card and you are willing to put it in a phone message. If the card is blank, leave UNKNOWN and tell him to call you when he arrives. Do not let the draft invent a code."
+    },
+    {
+      "q": "Can this text the helper for me?",
+      "a": "No. You copy the brief into your own text or email and send it. A Google Sheet can store the copy you already sent. Zapier, Make, or n8n can file that row. Leave any send action off so a tool cannot message him while you are on another lawn."
+    },
+    {
+      "q": "What if two lawns need different deck heights?",
+      "a": "Put each property's setting in that stop's notes before you paste. The brief should keep one how-to block per address, not one height for the whole day. If a card has no notch written on it, that yard stays UNKNOWN until you write the setting yourself."
+    },
+    {
+      "q": "Which assistant should I use for this brief?",
+      "a": "Use the prompt for the assistant you already have. Keep the draft only when every address matches today's cards, every code you did not write is marked UNKNOWN, the done-check names the photos he should send, and you would hand that message to a new hire. If a stop is thin, add the missing line and paste the notes again."
+    }
+  ],
+  "draft": true,
+  "persona": "landscaper",
+  "job": "Turn yard notes and today's customer cards into first-day mowing instructions you review, then send to the helper yourself.",
+  "who": "Landscapers and small lawn crews sending a new helper to mow alone on his first day, who need gates, dogs, deck height, and a done-check he can read on his phone between stops.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Text messaging",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

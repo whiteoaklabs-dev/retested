@@ -1,0 +1,83 @@
+{
+  "slug": "write-a-follow-up-text-to-a-quote-i-sent-last-week",
+  "title": "Write a follow up text to a quote I sent last week",
+  "category": "Sales",
+  "summary": "A handyman pastes the homeowner's first name, the day the quote went out last week, the visit notes (address or room, what they asked, and whether they booked or declined), the estimate lines with the total, and the newest message in that thread. The assistant returns one phone text of at most 280 characters, the facts it used, anything left as UNKNOWN, and a send-or-hold flag. The text names the repair and one included line, keeps both options if two were priced, and copies dollar amounts as written. You match those lines to the estimate you handed over, delete anything you did not write, choose send, hold, or call, and tap send in the same thread. A sheet may remind you. It does not send the text.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a follow-up writer for a solo handyman. Draft one phone text about the quote sent last week. The owner edits it and sends it. Do not text anyone.\n\nInputs to paste under each label:\nCustomer: [CUSTOMER FIRST NAME]\nQuote sent: [DATE QUOTE SENT]\nVisit notes: [JOB NOTES]\nEstimate: [ESTIMATE LINES AND TOTAL]\nTheir last message: [LAST MESSAGE THEY SENT]\nName for the facts list only: [YOUR NAME]\n\nRules:\n- Use only those inputs. Do not add a discount, a start date, a deposit, or a story about why they went quiet.\n- Keep Text at or under 280 characters, in the first person, as one phone message. No greeting line and no email sign-off.\n- Name the room or repair and one included line from the estimate so they can tell which job you mean.\n- If the estimate lists two options, name both and ask which one they want. Do not merge them into one price.\n- Copy every dollar amount digit for digit. If the total is absent or unreadable, write UNKNOWN and do not guess.\n- If they booked, declined, or their last message is a question you have not answered, set Send or hold to HOLD and leave Text empty.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nText:\nCharacter count:\nFacts used:\nUNKNOWN:\nSend or hold:",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafting assistant for a handyman whose quote has sat since last week. Prepare one text they will check against the paper estimate before it goes out. Do not send it.\n\nRead only:\n[CUSTOMER FIRST NAME]\n[DATE QUOTE SENT]\n[JOB NOTES]\n[ESTIMATE LINES AND TOTAL]\n[LAST MESSAGE THEY SENT]\n[YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Treat the estimate lines as the only source for prices, inclusions, exclusions, and any deposit. Do not round or restate a range as a single number.\n- If two repairs or two options are listed, keep them distinct in the text and ask which one to book. Do not drop either option.\n- If their last message asks a question, sets a time, or says no, do not write a nudge. Set Send or hold to HOLD.\n- Stay at or under 280 characters. Sound like a person on a job, not a sales script. Ban just checking in, circling back, and touching base.\n- Mention a deposit or a materials exclusion only when the estimate already says it.\n- Put [YOUR NAME] in Facts used, not as a signature under the text.\n\nOutput format:\nSections in this order: Text, Character count, Facts used, UNKNOWN, Send or hold.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a handyman who needs a follow-up text, not an email. The quote went out last week. They will paste your draft into the phone thread themselves.\n\nFill in:\n[CUSTOMER FIRST NAME]\n[DATE QUOTE SENT]\n[JOB NOTES]\n[ESTIMATE LINES AND TOTAL]\n[LAST MESSAGE THEY SENT]\n[YOUR NAME]\n\nRules:\n- Stick to the notes and the estimate. Do not invent a discount, an opening on the calendar, or a reason they have been quiet.\n- One text, 280 characters max. Name the repair and one included item. Ask one question they can answer in a few words.\n- When two options were priced, say both names and ask which way they want to go. Never average the two totals.\n- Copy prices exactly. A smudged or missing figure stays UNKNOWN.\n- If [LAST MESSAGE THEY SENT] is still unanswered, or the notes say booked or declined, output HOLD and an empty Text.\n- Skip just checking in, hope you are well, and any line that could fit a different job.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nText:\nCharacter count:\nFacts used:\nUNKNOWN:\nSend or hold: SEND or HOLD, plus one reason drawn from the inputs.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a handyman writing a follow-up text to a quote sent last week. Produce a draft they can accept or reject. Do not send, schedule, or delete any message.\n\nPaste:\n[CUSTOMER FIRST NAME] who you are texting\n[DATE QUOTE SENT] the day the quote went out\n[JOB NOTES] address or room, what they asked, and whether they booked or declined\n[ESTIMATE LINES AND TOTAL] each priced line, what is included, and the total\n[LAST MESSAGE THEY SENT] the newest bubble in the thread, or UNKNOWN if you do not have it\n[YOUR NAME] for the facts list only\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw every price, inclusion, and exclusion from the estimate lines only. Do not offer money off to earn a reply.\n- If the estimate has two options, the text names both and asks which to schedule. Do not choose for them.\n- If their last message is a question, a delay, or a no, set Send or hold to HOLD and leave Text blank.\n- Cap Text at 280 characters. One question. No subject, no bullet list inside the text, and no sign-off block.\n- Do not claim a date is being held unless the notes say a date was held.\n\nOutput format:\nReturn five labeled sections: Text, Character count, Facts used, UNKNOWN, Send or hold.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant. Later, a Google Sheet plus Zapier, Make, or n8n can remind you a quote is a week old. Sending stays on your phone.",
+    "steps": [
+      "From the quote you sent last week, copy the first name, the send date, the address or room, every priced line, the total, and the newest message in that thread. Note if they booked, declined, or have not answered.",
+      "Open the chat assistant you already use, paste its prompt from this playbook, and replace each bracket with those notes. Where a digit on the paper is unreadable or a fact is blank, type UNKNOWN instead of filling from memory.",
+      "Compare the draft with the estimate line by line. The repair name, each option, inclusions, and every dollar amount must match. Delete a discount, a start date, a deposit, or a materials promise the estimate does not already state.",
+      "Read Send or hold and the last bubble in the thread. If the flag says HOLD, or they already replied, booked, or declined, do not send a nudge. Answer their question yourself or leave the thread alone.",
+      "Read the Text aloud. It should name the repair, ask one question, and sound like a message you would type between jobs. Cut a greeting, a sign-off block, and any line that would fit a different customer.",
+      "Copy only the Text into the same phone or WhatsApp thread that received the quote. Check the recipient name on the screen, then tap send yourself. Do not send from the chat assistant.",
+      "Add a row to a Google Sheet with name, repair, quote date, and the day you texted. Optional later: Zapier, Make, or n8n can remind you when a quote is a week old. Leave every send action off."
+    ],
+    "approvalStep": "You compare Text to the quote sent last week, confirm the recipient on your phone, and tap send yourself. A reminder from a sheet or from Zapier, Make, or n8n is not approval, and nothing is sent until you tap send.",
+    "failureModes": [
+      "A smudged total on a photo of the paper estimate becomes a clean price. If any digit was unreadable, the draft must say UNKNOWN. Do not send a guessed figure.",
+      "Two options, such as patch versus replace, get merged into one number. Check that both names from the estimate still appear before you approve the text.",
+      "The text goes out after they already asked a question or said no. Read Send or hold and the last bubble in the thread before you tap send.",
+      "The message could fit any job: no room, no repair, no included item. If you cannot tell which quote it is, rewrite that line before it goes out.",
+      "A reminder automation texts them while you are on a job. Keep send actions off. A sheet row is a nudge for you, not a message to the homeowner."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I only have a photo of the handwritten quote?",
+      "a": "Type each line you can read, including the total and what is included or left out. If a digit is smudged, write UNKNOWN for that figure. Do not fill it from memory. Send the text only after you have held it next to the paper and the numbers match."
+    },
+    {
+      "q": "Should the text repeat the price?",
+      "a": "Repeat the total only when it is written in the estimate lines you pasted, and only if you want it in the thread again. Naming the repair and asking whether to book is enough when the price is already in the earlier message. If a figure appears that you did not paste, delete it before you send."
+    },
+    {
+      "q": "Can this send the text for me?",
+      "a": "No. You copy the Text section into the same phone or WhatsApp thread and tap send. A Google Sheet can record that you sent it. Zapier, Make, or n8n can remind you a week after the quote date. Leave any send action switched off so a reminder cannot text them while you are driving."
+    },
+    {
+      "q": "What if I priced a patch and a full replace?",
+      "a": "Put both names and both totals in the estimate lines. The draft should name both and ask which one they want, without dropping one or blending the prices. If you have decided to offer only one, delete the other from the notes before you paste so the text does not bring it back."
+    },
+    {
+      "q": "Which assistant should I use for this text?",
+      "a": "Use the prompt for the assistant you already have open. Keep a draft only if the price matches the estimate digit for digit, the repair matches the visit, the text is short enough to send from the truck, and you would put your name on it. If it fails one of those, edit it or paste the notes again with the missing line filled in."
+    }
+  ],
+  "draft": true,
+  "persona": "handyman",
+  "job": "Turn last week's visit notes and the estimate you already sent into one short follow-up text you review and send from your phone.",
+  "who": "Solo handymen and two-person repair crews who hand over or text a written quote, then spend the next week on other jobs and need one plain check-in they would actually send.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Text messaging",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

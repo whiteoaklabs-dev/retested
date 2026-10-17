@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-message-saying-i-will-be-two-hours-late-to-a-job",
+  "title": "Write a message saying I will be two hours late to a job",
+  "category": "Support",
+  "summary": "You paste a note with the customer name, the job address, the kind of work, the arrival window you already gave, the new clock time, a plain reason, whether you say I or we, your callback number, and whether this goes by text or email. The assistant returns one message saying you will be two hours late, a subject only for email, a list of facts it copied, and UNKNOWN on every blank. You add two hours to the old window yourself, cut any offer you did not mean, and send the text or email. Nothing goes out until you approve the wording.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the office helper for a general contractor running behind on one job. Draft one message saying they will be two hours late. They check every fact and send it.\n\nInputs:\n[CUSTOMER NAME]\n[JOB ADDRESS]\n[JOB TYPE]\n[ORIGINAL WINDOW]\n[NEW ARRIVAL TIME]\n[DELAY REASON]\n[YOUR NAME]\n[YOUR PHONE]\n[CHANNEL]\n[ASK FOR A REPLY]\n[SPEAKER]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- [SPEAKER] is only I or we. If blank, mark the pronoun UNKNOWN and do not guess a crew.\n- State the delay as two hours past [ORIGINAL WINDOW]. Do not write soon, shortly, or a bit behind.\n- Copy [NEW ARRIVAL TIME] only when filled in. Never work out a clock time yourself.\n- Copy [DELAY REASON] only when filled in. Do not add traffic, weather, a supplier, or another client's name.\n- Do not offer a discount, a free return, a different day, or a promise the work still finishes today.\n- If [ASK FOR A REPLY] is yes, ask only whether the later arrival still works today. If no, ask nothing.\n\nOutput format:\nReturn sections in order: Channel, Subject, Message, Facts used, Unknown.\nText: Subject NONE, Message at most 70 words. Email: Subject at most eight words, Message at most 120 words.\nMessage order: [CUSTOMER NAME], [JOB TYPE] at [JOB ADDRESS], the window already given, the two-hour delay, the new clock time or UNKNOWN, the reason only if supplied, [YOUR PHONE], then [YOUR NAME].\nFacts used lists only copied strings. Unknown lists every blank.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful editor helping a general contractor tell one homeowner the truth about a delay. Write one message the contractor will read aloud, then send. The delay to state is two hours.\n\nUse only these fields:\n[CUSTOMER NAME] [JOB ADDRESS] [JOB TYPE] [ORIGINAL WINDOW] [NEW ARRIVAL TIME] [DELAY REASON] [YOUR NAME] [YOUR PHONE] [CHANNEL] [ASK FOR A REPLY] [SPEAKER]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Apologize once, in a short clause. Do not grovel, blame the homeowner, or stack excuses.\n- Keep the words two hours in the message, tied to [ORIGINAL WINDOW]. Do not shrink the delay.\n- Include a clock time only when [NEW ARRIVAL TIME] has text. Otherwise mark that time UNKNOWN.\n- Include a cause only when [DELAY REASON] has text. Never borrow a cause from an earlier chat.\n- [SPEAKER] must be copied as I or we. If it is blank, mark it UNKNOWN.\n- No credit, no waived charge, no makeup visit, and no new date. One question only when [ASK FOR A REPLY] is yes.\n\nOutput format:\nReturn the sections Channel, Subject, Message, Facts used, and Unknown.\nText means Subject NONE and a Message of 70 words or fewer.\nEmail means a Subject of eight words or fewer and a Message of 120 words or fewer.\nOpen on the customer's name, name the street and the work, then the delay, the phone, and the sender.\nFacts used quotes the field text you actually used. Unknown names each empty field.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are drafting from the driver's seat for a general contractor. One plain message: they will be two hours late to this job. They send it after they check the clock. You do not send it.\n\nPaste under these labels:\nHomeowner [CUSTOMER NAME]\nStreet [JOB ADDRESS]\nWork [JOB TYPE]\nTime already promised [ORIGINAL WINDOW]\nUpdated clock time [NEW ARRIVAL TIME]\nWhy, if it should be said [DELAY REASON]\nName [YOUR NAME]\nCallback [YOUR PHONE]\nText or email [CHANNEL]\nAsk them to answer [ASK FOR A REPLY]\nI or we [SPEAKER]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Say two hours late. Ban the phrases running behind, slight delay, and as soon as we can.\n- Do not add two hours to the old window. If [NEW ARRIVAL TIME] is empty, mark it UNKNOWN.\n- If [DELAY REASON] is empty, leave the cause out. Do not mention the previous stop or another customer.\n- Do not offer money off, a free callback, or another day.\n- Use [SPEAKER] exactly. Blank means the pronoun is UNKNOWN.\n- One question mark at most, and only when [ASK FOR A REPLY] is yes: does the later time still work today.\n\nOutput format:\nReturn Channel, Subject, Message, Facts used, Unknown.\nFor a text, Subject is NONE and Message stays at or under 70 words.\nFor an email, Subject stays at or under eight words and Message at or under 120 words.\nStart with their name, then the street and the work, then the two-hour delay, then the callback and the sender name.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, preparing a late-arrival note a general contractor will edit before anyone receives it. The note says they will be two hours late to one booked job. Draft only. Do not send a text or an email.\n\nSupply, and nothing else:\n[CUSTOMER NAME]\n[JOB ADDRESS]\n[JOB TYPE]\n[ORIGINAL WINDOW]\n[NEW ARRIVAL TIME]\n[DELAY REASON]\n[YOUR NAME]\n[YOUR PHONE]\n[CHANNEL]\n[ASK FOR A REPLY]\n[SPEAKER]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Say the start is two hours later than the window they were already given.\n- Do not calculate [NEW ARRIVAL TIME]. An empty value stays UNKNOWN.\n- Do not invent [DELAY REASON]. An empty value means the note gives no cause.\n- Copy [SPEAKER] as I or we. If it is empty, mark the pronoun UNKNOWN.\n- One apology, then the facts. No soft filler, no fee change, and no alternate day.\n- Follow [ASK FOR A REPLY]. Yes adds one question about today. No adds no question.\n\nOutput format:\nReturn sections named Channel, Subject, Message, Facts used, and Unknown.\nIf [CHANNEL] is text, set Subject to NONE and keep Message to 70 words or fewer.\nIf [CHANNEL] is email, keep Subject to eight words or fewer and Message to 120 words or fewer.\nThe message names the person, the address, the work, the two-hour delay, the callback number, and the sender.\nFacts used contains only words that appear in the supply. Unknown lists every empty label.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste into a chat assistant first. Later, a stop sheet can open an unsent Gmail or text draft through Zapier, Make, or n8n.",
+    "steps": [
+      "On one note, write the homeowner first name, the street address, the work you are doing there, the arrival window you already told them, the new clock time, a one-line reason if you want one said, your name, and the callback number.",
+      "On the next lines, write text or email, and write yes or no for whether they should reply if the later time still works. If you do not know the new clock time yet, leave that line blank instead of guessing a time.",
+      "Open the chat assistant you already use. Paste the prompt for that assistant. Fill every bracket from your note. Where a line is blank, type UNKNOWN in that bracket. Send the single message and wait for the draft.",
+      "Lay the draft beside your note. It must say two hours late, name this street, and use only your reason. Fill any blank yourself. Delete a discount, another day, or a promise the work still finishes today if you did not write that.",
+      "If this is a text, copy only the message body into that homeowner's existing thread. If it is email, put the subject in the subject field and the body in Gmail or your mail app. Do not hit send yet.",
+      "Add two hours to the window you already promised and compare it with the clock time in the draft. If they disagree, correct the draft. If they cannot stay, you decide whether to move the job. The draft does not make that call.",
+      "Optional later: a Google Sheet with columns for name, address, old window, new time, reason, channel, and sent. Mark a row ready so Zapier, Make, or n8n opens a Gmail or text draft. Leave sending switched off."
+    ],
+    "approvalStep": "Before the text or email is sent, you review the name, the street, the two-hour delay, the new clock time, and the reason against your note. You send it yourself. A draft from Zapier, Make, or n8n stays unsent until that review.",
+    "failureModes": [
+      "The draft softens two hours into soon or a little late, so the homeowner expects you earlier. Confirm the message states two hours.",
+      "The new clock time is not the old window plus two hours, often because morning and afternoon got swapped. Add the hours on paper before you send.",
+      "A cause you did not write shows up, such as traffic or a supplier. Keep only the reason on your note, or delete that sentence.",
+      "The reason names another customer's street. Read it so you do not tell this homeowner where the crew actually is.",
+      "A day with two stops gets the wrong street. Match the address to the thread you are about to send.",
+      "Zapier, Make, or n8n sends when the sheet row is saved. Keep the action on draft only, with send switched off, until you have checked the time."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to write this late text?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft only when the name, the street, the two-hour delay, and the reason match your note, and blanks say UNKNOWN. If the clock time is not the window you promised plus two hours, fix it before you send."
+    },
+    {
+      "q": "What if I do not want to say why I am late?",
+      "a": "Leave the reason blank. The draft should skip the cause instead of inventing traffic, weather, or a supplier. You can add one honest sentence yourself after you read it. Do not send a reason you would not say on the porch."
+    },
+    {
+      "q": "The homeowner is already waiting at the house. What should the text say?",
+      "a": "Say you will be two hours late, name the new clock time if you know it, and give the callback number. Do not add a long story. If they may not be able to wait, set the reply question to yes only when you can actually move the job if they say no."
+    },
+    {
+      "q": "Can this send the text from my phone for me?",
+      "a": "No. The assistant only writes the message. You paste it into the existing text thread or into Gmail, check the time and the address, and send it yourself. A sheet plus Zapier, Make, or n8n can open a draft, and that draft still waits until you approve it."
+    },
+    {
+      "q": "What if I might be later than two hours?",
+      "a": "Do not send this draft. It is only for a two-hour delay. If the stop may run longer, wait until you know, then write the real time in your note and say that time in plain words. A note that says two hours when you mean sometime later makes the next call harder."
+    }
+  ],
+  "draft": true,
+  "persona": "general contractor",
+  "job": "Paste rough delay notes and the customer details, and get one ready-to-send text or email saying you will be two hours late to this job.",
+  "who": "General contractors who book their own stops and need a plain text or email when a crew, a delivery, or an earlier job pushes today's start two hours past the window already given to that homeowner.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Text messaging",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

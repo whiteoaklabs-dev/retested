@@ -1,0 +1,85 @@
+{
+  "slug": "write-a-polite-message-to-a-supplier-about-a-wrong-delivery",
+  "title": "Write a polite message to a supplier about a wrong delivery",
+  "category": "Back office",
+  "summary": "The assistant turns a cafe delivery that went wrong into one polite message the owner can send to the supplier. You paste the packing slip or delivery note, the purchase order or standing-order confirmation, rough notes of what is in the crates, and your customer details: cafe name, account number, site address, and the rep. You get To, a short subject, a body of at most 150 words, an ordered-versus-received list with item, pack size, and quantity, the remedy you already chose, the facts used, and any unknowns. It does not invent a price, a credit figure, or a deadline. You check every line against the slip and the order, decide whether to attach a photo, and send the note yourself.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the back-office writer for a cafe owner. Draft one polite message to the supplier about goods that do not match the order. Do not send it.\n\nDelivery note or packing slip: [PACKING SLIP]\nPurchase order, standing order, or portal confirmation: [ORDER PLACED]\nWhat is in the crates, and the remedy you want: [ROUGH NOTES]\nCafe name, account number, site address, and rep: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- For each mismatch, state the item, pack size, and quantity from the order, then the item, pack size, and quantity on the slip or in the crates. Do not add a unit price or a credit total the notes do not contain.\n- Ask only for the remedy written in the notes: replacement on the next drop, a credit, pickup of the wrong goods, or a mix the owner already chose. Do not add a second remedy or a threat to switch accounts.\n- Copy cafe name, account number, site address, slip or invoice number, order number, and delivery date exactly as pasted. A blank field is UNKNOWN.\n- Stay courteous and concrete. Do not blame the driver, use legal wording, or say the goods were unsafe or spoiled unless the notes say so.\n- Body at or under 150 words, first person, signed as the cafe. Subject at or under 12 words and must include the cafe name or the order number.\n\nOutput format:\nHeadings, in order: To, Subject, Body, Ordered versus received, Ask, Facts used, Owner must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a cafe owner who signs for stock. Write one polite supplier message about a delivery that does not match the order. You only draft. You do not send mail.\n\nSources, and no others:\n[PACKING SLIP]\n[ORDER PLACED]\n[ROUGH NOTES]\n[CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Build one line per mismatch: item, pack size, and quantity ordered, then item, pack size, and quantity received. Leave price and any credit figure out unless the rough notes already state them.\n- The ask is only what the notes request: next-drop replacement, a credit, a pickup, or a combination already written. Do not invent a deadline or a second remedy.\n- Repeat the cafe name, account number, which site the van used, slip or invoice number, order number, and delivery date only as they appear. Missing text stays UNKNOWN.\n- Sound like a busy owner who still wants the account. No driver blame, no legal threat, and no spoilage or safety claim the notes did not make.\n- Hold the body to 150 words or fewer. Subject of 12 words or fewer, carrying the cafe name or the order number.\n\nOutput format:\nUse these sections: To, Subject, Body, Ordered versus received, Ask, Facts used, Owner must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken aide for a cafe owner. Turn a mismatched delivery into one polite supplier message. Draft only. Do not send.\n\nSlip: [PACKING SLIP]\nWhat was ordered: [ORDER PLACED]\nCrate notes and the fix you want: [ROUGH NOTES]\nAccount: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Name the clash in plain stock words, such as oat milk versus whole milk, or 8oz cups versus 12oz. Put ordered item, pack size, and quantity beside what the slip or the crate shows. Do not invent a price.\n- Request only the fix in the notes: bring the right goods next drop, credit the wrong ones, pick them up, or the mix already chosen. Do not add a restocking fee or a switch-supplier line.\n- Keep cafe name, account number, site, slip or invoice number, order number, and the delivery date as written. If the phone order has no number, mark it UNKNOWN.\n- Be warm and short. Do not scold the driver or call the food unsafe unless the notes say that.\n- Body stays at or under 150 words. Subject stays at or under 12 words and includes the cafe name or the order number.\n\nOutput format:\nReturn To, Subject, Body, Ordered versus received, Ask, Facts used, Owner must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are preparing a supplier note a cafe owner will read before anything is sent. Draft one polite message about a wrong delivery. Return the draft only.\n\nUse only:\n[PACKING SLIP] for what the paperwork says arrived\n[ORDER PLACED] for the purchase order, standing order, or portal confirmation\n[ROUGH NOTES] for what is physically in the crates and the remedy\n[CUSTOMER DETAILS] for cafe name, account number, site address, and rep\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List each mismatch as ordered item, pack size, and quantity against received item, pack size, and quantity. Do not calculate a credit or a unit price.\n- Limit the ask to the remedy in the notes. Replacement, credit, pickup, or a stated mix is allowed. A new deadline, a fee, or a threat to leave the supplier is not.\n- Quote account number, site, slip or invoice number, order number, and delivery date from the paste. Do not move the delivery onto a different cafe address.\n- Keep the voice polite and specific to this drop. No driver blame and no spoilage claim that the notes do not support.\n- Stay at or under 150 words in the body. Subject at or under 12 words, with the cafe name or the order number.\n\nOutput format:\nSections in this order: To, Subject, Body, Ordered versus received, Ask, Facts used, Owner must confirm, Unknowns.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Later, Gmail and Google Sheets, with Zapier, Make, or n8n creating an unsent draft only.",
+    "steps": [
+      "From today's van paperwork, copy the supplier name, your account number, the delivery date, the slip or invoice number, and every line with item, pack size, and quantity. If a digit is unreadable, leave that spot blank.",
+      "Paste the order beside it: the purchase order, the standing-order email, or the portal confirmation, including item, pack size, quantity, and which cafe site was supposed to receive it. If you ordered by phone, write what you asked for and who took the call.",
+      "Add rough notes from the bench: what is actually in the crates, what you are short of for service, and whether the wrong goods can stay or must be picked up. State one remedy: replacement on the next drop, a credit, a pickup, or a mix you already decided.",
+      "Open the chat assistant you already use. Paste that assistant's prompt, then fill the packing slip, the order, the rough notes, and your customer details: cafe name, account number, site address, and the rep. Ask for one message.",
+      "Read the draft next to the slip and the order. Check each ordered-versus-received line, the account number, the site, the date, and the remedy. Delete any price, credit figure, or deadline you did not write.",
+      "Edit any sentence you would not send to a rep you still buy from. Remove driver blame and any spoilage or safety claim your notes did not make. Save the text in a sheet with supplier, slip number, and a status of not sent.",
+      "When the lines match, open Gmail and start a new message or a reply on the order thread. Paste only the approved subject and body. Attach a photo of the slip or the crate only if you want the rep to see it, then send it yourself.",
+      "Optional later path: when you mark a receiving row ready in Google Sheets, use Zapier, Make, or n8n to create a Gmail draft to that supplier. Leave sending switched off so the draft waits until you review it."
+    ],
+    "approvalStep": "You review the message against the packing slip and the order before it is sent. Confirm each item, pack size, quantity, account number, site, and the remedy, then send it yourself. A Gmail draft from automation stays unsent until that check.",
+    "failureModes": [
+      "Two close lines get swapped, such as oat milk and whole milk, or house espresso and decaf. Read each item and pack size against the slip before you send.",
+      "A credit total or a unit price appears that was never on the slip or in your notes. Delete any figure you did not take from the invoice.",
+      "The note asks for both a replacement and a credit when you chose only one. The rep may do neither. Match the ask to the remedy you wrote.",
+      "Morning milk and the pastry drop from another supplier get merged into one email. Keep one supplier, one slip, and one order in each draft.",
+      "The message cites the kiosk address when the main counter received the goods, or it drops the account number. Match those fields to your customer details.",
+      "The draft goes out after you already sorted the drop by phone, because the sheet still says not sent. Check sent mail before you release a Gmail draft."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "What if I phoned the order and have no purchase order?",
+      "a": "Paste the standing-order email or the portal screen if you have one. If the order lives only in the call, write the items, pack sizes, and quantities you asked for, plus who took the call, and mark the order number UNKNOWN. The draft should not invent a purchase-order number. You confirm that list before you send."
+    },
+    {
+      "q": "Should I ask for a credit, a replacement, or a pickup?",
+      "a": "Decide before you paste, and write one remedy in the rough notes: the right goods on the next drop, a credit, a pickup of what should not have come, or a mix you already want. The draft should not add a second remedy or a deadline. You can change the ask after you read it, and you send only the version you approve."
+    },
+    {
+      "q": "Which assistant should I use for this supplier note?",
+      "a": "Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. Keep the draft only when every item, pack size, and quantity matches the slip and the order, and the remedy matches what you chose. Fill any unknown yourself, including a blank account number, before you send."
+    },
+    {
+      "q": "The slip lists the right goods, but the crate does not. What do I paste?",
+      "a": "Paste both. The slip lines go in the packing-slip field, and your bench notes say what is actually in the crates. The message should state that split and should not invent a cause. You decide whether to attach a photo when you send, and you delete any spoilage claim you did not see."
+    },
+    {
+      "q": "Can the note go out while I am on the espresso bar?",
+      "a": "Paste mode ends as text you copy into mail. An optional Zapier, Make, or n8n flow may turn a Google Sheets row into a Gmail draft. You still check the lines against the slip and press send. The flow must not send the supplier message for you."
+    }
+  ],
+  "draft": true,
+  "persona": "cafe owner",
+  "job": "Packing slip, the order you placed, rough crate notes, and your account details go in. A polite supplier email comes out with the mismatch and the remedy you chose.",
+  "who": "Cafe owners who sign for dairy, coffee, cups, or pastry stock and need a calm note when the van leaves the wrong goods. You email the supplier yourself and want the draft tied to the slip, the order, and your account, not a generic complaint.",
+  "toolCategories": [
+    "Chat assistants",
+    "Email",
+    "Spreadsheets",
+    "Workflow automation"
+  ]
+}

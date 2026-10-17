@@ -1,0 +1,85 @@
+{
+  "slug": "write-an-ad-for-tyre-checks-and-wheel-care-in-my-town",
+  "title": "Write an ad for tyre checks and wheel care in my town",
+  "category": "Marketing & SEO",
+  "summary": "You paste the bay job card, the price board, and the booking diary and get one local ad for tyre checks and wheel care in your town. The notes name the shop, the town you cover, each check you do, each wheel task you actually do, what you will not do, the charge already on the board or the sentence you use when you quote after a look, how people book, the hours, and where the ad will run. The draft returns a headline, a town line, check lines, wheel-care lines, limits, a charge line, a booking line, hours, a town notice, a short return text, and a window-card line. You match town, tasks, charge, hours, and phone to those papers, pick one version, and you post, text, or print it yourself. Nothing is published until you approve the wording.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the counter writer for an auto shop. Draft one local ad for tyre checks and wheel care in the town they already work. Do not post, text, or print it.\n\nInputs only:\n[SHOP NAME]\n[TOWN]\n[TYRE CHECK LIST]\n[WHEEL CARE LIST]\n[WILL NOT DO]\n[CHARGE OR QUOTE SENTENCE]\n[HOW TO BOOK]\n[OPENING HOURS]\n[WHERE IT WILL RUN]\n[ROUGH NOTES]\n\nRules:\n- Write the way the owner talks at the counter. Short lines. No slogan and no hype.\n- Name only the town, tasks, hours, charge, and phone or reply word written in the inputs.\n- If [CHARGE OR QUOTE SENTENCE] has no amount, do not invent one. Repeat their sentence, or mark the charge UNKNOWN.\n- Do not add alignment, balancing, punctures, new tyres, mobile fitting, or nitrogen unless listed on [TYRE CHECK LIST] or [WHEEL CARE LIST].\n- Keep plates, names, and complaints inside [ROUGH NOTES] out of the public wording.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE: tyre checks, wheel care, and the town\nTOWN: places in [TOWN] only\nTYRE CHECK: one item per line\nWHEEL CARE: one item per line\nNOT OFFERED: one limit per line, or UNKNOWN\nCHARGE LINE: unchanged quote or charge\nBOOKING LINE: phone or reply word from [HOW TO BOOK]\nHOURS: [OPENING HOURS] or UNKNOWN\nTOWN NOTICE: under 80 words for [WHERE IT WILL RUN]\nRETURN TEXT: under 40 words\nWINDOW CARD: under 25 words\nOWNER READ-BACK: town, tasks, charge, hours, phone\nGAPS: one missing field per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for an auto shop owner. From the bay notes below, write one local ad for tyre checks and wheel care in their town. You do not post it, text it, or send it to a printer.\n\nSources:\n[SHOP NAME]\n[TOWN]\n[TYRE CHECK LIST]\n[WHEEL CARE LIST]\n[WILL NOT DO]\n[CHARGE OR QUOTE SENTENCE]\n[HOW TO BOOK]\n[OPENING HOURS]\n[WHERE IT WILL RUN]\n[ROUGH NOTES]\n\nRules:\n- Stay inside the notes. A town, task, hour, charge, or phone that is not written there stays out of the ad.\n- If a bracket is empty, write UNKNOWN and add one question. Do not borrow a nearby village to widen the map.\n- Put an amount in the ad only when [CHARGE OR QUOTE SENTENCE] already states one. Otherwise keep their quote sentence.\n- Treat [WILL NOT DO] as limits. Do not turn a refusal, such as no mobile call-out, into a service you sell.\n- Strip registration plates, customer names, and private complaints out of [ROUGH NOTES] before any public line.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nReturn these headings in this order:\nHEADLINE\nTOWN\nTYRE CHECK\nWHEEL CARE\nNOT OFFERED\nCHARGE LINE\nBOOKING LINE\nHOURS\nTOWN NOTICE (one paragraph, under 80 words, aimed at [WHERE IT WILL RUN])\nRETURN TEXT (under 40 words)\nWINDOW CARD (under 25 words)\nOWNER READ-BACK\nGAPS\n\nUnder OWNER READ-BACK, list the town, each task, the charge line, the hours, and the booking phone so the owner can match them to the job card and the diary.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a direct writing aide for an auto shop owner who talks like a person in the bay, not an agency. Turn the notes into one local ad for tyre checks and wheel care in their town. Stop when the draft is ready. Do not post it.\n\nUse only:\n[SHOP NAME]\n[TOWN]\n[TYRE CHECK LIST]\n[WHEEL CARE LIST]\n[WILL NOT DO]\n[CHARGE OR QUOTE SENTENCE]\n[HOW TO BOOK]\n[OPENING HOURS]\n[WHERE IT WILL RUN]\n[ROUGH NOTES]\n\nRules:\n- Sound like the owner: plain words, short lines, no hype.\n- Do not claim the shop is the fastest, the cheapest, or the only place in town for tyres.\n- Use their town only. If [TOWN] is thin, mark the place UNKNOWN instead of adding villages.\n- Repeat [CHARGE OR QUOTE SENTENCE] as written. Do not invent a check price, a discount, or a free balance.\n- Do not promise alignment, a brand of tyre, nitrogen, or a same-day bay that the lists and [OPENING HOURS] do not support.\n- Leave plates, names, and complaints out of the public wording.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE\nTOWN\nTYRE CHECK\nWHEEL CARE\nNOT OFFERED\nCHARGE LINE\nBOOKING LINE\nHOURS\nTOWN NOTICE: under 80 words, for the place named in [WHERE IT WILL RUN]\nRETURN TEXT: under 40 words\nWINDOW CARD: under 25 words\nOWNER READ-BACK: town, tasks, charge, hours, phone\nGAPS: missing fields, one per line",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting a local ad for tyre checks and wheel care. The owner approves it before it is posted, texted, or taped in the window.\n\nNotes:\n[SHOP NAME]\n[TOWN]\n[TYRE CHECK LIST]\n[WHEEL CARE LIST]\n[WILL NOT DO]\n[CHARGE OR QUOTE SENTENCE]\n[HOW TO BOOK]\n[OPENING HOURS]\n[WHERE IT WILL RUN]\n[ROUGH NOTES]\n\nRules:\n- Draft, then stop. Do not post, text, print, or hand the ad to another tool.\n- Keep every place inside [TOWN]. If the town is missing, mark it UNKNOWN and ask which place the bay covers.\n- Copy [TYRE CHECK LIST] and [WHEEL CARE LIST] as written. Do not add tracking, balancing, punctures, or new tyres.\n- Show a charge only if [CHARGE OR QUOTE SENTENCE] states one. Otherwise keep their quote sentence. Do not invent an amount.\n- Use [HOW TO BOOK], [OPENING HOURS], and [WHERE IT WILL RUN] as written. A missing phone, hour, or place is UNKNOWN.\n- Drop any plate, name, or complaint in [ROUGH NOTES]. The public ad is not a job card.\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n\nOutput format:\nHEADLINE: tyre checks, wheel care, and the town\nTOWN: listed places only\nTYRE CHECK: one item per line\nWHEEL CARE: one item per line\nNOT OFFERED: one limit per line, or UNKNOWN\nCHARGE LINE: unchanged from the notes\nBOOKING LINE: their phone or reply word\nHOURS: from the diary, or UNKNOWN\nTOWN NOTICE: under 80 words\nRETURN TEXT: under 40 words\nWINDOW CARD: under 25 words\nOWNER READ-BACK: town, tasks, charge, hours, phone\nGAPS: one gap per line",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant in paste mode first. Optionally Google Sheets with Zapier, Make, or n8n to store an approved draft, with posting and sending left off.",
+    "steps": [
+      "Start in a blank note, not an ads account. From the bay job card, write each tyre check and each wheel-care task. From the price board, write the charge or the sentence you use when you quote after a look. From the diary, write the town, the hours, the shop-front phone, and anything you will not do.",
+      "Open the chat assistant you already use. Paste the prompt for that assistant. Replace each bracket from your note, and name where the ad will run: a town group, a Google Business update, a window card, or a text. If the charge, hours, or town is missing, type UNKNOWN in that bracket.",
+      "Run the prompt once. Read the headline, town, tyre-check lines, wheel-care lines, charge, hours, and booking phone beside the job card, the price board, and the diary. Circle any village, task, hour, or number that those papers do not show.",
+      "Edit the draft yourself. Cut any task you do not offer, such as mobile fitting, nitrogen, or a tyre brand that was not on the lists. If a price appeared that the board never showed, put your quote sentence back in the charge line before you go further.",
+      "Choose the town notice, the return text, or the window card. Copy that one version into a Google Sheet row with columns for town, charge line, hours, version, and status set to not posted. Keep the other versions in the note until you decide you want them.",
+      "Optional agent mode: when the approved wording should sit ready for several texts or a printout, use Zapier, Make, or n8n to copy that sheet cell into a Gmail draft or a document. Leave sending, posting, and any paid promotion switched off.",
+      "After the approval check, you post the town notice, update the business profile, print the window card, or send the text yourself. Save the approved lines in the sheet so the next ad starts from the same town, checklist, charge, hours, and phone."
+    ],
+    "approvalStep": "You read the draft beside the job card, price board, and diary, and you approve the town, the tyre and wheel tasks, the charge or quote sentence, the hours, and the phone before anything is posted, texted, printed, or paid for. A Gmail draft from Zapier, Make, or n8n stays unsent until that review.",
+    "failureModes": [
+      "The ad names a village you do not cover or says you come to the driveway. Watch for any place or mobile call-out missing from your town line. Delete it before you post, or you will book work the bay cannot do.",
+      "A flat check price or a free balance appears when you quote after seeing the wheel. Watch for an amount you did not type on the price board. Replace it with your quote sentence.",
+      "Alignment, nitrogen, a tyre brand, or a same-day promise shows up though the job card never listed it. Watch the check lines and the wheel-care lines. Cut any task the bay does not do.",
+      "A registration plate, a customer name, or a complaint from your rough notes lands in the public notice. Watch for anything beyond the shop name, town, tasks, charge, hours, and booking phone.",
+      "The phone or the hours are off, such as a bay that is open only on the days in the diary but the ad says every weekday. Read both against the diary before you text anyone.",
+      "An automation posts the notice or sends the text when you only meant to store the draft. Watch for a live update or a sent message you never opened. Keep the tool on draft only."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use to write this tyre ad?",
+      "a": "Use the prompt written for the assistant you already open. Judge the draft by whether the town matches the places you cover, each check and wheel task is on the job card, the charge matches the price board or stays your quote sentence, and the phone and hours match the diary. A blank field should say UNKNOWN instead of a guessed village or price."
+    },
+    {
+      "q": "What notes should I paste before I ask for the ad?",
+      "a": "Paste the shop name, the town, the tyre-check items and wheel-care items from the bay job card, anything you will not do, the charge on the price board or your quote-after-a-look sentence, how people book, the hours, and where you plan to run it. Customer details means questions people ask at the counter, such as a slow puncture or a shake at speed. Leave plates and names out of the public lines."
+    },
+    {
+      "q": "What if I check tyres but do not sell them or do alignment?",
+      "a": "Put those limits in the will-not-do line, such as no tyre sales, no tracking, workshop only. The draft should list them under not offered and should not turn a refusal into an extra. If that bracket is empty, it should come back UNKNOWN so you can add the limit before anyone sees the ad."
+    },
+    {
+      "q": "Can I text people who came in for tyres last season?",
+      "a": "Yes, after you approve the short return text. Paste only that approved text into your phone or into a Gmail draft. Do not let an automation send it. Skip anyone who asked you not to text, and do not put their plate, their street, or the old job-card notes into the message."
+    },
+    {
+      "q": "Where should the longer version go?",
+      "a": "You choose the town group, a Google Business update, or the card in the window. The draft gives you a town notice, a return text, and a window card so you can pick one. Read the one you want against the job card and the price board, then post or print it yourself. The assistant does not publish it."
+    }
+  ],
+  "draft": true,
+  "persona": "auto shop owner",
+  "job": "Paste your town, bay checklist, charge, hours, and booking phone. Get a ready-to-send local ad for tyre checks and wheel care, and you post, text, or print it yourself.",
+  "who": "Auto shop owners who already run tyre checks and wheel care from one workshop and need a local ad built from the bay job card, the price board, the booking diary, and the phone on the shop front.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Text messaging",
+    "Automation"
+  ]
+}

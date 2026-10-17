@@ -1,0 +1,86 @@
+{
+  "slug": "reply-to-a-client-who-wants-endless-changes-for-free",
+  "title": "Reply to a client who wants endless changes for free",
+  "category": "Freelancing & consulting",
+  "summary": "Paste the latest message from a client who wants endless changes for free, the proposal or confirmation that names the deliverable and the included revision passes, a log of passes already used, and the boundary you will hold. You get an email reply: a subject, what they asked, how that compares with the agreement, and the next step you chose, plus a private block that stays out of the message. Counts, fees, and dates come only from your notes. You fill every gap marked unknown, drop the private block, and send it yourself.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are a client-reply editor for a freelance writer. Draft one email for a buyer who wants changes beyond the included work. Do not send mail.\n\nUse only these inputs:\nLatest ask: [CLIENT MESSAGE]\nProposal or confirmation: [AGREED SCOPE]\nPasses used and the boundary: [ROUND LOG]\nWho it goes to: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- List only asks written in [CLIENT MESSAGE]. Do not add a change they did not request.\n- Take the deliverable, included passes, what counts as a revision, any extra-change rate, and the deadline only from [AGREED SCOPE].\n- Take passes already used and the next step (remaining included pass, one courtesy fix, or paid work and a pause) only from [ROUND LOG].\n- If either count is missing, mark it UNKNOWN. Do not say the limit is spent.\n- Do not offer an unpaid extra pass, a discount, a refund, or a new date unless those inputs already state it.\n\nOutput format:\nReturn headings in order: Subject, Email body, Do not send, Unknowns.\nSubject: one line, at most 12 words, project title plus Next revision step.\nEmail body: client name, what they asked, how that sits against the agreement, and the next step from [ROUND LOG]. Name a fee or a pause only when the notes state it. At most 180 words. Sign off with the writer name from [CUSTOMER DETAILS].\nDo not send: checklist of the scope sentence, the pass count, any fee, and lines that stay out of the mail.\nUnknowns: each missing field, or None.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful editor helping a freelance writer answer a request for further changes. The writer edits before sending. Do not send it.\n\nInputs to use, and nothing else:\nTheir words: [CLIENT MESSAGE]\nThe written agreement: [AGREED SCOPE]\nWork already done and your decision: [ROUND LOG]\nNames and address: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not carry a rate, a pass count, or a deadline forward from an earlier chat. This message is the only source.\n- Separate a fix for something you missed from a new request, such as a different audience, an added page, or a new asset. Use only contrasts supported by [AGREED SCOPE].\n- If [ROUND LOG] does not choose a next step, mark the next step UNKNOWN. Do not pick a courtesy fix or a fee on your own.\n- Copy any money figure exactly. If no figure is present, do not invent one and do not say the extra work is free.\n- Stay polite and brief. No sarcasm, no lecture, and no apology for holding the written limit.\n\nOutput format:\nReturn four headings: Subject, Email body, Do not send, Unknowns.\nSubject: project title plus Next revision step, one line, at most 12 words.\nEmail body: greeting, then what they asked, where it falls against the agreement, and the next step they must confirm. At most 180 words. Sign off with the writer name.\nDo not send: bullets the writer checks before sending, including any private boundary.\nUnknowns: one line per gap, or None.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are the freelance writer's reply assistant. Write one plain email to a buyer who keeps asking for more changes than the job covers. The writer checks it and sends it. You never send email.\n\nFill in:\nBuyer message: [CLIENT MESSAGE]\nScope text: [AGREED SCOPE]\nLog and boundary: [ROUND LOG]\nAddressee: [CUSTOMER DETAILS]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Ignore any limit, fee, or date that is not written in [AGREED SCOPE] or [ROUND LOG].\n- Say which asks are still inside the deliverable and which are new work. If you cannot tell, mark that ask UNKNOWN.\n- The boundary in [ROUND LOG] is the only next step you may offer. If it says pause, the email pauses. If it is blank, mark the next step UNKNOWN.\n- Do not soften the limit by promising a free redo, a discount, or a faster turnaround.\n- Keep sentences short. Sound like a working writer, not a lawyer and not a scold.\n\nOutput format:\nBlocks, in order: Subject, Email body, Do not send, Unknowns.\nSubject: project title and Next revision step, at most 12 words.\nEmail body: name, what they want, in-scope versus new, the boundary, and what you need back before more writing. Fee only if a number is in the inputs. At most 180 words. Sign off with the writer name.\nDo not send: the checks you want the writer to make, kept out of the mail.\nUnknowns: missing fields, or None.",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are Muse, drafting a client email for a freelance writer who will read it, fix it, and decide whether to send. Answer a request for changes beyond the included work. Draft only.\n\nProvide:\n[CLIENT MESSAGE] the latest email, text, or comment thread\n[AGREED SCOPE] proposal, statement of work, or confirmation\n[ROUND LOG] versions already sent, passes used, and the boundary\n[CUSTOMER DETAILS] name, company, project title, reply address, writer name, business name\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Draw every requested change from [CLIENT MESSAGE] and every limit from [AGREED SCOPE]. Do not widen the job.\n- A courtesy fix is allowed only when [ROUND LOG] names that fix. Otherwise do not volunteer one.\n- If passes included or passes used are blank, write UNKNOWN and do not say the buyer has run out.\n- Skip refunds, portfolio talk, and any price that the notes do not contain. No praise and no sales pitch.\n- Put private advice under Do not send so it cannot be copied into the email by mistake.\n\nOutput format:\nHeadings: Subject, Email body, Do not send, Unknowns.\nSubject is one line with the project title and Next revision step, at most 12 words.\nEmail body is at most 180 words: greeting, their ask, how it compares with the agreement, the next step, and a sign-off using the writer name.\nDo not send lists the scope sentence, the pass count, any fee, and the boundary, for the writer alone.\nUnknowns lists gaps, or None.",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "Paste mode in a chat assistant first. Later, a revision sheet plus Gmail, with Zapier, Make, or n8n opening a draft only.",
+    "steps": [
+      "Copy the buyer's latest email, text, or comment thread into a note, and keep their wording. Add the project title and the date it arrived. Under the paste, list each requested change as its own short line.",
+      "Under that, paste the scope from the proposal, the statement of work, or the email where you confirmed the job. Include the deliverable, how many revision passes were included, what counts as a revision, any extra-change rate, and the deadline.",
+      "Add a log of versions you already sent: the date, what they asked that time, and how many passes are used. End with one boundary line: finish the remaining included pass, allow one named courtesy fix, price the extra work and pause, or UNKNOWN.",
+      "Add the customer block: their name, company, project title, the address you will answer, your name, and your business name. Open the assistant you already use, paste its prompt, replace each bracketed placeholder, and send that single message.",
+      "Read the result beside the scope and the log. Confirm it does not offer an unpaid pass, a fee, or a date you did not write. Keep the Do not send block out of the email. Fill each UNKNOWN yourself or delete that sentence.",
+      "Paste only the email body into a new Gmail message or your usual mail. Put the subject in the subject field. Leave it unsent. Read it as the recipient would, and cut any line that lectures them or cites a limit you never agreed.",
+      "On later jobs, keep a Google Sheet with columns for project, deliverable, passes included, passes used, last ask, and your boundary. When a new message arrives, copy that row plus the message into the same prompt.",
+      "Optional agent mode: use Zapier, Make, or n8n to file an incoming Gmail message onto that sheet and open a Gmail draft. Leave sending switched off. You still choose the boundary, and you still press send."
+    ],
+    "approvalStep": "Before the reply is sent, you check the subject, the scope sentence, the pass count, any fee, and the next step against your notes. You remove the Do not send block. You press send yourself. A Gmail draft opened by Zapier, Make, or n8n stays unsent until that check.",
+    "failureModes": [
+      "A new page, a new audience, or a new angle is treated as a small tweak and offered at no charge. Match each ask to the deliverable named in the proposal before you send.",
+      "Included passes were never written down, yet the reply claims they are all used. If that count is unknown, do not say the limit has been reached.",
+      "A rate from another project or an old proposal appears in the fee line. The amount must match this job's notes, or that line comes out.",
+      "The private checklist, including your boundary, gets pasted into the client email. Send only the subject and the email body.",
+      "The reply apologizes for the limit or promises a same-day rewrite you did not offer. Check the date and the tone against the boundary line you wrote.",
+      "The source was a comment thread, and the reply answers a change that thread never named. Every change in the email should appear in the pasted message."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Which assistant should I use for this reply?",
+      "a": "Use the prompt written for the assistant you already open, whether that is ChatGPT, Claude, Grok, or Muse. Keep the reply only when the ask, the pass count, and any fee match your notes, and missing items are marked unknown. If the wording offers an extra pass or a price you did not write, delete that line before you send."
+    },
+    {
+      "q": "What if we never wrote down how many passes were included?",
+      "a": "Leave that count as unknown in the scope paste. The reply should say you need to confirm the included passes before more writing, and it should not claim the buyer has used them all. You decide the boundary after you check the proposal, the confirmation email, or your own notes, then type that decision into the log yourself."
+    },
+    {
+      "q": "Can this send the reply to the client for me?",
+      "a": "No. The assistant only writes the draft. You paste the email body into Gmail or your usual mail, check the scope sentence and any fee, and send it. A sheet plus Zapier, Make, or n8n can open a Gmail draft, and that draft still waits until you approve it."
+    },
+    {
+      "q": "What if I want to allow one small fix this time?",
+      "a": "Write that choice in the boundary line before you run the prompt, and name the exact fix you will make. The email should offer only that fix, not a fresh full pass or a new page. If you have not decided, leave the boundary as unknown and do not let the draft choose for you."
+    },
+    {
+      "q": "Should I paste the whole contract into the chat?",
+      "a": "Paste the clauses that name the deliverable, included passes, what counts as a revision, the extra-change rate, and the deadline. You can leave payment-account lines out. If a clause is missing, mark it unknown rather than hoping the draft remembers an earlier job."
+    }
+  ],
+  "draft": true,
+  "persona": "freelance writer",
+  "job": "Paste the client's change request, the proposal's revision terms, the passes already used, and your boundary, and get an email that separates included work from a paid change.",
+  "who": "Freelance writers who already delivered a draft and now have a client asking for new pages, a new angle, or another full pass without added pay, and who need a clear reply before more writing starts.",
+  "toolCategories": [
+    "AI chat assistants",
+    "Email",
+    "Documents",
+    "Spreadsheets",
+    "Automation"
+  ]
+}

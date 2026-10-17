@@ -1,0 +1,85 @@
+{
+  "slug": "turn-my-open-house-sign-in-sheet-into-follow-up-messages",
+  "title": "Turn my open house sign in sheet into follow up messages",
+  "category": "Real estate",
+  "summary": "You paste a typed open house sign-in sheet, a line-by-line transcript of the paper photo, or a spreadsheet export with name, phone, email, whether they already have an agent, and margin notes, plus a short card of listing facts you are willing to repeat. The assistant returns a contact order and one follow-up per guest: channel, a send or skip flag, an email subject and body, a short text, and the sheet note each line used. Unreadable names and empty notes stay marked unknown. You decide who is a buyer, a neighbor, or off limits, correct every digit against the paper, and send only the messages you approve from your own email or phone.",
+  "published": "2026-10-17",
+  "updated": "2026-10-17",
+  "tests": [
+    {
+      "model": "ChatGPT",
+      "prompt": "You are the follow-up drafter for a listing agent who just held an open house. Turn the sign-in sheet into one ready-to-send note per guest. Do not send anything.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use only names, phones, emails, and handwritten comments from [SIGN-IN SHEET], plus facts written in [LISTING FACTS].\n- If a row says they have an agent, asked not to be contacted, or stopped in as a neighbor, set status SKIP and copy the reason, or write a two-sentence thank-you with no pitch.\n- Choose the channel from the blanks they filled: email when an email is present, text when only a phone is present, and both when both are present.\n- Do not mention price, schools, condition, or another event unless that fact is written in [LISTING FACTS].\n- Offer one next step only when their comment asks for a second look, a call, or more information.\n\nOutput format:\nStart with a contact-order list. Columns: Guest, Channel, Status (SEND, SKIP, or NEEDS-YOU), Missing field.\nThen one block per SEND or NEEDS-YOU row:\nGUEST\nCHANNEL\nEMAIL SUBJECT (eight words or fewer, or NONE)\nEMAIL BODY (110 words or fewer, or NONE)\nTEXT (40 words or fewer, or NONE)\nNOTE USED\nUNKNOWN\nEnd with any rows you could not read.\n\nSign-in sheet:\n[SIGN-IN SHEET]\n\nListing facts you may repeat:\n[LISTING FACTS]\n\nSign-off:\n[AGENT SIGN-OFF]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Claude",
+      "prompt": "You are a careful drafter for a listing agent writing same-day notes after an open house. Produce drafts the agent will edit. You do not send mail or texts.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Take every name, phone, email, and comment only from [GUEST ROSTER]. Take address, date, and any price or showing note only from [PROPERTY CARD].\n- Split second-look buyers from neighbors and from people who already have an agent. Neighbors get thanks only. Represented people get SKIP unless [BROKERAGE RULE] allows a courtesy note.\n- Do not guess a digit. When handwriting is unclear, mark the whole contact NEEDS-YOU.\n- No hype and no scarcity. Do not add a link, an attachment, or a deadline that was not in the inputs.\n- Write in first person with [AGENT SIGN-OFF], so each fact can be checked against the roster.\n\nOutput format:\nReturn three sections.\nSection 1, a list: Name | Channel | Status | Why.\nSection 2, for each person you would send: Name, Channel, Subject (eight words max) or NONE, Email (110 words max) or NONE, Text (40 words max) or NONE, Source line, Unknowns.\nSection 3, questions to answer before anyone is contacted.\n\nGuest roster:\n[GUEST ROSTER]\n\nProperty card:\n[PROPERTY CARD]\n\nBrokerage boundary:\n[BROKERAGE RULE]\n\nSign-off:\n[AGENT SIGN-OFF]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Grok",
+      "prompt": "You are a plain-spoken drafter for a listing agent. An open house just ended. Turn the sign-in page into follow-up messages the agent will send. Stop at drafts.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Stick to [SIGN-IN PAGE] for who showed up and what they wrote, and to [HOUSE FACTS] for anything about the property.\n- Skip a buyer pitch when the note says they have an agent, do not contact, or came as a neighbor. A neighbor note is thanks, not a tour invite.\n- Channel follows the blanks they filled: mail if there is an email, a phone text if there is only a number, both only if both are written.\n- If you cannot read a name or a digit, status is NEEDS-YOU. Do not swap in a likely spelling.\n- Sound like the agent on a normal weekday. No pressure and no praise they did not write in the note.\n\nOutput format:\nList who to contact first, with channel and status SEND, SKIP, or NEEDS-YOU.\nThen for each SEND or NEEDS-YOU name, output these headings:\nNAME\nCHANNEL\nSUBJECT or NONE\nEMAIL (110 words max) or NONE\nTEXT (40 words max) or NONE\nLINE I USED\nUNKNOWN\nClose with the unreadable rows.\n\nSign-in page:\n[SIGN-IN PAGE]\n\nHouse facts:\n[HOUSE FACTS]\n\nHow to sign:\n[AGENT SIGN-OFF]",
+      "status": "not-yet-tested"
+    },
+    {
+      "model": "Muse",
+      "prompt": "You are a drafting partner for a listing agent who needs same-day notes after an open house. Shape one message per person on the log, ready to edit. Do not send it.\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Use [OPEN HOUSE LOG] for people and comments, and [LISTING CARD] for address, date, and facts the agent will repeat.\n- Let the comment pick the lane: second look, neighbor thanks, already represented, or unclear. Unclear lanes stay UNKNOWN for the agent to choose.\n- Keep each email at or under 110 words and each text at or under 40 words. Keep each subject at or under eight words.\n- Mention only the room, yard, or question that person wrote. A blank comment stays blank.\n- One ask at most, taken from what they requested. No extra link and no new event.\n\nOutput format:\nUse headings for each person, in the order to contact:\nPerson\nLane\nChannel\nStatus\nSubject\nEmail\nText\nComment used\nUnknown\nAfter the headings, list any log lines you could not read.\n\nOpen house log:\n[OPEN HOUSE LOG]\n\nListing card:\n[LISTING CARD]\n\nSign-off:\n[AGENT SIGN-OFF]",
+      "status": "not-yet-tested"
+    }
+  ],
+  "setup": {
+    "agent": "A chat assistant you paste into. Later, Google Sheets with Zapier, Make, or n8n can create Gmail drafts after you approve each row.",
+    "steps": [
+      "Before you leave the open house, keep the sign-in sheet as paper or a phone photo. Save every field you collected: name, phone, email, whether they have an agent, timeline, and the margin note.",
+      "Write a separate listing card with only facts you will stand behind: street address, open house date, your name, and brokerage sign-off. Add price or the next showing only if you want those words in the follow-up.",
+      "Open the chat assistant you already use and paste its prompt. Put a typed copy of the sheet, one person per line, in the sheet placeholder, and put the listing card in the facts placeholder.",
+      "Run the whole sheet in one pass. Ask for a contact order, then one block per person with channel, SEND or SKIP or NEEDS-YOU, subject, email body, text, and the sheet line that block used.",
+      "Lay the paper beside the draft. Fix every name, phone, and email yourself. Change a SKIP into a short thank-you only if your office allows it. Remove anyone who asked not to be contacted.",
+      "Copy one approved email into a new message with that person alone in the To line, or paste one approved text into your phone. Read it once more, send it, then move to the next name.",
+      "After you have run a few open houses this way, put the cleaned rows in Google Sheets. Use Zapier, Make, or n8n to create Gmail drafts or a text list, and leave sending off until you approve each note."
+    ],
+    "approvalStep": "Before anything is sent, you review each draft against the sign-in sheet, confirm the name, channel, and property facts, delete anyone you should not contact, and only then send from your own email or phone.",
+    "failureModes": [
+      "A smeared phone digit or a nickname is copied into the draft. Read the number back against the paper or the photo before you text or email.",
+      "A guest who wrote that they have an agent, or asked not to be contacted, still gets a buyer pitch. Check that row and drop the pitch.",
+      "A blank margin note becomes a claim they loved the kitchen or the yard. If that source line is not on your sheet, cut the sentence.",
+      "The whole guest list lands in one email To line. Send one person per message, or use a column that holds a single address.",
+      "The draft adds schools, safety, or who lives on the block. Those facts were not on the sign-in sheet. Delete any line you did not supply.",
+      "Two adults on one line are written to as one first name, or a child in the margin is treated as the contact. Address only the adults who signed."
+    ]
+  },
+  "toolPicks": [],
+  "faq": [
+    {
+      "q": "Can I start from a photo of the paper sheet?",
+      "a": "Type each row you can read into the sheet placeholder and keep the photo next to you. Where a letter or a digit is unclear, write UNKNOWN rather than a guess. When the drafts return, correct every name, phone, and email against the paper before you copy anything into mail or a text."
+    },
+    {
+      "q": "What if a guest already has an agent?",
+      "a": "That row should come back as SKIP, or as a two-sentence thank-you with no pitch, and only if your office allows a courtesy note. You choose which one fits the brokerage rule you work under, and you delete the draft when a courtesy note is not appropriate. Do not send a representation pitch to that person."
+    },
+    {
+      "q": "Which assistant should I paste this into?",
+      "a": "Use the prompt written for the assistant you already have. Keep a draft only when the name, phone, email, and property facts match the sign-in sheet, gaps are marked UNKNOWN, and the wording sounds like you. Move to a different prompt only when you move to a different assistant."
+    },
+    {
+      "q": "How should a neighbor note differ from a buyer note?",
+      "a": "A neighbor gets a short thank-you and no invitation to tour or buy. A buyer who asked for a second look gets one next step taken from their margin note. If the note does not say which they are, leave the lane UNKNOWN and decide it yourself before you copy the words into mail or a text."
+    },
+    {
+      "q": "Will these drafts send on their own?",
+      "a": "No. Paste mode stops at text you can copy. You put each approved email in your own mail app, one person in the To line, or paste one text into your phone, and you send it. If you later use Google Sheets with Zapier, Make, or n8n, create drafts only and leave the send step with you."
+    }
+  ],
+  "draft": true,
+  "persona": "real estate agent",
+  "job": "Turn an open house sign-in sheet into one ready-to-send email or text per guest, using only their notes and listing facts you supply, for you to approve before anything is sent.",
+  "who": "Listing agents and small teams who finish an open house holding a paper sign-in sheet, a phone photo of that sheet, or a rough spreadsheet of names, phones, emails, and scribbled notes, and need a personal follow-up the same day.",
+  "toolCategories": [
+    "Chat assistants",
+    "Spreadsheets",
+    "Email",
+    "Text messaging",
+    "Automation"
+  ]
+}
