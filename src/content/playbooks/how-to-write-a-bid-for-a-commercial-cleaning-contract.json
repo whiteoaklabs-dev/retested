@@ -1,0 +1,81 @@
+{
+    "slug": "how-to-write-a-bid-for-a-commercial-cleaning-contract",
+    "title": "How to write a bid for a commercial cleaning contract",
+    "category": "Sales",
+    "summary": "Paste the building details into ChatGPT and get a clear commercial cleaning bid. Check the scope and the price before you send it to the manager.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a cleaning company owner write a bid for a commercial cleaning contract. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient business name: [CLIENT NAME]\nBuilding or site: [SITE]\nSquare feet or areas: [SIZE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nFrequency and hours: [SCHEDULE]\nStaffing you will use: [STAFFING]\nSupplies and equipment: [SUPPLIES]\nMonthly or per-visit price: [PRICE]\nContract length: [TERM]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a square footage, a staffing plan, a supply list, or a price.\n- Do not add day porter work, windows, or floor stripping unless they are in [INCLUDED].\n- Do not offer a discount or a trial period unless it is in the details.\n- Keep the bid plain and professional, like a one-page proposal a facilities manager can forward.\n- No slang and no pressure.\n\nOutput format:\nReturn these headings only:\nSubject\nBid summary (60 words or fewer)\nScope\nSchedule and staffing\nSupplies\nPrice and term\nWhat's not included\nNext step\nFacts used\nUnknown\nKeep the full bid under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a commercial cleaning bid. Write one short proposal the owner will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient business name: [CLIENT NAME]\nBuilding or site: [SITE]\nSquare feet or areas: [SIZE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nFrequency and hours: [SCHEDULE]\nStaffing you will use: [STAFFING]\nSupplies and equipment: [SUPPLIES]\nMonthly or per-visit price: [PRICE]\nContract length: [TERM]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a square footage, a staffing plan, a supply list, or a price.\n- Do not add day porter work, windows, or floor stripping unless they are in [INCLUDED].\n- Do not offer a discount or a trial period unless it is in the details.\n- Keep the bid plain and professional, like a one-page proposal a facilities manager can forward.\n- No slang and no pressure.\n\nOutput format:\nReturn these headings only:\nSubject\nBid summary (60 words or fewer)\nScope\nSchedule and staffing\nSupplies\nPrice and term\nWhat's not included\nNext step\nFacts used\nUnknown\nKeep the full bid under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain commercial cleaning bids. One building, one draft. The owner sends it after they check the scope and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient business name: [CLIENT NAME]\nBuilding or site: [SITE]\nSquare feet or areas: [SIZE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nFrequency and hours: [SCHEDULE]\nStaffing you will use: [STAFFING]\nSupplies and equipment: [SUPPLIES]\nMonthly or per-visit price: [PRICE]\nContract length: [TERM]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a square footage, a staffing plan, a supply list, or a price.\n- Do not add day porter work, windows, or floor stripping unless they are in [INCLUDED].\n- Do not offer a discount or a trial period unless it is in the details.\n- Keep the bid plain and professional, like a one-page proposal a facilities manager can forward.\n- No slang and no pressure.\n\nOutput format:\nReturn these headings only:\nSubject\nBid summary (60 words or fewer)\nScope\nSchedule and staffing\nSupplies\nPrice and term\nWhat's not included\nNext step\nFacts used\nUnknown\nKeep the full bid under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a bid for a commercial cleaning contract. Draft only. Do not email the client.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient business name: [CLIENT NAME]\nBuilding or site: [SITE]\nSquare feet or areas: [SIZE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nFrequency and hours: [SCHEDULE]\nStaffing you will use: [STAFFING]\nSupplies and equipment: [SUPPLIES]\nMonthly or per-visit price: [PRICE]\nContract length: [TERM]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a square footage, a staffing plan, a supply list, or a price.\n- Do not add day porter work, windows, or floor stripping unless they are in [INCLUDED].\n- Do not offer a discount or a trial period unless it is in the details.\n- Keep the bid plain and professional, like a one-page proposal a facilities manager can forward.\n- No slang and no pressure.\n\nOutput format:\nReturn these headings only:\nSubject\nBid summary (60 words or fewer)\nScope\nSchedule and staffing\nSupplies\nPrice and term\nWhat's not included\nNext step\nFacts used\nUnknown\nKeep the full bid under 280 words.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "After you walk the building, write the client name, the site, the size, what's included and not, the frequency and hours, staffing, supplies, the price, the term, and the start date.",
+            "Add your name, business, and phone. If you did not measure the square footage, leave size blank.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN rather than guessing a size or a price.",
+            "Check the scope, the nights or days, the staffing, and the price against your walkthrough notes. Delete any extra service you did not quote.",
+            "Paste the bid into an email or a PDF and send it yourself."
+        ],
+        "approvalStep": "You check the scope, the schedule, and the price against your notes, then you send the bid yourself.",
+        "failureModes": [
+            "The draft adds windows, a day porter, or floor stripping you did not include. Take those services out or price them separately.",
+            "The monthly price or the square footage does not match your notes. Put your figures back in.",
+            "The staffing line invents a crew size. Use only what you can actually assign.",
+            "The bid promises a start date you cannot meet. Keep the date on your note, or mark it UNKNOWN."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "I have not measured the square footage yet. Can I still send a bid?",
+            "a": "You can send a scope based on the rooms you walked, but leave size blank or UNKNOWN until you measure. Do not let the draft invent a square footage."
+        },
+        {
+            "q": "Should I include a cheaper and a premium option?",
+            "a": "This prompt writes one bid. If you want two options, run it twice with two different include lists and prices, and label each option yourself."
+        },
+        {
+            "q": "Can I mention insurance or bonding?",
+            "a": "Yes, if you add those facts to the details. Do not let the draft claim coverage you did not type in."
+        }
+    ],
+    "persona": "cleaning business owner",
+    "job": "Paste a building walkthrough and get a one-page commercial cleaning bid.",
+    "who": "Cleaning company owners bidding on offices, shops, or other commercial sites who want a plain scope and price a manager can forward.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email"
+    ],
+    "example": {
+        "scenario": "A cleaning company is bidding a nightly office clean for a small professional building.",
+        "input": "Client business name: Harbor Medical Group\nBuilding or site: 200 River Street, suites 100 and 200\nSquare feet or areas: 4,200 square feet, two waiting rooms, eight exam rooms, two restrooms, break room, hallways\nWhat's included: Nightly trash, vacuum, mop hard floors, wipe counters and restrooms, restock soap and paper from building supplies\nWhat's not included: Windows, carpet extraction, medical waste, and weekend work\nFrequency and hours: Monday through Friday, after 6:30 p.m.\nStaffing you will use: Two cleaners, about 1.5 hours per night\nSupplies and equipment: We bring equipment; building supplies the paper and soap\nMonthly or per-visit price: $1,450 per month\nContract length: 12 months\nStart date: December 1\nYour name and business: Robin at Open Window Cleaning\nYour phone: 555-0133",
+        "output": "Subject: Cleaning bid for 200 River Street, Harbor Medical Group\n\nBid summary: Open Window Cleaning proposes a Monday-through-Friday nightly clean of suites 100 and 200 at 200 River Street for $1,450 a month, starting December 1, on a 12-month term.\n\nScope: 4,200 square feet, including two waiting rooms, eight exam rooms, two restrooms, the break room, and hallways. Nightly trash, vacuum, mop hard floors, wipe counters and restrooms, and restock soap and paper from building supplies.\n\nSchedule and staffing: After 6:30 p.m., Monday through Friday, with two cleaners for about 1.5 hours per night.\n\nSupplies: We bring equipment. The building supplies paper and soap.\n\nPrice and term: $1,450 per month for 12 months, starting December 1.\n\nWhat's not included: Windows, carpet extraction, medical waste, and weekend work.\n\nNext step: Reply or call Robin at 555-0133 if you would like to go ahead or walk the building again.\n\nFacts used: Harbor Medical Group, 4,200 sq ft, $1,450, December 1, 12 months.\nUnknown: none.",
+        "notes": "Made-up bid figures, only to show a clear one-page proposal."
+    },
+    "related": [
+        "how-to-write-a-service-agreement-for-a-house-cleaning-job",
+        "write-a-quote-for-weekly-lawn-care-for-a-medium-yard",
+        "how-to-write-a-proposal-for-a-landscaping-project",
+        "write-instructions-for-a-new-cleaner-helping-me-on-a-big-house"
+    ]
+}

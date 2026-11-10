@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-an-estimate-for-an-hvac-repair",
+    "title": "How to write an estimate for an HVAC repair",
+    "category": "Sales",
+    "summary": "Paste what you found on the call into ChatGPT and get a clear HVAC repair estimate. Check every part and price before you send it to the homeowner.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help an HVAC technician write a repair estimate a homeowner can understand. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong: [PROBLEM]\nWhat you found: [DIAGNOSIS]\nWork you will do: [WORK]\nParts: [PARTS]\nLabor: [LABOR]\nTotal price: [PRICE]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add repairs, parts, or warranties that are not in the details.\n- Do not change the price. Copy [PRICE], [PARTS], and [LABOR] exactly.\n- Do not scare the customer or tell them the system will fail unless those words are already in [DIAGNOSIS].\n- Keep it plain, like a technician explaining the repair at the kitchen table.\n- No upsells, no \"while we're here\" add-ons, and no financing offers unless they are in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (180 words or fewer for email, 90 words or fewer for a text)\nWhat we found\nThe work and parts\nPrice\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting an HVAC repair estimate for a small shop. Write one estimate the technician will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong: [PROBLEM]\nWhat you found: [DIAGNOSIS]\nWork you will do: [WORK]\nParts: [PARTS]\nLabor: [LABOR]\nTotal price: [PRICE]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add repairs, parts, or warranties that are not in the details.\n- Do not change the price. Copy [PRICE], [PARTS], and [LABOR] exactly.\n- Do not scare the customer or tell them the system will fail unless those words are already in [DIAGNOSIS].\n- Keep it plain, like a technician explaining the repair at the kitchen table.\n- No upsells, no \"while we're here\" add-ons, and no financing offers unless they are in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (180 words or fewer for email, 90 words or fewer for a text)\nWhat we found\nThe work and parts\nPrice\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain HVAC repair estimates. One visit, one draft. The technician sends it after they check the parts and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong: [PROBLEM]\nWhat you found: [DIAGNOSIS]\nWork you will do: [WORK]\nParts: [PARTS]\nLabor: [LABOR]\nTotal price: [PRICE]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add repairs, parts, or warranties that are not in the details.\n- Do not change the price. Copy [PRICE], [PARTS], and [LABOR] exactly.\n- Do not scare the customer or tell them the system will fail unless those words are already in [DIAGNOSIS].\n- Keep it plain, like a technician explaining the repair at the kitchen table.\n- No upsells, no \"while we're here\" add-ons, and no financing offers unless they are in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (180 words or fewer for email, 90 words or fewer for a text)\nWhat we found\nThe work and parts\nPrice\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare an HVAC repair estimate a technician will edit before the customer sees it. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong: [PROBLEM]\nWhat you found: [DIAGNOSIS]\nWork you will do: [WORK]\nParts: [PARTS]\nLabor: [LABOR]\nTotal price: [PRICE]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add repairs, parts, or warranties that are not in the details.\n- Do not change the price. Copy [PRICE], [PARTS], and [LABOR] exactly.\n- Do not scare the customer or tell them the system will fail unless those words are already in [DIAGNOSIS].\n- Keep it plain, like a technician explaining the repair at the kitchen table.\n- No upsells, no \"while we're here\" add-ons, and no financing offers unless they are in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (180 words or fewer for email, 90 words or fewer for a text)\nWhat we found\nThe work and parts\nPrice\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "After the visit or the phone diagnosis, write the customer name, address, what is wrong, what you found, the work, the parts, labor, the total price, and what is not included.",
+            "Add how long you will be on site, how long the estimate is good, your name, your phone, and whether this goes out as an email or a text.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN for anything you did not confirm yet.",
+            "Check the draft against your notes. Confirm the parts, the total, and what is not included. Delete any extra repair, warranty, or scare line you did not write.",
+            "Paste the estimate into email or the customer's text thread and send it yourself."
+        ],
+        "approvalStep": "You check the diagnosis, the parts, and the price against your notes, then you send the estimate yourself.",
+        "failureModes": [
+            "The draft adds a part or a second repair you did not quote. Delete it.",
+            "The total does not match your parts and labor figures. Put your total back in exactly.",
+            "The wording says the system will fail or is unsafe when you did not say that. Keep only the diagnosis on your note.",
+            "The draft offers a tune-up or a new system you did not mean to quote. Save that for a separate estimate."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "What if I am not sure which part failed yet?",
+            "a": "Do not send an estimate that names a part you have not confirmed. Leave [DIAGNOSIS] and [PARTS] blank, or write only what you know, and follow up with a real estimate after the visit."
+        },
+        {
+            "q": "Can I include a new system quote in the same message?",
+            "a": "Better to keep this estimate to the repair you were asked about. If they also want a replacement price, use a separate quote so the numbers do not get mixed."
+        },
+        {
+            "q": "Do I need to split parts and labor in the message?",
+            "a": "Only if you already track them that way and filled both brackets. If you quote one total, keep one total and do not let the draft invent a split."
+        }
+    ],
+    "persona": "HVAC technician",
+    "job": "Paste visit notes and get a clear HVAC repair estimate a homeowner can approve.",
+    "who": "HVAC technicians and small heating-and-cooling shops who write their own repair estimates after a service call.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A technician found a failed capacitor on a backyard air conditioner and is sending an estimate the same afternoon.",
+        "input": "Customer name: Riley Patel\nJob address: 22 Maple Court\nWhat's wrong: AC runs but blows warm air\nWhat you found: Failed run capacitor on the outdoor unit\nWork you will do: Replace the capacitor, test the unit, and confirm cooling\nParts: 7.5/40 MFD dual run capacitor\nLabor: Service call and replacement labor\nTotal price: $285\nWhat's not included: Refrigerant, compressor work, or a new thermostat\nHow long the work takes: About 45 minutes\nHow long the estimate is good: 14 days\nYour name and business: Casey at Fair Air\nYour phone: 555-0190\nEmail or text: text",
+        "output": "Channel: text\nSubject: NONE\n\nEstimate:\nHi Riley, this is Casey at Fair Air. At 22 Maple Court the AC is running but blowing warm air because the run capacitor on the outdoor unit has failed. I can replace that 7.5/40 MFD capacitor, test the unit, and confirm cooling for $285, about 45 minutes on site. This does not include refrigerant, compressor work, or a new thermostat. The estimate is good for 14 days. Reply or call 555-0190 if you want me to book it.\n\nWhat we found: Failed run capacitor, warm air.\nThe work and parts: Replace 7.5/40 MFD dual run capacitor and test cooling.\nPrice: $285.\nWhat's not included: Refrigerant, compressor work, new thermostat.\nNext step: Reply or call 555-0190 to book.\nFacts used: 22 Maple Court, $285, 45 minutes, 14 days.\nUnknown: none.",
+        "notes": "Made-up service details, only to show a short repair estimate."
+    },
+    "related": [
+        "how-to-tell-a-customer-their-ac-needs-to-be-replaced",
+        "how-to-write-a-facebook-post-for-a-spring-hvac-tune-up",
+        "how-to-write-an-estimate-for-an-electrical-panel-upgrade",
+        "how-to-write-a-quote-for-a-roofing-job"
+    ]
+}

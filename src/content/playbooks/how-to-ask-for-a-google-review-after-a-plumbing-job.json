@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-ask-for-a-google-review-after-a-plumbing-job",
+    "title": "How to ask for a Google review after a plumbing job",
+    "category": "Marketing & SEO",
+    "summary": "Paste the finished job details into ChatGPT and get a short text that asks for a Google review. Check the review link before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a plumber ask for a Google review after a finished job. Write one short message. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer first name: [CUSTOMER NAME]\nJob address or job: [JOB]\nWhat you finished: [WORK]\nOne specific thing that went well: [SPECIFIC DETAIL]\nGoogle review link: [REVIEW LINK]\nYour name and business: [YOUR NAME]\nHours since the job finished: [WHEN TO SEND]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and warm, like a normal text after a finished job.\n- Thank them, mention the specific detail, and ask for a Google review. Do not offer a discount or a gift for leaving a review.\n- Do not invent a [REVIEW LINK]. If it is blank, write REVIEW LINK UNKNOWN and do not make up a URL.\n- Do not sound like a survey. One short message. No guilt if they skip it.\n- Send timing is your choice. The draft should not say \"leave a review in the next hour.\"\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a review-request text for a plumber. Write one message the plumber will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer first name: [CUSTOMER NAME]\nJob address or job: [JOB]\nWhat you finished: [WORK]\nOne specific thing that went well: [SPECIFIC DETAIL]\nGoogle review link: [REVIEW LINK]\nYour name and business: [YOUR NAME]\nHours since the job finished: [WHEN TO SEND]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and warm, like a normal text after a finished job.\n- Thank them, mention the specific detail, and ask for a Google review. Do not offer a discount or a gift for leaving a review.\n- Do not invent a [REVIEW LINK]. If it is blank, write REVIEW LINK UNKNOWN and do not make up a URL.\n- Do not sound like a survey. One short message. No guilt if they skip it.\n- Send timing is your choice. The draft should not say \"leave a review in the next hour.\"\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write short Google-review asks after a plumbing job. One customer, one draft. The plumber sends it after they check the link.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer first name: [CUSTOMER NAME]\nJob address or job: [JOB]\nWhat you finished: [WORK]\nOne specific thing that went well: [SPECIFIC DETAIL]\nGoogle review link: [REVIEW LINK]\nYour name and business: [YOUR NAME]\nHours since the job finished: [WHEN TO SEND]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and warm, like a normal text after a finished job.\n- Thank them, mention the specific detail, and ask for a Google review. Do not offer a discount or a gift for leaving a review.\n- Do not invent a [REVIEW LINK]. If it is blank, write REVIEW LINK UNKNOWN and do not make up a URL.\n- Do not sound like a survey. One short message. No guilt if they skip it.\n- Send timing is your choice. The draft should not say \"leave a review in the next hour.\"\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a message asking for a Google review after a plumbing job. Draft only. Do not text or email the customer.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer first name: [CUSTOMER NAME]\nJob address or job: [JOB]\nWhat you finished: [WORK]\nOne specific thing that went well: [SPECIFIC DETAIL]\nGoogle review link: [REVIEW LINK]\nYour name and business: [YOUR NAME]\nHours since the job finished: [WHEN TO SEND]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and warm, like a normal text after a finished job.\n- Thank them, mention the specific detail, and ask for a Google review. Do not offer a discount or a gift for leaving a review.\n- Do not invent a [REVIEW LINK]. If it is blank, write REVIEW LINK UNKNOWN and do not make up a URL.\n- Do not sound like a survey. One short message. No guilt if they skip it.\n- Send timing is your choice. The draft should not say \"leave a review in the next hour.\"\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "After the job is done and the customer seems happy, write their first name, the job, what you finished, and one specific thing that went well.",
+            "Copy your Google review link, add your name, and choose text or email. If you do not have the link handy, get it from your Google Business Profile before you send anything.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a line is blank.",
+            "Check the name, the work, and the review link. Delete any coupon or pressure line the draft added.",
+            "Paste the message into the existing thread and send it yourself, usually later the same day or the next morning."
+        ],
+        "approvalStep": "You check the name, the job, and the Google review link, then you send the message yourself.",
+        "failureModes": [
+            "The review link is missing or points to the wrong profile. Paste your real Google review link before you send.",
+            "The draft offers a discount for leaving a review. Take that offer out.",
+            "The message goes to a customer who was unhappy. Do not send a review ask until the problem is fixed.",
+            "The specific detail is invented, such as a part you did not replace. Use only what happened on the job."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "When should I send this?",
+            "a": "After the job is finished and they seem pleased, often later that day or the next morning. Do not send it while you are still packing up, and do not send it after a complaint until you have made things right."
+        },
+        {
+            "q": "Where do I find my Google review link?",
+            "a": "In your Google Business Profile there is a shareable review link. Copy that exact link into the prompt. Do not guess a URL."
+        },
+        {
+            "q": "Is it okay to offer a discount for a review?",
+            "a": "Skip that. A paid or rewarded review can violate Google's rules and looks bad. A simple thank-you and a link is enough."
+        }
+    ],
+    "persona": "plumber",
+    "job": "Paste a finished plumbing job and get a short, polite ask for a Google review.",
+    "who": "Plumbers and plumbing shops who want a simple text that asks a happy customer for a Google review.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Text messaging",
+        "Email"
+    ],
+    "example": {
+        "scenario": "A plumber finished a same-day water heater install and wants to text the homeowner that evening.",
+        "input": "Customer first name: Avery\nJob address or job: Water heater at 18 Willow Street\nWhat you finished: Installed the new 50-gallon water heater and hauled the old one away\nOne specific thing that went well: Hot water was back on before noon\nGoogle review link: https://g.page/r/example-review\nYour name and business: Alex at Harbor Pipe\nHours since the job finished: 6\nChannel: TEXT",
+        "output": "Channel: text\nSubject: NONE\n\nMessage:\nHi Avery, this is Alex at Harbor Pipe. It was good to get the new 50-gallon water heater in at 18 Willow Street and have your hot water back on before noon. If the install went well for you, a Google review helps other neighbors find us: https://g.page/r/example-review. Thanks again.\n\nFacts used: Avery, 18 Willow Street, 50-gallon water heater, hot water before noon.\nUnknown: none.",
+        "notes": "Made-up job and a placeholder review link, only to show the shape of the text."
+    },
+    "related": [
+        "text-a-landscaping-customer-that-the-job-is-done-and-ask-for-a-review",
+        "google-business-profile",
+        "how-to-write-a-job-posting-for-a-plumber",
+        "turn-a-happy-customer-text-into-a-post-for-my-facebook-page"
+    ]
+}

@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-tell-a-customer-their-ac-needs-to-be-replaced",
+    "title": "How to tell a customer their AC needs to be replaced",
+    "category": "Sales",
+    "summary": "Paste what you found on the visit into ChatGPT and get a calm explanation that the AC should be replaced. Check the facts and the price before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help an HVAC technician explain that an air conditioner should be replaced. Write one calm message. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong with the current unit: [PROBLEM]\nAge of the current unit, if known: [AGE]\nRepair option, if there is one: [REPAIR OPTION]\nWhy replacement is recommended: [WHY REPLACE]\nRecommended system: [SYSTEM]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nTimeline: [TIMELINE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not scare the customer. Do not say the unit will fail this week, or that it is unsafe, unless those words are already in [PROBLEM] or [WHY REPLACE].\n- Do not invent a SEER rating, a brand, a rebate, or a financing plan.\n- If [REPAIR OPTION] has a price, include it fairly so they can compare. If it is blank, do not invent a repair price.\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone steady and clear, like a technician at the kitchen table. No pressure and no \"today only\" language.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nRepair option (or NONE)\nReplacement recommendation\nPrice and what's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a message for an HVAC shop recommending AC replacement. Write one explanation the technician will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong with the current unit: [PROBLEM]\nAge of the current unit, if known: [AGE]\nRepair option, if there is one: [REPAIR OPTION]\nWhy replacement is recommended: [WHY REPLACE]\nRecommended system: [SYSTEM]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nTimeline: [TIMELINE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not scare the customer. Do not say the unit will fail this week, or that it is unsafe, unless those words are already in [PROBLEM] or [WHY REPLACE].\n- Do not invent a SEER rating, a brand, a rebate, or a financing plan.\n- If [REPAIR OPTION] has a price, include it fairly so they can compare. If it is blank, do not invent a repair price.\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone steady and clear, like a technician at the kitchen table. No pressure and no \"today only\" language.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nRepair option (or NONE)\nReplacement recommendation\nPrice and what's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain explanations when an AC should be replaced. One house, one draft. The technician sends it after they check the facts and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong with the current unit: [PROBLEM]\nAge of the current unit, if known: [AGE]\nRepair option, if there is one: [REPAIR OPTION]\nWhy replacement is recommended: [WHY REPLACE]\nRecommended system: [SYSTEM]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nTimeline: [TIMELINE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not scare the customer. Do not say the unit will fail this week, or that it is unsafe, unless those words are already in [PROBLEM] or [WHY REPLACE].\n- Do not invent a SEER rating, a brand, a rebate, or a financing plan.\n- If [REPAIR OPTION] has a price, include it fairly so they can compare. If it is blank, do not invent a repair price.\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone steady and clear, like a technician at the kitchen table. No pressure and no \"today only\" language.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nRepair option (or NONE)\nReplacement recommendation\nPrice and what's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a message telling a customer their AC should be replaced. Draft only. Do not email or text them.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWhat's wrong with the current unit: [PROBLEM]\nAge of the current unit, if known: [AGE]\nRepair option, if there is one: [REPAIR OPTION]\nWhy replacement is recommended: [WHY REPLACE]\nRecommended system: [SYSTEM]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nTimeline: [TIMELINE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not scare the customer. Do not say the unit will fail this week, or that it is unsafe, unless those words are already in [PROBLEM] or [WHY REPLACE].\n- Do not invent a SEER rating, a brand, a rebate, or a financing plan.\n- If [REPAIR OPTION] has a price, include it fairly so they can compare. If it is blank, do not invent a repair price.\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone steady and clear, like a technician at the kitchen table. No pressure and no \"today only\" language.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nRepair option (or NONE)\nReplacement recommendation\nPrice and what's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "After the visit, write the customer name, address, what's wrong, the age if you know it, a repair option if one exists, why you recommend replacement, the system, and the price.",
+            "Add what's included and not, the timeline, your name, phone, and whether this is an email or a text.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if you do not have a fact yet.",
+            "Read the draft beside your notes. Confirm the problem, the price, and that it does not invent a rebate, a brand detail, or a scare line.",
+            "Paste the message into email or a text and send it yourself. Offer to walk them through questions on the phone."
+        ],
+        "approvalStep": "You check the diagnosis, the replacement price, and any repair option against your notes, then you send the message yourself.",
+        "failureModes": [
+            "The draft says the unit is unsafe or will fail immediately when you did not say that. Soften it to match your diagnosis.",
+            "A rebate, tax credit, or financing offer appears that you did not include. Delete it.",
+            "The replacement price or the system size does not match your quote. Put your figures back in.",
+            "A repair option you offered is left out or understated. If you gave a repair price, it should appear fairly."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "What if there is no reasonable repair option?",
+            "a": "Leave [REPAIR OPTION] blank so the draft does not invent one. Explain why replacement is the recommendation, using only what you found on the visit."
+        },
+        {
+            "q": "Should I mention rebates or tax credits?",
+            "a": "Only if you have checked the current program and typed it into the details. Do not let the draft invent a rebate or a dollar amount."
+        },
+        {
+            "q": "The homeowner is upset. How direct should I be?",
+            "a": "Be clear and calm. State what you found, the options, and the prices. Do not pile on fear. Offer a phone call as the next step so they can ask questions."
+        }
+    ],
+    "persona": "HVAC business owner",
+    "job": "Paste visit notes and get a calm explanation that an AC should be replaced, with the price and any repair option.",
+    "who": "HVAC technicians and shop owners who need to recommend a replacement without scaring the homeowner or burying the price.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A 16-year-old central AC has a failing compressor. Repair is possible but the technician recommends replacement.",
+        "input": "Customer name: Casey Reed\nJob address: 3 Harbor View\nWhat's wrong with the current unit: Compressor is failing, unit is short-cycling and not cooling the upstairs\nAge of the current unit, if known: 16 years\nRepair option, if there is one: Compressor replacement for $2,400, with no labor warranty on a 16-year unit\nWhy replacement is recommended: The unit is 16 years old, a compressor repair is a large share of a new system, and the coil is original\nRecommended system: 3-ton central AC to match the current size, standard efficiency\nPrice: $7,850 installed\nWhat's included: New outdoor unit, matching coil, startup, and haul-away of the old unit\nWhat's not included: Duct repairs, a new thermostat, and electrical panel work\nTimeline: One day on site, earliest the week of November 17\nYour name and business: Casey at Fair Air\nYour phone: 555-0190\nEmail or text: email",
+        "output": "Channel: email\nSubject: AC options for 3 Harbor View\n\nMessage:\nHi Casey, this is Casey at Fair Air, following up on the visit at 3 Harbor View. The compressor on your 16-year-old central AC is failing, which is why the unit short-cycles and the upstairs is not cooling.\n\nThe situation: 16-year-old system, failing compressor, original coil.\n\nRepair option: We can replace the compressor for $2,400. I can't offer a labor warranty on a 16-year unit.\n\nReplacement recommendation: I recommend a new 3-ton central AC, the same size you have now, at standard efficiency. At this age, the compressor repair is a large share of a new system.\n\nPrice and what's included: $7,850 installed, including the new outdoor unit, a matching coil, startup, and haul-away of the old unit. We can do it in one day, earliest the week of November 17.\n\nWhat's not included: Duct repairs, a new thermostat, and electrical panel work.\n\nNext step: I can walk you through either option. Call or text me at 555-0190 when you want to talk it over.\n\nFacts used: 3 Harbor View, 16 years, $2,400 repair, $7,850 replacement, 3-ton, week of November 17.\nUnknown: none.",
+        "notes": "Made-up equipment and prices, only to show a calm comparison of repair and replacement."
+    },
+    "related": [
+        "how-to-write-an-estimate-for-an-hvac-repair",
+        "how-to-write-a-facebook-post-for-a-spring-hvac-tune-up",
+        "how-to-write-an-estimate-for-an-electrical-panel-upgrade",
+        "reply-to-a-customer-who-says-the-quote-is-too-high"
+    ]
+}

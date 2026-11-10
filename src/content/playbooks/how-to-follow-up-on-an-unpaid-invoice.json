@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-follow-up-on-an-unpaid-invoice",
+    "title": "How to follow up on an unpaid invoice",
+    "category": "Finance & admin",
+    "summary": "Paste the invoice details into ChatGPT and get a polite follow-up you can send today. Check the amount and due date, then send the reminder yourself.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a contractor follow up on an unpaid invoice. Write one reminder. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob or project: [JOB]\nInvoice number: [INVOICE NUMBER]\nAmount due: [AMOUNT]\nOriginal due date: [DUE DATE]\nDays late: [DAYS LATE]\nWhat this reminder is: [FIRST, SECOND, or FINAL]\nPay link or how to pay: [PAY INSTRUCTIONS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not change the amount or the due date. Copy them exactly.\n- Do not add late fees, interest, or legal threats unless those words are already in the details.\n- FIRST is friendly and assumes it was an oversight. SECOND is firm and restates the amount and the due date. FINAL is direct, still polite, and asks for a plan this week. Do not jump to FINAL language on a first reminder.\n- Do not mention collections, lawyers, or credit reporting.\n- No sarcasm and no guilt.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReminder (120 words or fewer for email, 70 words or fewer for a text)\nAmount and due date\nHow to pay\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a late-invoice follow-up for a small contractor. Write one message the owner will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob or project: [JOB]\nInvoice number: [INVOICE NUMBER]\nAmount due: [AMOUNT]\nOriginal due date: [DUE DATE]\nDays late: [DAYS LATE]\nWhat this reminder is: [FIRST, SECOND, or FINAL]\nPay link or how to pay: [PAY INSTRUCTIONS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not change the amount or the due date. Copy them exactly.\n- Do not add late fees, interest, or legal threats unless those words are already in the details.\n- FIRST is friendly and assumes it was an oversight. SECOND is firm and restates the amount and the due date. FINAL is direct, still polite, and asks for a plan this week. Do not jump to FINAL language on a first reminder.\n- Do not mention collections, lawyers, or credit reporting.\n- No sarcasm and no guilt.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReminder (120 words or fewer for email, 70 words or fewer for a text)\nAmount and due date\nHow to pay\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain unpaid-invoice reminders for a trade business. One invoice, one draft. The owner sends it after they check the amount.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob or project: [JOB]\nInvoice number: [INVOICE NUMBER]\nAmount due: [AMOUNT]\nOriginal due date: [DUE DATE]\nDays late: [DAYS LATE]\nWhat this reminder is: [FIRST, SECOND, or FINAL]\nPay link or how to pay: [PAY INSTRUCTIONS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not change the amount or the due date. Copy them exactly.\n- Do not add late fees, interest, or legal threats unless those words are already in the details.\n- FIRST is friendly and assumes it was an oversight. SECOND is firm and restates the amount and the due date. FINAL is direct, still polite, and asks for a plan this week. Do not jump to FINAL language on a first reminder.\n- Do not mention collections, lawyers, or credit reporting.\n- No sarcasm and no guilt.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReminder (120 words or fewer for email, 70 words or fewer for a text)\nAmount and due date\nHow to pay\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a follow-up on one unpaid invoice. Draft only. Do not email or text the customer.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob or project: [JOB]\nInvoice number: [INVOICE NUMBER]\nAmount due: [AMOUNT]\nOriginal due date: [DUE DATE]\nDays late: [DAYS LATE]\nWhat this reminder is: [FIRST, SECOND, or FINAL]\nPay link or how to pay: [PAY INSTRUCTIONS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not change the amount or the due date. Copy them exactly.\n- Do not add late fees, interest, or legal threats unless those words are already in the details.\n- FIRST is friendly and assumes it was an oversight. SECOND is firm and restates the amount and the due date. FINAL is direct, still polite, and asks for a plan this week. Do not jump to FINAL language on a first reminder.\n- Do not mention collections, lawyers, or credit reporting.\n- No sarcasm and no guilt.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReminder (120 words or fewer for email, 70 words or fewer for a text)\nAmount and due date\nHow to pay\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Open the invoice and write down the customer name, the job, the invoice number, the amount due, the original due date, and how many days late it is.",
+            "Decide if this is the first, second, or final reminder. Add how they can pay, your name, your phone, and whether you will send a text or an email.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET] with those details. Type UNKNOWN if a line is blank.",
+            "Read the draft beside the invoice. Confirm the amount, the invoice number, and the due date. Delete any late fee, threat, or deadline you did not write down.",
+            "Paste the message into the customer's existing thread or into your email, and send it yourself."
+        ],
+        "approvalStep": "You check the amount, the invoice number, and the tone, then you send the reminder yourself. The assistant only writes the draft.",
+        "failureModes": [
+            "The amount or invoice number does not match the invoice. Put the real figures back in before you send it.",
+            "The draft adds a late fee or a legal threat you did not ask for. Delete that sentence.",
+            "A first reminder sounds like a final demand. Set [FIRST, SECOND, or FINAL] correctly and draft again if the tone is too hard.",
+            "The pay instructions point to the wrong link or a method you do not use. Use only the method on your invoice."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "How soon should I send the first reminder?",
+            "a": "Many shops send a friendly first note about a week after the due date, then a firmer second note a week later. Use the timing you already use. This prompt writes the words for the stage you choose."
+        },
+        {
+            "q": "What if the customer said they already paid?",
+            "a": "Check your account before you send another reminder. If you still do not see the payment, ask them to forward the receipt and do not accuse them of skipping the bill."
+        },
+        {
+            "q": "Should I threaten collections?",
+            "a": "Not in this draft. Keep first and second reminders polite, and keep a final reminder direct but calm. If you later need a formal collections step, that is a separate letter you write yourself, not something this prompt should invent."
+        }
+    ],
+    "persona": "contractor",
+    "job": "Paste invoice details and get a polite first, second, or final reminder you can send yourself.",
+    "who": "Contractors and small service businesses who need to follow up on an unpaid invoice without sounding angry.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A contractor sent a kitchen-faucet invoice two weeks ago and has not been paid. This is the first reminder.",
+        "input": "Customer name: Pat Morgan\nJob or project: Kitchen faucet replacement at 8 Oak Lane\nInvoice number: 1142\nAmount due: $480\nOriginal due date: October 20\nDays late: 14\nWhat this reminder is: FIRST\nPay link or how to pay: Venmo @harborpipe or the card link on the invoice\nYour name and business: Alex at Harbor Pipe\nYour phone: 555-0144\nEmail or text: email",
+        "output": "Channel: email\nSubject: Invoice 1142 for the faucet at 8 Oak Lane\n\nReminder:\nHi Pat, this is Alex at Harbor Pipe. I'm checking in on invoice 1142 for the kitchen faucet replacement at 8 Oak Lane. The $480 balance was due October 20, and I wanted to make sure it did not get buried.\n\nAmount and due date: $480, due October 20, now 14 days past due.\n\nHow to pay: You can pay by Venmo @harborpipe or use the card link on the invoice.\n\nNext step: If you have already paid, thank you — just reply and I'll mark it received. If something is wrong with the invoice, call or text me at 555-0144 and I will fix it.\n\nFacts used: Pat Morgan, invoice 1142, $480, October 20, 14 days, first reminder.\nUnknown: none.",
+        "notes": "Made-up invoice details, only to show a calm first reminder."
+    },
+    "related": [
+        "chase-overdue-invoices",
+        "write-a-three-email-reminder-sequence-that-gets-firmer-each-time",
+        "invoices-from-job-notes",
+        "turn-my-messy-job-notes-into-a-clean-invoice"
+    ]
+}

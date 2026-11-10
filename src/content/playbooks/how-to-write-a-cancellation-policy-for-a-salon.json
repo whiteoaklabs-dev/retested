@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-write-a-cancellation-policy-for-a-salon",
+    "title": "How to write a cancellation policy for a salon",
+    "category": "Back office",
+    "summary": "Paste your actual rules into ChatGPT and get a clear salon cancellation policy, plus a short version for texts. Check every fee before you publish it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a salon owner write a cancellation policy. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nSalon name: [SALON NAME]\nHow much notice you need: [NOTICE]\nWhat happens if they cancel late: [LATE CANCEL FEE]\nWhat happens if they no-show: [NO SHOW FEE]\nHow to cancel or reschedule: [HOW TO CANCEL]\nExceptions you actually allow: [EXCEPTIONS]\nWhere this policy will be shown: [WHERE USED]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a fee, a notice window, or an exception.\n- Do not use legal threats or credit-card jargon you did not provide.\n- Keep the policy short, fair, and easy to read before someone books.\n- No scolding language. State the rule, the fee if there is one, and how to cancel.\n- If a fee is blank, mark it UNKNOWN. Do not write \"a fee may apply.\"\n\nOutput format:\nReturn these headings only:\nPolicy title\nThe rule (80 words or fewer)\nLate cancel\nNo-show\nHow to cancel\nExceptions\nShort version for a confirmation text (40 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a salon cancellation policy from the owner's real rules. Write one short policy they will review, then post. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nSalon name: [SALON NAME]\nHow much notice you need: [NOTICE]\nWhat happens if they cancel late: [LATE CANCEL FEE]\nWhat happens if they no-show: [NO SHOW FEE]\nHow to cancel or reschedule: [HOW TO CANCEL]\nExceptions you actually allow: [EXCEPTIONS]\nWhere this policy will be shown: [WHERE USED]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a fee, a notice window, or an exception.\n- Do not use legal threats or credit-card jargon you did not provide.\n- Keep the policy short, fair, and easy to read before someone books.\n- No scolding language. State the rule, the fee if there is one, and how to cancel.\n- If a fee is blank, mark it UNKNOWN. Do not write \"a fee may apply.\"\n\nOutput format:\nReturn these headings only:\nPolicy title\nThe rule (80 words or fewer)\nLate cancel\nNo-show\nHow to cancel\nExceptions\nShort version for a confirmation text (40 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain salon cancellation policies. One shop, one draft. The owner posts it after they check the fees and the notice window.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nSalon name: [SALON NAME]\nHow much notice you need: [NOTICE]\nWhat happens if they cancel late: [LATE CANCEL FEE]\nWhat happens if they no-show: [NO SHOW FEE]\nHow to cancel or reschedule: [HOW TO CANCEL]\nExceptions you actually allow: [EXCEPTIONS]\nWhere this policy will be shown: [WHERE USED]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a fee, a notice window, or an exception.\n- Do not use legal threats or credit-card jargon you did not provide.\n- Keep the policy short, fair, and easy to read before someone books.\n- No scolding language. State the rule, the fee if there is one, and how to cancel.\n- If a fee is blank, mark it UNKNOWN. Do not write \"a fee may apply.\"\n\nOutput format:\nReturn these headings only:\nPolicy title\nThe rule (80 words or fewer)\nLate cancel\nNo-show\nHow to cancel\nExceptions\nShort version for a confirmation text (40 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a cancellation policy for a salon. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nSalon name: [SALON NAME]\nHow much notice you need: [NOTICE]\nWhat happens if they cancel late: [LATE CANCEL FEE]\nWhat happens if they no-show: [NO SHOW FEE]\nHow to cancel or reschedule: [HOW TO CANCEL]\nExceptions you actually allow: [EXCEPTIONS]\nWhere this policy will be shown: [WHERE USED]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a fee, a notice window, or an exception.\n- Do not use legal threats or credit-card jargon you did not provide.\n- Keep the policy short, fair, and easy to read before someone books.\n- No scolding language. State the rule, the fee if there is one, and how to cancel.\n- If a fee is blank, mark it UNKNOWN. Do not write \"a fee may apply.\"\n\nOutput format:\nReturn these headings only:\nPolicy title\nThe rule (80 words or fewer)\nLate cancel\nNo-show\nHow to cancel\nExceptions\nShort version for a confirmation text (40 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the salon name, how much notice you need, the late-cancel fee, the no-show fee, how clients should cancel, and any exceptions you truly allow.",
+            "Add where you will show the policy (website, booking page, confirmation text) and your name.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if you have not decided on a fee.",
+            "Check every fee and the notice window. Delete any charge or exception you do not actually use.",
+            "Post the policy on your booking page or website, and paste the short version into your confirmation texts yourself."
+        ],
+        "approvalStep": "You check the notice window and the fees against what you actually charge, then you publish the policy yourself.",
+        "failureModes": [
+            "The draft invents a fee or a longer notice window than you use. Put your real rule back in.",
+            "The exceptions are narrower or broader than you meant. Keep only the exceptions you will honor.",
+            "The short text version adds a fee that is not in the full policy. Make them match.",
+            "The wording sounds like a threat. Keep it calm and clear before you post it."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Do I have to charge a fee?",
+            "a": "No. If you only need notice and you do not charge, leave the fee lines blank and say so in your notes. Do not let the draft invent a charge."
+        },
+        {
+            "q": "Where should clients see this?",
+            "a": "Post it on your booking page and include the short version in confirmation texts, so people see it before the appointment, not after a missed visit."
+        },
+        {
+            "q": "Can I take a card to hold the appointment?",
+            "a": "Only if that is already your practice and you add it to the details. This prompt will not invent a card-on-file rule."
+        }
+    ],
+    "persona": "salon owner",
+    "job": "Paste your real cancel rules and get a clear salon cancellation policy, plus a short text version.",
+    "who": "Salon owners who need a plain cancellation and no-show policy they can post and include in appointment confirmations.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "A salon wants a 24-hour cancellation policy with a half-service late-cancel fee and a full-service no-show fee.",
+        "input": "Salon name: Willow Salon\nHow much notice you need: 24 hours\nWhat happens if they cancel late: 50 percent of the service price\nWhat happens if they no-show: The full service price\nHow to cancel or reschedule: Call or text the salon at 555-0155\nExceptions you actually allow: Illness and severe weather, if they contact us as soon as they can\nWhere this policy will be shown: Booking page and confirmation texts\nYour name: Jordan, owner",
+        "output": "Policy title: Willow Salon cancellation policy\n\nThe rule: Please give us 24 hours notice if you need to cancel or move an appointment. That notice lets us offer the time to someone else.\n\nLate cancel: If you cancel with less than 24 hours notice, we charge 50 percent of the service price.\n\nNo-show: If you miss the appointment without notice, we charge the full service price.\n\nHow to cancel: Call or text Willow Salon at 555-0155.\n\nExceptions: If you are ill or weather makes travel unsafe, contact us as soon as you can and we will work with you.\n\nShort version for a confirmation text: Please give 24 hours notice to cancel or reschedule. Late cancels are 50 percent of the service, and a no-show is the full service price. Call or text 555-0155.\n\nFacts used: Willow Salon, 24 hours, 50 percent, full service, 555-0155, illness and severe weather.\nUnknown: none.",
+        "notes": "Made-up salon rules, only to show a clear policy and a short text version."
+    },
+    "related": [
+        "how-to-write-an-appointment-confirmation-text-for-a-salon",
+        "how-to-write-a-service-agreement-for-a-house-cleaning-job",
+        "compute-the-deposit-to-keep-on-a-cancelled-custom-cake",
+        "appointments-and-reschedules"
+    ]
+}

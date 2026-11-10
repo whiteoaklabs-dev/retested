@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-write-a-job-posting-for-an-electrician",
+    "title": "How to write a job posting for an electrician",
+    "category": "Back office",
+    "summary": "Paste your hiring notes into ChatGPT and get a plain job posting for an electrician. Check the pay, the license, and how to apply before you post it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help an electrical contractor write a job posting for an electrician. Draft only. Do not post it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so an electrician can tell if they should apply.\n- No buzzwords, no \"ninja,\" and no \"fast-paced environment.\"\n- Write as the shop, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a help-wanted ad for an electrical shop. Write one clear posting the owner will review, then post. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so an electrician can tell if they should apply.\n- No buzzwords, no \"ninja,\" and no \"fast-paced environment.\"\n- Write as the shop, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain hiring ads for a small electrical contractor. One role, one draft. The owner posts it after they check the pay and the license line.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so an electrician can tell if they should apply.\n- No buzzwords, no \"ninja,\" and no \"fast-paced environment.\"\n- Write as the shop, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare an electrician job posting a shop owner will edit before it goes live. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so an electrician can tell if they should apply.\n- No buzzwords, no \"ninja,\" and no \"fast-paced environment.\"\n- Write as the shop, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the job title, the town, the work, the experience and license you need, the pay range, the hours, any benefits, and how to apply.",
+            "If pay or benefits are not decided, leave those lines blank instead of guessing.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN where you cannot fill a line.",
+            "Confirm the pay, the license, the hours, and the apply instructions. Delete anything you did not write down.",
+            "Copy the posting onto the board or site you use, and post it yourself."
+        ],
+        "approvalStep": "You check the pay, the license, and how to apply, then you post the ad yourself.",
+        "failureModes": [
+            "The draft invents a pay range or a benefit. Put your real numbers back in.",
+            "The license line does not match what you legally need. Use the exact license.",
+            "The apply email or phone number is wrong or made up. Use only the method you provided.",
+            "The tone sounds like a corporate recruiter. Edit it back into plain shop language."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Do I need to name the exact license?",
+            "a": "Yes, if you require one. Write the state or local license you actually need. A vague 'must be licensed' line wastes time for you and for applicants."
+        },
+        {
+            "q": "Can I use this for an apprentice posting?",
+            "a": "Yes. Change the title, the duties, the experience, and the license line so they match an apprentice role. Do not leave journeyman language in the draft."
+        },
+        {
+            "q": "Should I say how many trucks or how busy the shop is?",
+            "a": "Only if you want that in the ad and you typed it in the duties or extras. Do not let the draft invent a company size."
+        }
+    ],
+    "persona": "electrical contractor",
+    "job": "Paste hiring notes and get a plain job posting for an electrician.",
+    "who": "Electrical shop owners who need to hire an electrician and want a clear ad without recruiter language.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "A residential electrical shop needs a licensed electrician for service calls and panel work.",
+        "input": "Business name and town: Bright Path Electric, Midway\nJob title: Licensed residential electrician\nWork they will do: Service calls, panel upgrades, and lighting installs in homes\nExperience you need: 4 years of residential work\nLicense or certification needed: State journeyman electrician license and a valid driver's license\nPay range: $36 to $44 an hour\nHours and days: Monday to Friday, 8 to 4:30, occasional Saturday by agreement\nBenefits or extras: Shop truck, tool account, paid holidays\nHow to apply: Text a short note to 555-0117\nWhat to include: License number, years of experience, and when you can start\nYour name: Taylor Brooks",
+        "output": "Job title: Licensed residential electrician\n\nShort intro: Bright Path Electric in Midway is hiring a licensed residential electrician for service calls, panel upgrades, and lighting work.\n\nThe work: Home service calls, panel upgrades, and lighting installs, Monday to Friday, 8 to 4:30, with an occasional Saturday by agreement.\n\nWho should apply: You have at least 4 years of residential work, a state journeyman electrician license, and a valid driver's license.\n\nPay and hours: $36 to $44 an hour.\n\nBenefits: Shop truck, a tool account, and paid holidays.\n\nHow to apply: Text a short note to 555-0117 with your license number, years of experience, and when you can start.\n\nFacts used: Bright Path Electric, Midway, $36 to $44 an hour, journeyman license.\nUnknown: none.",
+        "notes": "Made-up shop details, only to show a clear posting."
+    },
+    "related": [
+        "how-to-write-a-job-posting-for-a-plumber",
+        "how-to-write-an-estimate-for-an-electrical-panel-upgrade",
+        "how-to-write-an-estimate-for-an-hvac-repair",
+        "answer-a-customer-asking-if-i-am-licensed-and-insured"
+    ]
+}

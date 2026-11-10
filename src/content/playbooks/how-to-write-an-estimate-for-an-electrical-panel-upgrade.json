@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-an-estimate-for-an-electrical-panel-upgrade",
+    "title": "How to write an estimate for an electrical panel upgrade",
+    "category": "Sales",
+    "summary": "Paste your panel-upgrade notes into ChatGPT and get a clear estimate. Check the price and the permit line before you send it, and do not invent an amperage.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help an electrician write an estimate for an electrical panel upgrade. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nCurrent panel and service, if known: [CURRENT PANEL]\nWhat's wrong or why it needs upgrading: [REASON]\nRecommended work: [WORK]\nPermit and inspection, if included: [PERMIT]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent an amperage, a brand, a permit fee, or a rebate.\n- Do not say the panel is unsafe or a fire risk unless those words are already in [REASON].\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone plain and steady. No pressure.\n- If permit language is blank, mark PERMIT UNKNOWN. Do not assume a permit is included.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nThe work\nPrice\nWhat's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a panel-upgrade estimate for an electrical contractor. Write one estimate they will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nCurrent panel and service, if known: [CURRENT PANEL]\nWhat's wrong or why it needs upgrading: [REASON]\nRecommended work: [WORK]\nPermit and inspection, if included: [PERMIT]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent an amperage, a brand, a permit fee, or a rebate.\n- Do not say the panel is unsafe or a fire risk unless those words are already in [REASON].\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone plain and steady. No pressure.\n- If permit language is blank, mark PERMIT UNKNOWN. Do not assume a permit is included.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nThe work\nPrice\nWhat's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain estimates for electrical panel upgrades. One house, one draft. The electrician sends it after they check the work and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nCurrent panel and service, if known: [CURRENT PANEL]\nWhat's wrong or why it needs upgrading: [REASON]\nRecommended work: [WORK]\nPermit and inspection, if included: [PERMIT]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent an amperage, a brand, a permit fee, or a rebate.\n- Do not say the panel is unsafe or a fire risk unless those words are already in [REASON].\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone plain and steady. No pressure.\n- If permit language is blank, mark PERMIT UNKNOWN. Do not assume a permit is included.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nThe work\nPrice\nWhat's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare an estimate for an electrical panel upgrade. Draft only. Do not email or text the customer.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nCurrent panel and service, if known: [CURRENT PANEL]\nWhat's wrong or why it needs upgrading: [REASON]\nRecommended work: [WORK]\nPermit and inspection, if included: [PERMIT]\nPrice: [PRICE]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nHow long the work takes: [TIME ON SITE]\nHow long the estimate is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent an amperage, a brand, a permit fee, or a rebate.\n- Do not say the panel is unsafe or a fire risk unless those words are already in [REASON].\n- Do not change [PRICE]. Copy it exactly.\n- Keep the tone plain and steady. No pressure.\n- If permit language is blank, mark PERMIT UNKNOWN. Do not assume a permit is included.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nEstimate (200 words or fewer for email, 100 words or fewer for a text)\nThe situation\nThe work\nPrice\nWhat's included\nWhat's not included\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the customer name, address, the current panel if you know it, why it needs upgrading, the work you recommend, and whether a permit and inspection are included.",
+            "Add the price, what's included and not, time on site, how long the estimate is good, your name, phone, and the channel.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if you have not confirmed the amperage or the permit yet.",
+            "Check the work, the price, and the permit line against your notes. Delete any safety scare, rebate, or brand you did not write down.",
+            "Paste the estimate into email or a text and send it yourself."
+        ],
+        "approvalStep": "You check the recommended work, the price, and whether the permit is included, then you send the estimate yourself.",
+        "failureModes": [
+            "The draft invents an amperage, a panel brand, or a rebate. Put only your notes back in.",
+            "The wording says the panel is a fire hazard when you did not say that. Keep the reason factual.",
+            "The permit is described as included when you left that line blank. Mark it UNKNOWN or add your real permit terms.",
+            "The price does not match your quote. Copy your number exactly."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "I have not confirmed whether a permit is required. What should I do?",
+            "a": "Leave the permit line blank so the draft marks it UNKNOWN. Confirm with the local building department, then add whether the permit and inspection are included before you send the estimate."
+        },
+        {
+            "q": "Should I mention that the power will be off?",
+            "a": "Yes, if that is true for the job. Homeowners need to plan for it. Put the power-off window in your notes so it shows up in the estimate."
+        },
+        {
+            "q": "Can I include a surge protector as an option?",
+            "a": "You can list it under What's not included and offer a separate price later, or run a second estimate for that add-on. Do not bury an extra charge in this total."
+        }
+    ],
+    "persona": "electrician",
+    "job": "Paste panel-upgrade notes and get a clear estimate a homeowner can approve.",
+    "who": "Electricians and electrical contractors who quote panel upgrades and want a plain estimate that does not invent technical details.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "An electrician is quoting a 100-amp to 200-amp panel upgrade for a homeowner who is adding a range and a dryer.",
+        "input": "Customer name: Avery Kim\nJob address: 77 Stone Avenue\nCurrent panel and service, if known: 100-amp panel, full\nWhat's wrong or why it needs upgrading: The panel is full, and the new range and dryer need more capacity\nRecommended work: Install a 200-amp service and a new 200-amp panel\nPermit and inspection, if included: Permit and inspection are included\nPrice: $4,200\nWhat's included: New 200-amp panel, meter base as required, grounding, labeling, and the city permit and inspection\nWhat's not included: New circuits inside the house, a whole-home surge device, and drywall repair\nHow long the work takes: One day, power off for several hours\nHow long the estimate is good: 30 days\nYour name and business: Taylor at Bright Path Electric\nYour phone: 555-0117\nEmail or text: email",
+        "output": "Channel: email\nSubject: Panel upgrade estimate for 77 Stone Avenue\n\nEstimate:\nHi Avery, this is Taylor at Bright Path Electric. Here is the estimate to upgrade the electrical panel at 77 Stone Avenue.\n\nThe situation: The current 100-amp panel is full, and the new range and dryer need more capacity.\n\nThe work: Install a 200-amp service and a new 200-amp panel. The power will be off for several hours, and the work takes one day.\n\nPrice: $4,200. This estimate is good for 30 days.\n\nWhat's included: The new 200-amp panel, the meter base as required, grounding, labeling, and the city permit and inspection.\n\nWhat's not included: New circuits inside the house, a whole-home surge device, and drywall repair.\n\nNext step: Reply or call 555-0117 if you would like to book, and I will walk you through the power-off window before we set a date.\n\nFacts used: 77 Stone Avenue, 100-amp to 200-amp, $4,200, permit included, 30 days.\nUnknown: none.",
+        "notes": "Made-up job details, only to show a clear panel-upgrade estimate."
+    },
+    "related": [
+        "how-to-write-a-job-posting-for-an-electrician",
+        "how-to-write-an-estimate-for-an-hvac-repair",
+        "how-to-tell-a-customer-their-ac-needs-to-be-replaced",
+        "answer-a-customer-asking-if-i-am-licensed-and-insured"
+    ]
+}

@@ -48,6 +48,7 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
         </>}
 
         <h2 id="prompts">Prompts by model</h2>
+        <p class="muted" style="margin-top:-6px">Copy a prompt, paste it into ChatGPT (or the assistant you already use), and replace the words in [brackets] with your details.</p>
         <PromptTabs u={u} idp="uc" />
 
         {u.example && <>
@@ -97,14 +98,14 @@ const toc = [['answer', 'Short answer'], ['results', 'Test results'], ['prompts'
         <a class="btn btn-primary" style="margin-top:18px;justify-content:center" href="#prompts"><Icon name="copy" />Copy a prompt</a>
       </aside>
     </div>
-    {['Sales','Finance & admin','Back office','Marketing & SEO','Support'].includes(u.category) && (
+    {['Sales','Finance & admin','Back office','Marketing & SEO','Support','Real estate'].includes(u.category) && (
       <aside class="pack-cta" style="max-width:860px;margin:28px auto 0;padding:18px 20px;border:1px solid var(--line2);border-radius:14px;background:var(--panel);display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
         <div>
           <div class="eyebrow">Home services</div>
           <strong style="display:block;margin:4px 0 2px">Get the full prompt pack — $19</strong>
           <span class="muted" style="font-size:13px">40 copy-paste prompts for quotes, invoices, late payments, reviews, and more.</span>
         </div>
-        <a class="btn btn-primary" href="https://buy.stripe.com/9B628q5bF0ER5kCh2AfQI03" rel="noopener">Buy the pack</a>
+        <a class="btn btn-primary" href={`${BASE}/prompt-packs/`} rel="noopener">See the $19 pack</a>
       </aside>
     )}
 

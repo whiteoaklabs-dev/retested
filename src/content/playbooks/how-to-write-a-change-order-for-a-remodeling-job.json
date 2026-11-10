@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-a-change-order-for-a-remodeling-job",
+    "title": "How to write a change order for a remodeling job",
+    "category": "Finance & admin",
+    "summary": "Paste the extra work into ChatGPT and get a clear change order before you start it. Do not begin the added work until the homeowner says yes in writing.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a remodeling contractor write a change order. Draft only. Do not send it, and do not treat the work as approved.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or project: [JOB]\nOriginal work already agreed: [ORIGINAL SCOPE]\nWhat is changing: [CHANGE]\nWhy the change is needed: [REASON]\nAdded or removed work: [ADDED OR REMOVED]\nPrice change: [PRICE CHANGE]\nNew total, if you have it: [NEW TOTAL]\nEffect on the schedule: [SCHEDULE CHANGE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not start this work in the wording. The change order is a request for approval, not permission to begin.\n- Do not change [PRICE CHANGE] or [NEW TOTAL]. Copy them exactly.\n- Do not add work that is not in [CHANGE].\n- Keep it plain. No pressure, no \"we already started,\" and no legal jargon.\n- Ask them to reply approved or to call you before the extra work begins.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nChange order (180 words or fewer for email, 90 words or fewer for a text)\nOriginal work\nThe change\nPrice change\nSchedule\nHow to approve\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a remodeling change order. Write one request the contractor will review, then send for approval. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or project: [JOB]\nOriginal work already agreed: [ORIGINAL SCOPE]\nWhat is changing: [CHANGE]\nWhy the change is needed: [REASON]\nAdded or removed work: [ADDED OR REMOVED]\nPrice change: [PRICE CHANGE]\nNew total, if you have it: [NEW TOTAL]\nEffect on the schedule: [SCHEDULE CHANGE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not start this work in the wording. The change order is a request for approval, not permission to begin.\n- Do not change [PRICE CHANGE] or [NEW TOTAL]. Copy them exactly.\n- Do not add work that is not in [CHANGE].\n- Keep it plain. No pressure, no \"we already started,\" and no legal jargon.\n- Ask them to reply approved or to call you before the extra work begins.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nChange order (180 words or fewer for email, 90 words or fewer for a text)\nOriginal work\nThe change\nPrice change\nSchedule\nHow to approve\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain change orders for a remodel. One change, one draft. The contractor sends it and waits for a yes before starting the extra work.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or project: [JOB]\nOriginal work already agreed: [ORIGINAL SCOPE]\nWhat is changing: [CHANGE]\nWhy the change is needed: [REASON]\nAdded or removed work: [ADDED OR REMOVED]\nPrice change: [PRICE CHANGE]\nNew total, if you have it: [NEW TOTAL]\nEffect on the schedule: [SCHEDULE CHANGE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not start this work in the wording. The change order is a request for approval, not permission to begin.\n- Do not change [PRICE CHANGE] or [NEW TOTAL]. Copy them exactly.\n- Do not add work that is not in [CHANGE].\n- Keep it plain. No pressure, no \"we already started,\" and no legal jargon.\n- Ask them to reply approved or to call you before the extra work begins.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nChange order (180 words or fewer for email, 90 words or fewer for a text)\nOriginal work\nThe change\nPrice change\nSchedule\nHow to approve\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a change order for a remodeling job. Draft only. Do not email the customer or mark the work approved.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or project: [JOB]\nOriginal work already agreed: [ORIGINAL SCOPE]\nWhat is changing: [CHANGE]\nWhy the change is needed: [REASON]\nAdded or removed work: [ADDED OR REMOVED]\nPrice change: [PRICE CHANGE]\nNew total, if you have it: [NEW TOTAL]\nEffect on the schedule: [SCHEDULE CHANGE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not start this work in the wording. The change order is a request for approval, not permission to begin.\n- Do not change [PRICE CHANGE] or [NEW TOTAL]. Copy them exactly.\n- Do not add work that is not in [CHANGE].\n- Keep it plain. No pressure, no \"we already started,\" and no legal jargon.\n- Ask them to reply approved or to call you before the extra work begins.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nChange order (180 words or fewer for email, 90 words or fewer for a text)\nOriginal work\nThe change\nPrice change\nSchedule\nHow to approve\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the customer name, the job, the original work already agreed, the change, why it is needed, the price change, the new total if you have it, and any schedule change.",
+            "Add your name, phone, and whether you will send an email or a text.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a price or date is not ready.",
+            "Check the change, the price, and the schedule against your notes. Delete any work or dollar amount you did not write down. Make sure the note asks for approval before work starts.",
+            "Send the change order yourself and wait for a written yes before you order materials or start the extra work."
+        ],
+        "approvalStep": "You check the price and the description, send the change order yourself, and you do not start the extra work until the customer approves it in writing.",
+        "failureModes": [
+            "The draft talks as if the extra work already started or is already approved. Change the wording so it is a request.",
+            "The price change does not match your figures. Put your number back in.",
+            "The draft adds a second change you did not mean to include. Keep this to one change, or list each change clearly from your note.",
+            "You start the work after sending, before they reply. Wait for a written yes."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "We already bought the tile. Can I still use this?",
+            "a": "Yes, but say in [CHANGE] or [REASON] that the materials are already on site if that is true, and still wait for written approval before you install. Better yet, send the change order before you buy."
+        },
+        {
+            "q": "What if I do not have a new total yet?",
+            "a": "Leave [NEW TOTAL] blank and include only the price change. You can add the new job total later once you have it."
+        },
+        {
+            "q": "The homeowner approved it in a text. Is that enough?",
+            "a": "A clear written yes in the same thread is what you want. Save that text. If they only said it on the job site, follow up with this change order and ask them to reply approved."
+        }
+    ],
+    "persona": "general contractor",
+    "job": "Paste a scope change and get a clear change order to send for approval before the extra work starts.",
+    "who": "Remodeling contractors who need a plain change order when the homeowner asks for extra work, or when a hidden problem changes the job.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "During a kitchen remodel, the homeowner asks to add a tile backsplash that was not in the original scope.",
+        "input": "Customer name: Jordan Hale\nJob address or project: Kitchen remodel at 12 Poplar Way\nOriginal work already agreed: Cabinets, countertops, and a new sink, no backsplash\nWhat is changing: Add a tile backsplash on the two walls behind the stove and sink\nWhy the change is needed: Homeowner requested it after seeing the new counters\nAdded or removed work: Supply and install about 40 square feet of subway tile, including thinset and grout in the color already picked\nPrice change: Add $1,260\nNew total, if you have it: Job total becomes $28,460\nEffect on the schedule: One extra day, move the finish date from May 8 to May 9\nYour name and business: Sam at Northroom Remodeling\nYour phone: 555-0121\nEmail or text: email",
+        "output": "Channel: email\nSubject: Change order for the backsplash at 12 Poplar Way\n\nChange order:\nHi Jordan, this is Sam at Northroom Remodeling. Before we add the backsplash at 12 Poplar Way, I want the change in writing.\n\nOriginal work: Cabinets, countertops, and a new sink, with no backsplash.\n\nThe change: Supply and install about 40 square feet of subway tile on the two walls behind the stove and sink, including thinset and grout in the color you already picked, because you asked for it after seeing the new counters.\n\nPrice change: This adds $1,260. The job total becomes $28,460.\n\nSchedule: One extra day, so the finish date would move from May 8 to May 9.\n\nHow to approve: Reply to this email with approved, or call me at 555-0121, and I will not start the backsplash until I hear from you.\n\nFacts used: 12 Poplar Way, $1,260, $28,460, May 8 to May 9.\nUnknown: none.",
+        "notes": "Made-up remodel figures, only to show a change order that waits for approval."
+    },
+    "related": [
+        "turn-an-approved-change-order-into-a-supplemental-invoice",
+        "how-to-write-a-quote-for-an-interior-painting-job",
+        "how-to-follow-up-on-an-unpaid-invoice",
+        "make-a-materials-list-from-my-notes-for-a-kitchen-repair"
+    ]
+}

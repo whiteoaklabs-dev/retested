@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-write-a-job-posting-for-a-plumber",
+    "title": "How to write a job posting for a plumber",
+    "category": "Back office",
+    "summary": "Paste your hiring notes into ChatGPT and get a plain job posting for a plumber. Check the pay, the license, and how to apply before you post it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a plumbing business owner write a job posting for a plumber. Draft only. Do not post it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so someone looking for a plumbing job can tell if they should apply.\n- No buzzwords, no \"rockstar,\" and no \"fast-paced environment.\"\n- Write as the business, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a help-wanted ad for a plumbing company. Write one clear posting the owner will review, then post. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so someone looking for a plumbing job can tell if they should apply.\n- No buzzwords, no \"rockstar,\" and no \"fast-paced environment.\"\n- Write as the business, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain hiring ads for a small plumbing shop. One role, one draft. The owner posts it after they check the pay and the license line.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so someone looking for a plumbing job can tell if they should apply.\n- No buzzwords, no \"rockstar,\" and no \"fast-paced environment.\"\n- Write as the business, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a plumber job posting a shop owner will edit before it goes live. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nJob title: [JOB TITLE]\nWork they will do: [DUTIES]\nExperience you need: [EXPERIENCE]\nLicense or certification needed: [LICENSE]\nPay range: [PAY]\nHours and days: [SCHEDULE]\nBenefits or extras: [BENEFITS]\nHow to apply: [HOW TO APPLY]\nWhat to include: [WHAT TO SEND]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a pay number, a benefit, or a license requirement.\n- Do not write \"competitive pay\" if [PAY] is blank. Mark PAY UNKNOWN instead.\n- Keep it plain so someone looking for a plumbing job can tell if they should apply.\n- No buzzwords, no \"rockstar,\" and no \"fast-paced environment.\"\n- Write as the business, not as a recruiter.\n\nOutput format:\nReturn these headings only:\nJob title\nShort intro (40 words or fewer)\nThe work\nWho should apply\nPay and hours\nBenefits\nHow to apply\nFacts used\nUnknown\nKeep the full posting under 220 words.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write down the job title, the town, the work this plumber will do, the experience and license you need, the pay range, the hours, any benefits, and how people should apply.",
+            "If you have not decided on pay or benefits, leave those lines blank. Do not make up a number to fill the form.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET] with your notes. Type UNKNOWN in any bracket you cannot fill.",
+            "Read the posting and confirm the pay, the license, the hours, and the apply instructions. Delete any benefit or requirement you did not write down.",
+            "Copy the finished posting into Craigslist, Facebook, your website, or a job board, and post it yourself."
+        ],
+        "approvalStep": "You check the pay, the license, and how to apply, then you post the ad yourself. The assistant only writes the draft.",
+        "failureModes": [
+            "The draft invents a pay range or a benefit. Put your real numbers back in, or leave pay out until you decide.",
+            "The license line is vaguer or stricter than you meant. Use the exact license you require.",
+            "The apply instructions point to an email or site you did not give. Put your real apply method back in.",
+            "The tone sounds like a corporate recruiter. Keep it in your own plain words before you post."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Should I leave pay out of the posting?",
+            "a": "If you have a range, put it in. Plumbers skip ads that hide the pay. If you have not decided yet, leave [PAY] blank so the draft marks it UNKNOWN, then add the range yourself before you post."
+        },
+        {
+            "q": "Where should I post this?",
+            "a": "Copy the finished text into the job boards, Facebook groups, or the shop website you already use. This page only writes the words. You still post them yourself."
+        },
+        {
+            "q": "Can I use this for a helper instead of a licensed plumber?",
+            "a": "Yes, if you change the job title, the duties, and the license line to match a helper role. Do not leave a journeyman license in the draft if you are hiring a helper."
+        }
+    ],
+    "persona": "plumbing business owner",
+    "job": "Paste hiring notes and get a plain job posting for a plumber.",
+    "who": "Plumbing shop owners who need to hire a plumber and want a clear ad without recruiter language.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "A two-truck plumbing shop in a small city needs a licensed plumber for service calls and some remodel work.",
+        "input": "Business name and town: Harbor Pipe, Greenville\nJob title: Licensed service plumber\nWork they will do: Service calls, leak repairs, water heater installs, some bathroom remodel rough-in\nExperience you need: 3 years of residential service work\nLicense or certification needed: State journeyman plumber license and a valid driver's license\nPay range: $32 to $38 an hour, plus after-hours call pay\nHours and days: Monday to Friday, 7:30 to 4:30, rotating on-call one week a month\nBenefits or extras: Truck, tools, paid holidays, and help with license renewal fees\nHow to apply: Email a short note to jobs@example.com\nWhat to include: Years of experience, license number, and a phone number\nYour name: Alex Chen",
+        "output": "Job title: Licensed service plumber\n\nShort intro: Harbor Pipe in Greenville is hiring a licensed service plumber for residential calls and some remodel work.\n\nThe work: Service calls, leak repairs, water heater installs, and bathroom remodel rough-in, Monday to Friday, 7:30 to 4:30, with rotating on-call one week a month.\n\nWho should apply: You have at least 3 years of residential service work, a state journeyman plumber license, and a valid driver's license.\n\nPay and hours: $32 to $38 an hour, plus after-hours call pay.\n\nBenefits: Truck, tools, paid holidays, and help with license renewal fees.\n\nHow to apply: Email a short note to jobs@example.com with your years of experience, license number, and a phone number.\n\nFacts used: Harbor Pipe, Greenville, $32 to $38 an hour, journeyman license.\nUnknown: none.",
+        "notes": "Made-up business details, only to show a clear posting."
+    },
+    "related": [
+        "how-to-write-a-job-posting-for-an-electrician",
+        "how-to-ask-for-a-google-review-after-a-plumbing-job",
+        "how-to-write-an-estimate-for-an-hvac-repair",
+        "write-instructions-for-a-new-cleaner-helping-me-on-a-big-house"
+    ]
+}

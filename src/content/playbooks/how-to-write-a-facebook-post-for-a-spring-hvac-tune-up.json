@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-write-a-facebook-post-for-a-spring-hvac-tune-up",
+    "title": "How to write a Facebook post for a spring HVAC tune-up",
+    "category": "Marketing & SEO",
+    "summary": "Paste your spring tune-up offer into ChatGPT and get a Facebook post you can publish today. Check the price and dates, and do not invent a bill-saving claim.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help an HVAC shop write a Facebook post for a spring tune-up. Draft only. Do not post it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nOffer: [OFFER]\nPrice, if there is one: [PRICE]\nWhat's included: [INCLUDED]\nWho it is for: [WHO]\nDates the offer runs: [DATES]\nHow to book: [HOW TO BOOK]\nWhat not to promise: [LIMITS]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a price, a discount, or a date range.\n- Do not claim you will lower energy bills, fix every system, or \"prepare for summer\" beyond what [INCLUDED] says.\n- Keep it friendly and specific, like a local Facebook post, not an ad agency pitch.\n- No all caps, no fake urgency, and no \"limited spots\" unless [DATES] or [LIMITS] say so.\n- One post. A simple call to book using [HOW TO BOOK].\n\nOutput format:\nReturn these headings only:\nPost (120 words or fewer)\nOptional short comment you can add first (30 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a Facebook post for a spring HVAC tune-up. Write one post the shop will review, then publish. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nOffer: [OFFER]\nPrice, if there is one: [PRICE]\nWhat's included: [INCLUDED]\nWho it is for: [WHO]\nDates the offer runs: [DATES]\nHow to book: [HOW TO BOOK]\nWhat not to promise: [LIMITS]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a price, a discount, or a date range.\n- Do not claim you will lower energy bills, fix every system, or \"prepare for summer\" beyond what [INCLUDED] says.\n- Keep it friendly and specific, like a local Facebook post, not an ad agency pitch.\n- No all caps, no fake urgency, and no \"limited spots\" unless [DATES] or [LIMITS] say so.\n- One post. A simple call to book using [HOW TO BOOK].\n\nOutput format:\nReturn these headings only:\nPost (120 words or fewer)\nOptional short comment you can add first (30 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain local Facebook posts for a spring HVAC tune-up. One offer, one draft. The shop posts it after they check the price and the dates.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nOffer: [OFFER]\nPrice, if there is one: [PRICE]\nWhat's included: [INCLUDED]\nWho it is for: [WHO]\nDates the offer runs: [DATES]\nHow to book: [HOW TO BOOK]\nWhat not to promise: [LIMITS]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a price, a discount, or a date range.\n- Do not claim you will lower energy bills, fix every system, or \"prepare for summer\" beyond what [INCLUDED] says.\n- Keep it friendly and specific, like a local Facebook post, not an ad agency pitch.\n- No all caps, no fake urgency, and no \"limited spots\" unless [DATES] or [LIMITS] say so.\n- One post. A simple call to book using [HOW TO BOOK].\n\nOutput format:\nReturn these headings only:\nPost (120 words or fewer)\nOptional short comment you can add first (30 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a Facebook post for a spring HVAC tune-up. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nBusiness name and town: [BUSINESS AND TOWN]\nOffer: [OFFER]\nPrice, if there is one: [PRICE]\nWhat's included: [INCLUDED]\nWho it is for: [WHO]\nDates the offer runs: [DATES]\nHow to book: [HOW TO BOOK]\nWhat not to promise: [LIMITS]\nYour name: [YOUR NAME]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a price, a discount, or a date range.\n- Do not claim you will lower energy bills, fix every system, or \"prepare for summer\" beyond what [INCLUDED] says.\n- Keep it friendly and specific, like a local Facebook post, not an ad agency pitch.\n- No all caps, no fake urgency, and no \"limited spots\" unless [DATES] or [LIMITS] say so.\n- One post. A simple call to book using [HOW TO BOOK].\n\nOutput format:\nReturn these headings only:\nPost (120 words or fewer)\nOptional short comment you can add first (30 words or fewer)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the business name and town, the offer, the price if you have one, what's included, who it is for, the dates, and how people should book.",
+            "Add anything you must not promise, such as energy-bill claims, and your name.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if the price or dates are not set.",
+            "Check the price, the included work, and the dates. Delete any bill-saving claim, discount, or 'limited spots' line you did not write.",
+            "Copy the post into your Facebook page or Google Business Profile and publish it yourself."
+        ],
+        "approvalStep": "You check the offer, the price, and the dates, then you publish the post yourself.",
+        "failureModes": [
+            "The draft invents a price or a percentage off. Put your real offer back in, or leave price out.",
+            "The post claims lower energy bills or a summer guarantee you did not make. Cut those lines.",
+            "The booking method is a link or phone number you did not provide. Use only your real book-now method.",
+            "The dates are wrong or already passed. Confirm the window before you post."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "I do not want to post a price. Is that okay?",
+            "a": "Yes. Leave [PRICE] blank so the post invites people to call for the current price. Do not let the draft invent a number."
+        },
+        {
+            "q": "Can I use this on Google or Instagram too?",
+            "a": "Yes. The same words usually work on a Google Business post or Instagram, with small edits you make yourself for length."
+        },
+        {
+            "q": "Should I add photos?",
+            "a": "A photo of your truck or a crew at a house can help, but add it yourself in Facebook. This prompt only writes the words."
+        }
+    ],
+    "persona": "HVAC business owner",
+    "job": "Paste a spring tune-up offer and get a plain Facebook post a local customer can act on.",
+    "who": "HVAC shops that want a straightforward spring tune-up post for Facebook or a local listing, without ad-agency hype.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "A small HVAC shop is offering a spring AC tune-up in its town for a set price through the end of May.",
+        "input": "Business name and town: Fair Air, Midway\nOffer: Spring AC tune-up\nPrice, if there is one: $129\nWhat's included: Check refrigerant, clean the outdoor coil, test the capacitor and electrical connections, and check airflow\nWho it is for: Homeowners in Midway and nearby towns with central AC\nDates the offer runs: Through May 31\nHow to book: Call or text 555-0190\nWhat not to promise: Do not promise lower energy bills or same-day appointments\nYour name: Casey",
+        "output": "Post:\nSpring is a good time to get the AC ready, before the first hot week. Fair Air in Midway is booking spring AC tune-ups through May 31 for $129. The visit includes a refrigerant check, cleaning the outdoor coil, testing the capacitor and electrical connections, and checking airflow. This is for homeowners in Midway and nearby towns with central AC. Call or text 555-0190 to pick a time.\n\nOptional short comment you can add first: Tune-ups are on the calendar through May 31. Text 555-0190 if you want one on the book.\n\nFacts used: Fair Air, Midway, $129, through May 31, 555-0190, no bill-saving claim.\nUnknown: none.",
+        "notes": "Made-up offer details, only to show a plain local post."
+    },
+    "related": [
+        "how-to-write-an-estimate-for-an-hvac-repair",
+        "how-to-tell-a-customer-their-ac-needs-to-be-replaced",
+        "google-business-profile",
+        "write-an-ad-for-fall-leaf-removal-in-my-area"
+    ]
+}

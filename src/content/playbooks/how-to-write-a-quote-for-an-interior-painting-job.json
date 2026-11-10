@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-a-quote-for-an-interior-painting-job",
+    "title": "How to write a quote for an interior painting job",
+    "category": "Sales",
+    "summary": "Paste your painting notes into ChatGPT and get a clear interior painting quote. Check the rooms, the prep, and the price before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a painting contractor write an interior painting quote. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRooms and surfaces: [ROOMS]\nPrep work: [PREP]\nNumber of coats and paint: [PAINT]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add rooms, ceilings, trim, or colors that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a brand or a sheen unless it is in [PAINT].\n- Keep the tone plain and friendly. No pressure and no slang.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nRooms and prep\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting an interior painting quote for a small painting company. Write one quote the painter will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRooms and surfaces: [ROOMS]\nPrep work: [PREP]\nNumber of coats and paint: [PAINT]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add rooms, ceilings, trim, or colors that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a brand or a sheen unless it is in [PAINT].\n- Keep the tone plain and friendly. No pressure and no slang.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nRooms and prep\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain interior painting quotes. One house, one draft. The painter sends it after they check the rooms and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRooms and surfaces: [ROOMS]\nPrep work: [PREP]\nNumber of coats and paint: [PAINT]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add rooms, ceilings, trim, or colors that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a brand or a sheen unless it is in [PAINT].\n- Keep the tone plain and friendly. No pressure and no slang.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nRooms and prep\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare an interior painting quote a contractor will edit before the homeowner sees it. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRooms and surfaces: [ROOMS]\nPrep work: [PREP]\nNumber of coats and paint: [PAINT]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add rooms, ceilings, trim, or colors that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a brand or a sheen unless it is in [PAINT].\n- Keep the tone plain and friendly. No pressure and no slang.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nRooms and prep\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the customer name, address, each room and surface, the prep, coats and paint, what is included, what is not, the price, the deposit, and the schedule.",
+            "Add your name, phone, and whether this is an email or a text. Leave a line blank if you have not decided it yet.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN in empty brackets.",
+            "Check that every room on your note is in the quote, and that no extra room, ceiling, or color slipped in. Confirm the price and deposit.",
+            "Paste the quote into email or a text and send it yourself."
+        ],
+        "approvalStep": "You check the rooms, the prep, and the price against your walkthrough notes, then you send the quote yourself.",
+        "failureModes": [
+            "The draft adds a ceiling, closet, or trim you did not include. Take those rooms out.",
+            "The price or deposit does not match your note. Put your numbers back in.",
+            "The draft names a paint brand or sheen you did not specify. Leave it general or add your real product.",
+            "Two floors or two houses get mixed. Quote one address at a time."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "The homeowner also asked about the ceilings. What should I do?",
+            "a": "If ceilings were not in your walkthrough price, keep them in What's not included and offer a separate figure later. Do not let the draft add ceilings at the same price."
+        },
+        {
+            "q": "What if the customer is supplying the paint?",
+            "a": "Say that clearly in the paint line, as in the example. If they might run short, you can note that extra paint is on them, but only if you actually want that in the quote."
+        },
+        {
+            "q": "Should I list every prep step?",
+            "a": "List the prep you will actually do. If you skip something, such as repairing large cracks, put that under What's not included so it does not become an argument later."
+        }
+    ],
+    "persona": "painting contractor",
+    "job": "Paste room and price notes and get a clear interior painting quote.",
+    "who": "Painting contractors who quote interior jobs and want a plain list of rooms, prep, and price a homeowner can accept.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A painter walked a house and is quoting the living room, hallway, and one bedroom, walls only.",
+        "input": "Customer name: Chris Nguyen\nJob address: 40 Birch Road\nRooms and surfaces: Living room, hallway, and the front bedroom, walls only\nPrep work: Fill nail holes, light sand, caulk gaps, cover floors\nNumber of coats and paint: Two coats, homeowner-supplied eggshell, color already chosen\nWhat's included: Prep, two coats, furniture moving in those rooms, and a cleanup\nWhat's not included: Ceilings, trim, doors, and the other bedrooms\nPrice: $1,850\nDeposit: $500 to book\nStart and finish window: Tuesday through Thursday next week\nHow long the quote is good: 21 days\nYour name and business: Lee at Clear Coat Painting\nYour phone: 555-0188\nEmail or text: email",
+        "output": "Channel: email\nSubject: Painting quote for 40 Birch Road\n\nQuote:\nHi Chris, this is Lee at Clear Coat Painting. Here is the quote to paint the living room, hallway, and front bedroom walls at 40 Birch Road.\n\nRooms and prep: Walls only in those three rooms. I will fill nail holes, do a light sand, caulk gaps, and cover the floors.\n\nWhat's included: Prep, two coats of the eggshell paint you are supplying in the color you already chose, furniture moving in those rooms, and a cleanup.\n\nWhat's not included: Ceilings, trim, doors, and the other bedrooms.\n\nPrice and deposit: The job is $1,850. A $500 deposit books Tuesday through Thursday next week. This quote is good for 21 days.\n\nNext step: Reply or call 555-0188 if you would like to book.\nFacts used: 40 Birch Road, three rooms, walls only, $1,850, $500.\nUnknown: none.",
+        "notes": "Made-up job details, only to show a room-by-room quote."
+    },
+    "related": [
+        "how-to-write-a-quote-for-a-roofing-job",
+        "how-to-write-a-change-order-for-a-remodeling-job",
+        "reply-to-a-customer-who-says-the-quote-is-too-high",
+        "write-a-follow-up-text-to-a-quote-i-sent-last-week"
+    ]
+}

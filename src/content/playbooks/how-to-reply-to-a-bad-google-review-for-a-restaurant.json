@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-reply-to-a-bad-google-review-for-a-restaurant",
+    "title": "How to reply to a bad Google review for a restaurant",
+    "category": "Marketing & SEO",
+    "summary": "Paste the review into ChatGPT and get a calm public reply you can post on Google. It does not argue, name staff, or promise a free meal you will not give.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a restaurant owner reply to a bad Google review. Write a public reply, and a private follow-up only if asked. Draft only. Do not post it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nRestaurant name: [RESTAURANT NAME]\nReviewer first name, if shown: [REVIEWER NAME]\nThe rating: [RATING]\nWhat they complained about: [COMPLAINT]\nThe review text, if you have it: [REVIEW TEXT]\nWhat you can do: [MAKE GOOD]\nWhat you cannot say or offer: [LIMITS]\nYour name and role: [YOUR NAME]\nPublic reply or also a private follow-up: [PUBLIC ONLY or PUBLIC AND PRIVATE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a public Google reply. Keep it short, calm, and specific. Do not argue with the reviewer.\n- Do not name staff, do not blame a supplier, and do not repeat a rude phrase from the review.\n- Do not promise a free meal, a refund, or a discount unless [MAKE GOOD] already says that.\n- Invite them to contact the restaurant off the thread if you can actually follow up.\n- One apology is enough. Thank them for the feedback.\n\nOutput format:\nReturn these headings only:\nPublic reply (80 words or fewer)\nPrivate follow-up message (70 words or fewer, or NONE if PUBLIC ONLY)\nFacts used\nUnknown\nDo not include a phone number or email unless it is in the details.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a Google review reply for a restaurant. Write one public reply the owner will review, then post. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nRestaurant name: [RESTAURANT NAME]\nReviewer first name, if shown: [REVIEWER NAME]\nThe rating: [RATING]\nWhat they complained about: [COMPLAINT]\nThe review text, if you have it: [REVIEW TEXT]\nWhat you can do: [MAKE GOOD]\nWhat you cannot say or offer: [LIMITS]\nYour name and role: [YOUR NAME]\nPublic reply or also a private follow-up: [PUBLIC ONLY or PUBLIC AND PRIVATE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a public Google reply. Keep it short, calm, and specific. Do not argue with the reviewer.\n- Do not name staff, do not blame a supplier, and do not repeat a rude phrase from the review.\n- Do not promise a free meal, a refund, or a discount unless [MAKE GOOD] already says that.\n- Invite them to contact the restaurant off the thread if you can actually follow up.\n- One apology is enough. Thank them for the feedback.\n\nOutput format:\nReturn these headings only:\nPublic reply (80 words or fewer)\nPrivate follow-up message (70 words or fewer, or NONE if PUBLIC ONLY)\nFacts used\nUnknown\nDo not include a phone number or email unless it is in the details.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write calm Google review replies for a restaurant. One review, one draft. The owner posts it after they check the promise.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nRestaurant name: [RESTAURANT NAME]\nReviewer first name, if shown: [REVIEWER NAME]\nThe rating: [RATING]\nWhat they complained about: [COMPLAINT]\nThe review text, if you have it: [REVIEW TEXT]\nWhat you can do: [MAKE GOOD]\nWhat you cannot say or offer: [LIMITS]\nYour name and role: [YOUR NAME]\nPublic reply or also a private follow-up: [PUBLIC ONLY or PUBLIC AND PRIVATE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a public Google reply. Keep it short, calm, and specific. Do not argue with the reviewer.\n- Do not name staff, do not blame a supplier, and do not repeat a rude phrase from the review.\n- Do not promise a free meal, a refund, or a discount unless [MAKE GOOD] already says that.\n- Invite them to contact the restaurant off the thread if you can actually follow up.\n- One apology is enough. Thank them for the feedback.\n\nOutput format:\nReturn these headings only:\nPublic reply (80 words or fewer)\nPrivate follow-up message (70 words or fewer, or NONE if PUBLIC ONLY)\nFacts used\nUnknown\nDo not include a phone number or email unless it is in the details.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a reply to a bad Google review for a restaurant. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nRestaurant name: [RESTAURANT NAME]\nReviewer first name, if shown: [REVIEWER NAME]\nThe rating: [RATING]\nWhat they complained about: [COMPLAINT]\nThe review text, if you have it: [REVIEW TEXT]\nWhat you can do: [MAKE GOOD]\nWhat you cannot say or offer: [LIMITS]\nYour name and role: [YOUR NAME]\nPublic reply or also a private follow-up: [PUBLIC ONLY or PUBLIC AND PRIVATE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a public Google reply. Keep it short, calm, and specific. Do not argue with the reviewer.\n- Do not name staff, do not blame a supplier, and do not repeat a rude phrase from the review.\n- Do not promise a free meal, a refund, or a discount unless [MAKE GOOD] already says that.\n- Invite them to contact the restaurant off the thread if you can actually follow up.\n- One apology is enough. Thank them for the feedback.\n\nOutput format:\nReturn these headings only:\nPublic reply (80 words or fewer)\nPrivate follow-up message (70 words or fewer, or NONE if PUBLIC ONLY)\nFacts used\nUnknown\nDo not include a phone number or email unless it is in the details.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Copy the review and note the rating, the reviewer's first name if it is shown, and what they complained about.",
+            "Write what you can actually do, what you will not offer, your name, and whether you also want a private follow-up message.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a line is blank.",
+            "Read the public reply. It should stay under 80 words, avoid staff names, and only promise what is on your note.",
+            "Paste the public reply under the Google review yourself. If you asked for a private follow-up, send that separately through the method you already use."
+        ],
+        "approvalStep": "You check the public reply for promises and tone, then you post it yourself.",
+        "failureModes": [
+            "The draft offers a free meal or refund you did not approve. Delete that offer.",
+            "The draft names a server or argues about what happened. Rewrite it so it stays calm and general.",
+            "The draft repeats an insult from the review. Leave that wording out.",
+            "You post without checking and the restaurant name or the issue is wrong. Match the review first."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Should I reply to every bad review?",
+            "a": "A short, calm reply shows other readers that you pay attention. If the review is abusive or fake, you can also flag it with Google, but a brief public note is still often worth it."
+        },
+        {
+            "q": "What if the review is unfair?",
+            "a": "Stay polite and specific. Do not argue point by point in public. Invite them to talk off the thread if you are willing to do that, and do not invent a reason that blames your staff."
+        },
+        {
+            "q": "Can I ask them to change the rating?",
+            "a": "Do not make that the point of the public reply. If the next visit goes well, they may update it on their own. Asking in public can look like you only care about the stars."
+        }
+    ],
+    "persona": "restaurant owner",
+    "job": "Paste a bad Google review and get a calm public reply, plus a private follow-up if you want one.",
+    "who": "Restaurant owners who need a short, professional Google review reply without arguing in public.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "A diner left a two-star review saying the wait for food was too long on a Saturday night.",
+        "input": "Restaurant name: The Copper Spoon\nReviewer first name, if shown: Dana\nThe rating: 2 stars\nWhat they complained about: A long wait for dinner on Saturday night\nThe review text, if you have it: Waited almost an hour for pasta. Food was fine but not worth the wait.\nWhat you can do: Invite them to call the restaurant so we can make the next visit right\nWhat you cannot say or offer: A free meal or a public excuse about being short-staffed\nYour name and role: Jordan, owner\nPublic reply or also a private follow-up: PUBLIC AND PRIVATE",
+        "output": "Public reply:\nHi Dana, this is Jordan, the owner at The Copper Spoon. I'm sorry you waited so long for dinner on Saturday, and that the evening did not meet what you expected. The food should not come at the cost of that wait. Please call the restaurant and ask for me so I can make your next visit right. Thank you for taking the time to tell us.\n\nPrivate follow-up message:\nHi Dana, Jordan at The Copper Spoon again. I saw your review about the Saturday wait and I'd like to fix this directly. If you call the restaurant and ask for me, I'll take care of your next visit. Thank you for giving us a chance to do better.\n\nFacts used: Dana, 2 stars, Saturday wait, The Copper Spoon, no free meal promised.\nUnknown: none.",
+        "notes": "Made-up review, only to show a short public reply and a private follow-up."
+    },
+    "related": [
+        "google-business-profile",
+        "reply-to-a-bad-review-about-a-long-wait-for-parts",
+        "how-to-reply-to-an-angry-customer-about-a-messy-job",
+        "how-to-ask-for-a-google-review-after-a-plumbing-job"
+    ]
+}

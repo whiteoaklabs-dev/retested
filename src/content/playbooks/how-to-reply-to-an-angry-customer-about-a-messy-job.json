@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-reply-to-an-angry-customer-about-a-messy-job",
+    "title": "How to reply to an angry customer about a messy job",
+    "category": "Support",
+    "summary": "Paste the complaint and what you can do into ChatGPT and get a calm reply. It apologizes once and only promises work you will actually do.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a contractor reply to an angry customer about a messy job. Write one calm reply. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or job name: [JOB]\nWhat they are upset about: [COMPLAINT]\nTheir message, if you have it: [THEIR MESSAGE]\nWhat actually happened: [WHAT HAPPENED]\nWhat you can do: [MAKE GOOD]\nWhat you cannot do: [LIMITS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not admit legal fault, promise a refund, or offer free work unless [MAKE GOOD] already says that.\n- Acknowledge the mess or the problem in plain words. Do not argue, and do not blame the customer.\n- Do not blame your crew in public language. Stay factual.\n- One apology is enough. No long story, no excuses pile-up.\n- Do not mention other customers or other jobs.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReply (150 words or fewer for email, 80 words or fewer for a text)\nWhat we will do\nWhat we will not do\nNext step\nFacts used\nUnknown\nThe next step should offer a call or a return visit, using [YOUR PHONE], only if that fits [MAKE GOOD].\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a reply for a contractor whose customer is upset about a mess left behind. Write one message the contractor will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or job name: [JOB]\nWhat they are upset about: [COMPLAINT]\nTheir message, if you have it: [THEIR MESSAGE]\nWhat actually happened: [WHAT HAPPENED]\nWhat you can do: [MAKE GOOD]\nWhat you cannot do: [LIMITS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not admit legal fault, promise a refund, or offer free work unless [MAKE GOOD] already says that.\n- Acknowledge the mess or the problem in plain words. Do not argue, and do not blame the customer.\n- Do not blame your crew in public language. Stay factual.\n- One apology is enough. No long story, no excuses pile-up.\n- Do not mention other customers or other jobs.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReply (150 words or fewer for email, 80 words or fewer for a text)\nWhat we will do\nWhat we will not do\nNext step\nFacts used\nUnknown\nThe next step should offer a call or a return visit, using [YOUR PHONE], only if that fits [MAKE GOOD].\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write calm replies when a job left a mess. One customer, one draft. The contractor sends it after they check the promise.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or job name: [JOB]\nWhat they are upset about: [COMPLAINT]\nTheir message, if you have it: [THEIR MESSAGE]\nWhat actually happened: [WHAT HAPPENED]\nWhat you can do: [MAKE GOOD]\nWhat you cannot do: [LIMITS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not admit legal fault, promise a refund, or offer free work unless [MAKE GOOD] already says that.\n- Acknowledge the mess or the problem in plain words. Do not argue, and do not blame the customer.\n- Do not blame your crew in public language. Stay factual.\n- One apology is enough. No long story, no excuses pile-up.\n- Do not mention other customers or other jobs.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReply (150 words or fewer for email, 80 words or fewer for a text)\nWhat we will do\nWhat we will not do\nNext step\nFacts used\nUnknown\nThe next step should offer a call or a return visit, using [YOUR PHONE], only if that fits [MAKE GOOD].\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a reply to an angry customer about a messy job. Draft only. Do not email or text them.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address or job name: [JOB]\nWhat they are upset about: [COMPLAINT]\nTheir message, if you have it: [THEIR MESSAGE]\nWhat actually happened: [WHAT HAPPENED]\nWhat you can do: [MAKE GOOD]\nWhat you cannot do: [LIMITS]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not admit legal fault, promise a refund, or offer free work unless [MAKE GOOD] already says that.\n- Acknowledge the mess or the problem in plain words. Do not argue, and do not blame the customer.\n- Do not blame your crew in public language. Stay factual.\n- One apology is enough. No long story, no excuses pile-up.\n- Do not mention other customers or other jobs.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nReply (150 words or fewer for email, 80 words or fewer for a text)\nWhat we will do\nWhat we will not do\nNext step\nFacts used\nUnknown\nThe next step should offer a call or a return visit, using [YOUR PHONE], only if that fits [MAKE GOOD].\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Copy the customer's message, or write in one or two lines what they are upset about. Add the job address, what actually happened, what you can do, and what you cannot do.",
+            "Add your name, business, phone, and whether this is a text or an email. If you have not decided on a refund or a return visit, leave that blank.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN where you are not sure.",
+            "Read the reply out loud. It should mention the mess, apologize once, and only promise what is on your note. Delete any refund, discount, or blame you did not approve.",
+            "Paste it into the same email or text thread and send it yourself."
+        ],
+        "approvalStep": "You check that the reply only promises what you can do, then you send it yourself.",
+        "failureModes": [
+            "The draft offers a refund or free work you did not approve. Take that sentence out.",
+            "The draft argues with the customer or blames them for the mess. Soften it or start over.",
+            "The draft names a crew member or another job. Remove those details.",
+            "You send it without looking, and a date or address is wrong. Match the job before you hit send."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Should I apologize if I do not think it was that messy?",
+            "a": "Acknowledge what they saw and what you will do next. A short apology for the inconvenience is usually better than arguing about how bad the dust was. Do not admit legal fault if that is a concern — just stay factual."
+        },
+        {
+            "q": "What if I cannot get back there tomorrow?",
+            "a": "Put the first time you can actually return in [MAKE GOOD]. Do not let the draft promise tomorrow if you cannot be there."
+        },
+        {
+            "q": "They also posted a bad review. Should I use this reply there too?",
+            "a": "This prompt is for a direct text or email. A public review needs a shorter public reply and a follow-up off the thread. Use a review prompt for the public part, and keep the make-good details in a private message."
+        }
+    ],
+    "persona": "contractor",
+    "job": "Paste an angry complaint about a messy job and get a calm reply you can send.",
+    "who": "Contractors and trades who need a short, honest reply when a customer is upset about a mess left at the house.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A homeowner texted after a vanity install, angry about drywall dust left in the hallway.",
+        "input": "Customer name: Morgan Ellis\nJob address or job name: 9 Cedar Place, bathroom vanity\nWhat they are upset about: Dust on the hallway floor and baseboards, and they had people coming over\nTheir message, if you have it: You left my hallway looking like a construction site. Totally unacceptable.\nWhat actually happened: We cut a drywall opening for the water line and did not vacuum the hallway before we left\nWhat you can do: Come back tomorrow between 9 and 11 to vacuum and wipe the hallway and baseboards, no charge\nWhat you cannot do: A refund on the vanity job\nYour name and business: Sam at Ellis Bath\nYour phone: 555-0160\nEmail or text: text",
+        "output": "Channel: text\nSubject: NONE\n\nReply:\nHi Morgan, this is Sam at Ellis Bath. You're right — we left drywall dust in the hallway at 9 Cedar Place after the vanity work, and I'm sorry. That should have been vacuumed before we left. I can come back tomorrow between 9 and 11 to vacuum and wipe the hallway and baseboards at no charge. I can't refund the vanity job, but I do want the hallway clean. Does that time work? You can also call me at 555-0160.\n\nWhat we will do: Return visit tomorrow, 9 to 11, vacuum and wipe hallway and baseboards, no charge.\nWhat we will not do: Refund the vanity job.\nNext step: Confirm the time or call 555-0160.\nFacts used: 9 Cedar Place, dust in hallway, return visit, no refund.\nUnknown: none.",
+        "notes": "Made-up complaint, only to show a calm, specific reply."
+    },
+    "related": [
+        "draft-a-calm-reply-to-an-angry-customer-email",
+        "reply-to-a-customer-who-says-the-quote-is-too-high",
+        "how-to-reply-to-a-bad-google-review-for-a-restaurant",
+        "write-a-message-saying-i-will-be-two-hours-late-to-a-job"
+    ]
+}

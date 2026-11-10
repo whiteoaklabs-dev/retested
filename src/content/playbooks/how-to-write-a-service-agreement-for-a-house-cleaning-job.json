@@ -1,0 +1,81 @@
+{
+    "slug": "how-to-write-a-service-agreement-for-a-house-cleaning-job",
+    "title": "How to write a service agreement for a house cleaning job",
+    "category": "Back office",
+    "summary": "Paste your cleaning job details into ChatGPT and get a simple service agreement. Check every room, the price, and the cancel rule before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a cleaning business owner write a simple service agreement for one house. Draft only. This is not legal advice. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nType of cleaning: [SERVICE TYPE]\nRooms or areas: [AREAS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nVisit frequency: [FREQUENCY]\nPrice: [PRICE]\nHow they pay and when: [PAYMENT]\nCancellation or reschedule rule: [CANCEL RULE]\nSupplies and access: [SUPPLIES AND ACCESS]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a simple service agreement, not a legal form. Do not invent legal clauses, liability waivers, or insurance language.\n- Do not add rooms, add-on services, or fees that are not in the details.\n- Do not change the price or the cancellation rule. Copy them exactly.\n- Use plain words a homeowner can read once. Short sentences. No legalese.\n\nOutput format:\nReturn these headings only:\nTitle\nParties and address\nThe service\nWhat's included\nWhat's not included\nSchedule and price\nPayment\nCancellation\nSupplies and access\nStart date\nHow to agree (a short line asking them to reply \"agreed\" or sign)\nFacts used\nUnknown\nKeep the agreement under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a plain house-cleaning service agreement. Write one short agreement the owner will review, then send. Do not send it yourself. This is not a legal form.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nType of cleaning: [SERVICE TYPE]\nRooms or areas: [AREAS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nVisit frequency: [FREQUENCY]\nPrice: [PRICE]\nHow they pay and when: [PAYMENT]\nCancellation or reschedule rule: [CANCEL RULE]\nSupplies and access: [SUPPLIES AND ACCESS]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a simple service agreement, not a legal form. Do not invent legal clauses, liability waivers, or insurance language.\n- Do not add rooms, add-on services, or fees that are not in the details.\n- Do not change the price or the cancellation rule. Copy them exactly.\n- Use plain words a homeowner can read once. Short sentences. No legalese.\n\nOutput format:\nReturn these headings only:\nTitle\nParties and address\nThe service\nWhat's included\nWhat's not included\nSchedule and price\nPayment\nCancellation\nSupplies and access\nStart date\nHow to agree (a short line asking them to reply \"agreed\" or sign)\nFacts used\nUnknown\nKeep the agreement under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write simple cleaning agreements in plain words. One house, one draft. The owner sends it after they check the rooms and the price. Not legal advice.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nType of cleaning: [SERVICE TYPE]\nRooms or areas: [AREAS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nVisit frequency: [FREQUENCY]\nPrice: [PRICE]\nHow they pay and when: [PAYMENT]\nCancellation or reschedule rule: [CANCEL RULE]\nSupplies and access: [SUPPLIES AND ACCESS]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a simple service agreement, not a legal form. Do not invent legal clauses, liability waivers, or insurance language.\n- Do not add rooms, add-on services, or fees that are not in the details.\n- Do not change the price or the cancellation rule. Copy them exactly.\n- Use plain words a homeowner can read once. Short sentences. No legalese.\n\nOutput format:\nReturn these headings only:\nTitle\nParties and address\nThe service\nWhat's included\nWhat's not included\nSchedule and price\nPayment\nCancellation\nSupplies and access\nStart date\nHow to agree (a short line asking them to reply \"agreed\" or sign)\nFacts used\nUnknown\nKeep the agreement under 280 words.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a simple service agreement for a house cleaning job. Draft only, not a legal contract. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nType of cleaning: [SERVICE TYPE]\nRooms or areas: [AREAS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nVisit frequency: [FREQUENCY]\nPrice: [PRICE]\nHow they pay and when: [PAYMENT]\nCancellation or reschedule rule: [CANCEL RULE]\nSupplies and access: [SUPPLIES AND ACCESS]\nStart date: [START DATE]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- This is a simple service agreement, not a legal form. Do not invent legal clauses, liability waivers, or insurance language.\n- Do not add rooms, add-on services, or fees that are not in the details.\n- Do not change the price or the cancellation rule. Copy them exactly.\n- Use plain words a homeowner can read once. Short sentences. No legalese.\n\nOutput format:\nReturn these headings only:\nTitle\nParties and address\nThe service\nWhat's included\nWhat's not included\nSchedule and price\nPayment\nCancellation\nSupplies and access\nStart date\nHow to agree (a short line asking them to reply \"agreed\" or sign)\nFacts used\nUnknown\nKeep the agreement under 280 words.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the customer name, address, type of clean, rooms, what's included and not, how often you visit, the price, how they pay, and your cancellation rule.",
+            "Add how you get in, who brings supplies, the start date, and your name and phone.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a rule is not decided yet.",
+            "Read the agreement beside your notes. Confirm rooms, price, payment, and the cancel rule. Delete any legal clause, fee, or room you did not write.",
+            "Send it as an email or a document for the customer to reply 'agreed' or sign, and only start the job after they agree."
+        ],
+        "approvalStep": "You check the rooms, the price, and the cancellation rule, then you send the agreement yourself. This is a plain summary of what you already offer, not legal advice.",
+        "failureModes": [
+            "The draft adds legal language, liability waivers, or insurance claims you did not provide. Take those sentences out.",
+            "A room or add-on appears that you did not include in the price. Remove it or price it separately.",
+            "The cancellation rule or the price does not match what you told the customer. Put your real terms back in.",
+            "The access notes invent a lockbox code. Never add a code that was not in your notes."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Is this a legal contract?",
+            "a": "No. It is a plain summary of the work, the price, and your cancel rule, written so both of you can agree. If you need a formal contract, have a lawyer review one. Do not let the draft invent legal clauses."
+        },
+        {
+            "q": "What if I do not have a cancellation rule yet?",
+            "a": "Leave that line blank so it is marked UNKNOWN, then decide and add it before you send the agreement. A clear 24-hour or 48-hour rule prevents most surprises."
+        },
+        {
+            "q": "Can I use this for a one-time deep clean?",
+            "a": "Yes. Set the service type and frequency to a one-time visit, and list the extra deep-clean tasks in What's included."
+        }
+    ],
+    "persona": "cleaning business owner",
+    "job": "Paste cleaning job details and get a simple service agreement a homeowner can agree to.",
+    "who": "Cleaning business owners who want a plain one-page agreement that lists the work, the price, and how to cancel.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email"
+    ],
+    "example": {
+        "scenario": "A cleaner is starting a biweekly clean at a two-bedroom apartment and wants the terms in writing before the first visit.",
+        "input": "Customer name: Jamie Cole\nProperty address: 5 South Alley, Apt 2B\nType of cleaning: Recurring standard clean\nRooms or areas: Kitchen, living room, two bedrooms, one bathroom, and hallway\nWhat's included: Floors, counters, bathroom fixtures, kitchen sink, and emptying trash\nWhat's not included: Inside the oven, inside the fridge, windows, and laundry\nVisit frequency: Every other Tuesday, 10 a.m. to 12 p.m.\nPrice: $140 per visit\nHow they pay and when: Card on file, charged the day of the visit\nCancellation or reschedule rule: 24 hours notice or the visit is charged\nSupplies and access: I bring supplies. Key is in the lockbox. Code already shared by text.\nStart date: November 18\nYour name and business: Robin at Open Window Cleaning\nYour phone: 555-0133",
+        "output": "Title: House cleaning service agreement\n\nParties and address: Open Window Cleaning (Robin) and Jamie Cole, for 5 South Alley, Apt 2B.\n\nThe service: A recurring standard clean every other Tuesday, 10 a.m. to 12 p.m., starting November 18.\n\nWhat's included: Floors, counters, bathroom fixtures, kitchen sink, and emptying trash in the kitchen, living room, two bedrooms, one bathroom, and hallway.\n\nWhat's not included: Inside the oven, inside the fridge, windows, and laundry.\n\nSchedule and price: $140 per visit.\n\nPayment: Card on file, charged the day of the visit.\n\nCancellation: If you need to cancel or move a visit, give 24 hours notice. After that, the visit is charged.\n\nSupplies and access: Open Window Cleaning brings supplies and will use the lockbox key already shared by text.\n\nStart date: November 18.\n\nHow to agree: Reply to this email with the word agreed, or sign and send it back, and I will put November 18 on the calendar.\n\nFacts used: Apt 2B, $140, every other Tuesday, 24 hours, November 18.\nUnknown: none.",
+        "notes": "Made-up job terms, only to show a plain agreement. This is not legal advice."
+    },
+    "related": [
+        "write-a-reminder-text-for-a-weekly-cleaning-tomorrow",
+        "write-instructions-for-a-new-cleaner-helping-me-on-a-big-house",
+        "how-to-write-a-bid-for-a-commercial-cleaning-contract",
+        "how-to-write-a-cancellation-policy-for-a-salon"
+    ]
+}

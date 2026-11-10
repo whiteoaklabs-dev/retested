@@ -1,0 +1,80 @@
+{
+    "slug": "how-to-write-a-listing-description-for-a-house",
+    "title": "How to write a listing description for a house",
+    "category": "Real estate",
+    "summary": "Paste the property facts into ChatGPT and get a plain listing description. Check every number before you publish it, and do not invent square footage.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a real estate agent write a house listing description. Draft only. Do not publish it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nProperty address or area: [ADDRESS]\nBeds, baths, and square feet: [BEDS BATHS SQFT]\nHome type and main features: [FEATURES]\nLot or outdoor space: [OUTDOOR]\nUpdates or condition: [UPDATES]\nNeighborhood or nearby places: [LOCATION NOTES]\nList price, if it should be mentioned: [PRICE]\nWhat to emphasize: [EMPHASIS]\nWhat not to say: [DO NOT SAY]\nYour name and brokerage: [YOUR NAME]\nListing channel: [MLS, WEBSITE, or SOCIAL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent square footage, bedrooms, updates, schools, or a year built.\n- Do not claim a view, a finish, or a renovation unless it is in the details.\n- Do not use hype such as \"dream home,\" \"must see,\" or \"won't last.\"\n- Write in plain words a buyer can picture. Short sentences. No all caps.\n- Follow [DO NOT SAY] exactly. If a defect or a limit is listed, do not hide it with soft wording.\n\nOutput format:\nReturn these headings only:\nHeadline (10 words or fewer)\nListing description (160 words or fewer)\nFacts used\nUnknown\nDo not include the list price unless [PRICE] has a number.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a listing description for a house. Write one short description the agent will review, then post. Do not post it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nProperty address or area: [ADDRESS]\nBeds, baths, and square feet: [BEDS BATHS SQFT]\nHome type and main features: [FEATURES]\nLot or outdoor space: [OUTDOOR]\nUpdates or condition: [UPDATES]\nNeighborhood or nearby places: [LOCATION NOTES]\nList price, if it should be mentioned: [PRICE]\nWhat to emphasize: [EMPHASIS]\nWhat not to say: [DO NOT SAY]\nYour name and brokerage: [YOUR NAME]\nListing channel: [MLS, WEBSITE, or SOCIAL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent square footage, bedrooms, updates, schools, or a year built.\n- Do not claim a view, a finish, or a renovation unless it is in the details.\n- Do not use hype such as \"dream home,\" \"must see,\" or \"won't last.\"\n- Write in plain words a buyer can picture. Short sentences. No all caps.\n- Follow [DO NOT SAY] exactly. If a defect or a limit is listed, do not hide it with soft wording.\n\nOutput format:\nReturn these headings only:\nHeadline (10 words or fewer)\nListing description (160 words or fewer)\nFacts used\nUnknown\nDo not include the list price unless [PRICE] has a number.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain house listing descriptions from the facts you are given. One property, one draft. The agent posts it after they check every number.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nProperty address or area: [ADDRESS]\nBeds, baths, and square feet: [BEDS BATHS SQFT]\nHome type and main features: [FEATURES]\nLot or outdoor space: [OUTDOOR]\nUpdates or condition: [UPDATES]\nNeighborhood or nearby places: [LOCATION NOTES]\nList price, if it should be mentioned: [PRICE]\nWhat to emphasize: [EMPHASIS]\nWhat not to say: [DO NOT SAY]\nYour name and brokerage: [YOUR NAME]\nListing channel: [MLS, WEBSITE, or SOCIAL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent square footage, bedrooms, updates, schools, or a year built.\n- Do not claim a view, a finish, or a renovation unless it is in the details.\n- Do not use hype such as \"dream home,\" \"must see,\" or \"won't last.\"\n- Write in plain words a buyer can picture. Short sentences. No all caps.\n- Follow [DO NOT SAY] exactly. If a defect or a limit is listed, do not hide it with soft wording.\n\nOutput format:\nReturn these headings only:\nHeadline (10 words or fewer)\nListing description (160 words or fewer)\nFacts used\nUnknown\nDo not include the list price unless [PRICE] has a number.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a listing description for a house. Draft only. Do not publish it to the MLS or a website.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nProperty address or area: [ADDRESS]\nBeds, baths, and square feet: [BEDS BATHS SQFT]\nHome type and main features: [FEATURES]\nLot or outdoor space: [OUTDOOR]\nUpdates or condition: [UPDATES]\nNeighborhood or nearby places: [LOCATION NOTES]\nList price, if it should be mentioned: [PRICE]\nWhat to emphasize: [EMPHASIS]\nWhat not to say: [DO NOT SAY]\nYour name and brokerage: [YOUR NAME]\nListing channel: [MLS, WEBSITE, or SOCIAL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent square footage, bedrooms, updates, schools, or a year built.\n- Do not claim a view, a finish, or a renovation unless it is in the details.\n- Do not use hype such as \"dream home,\" \"must see,\" or \"won't last.\"\n- Write in plain words a buyer can picture. Short sentences. No all caps.\n- Follow [DO NOT SAY] exactly. If a defect or a limit is listed, do not hide it with soft wording.\n\nOutput format:\nReturn these headings only:\nHeadline (10 words or fewer)\nListing description (160 words or fewer)\nFacts used\nUnknown\nDo not include the list price unless [PRICE] has a number.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "From the property sheet, write the address or area, beds, baths, square feet, home type, main features, outdoor space, and updates.",
+            "Add neighborhood notes you can stand behind, the list price only if it should appear, what to emphasize, and anything you must not say.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN rather than guessing a number or a year.",
+            "Check every fact against the sheet: beds, baths, square feet, and updates. Delete any view, school, or renovation the sheet does not support.",
+            "Paste the finished description into the MLS, your website, or the social post, and publish it yourself."
+        ],
+        "approvalStep": "You check every number and feature against the property sheet, then you publish the description yourself.",
+        "failureModes": [
+            "The draft invents square footage, a year built, or an extra bedroom. Put only the sheet figures back in.",
+            "Hype words such as 'dream home' or a view you did not document appear. Cut them.",
+            "A problem you listed under what not to say is hidden or softened. Keep the wording honest.",
+            "School or commute claims appear that you did not provide. Remove them."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Can I mention the schools?",
+            "a": "Only if you typed accurate, allowed notes in [LOCATION NOTES] and you did not forbid it in [DO NOT SAY]. Many agents leave school claims out and let buyers check on their own."
+        },
+        {
+            "q": "What if I do not have the square footage yet?",
+            "a": "Leave it blank so the draft marks it UNKNOWN. Do not let ChatGPT guess a size. Add the figure from the official record before you publish."
+        },
+        {
+            "q": "Should the price be in the description?",
+            "a": "Include it when the channel needs it, such as a website. For an MLS field that already has a price, you can leave [PRICE] blank so the description does not repeat it."
+        }
+    ],
+    "persona": "realtor",
+    "job": "Paste property facts and get a plain, accurate listing description for a house.",
+    "who": "Realtors and listing agents who want a clear house description without hype or invented facts.",
+    "toolCategories": [
+        "AI chat assistants"
+    ],
+    "example": {
+        "scenario": "An agent is writing a website description for a three-bedroom ranch on a quiet street.",
+        "input": "Property address or area: 27 Fieldstone Lane, Westbrook\nBeds, baths, and square feet: 3 bedrooms, 2 baths, 1,640 square feet\nHome type and main features: One-story ranch, eat-in kitchen, hardwood in the living room, one-car garage\nLot or outdoor space: Fenced backyard and a patio\nUpdates or condition: New roof in 2023, kitchen counters replaced in 2021\nNeighborhood or nearby places: Two blocks from Westbrook Park, 10 minutes to downtown\nList price, if it should be mentioned: $389,000\nWhat to emphasize: One-story living and the backyard\nWhat not to say: Do not mention schools. Do not say the basement is finished; it is unfinished storage only.\nYour name and brokerage: Quinn at Lake Street Realty\nListing channel: WEBSITE",
+        "output": "Headline: One-story ranch with a fenced backyard in Westbrook\n\nListing description:\nThis 3-bedroom, 2-bath ranch at 27 Fieldstone Lane offers 1,640 square feet of one-story living. The eat-in kitchen has counters replaced in 2021, and the living room has hardwood floors. A one-car garage, a patio, and a fenced backyard sit behind the house. The roof was replaced in 2023. The basement is unfinished storage. The home is two blocks from Westbrook Park and about 10 minutes to downtown. Listed at $389,000. Reach Quinn at Lake Street Realty to schedule a visit.\n\nFacts used: 27 Fieldstone Lane, 3 bed, 2 bath, 1,640 sq ft, roof 2023, counters 2021, $389,000, unfinished basement.\nUnknown: none.",
+        "notes": "Made-up property facts, only to show a plain, accurate description."
+    },
+    "related": [
+        "turn-my-open-house-sign-in-sheet-into-follow-up-messages",
+        "write-a-polite-email-asking-a-seller-to-fix-a-few-things-before-photos",
+        "how-to-write-a-facebook-post-for-a-spring-hvac-tune-up",
+        "how-to-write-a-proposal-for-a-landscaping-project"
+    ]
+}

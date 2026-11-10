@@ -1,0 +1,81 @@
+{
+    "slug": "how-to-write-a-warranty-letter-after-a-roofing-job",
+    "title": "How to write a warranty letter after a roofing job",
+    "category": "Support",
+    "summary": "Paste what you actually guarantee into ChatGPT and get a plain warranty letter after a roofing job. Check the coverage and the term before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a roofer write a warranty letter after a finished job. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWork completed: [WORK]\nCompletion date: [COMPLETION DATE]\nWhat the warranty covers: [COVERS]\nHow long it lasts: [TERM]\nWhat it does not cover: [NOT COVERED]\nHow to make a warranty request: [HOW TO CLAIM]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a warranty length, a manufacturer name, or a coverage item.\n- Do not promise work-or-materials coverage you did not type in.\n- Do not use legal jargon. Write a plain letter a homeowner can keep with their paperwork.\n- If [TERM] or [COVERS] is blank, mark it UNKNOWN. Do not guess \"one year\" or \"lifetime.\"\n- No marketing language and no upsell.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nLetter (200 words or fewer)\nWhat is covered\nWhat is not covered\nHow to request service\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a roofing warranty letter from the contractor's real terms. Write one letter they will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWork completed: [WORK]\nCompletion date: [COMPLETION DATE]\nWhat the warranty covers: [COVERS]\nHow long it lasts: [TERM]\nWhat it does not cover: [NOT COVERED]\nHow to make a warranty request: [HOW TO CLAIM]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a warranty length, a manufacturer name, or a coverage item.\n- Do not promise work-or-materials coverage you did not type in.\n- Do not use legal jargon. Write a plain letter a homeowner can keep with their paperwork.\n- If [TERM] or [COVERS] is blank, mark it UNKNOWN. Do not guess \"one year\" or \"lifetime.\"\n- No marketing language and no upsell.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nLetter (200 words or fewer)\nWhat is covered\nWhat is not covered\nHow to request service\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain warranty letters after a roofing job. One job, one draft. The roofer sends it after they check the coverage and the term.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWork completed: [WORK]\nCompletion date: [COMPLETION DATE]\nWhat the warranty covers: [COVERS]\nHow long it lasts: [TERM]\nWhat it does not cover: [NOT COVERED]\nHow to make a warranty request: [HOW TO CLAIM]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a warranty length, a manufacturer name, or a coverage item.\n- Do not promise work-or-materials coverage you did not type in.\n- Do not use legal jargon. Write a plain letter a homeowner can keep with their paperwork.\n- If [TERM] or [COVERS] is blank, mark it UNKNOWN. Do not guess \"one year\" or \"lifetime.\"\n- No marketing language and no upsell.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nLetter (200 words or fewer)\nWhat is covered\nWhat is not covered\nHow to request service\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a warranty letter for a finished roofing job. Draft only. Do not email or mail it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nWork completed: [WORK]\nCompletion date: [COMPLETION DATE]\nWhat the warranty covers: [COVERS]\nHow long it lasts: [TERM]\nWhat it does not cover: [NOT COVERED]\nHow to make a warranty request: [HOW TO CLAIM]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not invent a warranty length, a manufacturer name, or a coverage item.\n- Do not promise work-or-materials coverage you did not type in.\n- Do not use legal jargon. Write a plain letter a homeowner can keep with their paperwork.\n- If [TERM] or [COVERS] is blank, mark it UNKNOWN. Do not guess \"one year\" or \"lifetime.\"\n- No marketing language and no upsell.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nLetter (200 words or fewer)\nWhat is covered\nWhat is not covered\nHow to request service\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "Write the customer name, address, the work you completed, the completion date, what you cover, how long it lasts, and what you do not cover.",
+            "Add how they should request service, your name, phone, and whether this is an email or a letter you will paste into email.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if you still need to confirm a term with your supplier.",
+            "Check the coverage, the term, and the exclusions against the terms you actually offer. Delete any lifetime language or manufacturer claim you did not write down.",
+            "Send the letter by email or print it with the final invoice, yourself, after those terms match."
+        ],
+        "approvalStep": "You check the coverage and the term against what you actually guarantee, then you send the letter yourself.",
+        "failureModes": [
+            "The draft invents a one-year, five-year, or lifetime term. Put only your real term back in.",
+            "Manufacturer warranty language appears that you did not provide. Leave it out or add the exact terms from the manufacturer sheet.",
+            "Exclusions you rely on, such as storm damage or owner-made changes, are missing. Add them from your notes before you send.",
+            "The completion date or address is wrong. Match the job file."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Should I also mention the shingle manufacturer's warranty?",
+            "a": "Only if you have the official terms and you add them to the details. Do not guess the manufacturer's length or coverage."
+        },
+        {
+            "q": "What if I do not offer a workmanship warranty?",
+            "a": "Do not send this letter. A warranty letter should only go out when you have terms you will honor."
+        },
+        {
+            "q": "Can this create a legal warranty document?",
+            "a": "It writes a plain letter that restates the terms you typed in. If you need a formal legal document, have someone qualified review it. Do not let the draft invent legal language."
+        }
+    ],
+    "persona": "roofer",
+    "job": "Paste your real warranty terms and get a plain letter a homeowner can keep after a roofing job.",
+    "who": "Roofers who want a short, honest warranty letter that matches the workmanship they actually stand behind.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email"
+    ],
+    "example": {
+        "scenario": "A roofer finished a shingle replacement and wants to email a workmanship warranty with the final invoice.",
+        "input": "Customer name: Sam Rivera\nJob address: 14 Pine Street\nWork completed: Full tear-off and new architectural shingles\nCompletion date: April 16, 2026\nWhat the warranty covers: Our workmanship, including leaks caused by our installation\nHow long it lasts: 5 years from the completion date\nWhat it does not cover: Storm damage, acts of nature, and changes made by anyone other than our crew\nHow to make a warranty request: Call or email us, and we will come look at it\nYour name and business: Jordan at Ridge Line Roofing\nYour phone: 555-0172\nEmail or text: email",
+        "output": "Channel: email\nSubject: Warranty letter for the roof at 14 Pine Street\n\nLetter:\nHi Sam, this is Jordan at Ridge Line Roofing. Thank you again for the work at 14 Pine Street. We completed the full tear-off and new architectural shingles on April 16, 2026. This letter is the workmanship warranty for that job.\n\nWhat is covered: Our workmanship, including leaks caused by our installation, for 5 years from April 16, 2026.\n\nWhat is not covered: Storm damage, acts of nature, and changes made by anyone other than our crew.\n\nHow to request service: Call or email Ridge Line Roofing at 555-0172 and we will come look at it.\n\nPlease keep this letter with your job paperwork. If anything in the coverage is unclear, call me and I will walk you through it.\n\nFacts used: 14 Pine Street, April 16, 2026, 5 years, workmanship, storm damage excluded.\nUnknown: none.",
+        "notes": "Made-up warranty terms, only to show a plain letter. Use only the terms you actually offer."
+    },
+    "related": [
+        "how-to-write-a-quote-for-a-roofing-job",
+        "answer-a-customer-asking-if-i-am-licensed-and-insured",
+        "how-to-follow-up-on-an-unpaid-invoice",
+        "how-to-write-a-service-agreement-for-a-house-cleaning-job"
+    ]
+}

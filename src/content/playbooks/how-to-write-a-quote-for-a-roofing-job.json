@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-a-quote-for-a-roofing-job",
+    "title": "How to write a quote for a roofing job",
+    "category": "Sales",
+    "summary": "Paste your roofing job notes into ChatGPT and get a clear quote a homeowner can say yes to. Check the price, deposit, and what's included before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a roofer write a job quote a homeowner can understand. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRoof type and work: [WORK]\nSquares or roof size: [SIZE]\nMaterials: [MATERIALS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add work, materials, warranties, or discounts that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a start date that is not in [TIMELINE].\n- Keep the tone plain and friendly, like a note a homeowner can read once and understand.\n- No slang, no pressure, no \"limited time\" language unless [QUOTE EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\nThe next step should ask them to reply or call [YOUR PHONE] if they want to book. Do not add a payment link unless one was provided.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a roofing quote for a small roofing company. Write one quote the owner will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRoof type and work: [WORK]\nSquares or roof size: [SIZE]\nMaterials: [MATERIALS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add work, materials, warranties, or discounts that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a start date that is not in [TIMELINE].\n- Keep the tone plain and friendly, like a note a homeowner can read once and understand.\n- No slang, no pressure, no \"limited time\" language unless [QUOTE EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\nThe next step should ask them to reply or call [YOUR PHONE] if they want to book. Do not add a payment link unless one was provided.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain roofing quotes for a small crew. One job, one draft. The roofer sends it after they check the numbers.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRoof type and work: [WORK]\nSquares or roof size: [SIZE]\nMaterials: [MATERIALS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add work, materials, warranties, or discounts that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a start date that is not in [TIMELINE].\n- Keep the tone plain and friendly, like a note a homeowner can read once and understand.\n- No slang, no pressure, no \"limited time\" language unless [QUOTE EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\nThe next step should ask them to reply or call [YOUR PHONE] if they want to book. Do not add a payment link unless one was provided.\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a roofing quote a contractor will edit before anyone sees it. Draft only. Do not email or text the customer.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nJob address: [JOB ADDRESS]\nRoof type and work: [WORK]\nSquares or roof size: [SIZE]\nMaterials: [MATERIALS]\nWhat's included: [INCLUDED]\nWhat's not included: [NOT INCLUDED]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the quote is good: [QUOTE EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add work, materials, warranties, or discounts that are not in the details.\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a start date that is not in [TIMELINE].\n- Keep the tone plain and friendly, like a note a homeowner can read once and understand.\n- No slang, no pressure, no \"limited time\" language unless [QUOTE EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nQuote (180 words or fewer for email, 90 words or fewer for a text)\nWhat's included\nWhat's not included\nPrice and deposit\nNext step\nFacts used\nUnknown\nThe next step should ask them to reply or call [YOUR PHONE] if they want to book. Do not add a payment link unless one was provided.\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "On one note, write the customer's name, the job address, the work (for example a tear-off and new shingles), the roof size, materials, what is included, what is not, the price, the deposit, and the start and finish window.",
+            "Add your name, business name, phone, and whether you will send this as an email or a text. If you do not know a detail, leave it blank instead of guessing.",
+            "Open ChatGPT. Copy the ChatGPT prompt, paste it in, and replace every [BRACKET] with the details from your note. If a line is blank, type UNKNOWN in that bracket.",
+            "Read the quote beside your note. Confirm the address, the work, the price, the deposit, and the dates. Cross out any warranty, discount, or extra work you did not write down.",
+            "Copy the finished quote into your email or the customer's text thread. Send it yourself only after those numbers match."
+        ],
+        "approvalStep": "You check the address, the work, the price, and the deposit against your note, then you send the quote yourself. ChatGPT only writes the draft.",
+        "failureModes": [
+            "The draft adds a warranty or a material you did not name. Delete that line before you send it.",
+            "The price or deposit is rounded or split in a way you did not write. Copy your numbers back in exactly.",
+            "Two jobs were pasted together and the quote mixes addresses or measurements. Run one address at a time.",
+            "The draft promises a start date you cannot keep. Keep only the window that is on your note."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Do I have to use ChatGPT for this?",
+            "a": "No. Use the prompt for the assistant you already have, whether that is ChatGPT, Claude, Grok, or Muse. The important part is replacing the brackets with your real job details and checking the price before you send it."
+        },
+        {
+            "q": "What if I do not know the roof size yet?",
+            "a": "Leave the size blank so the draft marks it UNKNOWN. Measure or confirm the squares yourself, then add that number before you send the quote. Do not let the draft guess the size."
+        },
+        {
+            "q": "Can this send the quote for me?",
+            "a": "No. It only writes the draft. You paste it into email or a text, check the address and the numbers, and send it yourself."
+        }
+    ],
+    "persona": "roofer",
+    "job": "Paste roofing job notes and get a clear quote a homeowner can understand and accept.",
+    "who": "Roofers and small roofing companies who write their own quotes and want a plain email or text a homeowner can say yes to.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A small roofing company is quoting a tear-off and new architectural shingles on a one-story house.",
+        "input": "Customer name: Sam Rivera\nJob address: 14 Pine Street\nRoof type and work: Full tear-off, new underlayment, architectural shingles\nSquares or roof size: 22 squares\nMaterials: Architectural shingles, ice-and-water on eaves\nWhat's included: Tear-off, haul-away, underlayment, shingles, ridge vent, cleanup\nWhat's not included: Plywood or fascia repairs, gutters\nPrice: $14,800\nDeposit: $4,400 to book\nStart and finish window: The week of April 13, two days on site if the weather holds\nHow long the quote is good: 30 days\nYour name and business: Jordan at Ridge Line Roofing\nYour phone: 555-0172\nEmail or text: email",
+        "output": "Channel: email\nSubject: Roofing quote for 14 Pine Street\n\nQuote:\nHi Sam, this is Jordan at Ridge Line Roofing. Thank you for walking the roof at 14 Pine Street with me. Here is the quote for a full tear-off and new architectural shingles on the 22-square roof.\n\nWhat's included: Tear-off and haul-away, underlayment, ice-and-water on the eaves, architectural shingles, a ridge vent, and a full cleanup.\n\nWhat's not included: Plywood or fascia repairs, and gutter work. If we find damaged boards, I will show you and price that separately before we go ahead.\n\nPrice and deposit: The job is $14,800. A $4,400 deposit books the week of April 13. We expect two days on site if the weather holds. This quote is good for 30 days.\n\nNext step: Reply to this email or call me at 555-0172 if you would like to book.\n\nFacts used: 14 Pine Street, 22 squares, $14,800, $4,400, week of April 13, 30 days.\nUnknown: none.",
+        "notes": "Made-up names and numbers, only to show the shape of a clear quote."
+    },
+    "related": [
+        "how-to-write-a-warranty-letter-after-a-roofing-job",
+        "write-a-follow-up-text-to-a-quote-i-sent-last-week",
+        "how-to-follow-up-on-an-unpaid-invoice",
+        "reply-to-a-customer-who-says-the-quote-is-too-high"
+    ]
+}

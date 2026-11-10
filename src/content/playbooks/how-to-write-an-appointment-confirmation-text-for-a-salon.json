@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-an-appointment-confirmation-text-for-a-salon",
+    "title": "How to write an appointment confirmation text for a salon",
+    "category": "Back office",
+    "summary": "Paste the booking details into ChatGPT and get a short confirmation text for a salon appointment. Check the date and time before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a salon owner write an appointment confirmation text. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient first name: [CLIENT NAME]\nService: [SERVICE]\nDate: [DATE]\nTime: [TIME]\nHow long it lasts: [DURATION]\nStylist or provider name: [PROVIDER]\nSalon name and address: [SALON]\nAnything to bring or do before: [PREP]\nCancellation rule, if you want it mentioned: [CANCEL RULE]\nYour name: [YOUR NAME]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and friendly, like a confirmation text from the salon.\n- Do not invent a time, a stylist, or a price. If price is not in the details, leave it out.\n- Do not add a promotion or a product pitch.\n- Include the cancel rule only when [CANCEL RULE] has text.\n- One message. No emoji unless the salon already uses them in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a salon appointment confirmation. Write one short message the salon will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient first name: [CLIENT NAME]\nService: [SERVICE]\nDate: [DATE]\nTime: [TIME]\nHow long it lasts: [DURATION]\nStylist or provider name: [PROVIDER]\nSalon name and address: [SALON]\nAnything to bring or do before: [PREP]\nCancellation rule, if you want it mentioned: [CANCEL RULE]\nYour name: [YOUR NAME]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and friendly, like a confirmation text from the salon.\n- Do not invent a time, a stylist, or a price. If price is not in the details, leave it out.\n- Do not add a promotion or a product pitch.\n- Include the cancel rule only when [CANCEL RULE] has text.\n- One message. No emoji unless the salon already uses them in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain salon confirmation texts. One appointment, one draft. The salon sends it after they check the time.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient first name: [CLIENT NAME]\nService: [SERVICE]\nDate: [DATE]\nTime: [TIME]\nHow long it lasts: [DURATION]\nStylist or provider name: [PROVIDER]\nSalon name and address: [SALON]\nAnything to bring or do before: [PREP]\nCancellation rule, if you want it mentioned: [CANCEL RULE]\nYour name: [YOUR NAME]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and friendly, like a confirmation text from the salon.\n- Do not invent a time, a stylist, or a price. If price is not in the details, leave it out.\n- Do not add a promotion or a product pitch.\n- Include the cancel rule only when [CANCEL RULE] has text.\n- One message. No emoji unless the salon already uses them in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare an appointment confirmation for a salon client. Draft only. Do not text or email them.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nClient first name: [CLIENT NAME]\nService: [SERVICE]\nDate: [DATE]\nTime: [TIME]\nHow long it lasts: [DURATION]\nStylist or provider name: [PROVIDER]\nSalon name and address: [SALON]\nAnything to bring or do before: [PREP]\nCancellation rule, if you want it mentioned: [CANCEL RULE]\nYour name: [YOUR NAME]\nChannel: [TEXT or EMAIL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Keep it short and friendly, like a confirmation text from the salon.\n- Do not invent a time, a stylist, or a price. If price is not in the details, leave it out.\n- Do not add a promotion or a product pitch.\n- Include the cancel rule only when [CANCEL RULE] has text.\n- One message. No emoji unless the salon already uses them in the details.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nMessage (70 words or fewer for a text, 100 words or fewer for an email)\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "From the appointment book, write the client's first name, the service, the date, the time, how long it lasts, and the stylist if it matters.",
+            "Add the salon name and address, any prep (such as arrive with clean, dry hair), the cancel rule if you want it in the text, and whether this is a text or an email.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a line is blank.",
+            "Check the name, the service, the date, and the clock time against the book. Fix any typo before you send it.",
+            "Paste the message into your usual confirmation text or email and send it yourself, or into the booking tool you already use."
+        ],
+        "approvalStep": "You check the date, the time, and the service against the appointment book, then you send the confirmation yourself.",
+        "failureModes": [
+            "The time or date does not match the book, often because morning and afternoon got swapped. Confirm the clock time.",
+            "The wrong stylist or service is named. Match the appointment before you send.",
+            "The draft adds a price or a product offer you did not include. Take it out.",
+            "The cancel rule in the text is stricter than your real policy. Use only the rule you actually follow."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "Should I ask them to reply?",
+            "a": "A simple 'reply if that time still works' is enough for most salons. If your booking tool already confirms for you, you can leave that question out."
+        },
+        {
+            "q": "Can I include the price?",
+            "a": "Only if you add a price line to your notes. This prompt will not invent a price. If your services have a range, write that range yourself before you send."
+        },
+        {
+            "q": "What if the appointment is tomorrow morning?",
+            "a": "Send the confirmation as soon as the booking is made, then use a separate short reminder if you usually text the day before. Do not let the draft change the date."
+        }
+    ],
+    "persona": "salon owner",
+    "job": "Paste a booking and get a short appointment confirmation text a client can save.",
+    "who": "Salon owners and front-desk staff who confirm hair, nail, or skin appointments by text or email.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Text messaging",
+        "Email"
+    ],
+    "example": {
+        "scenario": "A salon is confirming a color and cut for later in the week.",
+        "input": "Client first name: Reese\nService: Color and cut\nDate: Thursday, November 13\nTime: 2:00 p.m.\nHow long it lasts: 2 hours\nStylist or provider name: Morgan\nSalon name and address: Willow Salon, 110 Main Street\nAnything to bring or do before: Arrive with clean, dry hair\nCancellation rule, if you want it mentioned: Please give 24 hours notice if you need to move it\nYour name: Front desk at Willow Salon\nChannel: TEXT",
+        "output": "Channel: text\nSubject: NONE\n\nMessage:\nHi Reese, this is Willow Salon at 110 Main Street confirming your color and cut with Morgan on Thursday, November 13 at 2:00 p.m. It should take about 2 hours. Please arrive with clean, dry hair. If you need to move it, give us 24 hours notice. Reply to this text if that time still works.\n\nFacts used: Reese, color and cut, November 13, 2:00 p.m., Morgan, 24 hours.\nUnknown: none.",
+        "notes": "Made-up appointment details, only to show a clear confirmation text."
+    },
+    "related": [
+        "how-to-write-a-cancellation-policy-for-a-salon",
+        "write-a-reminder-text-for-a-weekly-cleaning-tomorrow",
+        "appointments-and-reschedules",
+        "how-to-write-a-service-agreement-for-a-house-cleaning-job"
+    ]
+}

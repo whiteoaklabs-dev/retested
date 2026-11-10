@@ -1,0 +1,82 @@
+{
+    "slug": "how-to-write-a-proposal-for-a-landscaping-project",
+    "title": "How to write a proposal for a landscaping project",
+    "category": "Sales",
+    "summary": "Paste your project notes into ChatGPT and get a clear landscaping proposal. Check the scope and the price before you send it.",
+    "published": "2026-11-10",
+    "updated": "2026-11-10",
+    "tests": [
+        {
+            "model": "ChatGPT",
+            "prompt": "You help a landscaper write a project proposal. Draft only. Do not send it.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nProject summary: [PROJECT]\nWork in the proposal: [WORK]\nWhat's not included: [NOT INCLUDED]\nMaterials, if you are supplying them: [MATERIALS]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the proposal is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add plants, patios, irrigation, or lighting that are not in [WORK].\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a bloom, a plant size, or a maintenance result you did not write down.\n- Keep the tone plain and friendly, like a proposal a homeowner can walk the yard with.\n- No pressure and no \"this season only\" language unless [EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nProposal (200 words or fewer for email, 100 words or fewer for a text)\nThe work\nWhat's not included\nPrice and deposit\nTimeline\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Claude",
+            "prompt": "You are drafting a landscaping project proposal. Write one proposal the landscaper will review, then send. Do not send it yourself.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nProject summary: [PROJECT]\nWork in the proposal: [WORK]\nWhat's not included: [NOT INCLUDED]\nMaterials, if you are supplying them: [MATERIALS]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the proposal is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add plants, patios, irrigation, or lighting that are not in [WORK].\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a bloom, a plant size, or a maintenance result you did not write down.\n- Keep the tone plain and friendly, like a proposal a homeowner can walk the yard with.\n- No pressure and no \"this season only\" language unless [EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nProposal (200 words or fewer for email, 100 words or fewer for a text)\nThe work\nWhat's not included\nPrice and deposit\nTimeline\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Grok",
+            "prompt": "You write plain landscaping proposals. One yard, one draft. The landscaper sends it after they check the work and the price.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nProject summary: [PROJECT]\nWork in the proposal: [WORK]\nWhat's not included: [NOT INCLUDED]\nMaterials, if you are supplying them: [MATERIALS]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the proposal is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add plants, patios, irrigation, or lighting that are not in [WORK].\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a bloom, a plant size, or a maintenance result you did not write down.\n- Keep the tone plain and friendly, like a proposal a homeowner can walk the yard with.\n- No pressure and no \"this season only\" language unless [EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nProposal (200 words or fewer for email, 100 words or fewer for a text)\nThe work\nWhat's not included\nPrice and deposit\nTimeline\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        },
+        {
+            "model": "Muse",
+            "prompt": "You prepare a proposal for a landscaping project. Draft only. Do not email or text the customer.\n\nFill in these details. If a line is blank, write UNKNOWN and do not guess.\n\nCustomer name: [CUSTOMER NAME]\nProperty address: [ADDRESS]\nProject summary: [PROJECT]\nWork in the proposal: [WORK]\nWhat's not included: [NOT INCLUDED]\nMaterials, if you are supplying them: [MATERIALS]\nPrice: [PRICE]\nDeposit: [DEPOSIT]\nStart and finish window: [TIMELINE]\nHow long the proposal is good: [EXPIRATION]\nYour name and business: [YOUR NAME]\nYour phone: [YOUR PHONE]\nEmail or text: [CHANNEL]\n\nRules:\n- Never invent details; if something is missing, ask or mark it UNKNOWN.\n- Do not add plants, patios, irrigation, or lighting that are not in [WORK].\n- Do not change the price or the deposit. Copy them exactly.\n- Do not promise a bloom, a plant size, or a maintenance result you did not write down.\n- Keep the tone plain and friendly, like a proposal a homeowner can walk the yard with.\n- No pressure and no \"this season only\" language unless [EXPIRATION] has a date.\n\nOutput format:\nReturn these headings only:\nChannel\nSubject (NONE if this is a text)\nProposal (200 words or fewer for email, 100 words or fewer for a text)\nThe work\nWhat's not included\nPrice and deposit\nTimeline\nNext step\nFacts used\nUnknown\n",
+            "status": "not-yet-tested"
+        }
+    ],
+    "setup": {
+        "agent": "Paste this into ChatGPT, or into the chat assistant you already use.",
+        "steps": [
+            "After you walk the yard, write the customer name, address, a short project summary, the work, what's not included, materials you will supply, the price, the deposit, and the schedule.",
+            "Add how long the proposal is good, your name, phone, and whether this is an email or a text.",
+            "Open ChatGPT, paste the ChatGPT prompt, and replace every [BRACKET]. Type UNKNOWN if a plant list or a date is not ready.",
+            "Check the work list, the price, and the deposit against your notes. Delete any patio, irrigation, or plant that was not in the walkthrough.",
+            "Paste the proposal into email or a PDF and send it yourself."
+        ],
+        "approvalStep": "You check the scope, the materials, and the price against your walkthrough notes, then you send the proposal yourself.",
+        "failureModes": [
+            "The draft adds a patio, lighting, or irrigation you did not quote. Take those items out.",
+            "The price or deposit does not match your numbers. Copy your figures exactly.",
+            "Plant names or sizes appear that you did not specify. Keep the materials list to what you wrote.",
+            "The schedule promises a start week you cannot keep. Use only the window on your note."
+        ]
+    },
+    "toolPicks": [],
+    "faq": [
+        {
+            "q": "The homeowner also asked about a patio. Should I include it?",
+            "a": "Only if you priced it and put it in [WORK]. Otherwise leave it under What's not included and offer a separate proposal later so the totals stay clean."
+        },
+        {
+            "q": "I have not chosen the plants yet. Can I still send a proposal?",
+            "a": "You can describe the beds in general terms and leave [MATERIALS] blank or marked UNKNOWN, then follow up with a plant list. Do not let the draft invent plant names or counts."
+        },
+        {
+            "q": "Should I attach photos or a sketch?",
+            "a": "Yes if you have them. This prompt writes the words. You can attach your photos or a simple sketch when you send the email."
+        }
+    ],
+    "persona": "landscaper",
+    "job": "Paste a yard walkthrough and get a clear landscaping project proposal.",
+    "who": "Landscapers and landscape companies who quote backyard projects and want a plain proposal that lists the work, the price, and what is not included.",
+    "toolCategories": [
+        "AI chat assistants",
+        "Email",
+        "Text messaging"
+    ],
+    "example": {
+        "scenario": "A landscaper is proposing a front-bed refresh with new shrubs, mulch, and edging, not a full redesign.",
+        "input": "Customer name: Morgan Blake\nProperty address: 9 Lake Court\nProject summary: Refresh the two front beds, keep the existing trees\nWork in the proposal: Remove tired shrubs, plant eight boxwoods and twelve perennials, install steel edging, and spread three yards of brown mulch\nWhat's not included: Irrigation, lighting, lawn seeding, and the backyard\nMaterials, if you are supplying them: Boxwoods, perennials, steel edging, and brown hardwood mulch\nPrice: $3,150\nDeposit: $1,000 to book\nStart and finish window: The week of April 6, two days on site\nHow long the proposal is good: 30 days\nYour name and business: Riley at Green Thread Landscapes\nYour phone: 555-0166\nEmail or text: email",
+        "output": "Channel: email\nSubject: Landscaping proposal for 9 Lake Court\n\nProposal:\nHi Morgan, this is Riley at Green Thread Landscapes. Here is the proposal to refresh the two front beds at 9 Lake Court and keep the existing trees.\n\nThe work: Remove the tired shrubs, plant eight boxwoods and twelve perennials, install steel edging, and spread three yards of brown hardwood mulch. We supply the plants, edging, and mulch.\n\nWhat's not included: Irrigation, lighting, lawn seeding, and any work in the backyard.\n\nPrice and deposit: The project is $3,150. A $1,000 deposit books the week of April 6. We expect two days on site. This proposal is good for 30 days.\n\nTimeline: Week of April 6, two days on site.\n\nNext step: Reply or call 555-0166 if you would like to book, and I can walk the beds with you once more before we start.\n\nFacts used: 9 Lake Court, eight boxwoods, twelve perennials, three yards of mulch, $3,150, $1,000, week of April 6.\nUnknown: none.",
+        "notes": "Made-up project details, only to show a clear landscaping proposal."
+    },
+    "related": [
+        "write-a-quote-for-weekly-lawn-care-for-a-medium-yard",
+        "answer-a-homeowner-asking-for-a-one-time-yard-tidy-up-price",
+        "how-to-write-a-bid-for-a-commercial-cleaning-contract",
+        "write-an-ad-for-fall-leaf-removal-in-my-area"
+    ]
+}
